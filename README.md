@@ -4,7 +4,7 @@ An ongoing reconstruction of an older Metin2 game-server binary into readable C+
 
 The goal is to recover the original behavior, preserve the corresponding server source-file structure, and work toward a compilable project that can be developed through Visual Studio.
 
-**This is a work in progress, not a complete or production-ready server release.** Full server compilation, linking, startup, and Visual Studio integration remain unfinished. Native Windows server support is not an immediate goal.
+**This is a work in progress, not a complete or production-ready game-server release.** The reconstructed **DB server successfully builds, starts, connects to MySQL 8, and remains running on FreeBSD**, as confirmed by the project maintainer. Full **game-server** compilation, linking, startup, and Visual Studio integration remain unfinished. Native Windows server support is not an immediate goal.
 
 ## Scope and approach
 
@@ -46,17 +46,18 @@ Some working candidates and analysis inputs may remain outside the tracked repos
 
 ## Current status
 
-The db source is ready to build. **C++23**, **MySQL 8** and **fmtlib** required. For details, see [Makefile](Reversed%20Source/db/src/Makefile) and [db-build.mk](Reversed%20Source/db/db-build.mk).
+**DB server — operational on FreeBSD/i386 (maintainer-confirmed):** The reconstructed DB executable compiles, links, starts, connects to a MySQL 8 server, and remains running without observed errors. This confirms basic startup and database connectivity, **not** complete protocol, gameplay, or data-integrity validation. The DB build requires C++23, Oracle MySQL 8 client headers/library, fmtlib, zlib, and POSIX threads. Both [GNU Make](Reversed%20Source/db/src/Makefile) and [CMake](Reversed%20Source/db/CMakeLists.txt) configurations are present; see [DB build notes](Reversed%20Source/db/DB_2009_RESUME.md).
 
-As of **2026-11-09**, the latest recorded milestone is **checkpoint 112 (focused validation)**.
+As of **2026-11-12**, the last recorded **focused validation checkpoint is 112**, while the [source-restoration journal](Reversed%20Source/reconstruction/RESUME_CHECKPOINT.md) continues through **batch 652**. Later source batches explicitly defer new builds and runtime tests; batch numbers are not validation checkpoints.
 
-- Checkpoint 109 restored seven quest output/time callbacks and GetEmpireFromMapIndex. 2 focused runtime suites passed. The registry has 120 suites. The last full run remains checkpoint 103.
+- Checkpoint 112 restored CHARACTER shop/exchange setters; two focused runtime suites passed. The registry had 120 suites, with the last reported full run at checkpoint 103.
+- Subsequent source batches restore substantial additional shop, character stat, item lifecycle/refinement, affect/combat, quest/Lua, movement/warp, PvP/P2P, guild/party/messenger, DB, and GM command code. These source changes are not yet covered by a new reported full validation run.
 - Recent recovered groups include the skill factory, weighted and rare item attributes, attribute copying/removal, affect-flag lookup, and affect/fly packet delivery.
 - The function ledger contains **1118 entries with structured address-backed evidence** and **370 bounded implementation/test mappings**, within a 7,238-entry inventory.
 
 These are evidence and validation counts, **not a completion percentage**. Passing module tests does not establish complete server behavior or binary equivalence.
 
-Infrastructure, networking, support libraries, and selected gameplay paths have been reconstructed incrementally. Major remaining work includes character stats and equipment dependencies, broader affect/combat behavior, quest integration, item creation/removal dependencies, database boot, startup, and complete server linking. PC lifecycle, flags/timers, quest storage, manager queries, start-script loading/registration, selected state helpers and constructors, and independently closed safebox operations now have validated implementations. Broader quest execution and populated safebox destruction remain unfinished.
+Infrastructure, networking, support libraries, and selected gameplay paths have been reconstructed incrementally. Earlier dependency-frontier descriptions are historical: many of these areas have since received integrated source implementations. Their complete transitive dependencies and current end-to-end runtime validation remain unconfirmed. The DB server now builds and runs, but complete **game-server** linking, startup, and integrated gameplay validation remain outstanding. PC lifecycle, flags/timers, quest storage, manager queries, start-script loading/registration, selected state helpers and constructors, and independently closed safebox operations now have validated implementations. Broader quest execution and populated safebox destruction remain unfinished.
 
 Detailed records:
 
@@ -68,7 +69,7 @@ Detailed records:
 
 ## Validation
 
-The project includes C/C++ regression programs and a Python validation runner. The established test environment uses GCC/G++, GNU Make, C++03/C99 compilation, and 32-bit compiler support for relevant ABI checks. Platform shims and explicit test-only boundaries support tests while unrelated server dependencies remain unfinished.
+The project includes C/C++ regression programs and a Python validation runner. Their recorded checkpoint results do not automatically validate later source batches. The DB server's successful native FreeBSD startup and MySQL connection are separately maintainer-confirmed. The established test environment uses GCC/G++, GNU Make, C++03/C99 compilation, and 32-bit compiler support for relevant ABI checks. Platform shims and explicit test-only boundaries support tests while unrelated server dependencies remain unfinished.
 
 With the required toolchain and dependencies configured, run the registered suite from the repository root:
 
