@@ -1,0 +1,24 @@
+// Add to char.cpp with common/length.h, config.h and log.h available.
+//0812a5f0: raw byte write precedes descriptor and privilege decisions.
+void CHARACTER::SetLevel(BYTE level) {
+    m_points.level=level;
+    if(!GetDesc()) return;
+    if(level<PK_PROTECT_LEVEL || GetGMLevel()!=GM_PLAYER)
+        SetPKMode(PK_MODE_PROTECT);
+    else if(m_bPKMode==PK_MODE_PROTECT)
+        SetPKMode(PK_MODE_PEACE);
+}
+//08132170: non-const old API, all nonzero test_server values override storedGM.
+BYTE CHARACTER::GetGMLevel() {
+    return test_server?GM_IMPLEMENTOR:m_pointsInstant.gm_level;
+}
+//081541e0 (original char_battle.cpp). Existing real UpdatePacket fanout required.
+void CHARACTER::SetPKMode(BYTE bPKMode) {
+    if(bPKMode>=PK_MODE_MAX_NUM || m_bPKMode==bPKMode) return;
+    if(bPKMode==PK_MODE_GUILD && !m_pGuild) bPKMode=PK_MODE_FREE;
+    // Equality was tested before fallback. FREE->GUILD without guild still
+    // emits real update/log even though final value remainsFREE.
+    m_bPKMode=bPKMode;
+    UpdatePacket();
+    sys_log(0,"PK_MODE: %s %d",GetName(),static_cast<unsigned int>(m_bPKMode));
+}

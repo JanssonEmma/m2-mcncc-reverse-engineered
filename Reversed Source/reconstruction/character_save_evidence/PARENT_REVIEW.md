@@ -1,0 +1,1 @@
+Parent replaced unsupported C++11/static whole old STL class-size assertions with C++03 exact API gates. Existing full character/manager data ABI checks remain; no modern full STL equality claim. No runtime validation yet.

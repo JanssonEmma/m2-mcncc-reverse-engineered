@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08055df0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_raw_script",
+      "address": "08055df0"
+    },
+    "code": "\r\nint _raw_script(lua_State *L)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  string *psVar3;\r\n  char *pcVar4;\r\n  allocator local_2c [16];\r\n  int local_1c [4];\r\n  \r\n  if (test_server != 0) {\r\n    pcVar4 = lua_tostring(L,-1);\r\n    sys_log(0,\"_raw_script : %s \",pcVar4);\r\n  }\r\n  iVar2 = lua_isstring(L,-1);\r\n  if (iVar2 == 0) {\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    psVar3 = CQuestManager::GetCurrentQuestName\r\n                       ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton);\r\n    pcVar4 = (psVar3->_M_dataplus)._M_p;\r\n    pcVar4[*(int *)(pcVar4 + -0xc)] = std::string::_Rep::_S_terminal;\r\n    pcVar4 = (psVar3->_M_dataplus)._M_p;\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    CQuestManager::QuestError\r\n              ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,\"_raw_script\",0x2c2,\r\n               \"QUEST wrong argument: questname: %s\",pcVar4);\r\n  }\r\n  else {\r\n    pcVar4 = lua_tostring(L,-1);\r\n    std::string::string((string *)local_1c,pcVar4,local_2c);\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"Instance\",\"../../common/singleton.h\",0x20);\r\n    }\r\n    CQuestManager::AddScript\r\n              ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,(string *)local_1c);\r\n    LOCK();\r\n    piVar1 = (int *)(local_1c[0] + -4);\r\n    iVar2 = *piVar1;\r\n    *piVar1 = *piVar1 + -1;\r\n    UNLOCK();\r\n    if (iVar2 < 1) {\r\n      std::string::_Rep::_M_destroy((allocator *)(local_1c[0] + -0xc));\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

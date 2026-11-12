@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804dd10",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "deque<event*,std::allocator<event*>_>::_M_pop_back_aux",
+      "address": "0804dd10"
+    },
+    "code": "\r\n/* DWARF original prototype: void _M_pop_back_aux(deque<event*,std::allocator<event*>_> * this) */\r\n\r\nvoid __thiscall\r\ndeque<event*,std::allocator<event*>_>::_M_pop_back_aux(deque<event*,std::allocator<event*>_> *this)\r\n\r\n{\r\n  LPEVENT **pppEVar1;\r\n  LPEVENT *ppEVar2;\r\n  \r\n  std::__default_alloc_template<true,0>::deallocate\r\n            ((this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_first,0x200);\r\n  pppEVar1 = (this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_node;\r\n  (this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_node = pppEVar1 + -1;\r\n  ppEVar2 = pppEVar1[-1];\r\n  (this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_first = ppEVar2;\r\n  (this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_last = ppEVar2 + 0x80;\r\n  (this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_cur =\r\n       (this->super__Deque_base<event*,std::allocator<event*>_>)._M_finish._M_last + -1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

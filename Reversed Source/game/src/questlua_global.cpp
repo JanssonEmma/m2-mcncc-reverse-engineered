@@ -1,0 +1,99 @@
+// Recovered original Lua logging globals and their complete registrar.
+#include "questmanager.h"
+#include "char.h"
+#include "config.h"
+#include "log.h"
+#include "../../libthecore/include/log.h"
+#include <stdint.h>
+#include <fenv.h>
+
+extern "C" {
+#include "../../liblua/include/lua.h"
+#include "../../liblua/include/lauxlib.h"
+}
+
+namespace quest {
+int _char_log(lua_State* state)
+{
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    DWORD value = 0;
+    const char* how = "";
+    const char* hint = "";
+    if (lua_isnumber(state, 1)) {
+        // The old FISTP truncates through signed 64 bits and the caller uses the low 32 bits.
+        const lua_Number number = lua_tonumber(state, 1);
+        if (number >= -9223372036854775808.0 && number < 9223372036854775808.0)
+            value = static_cast<DWORD>(static_cast<int64_t>(number));
+        else
+            feraiseexcept(FE_INVALID); // Integer-indefinite has zero low 32 bits.
+    }
+    if (lua_isstring(state, 2))
+        how = lua_tostring(state, 2);
+    if (lua_tostring(state, 3))
+        hint = lua_tostring(state, 3);
+
+    const DWORD y = character->GetY();
+    const DWORD x = character->GetX();
+    const DWORD pid = character->GetPlayerID();
+    LogManager::instance().CharLog(pid, x, y, value, how, hint);
+    return 0;
+}
+
+int _syslog(lua_State* state)
+{
+    if (!lua_isnumber(state, 1) || !lua_isstring(state, 2))
+        return 0;
+    if (lua_tonumber(state, 1) >= 1.0 && !test_server)
+        return 0;
+
+    PC* pc = CQuestManager::instance().GetCurrentPC();
+    if (!pc)
+        return 0;
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    if (!character)
+        return 0;
+
+    const char* message = lua_tostring(state, 2);
+    const char* playerName = character->GetName();
+    const std::string& questName = pc->GetCurrentQuestName();
+    sys_log(0, "from Quest %s Player %s msg : %s", questName.c_str(), playerName, message);
+    character->ChatPacket(1, "QUEST_SYSLOG %s", lua_tostring(state, 2));
+    return 0;
+}
+
+int _syserr(lua_State* state)
+{
+    if (!lua_isstring(state, 1))
+        return 0;
+
+    PC* pc = CQuestManager::instance().GetCurrentPC();
+    if (!pc)
+        return 0;
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    if (!character)
+        return 0;
+
+    const char* message = lua_tostring(state, 1);
+    const char* playerName = character->GetName();
+    const std::string& questName = pc->GetCurrentQuestName();
+    CQuestManager::instance().QuestError("_syserr", 62, "from Quest %s Player %s msg : %s",
+                                        questName.c_str(), playerName, message);
+    character->ChatPacket(1, "QUEST_SYSERR %s", lua_tostring(state, 1));
+    return 0;
+}
+
+void RegisterGlobalFunctionTable(lua_State* state)
+{
+    luaL_reg functions[] = {
+        { "sys_err", _syserr },
+        { "sys_log", _syslog },
+        { "char_log", _char_log },
+        { 0, 0 }
+    };
+    for (luaL_reg* entry = functions; entry->name; ++entry) {
+        lua_pushstring(state, entry->name);
+        lua_pushcfunction(state, entry->func);
+        lua_settable(state, LUA_GLOBALSINDEX);
+    }
+}
+}

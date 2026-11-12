@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804eaa0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CEventQueue::~CEventQueue",
+      "address": "0804eaa0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CEventQueue(CEventQueue * this, int __in_chrg) */\r\n\r\nvoid __thiscall CEventQueue::~CEventQueue(CEventQueue *this,int __in_chrg)\r\n\r\n{\r\n  TQueueElement **ppTVar1;\r\n  int iVar2;\r\n  \r\n  Destroy(this);\r\n  ppTVar1 = (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n            super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_start;\r\n  iVar2 = (int)(this->m_pq_queue).c.\r\n               super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n               super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>.\r\n               _M_end_of_storage - (int)ppTVar1 >> 2;\r\n  if (iVar2 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(ppTVar1,iVar2 << 2);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

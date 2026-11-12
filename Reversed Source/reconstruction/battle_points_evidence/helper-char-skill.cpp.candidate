@@ -1,0 +1,15 @@
+#include "char.h"
+#include "../../libthecore/include/utils.h"
+#include "../../libthecore/include/log.h"
+// Original placement char_skill.cpp2611, STB_GLOBAL and NOT inline.
+// New partial game/src/char_skill.cpp needs char.h, coreutils.h/log.h.
+//08073560: target skill record is packed6 bytes; array has255 entries.
+int CHARACTER::GetSkillLevel(DWORD dwVnum) {
+    if(dwVnum<255) {
+        unsigned int level=m_pSkillLevels?m_pSkillLevels[dwVnum].bLevel:0;
+        return MIN(40,static_cast<int>(level));
+    }
+    _sys_err("GetSkillLevel",2614,"%s skill vnum overflow %lu",GetName(),dwVnum);
+    sys_log(0,"%s skill vnum overflow %lu",GetName(),dwVnum);
+    return 0;
+}

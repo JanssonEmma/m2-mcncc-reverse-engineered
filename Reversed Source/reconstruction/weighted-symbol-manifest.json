@@ -1,0 +1,116 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "symbol": "_ZN5CItem7AddAttrEhh",
+      "address": "08186ec0",
+      "size": 414,
+      "kind": "STT_FUNC"
+    },
+    {
+      "symbol": "_ZN5CItem16AlterToMagicItemEv",
+      "address": "081681e0",
+      "size": 385,
+      "kind": "STT_FUNC"
+    },
+    {
+      "symbol": "_ZN5CItem12PutAttributeEPKi",
+      "address": "081874d0",
+      "size": 103,
+      "kind": "STT_FUNC"
+    },
+    {
+      "symbol": "_ZN5CItem21PutAttributeWithLevelEh",
+      "address": "08187060",
+      "size": 1122,
+      "kind": "STT_FUNC"
+    }
+  ],
+  "data": {
+    "symbols": [
+      {
+        "name": "aiItemMagicAttributePercentLow",
+        "address": "0821aee8",
+        "size": 20,
+        "section": 12
+      },
+      {
+        "name": "g_map_itemAttr",
+        "address": "08323298",
+        "size": 12,
+        "section": 20
+      },
+      {
+        "name": "g_map_itemRare",
+        "address": "083232a4",
+        "size": 12,
+        "section": 20
+      },
+      {
+        "name": "aiItemMagicAttributePercentHigh",
+        "address": "0821aed4",
+        "size": 20,
+        "section": 12
+      }
+    ],
+    "tables": [
+      {
+        "symbol": "aiItemMagicAttributePercentLow",
+        "address": "0821aee8",
+        "bytes": "32000000280000000a0000000000000000000000",
+        "values": [
+          50,
+          40,
+          10,
+          0,
+          0
+        ]
+      },
+      {
+        "symbol": "aiItemMagicAttributePercentHigh",
+        "address": "0821aed4",
+        "bytes": "1e00000028000000140000000800000002000000",
+        "values": [
+          30,
+          40,
+          20,
+          8,
+          2
+        ]
+      }
+    ]
+  },
+  "complete_record": "TItemAttrTable69, fields char33/DWORD/DWORD/long[5]/BYTE[8], packed offsets0/33/37/41/61; real map<DWORD,TItemAttrTable> normal+rare, no oldSTLsizeof assertion.",
+  "data_refs": [
+    {
+      "path": "common/tables.h",
+      "anchor": "typedef struct SItemAttrTable",
+      "line": 261,
+      "file_sha256": "415947d8b7194473381c9fd8709213c3d12c1a4ed3693b152c413a3ec50f0771"
+    },
+    {
+      "path": "game/src/constants.cpp",
+      "anchor": "TItemAttrMap g_map_itemAttr;",
+      "line": 290,
+      "file_sha256": "4f19e956998e71835bdf06efafcd214649cd5b78a5688945add6f8b3e952fa5c"
+    },
+    {
+      "path": "game/src/constants.cpp",
+      "anchor": "TItemAttrMap g_map_itemRare;",
+      "line": 291,
+      "file_sha256": "4f19e956998e71835bdf06efafcd214649cd5b78a5688945add6f8b3e952fa5c"
+    },
+    {
+      "path": "game/src/constants.cpp",
+      "anchor": "const int aiItemMagicAttributePercentHigh[5]",
+      "line": 292,
+      "file_sha256": "4f19e956998e71835bdf06efafcd214649cd5b78a5688945add6f8b3e952fa5c"
+    },
+    {
+      "path": "game/src/constants.cpp",
+      "anchor": "const int aiItemMagicAttributePercentLow[5]",
+      "line": 293,
+      "file_sha256": "4f19e956998e71835bdf06efafcd214649cd5b78a5688945add6f8b3e952fa5c"
+    }
+  ]
+}

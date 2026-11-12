@@ -1,0 +1,124 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "reviews": [
+    {
+      "address": "08060c10",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::HasQuest("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    },
+    {
+      "address": "08060ca0",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::GetQuest("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    },
+    {
+      "address": "0805dda0",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::GetCurrentQuestIndex("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    },
+    {
+      "address": "0805e5a0",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::SetQuest("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    },
+    {
+      "address": "0805e400",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "void PC::SetQuestState(const std::string& name,int next)"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    },
+    {
+      "address": "0805e4b0",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::AddQuestStateChange("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    },
+    {
+      "address": "080617f0",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::ClearQuest("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/pc_quest_storage_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Complete original PC storage method; full actual manager name query/hash, owned PC/QuestState/STL/flag/pending/timer/event lifecycle, external logger callbacks only. ClearQuest original matching-nonzero flag key-alias UAF domain excluded runtime, full body preserved. Default GetQuest counters remain uninitialized until explicit test initialization.",
+      "notes": "PENDING parent normal/O2/strict/full validation. No VM/Lua state-name resolution or AArgScript ctor recovery claim."
+    }
+  ]
+}

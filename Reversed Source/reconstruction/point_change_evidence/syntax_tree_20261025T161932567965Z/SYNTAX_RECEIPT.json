@@ -1,0 +1,23 @@
+{
+  "kind": "syntax-only; NOT functional recovery",
+  "compiler": "C:\\Strawberry\\c\\bin\\g++.exe",
+  "arguments": [
+    "-std=c++03",
+    "-m32",
+    "-fsyntax-only",
+    "-D_GLIBCXX_USE_CXX11_ABI=0",
+    "-Wno-long-long",
+    "-Ifdwatch_shim",
+    "-Isocket_shim",
+    "-Iposix_shim",
+    "-Isql_shim",
+    "-I../dependencies/mysql-4.1.3/include",
+    "-include",
+    "sql_socket_platform.h",
+    "../../game/src/PointChange.syntax.cpp",
+    "point_change_syntax_signatures.cpp"
+  ],
+  "candidate_sha256": "092626bb34a7be0be67d58fade511744afab77d3c646df8b1118b96e55cbfcdd",
+  "exit_code": 0,
+  "functional_proof": false
+}

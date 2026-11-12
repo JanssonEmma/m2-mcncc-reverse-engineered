@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813af70",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "GetKey_20050304Myevan",
+      "address": "0813af70"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nBYTE * GetKey_20050304Myevan(void)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  \r\n  if (!GetKey_20050304Myevan::bGenerated) {\r\n                    /* Unresolved local var: DWORD seed@[DW_OP_reg2(EDX)] */\r\n    GetKey_20050304Myevan::bGenerated = true;\r\n    uVar2 = 0x58edadb9;\r\n                    /* Unresolved local var: UINT i@[DW_OP_reg1(ECX)] */\r\n    uVar1 = 0;\r\n    do {\r\n      uVar2 = (uVar2 ^ 0x80164043) + 0xd61f75bd;\r\n      GetKey_20050304Myevan::s_adwKey[uVar1] = uVar2;\r\n      uVar1 = uVar1 + 1;\r\n    } while (uVar1 < (uVar2 & 0xff));\r\n  }\r\n  return (BYTE *)GetKey_20050304Myevan::s_adwKey;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,1686 @@
+[
+  {
+    "node": {
+      "die": "0x1e9042a",
+      "tag": "DW_TAG_structure_type",
+      "name": "SMobSkillLevel",
+      "size": 5
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bLevel",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1e9049d",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e9042a",
+            "tag": "DW_TAG_structure_type",
+            "name": "SMobSkillLevel",
+            "size": 5
+          }
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobSkillLevel",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobSkillLevel",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1e904c0",
+      "tag": "DW_TAG_structure_type",
+      "name": "SMobTable",
+      "size": 255
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "szName",
+        "type": {
+          "die": "0x1e8fb6d",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8a96f",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            24
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "szLocaleName",
+        "type": {
+          "die": "0x1e8fb6d",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8a96f",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            24
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              29
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bType",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              54
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bRank",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              55
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bBattleType",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              56
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bLevel",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              57
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bSize",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              58
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwGoldMin",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              59
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwGoldMax",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              63
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwExp",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              67
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwMaxHP",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              71
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bRegenCycle",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              75
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bRegenPercent",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              76
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "wDef",
+        "type": {
+          "die": "0x1e8deeb",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a75f",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "size": 2
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              77
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwAIFlag",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              79
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwRaceFlag",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              83
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwImmuneFlag",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              87
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bStr",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              91
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bDex",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              92
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bCon",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              93
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bInt",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              94
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwDamageRange",
+        "type": {
+          "die": "0x1e907e7",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "bounds": [
+            1
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              95
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "sAttackSpeed",
+        "type": {
+          "die": "0x1e8a74d",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              103
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "sMovingSpeed",
+        "type": {
+          "die": "0x1e8a74d",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              105
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bAggresiveHPPct",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              107
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "wAggressiveSight",
+        "type": {
+          "die": "0x1e8deeb",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a75f",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "size": 2
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              108
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "wAttackRange",
+        "type": {
+          "die": "0x1e8deeb",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a75f",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "size": 2
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              110
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "cEnchants",
+        "type": {
+          "die": "0x1e8c54d",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8a96f",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            5
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              112
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "cResists",
+        "type": {
+          "die": "0x1e907f7",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8a96f",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            10
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              118
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwResurrectionVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              129
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwDropItemVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              133
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bMountCapacity",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              137
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bOnClickType",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              138
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bEmpire",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              139
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "szFolder",
+        "type": {
+          "die": "0x1e90807",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8a96f",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            64
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              140
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "fDamMultiply",
+        "type": {
+          "die": "0x1e8e49f",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              205
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwSummonVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              209
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwDrainSP",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              213
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwMobColor",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              217
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwPolymorphItemVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              221
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "Skills",
+        "type": {
+          "die": "0x1e90817",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e904b4",
+            "tag": "DW_TAG_typedef",
+            "name": "TMobSkillLevel",
+            "size": null,
+            "type": {
+              "die": "0x1e9042a",
+              "tag": "DW_TAG_structure_type",
+              "name": "SMobSkillLevel",
+              "size": 5
+            }
+          },
+          "bounds": [
+            4
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              225
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bBerserkPoint",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              250
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bStoneSkinPoint",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              251
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bGodSpeedPoint",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              252
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bDeathBlowPoint",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              253
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bRevivePoint",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              254
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1e90827",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e904c0",
+            "tag": "DW_TAG_structure_type",
+            "name": "SMobTable",
+            "size": 255
+          }
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobTable",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobTable",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1ed8f92",
+      "tag": "DW_TAG_structure_type",
+      "name": "CMob",
+      "size": 356
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_table",
+        "type": {
+          "die": "0x1e9083e",
+          "tag": "DW_TAG_typedef",
+          "name": "TMobTable",
+          "size": null,
+          "type": {
+            "die": "0x1e904c0",
+            "tag": "DW_TAG_structure_type",
+            "name": "SMobTable",
+            "size": 255
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_mobSkillInfo",
+        "type": {
+          "die": "0x1f36df9",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1ee994f",
+            "tag": "DW_TAG_typedef",
+            "name": "TMobSkillInfo",
+            "size": null,
+            "type": {
+              "die": "0x1ee995b",
+              "tag": "DW_TAG_structure_type",
+              "name": "SMobSkillInfo",
+              "size": 20
+            }
+          },
+          "bounds": [
+            4
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              256
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1f36e09",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ed8f92",
+            "tag": "DW_TAG_structure_type",
+            "name": "CMob",
+            "size": 356
+          }
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CMob",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CMob",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CMob",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~CMob",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "AddSkillSplash",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1ee995b",
+      "tag": "DW_TAG_structure_type",
+      "name": "SMobSkillInfo",
+      "size": 20
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwSkillVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bSkillLevel",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "vecSplashAttack",
+        "type": {
+          "die": "0x1f367a7",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo> >",
+          "size": 12
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1f36de2",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ee995b",
+            "tag": "DW_TAG_structure_type",
+            "name": "SMobSkillInfo",
+            "size": 20
+          }
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobSkillInfo",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobSkillInfo",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~SMobSkillInfo",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1f36459",
+      "tag": "DW_TAG_structure_type",
+      "name": "SMobSplashAttackInfo",
+      "size": 8
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwTiming",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "dwHitDistance",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1f364d4",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1f36459",
+            "tag": "DW_TAG_structure_type",
+            "name": "SMobSplashAttackInfo",
+            "size": 8
+          }
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobSplashAttackInfo",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SMobSplashAttackInfo",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "access": null
+      }
+    ]
+  }
+]

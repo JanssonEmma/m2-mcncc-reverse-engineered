@@ -1,0 +1,21 @@
+// 0819f5e0/C1 audited here. Additional C2 variant0819f0f0 not yet audited.
+// All other raw scalar/pointer fields stay indeterminate until real setup/API.
+CQuestManager::CQuestManager():L(0) {}
+// 081a4d40. Complete real value insertion/destruction; SetID only for new key.
+PC* CQuestManager::GetPCForce(unsigned int pc) {
+    std::map<unsigned int,PC>::iterator it=m_mapPC.find(pc);
+    if(it!=m_mapPC.end()) return &it->second;
+    PC* result=&m_mapPC[pc];
+    result->SetID(pc);
+    return result;
+}
+// 081a4e50. Missing/null PID preserves ALL existing current context and map.
+PC* CQuestManager::GetPC(unsigned int pc) {
+    CHARACTER* ch=CHARACTER_MANAGER::instance().FindByPID(pc);
+    if(!ch) return 0;
+    PC* result=GetPCForce(pc);
+    m_pCurrentPC=result;
+    m_pCurrentCharacter=ch;
+    m_pSelectedDungeon=0;
+    return result;
+}

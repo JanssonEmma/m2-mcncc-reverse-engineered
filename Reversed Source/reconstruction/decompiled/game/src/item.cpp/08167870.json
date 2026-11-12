@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08167870",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8167870",
+    "function": {
+      "name": "CItem::EquipTo",
+      "address": "08167870"
+    },
+    "signature": "bool EquipTo(CItem * this, LPCHARACTER ch, BYTE bWearCell)",
+    "code": "\r\n/* DWARF original prototype: bool EquipTo(CItem * this, LPCHARACTER ch, BYTE bWearCell) */\r\n\r\nbool __thiscall CItem::EquipTo(CItem *this,LPCHARACTER ch,BYTE bWearCell)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  uint uVar2;\r\n  LPITEM pCVar3;\r\n  uint uVar4;\r\n  DWORD DVar5;\r\n  uint uVar6;\r\n  int iVar7;\r\n  char *format;\r\n  DWORD dwImmuneFlag;\r\n  \r\n  if (ch == (LPCHARACTER)0x0) {\r\n    _sys_err(\"EquipTo\",0x2be,\"EquipTo: nil character\");\r\n  }\r\n  else {\r\n    if (bWearCell < 0x13) {\r\n      pCVar3 = CHARACTER::GetWear(ch,bWearCell);\r\n      if (pCVar3 == (LPITEM)0x0) {\r\n        if (this->m_pOwner != (LPCHARACTER)0x0) {\r\n          RemoveFromCharacter(this);\r\n        }\r\n                    /* Unresolved local var: int i@[DW_OP_reg6(ESI)] */\r\n        iVar7 = 0;\r\n        CHARACTER::SetWear(ch,bWearCell,this);\r\n        this->m_bEquipped = true;\r\n        this->m_bCell = bWearCell + 'Z';\r\n        dwImmuneFlag = 0;\r\n        this->m_pOwner = ch;\r\n        do {\r\n          pCVar3 = CHARACTER::GetWear(this->m_pOwner,(BYTE)iVar7);\r\n          if (pCVar3 != (LPITEM)0x0) {\r\n            pCVar3 = CHARACTER::GetWear(this->m_pOwner,(BYTE)iVar7);\r\n            dwImmuneFlag = dwImmuneFlag | pCVar3->m_pProto->dwImmuneFlag;\r\n          }\r\n          iVar7 = iVar7 + 1;\r\n        } while (iVar7 < 0x13);\r\n        (this->m_pOwner->m_pointsInstant).dwImmuneFlag = dwImmuneFlag;\r\n        ModifyPoints(this,true);\r\n        CHARACTER::ComputeBattlePoints(this->m_pOwner);\r\n        CHARACTER::UpdatePacket(this->m_pOwner);\r\n        Save(this);\r\n        StartUniqueExpireEvent(this);\r\n        StartAccessorySocketExpireEvent(this);\r\n        return true;\r\n      }\r\n      pCVar3 = CHARACTER::GetWear(ch,bWearCell);\r\n      pTVar1 = this->m_pProto;\r\n      uVar2 = (uint)pCVar3->m_pProto->szLocaleName & (pCVar3->m_pProto == (TItemTable *)0x0) - 1;\r\n      DVar5 = 0;\r\n      uVar4 = (uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1;\r\n      if (pTVar1 != (TItemTable *)0x0) {\r\n        DVar5 = pTVar1->dwVnum;\r\n      }\r\n      uVar6 = (uint)bWearCell;\r\n      format = \"EquipTo: item already exist (this: #%d %s cell: %d %s)\";\r\n      iVar7 = 0x2ca;\r\n    }\r\n    else {\r\n      pTVar1 = this->m_pProto;\r\n      uVar6 = 0;\r\n      if (pTVar1 != (TItemTable *)0x0) {\r\n        uVar6 = pTVar1->dwWearFlags;\r\n      }\r\n      DVar5 = 0;\r\n      uVar4 = (uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1;\r\n      if (pTVar1 != (TItemTable *)0x0) {\r\n        DVar5 = pTVar1->dwVnum;\r\n      }\r\n      uVar2 = (uint)bWearCell;\r\n      format = \"EquipTo: invalid wear cell (this: #%d %s wearflag: %d cell: %d)\";\r\n      iVar7 = 0x2c4;\r\n    }\r\n    _sys_err(\"EquipTo\",iVar7,format,DVar5,uVar4,uVar6,uVar2);\r\n  }\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

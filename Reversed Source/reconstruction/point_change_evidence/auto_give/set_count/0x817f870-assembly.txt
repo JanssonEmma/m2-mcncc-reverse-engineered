@@ -1,0 +1,56 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+0817f870 <_ZN9CHARACTER15FindSpecifyItemEm>:
+ 817f870:	55                   	push   %ebp
+ 817f871:	89 e5                	mov    %esp,%ebp
+ 817f873:	57                   	push   %edi
+ 817f874:	56                   	push   %esi
+ 817f875:	31 f6                	xor    %esi,%esi
+ 817f877:	53                   	push   %ebx
+ 817f878:	83 ec 0c             	sub    $0xc,%esp
+ 817f87b:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 817f87e:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 817f881:	89 45 f0             	mov    %eax,-0x10(%ebp)
+ 817f884:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 817f88a:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+ 817f890:	89 3c 24             	mov    %edi,(%esp)
+ 817f893:	89 f2                	mov    %esi,%edx
+ 817f895:	0f b6 da             	movzbl %dl,%ebx
+ 817f898:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 817f89c:	e8 bf 16 ff ff       	call   8170f60 <_ZN9CHARACTER7GetItemEh>
+ 817f8a1:	85 c0                	test   %eax,%eax
+ 817f8a3:	75 10                	jne    817f8b5 <_ZN9CHARACTER15FindSpecifyItemEm+0x45>
+ 817f8a5:	46                   	inc    %esi
+ 817f8a6:	83 fe 59             	cmp    $0x59,%esi
+ 817f8a9:	7e e5                	jle    817f890 <_ZN9CHARACTER15FindSpecifyItemEm+0x20>
+ 817f8ab:	83 c4 0c             	add    $0xc,%esp
+ 817f8ae:	31 c0                	xor    %eax,%eax
+ 817f8b0:	5b                   	pop    %ebx
+ 817f8b1:	5e                   	pop    %esi
+ 817f8b2:	5f                   	pop    %edi
+ 817f8b3:	5d                   	pop    %ebp
+ 817f8b4:	c3                   	ret
+ 817f8b5:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 817f8b9:	89 3c 24             	mov    %edi,(%esp)
+ 817f8bc:	e8 9f 16 ff ff       	call   8170f60 <_ZN9CHARACTER7GetItemEh>
+ 817f8c1:	8b 40 38             	mov    0x38(%eax),%eax
+ 817f8c4:	31 d2                	xor    %edx,%edx
+ 817f8c6:	85 c0                	test   %eax,%eax
+ 817f8c8:	74 02                	je     817f8cc <_ZN9CHARACTER15FindSpecifyItemEm+0x5c>
+ 817f8ca:	8b 10                	mov    (%eax),%edx
+ 817f8cc:	3b 55 f0             	cmp    -0x10(%ebp),%edx
+ 817f8cf:	75 d4                	jne    817f8a5 <_ZN9CHARACTER15FindSpecifyItemEm+0x35>
+ 817f8d1:	89 7d 08             	mov    %edi,0x8(%ebp)
+ 817f8d4:	89 f2                	mov    %esi,%edx
+ 817f8d6:	0f b6 c2             	movzbl %dl,%eax
+ 817f8d9:	89 45 0c             	mov    %eax,0xc(%ebp)
+ 817f8dc:	83 c4 0c             	add    $0xc,%esp
+ 817f8df:	5b                   	pop    %ebx
+ 817f8e0:	5e                   	pop    %esi
+ 817f8e1:	5f                   	pop    %edi
+ 817f8e2:	5d                   	pop    %ebp
+ 817f8e3:	e9 78 16 ff ff       	jmp    8170f60 <_ZN9CHARACTER7GetItemEh>

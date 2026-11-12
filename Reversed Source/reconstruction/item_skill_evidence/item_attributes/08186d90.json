@@ -1,0 +1,42 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::HasAttr\",\n    \"address\": \"08186d90\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: bool HasAttr(CItem * this, BYTE bApply) */\\r\\n\\r\\nbool __thiscall CItem::HasAttr(CItem *this,BYTE bApply)\\r\\n\\r\\n{\\r\\n  TPlayerItemAttribute *pTVar1;\\r\\n  int iVar2;\\r\\n  TItemApply *pTVar3;\\r\\n  BYTE bApply_local;\\r\\n  \\r\\n                    /* Unresolved local var: int i@[DW_OP_reg1(ECX)] */\\r\\n  iVar2 = 0;\\r\\n  pTVar3 = this->m_pProto->aApplies;\\r\\n  do {\\r\\n    if (pTVar3->bType == bApply) {\\r\\n      return true;\\r\\n    }\\r\\n    iVar2 = iVar2 + 1;\\r\\n    pTVar3 = pTVar3 + 1;\\r\\n  } while (iVar2 < 3);\\r\\n                    /* Unresolved local var: int i@[DW_OP_reg2(EDX)] */\\r\\n  iVar2 = 0;\\r\\n  pTVar1 = this->m_aAttr;\\r\\n  do {\\r\\n    if (pTVar1->bType == bApply) {\\r\\n      return true;\\r\\n    }\\r\\n    iVar2 = iVar2 + 1;\\r\\n    pTVar1 = pTVar1 + 1;\\r\\n  } while (iVar2 < 5);\\r\\n  return false;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::HasAttr",
+        "address": "08186d90"
+      },
+      "code": "\r\n/* DWARF original prototype: bool HasAttr(CItem * this, BYTE bApply) */\r\n\r\nbool __thiscall CItem::HasAttr(CItem *this,BYTE bApply)\r\n\r\n{\r\n  TPlayerItemAttribute *pTVar1;\r\n  int iVar2;\r\n  TItemApply *pTVar3;\r\n  BYTE bApply_local;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg1(ECX)] */\r\n  iVar2 = 0;\r\n  pTVar3 = this->m_pProto->aApplies;\r\n  do {\r\n    if (pTVar3->bType == bApply) {\r\n      return true;\r\n    }\r\n    iVar2 = iVar2 + 1;\r\n    pTVar3 = pTVar3 + 1;\r\n  } while (iVar2 < 3);\r\n                    /* Unresolved local var: int i@[DW_OP_reg2(EDX)] */\r\n  iVar2 = 0;\r\n  pTVar1 = this->m_aAttr;\r\n  do {\r\n    if (pTVar1->bType == bApply) {\r\n      return true;\r\n    }\r\n    iVar2 = iVar2 + 1;\r\n    pTVar1 = pTVar1 + 1;\r\n  } while (iVar2 < 5);\r\n  return false;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::HasAttr\",\n    \"address\": \"08186d90\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 0,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::HasAttr",
+        "address": "08186d90"
+      },
+      "callers": null,
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 100,
+        "total": 0,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

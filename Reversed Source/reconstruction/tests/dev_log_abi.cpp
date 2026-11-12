@@ -1,0 +1,22 @@
+#include "../../game/src/dev_log.h"
+typedef void (*OldDevSignature)(const char*,int,const char*,int,char*,...);
+OldDevSignature old_dev_signature=&dev_log;
+typedef char int_is_four[(sizeof(int)==4)?1:-1];
+typedef char bit_WARN[(L_WARN==2)?1:-1];
+typedef char bit_ERR[(L_ERR==4)?1:-1];
+typedef char bit_CRIT[(L_CRIT==8)?1:-1];
+typedef char bit_INFO[(L_INFO==16)?1:-1];
+typedef char bit_MIN[(L_MIN==32)?1:-1];
+typedef char bit_MAX[(L_MAX==64)?1:-1];
+typedef char bit_LIB0[(L_LIB0==128)?1:-1];
+typedef char bit_LIB1[(L_LIB1==256)?1:-1];
+typedef char bit_LIB2[(L_LIB2==512)?1:-1];
+typedef char bit_LIB3[(L_LIB3==1024)?1:-1];
+typedef char bit_DEB0[(L_DEB0==2048)?1:-1];
+typedef char bit_DEB1[(L_DEB1==4096)?1:-1];
+typedef char bit_DEB2[(L_DEB2==8192)?1:-1];
+typedef char bit_DEB3[(L_DEB3==16384)?1:-1];
+typedef char bit_USR0[(L_USR0==32768)?1:-1];
+typedef char bit_USR1[(L_USR1==65536)?1:-1];
+typedef char bit_USR2[(L_USR2==131072)?1:-1];
+typedef char bit_USR3[(L_USR3==262144)?1:-1];

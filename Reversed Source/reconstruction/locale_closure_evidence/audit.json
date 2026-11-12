@@ -1,0 +1,69 @@
+{
+  "checked_utc": "2026-10-25T21:16:37.003276+00:00",
+  "production_files": {
+    "game/src/locale_service.cpp": {
+      "bytes": 1417,
+      "sha256": "517b86e02ae44ced9ff23b5f70e819b7d354bbc31f6e291fff77c2348ce5a22a"
+    },
+    "game/src/locale_service.h": {
+      "bytes": 1153,
+      "sha256": "07d8a009cd5d4fce191558e95ea1cf7e80ad88d7954b1a12e374e8210a615423"
+    },
+    "game/src/locale.cpp": {
+      "bytes": 4759,
+      "sha256": "82032e2b03f94078d3aa6faefa816918f51631a8944b87cf458cbf75d385f259"
+    },
+    "game/src/config.cpp": {
+      "bytes": 433,
+      "sha256": "64f5b39f2b420ed4efd1ce4e085a4cd71eefe4552083d71cce840a3f58faeefe"
+    },
+    "game/src/config.h": {
+      "bytes": 570,
+      "sha256": "3aabf1005af8c3118d478e3dc49f28bfc5e01490dc363538c8b88d00f00cdbb3"
+    },
+    "game/src/constants.cpp": {
+      "bytes": 13427,
+      "sha256": "fbcf81af117c8357ce95b4176c6265013f1249dfeceaf8ad1a07744c99789ff5"
+    },
+    "game/src/constants.h": {
+      "bytes": 2769,
+      "sha256": "e6dbf93dbd4b77364b97c6335e32ba16a2bbf8bf70c2da0849e526070687157b"
+    },
+    "game/src/mob_manager.cpp": {
+      "bytes": 2732,
+      "sha256": "f8831616eaf23d60a6ee07dcf516da958a93eb4d8aba52f6622a7e02d7220c01"
+    },
+    "game/src/char_manager.cpp": {
+      "bytes": 6078,
+      "sha256": "15cf5e3b6a9b917a0ff5b70d0645dbcf3a642fb739263abb7030751985b7b043"
+    },
+    "common/singleton.h": {
+      "bytes": 793,
+      "sha256": "9b41ae333699361b4d9c580cbe8ecc2362eddaab8afdb1008f92fb94769d53b4"
+    }
+  },
+  "actual_dependencies": [
+    "locale_init",
+    "locale_add",
+    "locale_find",
+    "g_bAuthServer",
+    "test_server",
+    "g_iUseLocale",
+    "CMobManager::Get(const char*,bool)",
+    "singleton<CTableBySkill> template base"
+  ],
+  "upcoming_parent_integration": [
+    "CTableBySkill complete package"
+  ],
+  "missing_dependencies": [
+    "CBanwordManager complete class/lifecycle/CheckString",
+    "str_lower global function",
+    "all check_name methods",
+    "SJIS helpers/table",
+    "quest config globals/default init",
+    "__CheckPlayerSlot literal matrix",
+    "service init bodies",
+    "LoadEmpireTextConvertTable"
+  ],
+  "fixture_policy": "No test fixture counted as actual application dependency."
+}

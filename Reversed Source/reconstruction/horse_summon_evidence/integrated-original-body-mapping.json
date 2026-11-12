@@ -1,0 +1,101 @@
+[
+  {
+    "cu": "char.cpp",
+    "name": "EncodeMovePacket",
+    "address": "0x81282a0",
+    "linkage": "_Z16EncodeMovePacketR11packet_movemhhmmmmh",
+    "decl_line": 758,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+    "actual_line": 486,
+    "body_sha256": "4a4f154e77a2132e87c278a14cda394f8ca6e0e25427e406bf1fb49cd8a95eda",
+    "body": "void EncodeMovePacket(TPacketGCMove& packet,DWORD vid,BYTE function,BYTE argument,\n                      DWORD x,DWORD y,DWORD duration,DWORD time,BYTE rotation) {\n    packet.bHeader=3;packet.bFunc=function;packet.bArg=argument;packet.dwVID=vid;\n    if(!time) time=get_dword_time();\n    packet.dwTime=time;packet.bRot=rotation;\n    packet.lX=horse_summon_detail::Signed(static_cast<unsigned int>(x));\n    packet.lY=horse_summon_detail::Signed(static_cast<unsigned int>(y));\n    packet.dwDuration=duration;\n}"
+  },
+  {
+    "cu": "char.cpp",
+    "name": "SetEmpire",
+    "address": "0x812a660",
+    "linkage": "_ZN9CHARACTER9SetEmpireEh",
+    "decl_line": 1605,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+    "actual_line": 484,
+    "body_sha256": "2ade2d3b3f3e3a70584e51fda23140baeaf6c3aed1cab14e10f35afec33b686d",
+    "body": "void CHARACTER::SetEmpire(BYTE empire) { m_bEmpire=empire; }"
+  },
+  {
+    "cu": "char.cpp",
+    "name": "SetRotation",
+    "address": "0x812d390",
+    "linkage": "_ZN9CHARACTER11SetRotationEf",
+    "decl_line": 2392,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+    "actual_line": 482,
+    "body_sha256": "a848a0d9d4e68610352395d1c4f78885780e02a15d54d9ec2d65520e3168a11a",
+    "body": "void CHARACTER::SetRotation(float rotation) { m_pointsInstant.fRot=rotation; }"
+  },
+  {
+    "cu": "char.cpp",
+    "name": "SendMovePacket",
+    "address": "0x812dde0",
+    "linkage": "_ZN9CHARACTER14SendMovePacketEhhmmmmi",
+    "decl_line": 2648,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+    "actual_line": 496,
+    "body_sha256": "ca3a49ae9f019beb130da10bbf47fe240163b32606da81b84fdfc400ab92bba0",
+    "body": "void CHARACTER::SendMovePacket(BYTE function,BYTE argument,DWORD x,DWORD y,\n                                DWORD duration,DWORD time,int rotation) {\n    if(!function) { x=m_posDest.x;y=m_posDest.y;duration=m_dwMoveDuration; }\n    if(rotation==-1) rotation=horse_summon_detail::Trunc32(m_pointsInstant.fRot)/5;\n    TPacketGCMove packet;\n    EncodeMovePacket(packet,m_vid,function,argument,x,y,duration,time,static_cast<BYTE>(rotation));\n    PacketView(&packet,24,this);\n}"
+  },
+  {
+    "cu": "char_battle.cpp",
+    "name": "GetVictim",
+    "address": "0x8153f20",
+    "linkage": "_ZN9CHARACTER9GetVictimEv",
+    "decl_line": 4000,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_battle.cpp",
+    "actual_line": 27,
+    "body_sha256": "b05249b71bf5ce1f751d7cea7e0b5848f77d760d3288b1198cd30fd198a8fb64",
+    "body": "LPCHARACTER CHARACTER::GetVictim() { return CHARACTER_MANAGER::instance().Find(m_kVIDVictim); }"
+  },
+  {
+    "cu": "char_horse.cpp",
+    "name": "SetRider",
+    "address": "0x816d8c0",
+    "linkage": "_ZN9CHARACTER8SetRiderEPS_",
+    "decl_line": 86,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_horse.cpp",
+    "actual_line": 50,
+    "body_sha256": "094a48fca2544bbe656d64773cfefb5c8c33a05710df4d0ed6c0ab2ae8be2116",
+    "body": "void CHARACTER::SetRider(LPCHARACTER rider) {\n    CHARACTER* previous=m_chRider;\n    if(previous) previous->ClearHorseInfo();\n    m_chRider=rider;\n    if(rider) rider->SendHorseInfo();\n}"
+  },
+  {
+    "cu": "char_horse.cpp",
+    "name": "GetMyHorseVnum",
+    "address": "0x816df10",
+    "linkage": "_ZN9CHARACTER14GetMyHorseVnumEv",
+    "decl_line": 211,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_horse.cpp",
+    "actual_line": 3,
+    "body_sha256": "a9ac3ebbd5067ff19487d5dd2e419499e78e63d0f97a9b08f145383ecaa3669f",
+    "body": "DWORD CHARACTER::GetMyHorseVnum() {\n    int delta=0;\n    if(m_pGuild) delta=m_pGuild->GetMasterPID()==m_dwPlayerID?2:1;\n    return static_cast<DWORD>(static_cast<unsigned int>(c_aHorseStat[GetHorseLevel()].iNPCRace)+\n                              static_cast<unsigned int>(delta));\n}"
+  },
+  {
+    "cu": "char_horse.cpp",
+    "name": "ClearHorseInfo",
+    "address": "0x816e000",
+    "linkage": "_ZN9CHARACTER14ClearHorseInfoEv",
+    "decl_line": 243,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_horse.cpp",
+    "actual_line": 10,
+    "body_sha256": "df82b34023001ed50cc49b707b7ecd2cfe603f7636992a1e517df704c701440b",
+    "body": "void CHARACTER::ClearHorseInfo() {\n    if(!IsHorseRiding()) {\n        ChatPacket(5,\"hide_horse_state\");\n        m_bSendHorseLevel=0;m_bSendHorseHealthGrade=0;m_bSendHorseStaminaGrade=0;\n    }\n    m_chHorse=0;\n}"
+  },
+  {
+    "cu": "char_horse.cpp",
+    "name": "SendHorseInfo",
+    "address": "0x816e060",
+    "linkage": "_ZN9CHARACTER13SendHorseInfoEv",
+    "decl_line": 258,
+    "actual_file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_horse.cpp",
+    "actual_line": 18,
+    "body_sha256": "a49c7ccb74108c28eb7dae724717b71685c5a005b4ad69eb07d21aef78a716ff",
+    "body": "void CHARACTER::SendHorseInfo() {\n    if(!m_chHorse && !IsHorseRiding()) return;\n    short health=GetHorseHealth();\n    int healthGrade=0;\n    if(health) {\n        short maximum=GetHorseMaxHealth();\n        healthGrade=1;\n        if(maximum*3<health*10) {\n            health=GetHorseHealth();maximum=GetHorseMaxHealth();\n            healthGrade=2+(maximum*7<health*10);\n        }\n    }\n    short stamina=GetHorseStamina();\n    unsigned int staminaGrade=0;\n    short maximum=GetHorseMaxStamina();\n    if(maximum<stamina*10) {\n        stamina=GetHorseStamina();staminaGrade=1;maximum=GetHorseMaxStamina();\n        if(maximum*3<stamina*10) {\n            stamina=GetHorseStamina();maximum=GetHorseMaxStamina();\n            staminaGrade=2+(maximum*7<stamina*10);\n        }\n    }\n    if(GetHorseLevel()!=m_bSendHorseLevel || m_bSendHorseHealthGrade!=healthGrade ||\n       m_bSendHorseStaminaGrade!=staminaGrade) {\n        ChatPacket(5,\"horse_state %d %d %d\",static_cast<unsigned int>(GetHorseLevel()),\n                   healthGrade,staminaGrade);\n        m_bSendHorseLevel=GetHorseLevel();\n        m_bSendHorseHealthGrade=static_cast<BYTE>(healthGrade);\n        m_bSendHorseStaminaGrade=static_cast<BYTE>(staminaGrade);\n    }\n}"
+  }
+]

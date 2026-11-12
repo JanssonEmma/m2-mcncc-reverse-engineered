@@ -1,0 +1,83 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::SetAttribute\",\n    \"address\": \"08187800\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void SetAttribute(CItem * this, int i, BYTE bType, short sValue) */\\r\\n\\r\\nvoid __thiscall CItem::SetAttribute(CItem *this,int i,BYTE bType,short sValue)\\r\\n\\r\\n{\\r\\n  DWORD dwItemID;\\r\\n  short sValue_local;\\r\\n  BYTE bType_local;\\r\\n  \\r\\n  if (4 < i) {\\r\\n    __assert(\\\"SetAttribute\\\",\\\"item_attribute.cpp\\\",0x121);\\r\\n  }\\r\\n  this->m_aAttr[i].bType = bType;\\r\\n  this->m_aAttr[i].sValue = sValue;\\r\\n  UpdatePacket(this);\\r\\n  Save(this);\\r\\n  if (bType != '\\\\0') {\\r\\n    dwItemID = this->m_dwID;\\r\\n    if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {\\r\\n      __assert(\\\"instance\\\",\\\"../../common/singleton.h\\\",0x1a);\\r\\n    }\\r\\n    LogManager::ItemLog(singleton<LogManager>::ms_singleton,i,(uint)bType,(int)sValue,dwItemID,\\r\\n                        \\\"SET_ATTR\\\",\\\"\\\");\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::SetAttribute",
+        "address": "08187800"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetAttribute(CItem * this, int i, BYTE bType, short sValue) */\r\n\r\nvoid __thiscall CItem::SetAttribute(CItem *this,int i,BYTE bType,short sValue)\r\n\r\n{\r\n  DWORD dwItemID;\r\n  short sValue_local;\r\n  BYTE bType_local;\r\n  \r\n  if (4 < i) {\r\n    __assert(\"SetAttribute\",\"item_attribute.cpp\",0x121);\r\n  }\r\n  this->m_aAttr[i].bType = bType;\r\n  this->m_aAttr[i].sValue = sValue;\r\n  UpdatePacket(this);\r\n  Save(this);\r\n  if (bType != '\\0') {\r\n    dwItemID = this->m_dwID;\r\n    if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    LogManager::ItemLog(singleton<LogManager>::ms_singleton,i,(uint)bType,(int)sValue,dwItemID,\r\n                        \"SET_ATTR\",\"\");\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::SetAttribute\",\n    \"address\": \"08187800\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0818783d\",\n        \"target\": \"081667d0\",\n        \"name\": \"CItem::UpdatePacket\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08187845\",\n        \"target\": \"08167c40\",\n        \"name\": \"CItem::Save\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08187889\",\n        \"target\": \"080784e0\",\n        \"name\": \"LogManager::ItemLog\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081878c2\",\n        \"target\": \"0804c9ac\",\n        \"name\": \"<EXTERNAL>::__assert\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"081878f2\",\n        \"target\": \"0804c9ac\",\n        \"name\": \"<EXTERNAL>::__assert\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 5,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::SetAttribute",
+        "address": "08187800"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0818783d",
+            "target": "081667d0",
+            "name": "CItem::UpdatePacket",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08187845",
+            "target": "08167c40",
+            "name": "CItem::Save",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08187889",
+            "target": "080784e0",
+            "name": "LogManager::ItemLog",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081878c2",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "081878f2",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 5,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

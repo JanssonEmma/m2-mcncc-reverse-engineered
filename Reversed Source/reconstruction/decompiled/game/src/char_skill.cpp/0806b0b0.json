@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0806b0b0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::IsLearnableSkill",
+      "address": "0806b0b0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsLearnableSkill(CHARACTER * this, DWORD dwSkillVnum) */\r\n\r\nbool __thiscall CHARACTER::IsLearnableSkill(CHARACTER *this,DWORD dwSkillVnum)\r\n\r\n{\r\n  DWORD DVar1;\r\n  byte bVar2;\r\n  BYTE BVar3;\r\n  CSkillProto *pCVar4;\r\n  int iVar5;\r\n  bool bVar6;\r\n  \r\n                    /* Unresolved local var: CSkillProto * pkSkill@[DW_OP_reg3(EBX)] */\r\n  if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar4 = CSkillManager::Get(singleton<CSkillManager>::ms_singleton,dwSkillVnum);\r\n  bVar6 = false;\r\n  if (pCVar4 != (CSkillProto *)0x0) {\r\n    iVar5 = GetSkillLevel(this,dwSkillVnum);\r\n    bVar6 = false;\r\n    if (iVar5 < 0x28) {\r\n      DVar1 = pCVar4->bType;\r\n      if (DVar1 == 0) {\r\n        iVar5 = GetSkillLevel(this,dwSkillVnum);\r\n        bVar6 = iVar5 < (int)(uint)pCVar4->bMaxLevel;\r\n      }\r\n      else if (DVar1 == 5) {\r\n        if ((dwSkillVnum == 0x8c) && (BVar3 = GetJob(this), BVar3 != '\\x01')) {\r\n          return false;\r\n        }\r\n        bVar6 = true;\r\n      }\r\n      else if ((this->m_points).skill_group == '\\0') {\r\n        bVar6 = false;\r\n      }\r\n      else {\r\n        bVar2 = GetJob(this);\r\n        bVar6 = DVar1 - 1 == (uint)bVar2;\r\n      }\r\n    }\r\n  }\r\n  return bVar6;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

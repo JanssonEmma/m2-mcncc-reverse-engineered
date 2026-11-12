@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080c85b0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHorseRider::StartRiding",
+      "address": "080c85b0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool StartRiding(CHorseRider * this) */\r\n\r\nbool __thiscall CHorseRider::StartRiding(CHorseRider *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  if (((this->m_Horse).bRiding == '\\0') && ((this->m_Horse).bLevel != '\\0')) {\r\n    bVar1 = false;\r\n    if ((0 < (this->m_Horse).sHealth) && (0 < (this->m_Horse).sStamina)) {\r\n      (this->m_Horse).bRiding = '\\x01';\r\n      StartStaminaConsumeEvent(this);\r\n      (*this->_vptr_CHorseRider[5])(this);\r\n      bVar1 = true;\r\n    }\r\n  }\r\n  else {\r\n    bVar1 = false;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

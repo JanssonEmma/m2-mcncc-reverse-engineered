@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08121420",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8121420",
+    "function": {
+      "name": "CTextFileLoader::DestroySystem",
+      "address": "08121420"
+    },
+    "signature": "void DestroySystem(void)",
+    "code": "\r\nvoid CTextFileLoader::DestroySystem(void)\r\n\r\n{\r\n  CPoolNode<CTextFileLoader::SGroupNode> *pCVar1;\r\n  CPoolNode<CTextFileLoader::SGroupNode> *pCVar2;\r\n  DWORD DVar3;\r\n  \r\n                    /* Unresolved local var: CPoolNode<CTextFileLoader::SGroupNode> *\r\n                       pcurNode@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: CPoolNode<CTextFileLoader::SGroupNode> *\r\n                       pnextNode@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: DWORD count@[DW_OP_reg6(ESI)] */\r\n  DVar3 = 0;\r\n  if (ms_groupNodePool.m_pFreeList != (CPoolNode<CTextFileLoader::SGroupNode> *)0x0) {\r\n    DVar3 = 0;\r\n    pCVar2 = ms_groupNodePool.m_pFreeList;\r\n    do {\r\n      pCVar1 = pCVar2->m_pNext;\r\n      if (pCVar2 != (CPoolNode<CTextFileLoader::SGroupNode> *)0x0) {\r\n        (*pCVar2->_vptr_CPoolNode[1])(pCVar2);\r\n      }\r\n      DVar3 = DVar3 + 1;\r\n      pCVar2 = pCVar1;\r\n    } while (pCVar1 != (CPoolNode<CTextFileLoader::SGroupNode> *)0x0);\r\n  }\r\n  ms_groupNodePool.m_pFreeList = (CPoolNode<CTextFileLoader::SGroupNode> *)0x0;\r\n  pCVar2 = ms_groupNodePool.m_pUsedList;\r\n  while (pCVar2 != (CPoolNode<CTextFileLoader::SGroupNode> *)0x0) {\r\n    pCVar1 = pCVar2->m_pNext;\r\n    if (pCVar2 != (CPoolNode<CTextFileLoader::SGroupNode> *)0x0) {\r\n      (*pCVar2->_vptr_CPoolNode[1])(pCVar2);\r\n    }\r\n    DVar3 = DVar3 + 1;\r\n    pCVar2 = pCVar1;\r\n  }\r\n  ms_groupNodePool.m_pUsedList = (CPoolNode<CTextFileLoader::SGroupNode> *)0x0;\r\n  if (DVar3 != ms_groupNodePool.m_nodeCount) {\r\n    __assert(\"Clear\",\"../../common/pool.h\",0xa4);\r\n  }\r\n  ms_groupNodePool.m_nodeCount = 0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

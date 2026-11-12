@@ -1,0 +1,138 @@
+[
+  {
+    "function": {
+      "name": "CHARACTER::ShowAlignment",
+      "address": "08153fd0"
+    },
+    "observed_call_tokens": [
+      "ShowAlignment",
+      "UpdatePacket"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::SetPart",
+      "address": "08130520"
+    },
+    "observed_call_tokens": [
+      "SetPart",
+      "__assert"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::RemoveAffect",
+      "address": "0813e9a0"
+    },
+    "observed_call_tokens": [
+      "CheckMaximumPoints",
+      "ComputeAffect",
+      "ComputePoints",
+      "RemoveAffect",
+      "SendAffectRemovePacket",
+      "UpdatePacket",
+      "operator_delete",
+      "remove",
+      "sys_log"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::ComputeBattlePoints",
+      "address": "0812bda0"
+    },
+    "observed_call_tokens": [
+      "ComputeBattlePoints",
+      "DW_OP_reg3",
+      "DW_OP_reg6",
+      "Get",
+      "GetJob",
+      "GetMobTable",
+      "GetPoint",
+      "GetPolymorphPoint",
+      "GetValue",
+      "GetWear",
+      "LC_IsYMIR",
+      "PointChange",
+      "ROUND",
+      "SetPoint",
+      "__assert",
+      "_sys_err",
+      "sys_log"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::UpdatePacket",
+      "address": "081288a0"
+    },
+    "observed_call_tokens": [
+      "GetLimitPoint",
+      "GetPart",
+      "PacketAround",
+      "UpdatePacket"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::ClearAffect",
+      "address": "0813d840"
+    },
+    "observed_call_tokens": [
+      "CheckMaximumPoints",
+      "ClearAffect",
+      "ComputeAffect",
+      "DW_OP_reg3",
+      "GetPoint",
+      "SendAffectRemovePacket",
+      "UpdatePacket",
+      "erase",
+      "event_cancel",
+      "operator_delete"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::GetOriginalPart",
+      "address": "081305d0"
+    },
+    "observed_call_tokens": [
+      "GetOriginalPart",
+      "GetPart",
+      "return"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::ApplyPoint",
+      "address": "0812f7d0"
+    },
+    "observed_call_tokens": [
+      "ApplyPoint",
+      "DW_OP_reg3",
+      "GetJob",
+      "GetName",
+      "PointChange",
+      "_sys_err",
+      "erase",
+      "insert_unique",
+      "lower_bound",
+      "sys_log"
+    ]
+  },
+  {
+    "function": {
+      "name": "CHARACTER::RemoveAffect",
+      "address": "0813eaa0"
+    },
+    "observed_call_tokens": [
+      "ChatPacket",
+      "DW_OP_reg0",
+      "FindAffect",
+      "GetName",
+      "RemoveAffect",
+      "locale_find",
+      "sys_log"
+    ]
+  }
+]

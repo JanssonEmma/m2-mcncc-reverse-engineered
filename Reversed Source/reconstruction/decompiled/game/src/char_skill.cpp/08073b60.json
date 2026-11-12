@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08073b60",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::CountMobSkill",
+      "address": "08073b60"
+    },
+    "code": "\r\n/* DWARF original prototype: int CountMobSkill(CHARACTER * this) */\r\n\r\nint __thiscall CHARACTER::CountMobSkill(CHARACTER *this)\r\n\r\n{\r\n  CMob *pCVar1;\r\n  int iVar2;\r\n  \r\n  pCVar1 = this->m_pkMobData;\r\n  iVar2 = 0;\r\n  if (pCVar1 != (CMob *)0x0) {\r\n    if ((pCVar1->m_table).dwVnum == 0x9bd) {\r\n      iVar2 = 5;\r\n    }\r\n    else if ((pCVar1->m_table).Skills[0].dwVnum == 0) {\r\n      iVar2 = 0;\r\n    }\r\n    else {\r\n      iVar2 = ((pCVar1->m_table).Skills[1].dwVnum != 0) + 1;\r\n    }\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

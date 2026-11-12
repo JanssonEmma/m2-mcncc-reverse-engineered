@@ -1,0 +1,67 @@
+0x08145000 FExitDungeon ForEachNearMember<<unnamed>::FExitDungeon>(FExitDungeon); // _ZN6CParty17ForEachNearMemberIN33_GLOBAL__N__ZN13CPartyManagerC2Ev12FExitDungeonEEET_S3_
+inline/declaration CParty(); // None
+inline/declaration virtual ~CParty(); // None
+0x08141a70 void P2PJoin(long unsigned int); // _ZN6CParty7P2PJoinEm
+0x08141ee0 void P2PQuit(long unsigned int); // _ZN6CParty7P2PQuitEm
+0x08141e70 virtual void Join(long unsigned int); // _ZN6CParty4JoinEm
+0x08142190 void Quit(long unsigned int); // _ZN6CParty4QuitEm
+0x08142210 void Link(CHARACTER*); // _ZN6CParty4LinkEP9CHARACTER
+0x08142560 void Unlink(CHARACTER*); // _ZN6CParty6UnlinkEP9CHARACTER
+0x08141980 void ChatPacketToAllMember(unsigned char, const char*, ...); // _ZN6CParty21ChatPacketToAllMemberEhPKcz
+0x08144170 void UpdateOnlineState(long unsigned int, const char*); // _ZN6CParty17UpdateOnlineStateEmPKc
+0x08144350 void UpdateOfflineState(long unsigned int); // _ZN6CParty18UpdateOfflineStateEm
+0x08141a50 DWORD GetLeaderPID(); // _ZN6CParty12GetLeaderPIDEv
+0x081430f0 CHARACTER* GetLeaderCharacter(); // _ZN6CParty18GetLeaderCharacterEv
+inline/declaration CHARACTER* GetLeader(); // _ZN6CParty9GetLeaderEv
+0x08141a60 DWORD GetMemberCount(); // _ZN6CParty14GetMemberCountEv
+inline/declaration DWORD GetNearMemberCount(); // _ZN6CParty18GetNearMemberCountEv
+inline/declaration bool IsMember(long unsigned int); // _ZN6CParty8IsMemberEm
+0x08144640 bool IsNearLeader(long unsigned int); // _ZN6CParty12IsNearLeaderEm
+0x081445d0 bool IsPositionNearLeader(CHARACTER*); // _ZN6CParty20IsPositionNearLeaderEP9CHARACTER
+0x08142e00 void SendMessage(CHARACTER*, unsigned char, long unsigned int, long unsigned int); // _ZN6CParty11SendMessageEP9CHARACTERhmm
+0x08142700 void SendPartyJoinOneToAll(long unsigned int); // _ZN6CParty21SendPartyJoinOneToAllEm
+0x081428c0 void SendPartyJoinAllToOne(CHARACTER*); // _ZN6CParty21SendPartyJoinAllToOneEP9CHARACTER
+0x08142680 void SendPartyRemoveOneToAll(long unsigned int); // _ZN6CParty23SendPartyRemoveOneToAllEm
+0x08142b20 void SendPartyInfoOneToAll(long unsigned int); // _ZN6CParty21SendPartyInfoOneToAllEm
+0x08142c10 void SendPartyInfoOneToAll(CHARACTER*); // _ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER
+0x08142d00 void SendPartyInfoAllToOne(CHARACTER*); // _ZN6CParty21SendPartyInfoAllToOneEP9CHARACTER
+0x08142a00 void SendPartyLinkOneToAll(CHARACTER*); // _ZN6CParty21SendPartyLinkOneToAllEP9CHARACTER
+0x08142a90 void SendPartyLinkAllToOne(CHARACTER*); // _ZN6CParty21SendPartyLinkAllToOneEP9CHARACTER
+0x08142970 void SendPartyUnlinkOneToAll(CHARACTER*); // _ZN6CParty23SendPartyUnlinkOneToAllEP9CHARACTER
+inline/declaration int GetPartyBonusExpPercent(); // _ZN6CParty23GetPartyBonusExpPercentEv
+inline/declaration int GetPartyBonusAttackGrade(); // _ZN6CParty24GetPartyBonusAttackGradeEv
+inline/declaration int GetPartyBonusDefenseGrade(); // _ZN6CParty25GetPartyBonusDefenseGradeEv
+0x081449a0 int ComputePartyBonusExpPercent(); // _ZN6CParty27ComputePartyBonusExpPercentEv
+inline/declaration int ComputePartyBonusAttackGrade(); // _ZN6CParty28ComputePartyBonusAttackGradeEv
+inline/declaration int ComputePartyBonusDefenseGrade(); // _ZN6CParty29ComputePartyBonusDefenseGradeEv
+0x08143df0 void Update(); // _ZN6CParty6UpdateEv
+0x08144620 int GetExpBonusPercent(); // _ZN6CParty18GetExpBonusPercentEv
+0x08143200 bool SetRole(long unsigned int, unsigned char, bool); // _ZN6CParty7SetRoleEmhb
+0x08143310 BYTE GetRole(long unsigned int); // _ZN6CParty7GetRoleEm
+0x08143360 bool IsRole(long unsigned int, unsigned char); // _ZN6CParty6IsRoleEmh
+0x081448a0 BYTE GetMemberMaxLevel(); // _ZN6CParty17GetMemberMaxLevelEv
+0x08144920 BYTE GetMemberMinLevel(); // _ZN6CParty17GetMemberMinLevelEv
+0x08143910 void ComputeRolePoint(CHARACTER*, unsigned char, bool); // _ZN6CParty16ComputeRolePointEP9CHARACTERhb
+0x081434a0 void HealParty(); // _ZN6CParty9HealPartyEv
+0x081434b0 void SummonToLeader(long unsigned int); // _ZN6CParty14SummonToLeaderEm
+inline/declaration void SetPCParty(bool); // _ZN6CParty10SetPCPartyEb
+0x08143870 CHARACTER* GetNextOwnership(CHARACTER*, long int, long int); // _ZN6CParty16GetNextOwnershipEP9CHARACTERll
+0x08144430 void SetFlag(const std::string&, int); // _ZN6CParty7SetFlagERKSsi
+0x081443e0 int GetFlag(const std::string&); // _ZN6CParty7GetFlagERKSs
+0x08144550 void SetDungeon(CDungeon*); // _ZN6CParty10SetDungeonEP8CDungeon
+0x081445c0 CDungeon* GetDungeon(); // _ZN6CParty10GetDungeonEv
+0x08144690 BYTE CountMemberByVnum(long unsigned int); // _ZN6CParty17CountMemberByVnumEm
+0x081447e0 void SetParameter(int); // _ZN6CParty12SetParameterEi
+0x08144830 int GetExpDistributionMode(); // _ZN6CParty22GetExpDistributionModeEv
+0x08144840 void SetExpCentralizeCharacter(long unsigned int); // _ZN6CParty25SetExpCentralizeCharacterEm
+0x08144890 CHARACTER* GetExpCentralizeCharacter(); // _ZN6CParty25GetExpCentralizeCharacterEv
+0x08142480 void RequestSetMemberLevel(long unsigned int, unsigned char); // _ZN6CParty21RequestSetMemberLevelEmh
+0x081424d0 void P2PSetMemberLevel(long unsigned int, unsigned char); // _ZN6CParty17P2PSetMemberLevelEmh
+0x08143810 void IncreaseOwnership(); // _ZN6CParty17IncreaseOwnershipEv
+0x081416b0 virtual void Initialize(); // _ZN6CParty10InitializeEv
+0x08141780 void Destroy(); // _ZN6CParty7DestroyEv
+inline/declaration void RemovePartyBonus(); // _ZN6CParty16RemovePartyBonusEv
+0x081433c0 void RemoveBonus(); // _ZN6CParty11RemoveBonusEv
+0x08143430 void RemoveBonusForOne(long unsigned int); // _ZN6CParty17RemoveBonusForOneEm
+0x08144720 void SendParameter(CHARACTER*); // _ZN6CParty13SendParameterEP9CHARACTER
+0x08144770 void SendParameterToAll(); // _ZN6CParty18SendParameterToAllEv

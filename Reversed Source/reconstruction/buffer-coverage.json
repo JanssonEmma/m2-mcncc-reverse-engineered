@@ -1,0 +1,309 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "limitations": [
+    "Address/body evidence coverage is not proof of source or binary equivalence.",
+    "Manager standard-library specialization bodies are provided by the selected C++ library, not manually transcribed."
+  ],
+  "units": [
+    {
+      "unit": "buffer.c",
+      "source": "libthecore/src/buffer.c",
+      "evidence": "buffer-ghidra.json",
+      "addressed_records": 16,
+      "retained_complete": 16,
+      "standard_library_records": 0,
+      "functions": [
+        {
+          "name": "buffer_new",
+          "address": "0x081b7800",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_delete",
+          "address": "0x081b7910",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_size",
+          "address": "0x081b7990",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_reset",
+          "address": "0x081b79a0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_write",
+          "address": "0x081b79c0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_read",
+          "address": "0x081b7a40",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_byte",
+          "address": "0x081b7a80",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_word",
+          "address": "0x081b7ab0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_dword",
+          "address": "0x081b7ae0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_read_peek",
+          "address": "0x081b7b10",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_read_proceed",
+          "address": "0x081b7b20",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_write_peek",
+          "address": "0x081b7c20",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_write_proceed",
+          "address": "0x081b7c30",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_has_space",
+          "address": "0x081b7c50",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_adjust_size",
+          "address": "0x081b7c60",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        },
+        {
+          "name": "buffer_realloc",
+          "address": "0x081b7cd0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant",
+          "source_definition_present": true
+        }
+      ]
+    },
+    {
+      "unit": "buffer_manager.cpp",
+      "source": "game/src/buffer_manager.cpp",
+      "evidence": "buffer-manager-ghidra.json",
+      "addressed_records": 28,
+      "retained_complete": 20,
+      "standard_library_records": 8,
+      "functions": [
+        {
+          "name": "BUFFER_MANAGER",
+          "address": "0x080fa800",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "BUFFER_MANAGER",
+          "address": "0x080fada0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~BUFFER_MANAGER",
+          "address": "0x080fb210",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~BUFFER_MANAGER",
+          "address": "0x080fb2f0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~BUFFER_MANAGER",
+          "address": "0x080fb3d0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "Destroy",
+          "address": "0x080fb4a0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "get",
+          "address": "0x080fb550",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "release",
+          "address": "0x080fb630",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "TEMP_BUFFER",
+          "address": "0x080fb680",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "TEMP_BUFFER",
+          "address": "0x080fb6d0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~TEMP_BUFFER",
+          "address": "0x080fb720",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~TEMP_BUFFER",
+          "address": "0x080fb780",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "read_peek",
+          "address": "0x080fb7e0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "write",
+          "address": "0x080fb800",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "size",
+          "address": "0x080fb820",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~_Deque_base",
+          "address": "0x080fb8f0",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_M_initialize_map",
+          "address": "0x080fb9a0",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_M_pop_back_aux",
+          "address": "0x080fbb20",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_M_push_back_aux",
+          "address": "0x080fbb70",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_M_destroy_nodes",
+          "address": "0x080fbc00",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_M_create_nodes",
+          "address": "0x080fbc50",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_M_reallocate_map",
+          "address": "0x080fbc90",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "__static_initialization_and_destruction_0",
+          "address": "0x080fb840",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~singleton",
+          "address": "0x080fbe00",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "~singleton",
+          "address": "0x080fbe50",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "__copy<std::_Deque_iterator<buffer*, buffer* const&, buffer* const*>, std::_Deque_iterator<buffer*, buffer*&, buffer**> >",
+          "address": "0x080fbeb0",
+          "retained_complete_decompilation": false,
+          "scope": "C++ standard library"
+        },
+        {
+          "name": "_GLOBAL__I__ZN14BUFFER_MANAGERC2Ev",
+          "address": "0x080fb8b0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        },
+        {
+          "name": "_GLOBAL__D__ZN14BUFFER_MANAGERC2Ev",
+          "address": "0x080fb8d0",
+          "retained_complete_decompilation": true,
+          "scope": "application/singleton/startup/ABI variant"
+        }
+      ]
+    }
+  ]
+}

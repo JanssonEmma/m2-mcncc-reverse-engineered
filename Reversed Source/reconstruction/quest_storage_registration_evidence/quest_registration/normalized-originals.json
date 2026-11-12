@@ -1,0 +1,53 @@
+{
+  "elf_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "standalone_original_exports": 2,
+  "entries": [
+    {
+      "name": "quest::CQuestManager::LoadStartQuest",
+      "address": "081a4690",
+      "kind": "standalone original function",
+      "source": "game/src/questmanager.cpp",
+      "source_anchor": "CQuestManager::LoadStartQuest(",
+      "test": "reconstruction/tests/quest_registration_regression.cpp",
+      "evidence": [
+        {
+          "path": "081a4690-decompile-calls.json",
+          "sha256": "6bab9e226d0c230d3098ec73001a8b61c13e9ecf1750c7ca616867debe7c02f1"
+        },
+        {
+          "path": "081a4690-assembly.json",
+          "sha256": "232576fd3799147e69af5f683540db3c5acf6e4a0e62b236e1a8b3a018e24e37"
+        }
+      ]
+    },
+    {
+      "name": "quest::CQuestManager::RegisterQuest",
+      "address": "081a5770",
+      "kind": "standalone original function",
+      "source": "game/src/questmanager.cpp",
+      "source_anchor": "CQuestManager::RegisterQuest(",
+      "test": "reconstruction/tests/quest_registration_regression.cpp",
+      "evidence": [
+        {
+          "path": "081a5770.json",
+          "sha256": "04c371cdcf9ce8b030bdc9a87ae3c42a5deb3ccbdf9d89b14819165b3edf1a33"
+        }
+      ]
+    }
+  ],
+  "existing_dependencies": [
+    "actual CQuestManager stringhash and complete maps",
+    "actual config.cpp g_setQuestObjectDir",
+    "actual host C++ string/set/SGI hash_map/ifstream/istreambuf_iterator/copy/back_insert_iterator/vector",
+    "actual sys_log/assert boundary"
+  ],
+  "no_new_application_callees": [
+    "LoadStartQuest calls no Lua or gameplay methods",
+    "RegisterQuest only game-method callee is complete LoadStartQuest"
+  ],
+  "platform_boundaries": [
+    "Original ios::in8 default text; Windows CRLF/control-Z conversion differs FreeBSD. No binaryflag change.",
+    "Original STL allocation/vtable/bucket layout is not reproduced by modern host STL.",
+    "Original unsignedindex to stored signedint conversion is target compiler behavior for valuesaboveINT_MAX; MinGW target matches old bit pattern."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "actual_direct": [
+    {
+      "api": "CHARACTER::SetLevel/GetName/GetJob/GetPoint/SetPoint/GetRealPoint/SetRealPoint/IsDead/IsStun/SetNowWalking/ChatPacket/BroadcastTargetPacket",
+      "module": "game/src/char.cpp and original state modules",
+      "status": "actual already recovered"
+    },
+    {
+      "api": "CHARACTER::Save()",
+      "address": "0x8128b50",
+      "module": "game/src/char.cpp",
+      "status": "actual now present; parent integrated during this task"
+    },
+    {
+      "api": "CGuild::LevelChange(DWORD,BYTE)",
+      "address": "0x808f5d0",
+      "module": "game/src/guild.cpp",
+      "status": "actual now present; parent focused/O2 passed"
+    },
+    {
+      "api": "LogManager::Query(const char*,...) / CharLog(DWORD,DWORD,DWORD,DWORD,const char*,const char*)",
+      "addresses": [
+        "0x8078460",
+        "0x80785a0"
+      ],
+      "module": "game/src/log.cpp",
+      "status": "actual both present; Query PUBLIC access correction required if header still private"
+    },
+    {
+      "api": "CParty::RequestSetMemberLevel / SendPartyInfoOneToAll(CHARACTER*)",
+      "module": "game/src/party.cpp",
+      "status": "actual recovered packet/member behavior; existing lifecycle boundaries stay explicit in tests"
+    },
+    {
+      "api": "DESC::Packet / CEntity::PacketAround",
+      "module": "game/src/desc.cpp/entity_view.cpp",
+      "status": "actual"
+    },
+    {
+      "api": "LC_IsNewCIBN / get_table_postfix / dev_log / sys_log / _sys_err / MIN / number_ex / get_dword_time / libc assert",
+      "status": "actual core/locale/config/developer-log modules"
+    }
+  ],
+  "open_direct": [
+    {
+      "api": "quest::CQuestManager::LevelUp(unsigned int)",
+      "address": "0x81a3310",
+      "exact_declaration": "void LevelUp(unsigned int pc);",
+      "frontier": "quest event dispatch/Lua/PC path; complete old manager216-byte data already present"
+    },
+    {
+      "api": "CHARACTER::AutoGiveItem(DWORD,BYTE,int,bool)",
+      "address": "0x817fb20",
+      "exact_declaration": "LPITEM AutoGiveItem(DWORD vnum,BYTE count,int iRarePct,bool bMsg);",
+      "frontier": "next assigned recovery; no substitute item path"
+    },
+    {
+      "api": "CHARACTER::SetPolymorph(DWORD,bool)",
+      "address": "0x8135b10",
+      "exact_declaration": "void SetPolymorph(DWORD vnum,bool maintainStat);",
+      "frontier": "parent quest_level agent staging full body/indirect virtual resolution"
+    },
+    {
+      "api": "CHARACTER::MountVnum(DWORD)",
+      "address": "0x8136010",
+      "exact_declaration": "void MountVnum(DWORD vnum);",
+      "frontier": "parent quest_level agent staging full body/indirect virtual resolution"
+    },
+    {
+      "api": "CHARACTER::ComputeBattlePoints()",
+      "address": "0x812bda0",
+      "exact_declaration": "void ComputeBattlePoints();",
+      "frontier": "complete candidate work/battle_points; actual PointChange SCC must close together; no stubs"
+    }
+  ],
+  "open_data": [
+    {
+      "name": "exp_table",
+      "address": "0x832328c",
+      "declaration": "extern const DWORD* exp_table;",
+      "frontier": "actual pointer definition and locale-specific selection; parent coverage_ledger agent recovering this closure; arrays100 entries already captured"
+    }
+  ],
+  "open_transitive": [
+    {
+      "api": "CHARACTER::ComputePoints()",
+      "exact_declaration": "void ComputePoints();",
+      "frontier": "SetPolymorph/MountVnum SCC, parent quest_level staging; all original indirect virtual methods must resolve"
+    }
+  ],
+  "signature_evidence": [
+    "dwarf.json",
+    "logger-quest-dwarf.json"
+  ],
+  "runtime_status": "No builds/tests by this agent. Source dispatch audit only; full function cannot be claimed runtime-closed before every direct body/data dependency is real."
+}

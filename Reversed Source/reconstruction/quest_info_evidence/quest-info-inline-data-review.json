@@ -1,0 +1,3450 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "getter": {
+    "path": "game/src/questmanager.h",
+    "anchor": "GetCurrentCharacterPtr()",
+    "line": 16,
+    "file_sha256": "61e8ff4193cfb9795445dcbaf8c4ed0152e90f80e370758808003efb7793075f"
+  },
+  "packet": {
+    "path": "game/src/packet.h",
+    "anchor": "struct packet_quest_info",
+    "line": 175,
+    "file_sha256": "9cc8078c4801d14fa03bb6f88d78b6ebe2e5c2659bf7b00d6447486abf02338a"
+  },
+  "metadata": {
+    "records": [
+      {
+        "unit": "questpc.cpp",
+        "record": {
+          "die": "0x200a10",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_quest_info",
+          "size": 6
+        },
+        "placement": {
+          "file": "packet.h",
+          "line": 1424
+        },
+        "fields": [
+          {
+            "name": "header",
+            "type": {
+              "die": "0x1c56af",
+              "tag": "DW_TAG_typedef",
+              "name": "BYTE",
+              "size": null,
+              "type": {
+                "die": "0x1c1f0a",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "name": "size",
+            "type": {
+              "die": "0x1c56ba",
+              "tag": "DW_TAG_typedef",
+              "name": "WORD",
+              "size": null,
+              "type": {
+                "die": "0x1c1f2e",
+                "tag": "DW_TAG_base_type",
+                "name": "short unsigned int",
+                "size": 2
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "index",
+            "type": {
+              "die": "0x1c56ba",
+              "tag": "DW_TAG_typedef",
+              "name": "WORD",
+              "size": null,
+              "type": {
+                "die": "0x1c1f2e",
+                "tag": "DW_TAG_base_type",
+                "name": "short unsigned int",
+                "size": 2
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "name": "flag",
+            "type": {
+              "die": "0x1c56af",
+              "tag": "DW_TAG_typedef",
+              "name": "BYTE",
+              "size": null,
+              "type": {
+                "die": "0x1c1f0a",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  5
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "record": {
+          "die": "0x2be84bf",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_quest_info",
+          "size": 6
+        },
+        "placement": {
+          "file": "packet.h",
+          "line": 1424
+        },
+        "fields": [
+          {
+            "name": "header",
+            "type": {
+              "die": "0x2bc64e8",
+              "tag": "DW_TAG_typedef",
+              "name": "BYTE",
+              "size": null,
+              "type": {
+                "die": "0x2bc2d43",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "name": "size",
+            "type": {
+              "die": "0x2bc64f3",
+              "tag": "DW_TAG_typedef",
+              "name": "WORD",
+              "size": null,
+              "type": {
+                "die": "0x2bc2d67",
+                "tag": "DW_TAG_base_type",
+                "name": "short unsigned int",
+                "size": 2
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "name": "index",
+            "type": {
+              "die": "0x2bc64f3",
+              "tag": "DW_TAG_typedef",
+              "name": "WORD",
+              "size": null,
+              "type": {
+                "die": "0x2bc2d67",
+                "tag": "DW_TAG_base_type",
+                "name": "short unsigned int",
+                "size": 2
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "name": "flag",
+            "type": {
+              "die": "0x2bc64e8",
+              "tag": "DW_TAG_typedef",
+              "name": "BYTE",
+              "size": null,
+              "type": {
+                "die": "0x2bc2d43",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            "location": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  5
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "enums": [],
+    "methods": [
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestStartFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5cfa",
+        "placement": {
+          "file": "questpc.h",
+          "line": 103
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestStartFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestDoneFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5d12",
+        "placement": {
+          "file": "questpc.h",
+          "line": 104
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC23SetCurrentQuestDoneFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetQuestTitle",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5d2a",
+        "placement": {
+          "file": "questpc.h",
+          "line": 106
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC13SetQuestTitleERKSsS2_"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1d2da5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1d2dab",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1d2d7b",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1cfd81",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1d2da5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1d2dab",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1d2d7b",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1cfd81",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestTitle",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5d4c",
+        "placement": {
+          "file": "questpc.h",
+          "line": 108
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC20SetCurrentQuestTitleERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1d2da5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1d2dab",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1d2d7b",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1cfd81",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestClockName",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5d69",
+        "placement": {
+          "file": "questpc.h",
+          "line": 109
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestClockNameERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1d2da5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1d2dab",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1d2d7b",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1cfd81",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestClockValue",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5d86",
+        "placement": {
+          "file": "questpc.h",
+          "line": 110
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC25SetCurrentQuestClockValueEi"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c1f40",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestCounterName",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5da3",
+        "placement": {
+          "file": "questpc.h",
+          "line": 111
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC26SetCurrentQuestCounterNameERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1d2da5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1d2dab",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1d2d7b",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1cfd81",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestCounterValue",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5dc0",
+        "placement": {
+          "file": "questpc.h",
+          "line": 112
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC27SetCurrentQuestCounterValueEi"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c1f40",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestIconFile",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5ddd",
+        "placement": {
+          "file": "questpc.h",
+          "line": 113
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC23SetCurrentQuestIconFileERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1d2da5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1d2dab",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1d2d7b",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1cfd81",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "ClearSendFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e5fe3",
+        "placement": {
+          "file": "questpc.h",
+          "line": 141
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC13ClearSendFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "ClearCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e601f",
+        "placement": {
+          "file": "questpc.h",
+          "line": 144
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC26ClearCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e6038",
+        "placement": {
+          "file": "questpc.h",
+          "line": 145
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e6051",
+        "placement": {
+          "file": "questpc.h",
+          "line": 146
+        },
+        "return": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24GetCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SendQuestInfoPakcet",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1e606e",
+        "placement": {
+          "file": "questpc.h",
+          "line": 148
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC19SendQuestInfoPakcetEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eb04d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e57b3",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1f63e5",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x21f64b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1f6366",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestStartFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x21f0c5",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 221
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134606784,
+          "DW_AT_high_pc": 134606830,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestStartFlagEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestDoneFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x21f0e9",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 229
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134606832,
+          "DW_AT_high_pc": 134606878,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC23SetCurrentQuestDoneFlagEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SendQuestInfoPakcet",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x21f10d",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 237
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134606880,
+          "DW_AT_high_pc": 134608076,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC19SendQuestInfoPakcetEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x21f651",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "ClearCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220b4f",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 428
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134611968,
+          "DW_AT_high_pc": 134612011,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC26ClearCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220b74",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 436
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612016,
+          "DW_AT_high_pc": 134612134,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220bc6",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 447
+        },
+        "return": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612144,
+          "DW_AT_high_pc": 134612164,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24GetCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestTitle",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220beb",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 453
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612176,
+          "DW_AT_high_pc": 134612237,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC20SetCurrentQuestTitleERKSs"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "title",
+            "type": {
+              "die": "0x21ce21",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1d2da5",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1d2dab",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x1d2d7b",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x1cfd81",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetQuestTitle",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220c3c",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 459
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612240,
+          "DW_AT_high_pc": 134612551,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC13SetQuestTitleERKSsS2_"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "quest",
+            "type": {
+              "die": "0x21ce21",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1d2da5",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1d2dab",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x1d2d7b",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x1cfd81",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "title",
+            "type": {
+              "die": "0x21ce21",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1d2da5",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1d2dab",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x1d2d7b",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x1cfd81",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestClockName",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220e64",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 485
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612560,
+          "DW_AT_high_pc": 134612621,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestClockNameERKSs"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "name",
+            "type": {
+              "die": "0x21ce21",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1d2da5",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1d2dab",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x1d2d7b",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x1cfd81",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestClockValue",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220eb5",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 491
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612624,
+          "DW_AT_high_pc": 134612669,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC25SetCurrentQuestClockValueEi"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "value",
+            "type": {
+              "die": "0x1c1f40",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestCounterName",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220ee9",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 497
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612672,
+          "DW_AT_high_pc": 134612733,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC26SetCurrentQuestCounterNameERKSs"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "name",
+            "type": {
+              "die": "0x21ce21",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1d2da5",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1d2dab",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x1d2d7b",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x1cfd81",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestCounterValue",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220f3a",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 503
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612736,
+          "DW_AT_high_pc": 134612781,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC27SetCurrentQuestCounterValueEi"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "value",
+            "type": {
+              "die": "0x1c1f40",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "SetCurrentQuestIconFile",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x220f6e",
+        "placement": {
+          "file": "questpc.cpp",
+          "line": 509
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": 134612784,
+          "DW_AT_high_pc": 134612845,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC23SetCurrentQuestIconFileERKSs"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21a69c",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eb04d",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1e57b3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "PC",
+                  "size": 108
+                }
+              }
+            }
+          },
+          {
+            "name": "icon_file",
+            "type": {
+              "die": "0x21ce21",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1d2da5",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1d2dab",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x1d2d7b",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x1cfd81",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestStartFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c06039",
+        "placement": {
+          "file": "questpc.h",
+          "line": 103
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestStartFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestDoneFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c06051",
+        "placement": {
+          "file": "questpc.h",
+          "line": 104
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC23SetCurrentQuestDoneFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetQuestTitle",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c06069",
+        "placement": {
+          "file": "questpc.h",
+          "line": 106
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC13SetQuestTitleERKSsS2_"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestTitle",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c0608b",
+        "placement": {
+          "file": "questpc.h",
+          "line": 108
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC20SetCurrentQuestTitleERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestClockName",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c060a8",
+        "placement": {
+          "file": "questpc.h",
+          "line": 109
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestClockNameERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestClockValue",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c060c5",
+        "placement": {
+          "file": "questpc.h",
+          "line": 110
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC25SetCurrentQuestClockValueEi"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bc2d79",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestCounterName",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c060e2",
+        "placement": {
+          "file": "questpc.h",
+          "line": 111
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC26SetCurrentQuestCounterNameERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestCounterValue",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c060ff",
+        "placement": {
+          "file": "questpc.h",
+          "line": 112
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC27SetCurrentQuestCounterValueEi"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bc2d79",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestIconFile",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c0611c",
+        "placement": {
+          "file": "questpc.h",
+          "line": 113
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC23SetCurrentQuestIconFileERKSs"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "ClearSendFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c06322",
+        "placement": {
+          "file": "questpc.h",
+          "line": 141
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC13ClearSendFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "ClearCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c0635e",
+        "placement": {
+          "file": "questpc.h",
+          "line": 144
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC26ClearCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SetCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c06377",
+        "placement": {
+          "file": "questpc.h",
+          "line": 145
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24SetCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentQuestBeginFlag",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c06390",
+        "placement": {
+          "file": "questpc.h",
+          "line": 146
+        },
+        "return": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC24GetCurrentQuestBeginFlagEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "SendQuestInfoPakcet",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c063ad",
+        "placement": {
+          "file": "questpc.h",
+          "line": 148
+        },
+        "return": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest2PC19SendQuestInfoPakcetEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0ac6f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c05af2",
+                "tag": "DW_TAG_structure_type",
+                "name": "PC",
+                "size": 108
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c1973f",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c40849",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": null,
+          "DW_AT_high_pc": null,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "inline": [
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x21f183",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 134607148,
+          "DW_AT_high_pc": 134607160,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x21f871",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 134608114,
+          "DW_AT_high_pc": 134608120,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x21f927",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 134608184,
+          "DW_AT_high_pc": 134608201,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x21f94e",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 134608213,
+          "DW_AT_high_pc": 134608230,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x21f9a0",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 134608281,
+          "DW_AT_high_pc": 134608298,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questpc.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x21ff18",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x1e09b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1e09c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e09c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 134609516,
+          "DW_AT_high_pc": 134609533,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x21f668",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21f64b",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x1f6366",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c403fc",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135933172,
+          "DW_AT_high_pc": 135933183,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c460bc",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135942203,
+          "DW_AT_high_pc": 135942206,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c46c81",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135943849,
+          "DW_AT_high_pc": 135943852,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c46cb8",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135943878,
+          "DW_AT_high_pc": 135943881,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c46cfe",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135943910,
+          "DW_AT_high_pc": 135943913,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c46d35",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135943945,
+          "DW_AT_high_pc": 135943948,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c46dc8",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135944006,
+          "DW_AT_high_pc": 135944009,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c4b456",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135953262,
+          "DW_AT_high_pc": 135953265,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "unit": "questmanager.cpp",
+        "name": "GetCurrentCharacterPtr",
+        "tag": "DW_TAG_inlined_subroutine",
+        "die": "0x2c4b526",
+        "placement": {
+          "file": "questmanager.h",
+          "line": 122
+        },
+        "return": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_inline": 2,
+          "DW_AT_low_pc": 135953426,
+          "DW_AT_high_pc": 135953429,
+          "DW_AT_MIPS_linkage_name": "_ZN5quest13CQuestManager22GetCurrentCharacterPtrEv"
+        },
+        "params": [
+          {
+            "name": "this",
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "mask_metadata": [],
+  "policy": "One original inline getter with no invented standalone address. Packet is full6-byte DWARF record; numeric mask evidence does not prove an enum type/name."
+}

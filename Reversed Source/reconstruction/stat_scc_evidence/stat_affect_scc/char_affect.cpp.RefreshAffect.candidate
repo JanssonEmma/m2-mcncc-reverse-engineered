@@ -1,0 +1,14 @@
+// Full saved auxiliary body, STILL SCC-dependent; no app substitute.
+void CHARACTER::RefreshAffect() {
+    DWORD oldHigh=m_afAffectFlag.bits[1];
+    std::list<CAffect*>::iterator it=m_list_pkAffect.begin();
+    DWORD oldLow=m_afAffectFlag.bits[0];
+    long move=GetPoint(19);
+    long attack=GetPoint(17);
+    while(it!=m_list_pkAffect.end()) {
+        CAffect* affect=*it++;
+        ComputeAffect(affect,true);
+    }
+    if(oldLow!=m_afAffectFlag.bits[0] || oldHigh!=m_afAffectFlag.bits[1] ||
+       move!=GetPoint(19) || attack!=GetPoint(17)) UpdatePacket();
+}

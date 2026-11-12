@@ -1,0 +1,50 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+080e59e0 <_ZN13CSkillManager3GetEPKc>:
+ 80e59e0:	55                   	push   %ebp
+ 80e59e1:	89 e5                	mov    %esp,%ebp
+ 80e59e3:	57                   	push   %edi
+ 80e59e4:	8d 7d d8             	lea    -0x28(%ebp),%edi
+ 80e59e7:	56                   	push   %esi
+ 80e59e8:	53                   	push   %ebx
+ 80e59e9:	83 ec 4c             	sub    $0x4c,%esp
+ 80e59ec:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 80e59ef:	8b 75 0c             	mov    0xc(%ebp),%esi
+ 80e59f2:	8b 43 04             	mov    0x4(%ebx),%eax
+ 80e59f5:	8b 50 08             	mov    0x8(%eax),%edx
+ 80e59f8:	89 45 c8             	mov    %eax,-0x38(%ebp)
+ 80e59fb:	39 c2                	cmp    %eax,%edx
+ 80e59fd:	89 55 d8             	mov    %edx,-0x28(%ebp)
+ 80e5a00:	74 3c                	je     80e5a3e <_ZN13CSkillManager3GetEPKc+0x5e>
+ 80e5a02:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 80e5a09:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+ 80e5a10:	8b 42 14             	mov    0x14(%edx),%eax
+ 80e5a13:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 80e5a17:	89 04 24             	mov    %eax,(%esp)
+ 80e5a1a:	e8 8d 69 f6 ff       	call   804c3ac <strcasecmp@plt>
+ 80e5a1f:	85 c0                	test   %eax,%eax
+ 80e5a21:	74 25                	je     80e5a48 <_ZN13CSkillManager3GetEPKc+0x68>
+ 80e5a23:	89 3c 24             	mov    %edi,(%esp)
+ 80e5a26:	8b 45 d8             	mov    -0x28(%ebp),%eax
+ 80e5a29:	89 45 b8             	mov    %eax,-0x48(%ebp)
+ 80e5a2c:	e8 af ba f6 ff       	call   80514e0 <_ZNSt22_Rb_tree_base_iterator12_M_incrementEv>
+ 80e5a31:	8b 43 04             	mov    0x4(%ebx),%eax
+ 80e5a34:	8b 55 d8             	mov    -0x28(%ebp),%edx
+ 80e5a37:	89 45 c8             	mov    %eax,-0x38(%ebp)
+ 80e5a3a:	39 c2                	cmp    %eax,%edx
+ 80e5a3c:	75 d2                	jne    80e5a10 <_ZN13CSkillManager3GetEPKc+0x30>
+ 80e5a3e:	31 c0                	xor    %eax,%eax
+ 80e5a40:	83 c4 4c             	add    $0x4c,%esp
+ 80e5a43:	5b                   	pop    %ebx
+ 80e5a44:	5e                   	pop    %esi
+ 80e5a45:	5f                   	pop    %edi
+ 80e5a46:	5d                   	pop    %ebp
+ 80e5a47:	c3                   	ret
+ 80e5a48:	8b 45 d8             	mov    -0x28(%ebp),%eax
+ 80e5a4b:	83 c0 10             	add    $0x10,%eax
+ 80e5a4e:	8b 40 04             	mov    0x4(%eax),%eax
+ 80e5a51:	eb ed                	jmp    80e5a40 <_ZN13CSkillManager3GetEPKc+0x60>

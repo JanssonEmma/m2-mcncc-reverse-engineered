@@ -1,0 +1,107 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AddAttr\",\n    \"address\": \"08186ec0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void AddAttr(CItem * this, BYTE bApply, BYTE bLevel) */\\r\\n\\r\\nvoid __thiscall CItem::AddAttr(CItem *this,BYTE bApply,BYTE bLevel)\\r\\n\\r\\n{\\r\\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::pair<const_long_unsigned_int,_SItemAttrTable>&,std::pair<const_long_unsigned_int,_SItemAttrTable>*>\\r\\n  _Var1;\\r\\n  bool bVar2;\\r\\n  int i_00;\\r\\n  int iVar3;\\r\\n  char *pcVar4;\\r\\n  int i;\\r\\n  BYTE bLevel_local;\\r\\n  BYTE bApply_local;\\r\\n  pair<const_long_unsigned_int,SItemAttrTable> local_10c;\\r\\n  uint local_ac;\\r\\n  undefined1 local_a8 [76];\\r\\n  _Rb_tree_base_iterator local_5c;\\r\\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n  local_4c;\\r\\n  _Rb_tree_node_base *local_3c;\\r\\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::pair<const_long_unsigned_int,_SItemAttrTable>&,std::pair<const_long_unsigned_int,_SItemAttrTable>*>\\r\\n  __i;\\r\\n  \\r\\n  bVar2 = HasAttr(this,bApply);\\r\\n  if ((!bVar2) && (bLevel != '\\\\0')) {\\r\\n    i_00 = GetAttributeCount(this);\\r\\n    if (i_00 == 5) {\\r\\n      _sys_err(\\\"AddAttr\\\",0x65,\\\"item attribute overflow!\\\");\\r\\n    }\\r\\n    else {\\r\\n                    /* Unresolved local var: TItemAttrTable * r@[???]\\r\\n                       Unresolved local var: long lVal@[DW_OP_reg0(EAX)] */\\r\\n      _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n      ::lower_bound((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n                     *)&__i,(DWORD *)&g_map_itemAttr);\\r\\n      local_3c = g_map_itemAttr._M_node;\\r\\n      if ((__i.super__Rb_tree_base_iterator._M_node ==\\r\\n           (_Rb_tree_base_iterator)g_map_itemAttr._M_node) ||\\r\\n         ((uint)bApply < *(uint *)((int)__i.super__Rb_tree_base_iterator._M_node + 0x10))) {\\r\\n        local_5c = __i.super__Rb_tree_base_iterator._M_node;\\r\\n        pcVar4 = local_10c.second.szApply + 0xc;\\r\\n        for (iVar3 = 0x11; iVar3 != 0; iVar3 = iVar3 + -1) {\\r\\n          pcVar4[0] = '\\\\0';\\r\\n          pcVar4[1] = '\\\\0';\\r\\n          pcVar4[2] = '\\\\0';\\r\\n          pcVar4[3] = '\\\\0';\\r\\n          pcVar4 = pcVar4 + 4;\\r\\n        }\\r\\n        *pcVar4 = '\\\\0';\\r\\n        local_ac = (uint)bApply;\\r\\n        memcpy(local_a8,local_10c.second.szApply + 0xc,0x45);\\r\\n        local_10c.first = (DWORD)local_5c._M_node;\\r\\n        _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n        ::insert_unique(&local_4c,\\r\\n                        (_Rb_tree_iterator<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::pair<const_long_unsigned_int,_SItemAttrTable>&,std::pair<const_long_unsigned_int,_SItemAttrTable>*>\\r\\n                         )0x8323298,&local_10c);\\r\\n        __i.super__Rb_tree_base_iterator._M_node =\\r\\n             (_Rb_tree_base_iterator)\\r\\n             (_Rb_tree_base_iterator)\\r\\n             local_4c.\\r\\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n             .\\r\\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,true>\\r\\n             ._M_header;\\r\\n      }\\r\\n      _Var1.super__Rb_tree_base_iterator._M_node = __i.super__Rb_tree_base_iterator._M_node;\\r\\n      iVar3 = MIN(4,bLevel - 1);\\r\\n      iVar3 = *(int *)((int)_Var1.super__Rb_tree_base_iterator._M_node + 0x3d + iVar3 * 4);\\r\\n      if (iVar3 != 0) {\\r\\n        SetAttribute(this,i_00,bApply,(short)iVar3);\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AddAttr",
+        "address": "08186ec0"
+      },
+      "code": "\r\n/* DWARF original prototype: void AddAttr(CItem * this, BYTE bApply, BYTE bLevel) */\r\n\r\nvoid __thiscall CItem::AddAttr(CItem *this,BYTE bApply,BYTE bLevel)\r\n\r\n{\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::pair<const_long_unsigned_int,_SItemAttrTable>&,std::pair<const_long_unsigned_int,_SItemAttrTable>*>\r\n  _Var1;\r\n  bool bVar2;\r\n  int i_00;\r\n  int iVar3;\r\n  char *pcVar4;\r\n  int i;\r\n  BYTE bLevel_local;\r\n  BYTE bApply_local;\r\n  pair<const_long_unsigned_int,SItemAttrTable> local_10c;\r\n  uint local_ac;\r\n  undefined1 local_a8 [76];\r\n  _Rb_tree_base_iterator local_5c;\r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n  local_4c;\r\n  _Rb_tree_node_base *local_3c;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::pair<const_long_unsigned_int,_SItemAttrTable>&,std::pair<const_long_unsigned_int,_SItemAttrTable>*>\r\n  __i;\r\n  \r\n  bVar2 = HasAttr(this,bApply);\r\n  if ((!bVar2) && (bLevel != '\\0')) {\r\n    i_00 = GetAttributeCount(this);\r\n    if (i_00 == 5) {\r\n      _sys_err(\"AddAttr\",0x65,\"item attribute overflow!\");\r\n    }\r\n    else {\r\n                    /* Unresolved local var: TItemAttrTable * r@[???]\r\n                       Unresolved local var: long lVal@[DW_OP_reg0(EAX)] */\r\n      _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n      ::lower_bound((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n                     *)&__i,(DWORD *)&g_map_itemAttr);\r\n      local_3c = g_map_itemAttr._M_node;\r\n      if ((__i.super__Rb_tree_base_iterator._M_node ==\r\n           (_Rb_tree_base_iterator)g_map_itemAttr._M_node) ||\r\n         ((uint)bApply < *(uint *)((int)__i.super__Rb_tree_base_iterator._M_node + 0x10))) {\r\n        local_5c = __i.super__Rb_tree_base_iterator._M_node;\r\n        pcVar4 = local_10c.second.szApply + 0xc;\r\n        for (iVar3 = 0x11; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n          pcVar4[0] = '\\0';\r\n          pcVar4[1] = '\\0';\r\n          pcVar4[2] = '\\0';\r\n          pcVar4[3] = '\\0';\r\n          pcVar4 = pcVar4 + 4;\r\n        }\r\n        *pcVar4 = '\\0';\r\n        local_ac = (uint)bApply;\r\n        memcpy(local_a8,local_10c.second.szApply + 0xc,0x45);\r\n        local_10c.first = (DWORD)local_5c._M_node;\r\n        _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n        ::insert_unique(&local_4c,\r\n                        (_Rb_tree_iterator<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::pair<const_long_unsigned_int,_SItemAttrTable>&,std::pair<const_long_unsigned_int,_SItemAttrTable>*>\r\n                         )0x8323298,&local_10c);\r\n        __i.super__Rb_tree_base_iterator._M_node =\r\n             (_Rb_tree_base_iterator)\r\n             (_Rb_tree_base_iterator)\r\n             local_4c.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_SItemAttrTable>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,true>\r\n             ._M_header;\r\n      }\r\n      _Var1.super__Rb_tree_base_iterator._M_node = __i.super__Rb_tree_base_iterator._M_node;\r\n      iVar3 = MIN(4,bLevel - 1);\r\n      iVar3 = *(int *)((int)_Var1.super__Rb_tree_base_iterator._M_node + 0x3d + iVar3 * 4);\r\n      if (iVar3 != 0) {\r\n        SetAttribute(this,i_00,bApply,(short)iVar3);\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AddAttr\",\n    \"address\": \"08186ec0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"08186ef7\",\n        \"target\": \"08186d90\",\n        \"name\": \"CItem::HasAttr\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08186f19\",\n        \"target\": \"081876a0\",\n        \"name\": \"CItem::GetAttributeCount\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08186f4c\",\n        \"target\": \"080eed10\",\n        \"name\": \"_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::lower_bound\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08186fb2\",\n        \"target\": \"0804bdcc\",\n        \"name\": \"<EXTERNAL>::memcpy\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"08186fdd\",\n        \"target\": \"080eed50\",\n        \"name\": \"_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::insert_unique\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08187003\",\n        \"target\": \"081b9260\",\n        \"name\": \"MIN\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08187031\",\n        \"target\": \"08187800\",\n        \"name\": \"CItem::SetAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08187054\",\n        \"target\": \"081b8150\",\n        \"name\": \"_sys_err\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 8,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AddAttr",
+        "address": "08186ec0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "08186ef7",
+            "target": "08186d90",
+            "name": "CItem::HasAttr",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08186f19",
+            "target": "081876a0",
+            "name": "CItem::GetAttributeCount",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08186f4c",
+            "target": "080eed10",
+            "name": "_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::lower_bound",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08186fb2",
+            "target": "0804bdcc",
+            "name": "<EXTERNAL>::memcpy",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "08186fdd",
+            "target": "080eed50",
+            "name": "_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::insert_unique",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08187003",
+            "target": "081b9260",
+            "name": "MIN",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08187031",
+            "target": "08187800",
+            "name": "CItem::SetAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08187054",
+            "target": "081b8150",
+            "name": "_sys_err",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 8,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

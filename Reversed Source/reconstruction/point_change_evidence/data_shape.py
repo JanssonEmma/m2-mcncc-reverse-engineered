@@ -1,0 +1,15 @@
+# Resolve portable paths from the repository root, regardless of current working directory.
+import sys as _portable_sys
+from pathlib import Path as _portable_Path
+for _portable_parent in (_portable_Path(__file__).resolve().parent, *_portable_Path(__file__).resolve().parents):
+    if (_portable_parent / 'project_paths.py').is_file():
+        _portable_sys.path.insert(0, str(_portable_parent))
+        break
+else:
+    raise RuntimeError('project_paths.py not found in repository ancestors')
+from project_paths import resolve_path as _resolve_portable_path
+import json,pathlib
+p=pathlib.Path(_resolve_portable_path('PROJECT_ROOT\\Reversed Source\\reconstruction\\stat-dependency-old-data-metadata.json'));a=json.loads(p.read_text());print(list(a))
+for k,v in a.items():
+ if isinstance(v,list): print(k,len(v),[x.get('name') for x in v[:8] if isinstance(x,dict)])
+ if isinstance(v,dict):print(k,list(v)[:8])

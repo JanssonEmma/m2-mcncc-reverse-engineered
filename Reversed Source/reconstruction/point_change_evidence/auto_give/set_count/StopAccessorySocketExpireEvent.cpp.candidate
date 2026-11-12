@@ -1,0 +1,17 @@
+// Complete original08168b70, staged until AccessorySocketDegrade closes.
+namespace accessory_stop_detail {
+static int signed32(unsigned int v) {return v<=0x7fffffffU?(int)v:-1-(int)(0xffffffffU-v);}
+}
+void CItem::StopAccessorySocketExpireEvent()
+{
+    LPEVENT event=m_pkAccessorySocketExpireEvent;
+    if(event && IsAccessoryForSocket()) {
+        const int oldTime=m_alSockets[2];
+        const long remaining=event_time(event);
+        // Original signed division has no zero/overflow guard; retain trap domain.
+        const unsigned int raw=(unsigned int)(remaining/passes_per_sec)-60U+(unsigned int)oldTime;
+        event_cancel(&m_pkAccessorySocketExpireEvent);
+        if(accessory_stop_detail::signed32(raw)<2) AccessorySocketDegrade();
+        else SetAccessorySocketDownGradeTime((DWORD)raw);
+    }
+}

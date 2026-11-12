@@ -1,0 +1,5 @@
+// TEST ONLY unused legacy event-registry boundary, never a successful result.
+// Dedicated quest PC suite defines MCNCC_TEST_REAL_EVENTS and links actual event.cpp.
+#ifndef MCNCC_TEST_REAL_EVENTS
+extern "C" void* FindEventInfo(DWORD) { std::abort(); }
+#endif

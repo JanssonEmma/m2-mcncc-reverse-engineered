@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080f54b0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CMob::AddSkillSplash",
+      "address": "080f54b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void AddSkillSplash(CMob * this, int iIndex, DWORD dwTiming, DWORD\r\n   dwHitDistance) */\r\n\r\nvoid __thiscall CMob::AddSkillSplash(CMob *this,int iIndex,DWORD dwTiming,DWORD dwHitDistance)\r\n\r\n{\r\n  TMobSplashAttackInfo *pTVar1;\r\n  TMobSplashAttackInfo local_1c;\r\n  \r\n  if ((uint)iIndex < 5) {\r\n    sys_log(0,\"SkillIndex %d timing %lu hit_distance %lu\",iIndex,dwTiming,dwHitDistance);\r\n    local_1c.dwTiming = dwTiming;\r\n    local_1c.dwHitDistance = dwHitDistance;\r\n    pTVar1 = this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n             super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n             super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n             ._M_finish;\r\n    if (pTVar1 == this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n                  super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                  super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                  ._M_end_of_storage) {\r\n      vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::_M_insert_aux\r\n                (&this->m_mobSkillInfo[iIndex].vecSplashAttack,\r\n                 this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n                 super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                 super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                 ._M_finish,&local_1c);\r\n    }\r\n    else {\r\n      if (pTVar1 != (TMobSplashAttackInfo *)0x0) {\r\n        pTVar1->dwTiming = dwTiming;\r\n        pTVar1->dwHitDistance = dwHitDistance;\r\n      }\r\n      this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n      super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n      super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n      _M_finish = pTVar1 + 1;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

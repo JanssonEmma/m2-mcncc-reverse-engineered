@@ -1,0 +1,13 @@
+from pathlib import Path
+import json,hashlib
+p=Path('work/quest_registration');sha=lambda q:hashlib.sha256(q.read_bytes()).hexdigest()
+entries=[]
+for addr,name in [('081a4690','LoadStartQuest'),('081a5770','RegisterQuest')]:
+ evidence=['081a4690-decompile-calls.json','081a4690-assembly.json'] if name=='LoadStartQuest' else ['081a5770.json']
+ entries.append({'name':'quest::CQuestManager::'+name,'address':addr,'kind':'standalone original function','source':'game/src/questmanager.cpp','source_anchor':'CQuestManager::'+name+'(','test':'reconstruction/tests/quest_registration_regression.cpp','evidence':[{ 'path':n,'sha256':sha(p/n)} for n in evidence]})
+(p/'normalized-originals.json').write_text(json.dumps({'elf_sha256':'61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c','standalone_original_exports':2,'entries':entries,'existing_dependencies':['actual CQuestManager stringhash and complete maps','actual config.cpp g_setQuestObjectDir','actual host C++ string/set/SGI hash_map/ifstream/istreambuf_iterator/copy/back_insert_iterator/vector','actual sys_log/assert boundary'],'no_new_application_callees':['LoadStartQuest calls no Lua or gameplay methods','RegisterQuest only game-method callee is complete LoadStartQuest'],'platform_boundaries':['Original ios::in8 default text; Windows CRLF/control-Z conversion differs FreeBSD. No binaryflag change.','Original STL allocation/vtable/bucket layout is not reproduced by modern host STL.','Original unsignedindex to stored signedint conversion is target compiler behavior for valuesaboveINT_MAX; MinGW target matches old bit pattern.']},indent=2))
+# Condense complete saved callgraph by original function, distinguishing application methods from SDK/STL.
+def structured(x):return x.get('structuredContent') or json.loads(x['content'][0]['text'])
+a=json.loads((p/'081a4690-decompile-calls.json').read_text());load=structured(a[1]);a=json.loads((p/'081a5770.json').read_text());reg=structured(a[1])
+(p/'dependency-closure.json').write_text(json.dumps({'LoadStartQuest':load,'RegisterQuest':reg,'global':'g_setQuestObjectDir08323214 target12bytes; full std::set<std::string> already owned config.cpp','indirect_call':{'site':'081a4ba5','instruction':'CALL [vptr+0x24] on actual basic_streambuf<char>','resolution':'Original GCC streambuf virtual underflow slot (9th 4-byte method entry after Itanium address point); invoked on local actual ifstream filebuf. Host actual ifstream provides its own full streambuf implementation, not an application virtual mock.'},'test_lifecycle':'Existing honest empty-VM/NPC manager destructor boundary; no new fake config/loader/VM methods.'},indent=2))
+print('Two normalized exports and full closure/callee/global metadata saved.')

@@ -1,0 +1,4 @@
+// Forward declare struct luaL_reg; in global scope before namespace quest.
+// Place both member declarations in the original public section.
+    void AddLuaFunctionTable(const char* name, luaL_reg* entries);
+    void BuildStateIndexToName(const char* questName);

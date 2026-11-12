@@ -1,0 +1,82 @@
+{
+  "0x080cd110": {
+    "function": {
+      "name": "CInputProcessor::Process",
+      "address": "080cd110"
+    },
+    "code": "\r\n/* WARNING: Type propagation algorithm not settling */\r\n/* DWARF original prototype: bool Process(CInputProcessor * this, LPDESC lpDesc, void * c_pvOrig,\r\n   int iBytes, int * r_iBytesProceed) */\r\n\r\nbool __thiscall\r\nCInputProcessor::Process\r\n          (CInputProcessor *this,LPDESC lpDesc,void *c_pvOrig,int iBytes,int *r_iBytesProceed)\r\n\r\n{\r\n  byte bVar1;\r\n  TrafficProfiler *this_00;\r\n  bool bVar2;\r\n  byte bVar3;\r\n  int iVar4;\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict *ppVar5;\r\n  time_t tVar6;\r\n  int iVar7;\r\n  DWORD DVar8;\r\n  byte *pbVar9;\r\n  BYTE bHeader;\r\n  int iLastPacketLen;\r\n  BYTE bLastHeader;\r\n  int iPacketLen;\r\n  char *c_pszName;\r\n  \r\n                    /* Unresolved local var: char * c_pData@[DW_OP_reg7(EDI)] */\r\n  bLastHeader = '\\0';\r\n  iLastPacketLen = 0;\r\n  if (this->m_pPacketInfo == (CPacketInfo *)0x0) {\r\n    _sys_err(\"Process\",0xbd,\"No packet info has been binded to\");\r\n  }\r\n  else {\r\n    if (test_server != 0) {\r\n      sys_log(0,\"Packet Analyze : start\");\r\n    }\r\n    this->m_iBufferLeft = iBytes;\r\n    pbVar9 = c_pvOrig;\r\n    while (0 < iBytes) {\r\n      bVar1 = *pbVar9;\r\n      if (bVar1 == 0) {\r\n        iPacketLen = 1;\r\n      }\r\n      else {\r\n        bVar2 = CPacketInfo::Get(this->m_pPacketInfo,(uint)bVar1,&iPacketLen,&c_pszName);\r\n        if (!bVar2) {\r\n          _sys_err(\"Process\",0xcc,\r\n                   \"UNKNOWN HEADER: %d, LAST HEADER: %d(%d), REMAIN BYTES: %d, fd: %d\",(uint)bVar1,\r\n                   (uint)bLastHeader,iLastPacketLen,this->m_iBufferLeft,lpDesc->m_sock);\r\n          printdata(c_pvOrig,this->m_iBufferLeft);\r\n          goto LAB_080cd32e;\r\n        }\r\n      }\r\n      if (this->m_iBufferLeft < iPacketLen) {\r\n        return true;\r\n      }\r\n      if (bVar1 != 0) {\r\n                    /* Unresolved local var: int iExtraPacketSize@[DW_OP_reg0(EAX)] */\r\n        if ((test_server != 0) && (bVar1 != 7)) {\r\n          sys_log(0,\"Packet Analyze [Header %d][bufferLeft %d] \",(uint)bVar1,this->m_iBufferLeft);\r\n        }\r\n        CPacketInfo::Start(this->m_pPacketInfo);\r\n        iVar4 = (*this->_vptr_CInputProcessor[4])(this,lpDesc,(uint)bVar1,pbVar9);\r\n        if (iVar4 < 0) {\r\n          return true;\r\n        }\r\n        iPacketLen = iVar4 + iPacketLen;\r\n        DESC::Log(lpDesc,\"%s %d\",c_pszName,iPacketLen);\r\n        CPacketInfo::End(this->m_pPacketInfo);\r\n      }\r\n      if (g_bTrafficProfileOn != '\\0') {\r\n        if (singleton<TrafficProfiler>::ms_singleton == (TrafficProfiler *)0x0) {\r\n          __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n        }\r\n        this_00 = singleton<TrafficProfiler>::ms_singleton;\r\n                    /* Unresolved local var: pair<long_unsigned_int,long_unsigned_int>.conflict *\r\n                       rTrafficInfo@[???] */\r\n        ppVar5 = singleton<TrafficProfiler>::ms_singleton->m_aTrafficVec[0].\r\n                 super__Vector_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>_>\r\n                 .\r\n                 super__Vector_alloc_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>,true>\r\n                 ._M_start;\r\n        singleton<TrafficProfiler>::ms_singleton->m_dwTotalTraffic =\r\n             singleton<TrafficProfiler>::ms_singleton->m_dwTotalTraffic + iPacketLen;\r\n        ppVar5 = ppVar5 + bVar1;\r\n        DVar8 = this_00->m_dwTotalPacket;\r\n        if (ppVar5->second == 0) {\r\n          DVar8 = DVar8 + 1;\r\n        }\r\n        this_00->m_dwTotalPacket = DVar8;\r\n        ppVar5->first = ppVar5->first + iPacketLen;\r\n        ppVar5->second = ppVar5->second + 1;\r\n        tVar6 = time((time_t *)0x0);\r\n        if (this_00->m_dwFlushCycle <= (uint)(tVar6 - this_00->m_tmProfileStartTime)) {\r\n          TrafficProfiler::Flush(this_00);\r\n        }\r\n      }\r\n      bVar2 = CPacketInfo::IsSequencePacket(this->m_pPacketInfo,(uint)bVar1);\r\n      if (bVar2) {\r\n                    /* Unresolved local var: BYTE bSeq@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: BYTE bSeqReceived@[DW_OP_reg0(EAX)] */\r\n        bVar3 = DESC::GetSequence(lpDesc);\r\n        if (bVar3 != pbVar9[iPacketLen + -1]) {\r\n          _sys_err(\"Process\",0xf1,\"SEQUENCE %x mismatch %u != %u header %u\",lpDesc,(uint)bVar3,\r\n                   (uint)pbVar9[iPacketLen + -1],(uint)bVar1);\r\nLAB_080cd32e:\r\n          (*lpDesc->_vptr_DESC[4])(lpDesc,0);\r\n          return true;\r\n        }\r\n        DESC::SetNextSequence(lpDesc);\r\n      }\r\n      iLastPacketLen = iPacketLen;\r\n      this->m_iBufferLeft = this->m_iBufferLeft - iPacketLen;\r\n      pbVar9 = pbVar9 + iPacketLen;\r\n      *r_iBytesProceed = *r_iBytesProceed + iPacketLen;\r\n      iVar4 = (*this->_vptr_CInputProcessor[3])(this);\r\n      iVar7 = (*lpDesc->m_pInputProcessor->_vptr_CInputProcessor[3])(lpDesc->m_pInputProcessor);\r\n      if ((char)iVar4 != (char)iVar7) {\r\n        return false;\r\n      }\r\n      bLastHeader = bVar1;\r\n      iBytes = this->m_iBufferLeft;\r\n    }\r\n  }\r\n  return true;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080cd100": {
+    "function": {
+      "name": "CInputProcessor::BindPacketInfo",
+      "address": "080cd100"
+    },
+    "code": "\r\n/* DWARF original prototype: void BindPacketInfo(CInputProcessor * this, CPacketInfo * pPacketInfo)\r\n    */\r\n\r\nvoid __thiscall CInputProcessor::BindPacketInfo(CInputProcessor *this,CPacketInfo *pPacketInfo)\r\n\r\n{\r\n  this->m_pPacketInfo = pPacketInfo;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080cd000": {
+    "function": {
+      "name": "CInputProcessor::CInputProcessor",
+      "address": "080cd000"
+    },
+    "code": "\r\n/* DWARF original prototype: void CInputProcessor(CInputProcessor * this) */\r\n\r\nvoid __thiscall CInputProcessor::CInputProcessor(CInputProcessor *this)\r\n\r\n{\r\n  this->_vptr_CInputProcessor = (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  this->m_pPacketInfo = (CPacketInfo *)0x0;\r\n  this->m_iBufferLeft = 0;\r\n  if ((char)CInputProcessor()::s_PacketInfo == '\\0') {\r\n    CPacketInfoCG::CPacketInfoCG((CPacketInfoCG *)CInputProcessor()::s_PacketInfo);\r\n    CInputProcessor()::s_PacketInfo._0_1_ = '\\x01';\r\n    atexit(__tcf_0);\r\n  }\r\n  if (this->m_pPacketInfo == (CPacketInfo *)0x0) {\r\n    BindPacketInfo(this,(CPacketInfo *)CInputProcessor()::s_PacketInfo);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080cd080": {
+    "function": {
+      "name": "CInputProcessor::CInputProcessor",
+      "address": "080cd080"
+    },
+    "code": "\r\n/* DWARF original prototype: void CInputProcessor(CInputProcessor * this) */\r\n\r\nvoid __thiscall CInputProcessor::CInputProcessor(CInputProcessor *this)\r\n\r\n{\r\n  this->_vptr_CInputProcessor = (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  this->m_pPacketInfo = (CPacketInfo *)0x0;\r\n  this->m_iBufferLeft = 0;\r\n  if ((char)CInputProcessor()::s_PacketInfo == '\\0') {\r\n    CPacketInfoCG::CPacketInfoCG((CPacketInfoCG *)CInputProcessor()::s_PacketInfo);\r\n    CInputProcessor()::s_PacketInfo._0_1_ = '\\x01';\r\n    atexit(__tcf_0);\r\n  }\r\n  if (this->m_pPacketInfo == (CPacketInfo *)0x0) {\r\n    BindPacketInfo(this,(CPacketInfo *)CInputProcessor()::s_PacketInfo);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080cf820": {
+    "function": {
+      "name": "CInputProcessor::~CInputProcessor",
+      "address": "080cf820"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputProcessor(CInputProcessor * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputProcessor::~CInputProcessor(CInputProcessor *this,int __in_chrg)\r\n\r\n{\r\n  this->_vptr_CInputProcessor = (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080cf830": {
+    "function": {
+      "name": "CInputProcessor::~CInputProcessor",
+      "address": "080cf830"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputProcessor(CInputProcessor * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputProcessor::~CInputProcessor(CInputProcessor *this,int __in_chrg)\r\n\r\n{\r\n  this->_vptr_CInputProcessor = (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b340": {
+    "function": {
+      "name": "CInputClose::GetType",
+      "address": "0813b340"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CInputClose * this) */\r\n\r\nBYTE __thiscall CInputClose::GetType(CInputClose *this)\r\n\r\n{\r\n  return '\\0';\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b350": {
+    "function": {
+      "name": "CInputClose::Analyze",
+      "address": "0813b350"
+    },
+    "code": "\r\n/* DWARF original prototype: int Analyze(CInputClose * this, LPDESC d, BYTE bHeader, char * c_pData)\r\n    */\r\n\r\nint __thiscall CInputClose::Analyze(CInputClose *this,LPDESC d,BYTE bHeader,char *c_pData)\r\n\r\n{\r\n  return (this->super_CInputProcessor).m_iBufferLeft;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b310": {
+    "function": {
+      "name": "CInputClose::~CInputClose",
+      "address": "0813b310"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputClose(CInputClose * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputClose::~CInputClose(CInputClose *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b330": {
+    "function": {
+      "name": "CInputClose::~CInputClose",
+      "address": "0813b330"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputClose(CInputClose * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputClose::~CInputClose(CInputClose *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

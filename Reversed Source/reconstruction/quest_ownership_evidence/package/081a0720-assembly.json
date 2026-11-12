@@ -1,0 +1,104 @@
+{
+  "items": [
+    {
+      "address": "081a0720",
+      "bytes": "55",
+      "instruction": "PUSH EBP",
+      "comment": null
+    },
+    {
+      "address": "081a0721",
+      "bytes": "89e5",
+      "instruction": "MOV EBP,ESP",
+      "comment": null
+    },
+    {
+      "address": "081a0723",
+      "bytes": "83ec08",
+      "instruction": "SUB ESP,0x8",
+      "comment": null
+    },
+    {
+      "address": "081a0726",
+      "bytes": "895dfc",
+      "instruction": "MOV dword ptr [EBP + -0x4],EBX",
+      "comment": null
+    },
+    {
+      "address": "081a0729",
+      "bytes": "8b5d08",
+      "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+      "comment": null
+    },
+    {
+      "address": "081a072c",
+      "bytes": "8b4334",
+      "instruction": "MOV EAX,dword ptr [EBX + 0x34]",
+      "comment": null
+    },
+    {
+      "address": "081a072f",
+      "bytes": "85c0",
+      "instruction": "TEST EAX,EAX",
+      "comment": null
+    },
+    {
+      "address": "081a0731",
+      "bytes": "750d",
+      "instruction": "JNZ 0x081a0740",
+      "comment": null
+    },
+    {
+      "address": "081a0733",
+      "bytes": "8b5dfc",
+      "instruction": "MOV EBX,dword ptr [EBP + -0x4]",
+      "comment": null
+    },
+    {
+      "address": "081a0736",
+      "bytes": "89ec",
+      "instruction": "MOV ESP,EBP",
+      "comment": null
+    },
+    {
+      "address": "081a0738",
+      "bytes": "5d",
+      "instruction": "POP EBP",
+      "comment": null
+    },
+    {
+      "address": "081a0739",
+      "bytes": "c3",
+      "instruction": "RET",
+      "comment": null
+    },
+    {
+      "address": "081a0740",
+      "bytes": "890424",
+      "instruction": "MOV dword ptr [ESP],EAX",
+      "comment": null
+    },
+    {
+      "address": "081a0743",
+      "bytes": "e818520200",
+      "instruction": "CALL 0x081c5960",
+      "comment": null
+    },
+    {
+      "address": "081a0748",
+      "bytes": "c7433400000000",
+      "instruction": "MOV dword ptr [EBX + 0x34],0x0",
+      "comment": null
+    },
+    {
+      "address": "081a074f",
+      "bytes": "ebe2",
+      "instruction": "JMP 0x081a0733",
+      "comment": null
+    }
+  ],
+  "offset": 0,
+  "limit": 500,
+  "total": 16,
+  "has_more": false
+}

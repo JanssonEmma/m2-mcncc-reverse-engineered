@@ -1,0 +1,114 @@
+from pathlib import Path
+p=Path('work/pc_quest_info')
+p.joinpath('questpc.cpp.candidate').write_text('''// COMPLETE original quest-info group; staging only, no production changes/builds.
+#include "questpc.h"
+#include "questmanager.h"
+#include "char.h"
+#include "desc.h"
+#include "packet.h"
+#include "buffer_manager.h"
+#include "../../libthecore/include/log.h"
+#include <cassert>
+namespace quest {
+//0805efc0/0805eff0: begin getter means iIndex, NOT bStart.
+void PC::SetCurrentQuestStartFlag(){if(!GetCurrentQuestBeginFlag())SetCurrentQuestBeginFlag();}
+void PC::SetCurrentQuestDoneFlag(){if(GetCurrentQuestBeginFlag())ClearCurrentQuestBeginFlag();}
+//08060400
+void PC::ClearCurrentQuestBeginFlag(){SetSendFlag(1);m_RunningQuestState->bStart=false;}
+//08060430: real query first, then CURRENT state index/begin, then sendmask.
+void PC::SetCurrentQuestBeginFlag()
+{
+    unsigned int index=CQuestManager::instance().GetQuestIndexByName(m_stCurQuest);
+    m_RunningQuestState->iIndex=static_cast<int>(index);
+    m_RunningQuestState->bStart=true;
+    SetSendFlag(1);
+}
+//080604b0, original nullsafe INDEX getter.
+int PC::GetCurrentQuestBeginFlag(){return m_RunningQuestState?m_RunningQuestState->iIndex:0;}
+//080604d0/08060650/08060690/080606c0/08060700/08060730.
+void PC::SetCurrentQuestTitle(const std::string& title){SetSendFlag(2);m_RunningQuestState->_title=title;}
+void PC::SetCurrentQuestClockName(const std::string& name){SetSendFlag(4);m_RunningQuestState->_clock_name=name;}
+void PC::SetCurrentQuestClockValue(int value){SetSendFlag(8);m_RunningQuestState->_clock_value=value;}
+void PC::SetCurrentQuestCounterName(const std::string& name){SetSendFlag(16);m_RunningQuestState->_counter_name=name;}
+void PC::SetCurrentQuestCounterValue(int value){SetSendFlag(32);m_RunningQuestState->_counter_value=value;}
+void PC::SetCurrentQuestIconFile(const std::string& file){SetSendFlag(64);m_RunningQuestState->_icon_file=file;}
+//08060510, full temporary context swap/send/restore. No new quest record on miss.
+void PC::SetQuestTitle(const std::string& name,const std::string& title)
+{
+    unsigned int index=CQuestManager::instance().GetQuestIndexByName(name);
+    QuestInfoIterator it=m_QuestInfo.find(index);
+    if(it==m_QuestInfo.end())return;
+    QuestState* old=m_RunningQuestState;
+    int oldMask=m_iSendToClient;
+    std::string oldName=m_stCurQuest;
+    m_stCurQuest=name;
+    m_iSendToClient=2;
+    m_RunningQuestState=&it->second;
+    it->second.iIndex=GetCurrentQuestBeginFlag();
+    SetCurrentQuestTitle(title);
+    SendQuestInfoPakcet();
+    m_stCurQuest=oldName;
+    m_RunningQuestState=old;
+    m_iSendToClient=oldMask;
+}
+//0805f020. Full original sender: qi.size is NOT patched back into already-written header.
+void PC::SendQuestInfoPakcet()
+{
+    assert(m_iSendToClient);
+    assert(m_RunningQuestState);
+    packet_quest_info qi;
+    qi.header=81;qi.index=static_cast<WORD>(m_RunningQuestState->iIndex);
+    qi.size=6;qi.flag=static_cast<BYTE>(m_iSendToClient);
+    TEMP_BUFFER buf;
+    buf.write(&qi,6);
+    if(m_iSendToClient&1){
+        BYTE temp=m_RunningQuestState->bStart?1:0;
+        buf.write(&temp,1);qi.size=static_cast<WORD>(qi.size+1);
+        sys_log(1,"QUEST BeginFlag %d",static_cast<unsigned int>(temp));
+    }
+    if(m_iSendToClient&2){
+        m_RunningQuestState->_title.reserve(31);
+        buf.write(m_RunningQuestState->_title.c_str(),31);qi.size=static_cast<WORD>(qi.size+31);
+        sys_log(1,"QUEST Title %s",m_RunningQuestState->_title.c_str());
+    }
+    if(m_iSendToClient&4){
+        m_RunningQuestState->_clock_name.reserve(17);
+        buf.write(m_RunningQuestState->_clock_name.c_str(),17);qi.size=static_cast<WORD>(qi.size+17);
+        sys_log(1,"QUEST Clock Name %s",m_RunningQuestState->_clock_name.c_str());
+    }
+    if(m_iSendToClient&8){
+        buf.write(&m_RunningQuestState->_clock_value,4);qi.size=static_cast<WORD>(qi.size+4);
+        sys_log(1,"QUEST Clock Value %d",m_RunningQuestState->_clock_value);
+    }
+    if(m_iSendToClient&16){
+        m_RunningQuestState->_counter_name.reserve(17);
+        buf.write(m_RunningQuestState->_counter_name.c_str(),17);qi.size=static_cast<WORD>(qi.size+17);
+        sys_log(1,"QUEST Counter Name %s",m_RunningQuestState->_counter_name.c_str());
+    }
+    if(m_iSendToClient&32){
+        buf.write(&m_RunningQuestState->_counter_value,4);qi.size=static_cast<WORD>(qi.size+4);
+        sys_log(1,"QUEST Counter Value %d",m_RunningQuestState->_counter_value);
+    }
+    if(m_iSendToClient&64){
+        m_RunningQuestState->_icon_file.reserve(25);
+        buf.write(m_RunningQuestState->_icon_file.c_str(),25);qi.size=static_cast<WORD>(qi.size+25);
+        sys_log(1,"QUEST Icon File %s",m_RunningQuestState->_icon_file.c_str());
+    }
+    int bytes=buf.size();
+    const void* data=buf.read_peek();
+    CQuestManager::instance().GetCurrentCharacterPtr()->GetDesc()->Packet(data,bytes);
+    m_iSendToClient=0;
+}
+}
+''',encoding='utf-8')
+p.joinpath('packet.h.additions.candidate').write_text('''// Complete original6-byte record. DWARF offsets0/1/3/5, old WORDindex notmodernDWORD.
+#pragma pack(push,1)
+struct packet_quest_info { BYTE header; WORD size; WORD index; BYTE flag; };
+#pragma pack(pop)
+''',encoding='utf-8')
+p.joinpath('questmanager.h.additions.candidate').write_text('''// Original public NONCONST getter questmanager.h122, inline at0805f12c..138.
+// Add to existing COMPLETE CQuestManager public section, no class/field replacement.
+CHARACTER* GetCurrentCharacterPtr(){return m_pCurrentCharacter;}
+''',encoding='utf-8')
+p.joinpath('mask-values.json').write_text(__import__('json').dumps({'scope':'Instruction-proven complete USED7mask values; old enum names/type not retained in scanned original DWARF. NO reference-only enum declaration promoted.','masks':{'begin':1,'title':2,'clock_name':4,'clock_value':8,'counter_name':16,'counter_value':32,'icon_file':64},'reference_only_names':['QUEST_SEND_ISBEGIN','QUEST_SEND_TITLE','QUEST_SEND_CLOCK_NAME','QUEST_SEND_CLOCK_VALUE','QUEST_SEND_COUNTER_NAME','QUEST_SEND_COUNTER_VALUE','QUEST_SEND_ICON_FILE']},indent=2)+'\n',encoding='utf-8')
+print('Complete13-method candidate, fullpacket/contextgetter, maskname uncertainty saved')

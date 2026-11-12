@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063850",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "SCompressedBlock::Uncompress",
+      "address": "08063850"
+    },
+    "code": "\r\n/* DWARF original prototype: void Uncompress(SCompressedBlock * this, SBlock * pkBlock) */\r\n\r\nvoid __thiscall SCompressedBlock::Uncompress(SCompressedBlock *this,SBlock *pkBlock)\r\n\r\n{\r\n  IUtil *pIVar1;\r\n  uint uDstLen;\r\n  \r\n                    /* Unresolved local var: IUtil * rkUtil@[DW_OP_reg0(EAX)] */\r\n  pIVar1 = IUtil::GetSingleton();\r\n  uDstLen = 0x4000;\r\n  (*pIVar1->_vptr_IUtil[6])(pIVar1,this,this->m_dwCompressedSize,pkBlock,&uDstLen);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

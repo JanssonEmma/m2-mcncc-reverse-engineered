@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0818e180",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER_MANAGER::AddToStateList",
+      "address": "0818e180"
+    },
+    "code": "\r\n/* DWARF original prototype: bool AddToStateList(CHARACTER_MANAGER * this, LPCHARACTER ch) */\r\n\r\nbool __thiscall CHARACTER_MANAGER::AddToStateList(CHARACTER_MANAGER *this,LPCHARACTER ch)\r\n\r\n{\r\n  bool bVar1;\r\n  pair<std::_Rb_tree_iterator<CHARACTER*,_CHARACTER*&,_CHARACTER**>,bool> __p;\r\n  _Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n  local_2c [2];\r\n  \r\n                    /* Unresolved local var:\r\n                       _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> it@[???] */\r\n  if (ch == (LPCHARACTER)0x0) {\r\n    __assert(\"AddToStateList\",\"char_manager.cpp\",0x27c);\r\n  }\r\n  _Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n  ::find(local_2c,(LPCHARACTER *)&this->m_set_pkChrState);\r\n  bVar1 = local_2c[0].super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n          super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header ==\r\n          (_Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>)\r\n          (this->m_set_pkChrState)._M_t.super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n          super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header;\r\n  if (bVar1) {\r\n    _Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n    ::insert_unique(&(this->m_set_pkChrState)._M_t,&ch);\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,23 @@
+// Complete original questmanager.cpp081a4690/081a5770.
+// Required actual headers: questmanager.h, config.h, libthecore/log.h,
+// <fstream>, <iterator>, <algorithm>, <cassert>.
+void CQuestManager::LoadStartQuest(const std::string& name,unsigned int index) {
+    for(std::set<std::string>::iterator it=g_setQuestObjectDir.begin();it!=g_setQuestObjectDir.end();++it) {
+        std::string fullName=*it+"/begin_condition/"+name;
+        std::ifstream input(fullName.c_str()); // Original ios::in8, not binary.
+        if(input.is_open()) {
+            sys_log(0,"QUEST loading begin condition for %s",name.c_str());
+            std::istreambuf_iterator<char> first(input),last;
+            std::copy(first,last,std::back_inserter(m_hmQuestStartScript[index]));
+        }
+    }
+}
+void CQuestManager::RegisterQuest(const std::string& name,unsigned int index) {
+    assert(index>0);
+    __gnu_cxx::hash_map<std::string,int,stringhash,std::equal_to<std::string>,std::allocator<int> >::iterator it=m_hmQuestName.find(name);
+    if(it!=m_hmQuestName.end()) return;
+    m_hmQuestName.insert(std::make_pair(name,index));
+    LoadStartQuest(name,index);
+    m_mapQuestNameByIndex.insert(std::make_pair(index,name));
+    sys_log(0,"QUEST: Register %4u %s",index,name.c_str());
+}

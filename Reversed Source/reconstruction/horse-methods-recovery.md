@@ -1,0 +1,5 @@
+# Horse and move-packet helpers — checkpoint77
+
+Checkpoint77: nine complete horse/move/character leaf bodies are integrated in original char.cpp/char_battle.cpp/char_horse.cpp, plus exact inline guild accessor and packed dead5/move24. Focused+ABI, optimized selected actual application/SQL paths, strict32 source and full80 runtimes+ABI pass. Fixed staged packet insertion duplication and private-base reads through existing real inline accessors without widening visibility. Dedicated fixture removes only three recovered virtual abort methods; global legacy fixtures unchanged. Full HorseSummon/SpawnMob/Show/Goto/event/spatial/stat/quest/server closure remains unfinished.
+
+Full receipt work/checkpoint-77-validation.receipt.json; focused horse-methods-focused.receipt.json; optimized horse-methods-o2.log; strict32 horse-methods-m32.log. Actual current source and integrated-proof are authoritative; initial guarded payload predates two corrected integration errors. No original ELF execution or whole-server/native integration proof.

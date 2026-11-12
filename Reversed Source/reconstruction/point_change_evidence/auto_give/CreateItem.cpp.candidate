@@ -1,0 +1,72 @@
+// COMPLETE old CreateItem081922e0 control flow. STAGED ONLY: unresolved actual callees.
+// Uses original full ITEM_MANAGER/CItem data, never replacement classes.
+LPITEM ITEM_MANAGER::CreateItem(DWORD vnum,DWORD count,DWORD id,bool tryMagic,int rarePct)
+{
+    if(!vnum) return 0;
+    if((LC_IsKorea() || LC_IsYMIR()) && vnum==50300 && tryMagic) {
+        DWORD skill;
+        do { skill=number_ex(1,120,"item_manager.cpp",245); }
+        while(!CSkillManager::instance().Get(skill));
+        vnum=skill+50400;
+    }
+    TItemTable* table=GetTable(vnum);
+    if(!table) return 0;
+    if(m_map_pkItemByID.find(id)!=m_map_pkItemByID.end()) {
+        LPITEM duplicate=m_map_pkItemByID[id];
+        _sys_err("CreateItem",272,"ITEM_ID_DUP: %lu %s owner %p",id,duplicate->GetName(),duplicate->GetOwner());
+        return 0;
+    }
+    LPITEM item=new CItem;
+    item->Initialize();
+    item->SetProto(table);
+    if(item->GetType()!=9) {
+        if(id==0) {
+            item->SetID(GetNewID());
+            if(item->GetType()==16) {
+                long value;
+                if(item->GetValue(2)==0) value=item->GetValue(0);
+                else {
+                    const time_t now=get_global_time();
+                    value=auto_give_detail::signed32((unsigned int)item->GetValue(0)+(unsigned int)now);
+                }
+                item->SetSocket(2,value);
+            }
+        } else {
+            item->SetID(id);
+            item->SetSkipSave(true);
+        }
+    } else item->SetSkipSave(true);
+    if(item->GetType()!=9) {
+        if(!(item->GetFlag() & 4)) count=1;
+        else {
+            count=(DWORD)MINMAX(1,auto_give_detail::signed32(count),200);
+            if(tryMagic && count<2 && (item->GetFlag() & 128)) count=item->GetValue(1);
+        }
+    }
+    const DWORD vid=++m_dwVIDCount;
+    item->SetVID(vid);
+    m_VIDMap.insert(std::make_pair(vid,item));
+    if(item->GetID()!=0) m_map_pkItemByID.insert(std::make_pair(item->GetID(),item));
+    if(!item->SetCount(count)) return 0;
+    item->SetSkipSave(false);
+    if(item->GetType()==16 && item->GetValue(2)!=0) item->StartUniqueExpireEvent();
+    if(id==0) {
+        if(item->GetType()==27 && Blend_Item_find(item->GetVnum())) {
+            Blend_Item_set_value(item);
+            return item;
+        }
+        if(table->sAddonType!=0) item->ApplyAddon((int)table->sAddonType);
+        if(tryMagic) {
+            if(rarePct==-1) rarePct=table->bAlterToMagicItemPct;
+            if(number_ex(1,100,"item_manager.cpp",361)<=rarePct) item->AlterToMagicItem();
+        }
+        if(table->bGainSocketPct!=0) item->AlterToSocketItem((int)table->bGainSocketPct);
+        if(vnum==50300 || vnum==70037) {
+            DWORD skill;
+            do { skill=number_ex(1,120,"item_manager.cpp",375); }
+            while(!CSkillManager::instance().Get(skill));
+            item->SetSocket(0,skill);
+        }
+    }
+    return item;
+}

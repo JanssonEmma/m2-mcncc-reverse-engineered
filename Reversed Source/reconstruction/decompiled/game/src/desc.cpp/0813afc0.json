@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813afc0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC::SetSecurityKey",
+      "address": "0813afc0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetSecurityKey(DESC * this, DWORD * c_pdwKey) */\r\n\r\nvoid __thiscall DESC::SetSecurityKey(DESC *this,DWORD *c_pdwKey)\r\n\r\n{\r\n  bool bVar1;\r\n  BYTE *pBVar2;\r\n  char *key;\r\n  \r\n                    /* Unresolved local var: BYTE * c_pszKey@[DW_OP_reg7(EDI)] */\r\n  key = \"JyTxtHljHJlVJHorRM301vf@4fvj10-v\";\r\n  if (g_iUseLocale != 0) {\r\n    bVar1 = LC_IsKorea();\r\n    if (!bVar1) {\r\n      pBVar2 = GetKey_20050304Myevan();\r\n      key = (char *)(pBVar2 + 0x25);\r\n    }\r\n  }\r\n  (*thecore_memcpy)(this->m_adwDecryptionKey,c_pdwKey,0x10);\r\n  TEA_Encrypt(this->m_adwEncryptionKey,this->m_adwDecryptionKey,(DWORD *)key,0x10);\r\n  sys_log(0,\"SetSecurityKey decrypt %lu %lu %lu %lu encrypt %lu %lu %lu %lu\",\r\n          this->m_adwDecryptionKey[0],this->m_adwDecryptionKey[1],this->m_adwDecryptionKey[2],\r\n          this->m_adwDecryptionKey[3],this->m_adwEncryptionKey[0],this->m_adwEncryptionKey[1],\r\n          this->m_adwEncryptionKey[2],this->m_adwEncryptionKey[3]);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

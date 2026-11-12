@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08073560",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::GetSkillLevel",
+      "address": "08073560"
+    },
+    "code": "\r\n/* DWARF original prototype: int GetSkillLevel(CHARACTER * this, DWORD dwVnum) */\r\n\r\nint __thiscall CHARACTER::GetSkillLevel(CHARACTER *this,DWORD dwVnum)\r\n\r\n{\r\n  uint b;\r\n  int iVar1;\r\n  char *pcVar2;\r\n  \r\n  if (dwVnum < 0xff) {\r\n    b = 0;\r\n    if (this->m_pSkillLevels != (TPlayerSkill *)0x0) {\r\n      b = (uint)this->m_pSkillLevels[dwVnum].bLevel;\r\n    }\r\n    iVar1 = MIN(0x28,b);\r\n    return iVar1;\r\n  }\r\n  pcVar2 = GetName(this);\r\n  _sys_err(\"GetSkillLevel\",0xa36,\"%s skill vnum overflow %lu\",pcVar2,dwVnum);\r\n  pcVar2 = GetName(this);\r\n  sys_log(0,\"%s skill vnum overflow %lu\",pcVar2,dwVnum);\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

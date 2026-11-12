@@ -1,0 +1,4 @@
+#pragma pack(push,1)
+typedef struct packet_fly { BYTE bHeader; BYTE bType; DWORD dwStartVID; DWORD dwEndVID; } TPacketGCCreateFly;
+typedef struct { BYTE bHeader; DWORD dwType; BYTE bApplyOn; } TPacketGCAffectRemove;
+#pragma pack(pop)

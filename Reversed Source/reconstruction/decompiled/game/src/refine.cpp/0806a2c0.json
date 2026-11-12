@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0806a2c0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CRefineManager::Initialize",
+      "address": "0806a2c0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool Initialize(CRefineManager * this, TRefineTable * table, int size)\r\n    */\r\n\r\nbool __thiscall CRefineManager::Initialize(CRefineManager *this,TRefineTable *table,int size)\r\n\r\n{\r\n  DWORD DVar1;\r\n  int iVar2;\r\n  TRefineTable *pTVar3;\r\n  DWORD *pDVar4;\r\n  DWORD *pDVar5;\r\n  pair<const_long_unsigned_int,SRefineTable> *ppVar6;\r\n  int i;\r\n  DWORD local_ec [16];\r\n  DWORD local_ac;\r\n  DWORD local_a8 [15];\r\n  pair<const_long_unsigned_int,SRefineTable> local_6c;\r\n  \r\n  i = 0;\r\n  if (0 < size) {\r\n    do {\r\n      sys_log(0,\"REFINE %d prob %d cost %d\",table->id,table->prob,table->cost);\r\n      DVar1 = table->id;\r\n      pTVar3 = table;\r\n      pDVar4 = local_ec;\r\n      for (iVar2 = 0xd; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n        *pDVar4 = pTVar3->id;\r\n        pTVar3 = (TRefineTable *)&pTVar3->material_count;\r\n        pDVar4 = pDVar4 + 1;\r\n      }\r\n      table = table + 1;\r\n      *(char *)pDVar4 = (char)pTVar3->id;\r\n      local_ac = DVar1;\r\n      pDVar4 = local_ec;\r\n      pDVar5 = local_a8;\r\n      for (iVar2 = 0xd; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n        *pDVar5 = *pDVar4;\r\n        pDVar4 = pDVar4 + 1;\r\n        pDVar5 = pDVar5 + 1;\r\n      }\r\n      *(char *)pDVar5 = (char)*pDVar4;\r\n      ppVar6 = &local_6c;\r\n      local_6c.first = DVar1;\r\n      pDVar4 = local_a8;\r\n      for (iVar2 = 0xd; ppVar6 = (pair<const_long_unsigned_int,SRefineTable> *)&ppVar6->second,\r\n          iVar2 != 0; iVar2 = iVar2 + -1) {\r\n        ((TRefineTable *)ppVar6)->id = *pDVar4;\r\n        pDVar4 = pDVar4 + 1;\r\n      }\r\n      *(char *)&((TRefineTable *)ppVar6)->id = (char)*pDVar4;\r\n      _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SRefineTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SRefineTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SRefineTable>_>_>\r\n      ::insert_unique(&(this->m_map_RefineRecipe)._M_t,&local_6c);\r\n      i = i + 1;\r\n    } while (i < size);\r\n  }\r\n  sys_log(0,\"REFINE: COUNT %d\",(this->m_map_RefineRecipe)._M_t._M_node_count);\r\n  return true;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

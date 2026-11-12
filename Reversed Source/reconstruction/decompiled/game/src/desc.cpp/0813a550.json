@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813a550",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC::UDPGrant",
+      "address": "0813a550"
+    },
+    "code": "\r\n/* DWARF original prototype: void UDPGrant(DESC * this, sockaddr_in * c_rSockAddr) */\r\n\r\nvoid __thiscall DESC::UDPGrant(DESC *this,sockaddr_in *c_rSockAddr)\r\n\r\n{\r\n  sa_family_t sVar1;\r\n  in_port_t iVar2;\r\n  TPacketGCBindUDP pack;\r\n  \r\n  sVar1 = c_rSockAddr->sin_family;\r\n  iVar2 = c_rSockAddr->sin_port;\r\n  (this->m_UDPSockAddr).sin_len = c_rSockAddr->sin_len;\r\n  (this->m_UDPSockAddr).sin_family = sVar1;\r\n  (this->m_UDPSockAddr).sin_port = iVar2;\r\n  (this->m_UDPSockAddr).sin_addr.s_addr = (c_rSockAddr->sin_addr).s_addr;\r\n  *(undefined4 *)(this->m_UDPSockAddr).sin_zero = *(undefined4 *)c_rSockAddr->sin_zero;\r\n  *(undefined4 *)((this->m_UDPSockAddr).sin_zero + 4) = *(undefined4 *)(c_rSockAddr->sin_zero + 4);\r\n  pack.header = 0xfe;\r\n  pack.addr = (this->m_UDPSockAddr).sin_addr.s_addr;\r\n  pack.port = (this->m_UDPSockAddr).sin_port;\r\n  Packet(this,&pack,7);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

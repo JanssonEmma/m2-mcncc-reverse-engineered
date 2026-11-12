@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08051ce0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "locale_init",
+      "address": "08051ce0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid locale_init(char *filename)\r\n\r\n{\r\n  char cVar1;\r\n  char *__ptr;\r\n  char *pcVar2;\r\n  char *pcVar3;\r\n  char **ppcVar4;\r\n  int i;\r\n  char *buf;\r\n  char *strings [2];\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: char * end@[DW_OP_reg7(EDI)] */\r\n  __ptr = fread_string(filename);\r\n  if (test_server != 0) {\r\n    fprintf(__stderrp,\"%s\",__ptr);\r\n  }\r\n  pcVar2 = __ptr;\r\n  if (__ptr == (char *)0x0) {\r\n    fprintf(__stderrp,\"SYSERR: locale_read: no file %s\\n\",filename);\r\n                    /* WARNING: Subroutine does not return */\r\n    exit(1);\r\n  }\r\n  do {\r\n    strings[0] = (char *)0x0;\r\n    strings[1] = (char *)0x0;\r\n    if (*pcVar2 == '\\\"') {\r\n      i = 0;\r\n      do {\r\n        pcVar3 = quote_find_end(pcVar2);\r\n        if (pcVar3 == (char *)0x0) break;\r\n        pcVar2 = locale_convert(pcVar2,(int)pcVar3 - (int)pcVar2);\r\n        strings[i] = pcVar2;\r\n        cVar1 = pcVar3[1];\r\n        pcVar2 = pcVar3 + 1;\r\n        while (((cVar1 == '\\n' || (cVar1 == '\\r')) || (cVar1 == ' '))) {\r\n          pcVar2 = pcVar2 + 1;\r\n          cVar1 = *pcVar2;\r\n        }\r\n        if (i == 1) break;\r\n        if (*pcVar2 != '\\\"') {\r\n          fprintf(__stderrp,\"SYSERR: locale_init: invalid format filename %s\\n\",filename);\r\n          break;\r\n        }\r\n        i = i + 1;\r\n      } while (i < 2);\r\n      if ((strings[0] == (char *)0x0) || (strings[1] == (char *)0x0)) {\r\nLAB_08051d47:\r\n        free(__ptr);\r\n        return;\r\n      }\r\n      ppcVar4 = strings;\r\n      locale_add(strings);\r\n      i = 1;\r\n      do {\r\n        if (*ppcVar4 != (char *)0x0) {\r\n          free(*ppcVar4);\r\n        }\r\n        ppcVar4 = ppcVar4 + 1;\r\n        i = i + -1;\r\n      } while (-1 < i);\r\n    }\r\n    else {\r\n      pcVar2 = strchr(pcVar2,10);\r\n      if (pcVar2 == (char *)0x0) goto LAB_08051d47;\r\n      pcVar2 = pcVar2 + 1;\r\n    }\r\n    if ((pcVar2 == (char *)0x0) || (*pcVar2 == '\\0')) goto LAB_08051d47;\r\n  } while( true );\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813a6d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC::TrySyncTime",
+      "address": "0813a6d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void TrySyncTime(DESC * this, DWORD dwCurTime, long lNewDelta) */\r\n\r\nvoid __thiscall DESC::TrySyncTime(DESC *this,DWORD dwCurTime,long lNewDelta)\r\n\r\n{\r\n  TPacketGCHandshake pack;\r\n  \r\n  pack.bHeader = 0xff;\r\n  pack.dwHandshake = this->m_dwHandshake;\r\n  pack.dwTime = dwCurTime;\r\n  pack.lDelta = lNewDelta;\r\n  Packet(this,&pack,0xd);\r\n  this->m_dwHandshakeSentTime = dwCurTime;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

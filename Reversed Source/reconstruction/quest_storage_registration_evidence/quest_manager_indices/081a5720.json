@@ -1,0 +1,110 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CQuestManager::GetCurrentQuestName\",\n    \"address\": \"081a5720\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: string * GetCurrentQuestName(CQuestManager * this) */\\r\\n\\r\\nstring * __thiscall CQuestManager::GetCurrentQuestName(CQuestManager *this)\\r\\n\\r\\n{\\r\\n  string *psVar1;\\r\\n  \\r\\n  psVar1 = PC::GetCurrentQuestName(this->m_pCurrentPC);\\r\\n  return psVar1;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CQuestManager::GetCurrentQuestName",
+        "address": "081a5720"
+      },
+      "code": "\r\n/* DWARF original prototype: string * GetCurrentQuestName(CQuestManager * this) */\r\n\r\nstring * __thiscall CQuestManager::GetCurrentQuestName(CQuestManager *this)\r\n\r\n{\r\n  string *psVar1;\r\n  \r\n  psVar1 = PC::GetCurrentQuestName(this->m_pCurrentPC);\r\n  return psVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CQuestManager::GetCurrentQuestName\",\n    \"address\": \"081a5720\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"081a5730\",\n        \"target\": \"0805dd90\",\n        \"name\": \"PC::GetCurrentQuestName\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 1,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CQuestManager::GetCurrentQuestName",
+        "address": "081a5720"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "081a5730",
+            "target": "0805dd90",
+            "name": "PC::GetCurrentQuestName",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 1,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"081a5720\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a5721\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a5723\",\n      \"bytes\": \"8b4508\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a5726\",\n      \"bytes\": \"8b8088000000\",\n      \"instruction\": \"MOV EAX,dword ptr [EAX + 0x88]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a572c\",\n      \"bytes\": \"894508\",\n      \"instruction\": \"MOV dword ptr [EBP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a572f\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a5730\",\n      \"bytes\": \"e95b86ebff\",\n      \"instruction\": \"JMP 0x0805dd90\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 7,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "081a5720",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081a5721",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081a5723",
+          "bytes": "8b4508",
+          "instruction": "MOV EAX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081a5726",
+          "bytes": "8b8088000000",
+          "instruction": "MOV EAX,dword ptr [EAX + 0x88]",
+          "comment": null
+        },
+        {
+          "address": "081a572c",
+          "bytes": "894508",
+          "instruction": "MOV dword ptr [EBP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "081a572f",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081a5730",
+          "bytes": "e95b86ebff",
+          "instruction": "JMP 0x0805dd90",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 7,
+      "has_more": false
+    },
+    "isError": false
+  }
+]

@@ -1,0 +1,225 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "program": "/game",
+  "program_function_count": 7238,
+  "exported_function_count": 12,
+  "origin": "Read-only live Ghidra tool exports, normalized address-by-address from original structured results; raw files and program identity remain in this package. No reanalysis, renaming or target execution.",
+  "functions": [
+    {
+      "requested_address": "0x080514e0",
+      "function": {
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "address": "080514e0"
+      },
+      "signature": null,
+      "code": "\r\n/* DWARF original prototype: void _M_increment(_Rb_tree_base_iterator * this) */\r\n\r\nvoid __thiscall _Rb_tree_base_iterator::_M_increment(_Rb_tree_base_iterator *this)\r\n\r\n{\r\n  _Rb_tree_node_base *p_Var1;\r\n  _Rb_tree_node_base *p_Var2;\r\n  \r\n  p_Var2 = this->_M_node;\r\n  p_Var1 = p_Var2->_M_right;\r\n  if (p_Var1 == (_Rb_tree_node_base *)0x0) {\r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[DW_OP_reg0(EAX)] */\r\n    p_Var1 = p_Var2->_M_parent;\r\n    if (p_Var2 == p_Var1->_M_right) {\r\n      do {\r\n        this->_M_node = p_Var1;\r\n        p_Var1 = p_Var1->_M_parent;\r\n        p_Var2 = this->_M_node;\r\n      } while (p_Var2 == p_Var1->_M_right);\r\n    }\r\n    if (p_Var2->_M_right != p_Var1) {\r\n      this->_M_node = p_Var1;\r\n    }\r\n  }\r\n  else {\r\n    this->_M_node = p_Var1;\r\n    for (p_Var2 = p_Var1->_M_left; p_Var2 != (_Rb_tree_node_base *)0x0; p_Var2 = p_Var2->_M_left) {\r\n      p_Var2 = this->_M_node->_M_left;\r\n      this->_M_node = p_Var2;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "080514e0-decompile.json",
+        "raw_export_sha256": "5cb151f791978a089d1cfea0587f4b0c0c413cf13b9a4220c2d07f18164aaaae",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x08089f80",
+      "function": {
+        "name": "SGuildMember::SGuildMember",
+        "address": "08089f80"
+      },
+      "signature": "void SGuildMember(SGuildMember * this, LPCHARACTER ch, BYTE grade, DWORD offer_exp)",
+      "code": "\r\n/* DWARF original prototype: void SGuildMember(SGuildMember * this, LPCHARACTER ch, BYTE grade,\r\n   DWORD offer_exp) */\r\n\r\nvoid __thiscall\r\nSGuildMember::SGuildMember(SGuildMember *this,LPCHARACTER ch,BYTE grade,DWORD offer_exp)\r\n\r\n{\r\n  BYTE BVar1;\r\n  char *pcVar2;\r\n  allocator local_2c [28];\r\n  \r\n  this->pid = ch->m_dwPlayerID;\r\n  this->is_general = '\\0';\r\n  this->grade = grade;\r\n  BVar1 = CHARACTER::GetJob(ch);\r\n  this->job = BVar1;\r\n  this->level = (ch->m_points).level;\r\n  this->offer_exp = offer_exp;\r\n  pcVar2 = CHARACTER::GetName(ch);\r\n  std::string::string((string *)&this->name,pcVar2,local_2c);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "08089f80-decompile.json",
+        "raw_export_sha256": "a1c82cd82eb217831267b1bfd92a76d13fe28d73e3b1ce72096549542b7ea03f",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x08089ff0",
+      "function": {
+        "name": "SGuildMember::SGuildMember",
+        "address": "08089ff0"
+      },
+      "signature": "void SGuildMember(SGuildMember * this, LPCHARACTER ch, BYTE grade, DWORD offer_exp)",
+      "code": "\r\n/* DWARF original prototype: void SGuildMember(SGuildMember * this, LPCHARACTER ch, BYTE grade,\r\n   DWORD offer_exp) */\r\n\r\nvoid __thiscall\r\nSGuildMember::SGuildMember(SGuildMember *this,LPCHARACTER ch,BYTE grade,DWORD offer_exp)\r\n\r\n{\r\n  BYTE BVar1;\r\n  char *pcVar2;\r\n  allocator local_2c [28];\r\n  \r\n  this->pid = ch->m_dwPlayerID;\r\n  this->is_general = '\\0';\r\n  this->grade = grade;\r\n  BVar1 = CHARACTER::GetJob(ch);\r\n  this->job = BVar1;\r\n  this->level = (ch->m_points).level;\r\n  this->offer_exp = offer_exp;\r\n  pcVar2 = CHARACTER::GetName(ch);\r\n  std::string::string((string *)&this->name,pcVar2,local_2c);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "08089ff0-decompile.json",
+        "raw_export_sha256": "ad6bf383027cbf9abd7c00f1db4d25a5771c3ed4536b24d793771b5f7262a780",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x0808a060",
+      "function": {
+        "name": "SGuildMember::SGuildMember",
+        "address": "0808a060"
+      },
+      "signature": "void SGuildMember(SGuildMember * this, DWORD pid, BYTE grade, BYTE is_general, BYTE job, BYTE level, DWORD offer_exp, char * name)",
+      "code": "\r\n/* DWARF original prototype: void SGuildMember(SGuildMember * this, DWORD pid, BYTE grade, BYTE\r\n   is_general, BYTE job, BYTE level, DWORD offer_exp, char * name) */\r\n\r\nvoid __thiscall\r\nSGuildMember::SGuildMember\r\n          (SGuildMember *this,DWORD pid,BYTE grade,BYTE is_general,BYTE job,BYTE level,\r\n          DWORD offer_exp,char *name)\r\n\r\n{\r\n  allocator local_1c [24];\r\n  \r\n  this->pid = pid;\r\n  this->grade = grade;\r\n  this->is_general = is_general;\r\n  this->job = job;\r\n  this->level = level;\r\n  this->offer_exp = offer_exp;\r\n  std::string::string((string *)&this->name,name,local_1c);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "0808a060-decompile.json",
+        "raw_export_sha256": "7bbdb8ec08f99a2ac2f4e73a1a49b5874db72f74cbe635ddecea6ce72a52e846",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x0808a0b0",
+      "function": {
+        "name": "SGuildMember::SGuildMember",
+        "address": "0808a0b0"
+      },
+      "signature": "void SGuildMember(SGuildMember * this, DWORD pid, BYTE grade, BYTE is_general, BYTE job, BYTE level, DWORD offer_exp, char * name)",
+      "code": "\r\n/* DWARF original prototype: void SGuildMember(SGuildMember * this, DWORD pid, BYTE grade, BYTE\r\n   is_general, BYTE job, BYTE level, DWORD offer_exp, char * name) */\r\n\r\nvoid __thiscall\r\nSGuildMember::SGuildMember\r\n          (SGuildMember *this,DWORD pid,BYTE grade,BYTE is_general,BYTE job,BYTE level,\r\n          DWORD offer_exp,char *name)\r\n\r\n{\r\n  allocator local_1c [24];\r\n  \r\n  this->pid = pid;\r\n  this->grade = grade;\r\n  this->is_general = is_general;\r\n  this->job = job;\r\n  this->level = level;\r\n  this->offer_exp = offer_exp;\r\n  std::string::string((string *)&this->name,name,local_1c);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "0808a0b0-decompile.json",
+        "raw_export_sha256": "e028e45f56f54334bab9235b4cd3f649548647f1ad0d47881c54e5783e071b02",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x0808cf20",
+      "function": {
+        "name": "CGuild::GetMember",
+        "address": "0808cf20"
+      },
+      "signature": "TGuildMember * GetMember(CGuild * this, DWORD pid)",
+      "code": "\r\n/* DWARF original prototype: TGuildMember * GetMember(CGuild * this, DWORD pid) */\r\n\r\nTGuildMember * __thiscall CGuild::GetMember(CGuild *this,DWORD pid)\r\n\r\n{\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SGuildMember>,std::pair<const_long_unsigned_int,_SGuildMember>&,std::pair<const_long_unsigned_int,_SGuildMember>*>\r\n  it;\r\n  \r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n  ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n          *)&it,(DWORD *)&this->m_member);\r\n  return (TGuildMember *)\r\n         ((int)it.super__Rb_tree_base_iterator._M_node + 0x14U &\r\n         (it.super__Rb_tree_base_iterator._M_node ==\r\n         (_Rb_tree_base_iterator)\r\n         &((this->m_member)._M_t.\r\n           super__Rb_tree_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n           .\r\n           super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>,true>\r\n          ._M_header)->super__Rb_tree_node_base) - 1);\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "0808cf20-decompile.json",
+        "raw_export_sha256": "55913b6f87b2a0251b2da7a77562396bf3095b7547ef1ec2ee7e49caefe4d3d6",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x0808f5d0",
+      "function": {
+        "name": "CGuild::LevelChange",
+        "address": "0808f5d0"
+      },
+      "signature": "void LevelChange(CGuild * this, DWORD pid, BYTE level)",
+      "code": "\r\n/* DWARF original prototype: void LevelChange(CGuild * this, DWORD pid, BYTE level) */\r\n\r\nvoid __thiscall CGuild::LevelChange(CGuild *this,DWORD pid,BYTE level)\r\n\r\n{\r\n  DESC *this_00;\r\n  _Rb_tree_base_iterator _Var1;\r\n  _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> it;\r\n  TPacketGCGuild pack;\r\n  TPacketGuildChangeMemberData gd_guild;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SGuildMember>,std::pair<const_long_unsigned_int,_SGuildMember>&,std::pair<const_long_unsigned_int,_SGuildMember>*>\r\n  cit;\r\n  \r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n  ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n          *)&cit,(DWORD *)&this->m_member);\r\n  if (cit.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_member)._M_t.\r\n        super__Rb_tree_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    *(BYTE *)((int)cit.super__Rb_tree_base_iterator._M_node + 0x1b) = level;\r\n    gd_guild.guild_id = (this->m_data).guild_id;\r\n    gd_guild.pid = pid;\r\n    gd_guild.offer = *(DWORD *)((int)cit.super__Rb_tree_base_iterator._M_node + 0x1c);\r\n    gd_guild.grade = *(BYTE *)((int)cit.super__Rb_tree_base_iterator._M_node + 0x18);\r\n    gd_guild.level = level;\r\n    CLIENT_DESC::DBPacket(db_clientdesc,'\\x18',0,&gd_guild,0xe);\r\n    pack = (TPacketGCGuild)((uint)pack & 0xffffff00 | 0x4b);\r\n    *(undefined1 *)((int)cit.super__Rb_tree_base_iterator._M_node + 0x20) = 0;\r\n    _Var1._M_node =\r\n         &((this->m_memberOnline)._M_t.super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n           super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n          super__Rb_tree_node_base;\r\n    it.super__Rb_tree_base_iterator._M_node =\r\n         (_Rb_tree_base_iterator)((_Rb_tree_node_base *)&(_Var1._M_node)->_M_color)->_M_left;\r\n    while (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)_Var1._M_node) {\r\n                    /* Unresolved local var: LPDESC d@[???] */\r\n      this_00 = *(DESC **)(*(int *)((int)it.super__Rb_tree_base_iterator._M_node + 0x10) + 0x18);\r\n      if (this_00 != (DESC *)0x0) {\r\n        pack.size = 0x11;\r\n        pack.subheader = '\\x02';\r\n        DESC::BufferedPacket(this_00,&pack,4);\r\n        DESC::Packet(this_00,(void *)((int)cit.super__Rb_tree_base_iterator._M_node + 0x14),0xd);\r\n      }\r\n      _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n      _Var1._M_node =\r\n           &((this->m_memberOnline)._M_t.super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>\r\n             .super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n            super__Rb_tree_node_base;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "0808f5d0-decompile.json",
+        "raw_export_sha256": "65db0d732b7a22a9d4cb308b2908d210937f761f5083eb598f79a41d89b9b6ea",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x08090e20",
+      "function": {
+        "name": "_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>::find",
+        "address": "08090e20"
+      },
+      "signature": null,
+      "code": "\r\n/* DWARF original prototype:\r\n   _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SGuildMember>,std::pair<const_long_unsigned_int,_SGuildMember>&,std::pair<const_long_unsigned_int,_SGuildMember>*>\r\n   find(_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n   * this, DWORD * __k) */\r\n\r\n_Rb_tree_iterator<std::pair<const_long_unsigned_int,_SGuildMember>,std::pair<const_long_unsigned_int,_SGuildMember>&,std::pair<const_long_unsigned_int,_SGuildMember>*>\r\n __thiscall\r\n_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n::find(_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SGuildMember>,std::_Select1st<std::pair<const_long_unsigned_int,_SGuildMember>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n       *this,DWORD *__k)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *p_Var1;\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *p_Var2;\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *p_Var3;\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *p_Var4;\r\n  uint *in_stack_0000000c;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SGuildMember>,std::pair<const_long_unsigned_int,_SGuildMember>&,std::pair<const_long_unsigned_int,_SGuildMember>*>\r\n  __j;\r\n  \r\n                    /* Unresolved local var:\r\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *\r\n                       __y@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var:\r\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *\r\n                       __x@[DW_OP_reg0(EAX)] */\r\n  p_Var1 = (_Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *)*__k;\r\n  p_Var2 = (_Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *)\r\n           (p_Var1->super__Rb_tree_node_base)._M_parent;\r\n  p_Var4 = p_Var1;\r\n  if (p_Var2 != (_Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *)0x0) {\r\n    do {\r\n      if ((p_Var2->_M_value_field).first < *in_stack_0000000c) {\r\n        p_Var3 = (_Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *)\r\n                 (p_Var2->super__Rb_tree_node_base)._M_right;\r\n      }\r\n      else {\r\n        p_Var3 = (_Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *)\r\n                 (p_Var2->super__Rb_tree_node_base)._M_left;\r\n        p_Var4 = p_Var2;\r\n      }\r\n      p_Var2 = p_Var3;\r\n    } while (p_Var3 != (_Rb_tree_node<std::pair<const_long_unsigned_int,_SGuildMember>_> *)0x0);\r\n  }\r\n  if ((p_Var4 == p_Var1) || (*in_stack_0000000c < (p_Var4->_M_value_field).first)) {\r\n    (this->\r\n    super__Rb_tree_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n    ).\r\n    super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>,true>\r\n    ._M_header = p_Var1;\r\n  }\r\n  else {\r\n    (this->\r\n    super__Rb_tree_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>_>\r\n    ).\r\n    super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_SGuildMember>,std::allocator<std::pair<const_long_unsigned_int,_SGuildMember>_>,true>\r\n    ._M_header = p_Var4;\r\n  }\r\n  return (_Rb_tree_iterator<std::pair<const_long_unsigned_int,_SGuildMember>,std::pair<const_long_unsigned_int,_SGuildMember>&,std::pair<const_long_unsigned_int,_SGuildMember>*>\r\n          )(_Rb_tree_base_iterator)this;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "08090e20-decompile.json",
+        "raw_export_sha256": "9ad3acd434d035e604f5cdf1390ef4ebbf08291b92cef8a396a6ef48e55720a1",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x08139cb0",
+      "function": {
+        "name": "DESC::BufferedPacket",
+        "address": "08139cb0"
+      },
+      "signature": "void BufferedPacket(DESC * this, void * c_pvData, int iSize)",
+      "code": "\r\n/* DWARF original prototype: void BufferedPacket(DESC * this, void * c_pvData, int iSize) */\r\n\r\nvoid __thiscall DESC::BufferedPacket(DESC *this,void *c_pvData,int iSize)\r\n\r\n{\r\n  LPBUFFER buffer;\r\n  \r\n  buffer = this->m_lpBufferedOutputBuffer;\r\n  if (buffer == (LPBUFFER)0x0) {\r\n    buffer = buffer_new((void *)0x0,0x400);\r\n    this->m_lpBufferedOutputBuffer = buffer;\r\n  }\r\n  buffer_write(buffer,c_pvData,iSize);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "08139cb0-decompile.json",
+        "raw_export_sha256": "ccefb75b1fc9abe64261e0233b0897b2dccf7dd9bd0cbd467148d5ee402d5d36",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x08139d10",
+      "function": {
+        "name": "DESC::Packet",
+        "address": "08139d10"
+      },
+      "signature": null,
+      "code": "\r\n/* DWARF original prototype: void Packet(DESC * this, void * c_pvData, int iSize) */\r\n\r\nvoid __thiscall DESC::Packet(DESC *this,void *c_pvData,int iSize)\r\n\r\n{\r\n  byte bVar1;\r\n  char *pcVar2;\r\n  LPBUFFER pbVar3;\r\n  TrafficProfiler *this_00;\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict *ppVar4;\r\n  time_t tVar5;\r\n  int iVar6;\r\n  DWORD *dest;\r\n  DWORD DVar7;\r\n  DWORD *pdwWritePoint;\r\n  TPacketGGRelay p;\r\n  \r\n  if (iSize < 1) {\r\n    __assert(\"Packet\",\"desc.cpp\",0x155);\r\n  }\r\n  if (this->m_iPhase == 0) {\r\n    return;\r\n  }\r\n  pcVar2 = (this->m_stRelayName)._M_dataplus._M_p;\r\n  if (*(int *)(pcVar2 + -0xc) == 0) {\r\n    if (this->m_lpBufferedOutputBuffer != (LPBUFFER)0x0) {\r\n      buffer_write(this->m_lpBufferedOutputBuffer,c_pvData,iSize);\r\n      c_pvData = buffer_read_peek(this->m_lpBufferedOutputBuffer);\r\n      iSize = buffer_size(this->m_lpBufferedOutputBuffer);\r\n    }\r\n    if (g_bTrafficProfileOn != '\\0') {\r\n      if (singleton<TrafficProfiler>::ms_singleton == (TrafficProfiler *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      this_00 = singleton<TrafficProfiler>::ms_singleton;\r\n                    /* Unresolved local var: pair<long_unsigned_int,long_unsigned_int>.conflict *\r\n                       rTrafficInfo@[???] */\r\n      bVar1 = *(byte *)c_pvData;\r\n      ppVar4 = singleton<TrafficProfiler>::ms_singleton->m_aTrafficVec[1].\r\n               super__Vector_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>_>\r\n               .\r\n               super__Vector_alloc_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>,true>\r\n               ._M_start;\r\n      singleton<TrafficProfiler>::ms_singleton->m_dwTotalTraffic =\r\n           singleton<TrafficProfiler>::ms_singleton->m_dwTotalTraffic + iSize;\r\n      ppVar4 = ppVar4 + bVar1;\r\n      DVar7 = this_00->m_dwTotalPacket;\r\n      if (ppVar4->second == 0) {\r\n        DVar7 = DVar7 + 1;\r\n      }\r\n      this_00->m_dwTotalPacket = DVar7;\r\n      ppVar4->first = ppVar4->first + iSize;\r\n      ppVar4->second = ppVar4->second + 1;\r\n      tVar5 = time((time_t *)0x0);\r\n      if (this_00->m_dwFlushCycle <= (uint)(tVar5 - this_00->m_tmProfileStartTime)) {\r\n        TrafficProfiler::Flush(this_00);\r\n      }\r\n    }\r\n    if (this->m_bEncrypted == false) {\r\n      pbVar3 = this->m_lpOutputBuffer;\r\n      if (pbVar3 == (LPBUFFER)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n      }\r\n      if (c_pvData == (void *)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x30);\r\n      }\r\n      iVar6 = buffer_has_space(pbVar3);\r\n      if (iVar6 < iSize) {\r\nLAB_08139dd4:\r\n        this->m_iPhase = 0;\r\n      }\r\n      else {\r\n        buffer_write(pbVar3,c_pvData,iSize);\r\n      }\r\n    }\r\n    else {\r\n      iVar6 = buffer_has_space(this->m_lpOutputBuffer);\r\n      if (iVar6 < (int)(iSize + 8U)) {\r\n        sys_log(0,\"buffer mem_size  = %d\",this->m_lpOutputBuffer->mem_size);\r\n        sys_log(0,\"buffer write_pos = %d\",this->m_lpOutputBuffer->write_point_pos);\r\n        sys_log(0,\"iSize = %d\",iSize);\r\n        goto LAB_08139dd4;\r\n      }\r\n      dest = buffer_write_peek(this->m_lpOutputBuffer);\r\n      pbVar3 = this->m_lpOutputBuffer;\r\n      if (pbVar3 == (LPBUFFER)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n      }\r\n      if (c_pvData == (void *)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x30);\r\n      }\r\n      iVar6 = buffer_has_space(pbVar3);\r\n      if (iSize <= iVar6) {\r\n        buffer_write(pbVar3,c_pvData,iSize);\r\n                    /* Unresolved local var: int iSize2@[DW_OP_reg0(EAX)] */\r\n        iVar6 = TEA_Encrypt(dest,dest,this->m_adwEncryptionKey,iSize);\r\n        if (iSize < iVar6) {\r\n          buffer_write_proceed(this->m_lpOutputBuffer,iVar6 - iSize);\r\n        }\r\n      }\r\n    }\r\n    if (this->m_lpBufferedOutputBuffer != (LPBUFFER)0x0) {\r\n      buffer_delete(this->m_lpBufferedOutputBuffer);\r\n      this->m_lpBufferedOutputBuffer = (LPBUFFER)0x0;\r\n    }\r\nLAB_08139de2:\r\n    fdwatch_add_fd(this->m_lpFdw,this->m_sock,this,2,1);\r\n  }\r\n  else {\r\n    p.bHeader = '\\x03';\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    pcVar2[*(int *)(pcVar2 + -0xc)] = std::string::_Rep::_S_terminal;\r\n    strncpy(p.szName,(this->m_stRelayName)._M_dataplus._M_p,0x18);\r\n    p.szName[0x18] = '\\0';\r\n    pbVar3 = this->m_lpOutputBuffer;\r\n    p.lSize = iSize;\r\n    if (pbVar3 == (LPBUFFER)0x0) {\r\n      __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n    }\r\n    iVar6 = buffer_has_space(pbVar3);\r\n    if (0x1d < iVar6) {\r\n      buffer_write(pbVar3,&p,0x1e);\r\n      strlen(\"\");\r\n      std::string::assign((char *)&this->m_stRelayName,0x81f5c80);\r\n      pbVar3 = this->m_lpOutputBuffer;\r\n      if (pbVar3 == (LPBUFFER)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n      }\r\n      if (c_pvData == (void *)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x30);\r\n      }\r\n      iVar6 = buffer_has_space(pbVar3);\r\n      if (iSize <= iVar6) {\r\n        buffer_write(pbVar3,c_pvData,iSize);\r\n        goto LAB_08139de2;\r\n      }\r\n    }\r\n    this->m_iPhase = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "08139d10-decompile.json",
+        "raw_export_sha256": "2edb85f29bace4423105c8f07c2e8227ec8af958f7a4e9442dc54f48e8f0575e",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x0813fb40",
+      "function": {
+        "name": "CLIENT_DESC::DBPacketHeader",
+        "address": "0813fb40"
+      },
+      "signature": null,
+      "code": "\r\n/* DWARF original prototype: void DBPacketHeader(CLIENT_DESC * this, BYTE bHeader, DWORD dwHandle,\r\n   DWORD dwSize) */\r\n\r\nvoid __thiscall\r\nCLIENT_DESC::DBPacketHeader(CLIENT_DESC *this,BYTE bHeader,DWORD dwHandle,DWORD dwSize)\r\n\r\n{\r\n  encode_byte(char)::a._0_1_ = bHeader;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_byte(char)::a,1);\r\n  encode_4bytes(int)::a._0_4_ = dwHandle;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_4bytes(int)::a,4);\r\n  encode_4bytes(int)::a._0_4_ = dwSize;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_4bytes(int)::a,4);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "0813fb40-decompile.json",
+        "raw_export_sha256": "0de6687247ec0be698de9a49b6fe60842cf1c528bba9e86cd5f4fc470dce39eb",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    },
+    {
+      "requested_address": "0x0813fbd0",
+      "function": {
+        "name": "CLIENT_DESC::DBPacket",
+        "address": "0813fbd0"
+      },
+      "signature": null,
+      "code": "\r\n/* DWARF original prototype: void DBPacket(CLIENT_DESC * this, BYTE bHeader, DWORD dwHandle, void *\r\n   c_pvData, DWORD dwSize) */\r\n\r\nvoid __thiscall\r\nCLIENT_DESC::DBPacket(CLIENT_DESC *this,BYTE bHeader,DWORD dwHandle,void *c_pvData,DWORD dwSize)\r\n\r\n{\r\n  DWORD DVar1;\r\n  void *c_pvData_local;\r\n  CLIENT_DESC *this_local;\r\n  \r\n  DVar1 = buffer_size((this->super_DESC).m_lpOutputBuffer);\r\n  sys_log(1,\"DB_PACKET: header %d handle %d size %d buffer_size %d\",(uint)bHeader,dwHandle,dwSize,\r\n          DVar1);\r\n  DBPacketHeader(this,bHeader,dwHandle,dwSize);\r\n  if (c_pvData != (void *)0x0) {\r\n    buffer_write((this->super_DESC).m_lpOutputBuffer,c_pvData,dwSize);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": "",
+      "provenance": {
+        "raw_export": "0813fbd0-decompile.json",
+        "raw_export_sha256": "30260cd3f71f56d63b6de4183559939920b72a430fe3f71b7049aa22a212163e",
+        "raw_schema": "Original saved Ghidra structured result: function/code/truncated; retained without rewriting",
+        "program_info": "program-info.json",
+        "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+#ifndef MCNCC_COMMON_PACKET_H
+#define MCNCC_COMMON_PACKET_H
+#include "../libthecore/include/typedef.h"
+#pragma pack(push,1)
+struct SPacketPartySetMemberLevel {
+    DWORD dwLeaderPID;
+    DWORD dwPID;
+    BYTE bLevel;
+};
+typedef SPacketPartySetMemberLevel TPacketPartySetMemberLevel;
+#pragma pack(pop)
+#endif

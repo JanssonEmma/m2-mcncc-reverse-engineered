@@ -1,0 +1,87 @@
+// Complete ORIGINAL independently closed bodies. No destructor/__Destroy/Remove/MoveItem substitute.
+#include "safebox.h"
+#include "char.h"
+#include "item.h"
+#include "item_manager.h"
+#include "desc.h"
+#include "desc_client.h"
+#include "packet.h"
+#include "../../libgame/include/grid.h"
+#include "../../libthecore/include/log.h"
+#include "../../libthecore/include/memcpy.h"
+#include <cassert>
+#include <cstring>
+CSafebox::CSafebox(LPCHARACTER pkChrOwner,int iSize,DWORD dwGold)
+{
+    m_iSize=iSize;m_pkChrOwner=pkChrOwner;m_lGold=dwGold;
+    assert(pkChrOwner && "CSafebox");
+    std::memset(m_pkItems,0,sizeof(m_pkItems));
+    if(m_iSize==0)m_pkGrid=0;
+    else m_pkGrid=new CGrid(5,m_iSize);
+    m_bWindowMode=3;
+}
+void CSafebox::SetWindowMode(BYTE bMode){m_bWindowMode=bMode;}
+bool CSafebox::Add(DWORD dwPos,LPITEM item)
+{
+    if(!IsValidPosition(dwPos)) {
+        _sys_err("Add",58,"SAFEBOX: item on wrong position at %d (size of grid = %d)",dwPos,m_pkGrid->GetSize());
+        return false;
+    }
+    item->SetWindow(m_bWindowMode);
+    item->SetCell(m_pkChrOwner,static_cast<BYTE>(dwPos));
+    item->Save();
+    ITEM_MANAGER::instance().FlushDelayedSave(item);
+    m_pkGrid->Put(dwPos,1,item->GetSize());
+    m_pkItems[dwPos]=item;
+    TPacketGCItemSet packet;
+    packet.header=m_bWindowMode==3?85:128;
+    packet.vnum=item->GetVnum();
+    packet.count=static_cast<BYTE>(item->GetCount());
+    packet.pos=static_cast<BYTE>(dwPos);
+    (*thecore_memcpy)(packet.alSockets,item->GetSockets(),12);
+    (*thecore_memcpy)(packet.aAttr,item->GetAttributes(),21);
+    m_pkChrOwner->GetDesc()->Packet(&packet,40);
+    DWORD count=item->GetCount();
+    const char* name=item->GetName();
+    const char* ownerName=m_pkChrOwner->GetName();
+    sys_log(1,"SAFEBOX: ADD %s %s count %d",ownerName,name,count);
+    return true;
+}
+LPITEM CSafebox::Get(DWORD dwPos)
+{
+    unsigned int size=m_pkGrid->GetSize();
+    return dwPos<size?m_pkItems[dwPos]:0;
+}
+void CSafebox::Save()
+{
+    TSafeboxTable table;std::memset(&table,0,sizeof(table));
+    table.dwID=m_pkChrOwner->GetDesc()->GetAccountTable().id;
+    table.dwGold=m_lGold;
+    db_clientdesc->DBPacket(13,0,&table,11);
+    sys_log(1,"SAFEBOX: SAVE %s",m_pkChrOwner->GetName());
+}
+bool CSafebox::IsEmpty(DWORD dwPos,BYTE size)
+{
+    return m_pkGrid?m_pkGrid->IsEmpty(dwPos,1,size):false;
+}
+void CSafebox::ChangeSize(int size)
+{
+    if(m_iSize<size) {
+        m_iSize=size;
+        CGrid* old=m_pkGrid;
+        if(!old)m_pkGrid=new CGrid(5,m_iSize);
+        else m_pkGrid=new CGrid(old,5,m_iSize);
+        // ORIGINAL leak: do NOT delete old grid; new rows stay uninitialized in original copy ctor.
+    }
+}
+LPITEM CSafebox::GetItem(BYTE cell)
+{
+    int maximum=static_cast<int>(static_cast<unsigned int>(m_iSize)*5u);
+    if(static_cast<int>(cell)<maximum)return m_pkItems[cell];
+    _sys_err("GetItem",159,"CHARACTER::GetItem: invalid item cell %d",static_cast<unsigned int>(cell));
+    return 0;
+}
+bool CSafebox::IsValidPosition(DWORD dwPos)
+{
+    return m_pkGrid && dwPos<m_pkGrid->GetSize();
+}

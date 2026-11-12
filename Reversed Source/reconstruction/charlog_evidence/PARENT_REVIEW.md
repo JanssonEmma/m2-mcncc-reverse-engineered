@@ -1,0 +1,1 @@
+Parent correction before integration: staged ABI used C++11 type_traits/static_assert despite C++03 target and asserted original full LogManager1160 against modern STL. Replaced with C++03 typed member-pointer and DWORD width checks. Existing full SQL/MySQL field checks remain authoritative for records; no full modern class ABI equality is claimed. Runtime/ABI remain pending.

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08064a50",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CExchange::RemoveItem",
+      "address": "08064a50"
+    },
+    "code": "\r\n/* DWARF original prototype: bool RemoveItem(CExchange * this, BYTE pos) */\r\n\r\nbool __thiscall CExchange::RemoveItem(CExchange *this,BYTE pos)\r\n\r\n{\r\n  byte bVar1;\r\n  TItemTable *pTVar2;\r\n  bool bVar3;\r\n  byte bVar4;\r\n  uint uVar5;\r\n  BYTE pos_local;\r\n  \r\n                    /* Unresolved local var: int iPosOfInventory@[DW_OP_reg7(EDI)] */\r\n  bVar3 = false;\r\n  if ((pos < 0xc) && (uVar5 = (uint)pos, this->m_apItems[uVar5] != (LPITEM)0x0)) {\r\n    bVar1 = this->m_abItemPos[uVar5];\r\n    CItem::SetExchanging(this->m_apItems[uVar5],false);\r\n    pTVar2 = this->m_apItems[uVar5]->m_pProto;\r\n    bVar4 = 0;\r\n    if (pTVar2 != (TItemTable *)0x0) {\r\n      bVar4 = pTVar2->bSize;\r\n    }\r\n    uVar5 = (uint)pos;\r\n    CGrid::Get(this->m_pGrid,(uint)this->m_abItemDisplayPos[uVar5],1,(uint)bVar4);\r\n    exchange_packet(this->m_pOwner,'\\x02',true,uVar5,(uint)bVar1,0,(void *)0x0);\r\n    exchange_packet(this->m_pCompany->m_pOwner,'\\x02',false,uVar5,(uint)bVar1,0,(void *)0x0);\r\n    Accept(this,false);\r\n    Accept(this->m_pCompany,false);\r\n    this->m_abItemPos[uVar5] = '\\0';\r\n    this->m_apItems[uVar5] = (LPITEM)0x0;\r\n    bVar3 = true;\r\n    this->m_abItemDisplayPos[uVar5] = '\\0';\r\n  }\r\n  return bVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

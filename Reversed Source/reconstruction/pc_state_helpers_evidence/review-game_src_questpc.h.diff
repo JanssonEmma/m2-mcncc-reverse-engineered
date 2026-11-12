@@ -1,0 +1,40 @@
+--- CURRENT/game/src/questpc.h
++++ PCSTATE/game/src/questpc.h
+@@ -25,10 +25,10 @@
+     QuestInfoIterator quest_begin();
+     QuestInfoIterator quest_end();
+     QuestInfoIterator quest_find(DWORD);
+-    bool IsRunning();
++    bool IsRunning() { return m_RunningQuestState!=0; }
+     void EndRunning();
+     void CancelRunning();
+-    QuestState* GetRunningQuestState();
++    QuestState* GetRunningQuestState() { return m_RunningQuestState; }
+     void SetQuest(const std::string&,QuestState&);
+     void SetCurrentQuestStateName(const std::string&);
+     void SetQuestState(const std::string&,const std::string&);
+@@ -57,18 +57,18 @@
+     void SetLoaded();
+     void Build();
+     void Save();
+-    bool HasReward();
++    bool HasReward() { return !m_vRewardData.empty() || m_bIsGivenReward; }
+     void Reward(CHARACTER*);
+     void GiveItem(const std::string&,DWORD,int);
+     void GiveExp(const std::string&,DWORD);
+-    void SetSendDoneFlag();
+-    bool GetAndResetDoneFlag();
++    void SetSendDoneFlag() { m_bShouldSendDone=true; }
++    bool GetAndResetDoneFlag() { bool previous=m_bShouldSendDone; m_bShouldSendDone=false; return previous; }
+     void SendFlagList(CHARACTER*);
+     void SetQuestState(const char*,const char*);
+-    void SetConfirmWait(DWORD);
+-    void ClearConfirmWait();
++    void SetConfirmWait(DWORD id) { m_dwWaitConfirmFromPID=id; m_bConfirmWait=true; }
++    void ClearConfirmWait() { m_bConfirmWait=false; }
+     bool IsConfirmWait();
+-    bool IsConfirmWait(DWORD);
++    bool IsConfirmWait(DWORD id) { return m_bConfirmWait && id==m_dwWaitConfirmFromPID; }
+ 
+ private:
+     typedef std::map<std::string,int> TFlagMap;

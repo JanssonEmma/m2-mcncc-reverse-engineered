@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "CHARACTER::GetQuestNPC",
+    "address": "08134f50"
+  },
+  "code": "\r\n/* DWARF original prototype: LPCHARACTER GetQuestNPC(CHARACTER * this) */\r\n\r\nLPCHARACTER __thiscall CHARACTER::GetQuestNPC(CHARACTER *this)\r\n\r\n{\r\n  LPCHARACTER pCVar1;\r\n  \r\n  if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar1 = CHARACTER_MANAGER::Find(singleton<CHARACTER_MANAGER>::ms_singleton,this->m_dwQuestNPCVID)\r\n  ;\r\n  return pCVar1;\r\n}\r\n\r\n",
+  "truncated": false
+}

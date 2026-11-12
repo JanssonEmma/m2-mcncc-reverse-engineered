@@ -1,0 +1,11 @@
+# Transfer post-apply review
+
+Compared current production void LocaleService_TransferDefaultSetting() with complete original08068580 decompile,69 instructions, exact DWARF cpp970/_Z36LocaleService_TransferDefaultSettingv and exhausted4-callee graph. No semantic issue found: three early NULL-only defaults, eight actual singleton.Check calls with original job0..7 counter, no-newline failure diagnostic and real exit1, then boss/normal/chain NULL-only defaults in original order. No service-specific initialization is included.
+
+Current regression/observer/ABI sources match staged reviewed candidates. Parent locale-transfer-focused.receipt.json confirms actual transfer+banword runtime commands and ABI passed, exit0. Parent explicitly reported standalone strict32 locale-transfer-m32.log exit0. Staging agent ran no build.
+
+Instrumentation is TEST-only actual constants.cpp, preserves class/body/signature, and records only actual Check entries. All hooks/callback are no_instrument_function, count/assert only, with const application-table observer pointer. No application field/callback/return mutation. GCC nonvirtual member-pointer first-word matching is documented test ABI; observed8entries requirement prevents silent wrong matching.
+
+Success matrix covers64 early/late pointer combinations and repeats,1024 actual Check entries, ordering at each entry, preserved tables/other state. Eight reconstructed child inputs omit individual skill slots before transfer; real Check+outerjob0 diagnostics, real exit1 and read-only atexit witness are verified. Child argv0 is quoted on Windows; application path APIargument unquoted. Missing singleton and later-iteration failures under concurrent table changes are not dynamically forced; original body/assert retained. No all-branch/fullserver/originalruntime equivalence claim.
+
+O2 helper work/locale_transfer_o2.py explicitly rebuilds actual instrumented constants into locale_transfer_constants_instrumented_o2.o and external observer distinctO2 object, alongside optimized SQL4 objects; normal objects untouched. Parent should run only after other builds complete. Script syntax parsed only here. Strict command strict32-command.ps1 is staged and not executed.

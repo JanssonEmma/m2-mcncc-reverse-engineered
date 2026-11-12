@@ -1,0 +1,209 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08073610 <_Z19skill_muyoung_eventP5event>:
+ 8073610:	55                   	push   %ebp
+ 8073611:	ba 1b 00 00 00       	mov    $0x1b,%edx
+ 8073616:	89 e5                	mov    %esp,%ebp
+ 8073618:	57                   	push   %edi
+ 8073619:	56                   	push   %esi
+ 807361a:	53                   	push   %ebx
+ 807361b:	81 ec ac 00 00 00    	sub    $0xac,%esp
+ 8073621:	8b 45 08             	mov    0x8(%ebp),%eax
+ 8073624:	8b 40 08             	mov    0x8(%eax),%eax
+ 8073627:	8b 00                	mov    (%eax),%eax
+ 8073629:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 807362d:	89 85 60 ff ff ff    	mov    %eax,-0xa0(%ebp)
+ 8073633:	89 04 24             	mov    %eax,(%esp)
+ 8073636:	e8 25 b5 0c 00       	call   813eb60 <_ZN9CHARACTER12IsAffectFlagEm>
+ 807363b:	84 c0                	test   %al,%al
+ 807363d:	0f 84 31 02 00 00    	je     8073874 <_Z19skill_muyoung_eventP5event+0x264>
+ 8073643:	c7 45 b8 00 00 00 00 	movl   $0x0,-0x48(%ebp)
+ 807364a:	8b 3d 1c 17 32 08    	mov    0x832171c,%edi
+ 8073650:	8d 75 b8             	lea    -0x48(%ebp),%esi
+ 8073653:	85 ff                	test   %edi,%edi
+ 8073655:	0f 84 ef 01 00 00    	je     807384a <_Z19skill_muyoung_eventP5event+0x23a>
+ 807365b:	8b 1d 1c 17 32 08    	mov    0x832171c,%ebx
+ 8073661:	85 db                	test   %ebx,%ebx
+ 8073663:	0f 8e 83 01 00 00    	jle    80737ec <_Z19skill_muyoung_eventP5event+0x1dc>
+ 8073669:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+ 8073670:	e8 57 92 fd ff       	call   804c8cc <_Znwj@plt>
+ 8073675:	89 c3                	mov    %eax,%ebx
+ 8073677:	89 1e                	mov    %ebx,(%esi)
+ 8073679:	8b 95 60 ff ff ff    	mov    -0xa0(%ebp),%edx
+ 807367f:	c7 43 04 00 00 00 00 	movl   $0x0,0x4(%ebx)
+ 8073686:	8b 06                	mov    (%esi),%eax
+ 8073688:	c7 46 04 00 00 00 00 	movl   $0x0,0x4(%esi)
+ 807368f:	8b 4d bc             	mov    -0x44(%ebp),%ecx
+ 8073692:	89 40 08             	mov    %eax,0x8(%eax)
+ 8073695:	8b 06                	mov    (%esi),%eax
+ 8073697:	85 c9                	test   %ecx,%ecx
+ 8073699:	c7 03 00 00 00 00    	movl   $0x0,(%ebx)
+ 807369f:	89 40 0c             	mov    %eax,0xc(%eax)
+ 80736a2:	89 55 c8             	mov    %edx,-0x38(%ebp)
+ 80736a5:	c7 45 cc 00 00 00 00 	movl   $0x0,-0x34(%ebp)
+ 80736ac:	89 55 d0             	mov    %edx,-0x30(%ebp)
+ 80736af:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
+ 80736b6:	89 75 d8             	mov    %esi,-0x28(%ebp)
+ 80736b9:	0f 85 f9 00 00 00    	jne    80737b8 <_Z19skill_muyoung_eventP5event+0x1a8>
+ 80736bf:	8b 06                	mov    (%esi),%eax
+ 80736c1:	ba 14 00 00 00       	mov    $0x14,%edx
+ 80736c6:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 80736ca:	89 04 24             	mov    %eax,(%esp)
+ 80736cd:	e8 da 8f fd ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 80736d2:	8b 85 60 ff ff ff    	mov    -0xa0(%ebp),%eax
+ 80736d8:	8b 40 34             	mov    0x34(%eax),%eax
+ 80736db:	85 c0                	test   %eax,%eax
+ 80736dd:	89 85 5c ff ff ff    	mov    %eax,-0xa4(%ebp)
+ 80736e3:	0f 84 bc 00 00 00    	je     80737a5 <_Z19skill_muyoung_eventP5event+0x195>
+ 80736e9:	8b 40 10             	mov    0x10(%eax),%eax
+ 80736ec:	8b 10                	mov    (%eax),%edx
+ 80736ee:	89 85 78 ff ff ff    	mov    %eax,-0x88(%ebp)
+ 80736f4:	39 c2                	cmp    %eax,%edx
+ 80736f6:	89 55 88             	mov    %edx,-0x78(%ebp)
+ 80736f9:	74 64                	je     807375f <_Z19skill_muyoung_eventP5event+0x14f>
+ 80736fb:	8d bd 64 ff ff ff    	lea    -0x9c(%ebp),%edi
+ 8073701:	89 95 68 ff ff ff    	mov    %edx,-0x98(%ebp)
+ 8073707:	89 d0                	mov    %edx,%eax
+ 8073709:	8b 70 08             	mov    0x8(%eax),%esi
+ 807370c:	8b 12                	mov    (%edx),%edx
+ 807370e:	89 55 88             	mov    %edx,-0x78(%ebp)
+ 8073711:	8b 56 04             	mov    0x4(%esi),%edx
+ 8073714:	8b 42 08             	mov    0x8(%edx),%eax
+ 8073717:	89 85 64 ff ff ff    	mov    %eax,-0x9c(%ebp)
+ 807371d:	8d 76 00             	lea    0x0(%esi),%esi
+ 8073720:	8b 9d 64 ff ff ff    	mov    -0x9c(%ebp),%ebx
+ 8073726:	39 d3                	cmp    %edx,%ebx
+ 8073728:	74 1f                	je     8073749 <_Z19skill_muyoung_eventP5event+0x139>
+ 807372a:	89 3c 24             	mov    %edi,(%esp)
+ 807372d:	e8 ae dd fd ff       	call   80514e0 <_ZNSt22_Rb_tree_base_iterator12_M_incrementEv>
+ 8073732:	8b 43 10             	mov    0x10(%ebx),%eax
+ 8073735:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8073739:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 807373c:	89 04 24             	mov    %eax,(%esp)
+ 807373f:	e8 ec 1c 00 00       	call   8075430 <_ZN15FFindNearVictimclEP7CEntity>
+ 8073744:	8b 56 04             	mov    0x4(%esi),%edx
+ 8073747:	eb d7                	jmp    8073720 <_Z19skill_muyoung_eventP5event+0x110>
+ 8073749:	8b 95 5c ff ff ff    	mov    -0xa4(%ebp),%edx
+ 807374f:	8b 42 10             	mov    0x10(%edx),%eax
+ 8073752:	8b 55 88             	mov    -0x78(%ebp),%edx
+ 8073755:	89 85 78 ff ff ff    	mov    %eax,-0x88(%ebp)
+ 807375b:	39 c2                	cmp    %eax,%edx
+ 807375d:	75 a2                	jne    8073701 <_Z19skill_muyoung_eventP5event+0xf1>
+ 807375f:	8b 45 cc             	mov    -0x34(%ebp),%eax
+ 8073762:	85 c0                	test   %eax,%eax
+ 8073764:	74 3f                	je     80737a5 <_Z19skill_muyoung_eventP5event+0x195>
+ 8073766:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 807376a:	b8 10 00 00 00       	mov    $0x10,%eax
+ 807376f:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8073773:	8b 85 60 ff ff ff    	mov    -0xa0(%ebp),%eax
+ 8073779:	89 04 24             	mov    %eax,(%esp)
+ 807377c:	e8 bf 3f 0d 00       	call   8147740 <_ZN9CHARACTER9CreateFlyEhPS_>
+ 8073781:	31 c0                	xor    %eax,%eax
+ 8073783:	8b 95 60 ff ff ff    	mov    -0xa0(%ebp),%edx
+ 8073789:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 807378d:	8b 45 cc             	mov    -0x34(%ebp),%eax
+ 8073790:	89 14 24             	mov    %edx,(%esp)
+ 8073793:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8073797:	b8 4e 00 00 00       	mov    $0x4e,%eax
+ 807379c:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80737a0:	e8 6b bf ff ff       	call   806f710 <_ZN9CHARACTER12ComputeSkillEmPS_h>
+ 80737a5:	a1 1c f2 23 08       	mov    0x823f21c,%eax
+ 80737aa:	8d 04 40             	lea    (%eax,%eax,2),%eax
+ 80737ad:	81 c4 ac 00 00 00    	add    $0xac,%esp
+ 80737b3:	5b                   	pop    %ebx
+ 80737b4:	5e                   	pop    %esi
+ 80737b5:	5f                   	pop    %edi
+ 80737b6:	5d                   	pop    %ebp
+ 80737b7:	c3                   	ret
+ 80737b8:	8b 45 b8             	mov    -0x48(%ebp),%eax
+ 80737bb:	8b 40 04             	mov    0x4(%eax),%eax
+ 80737be:	89 34 24             	mov    %esi,(%esp)
+ 80737c1:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80737c5:	e8 36 15 00 00       	call   8074d00 <_ZNSt8_Rb_treeIP9CHARACTERS1_St9_IdentityIS1_ESt4lessIS1_ESaIS1_EE8_M_eraseEPSt13_Rb_tree_nodeIS1_E>
+ 80737ca:	c7 45 bc 00 00 00 00 	movl   $0x0,-0x44(%ebp)
+ 80737d1:	8b 45 b8             	mov    -0x48(%ebp),%eax
+ 80737d4:	89 40 08             	mov    %eax,0x8(%eax)
+ 80737d7:	8b 45 b8             	mov    -0x48(%ebp),%eax
+ 80737da:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
+ 80737e1:	8b 45 b8             	mov    -0x48(%ebp),%eax
+ 80737e4:	89 40 0c             	mov    %eax,0xc(%eax)
+ 80737e7:	e9 d3 fe ff ff       	jmp    80736bf <_Z19skill_muyoung_eventP5event+0xaf>
+ 80737ec:	bf 0c bc 04 08       	mov    $0x804bc0c,%edi
+ 80737f1:	85 ff                	test   %edi,%edi
+ 80737f3:	75 47                	jne    807383c <_Z19skill_muyoung_eventP5event+0x22c>
+ 80737f5:	8b 15 58 16 32 08    	mov    0x8321658,%edx
+ 80737fb:	85 d2                	test   %edx,%edx
+ 80737fd:	74 2d                	je     807382c <_Z19skill_muyoung_eventP5event+0x21c>
+ 80737ff:	8b 02                	mov    (%edx),%eax
+ 8073801:	89 d3                	mov    %edx,%ebx
+ 8073803:	a3 58 16 32 08       	mov    %eax,0x8321658
+ 8073808:	85 db                	test   %ebx,%ebx
+ 807380a:	74 19                	je     8073825 <_Z19skill_muyoung_eventP5event+0x215>
+ 807380c:	85 ff                	test   %edi,%edi
+ 807380e:	0f 84 63 fe ff ff    	je     8073677 <_Z19skill_muyoung_eventP5event+0x67>
+ 8073814:	c7 04 24 d4 23 32 08 	movl   $0x83223d4,(%esp)
+ 807381b:	e8 fc 8d fd ff       	call   804c61c <pthread_mutex_unlock@plt>
+ 8073820:	e9 52 fe ff ff       	jmp    8073677 <_Z19skill_muyoung_eventP5event+0x67>
+ 8073825:	e8 62 87 fd ff       	call   804bf8c <_ZSt17__throw_bad_allocv@plt>
+ 807382a:	eb e0                	jmp    807380c <_Z19skill_muyoung_eventP5event+0x1fc>
+ 807382c:	c7 04 24 18 00 00 00 	movl   $0x18,(%esp)
+ 8073833:	e8 e4 89 fd ff       	call   804c21c <_ZNSt24__default_alloc_templateILb1ELi0EE9_S_refillEj@plt>
+ 8073838:	89 c3                	mov    %eax,%ebx
+ 807383a:	eb cc                	jmp    8073808 <_Z19skill_muyoung_eventP5event+0x1f8>
+ 807383c:	c7 04 24 d4 23 32 08 	movl   $0x83223d4,(%esp)
+ 8073843:	e8 74 90 fd ff       	call   804c8bc <pthread_mutex_lock@plt>
+ 8073848:	eb ab                	jmp    80737f5 <_Z19skill_muyoung_eventP5event+0x1e5>
+ 807384a:	c7 04 24 ac 5e 1f 08 	movl   $0x81f5eac,(%esp)
+ 8073851:	e8 46 84 fd ff       	call   804bc9c <getenv@plt>
+ 8073856:	85 c0                	test   %eax,%eax
+ 8073858:	74 0d                	je     8073867 <_Z19skill_muyoung_eventP5event+0x257>
+ 807385a:	f0 83 05 1c 17 32 08 	lock addl $0x1,0x832171c
+ 8073861:	01 
+ 8073862:	e9 f4 fd ff ff       	jmp    807365b <_Z19skill_muyoung_eventP5event+0x4b>
+ 8073867:	f0 83 05 1c 17 32 08 	lock addl $0xffffffff,0x832171c
+ 807386e:	ff 
+ 807386f:	e9 e7 fd ff ff       	jmp    807365b <_Z19skill_muyoung_eventP5event+0x4b>
+ 8073874:	8b 85 60 ff ff ff    	mov    -0xa0(%ebp),%eax
+ 807387a:	89 04 24             	mov    %eax,(%esp)
+ 807387d:	e8 7e 00 00 00       	call   8073900 <_ZN9CHARACTER16StopMuyeongEventEv>
+ 8073882:	31 c0                	xor    %eax,%eax
+ 8073884:	e9 24 ff ff ff       	jmp    80737ad <_Z19skill_muyoung_eventP5event+0x19d>
+ 8073889:	90                   	nop
+ 807388a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+
+08073890 <_ZN9CHARACTER17StartMuyeongEventEv>:
+ 8073890:	55                   	push   %ebp
+ 8073891:	89 e5                	mov    %esp,%ebp
+ 8073893:	83 ec 28             	sub    $0x28,%esp
+ 8073896:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 8073899:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 807389c:	8b 8b 44 0d 00 00    	mov    0xd44(%ebx),%ecx
+ 80738a2:	85 c9                	test   %ecx,%ecx
+ 80738a4:	74 0a                	je     80738b0 <_ZN9CHARACTER17StartMuyeongEventEv+0x20>
+ 80738a6:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 80738a9:	89 ec                	mov    %ebp,%esp
+ 80738ab:	5d                   	pop    %ebp
+ 80738ac:	c3                   	ret
+ 80738ad:	8d 76 00             	lea    0x0(%esi),%esi
+ 80738b0:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)
+ 80738b7:	8d 45 f8             	lea    -0x8(%ebp),%eax
+ 80738ba:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80738be:	e8 9d 93 fd ff       	call   804cc60 <__AllocEventInfo>
+ 80738c3:	8b 55 f8             	mov    -0x8(%ebp),%edx
+ 80738c6:	b9 cb 9a 1f 08       	mov    $0x81f9acb,%ecx
+ 80738cb:	89 1a                	mov    %ebx,(%edx)
+ 80738cd:	ba 60 0a 00 00       	mov    $0xa60,%edx
+ 80738d2:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 80738d6:	8b 15 1c f2 23 08    	mov    0x823f21c,%edx
+ 80738dc:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 80738e0:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80738e4:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 80738e8:	c7 04 24 10 36 07 08 	movl   $0x8073610,(%esp)
+ 80738ef:	e8 bc 95 fd ff       	call   804ceb0 <event_create_ex>
+ 80738f4:	89 83 44 0d 00 00    	mov    %eax,0xd44(%ebx)
+ 80738fa:	eb aa                	jmp    80738a6 <_ZN9CHARACTER17StartMuyeongEventEv+0x16>
+ 80738fc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi

@@ -1,0 +1,7 @@
+# Metin2 reconstruction restart — checkpoint 106
+
+Checkpoint 106 restored AddLuaFunctionTable and BuildStateIndexToName. Three focused runtime suites and ABI checks passed. There are 118 registered suites. Checkpoint 103 remains the latest full run with 117 suites. The ledger contains 1076 functions with evidence and 330 bounded source/test mappings.
+
+The Lua startup helpers now use the supplied SDK to publish fresh callback tables and build reverse quest-state lookups. The tests check duplicate and sentinel entries, ordinary global metamethod dispatch, numeric and coercible-string reverse keys, stack preservation and the missing-table QuestError. Source, evidence and proof are archived under reconstruction/quest_lua_startup_helpers_evidence.
+
+Next review the config map_allow cluster staged for SetEventFlag, then continue complete registration callbacks and VM startup dependencies. Full dispatch, reward/stat/item chains and server linking remain in scope. Keep the original executable unmodified and unexecuted. Follow reconstruction/VALIDATION_POLICY.md for batching.

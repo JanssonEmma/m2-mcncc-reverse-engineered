@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b8d50",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "trim_and_lower",
+      "address": "081b8d50"
+    },
+    "code": "\r\nvoid trim_and_lower(char *dest,char *src,int max_len)\r\n\r\n{\r\n  char *pcVar1;\r\n  char cVar2;\r\n  uint uVar3;\r\n  int len;\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)] */\r\n  len = 0;\r\n  if (src != (char *)0x0) {\r\n    cVar2 = *src;\r\n    pcVar1 = dest;\r\n    if (cVar2 == '\\0') {\r\n      cVar2 = *src;\r\njoined_r0x081b8dff:\r\n      do {\r\n        dest = pcVar1;\r\n        if (cVar2 == '\\0') goto LAB_081b8dc0;\r\n        dest = pcVar1 + 1;\r\n        if ((byte)(cVar2 + 0xbfU) < 0x1a) {\r\n          cVar2 = cVar2 + ' ';\r\n        }\r\n        *pcVar1 = cVar2;\r\n        src = src + 1;\r\n        len = len + 1;\r\n        if (max_len <= len) goto LAB_081b8dc0;\r\n        cVar2 = *src;\r\n        pcVar1 = dest;\r\n      } while( true );\r\n    }\r\n    do {\r\n      uVar3 = (uint)cVar2;\r\n      if (0x90 < (uVar3 & 0xe0)) goto joined_r0x081b8dff;\r\n      if (uVar3 < 0x100) {\r\n        uVar3 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar3 * 4);\r\n      }\r\n      else {\r\n        uVar3 = ___runetype(uVar3);\r\n      }\r\n      if ((uVar3 & 0x4000) == 0) {\r\n        cVar2 = *src;\r\n        goto joined_r0x081b8dff;\r\n      }\r\n      src = src + 1;\r\n      cVar2 = *src;\r\n    } while (cVar2 != '\\0');\r\nLAB_081b8dc0:\r\n    do {\r\n      *dest = '\\0';\r\n      cVar2 = dest[-1];\r\n      if (cVar2 == '\\0') {\r\n        return;\r\n      }\r\n      uVar3 = (uint)cVar2;\r\n      if (uVar3 < 0x100) {\r\n        uVar3 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar3 * 4);\r\n      }\r\n      else {\r\n        uVar3 = ___runetype(uVar3);\r\n      }\r\n      dest = dest + -1;\r\n    } while ((uVar3 & 0x4000) != 0);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

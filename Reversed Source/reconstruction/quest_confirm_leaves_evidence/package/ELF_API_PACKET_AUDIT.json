@@ -1,0 +1,844 @@
+{
+  "symbols": [
+    {
+      "name": "_ZN5quest13CQuestManager12SetSkinStyleEi",
+      "address": "081a5400",
+      "size": 40
+    },
+    {
+      "name": "_ZN9CHARACTER14ConfirmWithMsgEPKcim",
+      "address": "08136310",
+      "size": 108
+    }
+  ],
+  "dies": [
+    {
+      "cu": "char.cpp",
+      "node": {
+        "die": "0x1eadf91",
+        "tag": "DW_TAG_subprogram",
+        "name": "ConfirmWithMsg",
+        "size": null
+      },
+      "access": null,
+      "file": "char.cpp",
+      "line": 6206,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": true,
+          "type": {
+            "die": "0x1ea991f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ea9925",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": 3812
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": null,
+          "type": {
+            "die": "0x1e8add6",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e8addc",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1e8a96f",
+                "tag": "DW_TAG_base_type",
+                "name": "char",
+                "size": 1
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": null,
+          "type": {
+            "die": "0x1e8a771",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "char.cpp",
+      "node": {
+        "die": "0x1eddd8d",
+        "tag": "DW_TAG_structure_type",
+        "name": "packet_quest_confirm",
+        "size": 74
+      },
+      "access": null,
+      "file": "packet.h",
+      "line": 812,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_member",
+          "name": "header",
+          "artificial": null,
+          "type": {
+            "die": "0x1e8dee0",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1e8a73b",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_member",
+          "name": "msg",
+          "artificial": null,
+          "type": {
+            "die": "0x1e90807",
+            "tag": "DW_TAG_array_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1e8a96f",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            },
+            "bounds": [
+              64
+            ]
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_member",
+          "name": "timeout",
+          "artificial": null,
+          "type": {
+            "die": "0x1e8a9d9",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                66
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_member",
+          "name": "requestPID",
+          "artificial": null,
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                70
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_subprogram",
+          "name": "operator=",
+          "artificial": true,
+          "type": {
+            "die": "0x1edde1e",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eddd8d",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_subprogram",
+          "name": "packet_quest_confirm",
+          "artificial": true,
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_subprogram",
+          "name": "packet_quest_confirm",
+          "artificial": true,
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "char.cpp",
+      "node": {
+        "die": "0x1edddf6",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_quest_confirm",
+        "size": null
+      },
+      "access": null,
+      "file": null,
+      "line": null,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": true,
+          "type": {
+            "die": "0x1edde24",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eddd8d",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": null,
+          "type": {
+            "die": "0x1edde2a",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1edde30",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1eddd8d",
+                "tag": "DW_TAG_structure_type",
+                "name": "packet_quest_confirm",
+                "size": 74
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "char.cpp",
+      "node": {
+        "die": "0x1edde0e",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_quest_confirm",
+        "size": null
+      },
+      "access": null,
+      "file": null,
+      "line": null,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": true,
+          "type": {
+            "die": "0x1edde24",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eddd8d",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "char.cpp",
+      "node": {
+        "die": "0x1edde35",
+        "tag": "DW_TAG_typedef",
+        "name": "TPacketGCQuestConfirm",
+        "size": null,
+        "type": {
+          "die": "0x1eddd8d",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_quest_confirm",
+          "size": 74
+        }
+      },
+      "access": null,
+      "file": "packet.h",
+      "line": 817,
+      "low_pc": null,
+      "children": []
+    },
+    {
+      "cu": "char.cpp",
+      "node": {
+        "die": "0x1f53438",
+        "tag": "DW_TAG_subprogram",
+        "name": "ConfirmWithMsg",
+        "size": null
+      },
+      "access": null,
+      "file": "char.cpp",
+      "line": 6206,
+      "low_pc": 135488272,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x1f3e573",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1ea991f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ea9925",
+                "tag": "DW_TAG_structure_type",
+                "name": "CHARACTER",
+                "size": 3812
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "szMsg",
+          "artificial": null,
+          "type": {
+            "die": "0x1e8add6",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1e8addc",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1e8a96f",
+                "tag": "DW_TAG_base_type",
+                "name": "char",
+                "size": 1
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "iTimeout",
+          "artificial": null,
+          "type": {
+            "die": "0x1e8a771",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "dwRequestPID",
+          "artificial": null,
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "p",
+          "artificial": null,
+          "type": {
+            "die": "0x1edde35",
+            "tag": "DW_TAG_typedef",
+            "name": "TPacketGCQuestConfirm",
+            "size": null,
+            "type": {
+              "die": "0x1eddd8d",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "GetDesc",
+          "artificial": null,
+          "type": {
+            "die": "0x1ea982f",
+            "tag": "DW_TAG_typedef",
+            "name": "LPDESC",
+            "size": null,
+            "type": {
+              "die": "0x1ea983a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ea9840",
+                "tag": "DW_TAG_structure_type",
+                "name": "DESC",
+                "size": null
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be5878",
+        "tag": "DW_TAG_structure_type",
+        "name": "packet_quest_confirm",
+        "size": 74
+      },
+      "access": null,
+      "file": "packet.h",
+      "line": 812,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_member",
+          "name": "header",
+          "artificial": null,
+          "type": {
+            "die": "0x2bc64e8",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x2bc2d43",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_member",
+          "name": "msg",
+          "artificial": null,
+          "type": {
+            "die": "0x2bc8e0f",
+            "tag": "DW_TAG_array_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2bc2f77",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            },
+            "bounds": [
+              64
+            ]
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_member",
+          "name": "timeout",
+          "artificial": null,
+          "type": {
+            "die": "0x2bc2fe1",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                66
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_member",
+          "name": "requestPID",
+          "artificial": null,
+          "type": {
+            "die": "0x2bc64d2",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x2bc2dc1",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                70
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "DW_TAG_subprogram",
+          "name": "operator=",
+          "artificial": true,
+          "type": {
+            "die": "0x2be5909",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be5878",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_subprogram",
+          "name": "packet_quest_confirm",
+          "artificial": true,
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_subprogram",
+          "name": "packet_quest_confirm",
+          "artificial": true,
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be58e1",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_quest_confirm",
+        "size": null
+      },
+      "access": null,
+      "file": null,
+      "line": null,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": true,
+          "type": {
+            "die": "0x2be590f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be5878",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": null,
+          "type": {
+            "die": "0x2be5915",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be591b",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2be5878",
+                "tag": "DW_TAG_structure_type",
+                "name": "packet_quest_confirm",
+                "size": 74
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be58f9",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_quest_confirm",
+        "size": null
+      },
+      "access": null,
+      "file": null,
+      "line": null,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": true,
+          "type": {
+            "die": "0x2be590f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be5878",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_quest_confirm",
+              "size": 74
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be5920",
+        "tag": "DW_TAG_typedef",
+        "name": "TPacketGCQuestConfirm",
+        "size": null,
+        "type": {
+          "die": "0x2be5878",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_quest_confirm",
+          "size": 74
+        }
+      },
+      "access": null,
+      "file": "packet.h",
+      "line": 817,
+      "low_pc": null,
+      "children": []
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c19889",
+        "tag": "DW_TAG_subprogram",
+        "name": "SetSkinStyle",
+        "size": null
+      },
+      "access": null,
+      "file": "questmanager.cpp",
+      "line": 972,
+      "low_pc": null,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": true,
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "artificial": null,
+          "type": {
+            "die": "0x2bc2d79",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c4674a",
+        "tag": "DW_TAG_subprogram",
+        "name": "SetSkinStyle",
+        "size": null
+      },
+      "access": null,
+      "file": "questmanager.cpp",
+      "line": 972,
+      "low_pc": 135943168,
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "iStyle",
+          "artificial": null,
+          "type": {
+            "die": "0x2bc2d79",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        }
+      ]
+    }
+  ]
+}

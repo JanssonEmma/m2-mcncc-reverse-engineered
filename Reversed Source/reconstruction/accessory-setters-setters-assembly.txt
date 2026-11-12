@@ -1,0 +1,102 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08168850 <_ZN5CItem23SetAccessorySocketGradeEi>:
+ 8168850:	55                   	push   %ebp
+ 8168851:	89 e5                	mov    %esp,%ebp
+ 8168853:	83 ec 18             	sub    $0x18,%esp
+ 8168856:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 8168859:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 816885c:	8b 43 68             	mov    0x68(%ebx),%eax
+ 816885f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8168863:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8168866:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 816886d:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8168871:	e8 2a 0a 05 00       	call   81b92a0 <MINMAX>
+ 8168876:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 816887a:	31 c0                	xor    %eax,%eax
+ 816887c:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8168880:	89 1c 24             	mov    %ebx,(%esp)
+ 8168883:	e8 28 f5 ff ff       	call   8167db0 <_ZN5CItem9SetSocketEil>
+ 8168888:	8b 43 64             	mov    0x64(%ebx),%eax
+ 816888b:	8b 0c 85 00 b6 21 08 	mov    0x821b600(,%eax,4),%ecx
+ 8168892:	a1 9c 31 32 08       	mov    0x832319c,%eax
+ 8168897:	85 c0                	test   %eax,%eax
+ 8168899:	74 17                	je     81688b2 <_ZN5CItem23SetAccessorySocketGradeEi+0x62>
+ 816889b:	89 c8                	mov    %ecx,%eax
+ 816889d:	ba 89 88 88 88       	mov    $0x88888889,%edx
+ 81688a2:	f7 ea                	imul   %edx
+ 81688a4:	89 c8                	mov    %ecx,%eax
+ 81688a6:	c1 f8 1f             	sar    $0x1f,%eax
+ 81688a9:	01 ca                	add    %ecx,%edx
+ 81688ab:	c1 fa 05             	sar    $0x5,%edx
+ 81688ae:	89 d1                	mov    %edx,%ecx
+ 81688b0:	29 c1                	sub    %eax,%ecx
+ 81688b2:	89 5d 08             	mov    %ebx,0x8(%ebp)
+ 81688b5:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 81688b8:	89 4d 0c             	mov    %ecx,0xc(%ebp)
+ 81688bb:	89 ec                	mov    %ebp,%esp
+ 81688bd:	5d                   	pop    %ebp
+ 81688be:	e9 4d 00 00 00       	jmp    8168910 <_ZN5CItem31SetAccessorySocketDownGradeTimeEm>
+ 81688c3:	90                   	nop
+ 81688c4:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 81688ca:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+
+081688d0 <_ZN5CItem26SetAccessorySocketMaxGradeEi>:
+ 81688d0:	55                   	push   %ebp
+ 81688d1:	b8 03 00 00 00       	mov    $0x3,%eax
+ 81688d6:	89 e5                	mov    %esp,%ebp
+ 81688d8:	83 ec 18             	sub    $0x18,%esp
+ 81688db:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 81688df:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 81688e2:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 81688e9:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81688ed:	e8 ae 09 05 00       	call   81b92a0 <MINMAX>
+ 81688f2:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 81688f6:	b8 01 00 00 00       	mov    $0x1,%eax
+ 81688fb:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81688ff:	8b 45 08             	mov    0x8(%ebp),%eax
+ 8168902:	89 04 24             	mov    %eax,(%esp)
+ 8168905:	e8 a6 f4 ff ff       	call   8167db0 <_ZN5CItem9SetSocketEil>
+ 816890a:	89 ec                	mov    %ebp,%esp
+ 816890c:	5d                   	pop    %ebp
+ 816890d:	c3                   	ret
+ 816890e:	89 f6                	mov    %esi,%esi
+
+08168910 <_ZN5CItem31SetAccessorySocketDownGradeTimeEm>:
+ 8168910:	55                   	push   %ebp
+ 8168911:	ba 02 00 00 00       	mov    $0x2,%edx
+ 8168916:	89 e5                	mov    %esp,%ebp
+ 8168918:	83 ec 28             	sub    $0x28,%esp
+ 816891b:	89 5d f4             	mov    %ebx,-0xc(%ebp)
+ 816891e:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8168921:	89 7d fc             	mov    %edi,-0x4(%ebp)
+ 8168924:	8b 7d 0c             	mov    0xc(%ebp),%edi
+ 8168927:	89 75 f8             	mov    %esi,-0x8(%ebp)
+ 816892a:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 816892e:	89 7c 24 08          	mov    %edi,0x8(%esp)
+ 8168932:	89 1c 24             	mov    %ebx,(%esp)
+ 8168935:	e8 76 f4 ff ff       	call   8167db0 <_ZN5CItem9SetSocketEil>
+ 816893a:	a1 9c 31 32 08       	mov    0x832319c,%eax
+ 816893f:	85 c0                	test   %eax,%eax
+ 8168941:	74 4a                	je     816898d <_ZN5CItem31SetAccessorySocketDownGradeTimeEm+0x7d>
+ 8168943:	8b 73 3c             	mov    0x3c(%ebx),%esi
+ 8168946:	85 f6                	test   %esi,%esi
+ 8168948:	74 43                	je     816898d <_ZN5CItem31SetAccessorySocketDownGradeTimeEm+0x7d>
+ 816894a:	8b 43 38             	mov    0x38(%ebx),%eax
+ 816894d:	c7 04 24 e0 bc 22 08 	movl   $0x822bce0,(%esp)
+ 8168954:	85 c0                	test   %eax,%eax
+ 8168956:	8d 58 1d             	lea    0x1d(%eax),%ebx
+ 8168959:	0f 94 c0             	sete   %al
+ 816895c:	0f b6 c0             	movzbl %al,%eax
+ 816895f:	48                   	dec    %eax
+ 8168960:	21 c3                	and    %eax,%ebx
+ 8168962:	a1 48 25 32 08       	mov    0x8322548,%eax
+ 8168967:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 816896b:	e8 20 8f ee ff       	call   8051890 <locale_find>
+ 8168970:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8168974:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8168979:	89                   	.byte 0x89

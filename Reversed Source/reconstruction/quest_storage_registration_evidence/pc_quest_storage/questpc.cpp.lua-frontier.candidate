@@ -1,0 +1,13 @@
+// Complete ORIGINAL wrappers, NOT part of closed storage package: actual Lua-backed manager resolution pending.
+namespace quest {
+void PC::SetQuestState(const std::string& name,const std::string& state)
+{
+    int next=CQuestManager::instance().GetQuestStateIndex(name,state);
+    SetQuestState(name,next);
+}
+void PC::SetCurrentQuestStateName(const std::string& state)
+{
+    int index=CQuestManager::instance().GetQuestStateIndex(m_stCurQuest,state);
+    SetFlag(m_stCurQuest+".__status",index,false);
+}
+}

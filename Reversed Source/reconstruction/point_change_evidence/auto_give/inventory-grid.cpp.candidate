@@ -1,0 +1,24 @@
+// Complete old inventory occupancy helpers081714d0/08171680.
+bool CHARACTER::IsEmptyItemGrid(BYTE cell,BYTE size,int exception)
+{
+    if (cell>=90) return false;
+    const unsigned int occupiedBy=(unsigned int)exception+1U;
+    BYTE grid=m_pointsInstant.bItemGrid[cell];
+    if (grid!=0 && grid!=occupiedBy) return false;
+    if (size==1) return true;
+    int j=1;
+    do {
+        const BYTE p=(BYTE)(cell+5*j);
+        if (p>=90 || p/45!=cell/45) return false;
+        grid=m_pointsInstant.bItemGrid[p];
+        if (grid!=0 && grid!=occupiedBy) return false;
+        ++j;
+    } while (j<(int)size);
+    return true;
+}
+int CHARACTER::GetEmptyInventory(BYTE size)
+{
+    for(int i=0;i<90;++i)
+        if(IsEmptyItemGrid((BYTE)i,size,-1)) return i;
+    return -1;
+}

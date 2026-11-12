@@ -1,0 +1,1 @@
+Root applied6 frozen tail files at checkpoint86 pending. Focused session13522; child no tests. See HANDOFF, manifest and prepare_record gates. Do not reapply/stage during active build. Full94/focused3+ABI/O2/strict32 must pass before mappings/status activated. Original ELF not executed.

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08187800",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8187800",
+    "function": {
+      "name": "CItem::SetAttribute",
+      "address": "08187800"
+    },
+    "signature": "void SetAttribute(CItem * this, int i, BYTE bType, short sValue)",
+    "code": "\r\n/* DWARF original prototype: void SetAttribute(CItem * this, int i, BYTE bType, short sValue) */\r\n\r\nvoid __thiscall CItem::SetAttribute(CItem *this,int i,BYTE bType,short sValue)\r\n\r\n{\r\n  DWORD dwItemID;\r\n  short sValue_local;\r\n  BYTE bType_local;\r\n  \r\n  if (4 < i) {\r\n    __assert(\"SetAttribute\",\"item_attribute.cpp\",0x121);\r\n  }\r\n  this->m_aAttr[i].bType = bType;\r\n  this->m_aAttr[i].sValue = sValue;\r\n  UpdatePacket(this);\r\n  Save(this);\r\n  if (bType != '\\0') {\r\n    dwItemID = this->m_dwID;\r\n    if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    LogManager::ItemLog(singleton<LogManager>::ms_singleton,i,(uint)bType,(int)sValue,dwItemID,\r\n                        \"SET_ATTR\",\"\");\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

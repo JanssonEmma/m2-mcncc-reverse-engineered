@@ -1,0 +1,11 @@
+// Public old CHARACTER declarations. All methods are NON-CONST.
+void ComputeBattlePoints();
+long GetPolymorphPoint(BYTE type);
+int GetPolymorphPower();
+int GetSkillLevel(DWORD dwVnum);
+const TMobTable& GetMobTable();
+// Optional exact inline getters only if not already present:
+bool IsPolymorphed() { return m_dwPolymorphRace!=0; }
+bool IsPolyMaintainStat() { return m_bPolyMaintainStat; }
+DWORD GetPolymorphVnum() { return m_dwPolymorphRace; }
+BYTE GetSkillGroup() { return m_points.skill_group; }

@@ -1,0 +1,66 @@
+{
+  "0x0813a690": {
+    "function": {
+      "name": "DESC::Handshake",
+      "address": "0813a690"
+    },
+    "code": "\r\n/* DWARF original prototype: void Handshake(DESC * this, DWORD _handshake) */\r\n\r\nvoid __thiscall DESC::Handshake(DESC *this,DWORD _handshake)\r\n\r\n{\r\n  DWORD dwCurTime;\r\n  \r\n  this->m_dwHandshake = _handshake;\r\n  dwCurTime = get_dword_time();\r\n  TrySyncTime(this,dwCurTime,0);\r\n  this->m_iHandshakeRetry = 0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a6d0": {
+    "function": {
+      "name": "DESC::TrySyncTime",
+      "address": "0813a6d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void TrySyncTime(DESC * this, DWORD dwCurTime, long lNewDelta) */\r\n\r\nvoid __thiscall DESC::TrySyncTime(DESC *this,DWORD dwCurTime,long lNewDelta)\r\n\r\n{\r\n  TPacketGCHandshake pack;\r\n  \r\n  pack.bHeader = 0xff;\r\n  pack.dwHandshake = this->m_dwHandshake;\r\n  pack.dwTime = dwCurTime;\r\n  pack.lDelta = lNewDelta;\r\n  Packet(this,&pack,0xd);\r\n  this->m_dwHandshakeSentTime = dwCurTime;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a720": {
+    "function": {
+      "name": "DESC::SyncTime",
+      "address": "0813a720"
+    },
+    "code": "\r\n/* DWARF original prototype: bool SyncTime(DESC * this, DWORD dwTime, long lDelta, bool\r\n   bInfiniteRetry) */\r\n\r\nbool __thiscall DESC::SyncTime(DESC *this,DWORD dwTime,long lDelta,bool bInfiniteRetry)\r\n\r\n{\r\n  DWORD dwCurTime;\r\n  char *pcVar1;\r\n  DWORD DVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  bool bInfiniteRetry_local;\r\n  BYTE bHeader;\r\n  \r\n                    /* Unresolved local var: DWORD dwCurTime@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int bias@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: long lNewDelta@[DW_OP_reg3(EBX)] */\r\n  dwCurTime = get_dword_time();\r\n  if (lDelta < 0) {\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    pcVar1 = (this->m_stHost)._M_dataplus._M_p;\r\n    pcVar1[*(int *)(pcVar1 + -0xc)] = std::string::_Rep::_S_terminal;\r\n    _sys_err(\"SyncTime\",0x235,\"Desc::SyncTime : value error (lDelta %d, ip %s)\",lDelta,\r\n             (this->m_stHost)._M_dataplus._M_p);\r\n  }\r\n  else {\r\n    uVar4 = dwCurTime - (dwTime + lDelta);\r\n    if (uVar4 < 0x33) {\r\n      if (bInfiniteRetry) {\r\n        bHeader = 0xfc;\r\n        Packet(this,&bHeader,1);\r\n      }\r\n      this->m_dwClientTime = dwCurTime;\r\n      if (this->m_lpCharacter == (CHARACTER *)0x0) {\r\n        sys_log(0,\"SyncTime: bias %d\",uVar4);\r\n      }\r\n      else {\r\n        pcVar1 = CHARACTER::GetName(this->m_lpCharacter);\r\n        sys_log(0,\"SyncTime: bias %d name: %s\",uVar4,pcVar1);\r\n      }\r\n      return true;\r\n    }\r\n    uVar4 = (int)(dwCurTime - dwTime) / 2;\r\n    if ((int)uVar4 < 0) {\r\n      sys_log(0,\"SyncTime: lower than zero %d\",uVar4);\r\n      DVar2 = this->m_dwHandshakeSentTime;\r\n      uVar4 = dwCurTime - DVar2 >> 1;\r\n    }\r\n    else {\r\n      DVar2 = this->m_dwHandshakeSentTime;\r\n    }\r\n    sys_log(1,\"SyncTime: ServerTime %u dwTime %u lDelta %d SentTime %u lNewDelta %d\",dwCurTime,\r\n            dwTime,lDelta,DVar2,uVar4);\r\n    if ((bInfiniteRetry) ||\r\n       (iVar3 = this->m_iHandshakeRetry + 1, this->m_iHandshakeRetry = iVar3, iVar3 < 0x21)) {\r\n      TrySyncTime(this,dwCurTime,uVar4);\r\n    }\r\n    else {\r\n      pcVar1 = \"!NO CHARACTER!\";\r\n      if (this->m_lpCharacter != (CHARACTER *)0x0) {\r\n        pcVar1 = CHARACTER::GetName(this->m_lpCharacter);\r\n      }\r\n      _sys_err(\"SyncTime\",0x25b,\"handshake retry limit reached! (limit %d character %s)\",0x20,pcVar1\r\n              );\r\n      (*this->_vptr_DESC[4])(this,0);\r\n    }\r\n  }\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813afc0": {
+    "function": {
+      "name": "DESC::SetSecurityKey",
+      "address": "0813afc0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetSecurityKey(DESC * this, DWORD * c_pdwKey) */\r\n\r\nvoid __thiscall DESC::SetSecurityKey(DESC *this,DWORD *c_pdwKey)\r\n\r\n{\r\n  bool bVar1;\r\n  BYTE *pBVar2;\r\n  char *key;\r\n  \r\n                    /* Unresolved local var: BYTE * c_pszKey@[DW_OP_reg7(EDI)] */\r\n  key = \"JyTxtHljHJlVJHorRM301vf@4fvj10-v\";\r\n  if (g_iUseLocale != 0) {\r\n    bVar1 = LC_IsKorea();\r\n    if (!bVar1) {\r\n      pBVar2 = GetKey_20050304Myevan();\r\n      key = (char *)(pBVar2 + 0x25);\r\n    }\r\n  }\r\n  (*thecore_memcpy)(this->m_adwDecryptionKey,c_pdwKey,0x10);\r\n  TEA_Encrypt(this->m_adwEncryptionKey,this->m_adwDecryptionKey,(DWORD *)key,0x10);\r\n  sys_log(0,\"SetSecurityKey decrypt %lu %lu %lu %lu encrypt %lu %lu %lu %lu\",\r\n          this->m_adwDecryptionKey[0],this->m_adwDecryptionKey[1],this->m_adwDecryptionKey[2],\r\n          this->m_adwDecryptionKey[3],this->m_adwEncryptionKey[0],this->m_adwEncryptionKey[1],\r\n          this->m_adwEncryptionKey[2],this->m_adwEncryptionKey[3]);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b0b0": {
+    "function": {
+      "name": "DESC::AssembleCRCMagicCube",
+      "address": "0813b0b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void AssembleCRCMagicCube(DESC * this, BYTE bProcPiece, BYTE\r\n   bFilePiece) */\r\n\r\nvoid __thiscall DESC::AssembleCRCMagicCube(DESC *this,BYTE bProcPiece,BYTE bFilePiece)\r\n\r\n{\r\n  byte bVar1;\r\n  byte bVar2;\r\n  byte bVar3;\r\n  \r\n  bVar1 = this->m_bCRCMagicCubeIdx;\r\n  bVar2 = AssembleCRCMagicCube::abXORTable[bVar1];\r\n  bVar3 = AssembleCRCMagicCube::abXORTable[bVar1 + 1];\r\n  this->m_bCRCMagicCubeIdx = bVar1 + 8;\r\n  this->m_dwProcCRC = this->m_dwProcCRC | (uint)(bVar2 ^ bProcPiece) << (bVar1 & 0x1f);\r\n  this->m_dwFileCRC = this->m_dwFileCRC | (uint)(bVar3 ^ bFilePiece) << (bVar1 & 0x1f);\r\n  if ((bVar1 + 8 & 0x1f) == 0) {\r\n    this->m_bCRCMagicCubeIdx = '\\0';\r\n    this->m_dwProcCRC = 0;\r\n    this->m_dwFileCRC = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a550": {
+    "function": {
+      "name": "DESC::UDPGrant",
+      "address": "0813a550"
+    },
+    "code": "\r\n/* DWARF original prototype: void UDPGrant(DESC * this, sockaddr_in * c_rSockAddr) */\r\n\r\nvoid __thiscall DESC::UDPGrant(DESC *this,sockaddr_in *c_rSockAddr)\r\n\r\n{\r\n  sa_family_t sVar1;\r\n  in_port_t iVar2;\r\n  TPacketGCBindUDP pack;\r\n  \r\n  sVar1 = c_rSockAddr->sin_family;\r\n  iVar2 = c_rSockAddr->sin_port;\r\n  (this->m_UDPSockAddr).sin_len = c_rSockAddr->sin_len;\r\n  (this->m_UDPSockAddr).sin_family = sVar1;\r\n  (this->m_UDPSockAddr).sin_port = iVar2;\r\n  (this->m_UDPSockAddr).sin_addr.s_addr = (c_rSockAddr->sin_addr).s_addr;\r\n  *(undefined4 *)(this->m_UDPSockAddr).sin_zero = *(undefined4 *)c_rSockAddr->sin_zero;\r\n  *(undefined4 *)((this->m_UDPSockAddr).sin_zero + 4) = *(undefined4 *)(c_rSockAddr->sin_zero + 4);\r\n  pack.header = 0xfe;\r\n  pack.addr = (this->m_UDPSockAddr).sin_addr.s_addr;\r\n  pack.port = (this->m_UDPSockAddr).sin_port;\r\n  Packet(this,&pack,7);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813af70": {
+    "function": {
+      "name": "GetKey_20050304Myevan",
+      "address": "0813af70"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nBYTE * GetKey_20050304Myevan(void)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  \r\n  if (!GetKey_20050304Myevan::bGenerated) {\r\n                    /* Unresolved local var: DWORD seed@[DW_OP_reg2(EDX)] */\r\n    GetKey_20050304Myevan::bGenerated = true;\r\n    uVar2 = 0x58edadb9;\r\n                    /* Unresolved local var: UINT i@[DW_OP_reg1(ECX)] */\r\n    uVar1 = 0;\r\n    do {\r\n      uVar2 = (uVar2 ^ 0x80164043) + 0xd61f75bd;\r\n      GetKey_20050304Myevan::s_adwKey[uVar1] = uVar2;\r\n      uVar1 = uVar1 + 1;\r\n    } while (uVar1 < (uVar2 & 0xff));\r\n  }\r\n  return (BYTE *)GetKey_20050304Myevan::s_adwKey;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068a90": {
+    "function": {
+      "name": "LC_IsKorea",
+      "address": "08068a90"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsKorea(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_KOREA;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

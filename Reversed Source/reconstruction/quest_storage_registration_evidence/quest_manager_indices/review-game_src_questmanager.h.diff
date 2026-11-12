@@ -1,0 +1,39 @@
+--- CURRENT/game/src/questmanager.h
++++ QUESTINDICES/game/src/questmanager.h
+@@ -4,6 +4,7 @@
+ #include "questnpc.h"
+ #include "../../common/singleton.h"
+ #include <set>
++#include <cstddef>
+ #include <ext/hash_map>
+ class CDungeon;
+ class CHARACTER;
+@@ -15,6 +16,10 @@
+     int GetEventFlag(const std::string& name);
+     PC* GetPC(unsigned int pc);
+     PC* GetPCForce(unsigned int pc);
++    unsigned int GetQuestIndexByName(const std::string& name);
++    const std::string& GetQuestNameByIndex(unsigned int index);
++    unsigned int FindNPCIDByName(const std::string& name);
++    const std::string& GetCurrentQuestName();
+ 
+     typedef std::map<std::string,int> TEventNameMap;
+     TEventNameMap m_mapEventName;
+@@ -38,7 +43,16 @@
+     PC* m_pCurrentPC;
+     std::string m_strScript;
+     int m_iCurrentSkin;
+-    struct stringhash { std::size_t operator()(const std::string&) const; };
++    // Original questmanager.h inline operator. Target size_t was uint32.
++struct stringhash {
++    std::size_t operator()(const std::string& value) const {
++        const unsigned char* current=reinterpret_cast<const unsigned char*>(value.c_str());
++        const unsigned char* end=current+value.size();
++        unsigned int hash=0;
++        while(current<end) { hash*=16777619U;hash^=*current++; }
++        return hash;
++    }
++};
+     __gnu_cxx::hash_map<std::string,int,stringhash,std::equal_to<std::string>,std::allocator<int> > m_hmQuestName;
+     __gnu_cxx::hash_map<unsigned int,std::vector<char>,__gnu_cxx::hash<unsigned int>,std::equal_to<unsigned int>,std::allocator<std::vector<char> > > m_hmQuestStartScript;
+     std::map<unsigned int,std::string> m_mapQuestNameByIndex;

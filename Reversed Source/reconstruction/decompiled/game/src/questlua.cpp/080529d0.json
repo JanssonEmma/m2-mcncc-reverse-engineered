@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080529d0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "IsScriptTrue",
+      "address": "080529d0"
+    },
+    "code": "\r\nbool IsScriptTrue(char *code,int size)\r\n\r\n{\r\n  lua_State *L;\r\n  int idx;\r\n  int iVar1;\r\n  int iVar2;\r\n  bool bVar3;\r\n  int bStart;\r\n  int x;\r\n  char buf [100];\r\n  \r\n                    /* Unresolved local var: lua_State * L@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int errcode@[DW_OP_reg7(EDI)] */\r\n  bVar3 = true;\r\n  if (size != 0) {\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    L = *(lua_State **)(singleton<quest::CQuestManager>::ms_singleton + 0x34);\r\n    idx = lua_gettop(L);\r\n    iVar1 = lua_dobuffer(L,code,size,\"IsScriptTrue\");\r\n    iVar2 = lua_toboolean(L,-1);\r\n    if (iVar1 != 0) {\r\n      snprintf(buf,100,\"LUA ScriptRunError (code:%%d src:[%%%ds])\",size);\r\n      if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      CQuestManager::QuestError\r\n                ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,\"IsScriptTrue\",0x53,\r\n                 buf,iVar1,code);\r\n    }\r\n    lua_settop(L,idx);\r\n    bVar3 = iVar2 != 0;\r\n  }\r\n  return bVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

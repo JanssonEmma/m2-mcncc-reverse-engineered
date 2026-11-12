@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08064310",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "exchange_packet",
+      "address": "08064310"
+    },
+    "code": "\r\nvoid exchange_packet(LPCHARACTER ch,BYTE sub_header,bool is_me,DWORD arg1,DWORD arg2,DWORD arg3,\r\n                    void *pvData)\r\n\r\n{\r\n  int iVar1;\r\n  DESC *this;\r\n  long *plVar2;\r\n  TPlayerItemAttribute *pTVar3;\r\n  packet_exchange pack_exchg;\r\n  \r\n  this = (ch->super_CEntity).m_lpDesc;\r\n  if (this != (DESC *)0x0) {\r\n    pack_exchg.sub_header = sub_header;\r\n    pack_exchg.header = '*';\r\n    pack_exchg.is_me = is_me;\r\n    pack_exchg.arg1 = arg1;\r\n    pack_exchg.arg2 = arg2;\r\n    pack_exchg.arg3 = arg3;\r\n    if ((sub_header == '\\x01') && (pvData != (void *)0x0)) {\r\n      (*thecore_memcpy)(pack_exchg.alSockets,(void *)((int)pvData + 100),0xc);\r\n      (*thecore_memcpy)(pack_exchg.aAttr,(void *)((int)pvData + 0x70),0x15);\r\n      this = (ch->super_CEntity).m_lpDesc;\r\n    }\r\n    else {\r\n      plVar2 = pack_exchg.alSockets;\r\n      for (iVar1 = 3; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n        *plVar2 = 0;\r\n        plVar2 = plVar2 + 1;\r\n      }\r\n      pTVar3 = pack_exchg.aAttr;\r\n      for (iVar1 = 5; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n        *(TPlayerItemAttribute *)&pTVar3->bType = (TPlayerItemAttribute)0x0;\r\n        pTVar3[1].bType = '\\0';\r\n        pTVar3 = (TPlayerItemAttribute *)&pTVar3[1].sValue;\r\n      }\r\n      pTVar3->bType = '\\0';\r\n    }\r\n    DESC::Packet(this,&pack_exchg,0x30);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

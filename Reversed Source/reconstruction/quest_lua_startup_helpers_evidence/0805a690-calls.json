@@ -1,0 +1,143 @@
+{
+  "function": {
+    "name": "quest::CQuestManager::BuildStateIndexToName",
+    "address": "0805a690"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0805c071",
+        "caller": {
+          "name": "quest::CQuestManager::InitializeLua",
+          "address": "0805a800"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 150,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0805a6a5",
+        "target": "081bec08",
+        "name": "lua_gettop",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a6b6",
+        "target": "081bf238",
+        "name": "lua_pushstring",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a6ca",
+        "target": "081bf3dc",
+        "name": "lua_gettable",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a6de",
+        "target": "081bed9c",
+        "name": "lua_type",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a712",
+        "target": "081a7bb0",
+        "name": "CQuestManager::QuestError",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a727",
+        "target": "081bec34",
+        "name": "lua_settop",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a74e",
+        "target": "0804c9ac",
+        "name": "<EXTERNAL>::__assert",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0805a760",
+        "target": "081bf1b0",
+        "name": "lua_pushnil",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a77f",
+        "target": "081bf98c",
+        "name": "lua_next",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a797",
+        "target": "081bee54",
+        "name": "lua_isstring",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a7af",
+        "target": "081bee10",
+        "name": "lua_isnumber",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a7c7",
+        "target": "081bec34",
+        "name": "lua_settop",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a7df",
+        "target": "081bed68",
+        "name": "lua_pushvalue",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805a7f3",
+        "target": "081bf5c0",
+        "name": "lua_rawset",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 150,
+    "total": 14,
+    "has_more": false
+  }
+}

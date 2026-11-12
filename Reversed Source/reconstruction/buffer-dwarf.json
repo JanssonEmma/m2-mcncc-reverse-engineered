@@ -1,0 +1,1863 @@
+{
+  "binary": "PROJECT_ROOT\\Original Binaries\\game",
+  "sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "attributes": {
+        "sibling": 9186,
+        "external": true,
+        "name": "buffer_new",
+        "decl_file": 1,
+        "decl_line": 20,
+        "prototyped": true,
+        "type": 8861,
+        "low_pc": 136017920,
+        "high_pc": 136018183,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2daef7b",
+          "tag": "DW_TAG_typedef",
+          "name": "LPBUFFER"
+        },
+        {
+          "die": "0x2daef86",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daeefe",
+          "tag": "DW_TAG_structure_type",
+          "name": "buffer",
+          "byte_size": 32
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "dest",
+            "decl_file": 1,
+            "decl_line": 19,
+            "type": 1376,
+            "location": [
+              86
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg6",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dad23e",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "size",
+            "decl_file": 1,
+            "decl_line": 19,
+            "type": 120,
+            "location": [
+              87
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg7",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9223,
+        "external": true,
+        "name": "buffer_delete",
+        "decl_file": 1,
+        "decl_line": 83,
+        "prototyped": true,
+        "low_pc": 136018192,
+        "high_pc": 136018317,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 82,
+            "type": 8861,
+            "location": [
+              83
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg3",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9264,
+        "external": true,
+        "name": "buffer_size",
+        "decl_file": 1,
+        "decl_line": 117,
+        "prototyped": true,
+        "type": 8221,
+        "low_pc": 136018320,
+        "high_pc": 136018331,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2daecfb",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD"
+        },
+        {
+          "die": "0x2dacd9e",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "byte_size": 4,
+          "encoding": 7
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 116,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9301,
+        "external": true,
+        "name": "buffer_reset",
+        "decl_file": 1,
+        "decl_line": 122,
+        "prototyped": true,
+        "low_pc": 136018336,
+        "high_pc": 136018367,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 121,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9365,
+        "external": true,
+        "name": "buffer_write",
+        "decl_file": 1,
+        "decl_line": 130,
+        "prototyped": true,
+        "low_pc": 136018368,
+        "high_pc": 136018491,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 129,
+            "type": 8861,
+            "location": [
+              86
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg6",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "src",
+            "decl_file": 1,
+            "decl_line": 129,
+            "type": 9365,
+            "location": [
+              145,
+              112
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_fbreg",
+                "args": [
+                  -16
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daf173",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daf179",
+              "tag": "DW_TAG_const_type"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "length",
+            "decl_file": 1,
+            "decl_line": 129,
+            "type": 120,
+            "location": [
+              87
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg7",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9435,
+        "external": true,
+        "name": "buffer_read",
+        "decl_file": 1,
+        "decl_line": 139,
+        "prototyped": true,
+        "low_pc": 136018496,
+        "high_pc": 136018557,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 138,
+            "type": 8861,
+            "location": [
+              86
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg6",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "buf",
+            "decl_file": 1,
+            "decl_line": 138,
+            "type": 1376,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dad23e",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "bytes",
+            "decl_file": 1,
+            "decl_line": 138,
+            "type": 120,
+            "location": [
+              83
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg3",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9489,
+        "external": true,
+        "name": "buffer_byte",
+        "decl_file": 1,
+        "decl_line": 145,
+        "prototyped": true,
+        "type": 8243,
+        "low_pc": 136018560,
+        "high_pc": 136018605,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2daed11",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE"
+        },
+        {
+          "die": "0x2dacd20",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned char",
+          "byte_size": 1,
+          "encoding": 8
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 144,
+            "type": 8861,
+            "location": [
+              82
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg2",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9543,
+        "external": true,
+        "name": "buffer_word",
+        "decl_file": 1,
+        "decl_line": 152,
+        "prototyped": true,
+        "type": 8254,
+        "low_pc": 136018608,
+        "high_pc": 136018652,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2daed1c",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD"
+        },
+        {
+          "die": "0x2dacd44",
+          "tag": "DW_TAG_base_type",
+          "name": "short unsigned int",
+          "byte_size": 2,
+          "encoding": 7
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 151,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9597,
+        "external": true,
+        "name": "buffer_dword",
+        "decl_file": 1,
+        "decl_line": 159,
+        "prototyped": true,
+        "type": 8221,
+        "low_pc": 136018656,
+        "high_pc": 136018699,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2daecfb",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD"
+        },
+        {
+          "die": "0x2dacd9e",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "byte_size": 4,
+          "encoding": 7
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 158,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9638,
+        "external": true,
+        "name": "buffer_read_peek",
+        "decl_file": 1,
+        "decl_line": 166,
+        "prototyped": true,
+        "type": 9365,
+        "low_pc": 136018704,
+        "high_pc": 136018715,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2daf173",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daf179",
+          "tag": "DW_TAG_const_type"
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 165,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9688,
+        "external": true,
+        "name": "buffer_read_proceed",
+        "decl_file": 1,
+        "decl_line": 171,
+        "prototyped": true,
+        "low_pc": 136018720,
+        "high_pc": 136018971,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 170,
+            "type": 8861,
+            "location": [
+              86
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg6",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "length",
+            "decl_file": 1,
+            "decl_line": 170,
+            "type": 120,
+            "location": [
+              83
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg3",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9729,
+        "external": true,
+        "name": "buffer_write_peek",
+        "decl_file": 1,
+        "decl_line": 203,
+        "prototyped": true,
+        "type": 1376,
+        "low_pc": 136018976,
+        "high_pc": 136018987,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2dad23e",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 202,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9779,
+        "external": true,
+        "name": "buffer_write_proceed",
+        "decl_file": 1,
+        "decl_line": 208,
+        "prototyped": true,
+        "low_pc": 136018992,
+        "high_pc": 136019012,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 207,
+            "type": 8861,
+            "location": [
+              80
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg0",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "length",
+            "decl_file": 1,
+            "decl_line": 207,
+            "type": 120,
+            "location": [
+              82
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg2",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9820,
+        "external": true,
+        "name": "buffer_has_space",
+        "decl_file": 1,
+        "decl_line": 215,
+        "prototyped": true,
+        "type": 120,
+        "low_pc": 136019024,
+        "high_pc": 136019040,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [
+        {
+          "die": "0x2dacd56",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "byte_size": 4,
+          "encoding": 5
+        }
+      ],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 214,
+            "type": 8861,
+            "location": [
+              82
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg2",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9870,
+        "external": true,
+        "name": "buffer_adjust_size",
+        "decl_file": 1,
+        "decl_line": 220,
+        "prototyped": true,
+        "low_pc": 136019040,
+        "high_pc": 136019141,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 219,
+            "type": 8861,
+            "location": [
+              83
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg3",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "add_size",
+            "decl_file": 1,
+            "decl_line": 219,
+            "type": 120,
+            "location": [
+              86
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg6",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "sibling": 9956,
+        "external": true,
+        "name": "buffer_realloc",
+        "decl_file": 1,
+        "decl_line": 229,
+        "prototyped": true,
+        "low_pc": 136019152,
+        "high_pc": 136019420,
+        "frame_base": [
+          85
+        ]
+      },
+      "return_chain": [],
+      "parameters": [
+        {
+          "attributes": {
+            "name": "buffer",
+            "decl_file": 1,
+            "decl_line": 228,
+            "type": 8861,
+            "location": [
+              86
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_reg6",
+                "args": []
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef7b",
+              "tag": "DW_TAG_typedef",
+              "name": "LPBUFFER"
+            },
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "length",
+            "decl_file": 1,
+            "decl_line": 228,
+            "type": 120,
+            "location": [
+              145,
+              12
+            ],
+            "location_ops": [
+              {
+                "op": "DW_OP_fbreg",
+                "args": [
+                  12
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "attributes": {
+        "sibling": 8861,
+        "name": "buffer",
+        "byte_size": 32,
+        "decl_file": 32,
+        "decl_line": 14
+      },
+      "members": [
+        {
+          "attributes": {
+            "name": "next",
+            "decl_file": 32,
+            "decl_line": 19,
+            "type": 8872,
+            "data_member_location": [
+              35,
+              0
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  0
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2daef86",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2daeefe",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "byte_size": 32
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "write_point",
+            "decl_file": 32,
+            "decl_line": 21,
+            "type": 1426,
+            "data_member_location": [
+              35,
+              4
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  4
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dad270",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2dacf54",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "byte_size": 1,
+              "encoding": 6
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "write_point_pos",
+            "decl_file": 32,
+            "decl_line": 22,
+            "type": 120,
+            "data_member_location": [
+              35,
+              8
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  8
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "read_point",
+            "decl_file": 32,
+            "decl_line": 24,
+            "type": 1496,
+            "data_member_location": [
+              35,
+              12
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  12
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dad2b6",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2dad2bc",
+              "tag": "DW_TAG_const_type"
+            },
+            {
+              "die": "0x2dacf54",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "byte_size": 1,
+              "encoding": 6
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "length",
+            "decl_file": 32,
+            "decl_line": 25,
+            "type": 120,
+            "data_member_location": [
+              35,
+              16
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  16
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "mem_data",
+            "decl_file": 32,
+            "decl_line": 27,
+            "type": 1426,
+            "data_member_location": [
+              35,
+              20
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  20
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dad270",
+              "tag": "DW_TAG_pointer_type",
+              "byte_size": 4
+            },
+            {
+              "die": "0x2dacf54",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "byte_size": 1,
+              "encoding": 6
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "mem_size",
+            "decl_file": 32,
+            "decl_line": 28,
+            "type": 120,
+            "data_member_location": [
+              35,
+              24
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  24
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacd56",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "name": "flag",
+            "decl_file": 32,
+            "decl_line": 30,
+            "type": 736,
+            "data_member_location": [
+              35,
+              28
+            ],
+            "data_member_location_ops": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  28
+                ]
+              }
+            ]
+          },
+          "type_chain": [
+            {
+              "die": "0x2dacfbe",
+              "tag": "DW_TAG_base_type",
+              "name": "long int",
+              "byte_size": 4,
+              "encoding": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "attributes": {
+        "name": "buffer",
+        "decl_file": 1,
+        "decl_line": 21,
+        "type": 8861,
+        "location": [
+          83
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_reg3",
+            "args": []
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daef7b",
+          "tag": "DW_TAG_typedef",
+          "name": "LPBUFFER"
+        },
+        {
+          "die": "0x2daef86",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daeefe",
+          "tag": "DW_TAG_structure_type",
+          "name": "buffer",
+          "byte_size": 32
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "val",
+        "decl_file": 1,
+        "decl_line": 146,
+        "type": 8243,
+        "location": [
+          83
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_reg3",
+            "args": []
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daed11",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE"
+        },
+        {
+          "die": "0x2dacd20",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned char",
+          "byte_size": 1,
+          "encoding": 8
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "val",
+        "decl_file": 1,
+        "decl_line": 153,
+        "type": 8254,
+        "location": [
+          83
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_reg3",
+            "args": []
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daed1c",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD"
+        },
+        {
+          "die": "0x2dacd44",
+          "tag": "DW_TAG_base_type",
+          "name": "short unsigned int",
+          "byte_size": 2,
+          "encoding": 7
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "val",
+        "decl_file": 1,
+        "decl_line": 160,
+        "type": 8221,
+        "location": [
+          83
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_reg3",
+            "args": []
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daecfb",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD"
+        },
+        {
+          "die": "0x2dacd9e",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "byte_size": 4,
+          "encoding": 7
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "i",
+        "decl_file": 1,
+        "decl_line": 230,
+        "type": 120,
+        "location": [
+          80
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_reg0",
+            "args": []
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2dacd56",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "byte_size": 4,
+          "encoding": 5
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "read_point_pos",
+        "decl_file": 1,
+        "decl_line": 230,
+        "type": 120,
+        "location": [
+          83
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_reg3",
+            "args": []
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2dacd56",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "byte_size": 4,
+          "encoding": 5
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "temp",
+        "decl_file": 1,
+        "decl_line": 231,
+        "type": 1426
+      },
+      "type_chain": [
+        {
+          "die": "0x2dad270",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2dacf54",
+          "tag": "DW_TAG_base_type",
+          "name": "char",
+          "byte_size": 1,
+          "encoding": 6
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "_DefaultRuneLocale",
+        "decl_file": 12,
+        "decl_line": 91,
+        "type": 3208,
+        "external": true,
+        "declaration": true
+      },
+      "type_chain": [
+        {
+          "die": "0x2dad966",
+          "tag": "DW_TAG_typedef",
+          "name": "_RuneLocale"
+        },
+        {
+          "die": "0x2dad80e",
+          "tag": "DW_TAG_structure_type",
+          "byte_size": 3156
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "_CurrentRuneLocale",
+        "decl_file": 12,
+        "decl_line": 92,
+        "type": 9982,
+        "external": true,
+        "declaration": true
+      },
+      "type_chain": [
+        {
+          "die": "0x2daf3dc",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2dad966",
+          "tag": "DW_TAG_typedef",
+          "name": "_RuneLocale"
+        },
+        {
+          "die": "0x2dad80e",
+          "tag": "DW_TAG_structure_type",
+          "byte_size": 3156
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "thecore_memcpy",
+        "decl_file": 35,
+        "decl_line": 12,
+        "type": 10039,
+        "external": true,
+        "declaration": true
+      },
+      "type_chain": [
+        {
+          "die": "0x2daf415",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daf3ee",
+          "tag": "DW_TAG_subroutine_type"
+        },
+        {
+          "die": "0x2dad23e",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "buffer_poll",
+        "decl_file": 1,
+        "decl_line": 10,
+        "type": 8861,
+        "location": [
+          3,
+          28,
+          211,
+          66,
+          8
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_addr",
+            "args": [
+              138597148
+            ]
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daef7b",
+          "tag": "DW_TAG_typedef",
+          "name": "LPBUFFER"
+        },
+        {
+          "die": "0x2daef86",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daeefe",
+          "tag": "DW_TAG_structure_type",
+          "name": "buffer",
+          "byte_size": 32
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "buffer_poll_big",
+        "decl_file": 1,
+        "decl_line": 11,
+        "type": 8861,
+        "location": [
+          3,
+          32,
+          211,
+          66,
+          8
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_addr",
+            "args": [
+              138597152
+            ]
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daef7b",
+          "tag": "DW_TAG_typedef",
+          "name": "LPBUFFER"
+        },
+        {
+          "die": "0x2daef86",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daeefe",
+          "tag": "DW_TAG_structure_type",
+          "name": "buffer",
+          "byte_size": 32
+        }
+      ]
+    },
+    {
+      "attributes": {
+        "name": "buffer_nodelete_poll",
+        "decl_file": 1,
+        "decl_line": 12,
+        "type": 8861,
+        "location": [
+          3,
+          36,
+          211,
+          66,
+          8
+        ],
+        "location_ops": [
+          {
+            "op": "DW_OP_addr",
+            "args": [
+              138597156
+            ]
+          }
+        ]
+      },
+      "type_chain": [
+        {
+          "die": "0x2daef7b",
+          "tag": "DW_TAG_typedef",
+          "name": "LPBUFFER"
+        },
+        {
+          "die": "0x2daef86",
+          "tag": "DW_TAG_pointer_type",
+          "byte_size": 4
+        },
+        {
+          "die": "0x2daeefe",
+          "tag": "DW_TAG_structure_type",
+          "name": "buffer",
+          "byte_size": 32
+        }
+      ]
+    }
+  ],
+  "cu": {
+    "stmt_list": 1127407,
+    "high_pc": 136019420,
+    "low_pc": 136017920,
+    "name": "buffer.c",
+    "comp_dir": "/home/seminz/src/libthecore/src",
+    "producer": "GNU C 3.3.3 [FreeBSD] 20031106",
+    "language": 1
+  }
+}

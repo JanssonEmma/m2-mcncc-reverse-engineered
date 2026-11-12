@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08097ef0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "TrafficProfiler::InitializeProfiling",
+      "address": "08097ef0"
+    },
+    "code": "\r\n/* DWARF original prototype: void InitializeProfiling(TrafficProfiler * this) */\r\n\r\nvoid __thiscall TrafficProfiler::InitializeProfiling(TrafficProfiler *this)\r\n\r\n{\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict *ppVar1;\r\n  time_t tVar2;\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict *ppVar3;\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict **pppVar4;\r\n  int iVar5;\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict empty;\r\n  \r\n                    /* Unresolved local var: int idx@[DW_OP_reg7(EDI)] */\r\n  iVar5 = 0;\r\n  tVar2 = time((time_t *)0x0);\r\n  this->m_tmProfileStartTime = tVar2;\r\n  pppVar4 = &this->m_aTrafficVec[0].\r\n             super__Vector_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>_>\r\n             .\r\n             super__Vector_alloc_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>,true>\r\n             ._M_finish;\r\n  this->m_dwTotalPacket = 0;\r\n  this->m_dwTotalTraffic = 0;\r\n  do {\r\n    ppVar1 = *pppVar4;\r\n                    /* Unresolved local var:\r\n                       __normal_iterator<std::pair<long_unsigned_int,_long_unsigned_int>*,std::vector<std::pair<long_unsigned_int,_long_unsigned_int>,_std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>_>_>\r\n                       it@[DW_OP_reg1(ECX)] */\r\n    for (ppVar3 = ((_Vector_alloc_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>,true>\r\n                    *)(pppVar4 + -1))->_M_start; ppVar3 != ppVar1; ppVar3 = ppVar3 + 1) {\r\n      ppVar3->first = 0;\r\n      ppVar3->second = 0;\r\n    }\r\n    iVar5 = iVar5 + 1;\r\n    pppVar4 = pppVar4 + 3;\r\n  } while (iVar5 < 2);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

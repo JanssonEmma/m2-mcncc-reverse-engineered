@@ -1,0 +1,5 @@
+# Quickslot synchronization and chaining — checkpoint78
+
+Checkpoint78: actual SyncQuickslot and ChainQuickslotItem are integrated with original nonconst APIs and live36-slot/first-match behavior. Tests exercise real Set/DelQuickslot packets, callback mutations, raw types, newPos255 and failure ordering; actual FindSpecifyItem identity retained. Exact inline SetImmuneFlag store is added with signature gate only. Focused2+ABI, optimized actual application/SQL paths, strict32 and full81 runtime commands+ABI pass. Full SetCount/removal/Unequip/DestroyItem remain staged/unlinked until stat/affect dependencies close.
+
+Evidence point_change_evidence/auto_give/set_count/. Full receipt work/checkpoint-78-validation.receipt.json; focused quickslot-chain-focused.receipt.json; O2 quickslot-chain-o2.log; strict32 quickslot-chain-m32.log. External/system and unrelated lifecycle boundaries remain; no whole-server/native integration proof. Inline immune store is source/metadata/signature reviewed, not an invented effect test.

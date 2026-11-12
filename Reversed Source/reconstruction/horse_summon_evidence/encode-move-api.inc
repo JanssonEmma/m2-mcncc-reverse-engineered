@@ -1,0 +1,1 @@
+void EncodeMovePacket(TPacketGCMove&,DWORD,BYTE,BYTE,DWORD,DWORD,DWORD,DWORD,BYTE);

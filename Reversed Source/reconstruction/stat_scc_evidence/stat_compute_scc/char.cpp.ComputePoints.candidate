@@ -1,0 +1,118 @@
+// Full original0812c520 body, extracted without narrowing from saved mount_polymorph candidate.
+void CHARACTER::ComputePoints() {
+    using namespace mount_polymorph_detail;
+    const long stat=GetPoint(26);
+    const long reset=GetPoint(112);
+    const long skill=GetPoint(28);
+    const long subskill=GetPoint(27);
+    const long horseSkill=GetPoint(113);
+    const long step=GetPoint(25);
+    const long attacker=GetPoint(91);
+    const long tanker=GetPoint(92);
+    const long buffer=GetPoint(103);
+    const long skillMaster=GetPoint(104);
+    const long haste=GetPoint(110);
+    const long defender=GetPoint(111);
+    const long hpRecovery=GetPoint(35);
+    const long spRecovery=GetPoint(36);
+    // Exactly the instant points array; do not clear maxima/parts/other fields.
+    std::memset(m_pointsInstant.points,0,sizeof(m_pointsInstant.points));
+    SetPoint(26,stat);
+    SetPoint(28,skill);
+    SetPoint(27,subskill);
+    SetPoint(113,horseSkill);
+    SetPoint(25,step);
+    SetPoint(112,reset);
+    long value=GetRealPoint(12);SetPoint(12,value);
+    value=GetRealPoint(13);SetPoint(13,value);
+    value=GetRealPoint(14);SetPoint(14,value);
+    value=GetRealPoint(15);SetPoint(15,value);
+    WORD part=GetOriginalPart(0);SetPart(0,part);
+    part=GetOriginalPart(1);SetPart(1,part);
+    part=GetOriginalPart(2);SetPart(2,part);
+    part=GetOriginalPart(3);SetPart(3,part);
+    SetPoint(91,attacker);SetPoint(92,tanker);
+    SetPoint(103,buffer);SetPoint(104,skillMaster);
+    SetPoint(110,haste);SetPoint(111,defender);
+    SetPoint(35,hpRecovery);SetPoint(36,spRecovery);
+    SetPoint(125,0);SetPoint(126,0);
+    int maxHP,maxSP,maxStamina;
+    if(!GetDesc()) {
+        maxSP=0;maxStamina=0;
+        maxHP=static_cast<int>(Signed(static_cast<unsigned int>(m_pkMobData->m_table.dwMaxHP)));
+        SetPoint(17,m_pkMobData->m_table.sAttackSpeed);
+        SetPoint(19,m_pkMobData->m_table.sMovingSpeed);
+        value=m_pkMobData->m_table.sAttackSpeed;
+    } else {
+        BYTE job=GetJob();
+        int random=m_points.iRandomHP;
+        int base=JobInitialPoints[job].max_hp;
+        value=GetPoint(13);
+        job=GetJob();
+        maxHP=static_cast<int>(Add(Add(random,base),Mul(value,JobInitialPoints[job].hp_per_ht)));
+        job=GetJob();
+        random=m_points.iRandomSP;
+        base=JobInitialPoints[job].max_sp;
+        value=GetPoint(15);
+        job=GetJob();
+        maxSP=static_cast<int>(Add(Add(random,base),Mul(value,JobInitialPoints[job].sp_per_iq)));
+        job=GetJob();
+        value=GetPoint(13);
+        BYTE coefficientJob=GetJob();
+        maxStamina=static_cast<int>(Add(Mul(value,JobInitialPoints[coefficientJob].stamina_per_con),
+                                      JobInitialPoints[job].max_stamina));
+        SetPoint(19,100);SetPoint(17,100);
+        value=GetPoint(110);
+        PointChange(17,static_cast<int>(value),false,false);
+        value=100;
+    }
+    SetPoint(21,value);
+    if(GetDesc() && m_dwMountVnum) {
+        int horse=c_aHorseStat[m_Horse.bLevel].iST;
+        value=GetPoint(12);
+        if(value<horse) {
+            horse=c_aHorseStat[m_Horse.bLevel].iST;value=GetPoint(12);
+            PointChange(12,static_cast<int>(Sub(horse,value)),false,false);
+        }
+        horse=c_aHorseStat[m_Horse.bLevel].iDX;value=GetPoint(14);
+        if(value<horse) {
+            horse=c_aHorseStat[m_Horse.bLevel].iDX;value=GetPoint(14);
+            PointChange(14,static_cast<int>(Sub(horse,value)),false,false);
+        }
+        horse=c_aHorseStat[m_Horse.bLevel].iHT;value=GetPoint(13);
+        if(value<horse) {
+            horse=c_aHorseStat[m_Horse.bLevel].iHT;value=GetPoint(13);
+            PointChange(13,static_cast<int>(Sub(horse,value)),false,false);
+        }
+        horse=c_aHorseStat[m_Horse.bLevel].iIQ;value=GetPoint(15);
+        if(value<horse) {
+            horse=c_aHorseStat[m_Horse.bLevel].iIQ;value=GetPoint(15);
+            PointChange(15,static_cast<int>(Sub(horse,value)),false,false);
+        }
+    }
+    ComputeBattlePoints();
+    if(maxHP!=m_pointsInstant.iMaxHP) SetRealPoint(6,maxHP);
+    PointChange(6,0,false,false);
+    if(maxSP!=m_pointsInstant.iMaxSP) SetRealPoint(8,maxSP);
+    PointChange(8,0,false,false);
+    m_pointsInstant.iMaxStamina=maxStamina;
+    m_pointsInstant.dwImmuneFlag=0;
+    for(int cell=0;cell<19;++cell) {
+        BYTE slot=static_cast<BYTE>(cell);
+        if(GetWear(slot)) {
+            GetWear(slot)->ModifyPoints(true);
+            LPITEM item=GetWear(slot); // Reload after item callbacks.
+            DWORD flags=item->GetProto() ? item->GetProto()->dwImmuneFlag : 0;
+            m_pointsInstant.dwImmuneFlag|=flags;
+        }
+    }
+    int hp=m_points.hp;
+    int maximum=m_pointsInstant.iMaxHP;
+    if(maximum<hp) PointChange(5,static_cast<int>(Sub(maximum,hp)),false,false);
+    int sp=m_points.sp;
+    maximum=m_pointsInstant.iMaxSP;
+    if(maximum<sp) PointChange(7,static_cast<int>(Sub(maximum,sp)),false,false);
+    UpdatePacket();
+    ComputeSkillPoints();
+    RefreshAffect();
+}

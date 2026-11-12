@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168c10",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168c10",
+    "function": {
+      "name": "CItem::AccessorySocketDegrade",
+      "address": "08168c10"
+    },
+    "signature": "void AccessorySocketDegrade(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void AccessorySocketDegrade(CItem * this) */\r\n\r\nvoid __thiscall CItem::AccessorySocketDegrade(CItem *this)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  char *format;\r\n  DWORD time;\r\n  \r\n  if (0 < this->m_alSockets[0]) {\r\n                    /* Unresolved local var: LPCHARACTER ch@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int iDownTime@[DW_OP_reg3(EBX)] */\r\n    this_00 = this->m_pOwner;\r\n    if (this_00 != (CHARACTER *)0x0) {\r\n      pTVar1 = this->m_pProto;\r\n      format = locale_find(&DAT_0822bd20,g_iUseLocale);\r\n      CHARACTER::ChatPacket\r\n                (this_00,'\\x01',format,\r\n                 (uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1);\r\n    }\r\n    ModifyPoints(this,false);\r\n    SetAccessorySocketGrade(this,this->m_alSockets[0] + -1);\r\n    ModifyPoints(this,true);\r\n    time = *(DWORD *)(aiAccessorySocketDegradeTime + this->m_alSockets[0] * 4);\r\n    if (test_server != 0) {\r\n      time = (int)time / 0x3c;\r\n    }\r\n    SetAccessorySocketDownGradeTime(this,time);\r\n    if (time != 0) {\r\n      StartAccessorySocketExpireEvent(this);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

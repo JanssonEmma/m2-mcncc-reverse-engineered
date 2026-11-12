@@ -1,0 +1,227 @@
+{
+  "program": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"name\": \"game\",\n  \"project_path\": \"/game\",\n  \"executable_path\": \"/PROJECT_ROOT/Original Binaries/game\",\n  \"executable_format\": \"Executable and Linking Format (ELF)\",\n  \"language_id\": \"x86:LE:32:default\",\n  \"compiler_spec\": \"gcc\",\n  \"processor\": \"x86\",\n  \"endian\": \"little\",\n  \"pointer_size\": 4,\n  \"image_base\": \"08048000\",\n  \"min_address\": \"08048000\",\n  \"max_address\": \"_elfSectionHeaders::00000527\",\n  \"memory_size\": 57875566,\n  \"function_count\": 7238,\n  \"external_function_count\": 266,\n  \"entry_points\": [\n    \"08321640\",\n    \"08321650\",\n    \"08321690\",\n    \"08321698\",\n    \"081f5ec0\",\n    \"083216a8\",\n    \"083216ac\",\n    \"083216b0\",\n    \"08320ce8\",\n    \"083216f0\",\n    \"08321718\",\n    \"0832171c\",\n    \"08321720\",\n    \"08321728\",\n    \"0805d0e0\",\n    \"08321750\",\n    \"0804ba40\",\n    \"08321760\",\n    \"083223b4\",\n    \"0842e394\",\n    \"0805d170\",\n    \"081243d0\",\n    \"083223b8\",\n    \"0823b000\",\n    \"083223c0\",\n    \"083223d0\",\n    \"081f5ec4\",\n    \"08321630\",\n    \"081ab590\",\n    \"081f5c64\",\n    \"0805d1a0\",\n    \"083223d4\"\n  ],\n  \"md5\": \"d49d0498837bbbe7a5cb34b1fc41b561\",\n  \"sha256\": \"61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c\"\n}"
+      }
+    ],
+    "structuredContent": {
+      "name": "game",
+      "project_path": "/game",
+      "executable_path": "/PROJECT_ROOT/Original Binaries/game",
+      "executable_format": "Executable and Linking Format (ELF)",
+      "language_id": "x86:LE:32:default",
+      "compiler_spec": "gcc",
+      "processor": "x86",
+      "endian": "little",
+      "pointer_size": 4,
+      "image_base": "08048000",
+      "min_address": "08048000",
+      "max_address": "_elfSectionHeaders::00000527",
+      "memory_size": 57875566,
+      "function_count": 7238,
+      "external_function_count": 266,
+      "entry_points": [
+        "08321640",
+        "08321650",
+        "08321690",
+        "08321698",
+        "081f5ec0",
+        "083216a8",
+        "083216ac",
+        "083216b0",
+        "08320ce8",
+        "083216f0",
+        "08321718",
+        "0832171c",
+        "08321720",
+        "08321728",
+        "0805d0e0",
+        "08321750",
+        "0804ba40",
+        "08321760",
+        "083223b4",
+        "0842e394",
+        "0805d170",
+        "081243d0",
+        "083223b8",
+        "0823b000",
+        "083223c0",
+        "083223d0",
+        "081f5ec4",
+        "08321630",
+        "081ab590",
+        "081f5c64",
+        "0805d1a0",
+        "083223d4"
+      ],
+      "md5": "d49d0498837bbbe7a5cb34b1fc41b561",
+      "sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c"
+    },
+    "isError": false
+  },
+  "functions": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7de0",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"reap\",\n    \"address\": \"081b7de0\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nvoid reap(int sig)\\r\\n\\r\\n{\\r\\n  __pid_t _Var1;\\r\\n  \\r\\n  do {\\r\\n    _Var1 = waitpid(-1,(int *)0x0,1);\\r\\n  } while (0 < _Var1);\\r\\n  signal(0x14,reap);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "reap",
+              "address": "081b7de0"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid reap(int sig)\r\n\r\n{\r\n  __pid_t _Var1;\r\n  \r\n  do {\r\n    _Var1 = waitpid(-1,(int *)0x0,1);\r\n  } while (0 < _Var1);\r\n  signal(0x14,reap);\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7e30",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"checkpointing\",\n    \"address\": \"081b7e30\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nvoid checkpointing(int sig)\\r\\n\\r\\n{\\r\\n  if (tics != 0) {\\r\\n    tics = 0;\\r\\n    return;\\r\\n  }\\r\\n  _sys_err(\\\"checkpointing\\\",0x1c,\\\"CHECKPOINT shutdown: tics did not updated.\\\");\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n  abort();\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "checkpointing",
+              "address": "081b7e30"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid checkpointing(int sig)\r\n\r\n{\r\n  if (tics != 0) {\r\n    tics = 0;\r\n    return;\r\n  }\r\n  _sys_err(\"checkpointing\",0x1c,\"CHECKPOINT shutdown: tics did not updated.\");\r\n                    /* WARNING: Subroutine does not return */\r\n  abort();\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7e70",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"hupsig\",\n    \"address\": \"081b7e70\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nvoid hupsig(int sig)\\r\\n\\r\\n{\\r\\n  shutdowned = 1;\\r\\n  _sys_err(\\\"hupsig\\\",0x27,\\\"SIGHUP, SIGINT, SIGTERM signal has been received. shutting down.\\\");\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "hupsig",
+              "address": "081b7e70"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid hupsig(int sig)\r\n\r\n{\r\n  shutdowned = 1;\r\n  _sys_err(\"hupsig\",0x27,\"SIGHUP, SIGINT, SIGTERM signal has been received. shutting down.\");\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7eb0",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"usrsig\",\n    \"address\": \"081b7eb0\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nvoid usrsig(int sig)\\r\\n\\r\\n{\\r\\n  core_dump_unix(\\\"signal.c\\\",0x2c);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "usrsig",
+              "address": "081b7eb0"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid usrsig(int sig)\r\n\r\n{\r\n  core_dump_unix(\"signal.c\",0x2c);\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7ed0",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"signal_timer_disable\",\n    \"address\": \"081b7ed0\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\\r\\n\\r\\nvoid signal_timer_disable(void)\\r\\n\\r\\n{\\r\\n  itimerval itime;\\r\\n  \\r\\n                    /* Unresolved local var: timeval interval@[DW_OP_reg0(EAX)] */\\r\\n  itime.it_interval.tv_sec = 0;\\r\\n  itime.it_value.tv_sec = 0;\\r\\n  itime.it_interval.tv_usec = 0;\\r\\n  itime.it_value.tv_usec = 0;\\r\\n  setitimer(ITIMER_VIRTUAL,(itimerval *)&itime,(itimerval *)0x0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "signal_timer_disable",
+              "address": "081b7ed0"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid signal_timer_disable(void)\r\n\r\n{\r\n  itimerval itime;\r\n  \r\n                    /* Unresolved local var: timeval interval@[DW_OP_reg0(EAX)] */\r\n  itime.it_interval.tv_sec = 0;\r\n  itime.it_value.tv_sec = 0;\r\n  itime.it_interval.tv_usec = 0;\r\n  itime.it_value.tv_usec = 0;\r\n  setitimer(ITIMER_VIRTUAL,(itimerval *)&itime,(itimerval *)0x0);\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7f10",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"signal_timer_enable\",\n    \"address\": \"081b7f10\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nvoid signal_timer_enable(int sec)\\r\\n\\r\\n{\\r\\n  itimerval itime;\\r\\n  \\r\\n                    /* Unresolved local var: timeval interval@[DW_OP_reg0(EAX)] */\\r\\n  itime.it_interval.tv_usec = 0;\\r\\n  itime.it_value.tv_usec = 0;\\r\\n  itime.it_interval.tv_sec = sec;\\r\\n  itime.it_value.tv_sec = sec;\\r\\n  setitimer(ITIMER_VIRTUAL,(itimerval *)&itime,(itimerval *)0x0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "signal_timer_enable",
+              "address": "081b7f10"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid signal_timer_enable(int sec)\r\n\r\n{\r\n  itimerval itime;\r\n  \r\n                    /* Unresolved local var: timeval interval@[DW_OP_reg0(EAX)] */\r\n  itime.it_interval.tv_usec = 0;\r\n  itime.it_value.tv_usec = 0;\r\n  itime.it_interval.tv_sec = sec;\r\n  itime.it_value.tv_sec = sec;\r\n  setitimer(ITIMER_VIRTUAL,(itimerval *)&itime,(itimerval *)0x0);\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "0x81b7f50",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"signal_setup\",\n    \"address\": \"081b7f50\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\\r\\n\\r\\nvoid signal_setup(void)\\r\\n\\r\\n{\\r\\n  signal_timer_enable(0x1e);\\r\\n  signal(0x1a,checkpointing);\\r\\n  signal(1,hupsig);\\r\\n  signal(0x14,reap);\\r\\n  signal(2,hupsig);\\r\\n  signal(0xf,hupsig);\\r\\n  signal(0xd,(__sighandler_t)0x1);\\r\\n  signal(0xe,(__sighandler_t)0x1);\\r\\n  signal(0x1e,usrsig);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "signal_setup",
+              "address": "081b7f50"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid signal_setup(void)\r\n\r\n{\r\n  signal_timer_enable(0x1e);\r\n  signal(0x1a,checkpointing);\r\n  signal(1,hupsig);\r\n  signal(0x14,reap);\r\n  signal(2,hupsig);\r\n  signal(0xf,hupsig);\r\n  signal(0xd,(__sighandler_t)0x1);\r\n  signal(0xe,(__sighandler_t)0x1);\r\n  signal(0x1e,usrsig);\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    }
+  ]
+}

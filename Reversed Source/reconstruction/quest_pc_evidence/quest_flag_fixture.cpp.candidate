@@ -1,0 +1,11 @@
+// TEST ONLY owning-Lua/NPC boundary. Real manager ctor and PC lifecycle now linked.
+#include "../../game/src/questmanager.h"
+#include <cassert>
+#include <cstdlib>
+namespace quest {
+CQuestManager::~CQuestManager() {
+    assert(L==0 && m_mapNPC.empty()); // Never pretend to close a VM/NPC script registry.
+    // Complete member destruction follows, including ACTUAL PC timer cleanup.
+}
+NPC::~NPC() { std::abort(); }
+}

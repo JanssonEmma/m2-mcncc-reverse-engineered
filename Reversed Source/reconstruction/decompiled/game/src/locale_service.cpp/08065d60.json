@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08065d60",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "check_name_euckr",
+      "address": "08065d60"
+    },
+    "code": "\r\nint check_name_euckr(char *str)\r\n\r\n{\r\n  size_t sVar1;\r\n  int iVar2;\r\n  char cVar3;\r\n  char *pcVar4;\r\n  \r\n                    /* Unresolved local var: int code@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: char * tmp@[DW_OP_reg3(EBX)] */\r\n  if (((str == (char *)0x0) || (*str == '\\0')) || (sVar1 = strlen(str), sVar1 < 2)) {\r\n    return 0;\r\n  }\r\n  cVar3 = *str;\r\n  pcVar4 = str;\r\n  while (cVar3 != '\\0') {\r\n    if (((int)cVar3 & 0xe0U) < 0x91) {\r\n      iVar2 = isspace((int)cVar3);\r\n      if (iVar2 != 0) {\r\n        return 0;\r\n      }\r\n      cVar3 = *pcVar4;\r\n    }\r\n    if (((int)cVar3 & 0xe0U) < 0x91) {\r\n      iVar2 = isdigit((int)cVar3);\r\n      if (iVar2 == 0) {\r\n        cVar3 = *pcVar4;\r\n        goto LAB_08065dc2;\r\n      }\r\n    }\r\n    else {\r\nLAB_08065dc2:\r\n      if (((int)cVar3 & 0xe0U) < 0x91) {\r\n        iVar2 = isalpha((int)cVar3);\r\n        if (iVar2 != 0) goto LAB_08065de4;\r\n        cVar3 = *pcVar4;\r\n      }\r\n      if (0x18 < (int)cVar3 + 0x50U) {\r\n        return 0;\r\n      }\r\n      pcVar4 = pcVar4 + 1;\r\n      if (*pcVar4 == '\\0') break;\r\n    }\r\nLAB_08065de4:\r\n    pcVar4 = pcVar4 + 1;\r\n    cVar3 = *pcVar4;\r\n  }\r\n  iVar2 = check_name_independent(str);\r\n  return iVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

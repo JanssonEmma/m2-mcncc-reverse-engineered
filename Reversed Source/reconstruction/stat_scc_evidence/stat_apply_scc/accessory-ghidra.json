@@ -1,0 +1,26 @@
+[
+  {
+    "function": {
+      "name": "CItem::AccessorySocketDegrade",
+      "address": "08168c10"
+    },
+    "code": "\r\n/* DWARF original prototype: void AccessorySocketDegrade(CItem * this) */\r\n\r\nvoid __thiscall CItem::AccessorySocketDegrade(CItem *this)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  char *format;\r\n  DWORD time;\r\n  \r\n  if (0 < this->m_alSockets[0]) {\r\n                    /* Unresolved local var: LPCHARACTER ch@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int iDownTime@[DW_OP_reg3(EBX)] */\r\n    this_00 = this->m_pOwner;\r\n    if (this_00 != (CHARACTER *)0x0) {\r\n      pTVar1 = this->m_pProto;\r\n      format = locale_find(&DAT_0822bd20,g_iUseLocale);\r\n      CHARACTER::ChatPacket\r\n                (this_00,'\\x01',format,\r\n                 (uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1);\r\n    }\r\n    ModifyPoints(this,false);\r\n    SetAccessorySocketGrade(this,this->m_alSockets[0] + -1);\r\n    ModifyPoints(this,true);\r\n    time = *(DWORD *)(aiAccessorySocketDegradeTime + this->m_alSockets[0] * 4);\r\n    if (test_server != 0) {\r\n      time = (int)time / 0x3c;\r\n    }\r\n    SetAccessorySocketDownGradeTime(this,time);\r\n    if (time != 0) {\r\n      StartAccessorySocketExpireEvent(this);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "accessory_socket_expire_event",
+      "address": "081689a0"
+    },
+    "code": "\r\nlong accessory_socket_expire_event(EVENT *event)\r\n\r\n{\r\n  DWORD time;\r\n  DWORD *pDVar1;\r\n  LPITEM this;\r\n  long lVar2;\r\n  \r\n                    /* Unresolved local var: item_vid_event_info * info@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: LPITEM item@[DW_OP_reg6(ESI)] */\r\n  pDVar1 = event->info;\r\n  if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  this = ITEM_MANAGER::FindByVID(singleton<ITEM_MANAGER>::ms_singleton,*pDVar1);\r\n                    /* Unresolved local var: int iTime@[DW_OP_reg3(EBX)] */\r\n  if ((this->m_alSockets[2] < 2) || (time = this->m_alSockets[2] - 0x3c, (int)time < 2)) {\r\n    CItem::SetAccessorySocketExpireEvent(this,(LPEVENT)0x0);\r\n    CItem::AccessorySocketDegrade(this);\r\n    lVar2 = 0;\r\n  }\r\n  else {\r\n    CItem::SetAccessorySocketDownGradeTime(this,time);\r\n    if ((int)time < 0x3d) {\r\n      lVar2 = time * passes_per_sec;\r\n    }\r\n    else {\r\n      lVar2 = passes_per_sec * 0x3c;\r\n    }\r\n  }\r\n  return lVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CItem::StartAccessorySocketExpireEvent",
+      "address": "08168a90"
+    },
+    "code": "\r\n/* DWARF original prototype: void StartAccessorySocketExpireEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StartAccessorySocketExpireEvent(CItem *this)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  DWORD dwInfoID;\r\n  LPEVENT pkEvent;\r\n  item_vid_event_info *info;\r\n  \r\n                    /* Unresolved local var: int iSec@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  bVar1 = IsAccessoryForSocket(this);\r\n  if ((((bVar1) && (this->m_pkAccessorySocketExpireEvent == (LPEVENT)0x0)) &&\r\n      (this->m_alSockets[1] != 0)) && (this->m_alSockets[0] != 0)) {\r\n    iVar2 = this->m_alSockets[2];\r\n    SetAccessorySocketExpireEvent(this,(LPEVENT)0x0);\r\n    if (iVar2 < 2) {\r\n      iVar2 = 5;\r\n    }\r\n    else {\r\n      iVar2 = MIN(iVar2,0x3c);\r\n    }\r\n    dwInfoID = __AllocEventInfo(4,&info);\r\n    info->item_vid = this->m_dwVID;\r\n    pkEvent = event_create_ex(accessory_socket_expire_event,dwInfoID,iVar2 * passes_per_sec,\r\n                              \"item.cpp\",0x4e8);\r\n    SetAccessorySocketExpireEvent(this,pkEvent);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

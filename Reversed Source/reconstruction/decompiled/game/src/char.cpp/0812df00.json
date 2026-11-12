@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812df00",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x812df00",
+    "function": {
+      "name": "CHARACTER::GetPolymorphPoint",
+      "address": "0812df00"
+    },
+    "signature": "long GetPolymorphPoint(CHARACTER * this, BYTE type)",
+    "code": "\r\n/* DWARF original prototype: long GetPolymorphPoint(CHARACTER * this, BYTE type) */\r\n\r\nlong __thiscall CHARACTER::GetPolymorphPoint(CHARACTER *this,BYTE type)\r\n\r\n{\r\n  byte bVar1;\r\n  DWORD dwVnum;\r\n  BYTE BVar2;\r\n  long lVar3;\r\n  CMob *pCVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  BYTE type_local;\r\n  \r\n  dwVnum = this->m_dwPolymorphRace;\r\n  if ((dwVnum == 0) || (this->m_bPolyMaintainStat != false)) {\r\nLAB_0812df2c:\r\n    lVar3 = GetPoint(this,type);\r\n    return lVar3;\r\n  }\r\n                    /* Unresolved local var: DWORD dwMobVnum@[???]\r\n                       Unresolved local var: CMob * pMob@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int iPower@[DW_OP_reg7(EDI)] */\r\n  if (singleton<CMobManager>::ms_singleton == (CMobManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar4 = CMobManager::Get(singleton<CMobManager>::ms_singleton,dwVnum);\r\n  iVar5 = GetPolymorphPower(this);\r\n  if (pCVar4 == (CMob *)0x0) goto LAB_0812df2c;\r\n  if (type == '\\r') {\r\n    iVar5 = (uint)(pCVar4->m_table).bCon * iVar5;\r\n    iVar6 = iVar5 / 100 + (iVar5 >> 0x1f);\r\n    BVar2 = '\\r';\r\nLAB_0812dfc6:\r\n    iVar6 = iVar6 - (iVar5 >> 0x1f);\r\n    goto LAB_0812dfc8;\r\n  }\r\n  if (type < 0xe) {\r\n    if (type != '\\f') goto LAB_0812df2c;\r\n    BVar2 = GetJob(this);\r\n    if (BVar2 != '\\x03') {\r\n      BVar2 = GetJob(this);\r\n      if ((BVar2 != '\\x02') || ((this->m_points).skill_group != '\\x02')) {\r\n        iVar5 = (uint)(pCVar4->m_table).bStr * iVar5;\r\n        iVar6 = iVar5 / 100 + (iVar5 >> 0x1f);\r\n        BVar2 = '\\f';\r\n        goto LAB_0812dfc6;\r\n      }\r\n    }\r\n    bVar1 = (pCVar4->m_table).bStr;\r\nLAB_0812dfed:\r\n    BVar2 = '\\x0f';\r\n  }\r\n  else {\r\n    if (type != '\\x0e') {\r\n      if (type != '\\x0f') goto LAB_0812df2c;\r\n      bVar1 = (pCVar4->m_table).bInt;\r\n      goto LAB_0812dfed;\r\n    }\r\n    bVar1 = (pCVar4->m_table).bDex;\r\n    BVar2 = '\\x0e';\r\n  }\r\n  iVar6 = (int)((uint)bVar1 * iVar5) / 100;\r\nLAB_0812dfc8:\r\n  lVar3 = GetPoint(this,BVar2);\r\n  return lVar3 + iVar6;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

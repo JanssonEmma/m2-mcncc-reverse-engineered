@@ -1,0 +1,12 @@
+// C++03, original int/long32 x86 arithmetic. Include <string.h>.
+namespace apply_item_detail {
+typedef char require_int32[sizeof(int)==4?1:-1];
+typedef char require_long32[sizeof(long)==4?1:-1];
+inline int bits(unsigned int value) { int result; memcpy(&result,&value,4); return result; }
+inline int add(int a,int b) { return bits(static_cast<unsigned int>(a)+static_cast<unsigned int>(b)); }
+inline int sub(int a,int b) { return bits(static_cast<unsigned int>(a)-static_cast<unsigned int>(b)); }
+inline int mul(int a,int b) { return bits(static_cast<unsigned int>(a)*static_cast<unsigned int>(b)); }
+inline int negate(int value) { return bits(0u-static_cast<unsigned int>(value)); }
+inline int removal(int value,bool add) { return add?value:negate(value); }
+inline int skill(int value,bool add) { return add?value:bits(static_cast<unsigned int>(value)^0x00800000u); }
+}

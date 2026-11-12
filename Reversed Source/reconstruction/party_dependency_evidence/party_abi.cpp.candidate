@@ -1,0 +1,23 @@
+// Target record ABI checks; run only on a32-bit compiler with old COW-string ABI.
+#include <cstddef>
+#include <map>
+#include <string>
+#define private public
+#define protected public
+#include "../../game/src/party.h"
+#undef protected
+#undef private
+#include "../../game/src/packet.h"
+#include "../../common/packet.h"
+typedef char party_member_size[(sizeof(CParty::SMember)==12)?1:-1];
+typedef char party_member_char_offset[(offsetof(CParty::SMember,pCharacter)==0)?1:-1];
+typedef char party_member_near_offset[(offsetof(CParty::SMember,bNear)==4)?1:-1];
+typedef char party_member_role_offset[(offsetof(CParty::SMember,bRole)==5)?1:-1];
+typedef char party_member_level_offset[(offsetof(CParty::SMember,bLevel)==6)?1:-1];
+typedef char party_member_name_offset[(offsetof(CParty::SMember,strName)==8)?1:-1];
+typedef char party_db_level_packet_size[(sizeof(TPacketPartySetMemberLevel)==9)?1:-1];
+typedef char party_update_packet_size[(sizeof(TPacketGCPartyUpdate)==21)?1:-1];
+void (CParty::*party_level_signature)(DWORD,BYTE)=&CParty::RequestSetMemberLevel;
+void (CParty::*party_info_signature)(CHARACTER*)=&CParty::SendPartyInfoOneToAll;
+// Complete class offsets depend on historic GCC3 map12-byte layout; see layout.json.
+// Current libstdc++ map ABI may differ even under _GLIBCXX_USE_CXX11_ABI=0.

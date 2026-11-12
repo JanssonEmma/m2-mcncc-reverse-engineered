@@ -1,0 +1,72 @@
+{
+  "checkpoint": 85,
+  "production_writes": false,
+  "full_runtime_commands": 93,
+  "original_function_mapping_addresses": [
+    "081681e0",
+    "08186ec0",
+    "08187060",
+    "081874d0"
+  ],
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-85-validation.receipt.json": "1f6004cfe8c23a612f15a2297dd406e00331c3cff5aa73ea5acff1064654e320",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\weighted-attribute-focused-retry.receipt.json": "f750d410875365b3296792a8d5495969aa9d816df48538bc3ecfd841f44c90b0",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\weighted-attribute-o2.receipt.json": "19c4047d71e8471c277a107640146d92a942127ac5bc54b191436fa5754074fa",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\weighted-attribute-m32.log": "952508f00631363106b985c3cadb273d39fa1e3440ffa0ed10ea6cc2d0bf1781"
+  },
+  "source_guards": {
+    "common/tables.h": "415947d8b7194473381c9fd8709213c3d12c1a4ed3693b152c413a3ec50f0771",
+    "game/src/constants.h": "6085aca38b6e2f4331c5fab64fa56e7ac586f69cfeb4301daef5fb6007820ac5",
+    "game/src/constants.cpp": "4f19e956998e71835bdf06efafcd214649cd5b78a5688945add6f8b3e952fa5c",
+    "game/src/item.h": "8a538b8e8a5e828a9552bc34cc12f53e6a9a432d90c906a26772ddd9d525f48c",
+    "game/src/item_attribute.cpp": "19e74475e4b6772218bd38474bae7c19c2ee86be3c5102f5e2a42a385b053fcf",
+    "game/src/item.cpp": "4e8d434ad5e08eaeff397739472f9ec59390af2aef3a04348766b53d5d2655de",
+    "reconstruction/tests/weighted_attribute_regression.cpp": "67861615c0aba8ff5fd4abff7aa61e883e9b6e11e03854956a2d89f7519a64bb",
+    "reconstruction/tests/weighted_attribute_abi.cpp": "b7f2ad8018c6a6719d62395b3bd2a31ddfe896701f61eb6da44b30aec9cf5800",
+    "reconstruction/tests/weighted_desc_output_syscalls.c": "53767a1f045dc551b192d49cc0953279564616548052e5f08ff05bd5ee1212f3",
+    "reconstruction/tests/Makefile": "022db546e9ea285633c82b9aadbfc5adf5e980ce0898a212ad7ea8f6f909ef43"
+  },
+  "source_guard_review": {
+    "review": "Reviewed ONLY TEST actual locale.hpp declaration include after config.h; original g_iUseLocale declaration owner, no stand-in. Other9 files byte-exact frozen weighted payload. No further changes accepted.",
+    "guards": {
+      "common/tables.h": "415947d8b7194473381c9fd8709213c3d12c1a4ed3693b152c413a3ec50f0771",
+      "game/src/constants.h": "6085aca38b6e2f4331c5fab64fa56e7ac586f69cfeb4301daef5fb6007820ac5",
+      "game/src/constants.cpp": "4f19e956998e71835bdf06efafcd214649cd5b78a5688945add6f8b3e952fa5c",
+      "game/src/item.h": "8a538b8e8a5e828a9552bc34cc12f53e6a9a432d90c906a26772ddd9d525f48c",
+      "game/src/item_attribute.cpp": "19e74475e4b6772218bd38474bae7c19c2ee86be3c5102f5e2a42a385b053fcf",
+      "game/src/item.cpp": "4e8d434ad5e08eaeff397739472f9ec59390af2aef3a04348766b53d5d2655de",
+      "reconstruction/tests/weighted_attribute_regression.cpp": "67861615c0aba8ff5fd4abff7aa61e883e9b6e11e03854956a2d89f7519a64bb",
+      "reconstruction/tests/weighted_attribute_abi.cpp": "b7f2ad8018c6a6719d62395b3bd2a31ddfe896701f61eb6da44b30aec9cf5800",
+      "reconstruction/tests/weighted_desc_output_syscalls.c": "53767a1f045dc551b192d49cc0953279564616548052e5f08ff05bd5ee1212f3",
+      "reconstruction/tests/Makefile": "022db546e9ea285633c82b9aadbfc5adf5e980ce0898a212ad7ea8f6f909ef43"
+    },
+    "specific_fix_review": {
+      "review": "TEST ONLY add actual locale.hpp declaration owner for g_iUseLocale; no global stand-in or production changes",
+      "target": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\weighted_attribute_regression.cpp",
+      "before": "9ddfcec765a96f78b1cdedc6b47952c8636388c075ecfa9195f445284cd22391",
+      "after": "67861615c0aba8ff5fd4abff7aa61e883e9b6e11e03854956a2d89f7519a64bb"
+    }
+  },
+  "baseline_overrides_sha256": "6980e9f02c1319e8d3f62e346f67ba6e34d0647874d9476712bf425621ff146b",
+  "baseline_validation_status_sha256": "271609a693538731deb789728642a06e5f38119e6d71020619c4766d7726070e",
+  "baseline_review": {
+    "workspace_only": true,
+    "root": "PROJECT_ROOT\\Reversed Source",
+    "existing_content_checks": {
+      "common/tables.h": "Existing contents exactly preserved after newline normalization; only guarded fragment inserted.",
+      "game/src/constants.h": "Existing contents exactly preserved after newline normalization; only guarded fragment inserted.",
+      "game/src/item.h": "Full existing class fields/virtual/API exactly preserved;4 public declarations only.",
+      "game/src/constants.cpp": "Full previous body exactly preserved; additive fragment only.",
+      "game/src/item.cpp": "Full previous body exactly preserved; additive fragment only.",
+      "game/src/item_attribute.cpp": "All previous bodies preserved;3 complete methods + includes +2 private integer wrap helpers added."
+    },
+    "TSkillTable_full1475_field_list_sha256": "6f7ad447ed705d1d58b008d4cf23f805eb378e8f6b535e79c0295d8a91da4f0b",
+    "TSkillTable_preserved_byte_for_byte_after_newline_normalization": true,
+    "full_SItemAttrTable69_fields": true,
+    "existing_runtime_names_order_preserved": 92,
+    "staged_runtime_names": 93,
+    "all_other_records_preserved": true,
+    "validation": "Source/data/graph audit only; no builds/runtime."
+  },
+  "note": "Checkpoint85: complete AddAttr/PutAttributeWithLevel/PutAttribute/AlterToMagicItem, both real by-value attribute maps, packed69-byte full row and exact High/Low probability tables integrate additively. Existing1475-byte TSkillTable and all prior records/APIs remain intact. Focused weighted/itemattribute/skillfactory+ABI, distinct-object optimized real application/SQL/event graph, parent-confirmed standalone strict32 exit0 and all93 actually executed runtimes+ABI pass. Original zero-total/zero-weight, level0, key0 sentinel, signed32 wrap, short narrowing and independent locale chance/callback behavior retained. Typed synthetic row fixtures prove selection, not shipped DB content or fake Boot; complete original Boot is evidence only. Unique expiration still reaches unresolved complete removal/safebox/equipment/stat SCC; full factory/quest/horse/server completion remains unfinished."
+}

@@ -1,0 +1,694 @@
+{
+  "CG": [
+    {
+      "header": 64,
+      "size": 1,
+      "name": "Text",
+      "sequence": false,
+      "wire_minimum": 1
+    },
+    {
+      "header": 255,
+      "size": 13,
+      "name": "Handshake",
+      "sequence": false,
+      "wire_minimum": 13
+    },
+    {
+      "header": 252,
+      "size": 13,
+      "name": "TimeSync",
+      "sequence": true,
+      "wire_minimum": 14
+    },
+    {
+      "header": 100,
+      "size": 9,
+      "name": "MarkLogin",
+      "sequence": false,
+      "wire_minimum": 9
+    },
+    {
+      "header": 104,
+      "size": 5,
+      "name": "MarkIdxList",
+      "sequence": false,
+      "wire_minimum": 5
+    },
+    {
+      "header": 101,
+      "size": 257,
+      "name": "MarkCrcList",
+      "sequence": false,
+      "wire_minimum": 257
+    },
+    {
+      "header": 102,
+      "size": 773,
+      "name": "MarkUpload",
+      "sequence": false,
+      "wire_minimum": 773
+    },
+    {
+      "header": 112,
+      "size": 7,
+      "name": "SymbolUpload",
+      "sequence": false,
+      "wire_minimum": 7
+    },
+    {
+      "header": 113,
+      "size": 13,
+      "name": "SymbolCRC",
+      "sequence": false,
+      "wire_minimum": 13
+    },
+    {
+      "header": 1,
+      "size": 49,
+      "name": "Login",
+      "sequence": true,
+      "wire_minimum": 50
+    },
+    {
+      "header": 109,
+      "size": 52,
+      "name": "Login2",
+      "sequence": true,
+      "wire_minimum": 53
+    },
+    {
+      "header": 111,
+      "size": 65,
+      "name": "Login3",
+      "sequence": true,
+      "wire_minimum": 66
+    },
+    {
+      "header": 2,
+      "size": 8,
+      "name": "Attack",
+      "sequence": true,
+      "wire_minimum": 9
+    },
+    {
+      "header": 3,
+      "size": 3,
+      "name": "Chat",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 19,
+      "size": 28,
+      "name": "Whisper",
+      "sequence": true,
+      "wire_minimum": 29
+    },
+    {
+      "header": 6,
+      "size": 2,
+      "name": "Select",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 4,
+      "size": 34,
+      "name": "Create",
+      "sequence": true,
+      "wire_minimum": 35
+    },
+    {
+      "header": 5,
+      "size": 10,
+      "name": "Delete",
+      "sequence": true,
+      "wire_minimum": 11
+    },
+    {
+      "header": 10,
+      "size": 1,
+      "name": "EnterGame",
+      "sequence": true,
+      "wire_minimum": 2
+    },
+    {
+      "header": 11,
+      "size": 2,
+      "name": "ItemUse",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 12,
+      "size": 6,
+      "name": "ItemDrop",
+      "sequence": true,
+      "wire_minimum": 7
+    },
+    {
+      "header": 20,
+      "size": 7,
+      "name": "ItemDrop2",
+      "sequence": true,
+      "wire_minimum": 8
+    },
+    {
+      "header": 13,
+      "size": 4,
+      "name": "ItemMove",
+      "sequence": true,
+      "wire_minimum": 5
+    },
+    {
+      "header": 15,
+      "size": 5,
+      "name": "ItemPickup",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 16,
+      "size": 4,
+      "name": "QuickslotAdd",
+      "sequence": true,
+      "wire_minimum": 5
+    },
+    {
+      "header": 17,
+      "size": 2,
+      "name": "QuickslotDel",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 18,
+      "size": 3,
+      "name": "QuickslotSwap",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 50,
+      "size": 2,
+      "name": "Shop",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 26,
+      "size": 5,
+      "name": "OnClick",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 27,
+      "size": 7,
+      "name": "Exchange",
+      "sequence": true,
+      "wire_minimum": 8
+    },
+    {
+      "header": 28,
+      "size": 2,
+      "name": "Position",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 29,
+      "size": 2,
+      "name": "ScriptAnswer",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 66,
+      "size": 5,
+      "name": "ScriptButton",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 30,
+      "size": 66,
+      "name": "QuestInputString",
+      "sequence": true,
+      "wire_minimum": 67
+    },
+    {
+      "header": 31,
+      "size": 6,
+      "name": "QuestConfirm",
+      "sequence": true,
+      "wire_minimum": 7
+    },
+    {
+      "header": 7,
+      "size": 16,
+      "name": "Move",
+      "sequence": true,
+      "wire_minimum": 17
+    },
+    {
+      "header": 8,
+      "size": 3,
+      "name": "SyncPosition",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 51,
+      "size": 13,
+      "name": "FlyTarget",
+      "sequence": true,
+      "wire_minimum": 14
+    },
+    {
+      "header": 53,
+      "size": 13,
+      "name": "AddFlyTarget",
+      "sequence": true,
+      "wire_minimum": 14
+    },
+    {
+      "header": 54,
+      "size": 2,
+      "name": "Shoot",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 52,
+      "size": 9,
+      "name": "UseSkill",
+      "sequence": true,
+      "wire_minimum": 10
+    },
+    {
+      "header": 60,
+      "size": 3,
+      "name": "UseItemToItem",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 61,
+      "size": 5,
+      "name": "Target",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 65,
+      "size": 1,
+      "name": "Warp",
+      "sequence": true,
+      "wire_minimum": 2
+    },
+    {
+      "header": 67,
+      "size": 2,
+      "name": "Messenger",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 74,
+      "size": 5,
+      "name": "PartyRemove",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 72,
+      "size": 5,
+      "name": "PartyInvite",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 73,
+      "size": 6,
+      "name": "PartyInviteAnswer",
+      "sequence": true,
+      "wire_minimum": 7
+    },
+    {
+      "header": 75,
+      "size": 7,
+      "name": "PartySetState",
+      "sequence": true,
+      "wire_minimum": 8
+    },
+    {
+      "header": 76,
+      "size": 6,
+      "name": "PartyUseSkill",
+      "sequence": true,
+      "wire_minimum": 7
+    },
+    {
+      "header": 78,
+      "size": 2,
+      "name": "PartyParam",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 90,
+      "size": 2,
+      "name": "Empire",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 71,
+      "size": 3,
+      "name": "SafeboxCheckout",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 70,
+      "size": 3,
+      "name": "SafeboxCheckin",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 77,
+      "size": 4,
+      "name": "SafeboxItemMove",
+      "sequence": true,
+      "wire_minimum": 5
+    },
+    {
+      "header": 80,
+      "size": 2,
+      "name": "Guild",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 81,
+      "size": 14,
+      "name": "AnswerMakeGuild",
+      "sequence": true,
+      "wire_minimum": 15
+    },
+    {
+      "header": 82,
+      "size": 2,
+      "name": "Fishing",
+      "sequence": true,
+      "wire_minimum": 3
+    },
+    {
+      "header": 83,
+      "size": 7,
+      "name": "ItemGive",
+      "sequence": true,
+      "wire_minimum": 8
+    },
+    {
+      "header": 105,
+      "size": 257,
+      "name": "Hack",
+      "sequence": true,
+      "wire_minimum": 258
+    },
+    {
+      "header": 55,
+      "size": 35,
+      "name": "MyShop",
+      "sequence": true,
+      "wire_minimum": 36
+    },
+    {
+      "header": 96,
+      "size": 3,
+      "name": "Refine",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 106,
+      "size": 27,
+      "name": "ChangeName",
+      "sequence": true,
+      "wire_minimum": 28
+    },
+    {
+      "header": 107,
+      "size": 28,
+      "name": "SMS",
+      "sequence": true,
+      "wire_minimum": 29
+    },
+    {
+      "header": 253,
+      "size": 67,
+      "name": "Version",
+      "sequence": true,
+      "wire_minimum": 68
+    },
+    {
+      "header": 241,
+      "size": 67,
+      "name": "Version",
+      "sequence": true,
+      "wire_minimum": 68
+    },
+    {
+      "header": 103,
+      "size": 14,
+      "name": "CRCReport",
+      "sequence": true,
+      "wire_minimum": 15
+    },
+    {
+      "header": 108,
+      "size": 10,
+      "name": "MatrixCard",
+      "sequence": true,
+      "wire_minimum": 11
+    },
+    {
+      "header": 254,
+      "size": 1,
+      "name": "Pong",
+      "sequence": true,
+      "wire_minimum": 2
+    },
+    {
+      "header": 69,
+      "size": 3,
+      "name": "MallCheckout",
+      "sequence": true,
+      "wire_minimum": 4
+    },
+    {
+      "header": 114,
+      "size": 5,
+      "name": "ScriptSelectItem",
+      "sequence": true,
+      "wire_minimum": 6
+    },
+    {
+      "header": 201,
+      "size": 6,
+      "name": "RunupMatrixAnswer",
+      "sequence": true,
+      "wire_minimum": 7
+    },
+    {
+      "header": 202,
+      "size": 10,
+      "name": "PasspodAnswer",
+      "sequence": true,
+      "wire_minimum": 11
+    }
+  ],
+  "GG": [
+    {
+      "header": 9,
+      "size": 4,
+      "name": "Setup",
+      "sequence": false,
+      "wire_minimum": 4
+    },
+    {
+      "header": 1,
+      "size": 33,
+      "name": "Login",
+      "sequence": false,
+      "wire_minimum": 33
+    },
+    {
+      "header": 2,
+      "size": 26,
+      "name": "Logout",
+      "sequence": false,
+      "wire_minimum": 26
+    },
+    {
+      "header": 3,
+      "size": 30,
+      "name": "Relay",
+      "sequence": false,
+      "wire_minimum": 30
+    },
+    {
+      "header": 4,
+      "size": 5,
+      "name": "Notice",
+      "sequence": false,
+      "wire_minimum": 5
+    },
+    {
+      "header": 5,
+      "size": 1,
+      "name": "Shutdown",
+      "sequence": false,
+      "wire_minimum": 1
+    },
+    {
+      "header": 6,
+      "size": 6,
+      "name": "Guild",
+      "sequence": false,
+      "wire_minimum": 6
+    },
+    {
+      "header": 8,
+      "size": 88,
+      "name": "Shout",
+      "sequence": false,
+      "wire_minimum": 88
+    },
+    {
+      "header": 7,
+      "size": 26,
+      "name": "Disconnect",
+      "sequence": false,
+      "wire_minimum": 26
+    },
+    {
+      "header": 10,
+      "size": 51,
+      "name": "MessengerAdd",
+      "sequence": false,
+      "wire_minimum": 51
+    },
+    {
+      "header": 11,
+      "size": 51,
+      "name": "MessengerRemove",
+      "sequence": false,
+      "wire_minimum": 51
+    },
+    {
+      "header": 12,
+      "size": 9,
+      "name": "FindPosition",
+      "sequence": false,
+      "wire_minimum": 9
+    },
+    {
+      "header": 13,
+      "size": 13,
+      "name": "WarpCharacter",
+      "sequence": false,
+      "wire_minimum": 13
+    },
+    {
+      "header": 14,
+      "size": 59,
+      "name": "MessengerMobile",
+      "sequence": false,
+      "wire_minimum": 59
+    },
+    {
+      "header": 15,
+      "size": 13,
+      "name": "GuildWarMapIndex",
+      "sequence": false,
+      "wire_minimum": 13
+    },
+    {
+      "header": 16,
+      "size": 34,
+      "name": "Transfer",
+      "sequence": false,
+      "wire_minimum": 34
+    },
+    {
+      "header": 17,
+      "size": 6,
+      "name": "XmasWarpSanta",
+      "sequence": false,
+      "wire_minimum": 6
+    },
+    {
+      "header": 18,
+      "size": 2,
+      "name": "XmasWarpSantaReply",
+      "sequence": false,
+      "wire_minimum": 2
+    },
+    {
+      "header": 19,
+      "size": 1,
+      "name": "ReloadCRCList",
+      "sequence": false,
+      "wire_minimum": 1
+    },
+    {
+      "header": 21,
+      "size": 1,
+      "name": "CheckClientVersion",
+      "sequence": false,
+      "wire_minimum": 1
+    },
+    {
+      "header": 20,
+      "size": 32,
+      "name": "LoginPing",
+      "sequence": false,
+      "wire_minimum": 32
+    },
+    {
+      "header": 22,
+      "size": 30,
+      "name": "BlockChat",
+      "sequence": false,
+      "wire_minimum": 30
+    },
+    {
+      "header": 23,
+      "size": 3,
+      "name": "ForkedMapInfo",
+      "sequence": false,
+      "wire_minimum": 3
+    },
+    {
+      "header": 25,
+      "size": 1,
+      "name": "Siege",
+      "sequence": false,
+      "wire_minimum": 1
+    }
+  ],
+  "UDP": [
+    {
+      "header": 1,
+      "size": 9,
+      "name": "ServerStateRequest",
+      "sequence": false,
+      "wire_minimum": 9
+    }
+  ]
+}

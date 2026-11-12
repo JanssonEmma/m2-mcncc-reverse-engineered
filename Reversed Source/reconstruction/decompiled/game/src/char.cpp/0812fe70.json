@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812fe70",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER::ChatPacket",
+      "address": "0812fe70"
+    },
+    "code": "\r\n/* DWARF original prototype: void ChatPacket(CHARACTER * this, BYTE type, char * format, ...) */\r\n\r\nvoid __thiscall CHARACTER::ChatPacket(CHARACTER *this,BYTE type,char *format,...)\r\n\r\n{\r\n  int iVar1;\r\n  void *c_pvData;\r\n  char *pcVar2;\r\n  int len;\r\n  BYTE type_local;\r\n  TEMP_BUFFER buf;\r\n  packet_chat pack_chat;\r\n  char chatbuf [86];\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  if ((this->super_CEntity).m_lpDesc != (LPDESC)0x0) {\r\n    iVar1 = vsnprintf(chatbuf,0x55,format,&stack0x00000010);\r\n    pack_chat.header = '\\x04';\r\n    pack_chat.size = (short)iVar1 + 10;\r\n    pack_chat.type = type;\r\n    pack_chat.id = 0;\r\n    pack_chat.bEmpire = DESC::GetEmpire((this->super_CEntity).m_lpDesc);\r\n    if ((type == '\\x05') && (test_server != 0)) {\r\n      pcVar2 = GetName(this);\r\n      sys_log(0,\"SNED COMMAND %s %s\",pcVar2,chatbuf);\r\n    }\r\n    TEMP_BUFFER::TEMP_BUFFER(&buf);\r\n    TEMP_BUFFER::write(&buf,&pack_chat,9);\r\n    TEMP_BUFFER::write(&buf,chatbuf,iVar1 + 1);\r\n    iVar1 = TEMP_BUFFER::size(&buf);\r\n    c_pvData = TEMP_BUFFER::read_peek(&buf);\r\n    DESC::Packet((this->super_CEntity).m_lpDesc,c_pvData,iVar1);\r\n    TEMP_BUFFER::~TEMP_BUFFER(&buf,(int)c_pvData);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "status": "receipt_gate_passed_workspace_only",
+  "addressed_exports": 39,
+  "explicit_pending_reviews": 39,
+  "groups": [
+    {
+      "group": "poly_parser",
+      "address_count": 14,
+      "evidence_bundle": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\poly-parser-addressed-ghidra.json",
+      "evidence_sha256": "61466ae690c07f53b99420485728604c28b9636d03a9c32f7331cfb4c220e40a",
+      "mapping_bundle": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\poly-parser-mappings.pending.json",
+      "mapping_sha256": "6dbe94c02899262c8f2e7a1623354d7d357c45f3748d371766995ba4a0211ec9"
+    },
+    {
+      "group": "locale_regions",
+      "address_count": 19,
+      "evidence_bundle": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale_remaining\\locale-regions-addressed-ghidra.json",
+      "evidence_sha256": "fc584b54d147b67cfb20d07c3b44626733ff0a2ae8a1f4e703598e209c4e08e3",
+      "mapping_bundle": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale_remaining\\coverage-mappings.pending.json",
+      "mapping_sha256": "c5d72002ad0e3e72d12179d5ca56f14b13c22c832e5bc7e8084e2601a2939bd7"
+    },
+    {
+      "group": "blend_item",
+      "address_count": 6,
+      "evidence_bundle": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\blend_item\\blend-addressed-ghidra.json",
+      "evidence_sha256": "ae671d9447a0555963f6b92b8b8e86868b8180cf50923aa434555dbc1cf1a226",
+      "mapping_bundle": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\blend_item\\blend-coverage-mappings.pending.json",
+      "mapping_sha256": "ce8b718479173a6767e10c770367143000a05d3b30396d1fbcfc8cc8f8ebf0f7"
+    }
+  ],
+  "source_test_snapshots": {
+    "libpoly/Poly.cc": "80f4012f36a3293dae1267232ecf5f498ab8daeeabc2304825005401d15737a7",
+    "reconstruction/tests/poly_parser_eval_regression.cpp": "1ea84145804e8e1e64e998b9cdf8bddb9ff1d5fcda8d3c6fb27340d319302e11",
+    "game/src/locale_service.cpp": "aa4422e1dc6a83f7e66156ec8dd5b7a5fefa7403faa2f4bc93bef1c5dd3fb5e0",
+    "reconstruction/tests/locale_regions_regression.cpp": "00b8e912a53f7c879cf9f413d84451bb04edb16f445b6719222f52ca3716a7e4",
+    "game/src/blend_item.cpp": "4201e47e7efac07a0e29024cb3037a9f07b1804e1bed7182dbc2b783718dc923",
+    "reconstruction/tests/blend_item_regression.cpp": "023ec3c44b51f18053776b746d8cd25394b81866a53458ef448f8749fef10f0c"
+  },
+  "refreshed_previous_hashes": [],
+  "prior_review_count": 163,
+  "prior_overlap": [],
+  "policy": "Explicit bounded original-address source/evidence/test associations only. No whole-function recovery, allbranch/runtime equivalence, old hidden ABI or full server claim. Constructor/generated aliases are not silently added; these39 are exact supplied unique originals. Unreviewed does not mean unrecovered.",
+  "exclusions": [
+    "Empire conversion loader and its underlying records remain unrecovered/current absent.",
+    "Parser native x87/CRT/ctype undefined domains and malformed bytecode remain limited by source-owner review.",
+    "Blend malformed order/doubleowner/orphan/overlong path domains remain preserved static evidence, not dynamically certified."
+  ],
+  "proofs": {
+    "full_receipt": {
+      "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-83-retry-validation.receipt.json",
+      "sha256": "e791665fb207ebe36e4fac143ad668ae047a27c217292cd4fe4444d9d2cd8cab"
+    },
+    "focused_receipt": {
+      "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint83-focused-retry.receipt.json",
+      "sha256": "c6028682d15c82777e66444bfeecbef054e57665583a7a613573d81a1ef1217e"
+    },
+    "locale_o2_receipt": {
+      "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale-regions-o2.receipt.json",
+      "sha256": "4ccc3604495aa5fcc75a4a8a797421000ac0ad2701a9c7842e89a830c448ce9d"
+    },
+    "blend_o2_receipt": {
+      "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\blend-item-o2.receipt.json",
+      "sha256": "29e0b15e7f4d19b576032b9ff005b7bdadb1f5b7dbf5f48a3eb661d44b20aef1"
+    },
+    "parser_validation": {
+      "poly-parser-strict32": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\poly-parser-strict32.receipt.json",
+        "sha256": "43f07c40d4ecfc514545700418125b854b8a206996dfe4b242b9cd9aeb7cdcd1"
+      },
+      "poly-parser-o2-build": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\poly-parser-o2-build.receipt.json",
+        "sha256": "15beb923a0803323335a94125c269b3d1c97721f5fddfb03c5d4754caceb0478"
+      },
+      "poly-parser-o2-runtime": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\poly-parser-o2-runtime.receipt.json",
+        "sha256": "24c570833c3600b618e77db48c2340c7631f97777dfa7a8c936f9465413bd3a9"
+      },
+      "poly-owned-o2-build": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\poly-owned-o2-build.receipt.json",
+        "sha256": "e732026ebe601d95f7a28fd9e4310b81b1fa08bed17463e095a68189f9515b75"
+      },
+      "poly-owned-o2-runtime": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\poly-owned-o2-runtime.receipt.json",
+        "sha256": "3419b09f7691ec97883e5eff06125f5cdbfcf6d3c50aed97de050f40f9c0af13"
+      },
+      "skill-lookup-o2-build": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\skill-lookup-o2-build.receipt.json",
+        "sha256": "b1c9d82059184e587cfac2c74fa4c72da2e90cd8a143f3b17ebcb654feb43202"
+      },
+      "skill-lookup-o2-runtime": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\parser_eval\\validation\\skill-lookup-o2-runtime.receipt.json",
+        "sha256": "4afd5e77c9e56ea42fd6d5465b141abda0479831369e4d20c327c844bb92e2a5"
+      }
+    },
+    "standalone_strict32": [
+      {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale-regions-m32.log",
+        "sha256": "80a08295c0640fa79e0ce6035eef916b15b880bdc33f32cd4c92df1898f8a616",
+        "exit0_parent_confirmed": true
+      },
+      {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\blend-item-m32.log",
+        "sha256": "79de399da50d539114074d46df7e5f2908e33a1094d6a258c5d2de75e0def79f",
+        "exit0_parent_confirmed": true
+      }
+    ]
+  }
+}

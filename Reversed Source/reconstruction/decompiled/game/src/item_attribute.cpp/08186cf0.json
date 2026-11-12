@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08186cf0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8186cf0",
+    "function": {
+      "name": "CItem::GetAttributeSetIndex",
+      "address": "08186cf0"
+    },
+    "signature": "int GetAttributeSetIndex(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: int GetAttributeSetIndex(CItem * this) */\r\n\r\nint __thiscall CItem::GetAttributeSetIndex(CItem *this)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  int iVar2;\r\n  BYTE BVar3;\r\n  \r\n  BVar3 = '\\0';\r\n  pTVar1 = this->m_pProto;\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar3 = pTVar1->bType;\r\n  }\r\n  if (BVar3 == '\\x01') {\r\n    BVar3 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar3 = pTVar1->bSubType;\r\n    }\r\n    return (BVar3 != '\\x06') - 1;\r\n  }\r\n  BVar3 = '\\0';\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar3 = pTVar1->bType;\r\n  }\r\n  if (BVar3 == '\\x02') {\r\n    BVar3 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar3 = pTVar1->bSubType;\r\n    }\r\n    switch(BVar3) {\r\n    case '\\0':\r\n      iVar2 = 1;\r\n      break;\r\n    case '\\x01':\r\n      iVar2 = 5;\r\n      break;\r\n    case '\\x02':\r\n      iVar2 = 6;\r\n      break;\r\n    case '\\x03':\r\n      iVar2 = 2;\r\n      break;\r\n    case '\\x04':\r\n      iVar2 = 3;\r\n      break;\r\n    case '\\x05':\r\n      iVar2 = 4;\r\n      break;\r\n    case '\\x06':\r\n      iVar2 = 7;\r\n      break;\r\n    default:\r\n      goto switchD_08186d28_default;\r\n    }\r\n  }\r\n  else {\r\nswitchD_08186d28_default:\r\n    iVar2 = -1;\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

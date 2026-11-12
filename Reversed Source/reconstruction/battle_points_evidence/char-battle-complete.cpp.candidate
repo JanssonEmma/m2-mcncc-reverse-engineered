@@ -1,0 +1,142 @@
+// Full target-backed battle dependency candidate; do not substitute PointChange.
+#include "char.h"
+#include "item.h"
+#include "mob_manager.h"
+#include "questmanager.h"
+#include "constants.h"
+#include "config.h"
+#include "locale_service.h"
+#include "../../libthecore/include/utils.h"
+#include "../../libthecore/include/log.h"
+// Staged real old dependency methods; add existing includes char.h,
+// mob_manager.h, questmanager.h, constants.h, config.h and core utils/log.
+// Explicit modulo32 arithmetic matches the ELF's add/lea/imul registers and
+// avoids introducing signed-overflow UB into reconstructed native code.
+namespace battle_points_detail {
+inline int add(int a,int b) {return static_cast<int>(static_cast<unsigned int>(a)+static_cast<unsigned int>(b));}
+inline int sub(int a,int b) {return static_cast<int>(static_cast<unsigned int>(a)-static_cast<unsigned int>(b));}
+inline int mul(int a,int b) {return static_cast<int>(static_cast<unsigned int>(a)*static_cast<unsigned int>(b));}
+}
+//0812bb80: actual const-reference return, non-const method. No null guard.
+const TMobTable& CHARACTER::GetMobTable() {return m_pkMobData->m_table;}
+//08073560: target skill record is packed6 bytes; array has255 entries.
+int CHARACTER::GetSkillLevel(DWORD dwVnum) {
+    if(dwVnum<255) {
+        unsigned int level=m_pSkillLevels?m_pSkillLevels[dwVnum].bLevel:0;
+        return MIN(40,static_cast<int>(level));
+    }
+    _sys_err("GetSkillLevel",2614,"%s skill vnum overflow %lu",GetName(),dwVnum);
+    sys_log(0,"%s skill vnum overflow %lu",GetName(),dwVnum);
+    return 0;
+}
+//08135a20: no positivity or range clamp on a nonzero test-server override.
+int CHARACTER::GetPolymorphPower() {
+    if(test_server) {
+        int value=quest::CQuestManager::instance().GetEventFlag("poly");
+        if(value) return value;
+    }
+    int level=GetSkillLevel(129);
+    level=MINMAX(0,level,40);
+    return aiPolymorphPowerByLevel[level];
+}
+//0812df00: long return and non-const method are old DWARF, not modern API.
+long CHARACTER::GetPolymorphPoint(BYTE type) {
+    using namespace battle_points_detail;
+    if(!m_dwPolymorphRace || m_bPolyMaintainStat) return GetPoint(type);
+    const CMob* mob=CMobManager::instance().Get(m_dwPolymorphRace);
+    int power=GetPolymorphPower(); // Must happen even when mob lookup failed.
+    if(!mob) return GetPoint(type);
+    BYTE base=type;int stat;
+    switch(type) {
+    case 12:
+        if(GetJob()==3 || (GetJob()==2 && m_points.skill_group==2))base=15;
+        stat=mob->m_table.bStr;break;
+    case 13:stat=mob->m_table.bCon;break;
+    case 14:stat=mob->m_table.bDex;break;
+    case 15:stat=mob->m_table.bInt;break;
+    default:return GetPoint(type);
+    }
+    int bonus=mul(stat,power)/100; // Signed truncation after wrapped product.
+    return static_cast<long>(add(static_cast<int>(GetPoint(base)),bonus));
+}
+
+// Append to char-helper-methods.cpp.candidate (uses its modulo32 helpers).
+// Full0812bda0 body; PointChange is an actual SCC dependency, NEVER stub it.
+void CHARACTER::ComputeBattlePoints() {
+    using namespace battle_points_detail;
+    if(m_dwPolymorphRace) {
+        const CMob* mob=CMobManager::instance().Get(m_dwPolymorphRace);
+        int attack=0,defense=0;
+        if(mob) {
+            BYTE level=m_points.level;
+            attack=mul(add(level,static_cast<int>(GetPolymorphPoint(12))),2);
+            level=m_points.level;
+            defense=add(add(level,static_cast<int>(GetPolymorphPoint(13))),mob->m_table.wDef);
+        }
+        SetPoint(18,attack);SetPoint(16,defense);
+        SetPoint(22,GetPoint(18));SetPoint(23,GetPoint(16));return;
+    }
+    if(!GetDesc()) {
+        BYTE level=m_points.level;int st=static_cast<int>(GetPoint(12));
+        BYTE defLevel=m_points.level;int attack=mul(add(level,st),2);
+        int ht=static_cast<int>(GetPoint(13));
+        int defense=add(add(defLevel,ht),GetMobTable().wDef);
+        SetPoint(18,attack);SetPoint(16,defense);
+        SetPoint(22,GetPoint(18));SetPoint(23,GetPoint(16));return;
+    }
+    SetPoint(18,0);SetPoint(16,0);SetPoint(20,0);
+    SetPoint(22,GetPoint(18));SetPoint(23,GetPoint(16));
+    BYTE attackLevel=m_points.level;
+    int statAttack;
+    switch(GetJob()) {
+    case 0:case 2:statAttack=mul(static_cast<int>(GetPoint(12)),2);break;
+    case 1:{int st=static_cast<int>(GetPoint(12));int dx=static_cast<int>(GetPoint(14));statAttack=mul(add(dx,mul(st,2)),2)/3;break;}
+    case 3:{int st=static_cast<int>(GetPoint(12));int iq=static_cast<int>(GetPoint(15));statAttack=mul(add(iq,mul(st,2)),2)/3;break;}
+    default:
+        _sys_err("ComputeBattlePoints",1992,"invalid job %d",static_cast<unsigned int>(GetJob()));
+        statAttack=mul(static_cast<int>(GetPoint(12)),2);break;
+    }
+    DWORD mount=0;
+    if(m_dwMountVnum) {
+        if(statAttack<mul(static_cast<int>(GetPoint(12)),2))statAttack=mul(static_cast<int>(GetPoint(12)),2);
+        mount=m_dwMountVnum;
+    }
+    int attack=add(statAttack,mul(attackLevel,2));
+    if(mount) {
+        sys_log(0,"HORSE ATK BONUS Before: %d",attack);
+        BYTE job=GetJob();
+        int divisor=(job==2 && m_points.skill_group==1)?60:30;
+        attack=add(attack,mul(m_Horse.bLevel,attack)/divisor);
+        sys_log(0,"HORSE ATK BONUS After: %d",attack);
+    }
+    PointChange(18,attack,false,false);
+    BYTE showLevel=m_points.level;int showDefense=add(showLevel,static_cast<int>(GetPoint(13)));
+    BYTE defenseLevel=m_points.level;int ht=static_cast<int>(GetPoint(13));
+    // Original x87 fild/fdiv(1.25f)/fistp with round-toward-zero. No ROUND
+    // routine, no nearest rounding, no intermediate float32 store.
+    int defense=add(defenseLevel,static_cast<int>(static_cast<long double>(ht)/1.25L));
+    int armor=0;
+    for(int i=0;i<19;++i) {
+        CItem* item=GetWear(static_cast<BYTE>(i));
+        if(item && item->GetType()==2) {
+            BYTE sub=item->GetSubType();
+            if(sub==0 || sub==1 || sub==4 || sub==2) {
+                armor=add(armor,static_cast<int>(item->GetValue(1)));
+                armor=add(armor,mul(static_cast<int>(item->GetValue(5)),2));
+            }
+        }
+    }
+    if(m_dwMountVnum && armor<c_aHorseStat[m_Horse.bLevel].iArmor)armor=c_aHorseStat[m_Horse.bLevel].iArmor;
+    if(LC_IsYMIR())PointChange(16,add(showDefense,armor),false,false);
+    else PointChange(16,add(defense,armor),false,false);
+    PointChange(20,sub(add(showDefense,armor),static_cast<int>(GetPoint(16))),false,false);
+    BYTE magicAttackLevel=m_points.level;int iq=static_cast<int>(GetPoint(15));
+    PointChange(22,mul(add(magicAttackLevel,iq),2),false,false);
+    BYTE magicDefenseLevel=m_points.level;iq=static_cast<int>(GetPoint(15));ht=static_cast<int>(GetPoint(13));
+    PointChange(23,add(add(magicDefenseLevel,add(ht,mul(iq,3))/3),armor/2),false,false);
+    PointChange(18,static_cast<int>(GetPoint(95)),false,false);
+    PointChange(16,static_cast<int>(GetPoint(96)),false,false);
+    PointChange(16,static_cast<int>(GetPoint(111)),false,false);
+    PointChange(22,static_cast<int>(GetPoint(97)),false,false);
+    PointChange(23,static_cast<int>(GetPoint(98)),false,false);
+}

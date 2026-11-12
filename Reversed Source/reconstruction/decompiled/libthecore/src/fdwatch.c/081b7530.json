@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7530",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "fdwatch_del_fd",
+      "address": "081b7530"
+    },
+    "code": "\r\nvoid fdwatch_del_fd(LPFDWATCH fdw,socket_t fd)\r\n\r\n{\r\n  fdwatch_register(fdw,2,fd,0);\r\n  fdwatch_clear_fd(fdw,fd);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "origin": "Complete normalized saved original stat primitive exports; raw signatures/instructions/callers retained",
+  "functions": [
+    {
+      "function": {
+        "name": "RaceToJob",
+        "address": "080f2d50"
+      },
+      "code": "\r\nbool RaceToJob(uint race,uint *ret_job)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = false;\r\n  *ret_job = 0;\r\n  switch(race) {\r\n  case 0:\r\n  case 4:\r\n    *ret_job = 0;\r\n    break;\r\n  case 1:\r\n  case 5:\r\n    *ret_job = 1;\r\n    break;\r\n  case 2:\r\n  case 6:\r\n    *ret_job = 2;\r\n    break;\r\n  case 3:\r\n  case 7:\r\n    *ret_job = 3;\r\n    break;\r\n  default:\r\n    goto switchD_080f2d66_default;\r\n  }\r\n  bVar1 = true;\r\nswitchD_080f2d66_default:\r\n  return bVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "NewPlayerTable2",
+        "address": "080f2da0"
+      },
+      "code": "\r\nbool NewPlayerTable2(TPlayerTable *table,char *name,BYTE race,BYTE shape,BYTE bEmpire)\r\n\r\n{\r\n  short sVar1;\r\n  short sVar2;\r\n  undefined4 uVar3;\r\n  bool bVar4;\r\n  uint race_00;\r\n  int iVar5;\r\n  int local_20;\r\n  int local_1c;\r\n  BYTE bEmpire_local;\r\n  BYTE race_local;\r\n  uint job;\r\n  \r\n  if (race < 8) {\r\n    race_00 = (uint)race;\r\n    bVar4 = RaceToJob(race_00,&job);\r\n    if (bVar4) {\r\n      sys_log(0,\"NewPlayerTable2(name=%s, race=%d, job=%d)\",name,race_00,job);\r\n      memset(table,0,0x71a);\r\n      strncpy(table->name,name,0x18);\r\n      table->name[0x18] = '\\0';\r\n      table->level = '\\x01';\r\n      table->voice = '\\0';\r\n      table->job = (ushort)race;\r\n      table->part_base = shape;\r\n      iVar5 = job * 0x40;\r\n      uVar3 = *(undefined4 *)(JobInitialPoints + iVar5 + 0x18);\r\n      sVar1 = *(short *)(JobInitialPoints + iVar5 + 0xc);\r\n      table->st = *(short *)(JobInitialPoints + iVar5);\r\n      sVar2 = *(short *)(JobInitialPoints + iVar5 + 8);\r\n      table->iq = sVar1;\r\n      table->dx = sVar2;\r\n      sVar2 = *(short *)(JobInitialPoints + iVar5 + 4);\r\n      table->ht = sVar2;\r\n      table->hp = sVar2 * (short)uVar3 + *(short *)(JobInitialPoints + iVar5 + 0x10);\r\n      sVar2 = *(short *)(JobInitialPoints + iVar5 + 0x30);\r\n      table->sp = sVar1 * (short)*(undefined4 *)(JobInitialPoints + iVar5 + 0x1c) +\r\n                  *(short *)(JobInitialPoints + iVar5 + 0x14);\r\n      table->stamina = sVar2;\r\n      if ((byte)(bEmpire - 1) < 3) {\r\n        local_1c = *(int *)(g_create_position + (uint)bEmpire * 8);\r\n      }\r\n      iVar5 = number_ex(-300,300,\"input_login.cpp\",0x197);\r\n      table->x = iVar5 + local_1c;\r\n      if ((byte)(bEmpire - 1) < 3) {\r\n        local_20 = *(int *)(g_create_position + (uint)bEmpire * 8 + 4);\r\n      }\r\n      iVar5 = number_ex(-300,300,\"input_login.cpp\",0x198);\r\n      table->z = 0;\r\n      table->playtime = 0;\r\n      table->dir = '\\0';\r\n      table->y = iVar5 + local_20;\r\n      table->gold = 0;\r\n      table->skill_group = '\\0';\r\n      return true;\r\n    }\r\n    _sys_err(\"NewPlayerTable2\",0x17f,\"NewPlayerTable2.RACE_TO_JOB_ERROR(%d)\\n\",race_00);\r\n  }\r\n  else {\r\n    _sys_err(\"NewPlayerTable2\",0x177,\"NewPlayerTable2.OUT_OF_RACE_RANGE(%d >= max(%d))\\n\",(uint)race\r\n             ,8);\r\n  }\r\n  return false;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetName",
+        "address": "08127930"
+      },
+      "code": "\r\n/* DWARF original prototype: char * GetName(CHARACTER * this) */\r\n\r\nchar * __thiscall CHARACTER::GetName(CHARACTER *this)\r\n\r\n{\r\n  int iVar1;\r\n  char *pcVar2;\r\n  \r\n  pcVar2 = (this->m_stName)._M_dataplus._M_p;\r\n  iVar1 = *(int *)(pcVar2 + -0xc);\r\n  if (iVar1 == 0) {\r\n    pcVar2 = \"\";\r\n    if (this->m_pkMobData != (CMob *)0x0) {\r\n      pcVar2 = (this->m_pkMobData->m_table).szLocaleName;\r\n    }\r\n  }\r\n  else {\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    pcVar2[iVar1] = std::string::_Rep::_S_terminal;\r\n    pcVar2 = (this->m_stName)._M_dataplus._M_p;\r\n  }\r\n  return pcVar2;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetJob",
+        "address": "0812a580"
+      },
+      "code": "\r\n/* DWARF original prototype: BYTE GetJob(CHARACTER * this) */\r\n\r\nBYTE __thiscall CHARACTER::GetJob(CHARACTER *this)\r\n\r\n{\r\n  bool bVar1;\r\n  char *pcVar2;\r\n  uint race;\r\n  uint job;\r\n  \r\n                    /* Unresolved local var: uint race@[DW_OP_reg3(EBX)] */\r\n  race = (uint)(this->m_points).job;\r\n  bVar1 = RaceToJob(race,&job);\r\n  if (!bVar1) {\r\n    pcVar2 = GetName(this);\r\n    _sys_err(\"GetJob\",0x621,\"CHARACTER::GetJob(name=%s, race=%d).OUT_OF_RACE_RANGE\",pcVar2,race);\r\n    job._0_1_ = '\\0';\r\n  }\r\n  return (BYTE)job;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::IsStun",
+        "address": "08148080"
+      },
+      "code": "\r\n/* DWARF original prototype: bool IsStun(CHARACTER * this) */\r\n\r\nbool __thiscall CHARACTER::IsStun(CHARACTER *this)\r\n\r\n{\r\n  return ((this->m_pointsInstant).instant_flag & 8) != 0;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::IsDead",
+        "address": "081485e0"
+      },
+      "code": "\r\n/* DWARF original prototype: bool IsDead(CHARACTER * this) */\r\n\r\nbool __thiscall CHARACTER::IsDead(CHARACTER *this)\r\n\r\n{\r\n  return (this->m_pointsInstant).position == 0;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

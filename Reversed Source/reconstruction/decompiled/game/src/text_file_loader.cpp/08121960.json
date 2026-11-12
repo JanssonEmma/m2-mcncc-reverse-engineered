@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08121960",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8121960",
+    "function": {
+      "name": "CTextFileLoader::Load",
+      "address": "08121960"
+    },
+    "signature": "bool Load(CTextFileLoader * this, char * c_szFileName)",
+    "code": "\r\n/* DWARF original prototype: bool Load(CTextFileLoader * this, char * c_szFileName) */\r\n\r\nbool __thiscall CTextFileLoader::Load(CTextFileLoader *this,char *c_szFileName)\r\n\r\n{\r\n  bool bVar1;\r\n  FILE *__stream;\r\n  uint __size;\r\n  void *__ptr;\r\n  \r\n                    /* Unresolved local var: DWORD dwSize@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: FILE * fp@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: char * pData@[DW_OP_reg7(EDI)] */\r\n  strlen(c_szFileName);\r\n  std::string::assign((char *)&this->m_strFileName,(uint)c_szFileName);\r\n  this->m_dwcurLineIndex = 0;\r\n  __stream = fopen(c_szFileName,\"rb\");\r\n  bVar1 = false;\r\n  if (__stream != (FILE *)0x0) {\r\n    fseek(__stream,0,2);\r\n    __size = ftell(__stream);\r\n    fseek(__stream,0,0);\r\n    __ptr = operator_new__(__size);\r\n    fread(__ptr,__size,1,__stream);\r\n    fclose(__stream);\r\n    CMemoryTextFileLoader::Bind(&this->m_fileLoader,__size,__ptr);\r\n    if (__ptr != (void *)0x0) {\r\n      operator_delete__(__ptr);\r\n    }\r\n    LoadGroup(this,&this->m_globalNode);\r\n    bVar1 = true;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

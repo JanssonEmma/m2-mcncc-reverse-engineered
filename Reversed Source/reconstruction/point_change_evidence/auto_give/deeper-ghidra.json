@@ -1,0 +1,34 @@
+[
+  {
+    "function": {
+      "name": "ITEM_MANAGER::RealNumber",
+      "address": "081930c0"
+    },
+    "code": "\r\n/* DWARF original prototype: int RealNumber(ITEM_MANAGER * this, DWORD vnum) */\r\n\r\nint __thiscall ITEM_MANAGER::RealNumber(ITEM_MANAGER *this,DWORD vnum)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  \r\n                    /* Unresolved local var: int bot@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int top@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int mid@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: TItemTable * pTable@[???] */\r\n  pTVar1 = (this->m_vec_prototype).super__Vector_base<SItemTable,std::allocator<SItemTable>_>.\r\n           super__Vector_alloc_base<SItemTable,std::allocator<SItemTable>,true>._M_start;\r\n  iVar5 = ((int)(this->m_vec_prototype).super__Vector_base<SItemTable,std::allocator<SItemTable>_>.\r\n                super__Vector_alloc_base<SItemTable,std::allocator<SItemTable>,true>._M_finish -\r\n           (int)pTVar1 >> 1) * 0x3f2b3885;\r\n  iVar6 = 0;\r\n  while( true ) {\r\n    iVar4 = iVar5 + iVar6 >> 1;\r\n    uVar2 = pTVar1[iVar4].dwVnum;\r\n    iVar3 = iVar4;\r\n    if ((uVar2 == vnum) || (iVar3 = -1, iVar5 <= iVar6)) break;\r\n    if (vnum < uVar2) {\r\n      iVar5 = iVar4 + -1;\r\n    }\r\n    else {\r\n      iVar6 = iVar4 + 1;\r\n    }\r\n  }\r\n  return iVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CItem::SetCount",
+      "address": "081668a0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool SetCount(CItem * this, DWORD count) */\r\n\r\nbool __thiscall CItem::SetCount(CItem *this,DWORD count)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  LPITEM pItem;\r\n  BYTE BVar2;\r\n  DWORD vnum;\r\n  ITEM_MANAGER *this_01;\r\n  BYTE bCell;\r\n  \r\n  this->m_dwCount = count;\r\n  if ((count != 0) || (this_00 = this->m_pOwner, this_00 == (CHARACTER *)0x0)) {\r\n    UpdatePacket(this);\r\n    Save(this);\r\n    return true;\r\n  }\r\n  pTVar1 = this->m_pProto;\r\n  BVar2 = '\\0';\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar2 = pTVar1->bSubType;\r\n  }\r\n  if (BVar2 != '\\a') {\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bSubType;\r\n    }\r\n    if (BVar2 != '\\0') {\r\n      CHARACTER::SyncQuickslot(this_00,'\\x01',this->m_bCell,0xff);\r\n      if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      this_01 = singleton<ITEM_MANAGER>::ms_singleton;\r\n      this = RemoveFromCharacter(this);\r\n      goto LAB_08166943;\r\n    }\r\n  }\r\n                    /* Unresolved local var: LPCHARACTER pOwner@[???]\r\n                       Unresolved local var: LPITEM pItem@[DW_OP_reg2(EDX)] */\r\n  BVar2 = this->m_bCell;\r\n  RemoveFromCharacter(this);\r\n  vnum = 0;\r\n  if (this->m_pProto != (TItemTable *)0x0) {\r\n    vnum = this->m_pProto->dwVnum;\r\n  }\r\n  pItem = CHARACTER::FindSpecifyItem(this_00,vnum);\r\n  if (pItem == (LPITEM)0x0) {\r\n    CHARACTER::SyncQuickslot(this_00,'\\x01',BVar2,0xff);\r\n  }\r\n  else {\r\n    CHARACTER::ChainQuickslotItem(this_00,pItem,'\\x01',BVar2);\r\n  }\r\n  this_01 = singleton<ITEM_MANAGER>::ms_singleton;\r\n  if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    this_01 = singleton<ITEM_MANAGER>::ms_singleton;\r\n  }\r\nLAB_08166943:\r\n  ITEM_MANAGER::DestroyItem(this_01,this);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CItem::AddToGround",
+      "address": "08166c20"
+    },
+    "code": "\r\n/* DWARF original prototype: bool AddToGround(CItem * this, long lMapIndex, PIXEL_POSITION * pos) */\r\n\r\nbool __thiscall CItem::AddToGround(CItem *this,long lMapIndex,PIXEL_POSITION *pos)\r\n\r\n{\r\n  long lVar1;\r\n  long lVar2;\r\n  int line;\r\n  LPSECTREE this_00;\r\n  char *format;\r\n  \r\n                    /* Unresolved local var: LPSECTREE tree@[DW_OP_reg7(EDI)] */\r\n  if ((this->super_CEntity).m_pSectree == (SECTREE *)0x0) {\r\n    if (this->m_pOwner == (LPCHARACTER)0x0) {\r\n      if (singleton<SECTREE_MANAGER>::ms_singleton == (SECTREE_MANAGER *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      this_00 = SECTREE_MANAGER::Get\r\n                          (singleton<SECTREE_MANAGER>::ms_singleton,lMapIndex,pos->x,pos->y);\r\n      if (this_00 == (LPSECTREE)0x0) {\r\n        _sys_err(\"AddToGround\",0x145,\"cannot find sectree by %dx%d\",pos->x,pos->y);\r\n        return false;\r\n      }\r\n      this->m_bWindow = '\\x05';\r\n      lVar1 = pos->z;\r\n      lVar2 = pos->x;\r\n      (this->super_CEntity).m_pos.y = pos->y;\r\n      (this->super_CEntity).m_pos.z = lVar1;\r\n      (this->super_CEntity).m_pos.x = lVar2;\r\n      SECTREE::InsertEntity(this_00,&this->super_CEntity);\r\n      CEntity::UpdateSectree(&this->super_CEntity);\r\n      Save(this);\r\n      return true;\r\n    }\r\n    format = \"owner pointer not null\";\r\n    line = 0x13d;\r\n  }\r\n  else {\r\n    line = 0x137;\r\n    format = \"sectree already assigned\";\r\n  }\r\n  _sys_err(\"AddToGround\",line,format);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CItem::StartDestroyEvent",
+      "address": "08166560"
+    },
+    "code": "\r\n/* DWARF original prototype: void StartDestroyEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StartDestroyEvent(CItem *this)\r\n\r\n{\r\n  DWORD dwInfoID;\r\n  LPEVENT pkEvent;\r\n  item_event_info *info;\r\n  \r\n                    /* Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  if (this->m_pkDestroyEvent == (LPEVENT)0x0) {\r\n    dwInfoID = __AllocEventInfo(4,&info);\r\n    info->item = this;\r\n    pkEvent = event_create_ex(item_destroy_event,dwInfoID,passes_per_sec * 300,\"item.cpp\",100);\r\n    SetDestroyEvent(this,pkEvent);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

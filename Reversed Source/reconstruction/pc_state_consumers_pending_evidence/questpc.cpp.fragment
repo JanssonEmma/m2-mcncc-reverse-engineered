@@ -1,0 +1,23 @@
+// Complete original PC state-query consumers; true Lua-backed CQM methods are dependencies.
+namespace quest {
+//0805e2a0: query first; then use CURRENT questname for flag; no running-state write.
+void PC::SetCurrentQuestStateName(const std::string& state_name) {
+    int next=CQuestManager::Instance().GetQuestStateIndex(m_stCurQuest,state_name);
+    SetFlag(m_stCurQuest+".__status",next,false);
+}
+//0805e380: complete string/string overload only; integer overload queues actual transition.
+void PC::SetQuestState(const std::string& quest_name,const std::string& state_name) {
+    int next=CQuestManager::Instance().GetQuestStateIndex(quest_name,state_name);
+    SetQuestState(quest_name,next);
+}
+//08061980: full LIVE flag traversal and actual reverse Lua query for status suffixes.
+void PC::SendFlagList(CHARACTER* ch) {
+    for(TFlagMap::iterator it=m_FlagMap.begin();it!=m_FlagMap.end();++it) {
+        if(it->first.size()>9 && it->first.compare(it->first.size()-9,9,".__status")==0) {
+            std::string quest_name=it->first.substr(0,it->first.size()-9);
+            const char* state_name=CQuestManager::instance().GetQuestStateName(quest_name,it->second);
+            ch->ChatPacket(1,"%s %s (%d)",quest_name.c_str(),state_name,it->second);
+        } else ch->ChatPacket(1,"%s %d",it->first.c_str(),it->second);
+    }
+}
+}

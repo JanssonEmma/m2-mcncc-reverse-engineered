@@ -1,0 +1,1234 @@
+[
+  {
+    "name": "quest::PC::SetConfirmWait",
+    "ranges": [
+      {
+        "low_pc": "0805c826",
+        "high_pc_exclusive": "0805c848",
+        "die": "0x1bc5d1",
+        "cu": "questlua.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "0805c823",
+        "bytes": "8b7d08",
+        "instruction": "MOV EDI,dword ptr [EBP + 0x8]",
+        "comment": null
+      },
+      {
+        "address": "0805c826",
+        "bytes": "85f6",
+        "instruction": "TEST ESI,ESI",
+        "comment": null
+      },
+      {
+        "address": "0805c828",
+        "bytes": "8b9788000000",
+        "instruction": "MOV EDX,dword ptr [EDI + 0x88]",
+        "comment": null
+      },
+      {
+        "address": "0805c82e",
+        "bytes": "0f84e4020000",
+        "instruction": "JZ 0x0805cb18",
+        "comment": null
+      },
+      {
+        "address": "0805c834",
+        "bytes": "8b4618",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x18]",
+        "comment": null
+      },
+      {
+        "address": "0805c837",
+        "bytes": "85c0",
+        "instruction": "TEST EAX,EAX",
+        "comment": null
+      },
+      {
+        "address": "0805c839",
+        "bytes": "0f84d9020000",
+        "instruction": "JZ 0x0805cb18",
+        "comment": null
+      },
+      {
+        "address": "0805c83f",
+        "bytes": "8b86f0000000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0xf0]",
+        "comment": null
+      },
+      {
+        "address": "0805c845",
+        "bytes": "894264",
+        "instruction": "MOV dword ptr [EDX + 0x64],EAX",
+        "comment": null
+      },
+      {
+        "address": "0805c848",
+        "bytes": "31ff",
+        "instruction": "XOR EDI,EDI",
+        "comment": null
+      },
+      {
+        "address": "0805c84a",
+        "bytes": "8d9d58ffffff",
+        "instruction": "LEA EBX,[EBP + 0xffffff58]",
+        "comment": null
+      },
+      {
+        "address": "0805c850",
+        "bytes": "c6426801",
+        "instruction": "MOV byte ptr [EDX + 0x68],0x1",
+        "comment": null
+      },
+      {
+        "address": "0805c854",
+        "bytes": "8d855cffffff",
+        "instruction": "LEA EAX,[EBP + 0xffffff5c]",
+        "comment": null
+      },
+      {
+        "address": "0805c85a",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "0805c85d",
+        "bytes": "e8dafafeff",
+        "instruction": "CALL 0x0804c33c",
+        "comment": null
+      },
+      {
+        "address": "0805c862",
+        "bytes": "897c2404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EDI",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::HasReward",
+    "ranges": [
+      {
+        "low_pc": "0805f522",
+        "high_pc_exclusive": "0805f530",
+        "die": "0x21f8ae",
+        "cu": "questpc.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "0805f51c",
+        "bytes": "0f8458040000",
+        "instruction": "JZ 0x0805f97a",
+        "comment": null
+      },
+      {
+        "address": "0805f522",
+        "bytes": "8b4710",
+        "instruction": "MOV EAX,dword ptr [EDI + 0x10]",
+        "comment": null
+      },
+      {
+        "address": "0805f525",
+        "bytes": "39470c",
+        "instruction": "CMP dword ptr [EDI + 0xc],EAX",
+        "comment": null
+      },
+      {
+        "address": "0805f528",
+        "bytes": "7506",
+        "instruction": "JNZ 0x0805f530",
+        "comment": null
+      },
+      {
+        "address": "0805f52a",
+        "bytes": "807f1800",
+        "instruction": "CMP byte ptr [EDI + 0x18],0x0",
+        "comment": null
+      },
+      {
+        "address": "0805f52e",
+        "bytes": "743e",
+        "instruction": "JZ 0x0805f56e",
+        "comment": null
+      },
+      {
+        "address": "0805f530",
+        "bytes": "893c24",
+        "instruction": "MOV dword ptr [ESP],EDI",
+        "comment": null
+      },
+      {
+        "address": "0805f533",
+        "bytes": "e838120000",
+        "instruction": "CALL 0x08060770",
+        "comment": null
+      },
+      {
+        "address": "0805f538",
+        "bytes": "8b1524b42308",
+        "instruction": "MOV EDX,dword ptr [0x0823b424]",
+        "comment": null
+      },
+      {
+        "address": "0805f53e",
+        "bytes": "85d2",
+        "instruction": "TEST EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "0805f540",
+        "bytes": "0f8402040000",
+        "instruction": "JZ 0x0805f948",
+        "comment": null
+      },
+      {
+        "address": "0805f546",
+        "bytes": "8b427c",
+        "instruction": "MOV EAX,dword ptr [EDX + 0x7c]",
+        "comment": null
+      },
+      {
+        "address": "0805f549",
+        "bytes": "893c24",
+        "instruction": "MOV dword ptr [ESP],EDI",
+        "comment": null
+      },
+      {
+        "address": "0805f54c",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "0805f550",
+        "bytes": "e8eb1b0000",
+        "instruction": "CALL 0x08061140",
+        "comment": null
+      },
+      {
+        "address": "0805f555",
+        "bytes": "8b1524b42308",
+        "instruction": "MOV EDX,dword ptr [0x0823b424]",
+        "comment": null
+      },
+      {
+        "address": "0805f55b",
+        "bytes": "85d2",
+        "instruction": "TEST EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "0805f55d",
+        "bytes": "0f84b3030000",
+        "instruction": "JZ 0x0805f916",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::GetRunningQuestState",
+    "ranges": [
+      {
+        "low_pc": "080c4aa4",
+        "high_pc_exclusive": "080c4aa7",
+        "die": "0xfb35e1",
+        "cu": "cmd_gm.cpp"
+      },
+      {
+        "low_pc": "081a1fb6",
+        "high_pc_exclusive": "081a1fb9",
+        "die": "0x2c3ec6e",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a1fc9",
+        "high_pc_exclusive": "081a1fcc",
+        "die": "0x2c3ec87",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2116",
+        "high_pc_exclusive": "081a2119",
+        "die": "0x2c3edad",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2130",
+        "high_pc_exclusive": "081a2133",
+        "die": "0x2c3edc6",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a222b",
+        "high_pc_exclusive": "081a222e",
+        "die": "0x2c3ee93",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a223e",
+        "high_pc_exclusive": "081a2241",
+        "die": "0x2c3eeac",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a231e",
+        "high_pc_exclusive": "081a2321",
+        "die": "0x2c3f479",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a23b0",
+        "high_pc_exclusive": "081a23b3",
+        "die": "0x2c3f5ef",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a23ca",
+        "high_pc_exclusive": "081a23cd",
+        "die": "0x2c3f608",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a246d",
+        "high_pc_exclusive": "081a2470",
+        "die": "0x2c3f85e",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a7513",
+        "high_pc_exclusive": "081a7516",
+        "die": "0x2c4a6b1",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081b3ef1",
+        "high_pc_exclusive": "081b3ef4",
+        "die": "0x2d7f3b2",
+        "cu": "questnpc.cpp"
+      },
+      {
+        "low_pc": "081b5dd7",
+        "high_pc_exclusive": "081b5dda",
+        "die": "0x2d86c07",
+        "cu": "questnpc.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "080c4a9f",
+        "bytes": "a124b42308",
+        "instruction": "MOV EAX,[0x0823b424]",
+        "comment": null
+      },
+      {
+        "address": "080c4aa4",
+        "bytes": "8b772c",
+        "instruction": "MOV ESI,dword ptr [EDI + 0x2c]",
+        "comment": null
+      },
+      {
+        "address": "080c4aa7",
+        "bytes": "85c0",
+        "instruction": "TEST EAX,EAX",
+        "comment": null
+      },
+      {
+        "address": "080c4aa9",
+        "bytes": "0f8429010000",
+        "instruction": "JZ 0x080c4bd8",
+        "comment": null
+      },
+      {
+        "address": "080c4aaf",
+        "bytes": "89742404",
+        "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+        "comment": null
+      },
+      {
+        "address": "080c4ab3",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080c4ab6",
+        "bytes": "e82583f9ff",
+        "instruction": "CALL 0x0805cde0",
+        "comment": null
+      },
+      {
+        "address": "080c4abb",
+        "bytes": "84c0",
+        "instruction": "TEST AL,AL",
+        "comment": null
+      },
+      {
+        "address": "080c4abd",
+        "bytes": "7521",
+        "instruction": "JNZ 0x080c4ae0",
+        "comment": null
+      },
+      {
+        "address": "080c4abf",
+        "bytes": "a124b42308",
+        "instruction": "MOV EAX,[0x0823b424]",
+        "comment": null
+      },
+      {
+        "address": "080c4ac4",
+        "bytes": "85c0",
+        "instruction": "TEST EAX,EAX",
+        "comment": null
+      },
+      {
+        "address": "080c4ac6",
+        "bytes": "0f84db000000",
+        "instruction": "JZ 0x080c4ba7",
+        "comment": null
+      },
+      {
+        "address": "080c4acc",
+        "bytes": "89742404",
+        "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+        "comment": null
+      },
+      {
+        "address": "080c4ad0",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080c4ad3",
+        "bytes": "e82885f9ff",
+        "instruction": "CALL 0x0805d000",
+        "comment": null
+      },
+      {
+        "address": "080c4ad8",
+        "bytes": "893c24",
+        "instruction": "MOV dword ptr [ESP],EDI",
+        "comment": null
+      },
+      {
+        "address": "080c4adb",
+        "bytes": "e8f0a9f9ff",
+        "instruction": "CALL 0x0805f4d0",
+        "comment": null
+      },
+      {
+        "address": "080c4ae0",
+        "bytes": "8b95a8f6ffff",
+        "instruction": "MOV EDX,dword ptr [EBP + 0xfffff6a8]",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::IsRunning",
+    "ranges": [
+      {
+        "low_pc": "081a1f7a",
+        "high_pc_exclusive": "081a1f7d",
+        "die": "0x2c3ec3c",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2014",
+        "high_pc_exclusive": "081a2017",
+        "die": "0x2c3ed43",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a21c1",
+        "high_pc_exclusive": "081a21c4",
+        "die": "0x2c3ee61",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a22c7",
+        "high_pc_exclusive": "081a22ca",
+        "die": "0x2c3f3b5",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2417",
+        "high_pc_exclusive": "081a241a",
+        "die": "0x2c3f82c",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a28dd",
+        "high_pc_exclusive": "081a28e0",
+        "die": "0x2c3fe51",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081b1a5c",
+        "high_pc_exclusive": "081b1a5f",
+        "die": "0x2d75699",
+        "cu": "questnpc.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "081a1f74",
+        "bytes": "85c0",
+        "instruction": "TEST EAX,EAX",
+        "comment": null
+      },
+      {
+        "address": "081a1f76",
+        "bytes": "89c3",
+        "instruction": "MOV EBX,EAX",
+        "comment": null
+      },
+      {
+        "address": "081a1f78",
+        "bytes": "740d",
+        "instruction": "JZ 0x081a1f87",
+        "comment": null
+      },
+      {
+        "address": "081a1f7a",
+        "bytes": "8b482c",
+        "instruction": "MOV ECX,dword ptr [EAX + 0x2c]",
+        "comment": null
+      },
+      {
+        "address": "081a1f7d",
+        "bytes": "85c9",
+        "instruction": "TEST ECX,ECX",
+        "comment": null
+      },
+      {
+        "address": "081a1f7f",
+        "bytes": "7406",
+        "instruction": "JZ 0x081a1f87",
+        "comment": null
+      },
+      {
+        "address": "081a1f81",
+        "bytes": "80790a05",
+        "instruction": "CMP byte ptr [ECX + 0xa],0x5",
+        "comment": null
+      },
+      {
+        "address": "081a1f85",
+        "bytes": "740d",
+        "instruction": "JZ 0x081a1f94",
+        "comment": null
+      },
+      {
+        "address": "081a1f87",
+        "bytes": "8b5df4",
+        "instruction": "MOV EBX,dword ptr [EBP + -0xc]",
+        "comment": null
+      },
+      {
+        "address": "081a1f8a",
+        "bytes": "8b75f8",
+        "instruction": "MOV ESI,dword ptr [EBP + -0x8]",
+        "comment": null
+      },
+      {
+        "address": "081a1f8d",
+        "bytes": "8b7dfc",
+        "instruction": "MOV EDI,dword ptr [EBP + -0x4]",
+        "comment": null
+      },
+      {
+        "address": "081a1f90",
+        "bytes": "89ec",
+        "instruction": "MOV ESP,EBP",
+        "comment": null
+      },
+      {
+        "address": "081a1f92",
+        "bytes": "5d",
+        "instruction": "POP EBP",
+        "comment": null
+      },
+      {
+        "address": "081a1f93",
+        "bytes": "c3",
+        "instruction": "RET",
+        "comment": null
+      },
+      {
+        "address": "081a1f94",
+        "bytes": "c6401901",
+        "instruction": "MOV byte ptr [EAX + 0x19],0x1",
+        "comment": null
+      },
+      {
+        "address": "081a1f98",
+        "bytes": "31d2",
+        "instruction": "XOR EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "081a1f9a",
+        "bytes": "66c741080100",
+        "instruction": "MOV word ptr [ECX + 0x8],0x1",
+        "comment": null
+      },
+      {
+        "address": "081a1fa0",
+        "bytes": "52",
+        "instruction": "PUSH EDX",
+        "comment": null
+      },
+      {
+        "address": "081a1fa1",
+        "bytes": "57",
+        "instruction": "PUSH EDI",
+        "comment": null
+      },
+      {
+        "address": "081a1fa2",
+        "bytes": "df2c24",
+        "instruction": "FILD qword ptr [ESP]",
+        "comment": null
+      },
+      {
+        "address": "081a1fa5",
+        "bytes": "83c408",
+        "instruction": "ADD ESP,0x8",
+        "comment": null
+      },
+      {
+        "address": "081a1fa8",
+        "bytes": "dd5c2404",
+        "instruction": "FSTP double ptr [ESP + 0x4]",
+        "comment": null
+      },
+      {
+        "address": "081a1fac",
+        "bytes": "8b01",
+        "instruction": "MOV EAX,dword ptr [ECX]",
+        "comment": null
+      },
+      {
+        "address": "081a1fae",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a1fb1",
+        "bytes": "e812d20100",
+        "instruction": "CALL 0x081bf1c8",
+        "comment": null
+      },
+      {
+        "address": "081a1fb6",
+        "bytes": "8b432c",
+        "instruction": "MOV EAX,dword ptr [EBX + 0x2c]",
+        "comment": null
+      },
+      {
+        "address": "081a1fb9",
+        "bytes": "893424",
+        "instruction": "MOV dword ptr [ESP],ESI",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::SetSendDoneFlag",
+    "ranges": [
+      {
+        "low_pc": "081a1f94",
+        "high_pc_exclusive": "081a1f98",
+        "die": "0x2c3ec55",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a20a2",
+        "high_pc_exclusive": "081a20a6",
+        "die": "0x2c3ed94",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2219",
+        "high_pc_exclusive": "081a221d",
+        "die": "0x2c3ee7a",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2303",
+        "high_pc_exclusive": "081a2307",
+        "die": "0x2c3f3ce",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2331",
+        "high_pc_exclusive": "081a2338",
+        "die": "0x2c3f512",
+        "cu": "questmanager.cpp"
+      },
+      {
+        "low_pc": "081a2453",
+        "high_pc_exclusive": "081a2457",
+        "die": "0x2c3f845",
+        "cu": "questmanager.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "081a1f8d",
+        "bytes": "8b7dfc",
+        "instruction": "MOV EDI,dword ptr [EBP + -0x4]",
+        "comment": null
+      },
+      {
+        "address": "081a1f90",
+        "bytes": "89ec",
+        "instruction": "MOV ESP,EBP",
+        "comment": null
+      },
+      {
+        "address": "081a1f92",
+        "bytes": "5d",
+        "instruction": "POP EBP",
+        "comment": null
+      },
+      {
+        "address": "081a1f93",
+        "bytes": "c3",
+        "instruction": "RET",
+        "comment": null
+      },
+      {
+        "address": "081a1f94",
+        "bytes": "c6401901",
+        "instruction": "MOV byte ptr [EAX + 0x19],0x1",
+        "comment": null
+      },
+      {
+        "address": "081a1f98",
+        "bytes": "31d2",
+        "instruction": "XOR EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "081a1f9a",
+        "bytes": "66c741080100",
+        "instruction": "MOV word ptr [ECX + 0x8],0x1",
+        "comment": null
+      },
+      {
+        "address": "081a1fa0",
+        "bytes": "52",
+        "instruction": "PUSH EDX",
+        "comment": null
+      },
+      {
+        "address": "081a1fa1",
+        "bytes": "57",
+        "instruction": "PUSH EDI",
+        "comment": null
+      },
+      {
+        "address": "081a1fa2",
+        "bytes": "df2c24",
+        "instruction": "FILD qword ptr [ESP]",
+        "comment": null
+      },
+      {
+        "address": "081a1fa5",
+        "bytes": "83c408",
+        "instruction": "ADD ESP,0x8",
+        "comment": null
+      },
+      {
+        "address": "081a1fa8",
+        "bytes": "dd5c2404",
+        "instruction": "FSTP double ptr [ESP + 0x4]",
+        "comment": null
+      },
+      {
+        "address": "081a1fac",
+        "bytes": "8b01",
+        "instruction": "MOV EAX,dword ptr [ECX]",
+        "comment": null
+      },
+      {
+        "address": "081a1fae",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a1fb1",
+        "bytes": "e812d20100",
+        "instruction": "CALL 0x081bf1c8",
+        "comment": null
+      },
+      {
+        "address": "081a1fb6",
+        "bytes": "8b432c",
+        "instruction": "MOV EAX,dword ptr [EBX + 0x2c]",
+        "comment": null
+      },
+      {
+        "address": "081a1fb9",
+        "bytes": "893424",
+        "instruction": "MOV dword ptr [ESP],ESI",
+        "comment": null
+      },
+      {
+        "address": "081a1fbc",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a1fc0",
+        "bytes": "e81baeebff",
+        "instruction": "CALL 0x0805cde0",
+        "comment": null
+      },
+      {
+        "address": "081a1fc5",
+        "bytes": "84c0",
+        "instruction": "TEST AL,AL",
+        "comment": null
+      },
+      {
+        "address": "081a1fc7",
+        "bytes": "75be",
+        "instruction": "JNZ 0x081a1f87",
+        "comment": null
+      },
+      {
+        "address": "081a1fc9",
+        "bytes": "8b432c",
+        "instruction": "MOV EAX,dword ptr [EBX + 0x2c]",
+        "comment": null
+      },
+      {
+        "address": "081a1fcc",
+        "bytes": "893424",
+        "instruction": "MOV dword ptr [ESP],ESI",
+        "comment": null
+      },
+      {
+        "address": "081a1fcf",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a1fd3",
+        "bytes": "e828b0ebff",
+        "instruction": "CALL 0x0805d000",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::IsConfirmWait(DWORD)",
+    "ranges": [
+      {
+        "low_pc": "081a2064",
+        "high_pc_exclusive": "081a206f",
+        "die": "0x2c3ed5c",
+        "cu": "questmanager.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "081a205d",
+        "bytes": "5d",
+        "instruction": "POP EBP",
+        "comment": null
+      },
+      {
+        "address": "081a205e",
+        "bytes": "c3",
+        "instruction": "RET",
+        "comment": null
+      },
+      {
+        "address": "081a2060",
+        "bytes": "85ff",
+        "instruction": "TEST EDI,EDI",
+        "comment": null
+      },
+      {
+        "address": "081a2062",
+        "bytes": "742c",
+        "instruction": "JZ 0x081a2090",
+        "comment": null
+      },
+      {
+        "address": "081a2064",
+        "bytes": "807e6800",
+        "instruction": "CMP byte ptr [ESI + 0x68],0x0",
+        "comment": null
+      },
+      {
+        "address": "081a2068",
+        "bytes": "7405",
+        "instruction": "JZ 0x081a206f",
+        "comment": null
+      },
+      {
+        "address": "081a206a",
+        "bytes": "3b7e64",
+        "instruction": "CMP EDI,dword ptr [ESI + 0x64]",
+        "comment": null
+      },
+      {
+        "address": "081a206d",
+        "bytes": "7421",
+        "instruction": "JZ 0x081a2090",
+        "comment": null
+      },
+      {
+        "address": "081a206f",
+        "bytes": "0fb6410a",
+        "instruction": "MOVZX EAX,byte ptr [ECX + 0xa]",
+        "comment": null
+      },
+      {
+        "address": "081a2073",
+        "bytes": "895c240c",
+        "instruction": "MOV dword ptr [ESP + 0xc],EBX",
+        "comment": null
+      },
+      {
+        "address": "081a2077",
+        "bytes": "89442410",
+        "instruction": "MOV dword ptr [ESP + 0x10],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a207b",
+        "bytes": "b8e0272308",
+        "instruction": "MOV EAX,0x82327e0",
+        "comment": null
+      },
+      {
+        "address": "081a2080",
+        "bytes": "89442408",
+        "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a2084",
+        "bytes": "b8ba000000",
+        "instruction": "MOV EAX,0xba",
+        "comment": null
+      },
+      {
+        "address": "081a2089",
+        "bytes": "ebb7",
+        "instruction": "JMP 0x081a2042",
+        "comment": null
+      },
+      {
+        "address": "081a2090",
+        "bytes": "66c741080100",
+        "instruction": "MOV word ptr [ECX + 0x8],0x1",
+        "comment": null
+      },
+      {
+        "address": "081a2096",
+        "bytes": "8b4510",
+        "instruction": "MOV EAX,dword ptr [EBP + 0x10]",
+        "comment": null
+      },
+      {
+        "address": "081a2099",
+        "bytes": "31d2",
+        "instruction": "XOR EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "081a209b",
+        "bytes": "c6466800",
+        "instruction": "MOV byte ptr [ESI + 0x68],0x0",
+        "comment": null
+      },
+      {
+        "address": "081a209f",
+        "bytes": "8d5dd8",
+        "instruction": "LEA EBX,[EBP + -0x28]",
+        "comment": null
+      },
+      {
+        "address": "081a20a2",
+        "bytes": "c6461901",
+        "instruction": "MOV byte ptr [ESI + 0x19],0x1",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::ClearConfirmWait",
+    "ranges": [
+      {
+        "low_pc": "081a209b",
+        "high_pc_exclusive": "081a209f",
+        "die": "0x2c3ed7b",
+        "cu": "questmanager.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "081a2096",
+        "bytes": "8b4510",
+        "instruction": "MOV EAX,dword ptr [EBP + 0x10]",
+        "comment": null
+      },
+      {
+        "address": "081a2099",
+        "bytes": "31d2",
+        "instruction": "XOR EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "081a209b",
+        "bytes": "c6466800",
+        "instruction": "MOV byte ptr [ESI + 0x68],0x0",
+        "comment": null
+      },
+      {
+        "address": "081a209f",
+        "bytes": "8d5dd8",
+        "instruction": "LEA EBX,[EBP + -0x28]",
+        "comment": null
+      },
+      {
+        "address": "081a20a2",
+        "bytes": "c6461901",
+        "instruction": "MOV byte ptr [ESI + 0x19],0x1",
+        "comment": null
+      },
+      {
+        "address": "081a20a6",
+        "bytes": "52",
+        "instruction": "PUSH EDX",
+        "comment": null
+      },
+      {
+        "address": "081a20a7",
+        "bytes": "50",
+        "instruction": "PUSH EAX",
+        "comment": null
+      },
+      {
+        "address": "081a20a8",
+        "bytes": "df2c24",
+        "instruction": "FILD qword ptr [ESP]",
+        "comment": null
+      },
+      {
+        "address": "081a20ab",
+        "bytes": "83c408",
+        "instruction": "ADD ESP,0x8",
+        "comment": null
+      },
+      {
+        "address": "081a20ae",
+        "bytes": "dd5c2404",
+        "instruction": "FSTP double ptr [ESP + 0x4]",
+        "comment": null
+      },
+      {
+        "address": "081a20b2",
+        "bytes": "8b01",
+        "instruction": "MOV EAX,dword ptr [ECX]",
+        "comment": null
+      },
+      {
+        "address": "081a20b4",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a20b7",
+        "bytes": "e80cd10100",
+        "instruction": "CALL 0x081bf1c8",
+        "comment": null
+      },
+      {
+        "address": "081a20bc",
+        "bytes": "891c24",
+        "instruction": "MOV dword ptr [ESP],EBX",
+        "comment": null
+      },
+      {
+        "address": "081a20bf",
+        "bytes": "8d45c8",
+        "instruction": "LEA EAX,[EBP + -0x38]",
+        "comment": null
+      },
+      {
+        "address": "081a20c2",
+        "bytes": "89442408",
+        "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a20c6",
+        "bytes": "b8d9242308",
+        "instruction": "MOV EAX,0x82324d9",
+        "comment": null
+      },
+      {
+        "address": "081a20cb",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a20cf",
+        "bytes": "e888a5eaff",
+        "instruction": "CALL 0x0804c65c",
+        "comment": null
+      },
+      {
+        "address": "081a20d4",
+        "bytes": "895c2404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EBX",
+        "comment": null
+      },
+      {
+        "address": "081a20d8",
+        "bytes": "8b4508",
+        "instruction": "MOV EAX,dword ptr [EBP + 0x8]",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "name": "quest::PC::GetAndResetDoneFlag",
+    "ranges": [
+      {
+        "low_pc": "081a4fa2",
+        "high_pc_exclusive": "081a4faa",
+        "die": "0x2c45fb4",
+        "cu": "questmanager.cpp"
+      }
+    ],
+    "instructions": [
+      {
+        "address": "081a4f9e",
+        "bytes": "85d2",
+        "instruction": "TEST EDX,EDX",
+        "comment": null
+      },
+      {
+        "address": "081a4fa0",
+        "bytes": "7410",
+        "instruction": "JZ 0x081a4fb2",
+        "comment": null
+      },
+      {
+        "address": "081a4fa2",
+        "bytes": "0fb64219",
+        "instruction": "MOVZX EAX,byte ptr [EDX + 0x19]",
+        "comment": null
+      },
+      {
+        "address": "081a4fa6",
+        "bytes": "c6421900",
+        "instruction": "MOV byte ptr [EDX + 0x19],0x0",
+        "comment": null
+      },
+      {
+        "address": "081a4faa",
+        "bytes": "84c0",
+        "instruction": "TEST AL,AL",
+        "comment": null
+      },
+      {
+        "address": "081a4fac",
+        "bytes": "0f8415010000",
+        "instruction": "JZ 0x081a50c7",
+        "comment": null
+      },
+      {
+        "address": "081a4fb2",
+        "bytes": "31c0",
+        "instruction": "XOR EAX,EAX",
+        "comment": null
+      },
+      {
+        "address": "081a4fb4",
+        "bytes": "898690000000",
+        "instruction": "MOV dword ptr [ESI + 0x90],EAX",
+        "comment": null
+      },
+      {
+        "address": "081a4fba",
+        "bytes": "c645d82d",
+        "instruction": "MOV byte ptr [EBP + -0x28],0x2d",
+        "comment": null
+      },
+      {
+        "address": "081a4fbe",
+        "bytes": "8d7dc8",
+        "instruction": "LEA EDI,[EBP + -0x38]",
+        "comment": null
+      },
+      {
+        "address": "081a4fc1",
+        "bytes": "0fb68690000000",
+        "instruction": "MOVZX EAX,byte ptr [ESI + 0x90]",
+        "comment": null
+      },
+      {
+        "address": "081a4fc8",
+        "bytes": "8845db",
+        "instruction": "MOV byte ptr [EBP + -0x25],AL",
+        "comment": null
+      },
+      {
+        "address": "081a4fcb",
+        "bytes": "8b868c000000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x8c]",
+        "comment": null
+      },
+      {
+        "address": "081a4fd1",
+        "bytes": "8b40f4",
+        "instruction": "MOV EAX,dword ptr [EAX + -0xc]",
+        "comment": null
+      },
+      {
+        "address": "081a4fd4",
+        "bytes": "893c24",
+        "instruction": "MOV dword ptr [ESP],EDI",
+        "comment": null
+      },
+      {
+        "address": "081a4fd7",
+        "bytes": "668945dc",
+        "instruction": "MOV word ptr [EBP + -0x24],AX",
+        "comment": null
+      },
+      {
+        "address": "081a4fdb",
+        "bytes": "e8f066f5ff",
+        "instruction": "CALL 0x080fb6d0",
+        "comment": null
+      },
+      {
+        "address": "081a4fe0",
+        "bytes": "893c24",
+        "instruction": "MOV dword ptr [ESP],EDI",
+        "comment": null
+      }
+    ]
+  }
+]

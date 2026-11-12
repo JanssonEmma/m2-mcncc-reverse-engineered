@@ -1,0 +1,33 @@
+// Complete original bounded questmanager.cpp script owner methods.
+namespace quest {
+//081a4ee0: stringclear before skinreset; other flags/context unchanged.
+void CQuestManager::ClearScript() { m_strScript.clear();m_iCurrentSkin=1; }
+//081a4f30: full std::string append, including embeddedNUL and selfalias.
+void CQuestManager::AddScript(const std::string& str) { m_strScript.append(str); }
+//081a4f50: full suppression/packet/livecallback sequence, no source narrowing.
+void CQuestManager::SendScript() {
+    if(m_bNoSend) {m_bNoSend=false;ClearScript();return;}
+    if(m_strScript=="[DONE]" || m_strScript=="[NEXT]") {
+        if(m_pCurrentPC && !m_pCurrentPC->GetAndResetDoneFlag() && m_strScript=="[DONE]" && m_iCurrentSkin==1 && !m_bError) {ClearScript();return;}
+        m_iCurrentSkin=0;
+    }
+    struct packet_script packet;
+    packet.header=45;
+    packet.skin=static_cast<BYTE>(m_iCurrentSkin);
+    packet.src_size=static_cast<WORD>(m_strScript.size());
+    TEMP_BUFFER buf;
+    packet.size=static_cast<WORD>(packet.src_size+sizeof(packet));
+    buf.write(&packet,sizeof(packet));
+    int payloadLength=static_cast<int>(m_strScript.size());
+    char* payload=&m_strScript[0];
+    buf.write(payload,payloadLength);
+    int bytes=buf.size();
+    const void* data=buf.read_peek();
+    GetCurrentCharacterPtr()->GetDesc()->Packet(data,bytes);
+    if(test_server) {
+        int debugBytes=buf.size();
+        sys_log(0,"m_strScript %s size %d",m_strScript.c_str(),debugBytes);
+    }
+    ClearScript();
+}
+}

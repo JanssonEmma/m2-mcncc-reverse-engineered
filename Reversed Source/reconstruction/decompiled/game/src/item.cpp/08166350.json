@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08166350",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x08166350",
+    "function": {
+      "name": "CItem::Initialize",
+      "address": "08166350"
+    },
+    "signature": "void Initialize(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void Initialize(CItem * this) */\r\n\r\nvoid __thiscall CItem::Initialize(CItem *this)\r\n\r\n{\r\n  int iVar1;\r\n  long *plVar2;\r\n  TPlayerItemAttribute *pTVar3;\r\n  \r\n  CEntity::Initialize(&this->super_CEntity,1);\r\n  this->m_bWindow = '\\0';\r\n  this->m_pOwner = (LPCHARACTER)0x0;\r\n  this->m_dwID = 0;\r\n  this->m_bEquipped = false;\r\n  this->m_lFlag = 0;\r\n  this->m_dwCount = 0;\r\n  this->m_bCell = '\\0';\r\n  this->m_dwVID = 0;\r\n  this->m_pProto = (TItemTable *)0x0;\r\n  this->m_bExchanging = false;\r\n  plVar2 = this->m_alSockets;\r\n  for (iVar1 = 3; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *plVar2 = 0;\r\n    plVar2 = plVar2 + 1;\r\n  }\r\n  pTVar3 = this->m_aAttr;\r\n  for (iVar1 = 5; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *(TPlayerItemAttribute *)&pTVar3->bType = (TPlayerItemAttribute)0x0;\r\n    pTVar3[1].bType = '\\0';\r\n    pTVar3 = (TPlayerItemAttribute *)&pTVar3[1].sValue;\r\n  }\r\n  pTVar3->bType = '\\0';\r\n  this->m_pkDestroyEvent = (LPEVENT)0x0;\r\n  this->m_pkOwnershipEvent = (LPEVENT)0x0;\r\n  this->m_dwOwnershipPID = 0;\r\n  this->m_pkUniqueExpireEvent = (LPEVENT)0x0;\r\n  this->m_pkAccessorySocketExpireEvent = (LPEVENT)0x0;\r\n  this->m_bSkipSave = false;\r\n  this->m_dwLastOwnerPID = 0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

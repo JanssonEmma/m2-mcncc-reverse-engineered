@@ -1,0 +1,204 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "program_functions": 7238,
+  "exported_functions": 10,
+  "functions": [
+    {
+      "address": "080a2940",
+      "name": "CTableBySkill::~CTableBySkill",
+      "code": "\r\n/* DWARF original prototype: void ~CTableBySkill(CTableBySkill * this, int __in_chrg) */\r\n\r\nvoid __thiscall CTableBySkill::~CTableBySkill(CTableBySkill *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_singleton<CTableBySkill>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CTableBySkill_081ff5a8;\r\n  DeleteAll(this);\r\n  (this->super_singleton<CTableBySkill>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_081ff5b8;\r\n  if (singleton<CTableBySkill>::ms_singleton == (CTableBySkill *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CTableBySkill>::ms_singleton = (CTableBySkill *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080a2940-decompile.json",
+      "raw_sha256": "3b13b8c3f50a94e3bee8a398e359bb24fe6bbd88d977a18e935430124a599a3b",
+      "instruction_file": "080a2940-instructions.json"
+    },
+    {
+      "address": "080a29b0",
+      "name": "CTableBySkill::~CTableBySkill",
+      "code": "\r\n/* DWARF original prototype: void ~CTableBySkill(CTableBySkill * this, int __in_chrg) */\r\n\r\nvoid __thiscall CTableBySkill::~CTableBySkill(CTableBySkill *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_singleton<CTableBySkill>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CTableBySkill_081ff5a8;\r\n  DeleteAll(this);\r\n  (this->super_singleton<CTableBySkill>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_081ff5b8;\r\n  if (singleton<CTableBySkill>::ms_singleton == (CTableBySkill *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CTableBySkill>::ms_singleton = (CTableBySkill *)0x0;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080a29b0-decompile.json",
+      "raw_sha256": "c65c2b22e5b3c4f90b197a43772a6081038115dd596aaa82d81caa2d26f1d5df",
+      "instruction_file": "080a29b0-instructions.json"
+    },
+    {
+      "address": "080e6820",
+      "name": "CTableBySkill::Check",
+      "code": "\r\n/* DWARF original prototype: bool Check(CTableBySkill * this) */\r\n\r\nbool __thiscall CTableBySkill::Check(CTableBySkill *this)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n                    /* Unresolved local var: int job@[DW_OP_reg0(EAX)] */\r\n  iVar1 = 0;\r\n  do {\r\n    if (this->m_aiSkillPowerByLevelFromType[iVar1] == (int *)0x0) {\r\n      fprintf(__stderrp,\"[NO SETTING SKILL] aiSkillPowerByLevelFromType[%d]\",iVar1);\r\n      return false;\r\n    }\r\n    iVar1 = iVar1 + 1;\r\n  } while (iVar1 < 8);\r\n  return true;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e6820-decompile.json",
+      "raw_sha256": "a69f1c8e7d743012900c6dc4d02d190bb24c2d933a52cb93dfb7576448519edf",
+      "instruction_file": "080e6820-instructions.json"
+    },
+    {
+      "address": "080e6870",
+      "name": "CTableBySkill::DeleteAll",
+      "code": "\r\n/* DWARF original prototype: void DeleteAll(CTableBySkill * this) */\r\n\r\nvoid __thiscall CTableBySkill::DeleteAll(CTableBySkill *this)\r\n\r\n{\r\n  int idx;\r\n  int iVar1;\r\n  \r\n                    /* Unresolved local var: int job@[DW_OP_reg3(EBX)] */\r\n  idx = 0;\r\n  do {\r\n    iVar1 = idx + 1;\r\n    DeleteSkillPowerByLevelFromType(this,idx);\r\n    idx = iVar1;\r\n  } while (iVar1 < 8);\r\n  DeleteSkillDamageByLevelTable(this);\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e6870-decompile.json",
+      "raw_sha256": "be242b98083b5755c283b8bbbb99e27fd4b3691f91a9dd22796877d2c4246d89",
+      "instruction_file": "080e6870-instructions.json"
+    },
+    {
+      "address": "080e68a0",
+      "name": "CTableBySkill::GetSkillPowerByLevelFromType",
+      "code": "\r\n/* DWARF original prototype: int GetSkillPowerByLevelFromType(CTableBySkill * this, int job, int\r\n   skillgroup, int skilllevel, bool bMob) */\r\n\r\nint __thiscall\r\nCTableBySkill::GetSkillPowerByLevelFromType\r\n          (CTableBySkill *this,int job,int skillgroup,int skilllevel,bool bMob)\r\n\r\n{\r\n  int *piVar1;\r\n  \r\n                    /* Unresolved local var: int idx@[DW_OP_reg0(EAX)] */\r\n  if (bMob) {\r\n    piVar1 = this->m_aiSkillPowerByLevelFromType[0];\r\n  }\r\n  else {\r\n    if ((3 < job) || (skillgroup == 0)) {\r\n      return 0;\r\n    }\r\n    piVar1 = this->m_aiSkillPowerByLevelFromType[job * 2 + skillgroup + -1];\r\n  }\r\n  return piVar1[skilllevel];\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e68a0-decompile.json",
+      "raw_sha256": "34f18ff15d3501a67e82d01547cf03d4022c6267955290f0859b7186e0610431",
+      "instruction_file": "080e68a0-instructions.json"
+    },
+    {
+      "address": "080e68e0",
+      "name": "CTableBySkill::SetSkillPowerByLevelFromType",
+      "code": "\r\n/* DWARF original prototype: void SetSkillPowerByLevelFromType(CTableBySkill * this, int idx, int *\r\n   aTable) */\r\n\r\nvoid __thiscall CTableBySkill::SetSkillPowerByLevelFromType(CTableBySkill *this,int idx,int *aTable)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  \r\n                    /* Unresolved local var: int * aiSkillTable@[DW_OP_reg2(EDX)] */\r\n  DeleteSkillPowerByLevelFromType(this,idx);\r\n  piVar1 = operator_new__(0xa4);\r\n  piVar3 = piVar1;\r\n  for (iVar2 = 0x29; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *piVar3 = *aTable;\r\n    aTable = aTable + 1;\r\n    piVar3 = piVar3 + 1;\r\n  }\r\n  this->m_aiSkillPowerByLevelFromType[idx] = piVar1;\r\n  fprintf(__stderrp,\"AddedSkill[%d][%d]\\n\",idx / 2,idx % 2);\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e68e0-decompile.json",
+      "raw_sha256": "5ba62e20d61225e75f2f33597769ff6e05a36f0ee4ef00b30f93a19c3c3715ba",
+      "instruction_file": "080e68e0-instructions.json"
+    },
+    {
+      "address": "080e6960",
+      "name": "CTableBySkill::DeleteSkillPowerByLevelFromType",
+      "code": "\r\n/* DWARF original prototype: void DeleteSkillPowerByLevelFromType(CTableBySkill * this, int idx) */\r\n\r\nvoid __thiscall CTableBySkill::DeleteSkillPowerByLevelFromType(CTableBySkill *this,int idx)\r\n\r\n{\r\n  if (this->m_aiSkillPowerByLevelFromType[idx] == (int *)0x0) {\r\n    this->m_aiSkillPowerByLevelFromType[idx] = (int *)0x0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e6960-decompile.json",
+      "raw_sha256": "e0f3f44cf30973378c0b8173c2758220e414a22fe35f4570380b4eac3d0fda02",
+      "instruction_file": "080e6960-instructions.json"
+    },
+    {
+      "address": "080e6980",
+      "name": "CTableBySkill::GetSkillDamageByLevel",
+      "code": "\r\n/* DWARF original prototype: int GetSkillDamageByLevel(CTableBySkill * this, int Level) */\r\n\r\nint __thiscall CTableBySkill::GetSkillDamageByLevel(CTableBySkill *this,int Level)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  if ((uint)Level < 99) {\r\n    iVar1 = this->m_aiSkillDamageByLevel[Level];\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e6980-decompile.json",
+      "raw_sha256": "2f50093324dcd2370f81a0899ee2027d707a62f4b0996c0af3d1d01085c49329",
+      "instruction_file": "080e6980-instructions.json"
+    },
+    {
+      "address": "080e69a0",
+      "name": "CTableBySkill::SetSkillDamageByLevelTable",
+      "code": "\r\n/* DWARF original prototype: void SetSkillDamageByLevelTable(CTableBySkill * this, int * aTable) */\r\n\r\nvoid __thiscall CTableBySkill::SetSkillDamageByLevelTable(CTableBySkill *this,int *aTable)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  uint uVar3;\r\n  int *piVar4;\r\n  \r\n                    /* Unresolved local var: int * aiSkillDamageTable@[DW_OP_reg2(EDX)] */\r\n  DeleteSkillDamageByLevelTable(this);\r\n  piVar2 = operator_new__(0x18c);\r\n  uVar3 = 0x18c;\r\n  piVar4 = piVar2;\r\n  if (((uint)piVar2 & 4) != 0) {\r\n    iVar1 = *aTable;\r\n    piVar4 = piVar2 + 1;\r\n    aTable = aTable + 1;\r\n    *piVar2 = iVar1;\r\n    uVar3 = 0x188;\r\n  }\r\n  for (uVar3 = uVar3 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n    *piVar4 = *aTable;\r\n    aTable = aTable + 1;\r\n    piVar4 = piVar4 + 1;\r\n  }\r\n  this->m_aiSkillDamageByLevel = piVar2;\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e69a0-decompile.json",
+      "raw_sha256": "b1d8b0dd75f70192a51b0b14ff46cf93a4b3ea656835bd299c84c285cdf11bc3",
+      "instruction_file": "080e69a0-instructions.json"
+    },
+    {
+      "address": "080e6a00",
+      "name": "CTableBySkill::DeleteSkillDamageByLevelTable",
+      "code": "\r\n/* DWARF original prototype: void DeleteSkillDamageByLevelTable(CTableBySkill * this) */\r\n\r\nvoid __thiscall CTableBySkill::DeleteSkillDamageByLevelTable(CTableBySkill *this)\r\n\r\n{\r\n  if (this->m_aiSkillDamageByLevel != (int *)0x0) {\r\n    operator_delete__(this->m_aiSkillDamageByLevel);\r\n    this->m_aiSkillDamageByLevel = (int *)0x0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "status": "evidence_available_candidate_staged_not_tested",
+      "raw_export": "080e6a00-decompile.json",
+      "raw_sha256": "4cda0e662a4bf3d46e48dc295bd81437bd76ae5d3fc0b822ae23bb81b1e82d59",
+      "instruction_file": "080e6a00-instructions.json"
+    }
+  ],
+  "callgraphs": [
+    {
+      "file": "080e6820-calls.json",
+      "pages": {
+        "callers": {
+          "total": 1,
+          "has_more": false
+        },
+        "callees": {
+          "total": 1,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e6870-calls.json",
+      "pages": {
+        "callers": {
+          "total": 5,
+          "has_more": false
+        },
+        "callees": {
+          "total": 2,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e68a0-calls.json",
+      "pages": {
+        "callers": {
+          "total": 2,
+          "has_more": false
+        },
+        "callees": {
+          "total": 0,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e68e0-calls.json",
+      "pages": {
+        "callers": {
+          "total": 2,
+          "has_more": false
+        },
+        "callees": {
+          "total": 3,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e6960-calls.json",
+      "pages": {
+        "callers": {
+          "total": 2,
+          "has_more": false
+        },
+        "callees": {
+          "total": 0,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e6980-calls.json",
+      "pages": {
+        "callers": {
+          "total": 0,
+          "has_more": false
+        },
+        "callees": {
+          "total": 0,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e69a0-calls.json",
+      "pages": {
+        "callers": {
+          "total": 0,
+          "has_more": false
+        },
+        "callees": {
+          "total": 2,
+          "has_more": false
+        }
+      }
+    },
+    {
+      "file": "080e6a00-calls.json",
+      "pages": {
+        "callers": {
+          "total": 2,
+          "has_more": false
+        },
+        "callees": {
+          "total": 1,
+          "has_more": false
+        }
+      }
+    }
+  ],
+  "note": "Evidence and candidates do not establish full recovery or validation. Main constructor context is a partial main page."
+}

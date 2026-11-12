@@ -1,0 +1,101 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08075430 <_ZN15FFindNearVictimclEP7CEntity>:
+ 8075430:	55                   	push   %ebp
+ 8075431:	31 c0                	xor    %eax,%eax
+ 8075433:	89 e5                	mov    %esp,%ebp
+ 8075435:	83 ec 28             	sub    $0x28,%esp
+ 8075438:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 807543b:	8b 5d 0c             	mov    0xc(%ebp),%ebx
+ 807543e:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 8075441:	8b 75 08             	mov    0x8(%ebp),%esi
+ 8075444:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8075448:	89 1c 24             	mov    %ebx,(%esp)
+ 807544b:	e8 40 77 13 00       	call   81acb90 <_ZN7CEntity6IsTypeEi>
+ 8075450:	84 c0                	test   %al,%al
+ 8075452:	75 0c                	jne    8075460 <_ZN15FFindNearVictimclEP7CEntity+0x30>
+ 8075454:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8075457:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 807545a:	89 ec                	mov    %ebp,%esp
+ 807545c:	5d                   	pop    %ebp
+ 807545d:	c3                   	ret
+ 807545e:	89 f6                	mov    %esi,%esi
+ 8075460:	89 5d f4             	mov    %ebx,-0xc(%ebp)
+ 8075463:	8b 56 10             	mov    0x10(%esi),%edx
+ 8075466:	8d 45 f4             	lea    -0xc(%ebp),%eax
+ 8075469:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 807546d:	89 14 24             	mov    %edx,(%esp)
+ 8075470:	e8 2b f6 ff ff       	call   8074aa0 <_ZNKSt8_Rb_treeIP9CHARACTERS1_St9_IdentityIS1_ESt4lessIS1_ESaIS1_EE4findERKS1_>
+ 8075475:	8b 56 10             	mov    0x10(%esi),%edx
+ 8075478:	3b 02                	cmp    (%edx),%eax
+ 807547a:	75 d8                	jne    8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 807547c:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 807547f:	39 06                	cmp    %eax,(%esi)
+ 8075481:	74 d1                	je     8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 8075483:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8075487:	8b 46 08             	mov    0x8(%esi),%eax
+ 807548a:	89 04 24             	mov    %eax,(%esp)
+ 807548d:	e8 3e 06 06 00       	call   80d5ad0 <_Z20battle_is_attackableP9CHARACTERS0_>
+ 8075492:	84 c0                	test   %al,%al
+ 8075494:	74 be                	je     8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 8075496:	8b 1e                	mov    (%esi),%ebx
+ 8075498:	8b 4d f4             	mov    -0xc(%ebp),%ecx
+ 807549b:	8b 53 24             	mov    0x24(%ebx),%edx
+ 807549e:	8b 41 24             	mov    0x24(%ecx),%eax
+ 80754a1:	29 c2                	sub    %eax,%edx
+ 80754a3:	85 d2                	test   %edx,%edx
+ 80754a5:	89 d0                	mov    %edx,%eax
+ 80754a7:	0f 88 86 00 00 00    	js     8075533 <_ZN15FFindNearVictimclEP7CEntity+0x103>
+ 80754ad:	3d e8 03 00 00       	cmp    $0x3e8,%eax
+ 80754b2:	7f a0                	jg     8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 80754b4:	8b 43 28             	mov    0x28(%ebx),%eax
+ 80754b7:	8b 59 28             	mov    0x28(%ecx),%ebx
+ 80754ba:	29 d8                	sub    %ebx,%eax
+ 80754bc:	85 c0                	test   %eax,%eax
+ 80754be:	89 c1                	mov    %eax,%ecx
+ 80754c0:	78 6d                	js     807552f <_ZN15FFindNearVictimclEP7CEntity+0xff>
+ 80754c2:	81 f9 e8 03 00 00    	cmp    $0x3e8,%ecx
+ 80754c8:	7f 8a                	jg     8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 80754ca:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80754ce:	89 14 24             	mov    %edx,(%esp)
+ 80754d1:	e8 3a c1 fd ff       	call   8051610 <_Z15DISTANCE_APPROXii>
+ 80754d6:	50                   	push   %eax
+ 80754d7:	db 04 24             	fildl  (%esp)
+ 80754da:	83 c4 04             	add    $0x4,%esp
+ 80754dd:	d9 05 50 72 1f 08    	flds   0x81f7250
+ 80754e3:	da e9                	fucompp
+ 80754e5:	df e0                	fnstsw %ax
+ 80754e7:	9e                   	sahf
+ 80754e8:	0f 86 66 ff ff ff    	jbe    8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 80754ee:	8b 46 0c             	mov    0xc(%esi),%eax
+ 80754f1:	40                   	inc    %eax
+ 80754f2:	89 46 0c             	mov    %eax,0xc(%esi)
+ 80754f5:	48                   	dec    %eax
+ 80754f6:	74 2c                	je     8075524 <_ZN15FFindNearVictimclEP7CEntity+0xf4>
+ 80754f8:	b8 59 03 00 00       	mov    $0x359,%eax
+ 80754fd:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8075501:	b8 cb 9a 1f 08       	mov    $0x81f9acb,%eax
+ 8075506:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 807550a:	8b 46 0c             	mov    0xc(%esi),%eax
+ 807550d:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 8075514:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8075518:	e8 b3 3d 14 00       	call   81b92d0 <number_ex>
+ 807551d:	48                   	dec    %eax
+ 807551e:	0f 85 30 ff ff ff    	jne    8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 8075524:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8075527:	89 46 04             	mov    %eax,0x4(%esi)
+ 807552a:	e9 25 ff ff ff       	jmp    8075454 <_ZN15FFindNearVictimclEP7CEntity+0x24>
+ 807552f:	f7 d9                	neg    %ecx
+ 8075531:	eb 8f                	jmp    80754c2 <_ZN15FFindNearVictimclEP7CEntity+0x92>
+ 8075533:	f7 d8                	neg    %eax
+ 8075535:	e9 73 ff ff ff       	jmp    80754ad <_ZN15FFindNearVictimclEP7CEntity+0x7d>
+ 807553a:	90                   	nop
+ 807553b:	90                   	nop
+ 807553c:	90                   	nop
+ 807553d:	90                   	nop
+ 807553e:	90                   	nop
+ 807553f:	90                   	nop

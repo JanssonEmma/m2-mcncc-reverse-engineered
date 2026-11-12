@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08069220",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "affect_add",
+      "address": "08069220"
+    },
+    "code": "\r\nint affect_add(lua_State *L)\r\n\r\n{\r\n  CHARACTER *this;\r\n  CQuestManager *pCVar1;\r\n  int iVar2;\r\n  uint uVar3;\r\n  CAffect *pCVar4;\r\n  byte bApply;\r\n  lua_Number lVar5;\r\n  lua_Number lVar6;\r\n  LPCHARACTER ch;\r\n  \r\n                    /* Unresolved local var: CQuestManager * q@[???]\r\n                       Unresolved local var: BYTE applyOn@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: long value@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: long duration@[DW_OP_reg3(EBX)] */\r\n  iVar2 = lua_isnumber(L,1);\r\n  if (((iVar2 == 0) || (iVar2 = lua_isnumber(L,2), iVar2 == 0)) ||\r\n     (iVar2 = lua_isnumber(L,3), iVar2 == 0)) {\r\n    _sys_err(\"affect_add\",0x12,\"invalid argument\");\r\n  }\r\n  else {\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    pCVar1 = singleton<quest::CQuestManager>::ms_singleton;\r\n    lVar5 = lua_tonumber(L,1);\r\n    this = *(CHARACTER **)(pCVar1 + 0x7c);\r\n    lVar6 = lua_tonumber(L,2);\r\n    bApply = (byte)(short)ROUND(lVar5);\r\n    uVar3 = (uint)bApply;\r\n    sys_log(0,\"APPLYON %d value %d\",uVar3,(int)ROUND(lVar6));\r\n    if ((byte)(bApply - 1) < 0x51) {\r\n      pCVar4 = CHARACTER::FindAffect(this,1000,bApply);\r\n      if (pCVar4 != (CAffect *)0x0) {\r\n        return 0;\r\n      }\r\n      lVar5 = lua_tonumber(L,2);\r\n      lVar6 = lua_tonumber(L,3);\r\n      sys_log(0,\"--APPLYON %d value %d dur %d\",uVar3,(int)ROUND(lVar5),(int)ROUND(lVar6));\r\n      CHARACTER::AddAffect\r\n                (this,1000,(&aApplyInfo)[uVar3],(int)ROUND(lVar5),0,(int)ROUND(lVar6),0,false,false)\r\n      ;\r\n      return 1;\r\n    }\r\n    _sys_err(\"affect_add\",0x1f,\"apply is out of range : %d\",uVar3);\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

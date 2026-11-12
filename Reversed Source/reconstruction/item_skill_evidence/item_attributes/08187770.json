@@ -1,0 +1,59 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::RemoveAttributeType\",\n    \"address\": \"08187770\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: bool RemoveAttributeType(CItem * this, BYTE bType) */\\r\\n\\r\\nbool __thiscall CItem::RemoveAttributeType(CItem *this,BYTE bType)\\r\\n\\r\\n{\\r\\n  bool bVar1;\\r\\n  int iVar2;\\r\\n  bool bVar3;\\r\\n  \\r\\n                    /* Unresolved local var: int index@[DW_OP_reg0(EAX)] */\\r\\n  bVar3 = false;\\r\\n  iVar2 = FindAttribute(this,bType);\\r\\n  if (iVar2 != -1) {\\r\\n    bVar1 = RemoveAttributeType(this,(BYTE)iVar2);\\r\\n    if (bVar1) {\\r\\n      bVar3 = true;\\r\\n    }\\r\\n  }\\r\\n  return bVar3;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::RemoveAttributeType",
+        "address": "08187770"
+      },
+      "code": "\r\n/* DWARF original prototype: bool RemoveAttributeType(CItem * this, BYTE bType) */\r\n\r\nbool __thiscall CItem::RemoveAttributeType(CItem *this,BYTE bType)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  bool bVar3;\r\n  \r\n                    /* Unresolved local var: int index@[DW_OP_reg0(EAX)] */\r\n  bVar3 = false;\r\n  iVar2 = FindAttribute(this,bType);\r\n  if (iVar2 != -1) {\r\n    bVar1 = RemoveAttributeType(this,(BYTE)iVar2);\r\n    if (bVar1) {\r\n      bVar3 = true;\r\n    }\r\n  }\r\n  return bVar3;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::RemoveAttributeType\",\n    \"address\": \"08187770\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0818778c\",\n        \"target\": \"081876c0\",\n        \"name\": \"CItem::FindAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081877a0\",\n        \"target\": \"08187770\",\n        \"name\": \"CItem::RemoveAttributeType\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 2,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::RemoveAttributeType",
+        "address": "08187770"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0818778c",
+            "target": "081876c0",
+            "name": "CItem::FindAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081877a0",
+            "target": "08187770",
+            "name": "CItem::RemoveAttributeType",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 2,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

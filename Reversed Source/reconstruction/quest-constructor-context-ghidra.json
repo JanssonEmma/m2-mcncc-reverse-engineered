@@ -1,0 +1,37 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "function": {
+        "name": "CHARACTER::SetQuestNPCID",
+        "address": "08134f30"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetQuestNPCID(CHARACTER * this, DWORD vid) */\r\n\r\nvoid __thiscall CHARACTER::SetQuestNPCID(CHARACTER *this,DWORD vid)\r\n\r\n{\r\n  this->m_dwQuestNPCVID = vid;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetQuestNPC",
+        "address": "08134f50"
+      },
+      "code": "\r\n/* DWARF original prototype: LPCHARACTER GetQuestNPC(CHARACTER * this) */\r\n\r\nLPCHARACTER __thiscall CHARACTER::GetQuestNPC(CHARACTER *this)\r\n\r\n{\r\n  LPCHARACTER pCVar1;\r\n  \r\n  if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar1 = CHARACTER_MANAGER::Find(singleton<CHARACTER_MANAGER>::ms_singleton,this->m_dwQuestNPCVID)\r\n  ;\r\n  return pCVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CQuestManager::GetCurrentNPCCharacterPtr",
+        "address": "081a5700"
+      },
+      "code": "\r\n/* DWARF original prototype: LPCHARACTER GetCurrentNPCCharacterPtr(CQuestManager * this) */\r\n\r\nLPCHARACTER __thiscall CQuestManager::GetCurrentNPCCharacterPtr(CQuestManager *this)\r\n\r\n{\r\n  LPCHARACTER pCVar1;\r\n  \r\n  pCVar1 = (LPCHARACTER)0x0;\r\n  if (this->m_pCurrentCharacter != (CHARACTER *)0x0) {\r\n    pCVar1 = CHARACTER::GetQuestNPC(this->m_pCurrentCharacter);\r\n  }\r\n  return pCVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CQuestManager::GetCurrentNPCRace",
+        "address": "081a5660"
+      },
+      "code": "\r\n/* DWARF original prototype: uint GetCurrentNPCRace(CQuestManager * this) */\r\n\r\nuint __thiscall CQuestManager::GetCurrentNPCRace(CQuestManager *this)\r\n\r\n{\r\n  WORD WVar1;\r\n  LPCHARACTER pCVar2;\r\n  uint uVar3;\r\n  \r\n  pCVar2 = GetCurrentNPCCharacterPtr(this);\r\n  uVar3 = 0;\r\n  if (pCVar2 != (LPCHARACTER)0x0) {\r\n    pCVar2 = GetCurrentNPCCharacterPtr(this);\r\n    WVar1 = CHARACTER::GetRaceNum(pCVar2);\r\n    uVar3 = (uint)WVar1;\r\n  }\r\n  return uVar3;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

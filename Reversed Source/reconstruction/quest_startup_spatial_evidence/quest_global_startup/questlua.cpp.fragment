@@ -1,0 +1,111 @@
+namespace quest {
+
+// The original i386 casts use a truncating signed 32-bit x87 conversion.
+static int LuaTruncateInt(lua_Number value) {
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        feraiseexcept(FE_INVALID);
+        return INT_MIN;
+    }
+    return static_cast<int>(value);
+}
+
+// 08052b40
+void combine_lua_string(lua_State* state, std::ostringstream& output) {
+    const int count = lua_gettop(state);
+    for (int index = 1; index <= count; ++index) {
+        if (lua_isstring(state, index)) {
+            output << lua_tostring(state, index);
+        } else if (lua_isnumber(state, index)) {
+            char text[20];
+            std::sprintf(text, "%.14g\n", lua_tonumber(state, index));
+            output << text;
+        }
+    }
+}
+
+// 08053e70
+int _get_locale(lua_State* state) {
+    lua_pushstring(state, g_stLocale.c_str());
+    return 1;
+}
+
+// 08053eb0
+int _number(lua_State* state) {
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2)) {
+        lua_pushnumber(state, 0);
+        return 1;
+    }
+    const int last = LuaTruncateInt(lua_tonumber(state, 2));
+    const int first = LuaTruncateInt(lua_tonumber(state, 1));
+    lua_pushnumber(state, number_ex(first, last, const_cast<char*>("questlua.cpp"), 315));
+    return 1;
+}
+
+// 08055b70
+int _say(lua_State* state) {
+    std::ostringstream output;
+    combine_lua_string(state, output);
+    CQuestManager::Instance().AddScript(output.str() + "[ENTER]");
+    return 0;
+}
+
+// 08055df0
+int _raw_script(lua_State* state) {
+    if (test_server)
+        sys_log(0, "_raw_script : %s ", lua_tostring(state, -1));
+    if (lua_isstring(state, -1)) {
+        const std::string script(lua_tostring(state, -1));
+        CQuestManager::Instance().AddScript(script);
+    } else {
+        const char* name = CQuestManager::instance().GetCurrentQuestName().c_str();
+        CQuestManager::instance().QuestError("_raw_script", 706,
+                                             "QUEST wrong argument: questname: %s", name);
+    }
+    return 0;
+}
+
+// 08056270
+int _set_skin(lua_State* state) {
+    if (lua_isnumber(state, -1)) {
+        const int style = LuaTruncateInt(rint(lua_tonumber(state, -1)));
+        CQuestManager::Instance().SetSkinStyle(style);
+    } else {
+        CQuestManager::instance().QuestError("_set_skin", 739, "QUEST wrong skin index");
+    }
+    return 0;
+}
+
+// 08056490
+int _get_server_timer_arg(lua_State* state) {
+    lua_pushnumber(state, CQuestManager::instance().GetServerTimerArg());
+    return 1;
+}
+
+// 08057ac0
+int _getnpcid(lua_State* state) {
+    const char* name = lua_tostring(state, -1);
+    CQuestManager& manager = CQuestManager::instance();
+    lua_pushnumber(state, manager.FindNPCIDByName(std::string(name)));
+    return 1;
+}
+
+// 08057b90
+int _is_test_server(lua_State* state) {
+    lua_pushboolean(state, test_server);
+    return 1;
+}
+
+// 0805a4b0
+int _is_allow_map(lua_State* state) {
+    if (test_server) {
+        CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+        const bool allowed = map_allow_find(LuaTruncateInt(lua_tonumber(state, 1)));
+        const int map = LuaTruncateInt(lua_tonumber(state, 1));
+        character->ChatPacket(1, "allow map %d %d", map, static_cast<int>(allowed));
+    }
+    const bool allowed = map_allow_find(LuaTruncateInt(lua_tonumber(state, 1)));
+    lua_pushnumber(state, allowed);
+    return 1;
+}
+
+}

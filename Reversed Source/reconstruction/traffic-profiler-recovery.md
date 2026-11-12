@@ -1,0 +1,15 @@
+# TrafficProfiler recovery
+
+Target: original game SHA256 61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c. No original executable was run.
+
+Observed static evidence: `reconstruction/traffic-profiler-ghidra.json` contains the two constructor variants (08097800/08097950), three destructor variants (08097aa0/08097b70/08097c40), Initialize (08097d10), Flush (08097d60), InitializeProfiling (08097ef0). `reconstruction/desc-packet-ghidra.json` contains the inline Report/ComputeTraffic output-direction instance. `traffic-profiler-types.json` captures the focused TrafficProfiler.cpp DWARF class layout.
+
+The old class occupies 48 bytes: virtual singleton base0, FILE pointer4, cycle8, signed32 time_t12, total bytes16, total distinct direction/header entries20, two 12-byte vectors24. Each vector contains256 pairs of DWORD byte totals and DWORD report counts. The constructor sets only the file pointer and creates zero-filled vectors; cycle/time/totals remain indeterminate until successful Initialize. The destructor closes an open file without flushing profiling records.
+
+Initialize overwrites the file pointer with fopen(filename,"w"); failure returns false without resetting counters/cycle, while success stores cycle and clears all counts. Reinitializing an open object therefore loses the previous FILE pointer. Report accounts the event first, counts a new header separately for each direction, then uses the unsigned DWORD time difference to decide whether to Flush. It has no initialized-state guard. A failed Flush leaves data intact. Successful Flush writes signed decimal values, unsigned pair division averages, repeats the Output separator after both directions, flushes stdio, then resets counters and updates start time. Existing source quirks are retained.
+
+The output Report body is recovered from its inline DESC::Packet use, with public spelling guided by the corresponding reference header. No standalone Report function is emitted. Invalid direction values and Report before successful Initialize retain the old unchecked preconditions.
+
+Global g_bTrafficProfileOn is an ELF symbol at0832319b of size1. Packet reads it as a byte. The reference config.cpp:44 and config.h:38 use bool/extern bool. The focused target config/main/desc/profiler DWARF scan did not find a named variable DIE; using bool is a reference-guided inference consistent with target storage/access, not a target-DWARF type proof.
+
+Validation: traffic_regression.cpp passes with actual promoted module, testing real file output, direction/header counting, header255, averages, separator duplication, reset, immediate flush and signed high-bit formatting. traffic_abi.cpp compiles with -m32 -D_GLIBCXX_USE_CXX11_ABI=0 -D_USE_32BIT_TIME_T -Wno-invalid-offsetof, checking all seven member locations, class size, vector and pair sizes. Host file test uses a temporary named log in the test directory and text reads to normalize Windows CRLF. This is host regression plus structural32 validation, not a FreeBSD runtime comparison.

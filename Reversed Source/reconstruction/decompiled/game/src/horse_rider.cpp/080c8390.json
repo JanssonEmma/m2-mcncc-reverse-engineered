@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080c8390",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHorseRider::EnterHorse",
+      "address": "080c8390"
+    },
+    "code": "\r\n/* DWARF original prototype: void EnterHorse(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::EnterHorse(CHorseRider *this)\r\n\r\n{\r\n  if (((this->m_Horse).bLevel != '\\0') && (0 < (this->m_Horse).sHealth)) {\r\n    if ((this->m_Horse).bRiding == '\\0') {\r\n      StartStaminaRegenEvent(this);\r\n    }\r\n    else {\r\n      (this->m_Horse).bRiding = '\\0';\r\n      (*this->_vptr_CHorseRider[8])(this);\r\n    }\r\n    CheckHorseHealthDropTime(this,false);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

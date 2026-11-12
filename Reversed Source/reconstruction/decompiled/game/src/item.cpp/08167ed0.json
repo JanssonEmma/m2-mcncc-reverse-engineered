@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08167ed0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8167ed0",
+    "function": {
+      "name": "CItem::GetGold",
+      "address": "08167ed0"
+    },
+    "signature": "int GetGold(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: int GetGold(CItem * this) */\r\n\r\nint __thiscall CItem::GetGold(CItem *this)\r\n\r\n{\r\n  uint uVar1;\r\n  \r\n  if ((this->m_lFlag & 8) == 0) {\r\n    uVar1 = this->m_pProto->dwGold;\r\n  }\r\n  else {\r\n    uVar1 = this->m_pProto->dwGold;\r\n    if (uVar1 == 0) {\r\n      uVar1 = this->m_dwCount;\r\n    }\r\n    else {\r\n      uVar1 = this->m_dwCount / uVar1;\r\n    }\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

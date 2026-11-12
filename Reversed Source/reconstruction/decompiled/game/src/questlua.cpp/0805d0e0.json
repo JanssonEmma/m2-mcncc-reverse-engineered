@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0805d0e0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "operator+<char,_std::char_traits<char>,_std::allocator<char>_>",
+      "address": "0805d0e0"
+    },
+    "code": "\r\n/* DWARF original name: operator+<char, std::char_traits<char>, std::allocator<char> > */\r\n\r\nbasic_string<char,std::char_traits<char>,std::allocator<char>_> *\r\noperator+<char,_std::char_traits<char>,_std::allocator<char>_>\r\n          (basic_string<char,std::char_traits<char>,std::allocator<char>_> *__return_storage_ptr__,\r\n          char *__lhs,basic_string<char,std::char_traits<char>,std::allocator<char>_> *__rhs)\r\n\r\n{\r\n                    /* Unresolved local var: size_t __len@[???]\r\n                       Unresolved local var:\r\n                       basic_string<char,std::char_traits<char>,std::allocator<char>_>\r\n                       __str@[DW_OP_breg3(EBX): 0] */\r\n  strlen(__lhs);\r\n  LOCK();\r\n  DAT_083223c8 = DAT_083223c8 + 1;\r\n  UNLOCK();\r\n  (__return_storage_ptr__->_M_dataplus)._M_p = &DAT_083223cc;\r\n  std::string::reserve((uint)__return_storage_ptr__);\r\n  std::string::replace\r\n            ((uint)__return_storage_ptr__,\r\n             *(uint *)((__return_storage_ptr__->_M_dataplus)._M_p + -0xc),(char *)0x0,(uint)__lhs);\r\n  std::string::append((string *)__return_storage_ptr__);\r\n  return __return_storage_ptr__;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

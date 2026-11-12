@@ -1,0 +1,68 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08171300 <_ZN9CHARACTER7SetWearEhP5CItem>:
+ 8171300:	55                   	push   %ebp
+ 8171301:	89 e5                	mov    %esp,%ebp
+ 8171303:	83 ec 28             	sub    $0x28,%esp
+ 8171306:	89 5d f4             	mov    %ebx,-0xc(%ebp)
+ 8171309:	0f b6 5d 0c          	movzbl 0xc(%ebp),%ebx
+ 817130d:	89 75 f8             	mov    %esi,-0x8(%ebp)
+ 8171310:	8b 75 10             	mov    0x10(%ebp),%esi
+ 8171313:	89 7d fc             	mov    %edi,-0x4(%ebp)
+ 8171316:	80 fb 12             	cmp    $0x12,%bl
+ 8171319:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 817131c:	76 32                	jbe    8171350 <_ZN9CHARACTER7SetWearEhP5CItem+0x50>
+ 817131e:	c7 04 24 ba cd 22 08 	movl   $0x822cdba,(%esp)
+ 8171325:	0f b6 c3             	movzbl %bl,%eax
+ 8171328:	b9 69 01 00 00       	mov    $0x169,%ecx
+ 817132d:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8171331:	bb 80 df 22 08       	mov    $0x822df80,%ebx
+ 8171336:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 817133a:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 817133e:	e8 0d 6e 04 00       	call   81b8150 <_sys_err>
+ 8171343:	8b 5d f4             	mov    -0xc(%ebp),%ebx
+ 8171346:	8b 75 f8             	mov    -0x8(%ebp),%esi
+ 8171349:	8b 7d fc             	mov    -0x4(%ebp),%edi
+ 817134c:	89 ec                	mov    %ebp,%esp
+ 817134e:	5d                   	pop    %ebp
+ 817134f:	c3                   	ret
+ 8171350:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 8171354:	88 d8                	mov    %bl,%al
+ 8171356:	04 5a                	add    $0x5a,%al
+ 8171358:	89 3c 24             	mov    %edi,(%esp)
+ 817135b:	0f b6 c0             	movzbl %al,%eax
+ 817135e:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8171362:	e8 49 fc ff ff       	call   8170fb0 <_ZN9CHARACTER7SetItemEhP5CItem>
+ 8171367:	85 f6                	test   %esi,%esi
+ 8171369:	75 d8                	jne    8171343 <_ZN9CHARACTER7SetWearEhP5CItem+0x43>
+ 817136b:	80 fb 04             	cmp    $0x4,%bl
+ 817136e:	75 d3                	jne    8171343 <_ZN9CHARACTER7SetWearEhP5CItem+0x43>
+ 8171370:	89 3c 24             	mov    %edi,(%esp)
+ 8171373:	ba 14 00 00 00       	mov    $0x14,%edx
+ 8171378:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 817137c:	e8 df d7 fc ff       	call   813eb60 <_ZN9CHARACTER12IsAffectFlagEm>
+ 8171381:	84 c0                	test   %al,%al
+ 8171383:	75 30                	jne    81713b5 <_ZN9CHARACTER7SetWearEhP5CItem+0xb5>
+ 8171385:	89 3c 24             	mov    %edi,(%esp)
+ 8171388:	b8 10 00 00 00       	mov    $0x10,%eax
+ 817138d:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8171391:	e8 ca d7 fc ff       	call   813eb60 <_ZN9CHARACTER12IsAffectFlagEm>
+ 8171396:	84 c0                	test   %al,%al
+ 8171398:	74 a9                	je     8171343 <_ZN9CHARACTER7SetWearEhP5CItem+0x43>
+ 817139a:	89 7d 08             	mov    %edi,0x8(%ebp)
+ 817139d:	8b 5d f4             	mov    -0xc(%ebp),%ebx
+ 81713a0:	8b 75 f8             	mov    -0x8(%ebp),%esi
+ 81713a3:	c7 45 0c 04 00 00 00 	movl   $0x4,0xc(%ebp)
+ 81713aa:	8b 7d fc             	mov    -0x4(%ebp),%edi
+ 81713ad:	89 ec                	mov    %ebp,%esp
+ 81713af:	5d                   	pop    %ebp
+ 81713b0:	e9 eb d6 fc ff       	jmp    813eaa0 <_ZN9CHARACTER12RemoveAffectEm>
+ 81713b5:	89 3c 24             	mov    %edi,(%esp)
+ 81713b8:	b8 3f 00 00 00       	mov    $0x3f,%eax
+ 81713bd:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81713c1:	e8 da d6 fc ff       	call   813eaa0 <_ZN9CHARACTER12RemoveAffectEm>
+ 81713c6:	eb bd                	jmp    8171385 <_ZN9CHARACTER7SetWearEhP5CItem+0x85>

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08055060",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_give_char_privilege",
+      "address": "08055060"
+    },
+    "code": "\r\nint _give_char_privilege(lua_State *L)\r\n\r\n{\r\n  DWORD pid;\r\n  lua_Number lVar1;\r\n  lua_Number lVar2;\r\n  \r\n                    /* Unresolved local var: int pid@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int type@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int value@[DW_OP_reg3(EBX)] */\r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pid = *(DWORD *)(*(int *)(singleton<quest::CQuestManager>::ms_singleton + 0x7c) + 0xf0);\r\n  lVar1 = lua_tonumber(L,1);\r\n  lVar2 = lua_tonumber(L,2);\r\n  if (singleton<CPrivManager>::ms_singleton == (CPrivManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  CPrivManager::RequestGiveCharacterPriv\r\n            (singleton<CPrivManager>::ms_singleton,pid,(BYTE)(int)ROUND(lVar1),(int)ROUND(lVar2));\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

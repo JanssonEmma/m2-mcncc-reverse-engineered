@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081874d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81874d0",
+    "function": {
+      "name": "CItem::PutAttribute",
+      "address": "081874d0"
+    },
+    "signature": "void PutAttribute(CItem * this, int * aiAttrPercentTable)",
+    "code": "\r\n/* DWARF original prototype: void PutAttribute(CItem * this, int * aiAttrPercentTable) */\r\n\r\nvoid __thiscall CItem::PutAttribute(CItem *this,int *aiAttrPercentTable)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n                    /* Unresolved local var: int iAttrLevelPercent@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: int i@[DW_OP_reg1(ECX)] */\r\n  iVar2 = number_ex(1,100,\"item_attribute.cpp\",0xac);\r\n  iVar3 = 0;\r\n  do {\r\n    piVar1 = aiAttrPercentTable + iVar3;\r\n    if (iVar2 <= *piVar1) break;\r\n    iVar3 = iVar3 + 1;\r\n    iVar2 = iVar2 - *piVar1;\r\n  } while (iVar3 < 5);\r\n  PutAttributeWithLevel(this,(char)iVar3 + '\\x01');\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

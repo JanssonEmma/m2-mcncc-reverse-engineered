@@ -1,0 +1,109 @@
+{
+  "elf_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "exports": [
+    {
+      "address": "0805de00",
+      "name": "quest::PC::SetFlag",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::SetFlag(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::SetFlag(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "Flags",
+      "evidence": "0805de00.json",
+      "evidence_sha256": "3c8cc23fbe3f5a779b00ace75df28b697d21514e2516a2667205f12b1f28fd29",
+      "semantic_original_count": 1
+    },
+    {
+      "address": "0805dfe0",
+      "name": "quest::PC::DeleteFlag",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::DeleteFlag(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::DeleteFlag(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "Flags",
+      "evidence": "0805dfe0.json",
+      "evidence_sha256": "e28cac6d31ae304c826796405f65489060f224aaf892bbb9941da6a33c39b100",
+      "semantic_original_count": 1
+    },
+    {
+      "address": "0805e0b0",
+      "name": "quest::PC::GetFlag",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::GetFlag(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::GetFlag(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "Flags",
+      "evidence": "0805e0b0.json",
+      "evidence_sha256": "0b4ca067f4d380affab0cf55430696e23cf917b89262bb10d66ef3593c689214",
+      "semantic_original_count": 1
+    },
+    {
+      "address": "0805e180",
+      "name": "quest::PC::SaveFlag",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::SaveFlag(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::SaveFlag(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "Flags",
+      "evidence": "0805e180.json",
+      "evidence_sha256": "e94026bfcd11620f383ea0145025fc1490e482ac31faf331ff6c8f603ba69b71",
+      "semantic_original_count": 1
+    },
+    {
+      "address": "0805ec00",
+      "name": "quest::PC::AddTimer",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::AddTimer(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::AddTimer(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "TimerCases",
+      "evidence": "0805ec00.json",
+      "evidence_sha256": "73e2a8d8d23d4824d24155bd672defeb02c94f06ed66b04b2ad09ddb75caa25a",
+      "semantic_original_count": 1
+    },
+    {
+      "address": "0805ed20",
+      "name": "quest::PC::RemoveTimerNotCancel",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::RemoveTimerNotCancel(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::RemoveTimerNotCancel(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "TimerCases",
+      "evidence": "0805ed20.json",
+      "evidence_sha256": "b97314133ca7fcf80cd48dd694adeab8186a61f6a3160d270d19929923581485",
+      "semantic_original_count": 1
+    },
+    {
+      "address": "0805ee10",
+      "name": "quest::PC::RemoveTimer",
+      "original_file": "questpc.cpp",
+      "candidate": "questpc.cpp.fragment",
+      "candidate_anchor": "PC::RemoveTimer(",
+      "source": "game/src/questpc.cpp",
+      "source_anchor": "PC::RemoveTimer(",
+      "test": "reconstruction/tests/pc_flags_timers_regression.cpp",
+      "test_group": "TimerCases",
+      "evidence": "0805ee10.json",
+      "evidence_sha256": "594d30198d2fac8d1cba32c632a58f810ff6469c4a20c95b5de3f9cf870dd36c",
+      "semantic_original_count": 1
+    }
+  ],
+  "exclusions": [
+    "No constructor/destructor variants counted",
+    "No Lua VM lifecycle recovery",
+    "No database persistence: SaveFlag only changes pending map"
+  ],
+  "candidate_sha256": "0a2aa1e6325644c61c5155328ac4350e6b8c7653b515766ddcdfe63919e729a7"
+}

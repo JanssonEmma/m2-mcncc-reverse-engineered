@@ -1,0 +1,4264 @@
+{
+  "records": [
+    {
+      "cu": "sectree_manager.cpp",
+      "record": {
+        "die": "0xe5d485",
+        "tag": "DW_TAG_structure_type",
+        "name": "SMapRegion",
+        "size": 76
+      },
+      "members": [
+        {
+          "name": "index",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sx",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sy",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ex",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ey",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "posSpawn",
+          "type": {
+            "die": "0xe58fc1",
+            "tag": "DW_TAG_typedef",
+            "name": "PIXEL_POSITION",
+            "size": null,
+            "type": {
+              "die": "0xe58f32",
+              "tag": "DW_TAG_structure_type",
+              "name": "pixel_position_s",
+              "size": 12
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "name": "bEmpireSpawnDifferent",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                32
+              ]
+            }
+          ]
+        },
+        {
+          "name": "posEmpire",
+          "type": {
+            "die": "0xe5d56c",
+            "tag": "DW_TAG_array_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xe58fc1",
+              "tag": "DW_TAG_typedef",
+              "name": "PIXEL_POSITION",
+              "size": null,
+              "type": {
+                "die": "0xe58f32",
+                "tag": "DW_TAG_structure_type",
+                "name": "pixel_position_s",
+                "size": 12
+              }
+            },
+            "bounds": [
+              2
+            ]
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                36
+              ]
+            }
+          ]
+        },
+        {
+          "name": "strMapName",
+          "type": {
+            "die": "0xe4a5cb",
+            "tag": "DW_TAG_typedef",
+            "name": "string",
+            "size": null,
+            "type": {
+              "die": "0xe475d1",
+              "tag": "DW_TAG_structure_type",
+              "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+              "size": 4
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                72
+              ]
+            }
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "operator=",
+          "type": {
+            "die": "0xe5d57c",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe5d485",
+              "tag": "DW_TAG_structure_type",
+              "name": "SMapRegion",
+              "size": 76
+            }
+          },
+          "linkage": "_ZN10SMapRegionaSERKS_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d582",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d485",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SMapRegion",
+                  "size": 76
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d588",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d58e",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5d485",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SMapRegion",
+                    "size": 76
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SMapRegion",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d582",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d485",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SMapRegion",
+                  "size": 76
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d588",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d58e",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5d485",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SMapRegion",
+                    "size": 76
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SMapRegion",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d582",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d485",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SMapRegion",
+                  "size": 76
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "~SMapRegion",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d582",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d485",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SMapRegion",
+                  "size": 76
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cu": "sectree_manager.cpp",
+      "record": {
+        "die": "0xe5d59e",
+        "tag": "DW_TAG_structure_type",
+        "name": "TAreaInfo",
+        "size": 20
+      },
+      "members": [
+        {
+          "name": "sx",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sy",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ex",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ey",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dir",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                16
+              ]
+            }
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "operator=",
+          "type": {
+            "die": "0xe5d64e",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe5d59e",
+              "tag": "DW_TAG_structure_type",
+              "name": "TAreaInfo",
+              "size": 20
+            }
+          },
+          "linkage": "_ZN9TAreaInfoaSERKS_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d654",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d59e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "TAreaInfo",
+                  "size": 20
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d65a",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d660",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5d59e",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "TAreaInfo",
+                    "size": 20
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "TAreaInfo",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d654",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d59e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "TAreaInfo",
+                  "size": 20
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d65a",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d660",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5d59e",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "TAreaInfo",
+                    "size": 20
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "TAreaInfo",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d654",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d59e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "TAreaInfo",
+                  "size": 20
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cu": "sectree_manager.cpp",
+      "record": {
+        "die": "0xe5d665",
+        "tag": "DW_TAG_structure_type",
+        "name": "npc_info",
+        "size": 16
+      },
+      "members": [
+        {
+          "name": "bType",
+          "type": {
+            "die": "0xe3ceff",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0xe3975a",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "name",
+          "type": {
+            "die": "0xe39df5",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe39dfb",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0xe3998e",
+                "tag": "DW_TAG_base_type",
+                "name": "char",
+                "size": 1
+              }
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "x",
+          "type": {
+            "die": "0xe399f8",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "y",
+          "type": {
+            "die": "0xe399f8",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "operator=",
+          "type": {
+            "die": "0xe5d702",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe5d665",
+              "tag": "DW_TAG_structure_type",
+              "name": "npc_info",
+              "size": 16
+            }
+          },
+          "linkage": "_ZN8npc_infoaSERKS_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d708",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d665",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "npc_info",
+                  "size": 16
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d70e",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d714",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5d665",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "npc_info",
+                    "size": 16
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "npc_info",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d708",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d665",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "npc_info",
+                  "size": 16
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d70e",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d714",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5d665",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "npc_info",
+                    "size": 16
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "npc_info",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5d708",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5d665",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "npc_info",
+                  "size": 16
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe3975a",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cu": "sectree_manager.cpp",
+      "record": {
+        "die": "0xe5dc48",
+        "tag": "DW_TAG_structure_type",
+        "name": "SSetting",
+        "size": 36
+      },
+      "members": [
+        {
+          "name": "iIndex",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "iCellScale",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "iBaseX",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "iBaseY",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "name": "iWidth",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "iHeight",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "name": "posSpawn",
+          "type": {
+            "die": "0xe58fc1",
+            "tag": "DW_TAG_typedef",
+            "name": "PIXEL_POSITION",
+            "size": null,
+            "type": {
+              "die": "0xe58f32",
+              "tag": "DW_TAG_structure_type",
+              "name": "pixel_position_s",
+              "size": 12
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                24
+              ]
+            }
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "operator=",
+          "type": {
+            "die": "0xe5dcfe",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe5dc48",
+              "tag": "DW_TAG_structure_type",
+              "name": "SSetting",
+              "size": 36
+            }
+          },
+          "linkage": "_ZN8SSettingaSERKS_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5dd04",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dc48",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SSetting",
+                  "size": 36
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5dd0a",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dd10",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5dc48",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SSetting",
+                    "size": 36
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SSetting",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5dd04",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dc48",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SSetting",
+                  "size": 36
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5dd0a",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dd10",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe5dc48",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SSetting",
+                    "size": 36
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SSetting",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5dd04",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dc48",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SSetting",
+                  "size": 36
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cu": "sectree_manager.cpp",
+      "record": {
+        "die": "0xe60db7",
+        "tag": "DW_TAG_structure_type",
+        "name": "SECTREE_MAP",
+        "size": 52
+      },
+      "members": [
+        {
+          "name": null,
+          "type": {
+            "die": "0xe5f075",
+            "tag": "DW_TAG_structure_type",
+            "name": "map<long unsigned int,SECTREE*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, SECTREE*> > >",
+            "size": 12
+          },
+          "access": 1,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "_vptr$SECTREE_MAP",
+          "type": {
+            "die": "0xea6c9d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xea6ca3",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xea6c91",
+                "tag": "DW_TAG_subroutine_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xe39790",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_setting",
+          "type": {
+            "die": "0xe5dd15",
+            "tag": "DW_TAG_typedef",
+            "name": "TMapSetting",
+            "size": null,
+            "type": {
+              "die": "0xe5dc48",
+              "tag": "DW_TAG_structure_type",
+              "name": "SSetting",
+              "size": 36
+            }
+          },
+          "access": null,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                16
+              ]
+            }
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "operator=",
+          "type": {
+            "die": "0xe94457",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe60db7",
+              "tag": "DW_TAG_structure_type",
+              "name": "SECTREE_MAP",
+              "size": 52
+            }
+          },
+          "linkage": "_ZN11SECTREE_MAPaSERKS_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xea6ca9",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xea6caf",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe60db7",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SECTREE_MAP",
+                    "size": 52
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SECTREE_MAP",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SECTREE_MAP",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe94457",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "~SECTREE_MAP",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": 1,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "Find",
+          "type": {
+            "die": "0xe5b70f",
+            "tag": "DW_TAG_typedef",
+            "name": "LPSECTREE",
+            "size": null,
+            "type": {
+              "die": "0xe5b71a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xe5b720",
+                "tag": "DW_TAG_structure_type",
+                "name": "SECTREE",
+                "size": 32
+              }
+            }
+          },
+          "linkage": "_ZN11SECTREE_MAP4FindEm",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "Find",
+          "type": {
+            "die": "0xe5b70f",
+            "tag": "DW_TAG_typedef",
+            "name": "LPSECTREE",
+            "size": null,
+            "type": {
+              "die": "0xe5b71a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xe5b720",
+                "tag": "DW_TAG_structure_type",
+                "name": "SECTREE",
+                "size": 32
+              }
+            }
+          },
+          "linkage": "_ZN11SECTREE_MAP4FindEmm",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "Build",
+          "type": {
+            "name": "void"
+          },
+          "linkage": "_ZN11SECTREE_MAP5BuildEv",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cu": "sectree_manager.cpp",
+      "record": {
+        "die": "0xe96e6f",
+        "tag": "DW_TAG_structure_type",
+        "name": "SECTREE_MANAGER",
+        "size": 52
+      },
+      "members": [
+        {
+          "name": null,
+          "type": {
+            "die": "0xe9785a",
+            "tag": "DW_TAG_structure_type",
+            "name": "singleton<SECTREE_MANAGER>",
+            "size": 4
+          },
+          "access": 1,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_map_pkSectree",
+          "type": {
+            "die": "0xe6088d",
+            "tag": "DW_TAG_structure_type",
+            "name": "map<long unsigned int,SECTREE_MAP*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, SECTREE_MAP*> > >",
+            "size": 12
+          },
+          "access": 3,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_map_pkArea",
+          "type": {
+            "die": "0xe62119",
+            "tag": "DW_TAG_structure_type",
+            "name": "map<int,std::map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo, std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >,std::less<int>,std::allocator<std::pair<const int, std::map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo, std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > > > > >",
+            "size": 12
+          },
+          "access": 3,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_vec_mapRegion",
+          "type": {
+            "die": "0xe62b94",
+            "tag": "DW_TAG_structure_type",
+            "name": "vector<SMapRegion,std::allocator<SMapRegion> >",
+            "size": 12
+          },
+          "access": 3,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_mapNPCPosition",
+          "type": {
+            "die": "0xe64867",
+            "tag": "DW_TAG_structure_type",
+            "name": "map<long unsigned int,std::vector<npc_info, std::allocator<npc_info> >,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, std::vector<npc_info, std::allocator<npc_info> > > > >",
+            "size": 12
+          },
+          "access": 3,
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                40
+              ]
+            }
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "operator=",
+          "type": {
+            "die": "0xe9befe",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe96e6f",
+              "tag": "DW_TAG_structure_type",
+              "name": "SECTREE_MANAGER",
+              "size": 52
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGERaSERKS_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xea6c86",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xea6c8c",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe96e6f",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SECTREE_MANAGER",
+                    "size": 52
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SECTREE_MANAGER",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xea6c86",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xea6c8c",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe96e6f",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SECTREE_MANAGER",
+                    "size": 52
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "SECTREE_MANAGER",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "~SECTREE_MANAGER",
+          "type": {
+            "name": "void"
+          },
+          "linkage": null,
+          "access": null,
+          "virtuality": 1,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetMap",
+          "type": {
+            "die": "0xe60db1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe60db7",
+              "tag": "DW_TAG_structure_type",
+              "name": "SECTREE_MAP",
+              "size": 52
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER6GetMapEl",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get",
+          "type": {
+            "die": "0xe5b70f",
+            "tag": "DW_TAG_typedef",
+            "name": "LPSECTREE",
+            "size": null,
+            "type": {
+              "die": "0xe5b71a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xe5b720",
+                "tag": "DW_TAG_structure_type",
+                "name": "SECTREE",
+                "size": 32
+              }
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER3GetEmm",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get",
+          "type": {
+            "die": "0xe5b70f",
+            "tag": "DW_TAG_typedef",
+            "name": "LPSECTREE",
+            "size": null,
+            "type": {
+              "die": "0xe5b71a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xe5b720",
+                "tag": "DW_TAG_structure_type",
+                "name": "SECTREE",
+                "size": 32
+              }
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER3GetEmmm",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "LoadSettingFile",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "linkage": "_ZN15SECTREE_MANAGER15LoadSettingFileElPKcR8SSetting",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe99580",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dd15",
+                  "tag": "DW_TAG_typedef",
+                  "name": "TMapSetting",
+                  "size": null,
+                  "type": {
+                    "die": "0xe5dc48",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SSetting",
+                    "size": 36
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "LoadMapRegion",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER13LoadMapRegionEPKcR8SSettingS1_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe99580",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dd15",
+                  "tag": "DW_TAG_typedef",
+                  "name": "TMapSetting",
+                  "size": null,
+                  "type": {
+                    "die": "0xe5dc48",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SSetting",
+                    "size": 36
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Build",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "linkage": "_ZN15SECTREE_MANAGER5BuildEPKcS1_",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "BuildSectreeFromSetting",
+          "type": {
+            "die": "0xe60db1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe60db7",
+              "tag": "DW_TAG_structure_type",
+              "name": "SECTREE_MAP",
+              "size": 52
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER23BuildSectreeFromSettingER8SSetting",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe99580",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dd15",
+                  "tag": "DW_TAG_typedef",
+                  "name": "TMapSetting",
+                  "size": null,
+                  "type": {
+                    "die": "0xe5dc48",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SSetting",
+                    "size": 36
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "LoadAttribute",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER13LoadAttributeEP11SECTREE_MAPPKcR8SSetting",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe99580",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe5dd15",
+                  "tag": "DW_TAG_typedef",
+                  "name": "TMapSetting",
+                  "size": null,
+                  "type": {
+                    "die": "0xe5dc48",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SSetting",
+                    "size": 36
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "LoadDungeon",
+          "type": {
+            "name": "void"
+          },
+          "linkage": "_ZN15SECTREE_MANAGER11LoadDungeonEiPKc",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetValidLocation",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER16GetValidLocationElllRlR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe543da",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe399f8",
+                  "tag": "DW_TAG_base_type",
+                  "name": "long int",
+                  "size": 4
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetSpawnPosition",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER16GetSpawnPositionEllR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetSpawnPositionByMapIndex",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER26GetSpawnPositionByMapIndexElR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetRecallPositionByEmpire",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER25GetRecallPositionByEmpireEihR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe3975a",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetMapRegion",
+          "type": {
+            "die": "0xe63179",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe6317f",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0xe5d593",
+                "tag": "DW_TAG_typedef",
+                "name": "TMapRegion",
+                "size": null,
+                "type": {
+                  "die": "0xe5d485",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SMapRegion",
+                  "size": 76
+                }
+              }
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER12GetMapRegionEl",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetMapIndex",
+          "type": {
+            "die": "0xe39790",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "linkage": "_ZN15SECTREE_MANAGER11GetMapIndexEll",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "FindRegionByPartialName",
+          "type": {
+            "die": "0xe63179",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe6317f",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0xe5d593",
+                "tag": "DW_TAG_typedef",
+                "name": "TMapRegion",
+                "size": null,
+                "type": {
+                  "die": "0xe5d485",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SMapRegion",
+                  "size": 76
+                }
+              }
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER23FindRegionByPartialNameEPKc",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetMapBasePosition",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER18GetMapBasePositionEllR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetMapBasePositionByMapIndex",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER28GetMapBasePositionByMapIndexElR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetMovablePosition",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER18GetMovablePositionElllR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "IsMovablePosition",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER17IsMovablePositionElll",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetCenterPositionOfMap",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER22GetCenterPositionOfMapEhR16pixel_position_s",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe3975a",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetRandomLocation",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER17GetRandomLocationElR16pixel_position_smmi",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe9b1f8",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58fc1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "PIXEL_POSITION",
+                  "size": null,
+                  "type": {
+                    "die": "0xe58f32",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "pixel_position_s",
+                    "size": 12
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "CreatePrivateMap",
+          "type": {
+            "die": "0xe399f8",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "linkage": "_ZN15SECTREE_MANAGER16CreatePrivateMapEl",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "DestroyPrivateMap",
+          "type": {
+            "name": "void"
+          },
+          "linkage": "_ZN15SECTREE_MANAGER17DestroyPrivateMapEl",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetDungeonArea",
+          "type": {
+            "die": "0xe62664",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xe5d719",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0xe5d724",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": 12
+              }
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER14GetDungeonAreaEl",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "SendNPCPosition",
+          "type": {
+            "name": "void"
+          },
+          "linkage": "_ZN15SECTREE_MANAGER15SendNPCPositionEP9CHARACTER",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5896a",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe58970",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CHARACTER",
+                  "size": null
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "InsertNPCPosition",
+          "type": {
+            "name": "void"
+          },
+          "linkage": "_ZN15SECTREE_MANAGER17InsertNPCPositionElhPKcll",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe3975a",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned char",
+                "size": 1
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetEmpireFromMapIndex",
+          "type": {
+            "die": "0xe3ceff",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0xe3975a",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "linkage": "_ZN15SECTREE_MANAGER21GetEmpireFromMapIndexEl",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "ForAttrRegion",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER13ForAttrRegionEllllllm15EAttrRegionMode",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5f5c0",
+                "tag": "DW_TAG_enumeration_type",
+                "name": "EAttrRegionMode",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "SaveAttributeToImage",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER20SaveAttributeToImageEiPKcP11SECTREE_MAP",
+          "access": null,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39790",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe39df5",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe39dfb",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0xe3998e",
+                    "tag": "DW_TAG_base_type",
+                    "name": "char",
+                    "size": 1
+                  }
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe60db1",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe60db7",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MAP",
+                  "size": 52
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "ForAttrRegionRightAngle",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER23ForAttrRegionRightAngleEllllllm15EAttrRegionMode",
+          "access": 3,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5f5c0",
+                "tag": "DW_TAG_enumeration_type",
+                "name": "EAttrRegionMode",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "ForAttrRegionFreeAngle",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER22ForAttrRegionFreeAngleEllllllm15EAttrRegionMode",
+          "access": 3,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5f5c0",
+                "tag": "DW_TAG_enumeration_type",
+                "name": "EAttrRegionMode",
+                "size": 4
+              }
+            }
+          ]
+        },
+        {
+          "name": "ForAttrRegionCell",
+          "type": {
+            "die": "0xe4332c",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "linkage": "_ZN15SECTREE_MANAGER17ForAttrRegionCellElllm15EAttrRegionMode",
+          "access": 3,
+          "virtuality": null,
+          "params": [
+            {
+              "name": null,
+              "type": {
+                "die": "0xe974d4",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0xe96e6f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "SECTREE_MANAGER",
+                  "size": 52
+                }
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe399f8",
+                "tag": "DW_TAG_base_type",
+                "name": "long int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe397d8",
+                "tag": "DW_TAG_base_type",
+                "name": "long unsigned int",
+                "size": 4
+              }
+            },
+            {
+              "name": null,
+              "type": {
+                "die": "0xe5f5c0",
+                "tag": "DW_TAG_enumeration_type",
+                "name": "EAttrRegionMode",
+                "size": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "free_functions": [
+    {
+      "cu": "char.cpp",
+      "name": "EncodeMovePacket",
+      "type": {
+        "name": "void"
+      },
+      "low_pc": 135430816,
+      "linkage": "_Z16EncodeMovePacketR11packet_movemhhmmmmh",
+      "params": [
+        {
+          "name": "pack",
+          "type": {
+            "die": "0x1f46d70",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1f46d75",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ee0099",
+                "tag": "DW_TAG_typedef",
+                "name": "TPacketGCMove",
+                "size": null,
+                "type": {
+                  "die": "0x1edffa8",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "packet_move",
+                  "size": 24
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "dwVID",
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        },
+        {
+          "name": "bFunc",
+          "type": {
+            "die": "0x1e8dee0",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1e8a73b",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        {
+          "name": "bArg",
+          "type": {
+            "die": "0x1e8dee0",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1e8a73b",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        {
+          "name": "x",
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        },
+        {
+          "name": "y",
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        },
+        {
+          "name": "dwDuration",
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        },
+        {
+          "name": "dwTime",
+          "type": {
+            "die": "0x1e8deca",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        },
+        {
+          "name": "bRot",
+          "type": {
+            "die": "0x1e8dee0",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1e8a73b",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cu": "char_horse.cpp",
+      "name": "horse_dead_event",
+      "type": {
+        "die": "0x26b4172",
+        "tag": "DW_TAG_base_type",
+        "name": "long int",
+        "size": 4
+      },
+      "low_pc": 135714960,
+      "linkage": "_Z16horse_dead_eventP5event",
+      "params": [
+        {
+          "name": "event",
+          "type": {
+            "die": "0x26d5db0",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x26d5cd6",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x26d5ce1",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

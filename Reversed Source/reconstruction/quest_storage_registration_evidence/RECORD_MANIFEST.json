@@ -1,0 +1,87 @@
+{
+  "checkpoint": 92,
+  "status": "passed",
+  "full_runtime_commands": 102,
+  "focused_runtime_commands": 4,
+  "abi": true,
+  "standalone_function_mappings": 13,
+  "inline_semantic_bodies": 5,
+  "semantic_methods": 18,
+  "source_guards": {
+    "game/src/questmanager.h": "aecbbafee9b5de3f3128cbf9d3010a4a89af9f9ae70c7d59f932626113e4857b",
+    "game/src/questmanager.cpp": "fd568546b0f7714719a9a0adddeae0d5decc7509ef4044cdeb42fc25715d6933",
+    "reconstruction/tests/quest_manager_indices_regression.cpp": "248edaed29b7f031a8eb226c187d81645ec0542011a3a52a8b3538da7caaae03",
+    "reconstruction/tests/quest_manager_indices_abi.cpp": "e878f0e99151f2b314cd9ddbeed69e0c39094b176b13ff0d09daf4773cdcfaa5",
+    "reconstruction/tests/quest_manager_indices_desc_fixture.cpp": "691ae6b29f6aebcfeb3ed119699a2a6cbd8dcf7a7b0585d376763d6f17141d1e",
+    "reconstruction/tests/quest_manager_indices_desc_output_syscalls.c": "e0ef4dfa58667b9c7f4f0b60b4735e882027411231828921b7b750c8fd32422e",
+    "reconstruction/tests/Makefile": "c7519f99a4795423acb49e2d4d0b84778c2a8bb00701f1d2cb227c2c5d5f4c7d",
+    "game/src/questpc.h": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a",
+    "game/src/questpc.cpp": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba",
+    "reconstruction/tests/pc_quest_storage_regression.cpp": "59875cf5871c299be4ee4aaf8326b0f426a0927d48f9e27993b1c511af07c12b",
+    "reconstruction/tests/pc_quest_storage_abi.cpp": "5014cd52b7bbda2cb99be3c32862addb02619e4d5c354059d7dfbd2d4226a0f8",
+    "reconstruction/tests/pc_quest_storage_desc_output_syscalls.c": "570fafbdfbc8f2c389561af0be8a63866c0d02ee8d28cc2d71fd855d407ac566",
+    "reconstruction/tests/quest_registration_regression.cpp": "3b79811eb18f9c48419b11e20b816ba7731446cc1b99cd37dd2ecf0c15f8f26e",
+    "reconstruction/tests/quest_registration_abi.cpp": "3b651f2de36bfc6496e47346c9942e3a47ec69f9ab3f2b8d2ef9632489053283",
+    "reconstruction/tests/quest_registration_desc_output_syscalls.c": "16c373a70b3901932084dd729444a6d7193e1fd4b77af3aebb79341d408908ed"
+  },
+  "support_read_guards": {
+    "reconstruction/tests/desc_fixture.cpp": "135c1ae2850b81d46cf0d654e48394a9f59ebe647548fe610a16c444ad12ebcf",
+    "reconstruction/tests/desc_output_syscalls.c": "a584ce372bdf5d60e467398d4908da3ea6ff387e228e347fa22d18c84b973270",
+    "reconstruction/tests/quest_flag_fixture.cpp": "cdd8cc62b78c0a709bb81edcbe059ad63a374862927867115ea60e814a27c3fe",
+    "game/src/config.h": "0dd8b9717a4d4000cf34e2076555b11d00a024ed1eadb71c6fc6c83f23d088d3",
+    "game/src/config.cpp": "2a2fd8e465ed267554ced663136ea0591a37b2f17e8346f455d25df48d635e86"
+  },
+  "source_guard_review": {
+    "review": "Sequential manager7 -> PCstorage6 -> registration6 SHA chain verified; final15unique paths. Two explicit TESTONLY fixes from reviewed-fixes; production bodies unchanged.",
+    "guards": {
+      "game/src/questmanager.h": "aecbbafee9b5de3f3128cbf9d3010a4a89af9f9ae70c7d59f932626113e4857b",
+      "game/src/questmanager.cpp": "fd568546b0f7714719a9a0adddeae0d5decc7509ef4044cdeb42fc25715d6933",
+      "reconstruction/tests/quest_manager_indices_regression.cpp": "248edaed29b7f031a8eb226c187d81645ec0542011a3a52a8b3538da7caaae03",
+      "reconstruction/tests/quest_manager_indices_abi.cpp": "e878f0e99151f2b314cd9ddbeed69e0c39094b176b13ff0d09daf4773cdcfaa5",
+      "reconstruction/tests/quest_manager_indices_desc_fixture.cpp": "691ae6b29f6aebcfeb3ed119699a2a6cbd8dcf7a7b0585d376763d6f17141d1e",
+      "reconstruction/tests/quest_manager_indices_desc_output_syscalls.c": "e0ef4dfa58667b9c7f4f0b60b4735e882027411231828921b7b750c8fd32422e",
+      "reconstruction/tests/Makefile": "c7519f99a4795423acb49e2d4d0b84778c2a8bb00701f1d2cb227c2c5d5f4c7d",
+      "game/src/questpc.h": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a",
+      "game/src/questpc.cpp": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba",
+      "reconstruction/tests/pc_quest_storage_regression.cpp": "59875cf5871c299be4ee4aaf8326b0f426a0927d48f9e27993b1c511af07c12b",
+      "reconstruction/tests/pc_quest_storage_abi.cpp": "5014cd52b7bbda2cb99be3c32862addb02619e4d5c354059d7dfbd2d4226a0f8",
+      "reconstruction/tests/pc_quest_storage_desc_output_syscalls.c": "570fafbdfbc8f2c389561af0be8a63866c0d02ee8d28cc2d71fd855d407ac566",
+      "reconstruction/tests/quest_registration_regression.cpp": "3b79811eb18f9c48419b11e20b816ba7731446cc1b99cd37dd2ecf0c15f8f26e",
+      "reconstruction/tests/quest_registration_abi.cpp": "3b651f2de36bfc6496e47346c9942e3a47ec69f9ab3f2b8d2ef9632489053283",
+      "reconstruction/tests/quest_registration_desc_output_syscalls.c": "16c373a70b3901932084dd729444a6d7193e1fd4b77af3aebb79341d408908ed"
+    },
+    "support_read_guards": {
+      "reconstruction/tests/desc_fixture.cpp": "135c1ae2850b81d46cf0d654e48394a9f59ebe647548fe610a16c444ad12ebcf",
+      "reconstruction/tests/desc_output_syscalls.c": "a584ce372bdf5d60e467398d4908da3ea6ff387e228e347fa22d18c84b973270",
+      "reconstruction/tests/quest_flag_fixture.cpp": "cdd8cc62b78c0a709bb81edcbe059ad63a374862927867115ea60e814a27c3fe",
+      "game/src/config.h": "0dd8b9717a4d4000cf34e2076555b11d00a024ed1eadb71c6fc6c83f23d088d3",
+      "game/src/config.cpp": "2a2fd8e465ed267554ced663136ea0591a37b2f17e8346f455d25df48d635e86"
+    },
+    "test_fixes": {
+      "review": "TEST ONLY rename counter gets -> getLogCount to avoid C stdio gets declaration collision. No production body/API/assertion changes. TEST ONLY registration fixture uses native stat/is-directory when mkdir fails, because BSD socket errno shim is not native filesystem errno. No socket shim or production loader changes. Supersedes stat attempt (also shim-shadowed): existing mkdir then actualofstream/close/remove probe verifies writable fixture directory without native errno/stat or sharedshim edits.",
+      "guards": {
+        "reconstruction/tests/pc_quest_storage_regression.cpp": "59875cf5871c299be4ee4aaf8326b0f426a0927d48f9e27993b1c511af07c12b",
+        "reconstruction/tests/quest_registration_regression.cpp": "3b79811eb18f9c48419b11e20b816ba7731446cc1b99cd37dd2ecf0c15f8f26e"
+      }
+    }
+  },
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-92-validation.receipt.json": "100da5056602f3017689d0e93f3317dfb2ce0261f67a6dd7d35496c523b65d2d",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-registration-focused-retry2.receipt.json": "510c26cf06f0238b2bf01b951f31c5dd2c7f85bb059f77726461f24000d61f66",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-module-m32-final.receipt.json": "83bf61bc93a83dbb022fdb72637b5fd39fefd9f6dbe6ebb12d92cb55de683b8c",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-module-m32-final.log": "f2d35efd03686099f0301844dce806ebd8d7ada1558ab28272b7dd8b24a98755",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest_manager_indices\\quest-manager-indices-o2.receipt.json": "0e260888f8dc53caba60f4b41eb6e61c68ddb1bb160252b8de7e4ecd69c80d67",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest_registration\\quest-registration-o2.receipt.json": "34a294071b90ebf9b4d8d487d6b544e7a2c13423b4bc9bb5b1e83640b4823b46",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-strict32.receipt.json": "626ecb6bee415c0d5e8b54dbad635ced792481745fbc6cfdde2d9f6f2309f68e",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-item_sql_runtime-o2.receipt.json": "828675b26b504c123a618928a0e0585ac7c0e759873ae73b86fbc4851f7fb4d6",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-item_sql_semaphore-o2.receipt.json": "33ec07cf316a85d8edb7a8c1d67547169386ad8b4e59daeb6270213393004bbf",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-item_sql_api-o2.receipt.json": "c97d6237cb71453a6ed383ed3e7167b920244e1887f4182f02ed3baf973355e4",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-item_socket_config-o2.receipt.json": "35662a8d05d551c954929886b1c0a68ddd255f24b149a2bf6590b13ea83eb722",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-pc_quest_storage_desc_output_syscalls-o2.receipt.json": "e9104cbae6a7c4a09d34f2a097ce87ddcdaee55df504675d5543f94596a799c3",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-o2-build.receipt.json": "22675de607a31b0db2b171a23365d222db6e104b84857e16e7f10ac89963a93e",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_storage_validation\\pc-quest-storage-o2-runtime.receipt.json": "16757e658e5694c7dac89af5136f49af535d04d57dc053990880aa6916604eec"
+  },
+  "baseline_overrides_sha256": "30ef84fe470787616f84383db1a4866f141713911a2bb982eef769a783774e80",
+  "baseline_validation_status_sha256": "f80db1211acda65543720c0e46a65eefc5d4f454c2914e28bf64a4e42d2c2ec2",
+  "note": "Checkpoint92 integrates three complete groups together:4manager name/index/NPC/current queries plus original inline32-bit full-byte zero-seed multiply/XOR hash;7PC quest-state storage/update/queue/ClearQuest methods plus3inline iterators and1inline state-change record constructor;2full original LoadStartQuest/RegisterQuest producers using real existing config set/native file streams. Focusedfinal4+ABI, strict32 all actual sources/tests/ABIs, optimized actual graphs (manager4SQL+storage5SQL-observer+registration4SQL) including unhandled fatal assertion checks, and full102 exact ordered runtime commands+ABI pass. Original typed maps, stale-end fallback, zero-index behavior, callback rereads, unsafe ClearQuest live-key alias, uninitialized state counters, sorted live-directory iteration/append/repeat/missing/empty/duplicate behavior retained. Test-only fixes rename gets counter and verify fixture directories by actual stream probes because shared BSD errno/stat shims are not native FS. No production or sharedshim fixes, fake loader/VM or narrowed RegisterQuest. Broader Lua/quest/stat/removal/startup/server/VisualStudio remains unfinished."
+}

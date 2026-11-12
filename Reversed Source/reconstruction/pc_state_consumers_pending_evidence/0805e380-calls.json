@@ -1,0 +1,39 @@
+{
+  "function": {
+    "name": "PC::SetQuestState",
+    "address": "0805e380"
+  },
+  "callers": null,
+  "callees": {
+    "items": [
+      {
+        "call_site": "0805e3ac",
+        "target": "081a5240",
+        "name": "CQuestManager::GetQuestStateIndex",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805e3c6",
+        "target": "0805e400",
+        "name": "PC::SetQuestState",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805e3f2",
+        "target": "0804c9ac",
+        "name": "<EXTERNAL>::__assert",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 100,
+    "total": 3,
+    "has_more": false
+  }
+}

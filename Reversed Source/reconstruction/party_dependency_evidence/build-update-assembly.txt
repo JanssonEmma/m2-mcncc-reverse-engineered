@@ -1,0 +1,122 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08133e50 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update>:
+ 8133e50:	55                   	push   %ebp
+ 8133e51:	89 e5                	mov    %esp,%ebp
+ 8133e53:	57                   	push   %edi
+ 8133e54:	56                   	push   %esi
+ 8133e55:	53                   	push   %ebx
+ 8133e56:	83 ec 1c             	sub    $0x1c,%esp
+ 8133e59:	8b 75 08             	mov    0x8(%ebp),%esi
+ 8133e5c:	8b 5d 0c             	mov    0xc(%ebp),%ebx
+ 8133e5f:	8b 86 88 0c 00 00    	mov    0xc88(%esi),%eax
+ 8133e65:	85 c0                	test   %eax,%eax
+ 8133e67:	0f 84 93 01 00 00    	je     8134000 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update+0x1b0>
+ 8133e6d:	fc                   	cld
+ 8133e6e:	31 c0                	xor    %eax,%eax
+ 8133e70:	b9 05 00 00 00       	mov    $0x5,%ecx
+ 8133e75:	89 df                	mov    %ebx,%edi
+ 8133e77:	f3 ab                	rep stos %eax,%es:(%edi)
+ 8133e79:	c6 07 00             	movb   $0x0,(%edi)
+ 8133e7c:	bf 64 00 00 00       	mov    $0x64,%edi
+ 8133e81:	c6 03 4f             	movb   $0x4f,(%ebx)
+ 8133e84:	8b 86 f0 00 00 00    	mov    0xf0(%esi),%eax
+ 8133e8a:	89 43 01             	mov    %eax,0x1(%ebx)
+ 8133e8d:	8b 86 0c 05 00 00    	mov    0x50c(%esi),%eax
+ 8133e93:	8d 04 80             	lea    (%eax,%eax,4),%eax
+ 8133e96:	8d 04 80             	lea    (%eax,%eax,4),%eax
+ 8133e99:	c1 e0 02             	shl    $0x2,%eax
+ 8133e9c:	99                   	cltd
+ 8133e9d:	f7 be 24 09 00 00    	idivl  0x924(%esi)
+ 8133ea3:	89 7c 24 08          	mov    %edi,0x8(%esp)
+ 8133ea7:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8133eae:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8133eb2:	e8 e9 53 08 00       	call   81b92a0 <MINMAX>
+ 8133eb7:	88 43 06             	mov    %al,0x6(%ebx)
+ 8133eba:	8b 96 88 0c 00 00    	mov    0xc88(%esi),%edx
+ 8133ec0:	8b 86 f0 00 00 00    	mov    0xf0(%esi),%eax
+ 8133ec6:	89 14 24             	mov    %edx,(%esp)
+ 8133ec9:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8133ecd:	e8 3e f4 00 00       	call   8143310 <_ZN6CParty7GetRoleEm>
+ 8133ed2:	88 43 05             	mov    %al,0x5(%ebx)
+ 8133ed5:	89 34 24             	mov    %esi,(%esp)
+ 8133ed8:	e8 53 3a ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 8133edd:	0f b6 53 05          	movzbl 0x5(%ebx),%edx
+ 8133ee1:	b9 9b 6b 22 08       	mov    $0x8226b9b,%ecx
+ 8133ee6:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 8133eea:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8133eee:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 8133ef5:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 8133ef9:	e8 a2 43 08 00       	call   81b82a0 <sys_log>
+ 8133efe:	8b 86 88 0c 00 00    	mov    0xc88(%esi),%eax
+ 8133f04:	89 04 24             	mov    %eax,(%esp)
+ 8133f07:	e8 e4 f1 00 00       	call   81430f0 <_ZN6CParty18GetLeaderCharacterEv>
+ 8133f0c:	85 c0                	test   %eax,%eax
+ 8133f0e:	89 c1                	mov    %eax,%ecx
+ 8133f10:	0f 84 ca 00 00 00    	je     8133fe0 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update+0x190>
+ 8133f16:	8b 51 28             	mov    0x28(%ecx),%edx
+ 8133f19:	8b 46 28             	mov    0x28(%esi),%eax
+ 8133f1c:	8b 79 24             	mov    0x24(%ecx),%edi
+ 8133f1f:	29 d0                	sub    %edx,%eax
+ 8133f21:	8b 56 24             	mov    0x24(%esi),%edx
+ 8133f24:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8133f28:	29 fa                	sub    %edi,%edx
+ 8133f2a:	89 14 24             	mov    %edx,(%esp)
+ 8133f2d:	e8 de d6 f1 ff       	call   8051610 <_Z15DISTANCE_APPROXii>
+ 8133f32:	3d 87 13 00 00       	cmp    $0x1387,%eax
+ 8133f37:	0f 8f a3 00 00 00    	jg     8133fe0 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update+0x190>
+ 8133f3d:	a1 48 25 32 08       	mov    0x8322548,%eax
+ 8133f42:	85 c0                	test   %eax,%eax
+ 8133f44:	0f 84 a3 00 00 00    	je     8133fed <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update+0x19d>
+ 8133f4a:	8b 86 88 0c 00 00    	mov    0xc88(%esi),%eax
+ 8133f50:	8b 40 7c             	mov    0x7c(%eax),%eax
+ 8133f53:	66 89 43 07          	mov    %ax,0x7(%ebx)
+ 8133f57:	bf 5c 00 00 00       	mov    $0x5c,%edi
+ 8133f5c:	b8 5b 00 00 00       	mov    $0x5b,%eax
+ 8133f61:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8133f65:	89 34 24             	mov    %esi,(%esp)
+ 8133f68:	e8 33 a1 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 8133f6d:	66 89 43 09          	mov    %ax,0x9(%ebx)
+ 8133f71:	89 7c 24 04          	mov    %edi,0x4(%esp)
+ 8133f75:	89 34 24             	mov    %esi,(%esp)
+ 8133f78:	e8 23 a1 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 8133f7d:	66 89 43 0b          	mov    %ax,0xb(%ebx)
+ 8133f81:	b9 67 00 00 00       	mov    $0x67,%ecx
+ 8133f86:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 8133f8a:	89 34 24             	mov    %esi,(%esp)
+ 8133f8d:	e8 0e a1 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 8133f92:	66 89 43 0d          	mov    %ax,0xd(%ebx)
+ 8133f96:	ba 68 00 00 00       	mov    $0x68,%edx
+ 8133f9b:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8133f9f:	89 34 24             	mov    %esi,(%esp)
+ 8133fa2:	e8 f9 a0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 8133fa7:	66 89 43 0f          	mov    %ax,0xf(%ebx)
+ 8133fab:	b8 6e 00 00 00       	mov    $0x6e,%eax
+ 8133fb0:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8133fb4:	89 34 24             	mov    %esi,(%esp)
+ 8133fb7:	e8 e4 a0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 8133fbc:	66 89 43 11          	mov    %ax,0x11(%ebx)
+ 8133fc0:	b8 6f 00 00 00       	mov    $0x6f,%eax
+ 8133fc5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8133fc9:	89 34 24             	mov    %esi,(%esp)
+ 8133fcc:	e8 cf a0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 8133fd1:	66 89 43 13          	mov    %ax,0x13(%ebx)
+ 8133fd5:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 8133fd9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+ 8133fe0:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8133fe5:	83 c4 1c             	add    $0x1c,%esp
+ 8133fe8:	5b                   	pop    %ebx
+ 8133fe9:	5e                   	pop    %esi
+ 8133fea:	5f                   	pop    %edi
+ 8133feb:	5d                   	pop    %ebp
+ 8133fec:	c3                   	ret
+ 8133fed:	8b 86 88 0c 00 00    	mov    0xc88(%esi),%eax
+ 8133ff3:	89 04 24             	mov    %eax,(%esp)
+ 8133ff6:	e8 25 06 01 00       	call   8144620 <_ZN6CParty18GetExpBonusPercentEv>
+ 8133ffb:	e9 53 ff ff ff       	jmp    8133f53 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update+0x103>
+ 8134000:	31 c0                	xor    %eax,%eax
+ 8134002:	eb e1                	jmp    8133fe5 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update+0x195>

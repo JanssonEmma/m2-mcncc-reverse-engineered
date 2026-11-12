@@ -1,0 +1,113 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "function": {
+        "name": "EncodeMovePacket",
+        "address": "081282a0"
+      },
+      "code": "\r\nvoid EncodeMovePacket(TPacketGCMove *pack,DWORD dwVID,BYTE bFunc,BYTE bArg,DWORD x,DWORD y,\r\n                     DWORD dwDuration,DWORD dwTime,BYTE bRot)\r\n\r\n{\r\n  pack->bHeader = '\\x03';\r\n  pack->bFunc = bFunc;\r\n  pack->bArg = bArg;\r\n  pack->dwVID = dwVID;\r\n  if (dwTime == 0) {\r\n    dwTime = get_dword_time();\r\n  }\r\n  pack->dwTime = dwTime;\r\n  pack->bRot = bRot;\r\n  pack->lX = x;\r\n  pack->lY = y;\r\n  pack->dwDuration = dwDuration;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "081282a0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\081282a0-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SetEmpire",
+        "address": "0812a660"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetEmpire(CHARACTER * this, BYTE bEmpire) */\r\n\r\nvoid __thiscall CHARACTER::SetEmpire(CHARACTER *this,BYTE bEmpire)\r\n\r\n{\r\n  this->m_bEmpire = bEmpire;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0812a660",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0812a660-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SetRotation",
+        "address": "0812d390"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetRotation(CHARACTER * this, float fRot) */\r\n\r\nvoid __thiscall CHARACTER::SetRotation(CHARACTER *this,float fRot)\r\n\r\n{\r\n  (this->m_pointsInstant).fRot = fRot;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0812d390",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0812d390-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SendMovePacket",
+        "address": "0812dde0"
+      },
+      "code": "\r\n/* DWARF original prototype: void SendMovePacket(CHARACTER * this, BYTE bFunc, BYTE bArg, DWORD x,\r\n   DWORD y, DWORD dwDuration, DWORD dwTime, int iRot) */\r\n\r\nvoid __thiscall\r\nCHARACTER::SendMovePacket\r\n          (CHARACTER *this,BYTE bFunc,BYTE bArg,DWORD x,DWORD y,DWORD dwDuration,DWORD dwTime,\r\n          int iRot)\r\n\r\n{\r\n  BYTE bArg_local;\r\n  TPacketGCMove pack;\r\n  \r\n  if (bFunc == '\\0') {\r\n    x = (this->m_posDest).x;\r\n    y = (this->m_posDest).y;\r\n    dwDuration = this->m_dwMoveDuration;\r\n  }\r\n  if (iRot == -1) {\r\n    iRot = (int)ROUND((this->m_pointsInstant).fRot) / 5;\r\n  }\r\n  EncodeMovePacket(&pack,(this->m_vid).m_id,bFunc,bArg,x,y,dwDuration,dwTime,(BYTE)iRot);\r\n  CEntity::PacketView(&this->super_CEntity,&pack,0x18,&this->super_CEntity);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0812dde0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0812dde0-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetVictim",
+        "address": "08153f20"
+      },
+      "code": "\r\n/* DWARF original prototype: LPCHARACTER GetVictim(CHARACTER * this) */\r\n\r\nLPCHARACTER __thiscall CHARACTER::GetVictim(CHARACTER *this)\r\n\r\n{\r\n  LPCHARACTER pCVar1;\r\n  \r\n  if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar1 = CHARACTER_MANAGER::Find(singleton<CHARACTER_MANAGER>::ms_singleton,&this->m_kVIDVictim);\r\n  return pCVar1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08153f20",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\08153f20-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SetRider",
+        "address": "0816d8c0"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetRider(CHARACTER * this, LPCHARACTER ch) */\r\n\r\nvoid __thiscall CHARACTER::SetRider(CHARACTER *this,LPCHARACTER ch)\r\n\r\n{\r\n  LPCHARACTER pCVar1;\r\n  \r\n  pCVar1 = this->m_chRider;\r\n  if (pCVar1 != (LPCHARACTER)0x0) {\r\n    (*(pCVar1->super_CEntity)._vptr_CEntity[0x12])(pCVar1);\r\n  }\r\n  this->m_chRider = ch;\r\n  if (ch != (LPCHARACTER)0x0) {\r\n    (*(ch->super_CEntity)._vptr_CEntity[0x11])(ch);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816d8c0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0816d8c0-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetMyHorseVnum",
+        "address": "0816df10"
+      },
+      "code": "\r\n/* DWARF original prototype: DWORD GetMyHorseVnum(CHARACTER * this) */\r\n\r\nDWORD __thiscall CHARACTER::GetMyHorseVnum(CHARACTER *this)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n                    /* Unresolved local var: int delta@[DW_OP_reg3(EBX)] */\r\n  iVar1 = 0;\r\n  if ((this->m_pGuild != (CGuild *)0x0) &&\r\n     (iVar1 = 1, (this->m_pGuild->m_data).master_pid == this->m_dwPlayerID)) {\r\n    iVar1 = 2;\r\n  }\r\n  return iVar1 + *(int *)(c_aHorseStat + (uint)(this->super_CHorseRider).m_Horse.bLevel * 0x30 + 4);\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816df10",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0816df10-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::ClearHorseInfo",
+        "address": "0816e000"
+      },
+      "code": "\r\n/* DWARF original prototype: void ClearHorseInfo(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::ClearHorseInfo(CHARACTER *this)\r\n\r\n{\r\n  if ((this->super_CHorseRider).m_Horse.bRiding == '\\0') {\r\n    ChatPacket(this,'\\x05',\"hide_horse_state\");\r\n    this->m_bSendHorseLevel = '\\0';\r\n    this->m_bSendHorseHealthGrade = '\\0';\r\n    this->m_bSendHorseStaminaGrade = '\\0';\r\n  }\r\n  this->m_chHorse = (LPCHARACTER)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e000",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0816e000-decompile.json"
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SendHorseInfo",
+        "address": "0816e060"
+      },
+      "code": "\r\n/* DWARF original prototype: void SendHorseInfo(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::SendHorseInfo(CHARACTER *this)\r\n\r\n{\r\n  short sVar1;\r\n  short sVar2;\r\n  CHorseRider *this_00;\r\n  uint uVar3;\r\n  int iHealthGrade;\r\n  \r\n  if ((this->m_chHorse != (LPCHARACTER)0x0) || ((this->super_CHorseRider).m_Horse.bRiding != '\\0'))\r\n  {\r\n    this_00 = &this->super_CHorseRider;\r\n                    /* Unresolved local var: int iStaminaGrade@[DW_OP_reg7(EDI)] */\r\n    sVar1 = (this->super_CHorseRider).m_Horse.sHealth;\r\n    iHealthGrade = 0;\r\n    if (sVar1 != 0) {\r\n      sVar2 = CHorseRider::GetHorseMaxHealth(this_00);\r\n      iHealthGrade = 1;\r\n      if (sVar2 * 3 < sVar1 * 10) {\r\n        sVar1 = (this->super_CHorseRider).m_Horse.sHealth;\r\n        sVar2 = CHorseRider::GetHorseMaxHealth(this_00);\r\n        iHealthGrade = (sVar2 * 7 < sVar1 * 10) + 2;\r\n      }\r\n    }\r\n    sVar1 = (this->super_CHorseRider).m_Horse.sStamina;\r\n    uVar3 = 0;\r\n    sVar2 = CHorseRider::GetHorseMaxStamina(this_00);\r\n    if ((int)sVar2 < sVar1 * 10) {\r\n      sVar1 = (this->super_CHorseRider).m_Horse.sStamina;\r\n      uVar3 = 1;\r\n      sVar2 = CHorseRider::GetHorseMaxStamina(this_00);\r\n      if (sVar2 * 3 < sVar1 * 10) {\r\n        sVar1 = (this->super_CHorseRider).m_Horse.sStamina;\r\n        sVar2 = CHorseRider::GetHorseMaxStamina(this_00);\r\n        uVar3 = (sVar2 * 7 < sVar1 * 10) + 2;\r\n      }\r\n    }\r\n    if ((((this->super_CHorseRider).m_Horse.bLevel != this->m_bSendHorseLevel) ||\r\n        ((uint)this->m_bSendHorseHealthGrade != iHealthGrade)) ||\r\n       (this->m_bSendHorseStaminaGrade != uVar3)) {\r\n      ChatPacket(this,'\\x05',\"horse_state %d %d %d\",(uint)(this->super_CHorseRider).m_Horse.bLevel,\r\n                 iHealthGrade,uVar3);\r\n      this->m_bSendHorseLevel = (this->super_CHorseRider).m_Horse.bLevel;\r\n      this->m_bSendHorseHealthGrade = (BYTE)iHealthGrade;\r\n      this->m_bSendHorseStaminaGrade = (BYTE)uVar3;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e060",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\mount_polymorph\\horse_summon\\0816e060-decompile.json"
+      }
+    }
+  ]
+}

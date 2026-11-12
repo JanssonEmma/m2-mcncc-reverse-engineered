@@ -1,0 +1,499 @@
+--- a/game/src/char.cpp
++++ b/game/src/char.cpp
+@@ -475,3 +475,31 @@
+ void CHARACTER::Save() {
+     if(!m_bSkipSave) CHARACTER_MANAGER::instance().DelayedSave(this);
+ }
++
++#include "char.h"
++#include "packet.h"
++#include "../../libthecore/include/utils.h"
++#include "horse-summon-detail.h"
++void CHARACTER::SetRotation(float rotation) { m_pointsInstant.fRot=rotation; }
++
++void CHARACTER::SetEmpire(BYTE empire) { m_bEmpire=empire; }
++
++void EncodeMovePacket(TPacketGCMove& packet,DWORD vid,BYTE function,BYTE argument,
++                      DWORD x,DWORD y,DWORD duration,DWORD time,BYTE rotation) {
++    packet.bHeader=3;packet.bFunc=function;packet.bArg=argument;packet.dwVID=vid;
++    if(!time) time=get_dword_time();
++    packet.dwTime=time;packet.bRot=rotation;
++    packet.lX=horse_summon_detail::Signed(static_cast<unsigned int>(x));
++    packet.lY=horse_summon_detail::Signed(static_cast<unsigned int>(y));
++    packet.dwDuration=duration;
++}
++
++void CHARACTER::SendMovePacket(BYTE function,BYTE argument,DWORD x,DWORD y,
++                                DWORD duration,DWORD time,int rotation) {
++    if(!function) { x=m_posDest.x;y=m_posDest.y;duration=m_dwMoveDuration; }
++    if(rotation==-1) rotation=horse_summon_detail::Trunc32(m_pointsInstant.fRot)/5;
++    TPacketGCMove packet;
++    EncodeMovePacket(packet,m_vid,function,argument,x,y,duration,time,static_cast<BYTE>(rotation));
++    PacketView(&packet,24,this);
++}
++
+--- a/game/src/char.h
++++ b/game/src/char.h
+@@ -466,6 +466,11 @@
+     virtual void EndStateEmpty();
+     CHARACTER();
+     virtual ~CHARACTER();
++    void SetRotation(float rotation);
++    void SetEmpire(BYTE empire);
++    LPCHARACTER GetVictim();
++    void SetRider(LPCHARACTER rider);
++    void SendMovePacket(BYTE function,BYTE argument,DWORD x,DWORD y,DWORD duration,DWORD time,int rotation);
+     void Save();
+     void StopMuyeongEvent();
+     void ComputeSkillPoints();
+--- a/game/src/char_battle.cpp
++++ b/game/src/char_battle.cpp
+@@ -22,3 +22,7 @@
+     UpdatePacket();
+     sys_log(0,"PK_MODE: %s %d",GetName(),static_cast<unsigned int>(m_bPKMode));
+ }
++
++#include "char.h"
++#include "char_manager.h"
++LPCHARACTER CHARACTER::GetVictim() { return CHARACTER_MANAGER::instance().Find(m_kVIDVictim); }
+--- /dev/null
++++ b/game/src/char_horse.cpp
+@@ -0,0 +1,57 @@
++
++#include "char.h"
++#include "guild.h"
++DWORD CHARACTER::GetMyHorseVnum() {
++    int delta=0;
++    if(m_pGuild) delta=m_pGuild->GetMasterPID()==m_dwPlayerID?2:1;
++    return static_cast<DWORD>(static_cast<unsigned int>(c_aHorseStat[m_Horse.bLevel].iNPCRace)+
++                              static_cast<unsigned int>(delta));
++}
++
++void CHARACTER::ClearHorseInfo() {
++    if(!m_Horse.bRiding) {
++        ChatPacket(5,"hide_horse_state");
++        m_bSendHorseLevel=0;m_bSendHorseHealthGrade=0;m_bSendHorseStaminaGrade=0;
++    }
++    m_chHorse=0;
++}
++
++void CHARACTER::SendHorseInfo() {
++    if(!m_chHorse && !m_Horse.bRiding) return;
++    short health=m_Horse.sHealth;
++    int healthGrade=0;
++    if(health) {
++        short maximum=GetHorseMaxHealth();
++        healthGrade=1;
++        if(maximum*3<health*10) {
++            health=m_Horse.sHealth;maximum=GetHorseMaxHealth();
++            healthGrade=2+(maximum*7<health*10);
++        }
++    }
++    short stamina=m_Horse.sStamina;
++    unsigned int staminaGrade=0;
++    short maximum=GetHorseMaxStamina();
++    if(maximum<stamina*10) {
++        stamina=m_Horse.sStamina;staminaGrade=1;maximum=GetHorseMaxStamina();
++        if(maximum*3<stamina*10) {
++            stamina=m_Horse.sStamina;maximum=GetHorseMaxStamina();
++            staminaGrade=2+(maximum*7<stamina*10);
++        }
++    }
++    if(m_Horse.bLevel!=m_bSendHorseLevel || m_bSendHorseHealthGrade!=healthGrade ||
++       m_bSendHorseStaminaGrade!=staminaGrade) {
++        ChatPacket(5,"horse_state %d %d %d",static_cast<unsigned int>(m_Horse.bLevel),
++                   healthGrade,staminaGrade);
++        m_bSendHorseLevel=m_Horse.bLevel;
++        m_bSendHorseHealthGrade=static_cast<BYTE>(healthGrade);
++        m_bSendHorseStaminaGrade=static_cast<BYTE>(staminaGrade);
++    }
++}
++
++void CHARACTER::SetRider(LPCHARACTER rider) {
++    CHARACTER* previous=m_chRider;
++    if(previous) previous->ClearHorseInfo();
++    m_chRider=rider;
++    if(rider) rider->SendHorseInfo();
++}
++
+--- a/game/src/guild.h
++++ b/game/src/guild.h
+@@ -44,6 +44,7 @@
+     explicit CGuild(DWORD guild_id);
+     ~CGuild();
+     // Old linkage is _ZN6CGuild5GetIDEv (non-const).
++    DWORD GetMasterPID() { return m_data.master_pid; }
+     DWORD GetID() { return m_data.guild_id; }
+     TGuildMember* GetMember(DWORD pid);
+     void LevelChange(DWORD pid,BYTE level);
+--- /dev/null
++++ b/game/src/horse-summon-detail.h
+@@ -0,0 +1,14 @@
++#ifndef MCNCC_STAGED_HORSE_SUMMON_DETAIL_H
++#define MCNCC_STAGED_HORSE_SUMMON_DETAIL_H
++#include <cstring>
++namespace horse_summon_detail {
++inline int Signed(unsigned int bits) { int value;std::memcpy(&value,&bits,sizeof value);return value; }
++inline int Add(long a,long b) { return Signed(static_cast<unsigned int>(a)+static_cast<unsigned int>(b)); }
++inline int Mul(long a,long b) { return Signed(static_cast<unsigned int>(a)*static_cast<unsigned int>(b)); }
++inline int Trunc32(long double x) {
++    // Old x87 controlword OR0xc00 then FISTP, not nearest rounding.
++    if(!(x>=-2147483648.0L && x<2147483648.0L)) return (-2147483647-1);
++    return static_cast<int>(x);
++}
++}
++#endif
+--- a/game/src/packet.h
++++ b/game/src/packet.h
+@@ -102,6 +102,16 @@
+     short affects[7];
+ };
+ typedef packet_party_update TPacketGCPartyUpdate;
++
++// Complete old packed packet records, target dead5/move24.
++typedef struct packet_dead { BYTE header;DWORD vid; } TPacketGCDead;
++typedef struct packet_move {
++    BYTE bHeader,bFunc,bArg,bRot;
++    DWORD dwVID;
++    long lX,lY;
++    DWORD dwTime,dwDuration;
++} TPacketGCMove;
++
+ #pragma pack(pop)
+ 
+ // Insert into game/src/packet.h; complete old record and original typedef.
+@@ -114,6 +124,16 @@
+     long amount;
+     long value;
+ } TPacketGCPointChange;
++
++// Complete old packed packet records, target dead5/move24.
++typedef struct packet_dead { BYTE header;DWORD vid; } TPacketGCDead;
++typedef struct packet_move {
++    BYTE bHeader,bFunc,bArg,bRot;
++    DWORD dwVID;
++    long lX,lY;
++    DWORD dwTime,dwDuration;
++} TPacketGCMove;
++
+ #pragma pack(pop)
+ 
+ // Insert in game/src/packet.h. Old DWARF records, both packed6 bytes.
+@@ -131,7 +151,27 @@
+     DWORD vid;
+     BYTE mode;
+ } TPacketGCWalkMode;
+-#pragma pack(pop)
++
++// Complete old packed packet records, target dead5/move24.
++typedef struct packet_dead { BYTE header;DWORD vid; } TPacketGCDead;
++typedef struct packet_move {
++    BYTE bHeader,bFunc,bArg,bRot;
++    DWORD dwVID;
++    long lX,lY;
++    DWORD dwTime,dwDuration;
++} TPacketGCMove;
++
++#pragma pack(pop)
++
++
++// Complete old packed packet records, target dead5/move24.
++typedef struct packet_dead { BYTE header;DWORD vid; } TPacketGCDead;
++typedef struct packet_move {
++    BYTE bHeader,bFunc,bArg,bRot;
++    DWORD dwVID;
++    long lX,lY;
++    DWORD dwTime,dwDuration;
++} TPacketGCMove;
+ 
+ #pragma pack(pop)
+ // Insert in game/src/packet.h; complete old packet header (4 packed bytes).
+@@ -141,11 +181,31 @@
+     WORD size;
+     BYTE subheader;
+ } TPacketGCGuild;
++
++// Complete old packed packet records, target dead5/move24.
++typedef struct packet_dead { BYTE header;DWORD vid; } TPacketGCDead;
++typedef struct packet_move {
++    BYTE bHeader,bFunc,bArg,bRot;
++    DWORD dwVID;
++    long lX,lY;
++    DWORD dwTime,dwDuration;
++} TPacketGCMove;
++
+ #pragma pack(pop)
+ 
+ #pragma pack(push,1)
+ struct packet_quickslot_add { BYTE header; BYTE pos; TQuickslot slot; };
+ struct packet_quickslot_del { BYTE header; BYTE pos; };
++
++// Complete old packed packet records, target dead5/move24.
++typedef struct packet_dead { BYTE header;DWORD vid; } TPacketGCDead;
++typedef struct packet_move {
++    BYTE bHeader,bFunc,bArg,bRot;
++    DWORD dwVID;
++    long lX,lY;
++    DWORD dwTime,dwDuration;
++} TPacketGCMove;
++
+ #pragma pack(pop)
+ 
+ #endif
+--- /dev/null
++++ b/reconstruction/tests/horse_methods_abi.cpp
+@@ -0,0 +1,33 @@
++#include "../../game/src/char.h"
++#include "../../game/src/guild.h"
++#include "../../game/src/packet.h"
++#include <cstddef>
++typedef DWORD(CHARACTER::*HorseVnumSignature)();
++typedef void(CHARACTER::*HorseInfoSignature)();
++typedef void(CHARACTER::*RiderSignature)(LPCHARACTER);
++typedef void(CHARACTER::*RotationSignature)(float);
++typedef void(CHARACTER::*EmpireSignature)(BYTE);
++typedef LPCHARACTER(CHARACTER::*VictimSignature)();
++typedef void(CHARACTER::*MoveSignature)(BYTE,BYTE,DWORD,DWORD,DWORD,DWORD,int);
++typedef DWORD(CGuild::*MasterSignature)();
++HorseVnumSignature exact_horse_vnum=&CHARACTER::GetMyHorseVnum;
++HorseInfoSignature exact_send_info=&CHARACTER::SendHorseInfo;
++HorseInfoSignature exact_clear_info=&CHARACTER::ClearHorseInfo;
++RiderSignature exact_rider=&CHARACTER::SetRider;
++RotationSignature exact_rotation=&CHARACTER::SetRotation;
++EmpireSignature exact_empire=&CHARACTER::SetEmpire;
++VictimSignature exact_victim=&CHARACTER::GetVictim;
++MoveSignature exact_move=&CHARACTER::SendMovePacket;
++MasterSignature exact_master=&CGuild::GetMasterPID;
++typedef char TargetInt32[sizeof(int)==4?1:-1];
++typedef char TargetFloat32[sizeof(float)==4?1:-1];
++typedef char TargetDWORD32[sizeof(DWORD)==4?1:-1];
++typedef char DeadBytes5[sizeof(TPacketGCDead)==5?1:-1];
++typedef char DeadVidAt1[offsetof(TPacketGCDead,vid)==1?1:-1];
++typedef char MoveBytes24[sizeof(TPacketGCMove)==24?1:-1];
++typedef char MoveVidAt4[offsetof(TPacketGCMove,dwVID)==4?1:-1];
++typedef char MoveXAt8[offsetof(TPacketGCMove,lX)==8?1:-1];
++typedef char MoveYAt12[offsetof(TPacketGCMove,lY)==12?1:-1];
++typedef char MoveTimeAt16[offsetof(TPacketGCMove,dwTime)==16?1:-1];
++typedef char MoveDurationAt20[offsetof(TPacketGCMove,dwDuration)==20?1:-1];
++// Full data records are retained; modern STL-containing class sizes are not fixed here.
+--- /dev/null
++++ b/reconstruction/tests/horse_methods_character_fixture.cpp
+@@ -0,0 +1,30 @@
++// Test-only CHARACTER destructor and remaining virtual boundaries.
++// They do not claim recovery of the original lifecycle/virtual behavior.
++#include "../../game/src/char.h"
++#include "../../game/src/mob_manager.h"
++#include <cstdlib>
++#include <cstring>
++
++
++CHARACTER::~CHARACTER() { CEntity::Destroy(); }
++void CHARACTER::EncodeInsertPacket(CEntity *) { std::abort(); }
++void CHARACTER::EncodeRemovePacket(CEntity *) { std::abort(); }
++void CHARACTER::StateMove() { std::abort(); }
++void CHARACTER::StateBattle() { std::abort(); }
++void CHARACTER::StateIdle() { std::abort(); }
++void CHARACTER::StateFlag() { std::abort(); }
++void CHARACTER::StateFlagBase() { std::abort(); }
++void CHARACTER::SetHorseLevel(int ) { std::abort(); }
++bool CHARACTER::StartRiding() { std::abort(); }
++bool CHARACTER::StopRiding() { std::abort(); }
++// Actual GetMyHorseVnum is linked by this leaf suite.
++void CHARACTER::HorseDie() { std::abort(); }
++bool CHARACTER::ReviveHorse() { std::abort(); }
++// Actual SendHorseInfo is linked by this leaf suite.
++// Actual ClearHorseInfo is linked by this leaf suite.
++
++#include "../../game/src/sectree.h"
++#include <cstdarg>
++SECTREE::~SECTREE() {} // Explicit test-only sector ownership boundary.
++
++
+--- /dev/null
++++ b/reconstruction/tests/horse_methods_regression.cpp
+@@ -0,0 +1,146 @@
++// Run against actual closed-horse-methods.cpp/closed-move-packet.cpp and full classes.
++// Existing CHARACTER/quest/guild lifecycle boundaries remain explicitly TEST ONLY.
++#include <map>
++#include <set>
++#include <list>
++#include <vector>
++#include <string>
++#include <queue>
++#include <ext/hash_map>
++#define private public
++#define protected public
++#include "../../game/src/char.h"
++#include "../../game/src/char_manager.h"
++#include "../../game/src/guild.h"
++#include "../../game/src/questmanager.h"
++#include "../../game/src/sectree.h"
++#undef protected
++#undef private
++#include "../../game/src/packet.h"
++#include "../../game/src/config.h"
++#include "../../libthecore/include/utils.h"
++#include "desc_fixture.h"
++#include <cassert>
++#include <cstring>
++#include <cstdio>
++#include <cstddef>
++int max_bytes_written,current_bytes_written,total_bytes_written;
++extern "C" void desc_test_allow_clock(void);
++extern "C" void desc_test_set_millis(unsigned long);
++void EncodeMovePacket(TPacketGCMove&,DWORD,BYTE,BYTE,DWORD,DWORD,DWORD,DWORD,BYTE);
++static void Empty(LPBUFFER buffer) { buffer_read_proceed(buffer,buffer_size(buffer)); }
++static void Command(LPBUFFER output,const char* text) {
++    unsigned size=static_cast<unsigned>(std::strlen(text)+10);
++    assert(buffer_size(output)==size);
++    const unsigned char* raw=static_cast<const unsigned char*>(buffer_read_peek(output));
++    assert(raw[0]==4 && raw[3]==5);
++    WORD packedSize=0;std::memcpy(&packedSize,raw+1,2);assert(packedSize==size);
++    assert(!std::strcmp(reinterpret_cast<const char*>(raw+9),text));
++    Empty(output);
++}
++int main() {
++    desc_test_allow_clock();test_server=0;
++    quest::CQuestManager quests;CHARACTER_MANAGER manager;
++    CHARACTER owner,horse,newRider,victim;
++    CGuild guild(0x12345678UL); // Existing TEST ONLY full-record lifecycle.
++    // Actual SetRotation preserves raw representation, including -0 and NaN.
++    const unsigned rotations[]={0,0x80000000U,0x43fa0000U,0x7fc12345U,0x7f800000U};
++    for(unsigned i=0;i<sizeof rotations/sizeof *rotations;++i) {
++        float value;std::memcpy(&value,&rotations[i],4);owner.SetRotation(value);
++        unsigned stored=0;std::memcpy(&stored,&owner.m_pointsInstant.fRot,4);
++        assert(stored==rotations[i]);
++    }
++    owner.SetEmpire(255);assert(owner.m_bEmpire==255);
++    owner.m_dwPlayerID=0x80000000UL;guild.m_data.master_pid=0x80000000UL;
++    assert(guild.GetMasterPID()==0x80000000UL);
++    for(unsigned level=0;level<=30;++level) {
++        owner.m_Horse.bLevel=static_cast<BYTE>(level);owner.m_pGuild=0;
++        DWORD base=static_cast<DWORD>(c_aHorseStat[level].iNPCRace);
++        assert(owner.GetMyHorseVnum()==base);
++        owner.m_pGuild=&guild;guild.m_data.master_pid=17;
++        assert(owner.GetMyHorseVnum()==base+1);
++        guild.m_data.master_pid=owner.m_dwPlayerID;
++        assert(owner.GetMyHorseVnum()==base+2);
++    }
++    owner.m_pGuild=0;
++    victim.m_vid=VID(77,1234);manager.m_map_pkChrByVID[77]=&victim;
++    owner.m_kVIDVictim=VID(77,1235);assert(!owner.GetVictim());
++    owner.m_kVIDVictim=VID(77,1234);assert(owner.GetVictim()==&victim);
++    assert(manager.m_map_pkChrByVID.size()==1);
++    manager.m_map_pkChrByVID.clear();assert(!owner.GetVictim());
++
++    owner.m_Horse.bLevel=30;owner.m_Horse.bRiding=0;owner.m_chHorse=&horse;
++    owner.m_Horse.sHealth=50;owner.m_Horse.sStamina=200;owner.SendHorseInfo();
++    assert(owner.m_bSendHorseLevel==30 && owner.m_bSendHorseHealthGrade==3 && owner.m_bSendHorseStaminaGrade==3);
++    DescOutputProbe first,second;
++    LPBUFFER firstOut=buffer_new(0,8192),secondOut=buffer_new(0,8192);
++    LPFDWATCH watch=fdwatch_new(16);
++    first.Attach(watch,5,firstOut);first.SetPacketState(5);
++    second.Attach(watch,6,secondOut);second.SetPacketState(5);
++    owner.BindDesc(&first);newRider.BindDesc(&second);
++    owner.m_Horse.bLevel=30;owner.m_Horse.bRiding=0;owner.m_chHorse=&horse;
++    struct Case { short health,stamina;int hg,sg; } cases[]={
++        {0,0,0,0},{15,20,1,0},{16,21,2,1},{35,60,2,1},
++        {36,61,3,2},{50,140,3,2},{50,141,3,3},{-1,-1,1,0}
++    };
++    for(unsigned i=0;i<sizeof cases/sizeof *cases;++i) {
++        owner.m_Horse.sHealth=cases[i].health;owner.m_Horse.sStamina=cases[i].stamina;
++        owner.m_bSendHorseLevel=owner.m_bSendHorseHealthGrade=owner.m_bSendHorseStaminaGrade=255;
++        owner.SendHorseInfo();
++        char expected[64];std::sprintf(expected,"horse_state 30 %d %d",cases[i].hg,cases[i].sg);
++        Command(firstOut,expected);
++        assert(owner.m_bSendHorseLevel==30 && owner.m_bSendHorseHealthGrade==cases[i].hg &&
++               owner.m_bSendHorseStaminaGrade==cases[i].sg);
++        owner.SendHorseInfo();assert(buffer_size(firstOut)==0); // No repeat when grades unchanged.
++    }
++    owner.m_Horse.bRiding=0;owner.ClearHorseInfo();
++    Command(firstOut,"hide_horse_state");
++    assert(!owner.m_chHorse && !owner.m_bSendHorseLevel && !owner.m_bSendHorseHealthGrade &&
++           !owner.m_bSendHorseStaminaGrade);
++    owner.m_Horse.bRiding=1;owner.m_chHorse=&horse;
++    owner.m_bSendHorseLevel=17;owner.m_bSendHorseHealthGrade=2;owner.m_bSendHorseStaminaGrade=1;
++    owner.ClearHorseInfo();
++    assert(!owner.m_chHorse && buffer_size(firstOut)==0 && owner.m_bSendHorseLevel==17 &&
++           owner.m_bSendHorseHealthGrade==2 && owner.m_bSendHorseStaminaGrade==1);
++    owner.m_Horse.bRiding=0;owner.SendHorseInfo();assert(buffer_size(firstOut)==0);
++    // SetRider's actual virtual old-clear/new-send path, without overriding either.
++    owner.m_chHorse=&horse;horse.m_chRider=&owner;
++    horse.SetRider(&owner); // Same-pointer replacement must still clear old rider.
++    Command(firstOut,"hide_horse_state");
++    assert(horse.m_chRider==&owner && !owner.m_chHorse);
++    newRider.m_chHorse=&horse;newRider.m_Horse.bLevel=30;
++    newRider.m_Horse.sHealth=50;newRider.m_Horse.sStamina=200;
++    newRider.m_bSendHorseLevel=0;
++    horse.SetRider(&newRider);
++    Command(firstOut,"hide_horse_state");Command(secondOut,"horse_state 30 3 3");
++    assert(!owner.m_chHorse && horse.m_chRider==&newRider);
++    horse.SetRider(0);Command(secondOut,"hide_horse_state");
++    assert(!horse.m_chRider && !newRider.m_chHorse);
++
++    // Exact24-byte original packet and explicit/default time behavior.
++    TPacketGCMove packet;
++    EncodeMovePacket(packet,0x12345678UL,2,7,0xffffffffUL,0x80000000UL,
++                     0x11223344UL,0xaabbccddUL,255);
++    const BYTE golden[]={3,2,7,255,0x78,0x56,0x34,0x12,
++        255,255,255,255,0,0,0,128,0xdd,0xcc,0xbb,0xaa,0x44,0x33,0x22,0x11};
++    assert(sizeof packet==24 && !std::memcmp(&packet,golden,24));
++    desc_test_set_millis(0x0badcafeUL);
++    EncodeMovePacket(packet,1,1,0,10,20,30,0,0);
++    assert(packet.dwTime==0x0badcafeUL);
++    // Actual PacketView sends to view recipient and excludes owner descriptor.
++    SECTREE sector;owner.SetSectree(&sector);owner.m_map_view[&newRider]=1;
++    owner.m_vid=VID(0x12345678UL,9);owner.m_posDest.x=-1;owner.m_posDest.y=0x12345678L;
++    owner.m_dwMoveDuration=0x11223344UL;owner.SetRotation(-9.75f);
++    owner.SendMovePacket(0,4,101,202,303,0xaabbccddUL,-1);
++    const BYTE movement[]={3,0,4,255,0x78,0x56,0x34,0x12,
++        255,255,255,255,0x78,0x56,0x34,0x12,0xdd,0xcc,0xbb,0xaa,0x44,0x33,0x22,0x11};
++    assert(buffer_size(firstOut)==0 && buffer_size(secondOut)==24 &&
++           !std::memcmp(buffer_read_peek(secondOut),movement,24));Empty(secondOut);
++    owner.m_bIsObserver=true;owner.SendMovePacket(1,0,1,2,3,4,5);
++    assert(buffer_size(firstOut)==0 && buffer_size(secondOut)==0);
++    owner.m_bIsObserver=false;
++    owner.m_map_view.clear();owner.SetSectree(0);owner.BindDesc(0);newRider.BindDesc(0);
++    first.ReleaseBuffered();second.ReleaseBuffered();first.Attach(0,-1,0);second.Attach(0,-1,0);
++    buffer_delete(firstOut);buffer_delete(secondOut);fdwatch_delete(watch);
++    std::puts("horse methods passed: guild race delta, CRC victim, real command thresholds/cache/rider virtuals, packed move24 and actual view dispatch");
++}
+--- a/reconstruction/tests/Makefile
++++ b/reconstruction/tests/Makefile
+@@ -4,7 +4,7 @@
+ else
+ EXEEXT :=
+ endif
+-RUNTIME_TESTS = item_id_regression locale_combat_data_regression locale_foundation_regression autogive_closed_regression skill_power_regression item_lookup_regression exp_data_regression exp_next_regression stop_muyeong_regression character_save_regression charlog_regression guild_level_regression polymorph_helpers_regression target_walking_regression level_pk_regression stat_primitives_regression party_dependency_regression stat_data_regression item_accessory_setters_regression locale_parser_regression core_regression event_regression heartbeat_regression vector_regression runtime_regression data_regression logging_regression gost_regression memcpy_regression signal_regression grid_regression attribute_regression tea_regression utils_regression utils_numeric_regression utils_strings_regression buffer_regression buffer_manager_regression socket_regression fdwatch_regression desc_output_unit desc_output_integration desc_packet_integration traffic_regression packet_info_regression packet_tables_regression input_regression game_time_regression desc_input_integration desc_flush_regression locale_regression desc_control_regression character_name_regression desc_manager_regression profiler_regression entity_regression sectree_attribute_regression horse_regression character_manager_regression mob_regression quest_flag_regression character_initialize_regression character_creation_regression item_regression item_persistence_regression character_inventory_regression item_ownership_regression character_stat_regression movement_regression text_loader_regression motion_file_regression motion_build_regression character_update_regression item_audit_regression asyncsql_regression asyncsql_connection_regression asyncsql_worker_regression dev_log_regression item_socket_expiry_regression
++RUNTIME_TESTS = horse_methods_regression item_id_regression locale_combat_data_regression locale_foundation_regression autogive_closed_regression skill_power_regression item_lookup_regression exp_data_regression exp_next_regression stop_muyeong_regression character_save_regression charlog_regression guild_level_regression polymorph_helpers_regression target_walking_regression level_pk_regression stat_primitives_regression party_dependency_regression stat_data_regression item_accessory_setters_regression locale_parser_regression core_regression event_regression heartbeat_regression vector_regression runtime_regression data_regression logging_regression gost_regression memcpy_regression signal_regression grid_regression attribute_regression tea_regression utils_regression utils_numeric_regression utils_strings_regression buffer_regression buffer_manager_regression socket_regression fdwatch_regression desc_output_unit desc_output_integration desc_packet_integration traffic_regression packet_info_regression packet_tables_regression input_regression game_time_regression desc_input_integration desc_flush_regression locale_regression desc_control_regression character_name_regression desc_manager_regression profiler_regression entity_regression sectree_attribute_regression horse_regression character_manager_regression mob_regression quest_flag_regression character_initialize_regression character_creation_regression item_regression item_persistence_regression character_inventory_regression item_ownership_regression character_stat_regression movement_regression text_loader_regression motion_file_regression motion_build_regression character_update_regression item_audit_regression asyncsql_regression asyncsql_connection_regression asyncsql_worker_regression dev_log_regression item_socket_expiry_regression
+ 
+ CXX ?= c++
+ CXXFLAGS ?= -std=c++03 -Wall -Wextra -pedantic
+@@ -17,6 +17,7 @@
+ ITEM_SOCKET_OBJECTS = item_sql_runtime.o item_sql_semaphore.o item_sql_api.o item_socket_config.o
+ .PHONY: check check-abi clean
+ check: $(addsuffix $(EXEEXT),$(RUNTIME_TESTS))
++	./horse_methods_regression$(EXEEXT)
+ 	./item_id_regression$(EXEEXT)
+ 	./locale_combat_data_regression$(EXEEXT)
+ 	./locale_foundation_regression$(EXEEXT)
+@@ -98,6 +99,7 @@
+ 	./item_socket_expiry_regression$(EXEEXT)
+ 
+ check-abi:
++	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Wno-invalid-offsetof -m32 -D_GLIBCXX_USE_CXX11_ABI=0 -fsyntax-only horse_methods_abi.cpp
+ 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -m32 -fsyntax-only item_id_abi.cpp
+ 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -m32 -fsyntax-only locale_foundation_abi.cpp
+ 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(ITEM_SOCKET_FLAGS) -Wno-long-long -m32 -fsyntax-only autogive_closed_abi.cpp
+@@ -518,3 +520,11 @@
+ # Must terminate nonzero/abort; exit99 means assert disabled and is a failure.
+ # Host assertion diagnostics differ from original FreeBSD file/line/ABI; do not
+ # compare diagnostic text or force external assertion function to return.
++
++# Closed old horse/helper integration, original source placements.
++HORSE_METHOD_SOURCES = $(filter-out character_fixture.cpp ../../game/src/char_horse.cpp ../../game/src/guild.cpp guild_lifecycle_fixture.cpp,$(TARGET_WALKING_SOURCES)) horse_methods_character_fixture.cpp ../../game/src/char_horse.cpp ../../game/src/guild.cpp guild_lifecycle_fixture.cpp
++HORSE_METHOD_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) desc_output_syscalls.o
++
++horse_methods_regression$(EXEEXT): horse_methods_regression.cpp $(HORSE_METHOD_SOURCES) $(HORSE_METHOD_OBJECTS) $(DESC_TEST_HEADERS) ../../game/src/char.h ../../game/src/packet.h ../../game/src/guild.h ../../game/src/horse-summon-detail.h
++	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long horse_methods_regression.cpp $(HORSE_METHOD_SOURCES) $(HORSE_METHOD_OBJECTS) $(LDFLAGS) -o $@
++

@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "quest::CQuestManager::AddLuaFunctionTable",
+    "address": "0805a5e0"
+  },
+  "code": "\r\n/* DWARF original prototype: void AddLuaFunctionTable(CQuestManager * this, char * c_pszName,\r\n   luaL_reg * preg) */\r\n\r\nvoid __thiscall\r\nquest::CQuestManager::AddLuaFunctionTable(CQuestManager *this,char *c_pszName,luaL_reg *preg)\r\n\r\n{\r\n  lua_CFunction *pp_Var1;\r\n  char *s;\r\n  \r\n  lua_newtable(*(lua_State **)(this + 0x34));\r\n  s = preg->name;\r\n  while (s != (char *)0x0) {\r\n    lua_pushstring(*(lua_State **)(this + 0x34),s);\r\n    pp_Var1 = &preg->func;\r\n    preg = preg + 1;\r\n    lua_pushcclosure(*(lua_State **)(this + 0x34),*pp_Var1,0);\r\n    lua_rawset(*(lua_State **)(this + 0x34),-3);\r\n    s = preg->name;\r\n  }\r\n  lua_pushstring(*(lua_State **)(this + 0x34),c_pszName);\r\n  lua_insert(*(lua_State **)(this + 0x34),-2);\r\n  lua_settable(*(lua_State **)(this + 0x34),-0x2711);\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

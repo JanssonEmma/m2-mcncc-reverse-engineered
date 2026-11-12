@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080f2030",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "get_fast_hash",
+      "address": "080f2030"
+    },
+    "code": "\r\ncrc_t get_fast_hash(char *key,size_t len)\r\n\r\n{\r\n  crc_t cVar1;\r\n  char *pcVar2;\r\n  \r\n                    /* Unresolved local var: char * end@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: ulong h@[DW_OP_reg1(ECX)] */\r\n  pcVar2 = key + len;\r\n  cVar1 = 0;\r\n  for (; key < pcVar2; key = key + 1) {\r\n    cVar1 = cVar1 * 0x1000193 ^ (int)*key;\r\n  }\r\n  return cVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

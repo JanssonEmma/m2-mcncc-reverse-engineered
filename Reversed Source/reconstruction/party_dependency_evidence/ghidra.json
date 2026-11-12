@@ -1,0 +1,18 @@
+[
+  {
+    "function": {
+      "name": "CParty::RequestSetMemberLevel",
+      "address": "08142480"
+    },
+    "code": "\r\n/* DWARF original prototype: void RequestSetMemberLevel(CParty * this, DWORD pid, BYTE level) */\r\n\r\nvoid __thiscall CParty::RequestSetMemberLevel(CParty *this,DWORD pid,BYTE level)\r\n\r\n{\r\n  TPacketPartySetMemberLevel p;\r\n  \r\n  p.dwLeaderPID = GetLeaderPID(this);\r\n  p.dwPID = pid;\r\n  p.bLevel = level;\r\n  CLIENT_DESC::DBPacket(db_clientdesc,'8',0,&p,9);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CParty::SendPartyInfoOneToAll",
+      "address": "08142c10"
+    },
+    "code": "\r\n/* DWARF original prototype: void SendPartyInfoOneToAll(CParty * this, LPCHARACTER ch) */\r\n\r\nvoid __thiscall CParty::SendPartyInfoOneToAll(CParty *this,LPCHARACTER ch)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_CParty::SMember>_> *p_Var1;\r\n  CHARACTER *this_00;\r\n  DWORD DVar2;\r\n  DWORD DVar3;\r\n  char *pcVar4;\r\n  char *pcVar5;\r\n  TPacketGCPartyUpdate p;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_CParty::SMember>,std::pair<const_long_unsigned_int,_CParty::SMember>&,std::pair<const_long_unsigned_int,_CParty::SMember>*>\r\n  it;\r\n  \r\n  if ((ch->super_CEntity).m_lpDesc != (LPDESC)0x0) {\r\n    CHARACTER::BuildUpdatePartyPacket(ch,&p);\r\n    p_Var1 = (this->m_memberMap)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CParty::SMember>,std::allocator<std::pair<const_long_unsigned_int,_CParty::SMember>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CParty::SMember>,std::allocator<std::pair<const_long_unsigned_int,_CParty::SMember>_>,true>\r\n             ._M_header;\r\n    it.super__Rb_tree_base_iterator._M_node =\r\n         (_Rb_tree_base_iterator)(p_Var1->super__Rb_tree_node_base)._M_left;\r\n    if (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)p_Var1) {\r\n      do {\r\n        this_00 = *(CHARACTER **)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n        if ((this_00 != (CHARACTER *)0x0) && ((this_00->super_CEntity).m_lpDesc != (LPDESC)0x0)) {\r\n          DVar2 = (this_00->m_vid).m_id;\r\n          pcVar4 = CHARACTER::GetName(this_00);\r\n          DVar3 = (ch->m_vid).m_id;\r\n          pcVar5 = CHARACTER::GetName(ch);\r\n          sys_log(2,\"PARTY send info %s[%d] to %s[%d]\",pcVar5,DVar3,pcVar4,DVar2);\r\n          DESC::Packet(*(DESC **)(*(int *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14) +\r\n                                 0x18),&p,0x15);\r\n        }\r\n        _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n      } while (it.super__Rb_tree_base_iterator._M_node !=\r\n               (_Rb_tree_base_iterator)\r\n               &((this->m_memberMap)._M_t.\r\n                 super__Rb_tree_base<std::pair<const_long_unsigned_int,_CParty::SMember>,std::allocator<std::pair<const_long_unsigned_int,_CParty::SMember>_>_>\r\n                 .\r\n                 super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CParty::SMember>,std::allocator<std::pair<const_long_unsigned_int,_CParty::SMember>_>,true>\r\n                ._M_header)->super__Rb_tree_node_base);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

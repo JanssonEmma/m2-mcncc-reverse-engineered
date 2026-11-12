@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063ca0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "fire_event",
+      "address": "08063ca0"
+    },
+    "code": "\r\nlong fire_event(EVENT *event)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  CHARACTER *this;\r\n  bool bVar2;\r\n  LPCHARACTER pAttacker;\r\n  int iVar3;\r\n  LPCHARACTER ch;\r\n  \r\n                    /* Unresolved local var: TFireEventInfo * info@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: LPCHARACTER pkAttacker@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int dam@[DW_OP_reg6(ESI)] */\r\n  puVar1 = event->info;\r\n  this = (CHARACTER *)*puVar1;\r\n  if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pAttacker = CHARACTER_MANAGER::FindByPID(singleton<CHARACTER_MANAGER>::ms_singleton,puVar1[3]);\r\n  iVar3 = puVar1[2];\r\n  if (test_server != 0) {\r\n    CHARACTER::ChatPacket(this,'\\x02',\"Fire Damage %d\",iVar3);\r\n  }\r\n  bVar2 = CHARACTER::Damage(this,pAttacker,iVar3,DAMAGE_TYPE_FIRE);\r\n  if ((bVar2) || (iVar3 = puVar1[1], puVar1[1] = iVar3 + -1, iVar3 + -1 == 0)) {\r\n    this->m_pkFireEvent = (LPEVENT)0x0;\r\n    iVar3 = 0;\r\n  }\r\n  else {\r\n    iVar3 = passes_per_sec * 3;\r\n  }\r\n  return iVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

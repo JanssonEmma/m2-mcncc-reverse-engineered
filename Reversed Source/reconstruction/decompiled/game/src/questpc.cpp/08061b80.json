@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08061b80",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "__tcf_0",
+      "address": "08061b80"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid __tcf_0(void)\r\n\r\n{\r\n  TQuestTable *pTVar1;\r\n  int iVar2;\r\n  \r\n  for (pTVar1 = PC::Save::s_table.super__Vector_base<SQuestTable,std::allocator<SQuestTable>_>.\r\n                super__Vector_alloc_base<SQuestTable,std::allocator<SQuestTable>,true>._M_start;\r\n      pTVar1 != PC::Save::s_table.super__Vector_base<SQuestTable,std::allocator<SQuestTable>_>.\r\n                super__Vector_alloc_base<SQuestTable,std::allocator<SQuestTable>,true>._M_finish;\r\n      pTVar1 = pTVar1 + 1) {\r\n  }\r\n  iVar2 = (int)PC::Save::s_table.super__Vector_base<SQuestTable,std::allocator<SQuestTable>_>.\r\n               super__Vector_alloc_base<SQuestTable,std::allocator<SQuestTable>,true>.\r\n               _M_end_of_storage -\r\n          (int)PC::Save::s_table.super__Vector_base<SQuestTable,std::allocator<SQuestTable>_>.\r\n               super__Vector_alloc_base<SQuestTable,std::allocator<SQuestTable>,true>._M_start >> 1;\r\n  if (iVar2 * -0x73ecade3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate\r\n              (PC::Save::s_table.super__Vector_base<SQuestTable,std::allocator<SQuestTable>_>.\r\n               super__Vector_alloc_base<SQuestTable,std::allocator<SQuestTable>,true>._M_start,\r\n               iVar2 * 2);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

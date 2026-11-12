@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ReversedSourceRoot>$(MSBuildThisFileDirectory)</ReversedSourceRoot>
+    <ReversedExternalInclude>$(MSBuildThisFileDirectory)..\extern\include</ReversedExternalInclude>
+    <ReversedSystemIncludes Condition="'$(METIN2_FREEBSD_SYSROOT)' != ''">$(METIN2_FREEBSD_SYSROOT)\usr\include;$(METIN2_FREEBSD_SYSROOT)\usr\local\include</ReversedSystemIncludes>
+    <ReversedProjectIncludes>$(ReversedSourceRoot)common;$(ReversedSourceRoot)libthecore\include;$(ReversedSourceRoot)libgame\include;$(ReversedSourceRoot)libguild;$(ReversedSourceRoot)liblua\include;$(ReversedSourceRoot)libpoly;$(ReversedSourceRoot)libsql</ReversedProjectIncludes>
+  </PropertyGroup>
+</Project>

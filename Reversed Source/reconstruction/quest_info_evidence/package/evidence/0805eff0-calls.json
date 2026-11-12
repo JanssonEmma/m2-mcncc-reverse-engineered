@@ -1,0 +1,47 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestDoneFlag",
+    "address": "0805eff0"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "08168fa8",
+        "caller": {
+          "name": "quest_done",
+          "address": "08168f90"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0805efff",
+        "target": "080604b0",
+        "name": "PC::GetCurrentQuestBeginFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805f019",
+        "target": "08060400",
+        "name": "PC::ClearCurrentQuestBeginFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  }
+}

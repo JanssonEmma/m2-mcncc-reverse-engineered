@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08130520",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8130520",
+    "function": {
+      "name": "CHARACTER::SetPart",
+      "address": "08130520"
+    },
+    "signature": "void SetPart(CHARACTER * this, BYTE bPartPos, WORD wVal)",
+    "code": "\r\n/* DWARF original prototype: void SetPart(CHARACTER * this, BYTE bPartPos, WORD wVal) */\r\n\r\nvoid __thiscall CHARACTER::SetPart(CHARACTER *this,BYTE bPartPos,WORD wVal)\r\n\r\n{\r\n  if (3 < bPartPos) {\r\n    __assert(\"SetPart\",\"char.cpp\",0xf37);\r\n  }\r\n  (this->m_pointsInstant).parts[bPartPos] = wVal;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('work/pc_quest_info/next_window/pc_quest_info_regression.cpp');s=p.read_text(encoding='utf-8-sig');s=s.replace('quest::CQuestManager manager;qm=&manager;quest::PC owner;pc=&owner;','quest::CQuestManager manager;qm=&manager;quest::PC owner;owner.SetID(123);pc=&owner;');s=s.replace('CHARACTER receiverA,receiverB;charA=&receiverA;charB=&receiverB;','CHARACTER receiverA,receiverB;receiverA.m_dwPlayerID=456;receiverB.m_dwPlayerID=789;charA=&receiverA;charB=&receiverB;');p.write_text(s,encoding='utf-8')

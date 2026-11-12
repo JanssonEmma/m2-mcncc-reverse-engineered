@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081688d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81688d0",
+    "function": {
+      "name": "CItem::SetAccessorySocketMaxGrade",
+      "address": "081688d0"
+    },
+    "signature": "void SetAccessorySocketMaxGrade(CItem * this, int iMaxGrade)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketMaxGrade(CItem * this, int iMaxGrade) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketMaxGrade(CItem *this,int iMaxGrade)\r\n\r\n{\r\n  int v;\r\n  \r\n  v = MINMAX(0,iMaxGrade,3);\r\n  SetSocket(this,1,v);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

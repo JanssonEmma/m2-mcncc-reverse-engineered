@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b8570",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "log_file_delete_old",
+      "address": "081b8570"
+    },
+    "code": "\r\nvoid log_file_delete_old(char *filename)\r\n\r\n{\r\n  int iVar1;\r\n  tm *ptVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  tm *ptVar5;\r\n  int num2;\r\n  int num1;\r\n  dirent **namelist;\r\n  char name [256];\r\n  tm new_tm;\r\n  char system_cmd [64];\r\n  char buf [32];\r\n  stat sb;\r\n  \r\n  iVar1 = stat(filename,(stat *)&sb);\r\n  if (iVar1 == -1) {\r\n    perror(\"log_file_delete_old: stat\");\r\n  }\r\n  else if ((sb.st_mode & 0xf000) == 0x4000) {\r\n    ptVar2 = tm_calc((tm *)0x0,-log_keep_days);\r\n    ptVar5 = &new_tm;\r\n    for (iVar1 = 0xb; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n      ptVar5->tm_sec = ptVar2->tm_sec;\r\n      ptVar2 = (tm *)&ptVar2->tm_min;\r\n      ptVar5 = (tm *)&ptVar5->tm_min;\r\n    }\r\n    sprintf(buf,\"%04d%02d%02d\",new_tm.tm_year + 0x76c,new_tm.tm_mon + 1,new_tm.tm_mday);\r\n    iVar3 = atoi(buf);\r\n                    /* Unresolved local var: int n@[DW_OP_reg6(ESI)] */\r\n    iVar1 = scandir(filename,(dirent ***)&namelist,(__selector *)0x0,alphasort);\r\n    if (iVar1 < 0) {\r\n      perror(\"scandir\");\r\n    }\r\n    else if (0 < iVar1) {\r\n      do {\r\n        iVar1 = iVar1 + -1;\r\n        strncpy(name,namelist[iVar1]->d_name,0xff);\r\n        name[0xff] = '\\0';\r\n        free(namelist[iVar1]);\r\n        if ((((name[0] != '.') && ((uint)(int)name[0] < 0x100)) &&\r\n            ((_DefaultRuneLocale[name[0] * 4 + 0x35] & 4) != 0)) &&\r\n           (iVar4 = atoi(name), iVar4 <= iVar3)) {\r\n          sprintf(system_cmd,\"rm -rf %s/%s\",filename,name);\r\n          system(system_cmd);\r\n          sys_log(0,\"%s: SYSTEM_CMD: %s\",\"log_file_delete_old\",system_cmd);\r\n          fprintf(__stderrp,\"%s: SYSTEM_CMD: %s %s:%d %s:%d\\n\",\"log_file_delete_old\",system_cmd,buf,\r\n                  iVar3,name,iVar4);\r\n        }\r\n      } while (0 < iVar1);\r\n    }\r\n    free(namelist);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

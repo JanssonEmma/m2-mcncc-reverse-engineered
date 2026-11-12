@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b9800",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "thecore_init",
+      "address": "081b9800"
+    },
+    "code": "\r\nint thecore_init(int fps,HEARTFUNC heartbeat_func)\r\n\r\n{\r\n  time_t tVar1;\r\n  __pid_t _Var2;\r\n  __uid_t _Var3;\r\n  int iVar4;\r\n  \r\n  tVar1 = time((time_t *)0x0);\r\n  _Var2 = getpid();\r\n  _Var3 = getuid();\r\n  srandom(_Var3 + tVar1 + _Var2);\r\n  srandomdev();\r\n  signal_setup();\r\n  iVar4 = log_init();\r\n  if ((iVar4 != 0) && (iVar4 = pid_init(), iVar4 != 0)) {\r\n    thecore_find_best_memcpy();\r\n    GOST_Init();\r\n    thecore_heart = heart_new((int)(1000000 / (longlong)fps),heartbeat_func);\r\n    return 1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168370",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168370",
+    "function": {
+      "name": "CItem::GetRefineFromVnum",
+      "address": "08168370"
+    },
+    "signature": "DWORD GetRefineFromVnum(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: DWORD GetRefineFromVnum(CItem * this) */\r\n\r\nDWORD __thiscall CItem::GetRefineFromVnum(CItem *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = 0;\r\n  if (this->m_pProto != (TItemTable *)0x0) {\r\n    DVar1 = this->m_pProto->dwVnum;\r\n  }\r\n  if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  DVar1 = ITEM_MANAGER::GetRefineFromVnum(singleton<ITEM_MANAGER>::ms_singleton,DVar1);\r\n  return DVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

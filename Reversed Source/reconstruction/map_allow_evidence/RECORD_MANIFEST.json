@@ -1,0 +1,42 @@
+{
+  "checkpoint": 107,
+  "status": "passed_focused",
+  "validation_scope": "focused_only",
+  "focused_runtime_commands": [
+    "locale_regression",
+    "horse_regression",
+    "desc_packet_integration",
+    "quest_npc_set_regression"
+  ],
+  "registered_runtime_commands": 118,
+  "abi": true,
+  "source_hashes": [
+    {
+      "path": "game/src/config.cpp",
+      "before": "2a2fd8e465ed267554ced663136ea0591a37b2f17e8346f455d25df48d635e86",
+      "after": "2a38e9f08da84f55bc9ab0278cf75f694aba92d67bf953740d6e6d1d78c408b0"
+    },
+    {
+      "path": "game/src/config.h",
+      "before": "0dd8b9717a4d4000cf34e2076555b11d00a024ed1eadb71c6fc6c83f23d088d3",
+      "after": "c22c13524c9c6329d5f6ddd5bc818835e2a51dc9d8ca7e007da71c2f7b337e06"
+    },
+    {
+      "path": "reconstruction/tests/locale_regression.cpp",
+      "before": "9096084799d5d0051234409cba8e90692d6a5619dc7391da7bea12e02b6a82ca",
+      "after": "f83d606b943c780d81521ea69ef3bb963bf6d13e5c3241582e82eea3cb1fe11f"
+    }
+  ],
+  "receipt_sha256": "fa57f3c8de3254b883ec17b127aa3e16ea16fcb48896e465e2462058c8252775",
+  "last_full_validation": {
+    "checkpoint": 103,
+    "runtime_commands": 117,
+    "receipt": "PROJECT_ROOT\\Reversed Source\\reconstruction\\npc_loader_evidence\\checkpoint-103-validation.receipt.json",
+    "receipt_sha256": "bb438c9cc6fbf6ac03f372555e2188241310c9fa7a45c34cf17089ffe1d5886c"
+  },
+  "coverage": {
+    "unreviewed": 6158,
+    "evidence_available": 746,
+    "reviewed_implementation_test_mapping": 334
+  }
+}

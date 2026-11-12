@@ -1,0 +1,89 @@
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "BlockCountry.cpp" -o ".obj/db/BlockCountry.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "Cache.cpp" -o ".obj/db/Cache.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManager.cpp" -o ".obj/db/ClientManager.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManagerBoot.cpp" -o ".obj/db/ClientManagerBoot.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManagerEventFlag.cpp" -o ".obj/db/ClientManagerEventFlag.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManagerGuild.cpp" -o ".obj/db/ClientManagerGuild.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManagerLogin.cpp" -o ".obj/db/ClientManagerLogin.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManagerParty.cpp" -o ".obj/db/ClientManagerParty.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ClientManagerPlayer.cpp" -o ".obj/db/ClientManagerPlayer.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "Config.cpp" -o ".obj/db/Config.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "DBManager.cpp" -o ".obj/db/DBManager.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "GuildManager.cpp" -o ".obj/db/GuildManager.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "HB.cpp" -o ".obj/db/HB.o"
+In file included from DBManager.cpp:2:
+./DBManager.h:84:9: warning: private field 'm_quit' is not used [-Wunused-private-field]
+   84 |     int m_quit;
+      |         ^
+1 warning generated.
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "ItemAwardManager.cpp" -o ".obj/db/ItemAwardManager.o"
+In file included from GuildManager.cpp:5:
+./GuildManager.h:41:24: warning: definition of implicit copy constructor for 'TGuildDeclareInfo' is deprecated because it has a user-provided copy assignment operator [-Wdeprecated-copy-with-user-provided-copy]
+   41 |     TGuildDeclareInfo& operator = (const TGuildDeclareInfo& r)
+      |                        ^
+/usr/include/c++/v1/__memory/construct_at.h:41:46: note: in implicit copy constructor for 'TGuildDeclareInfo' first required here
+   41 |   return ::new (std::__voidify(*__location)) _Tp(std::forward<_Args>(__args)...);
+      |                                              ^
+/usr/include/c++/v1/__memory/construct_at.h:49:15: note: in instantiation of function template specialization 'std::construct_at<TGuildDeclareInfo, const TGuildDeclareInfo &, TGuildDeclareInfo *>' requested here
+   49 |   return std::construct_at(__location, std::forward<_Args>(__args)...);
+      |               ^
+/usr/include/c++/v1/__memory/allocator_traits.h:305:10: note: in instantiation of function template specialization 'std::__construct_at<TGuildDeclareInfo, const TGuildDeclareInfo &, TGuildDeclareInfo *>' requested here
+  305 |     std::__construct_at(__p, std::forward<_Args>(__args)...);
+      |          ^
+/usr/include/c++/v1/__tree:1820:18: note: in instantiation of function template specialization 'std::allocator_traits<std::allocator<std::__tree_node<TGuildDeclareInfo, void *>>>::construct<TGuildDeclareInfo, const TGuildDeclareInfo &, void, void>' requested here
+ 1820 |   __node_traits::construct(__na, _NodeTypes::__get_ptr(__h->__value_), std::forward<_Args>(__args)...);
+      |                  ^
+/usr/include/c++/v1/__tree:1786:25: note: in instantiation of function template specialization 'std::__tree<TGuildDeclareInfo, std::less<TGuildDeclareInfo>, std::allocator<TGuildDeclareInfo>>::__construct_node<const TGuildDeclareInfo &>' requested here
+ 1786 |     __node_holder __h = __construct_node(std::forward<_Args>(__args)...);
+      |                         ^
+/usr/include/c++/v1/__tree:1105:12: note: in instantiation of function template specialization 'std::__tree<TGuildDeclareInfo, std::less<TGuildDeclareInfo>, std::allocator<TGuildDeclareInfo>>::__emplace_unique_key_args<TGuildDeclareInfo, const TGuildDeclareInfo &>' requested here
+ 1105 |     return __emplace_unique_key_args(_NodeTypes::__get_key(__v), __v);
+      |            ^
+/usr/include/c++/v1/set:735:93: note: in instantiation of member function 'std::__tree<TGuildDeclareInfo, std::less<TGuildDeclareInfo>, std::allocator<TGuildDeclareInfo>>::__insert_unique' requested here
+  735 |   _LIBCPP_HIDE_FROM_ABI pair<iterator, bool> insert(const value_type& __v) { return __tree_.__insert_unique(__v); }
+      |                                                                                             ^
+GuildManager.cpp:918:22: note: in instantiation of member function 'std::set<TGuildDeclareInfo>::insert' requested here
+  918 |         m_DeclareMap.insert(di);
+      |                      ^
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "Lock.cpp" -o ".obj/db/Lock.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "LoginData.cpp" -o ".obj/db/LoginData.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "Main.cpp" -o ".obj/db/Main.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "Marriage.cpp" -o ".obj/db/Marriage.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "MoneyLog.cpp" -o ".obj/db/MoneyLog.o"
+1 warning generated.
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "NetBase.cpp" -o ".obj/db/NetBase.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "Peer.cpp" -o ".obj/db/Peer.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "PeerBase.cpp" -o ".obj/db/PeerBase.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "PrivManager.cpp" -o ".obj/db/PrivManager.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "../../libsql/AsyncSQL.cpp" -o ".obj/shared/libsql/AsyncSQL.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "../../libsql/Semaphore.cpp" -o ".obj/shared/libsql/Semaphore.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "../../libgame/src/grid.cc" -o ".obj/shared/libgame/src/grid.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "../../libpoly/Poly.cc" -o ".obj/shared/libpoly/Poly.o"
+clang++ -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=c++23 -pthread -MMD -MP -c "../../libpoly/SymTable.cc" -o ".obj/shared/libpoly/SymTable.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/buffer.c" -o ".obj/shared/libthecore/src/buffer.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/fdwatch.c" -o ".obj/shared/libthecore/src/fdwatch.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/gost.c" -o ".obj/shared/libthecore/src/gost.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/heart.c" -o ".obj/shared/libthecore/src/heart.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/log.c" -o ".obj/shared/libthecore/src/log.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/main.c" -o ".obj/shared/libthecore/src/main.o"
+../../libthecore/src/log.c:123:31: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+  123 |     fprintf(log_file_sys->fp, sys_log_header_string);
+      |                               ^~~~~~~~~~~~~~~~~~~~~
+../../libthecore/src/log.c:123:31: note: treat the string as an argument to avoid this
+  123 |     fprintf(log_file_sys->fp, sys_log_header_string);
+      |                               ^
+      |                               "%s", 
+../../libthecore/src/log.c:133:25: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+  133 |         fprintf(stdout, sys_log_header_string);
+      |                         ^~~~~~~~~~~~~~~~~~~~~
+../../libthecore/src/log.c:133:25: note: treat the string as an argument to avoid this
+  133 |         fprintf(stdout, sys_log_header_string);
+      |                         ^
+      |                         "%s", 
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/memcpy.c" -o ".obj/shared/libthecore/src/memcpy.o"
+2 warnings generated.
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/signal.c" -o ".obj/shared/libthecore/src/signal.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/socket.c" -o ".obj/shared/libthecore/src/socket.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/tea.c" -o ".obj/shared/libthecore/src/tea.o"
+clang -m32  -DMCNCC_DB_MYSQL8=1 -DFMT_HEADER_ONLY -isystem "/usr/local/include/mysql" -isystem "../../../extern/include" -O2 -g -Wall -Wextra -pipe -std=gnu99 -pthread -MMD -MP -c "../../libthecore/src/utils.c" -o ".obj/shared/libthecore/src/utils.o"
+clang++ -m32  -pthread -o "../db" .obj/db/BlockCountry.o .obj/db/Cache.o .obj/db/ClientManager.o .obj/db/ClientManagerBoot.o .obj/db/ClientManagerEventFlag.o .obj/db/ClientManagerGuild.o .obj/db/ClientManagerLogin.o .obj/db/ClientManagerParty.o .obj/db/ClientManagerPlayer.o .obj/db/Config.o .obj/db/DBManager.o .obj/db/GuildManager.o .obj/db/HB.o .obj/db/ItemAwardManager.o .obj/db/Lock.o .obj/db/LoginData.o .obj/db/Main.o .obj/db/Marriage.o .obj/db/MoneyLog.o .obj/db/NetBase.o .obj/db/Peer.o .obj/db/PeerBase.o .obj/db/PrivManager.o .obj/shared/libsql/AsyncSQL.o .obj/shared/libsql/Semaphore.o .obj/shared/libgame/src/grid.o .obj/shared/libpoly/Poly.o .obj/shared/libpoly/SymTable.o .obj/shared/libthecore/src/buffer.o .obj/shared/libthecore/src/fdwatch.o .obj/shared/libthecore/src/gost.o .obj/shared/libthecore/src/heart.o .obj/shared/libthecore/src/log.o .obj/shared/libthecore/src/main.o .obj/shared/libthecore/src/memcpy.o .obj/shared/libthecore/src/signal.o .obj/shared/libthecore/src/socket.o .obj/shared/libthecore/src/tea.o .obj/shared/libthecore/src/utils.o "/usr/local/lib/mysql/libmysqlclient.so" -lz -lm 

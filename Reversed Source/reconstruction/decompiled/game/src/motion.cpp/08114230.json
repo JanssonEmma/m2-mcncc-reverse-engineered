@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08114230",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8114230",
+    "function": {
+      "name": "CMotionSet::Insert",
+      "address": "08114230"
+    },
+    "signature": "void Insert(CMotionSet * this, DWORD dwKey, CMotion * pkMotion)",
+    "code": "\r\n/* DWARF original prototype: void Insert(CMotionSet * this, DWORD dwKey, CMotion * pkMotion) */\r\n\r\nvoid __thiscall CMotionSet::Insert(CMotionSet *this,DWORD dwKey,CMotion *pkMotion)\r\n\r\n{\r\n  pair<const_long_unsigned_int,CMotion*> local_24 [4];\r\n  \r\n  local_24[0].first = dwKey;\r\n  local_24[0].second = pkMotion;\r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CMotion*>,std::_Select1st<std::pair<const_long_unsigned_int,_CMotion*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n  ::insert_unique((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CMotion*>,std::_Select1st<std::pair<const_long_unsigned_int,_CMotion*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n                   *)this,local_24);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

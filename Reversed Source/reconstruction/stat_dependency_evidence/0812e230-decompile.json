@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"function\": {\n    \"name\": \"CHARACTER::SetPoint\",\n    \"address\": \"0812e230\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void SetPoint(CHARACTER * this, BYTE type, long val) */\\r\\n\\r\\nvoid __thiscall CHARACTER::SetPoint(CHARACTER *this,BYTE type,long val)\\r\\n\\r\\n{\\r\\n  DWORD DVar1;\\r\\n  \\r\\n  (this->m_pointsInstant).points[type] = val;\\r\\n  if (type == '\\\\x13') {\\r\\n    DVar1 = get_dword_time();\\r\\n    if (DVar1 < this->m_dwMoveDuration + this->m_dwMoveStartTime) {\\r\\n      CalculateMoveDuration(this);\\r\\n      return;\\r\\n    }\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+    }
+  ],
+  "structuredContent": {
+    "function": {
+      "name": "CHARACTER::SetPoint",
+      "address": "0812e230"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetPoint(CHARACTER * this, BYTE type, long val) */\r\n\r\nvoid __thiscall CHARACTER::SetPoint(CHARACTER *this,BYTE type,long val)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  (this->m_pointsInstant).points[type] = val;\r\n  if (type == '\\x13') {\r\n    DVar1 = get_dword_time();\r\n    if (DVar1 < this->m_dwMoveDuration + this->m_dwMoveStartTime) {\r\n      CalculateMoveDuration(this);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "isError": false
+}

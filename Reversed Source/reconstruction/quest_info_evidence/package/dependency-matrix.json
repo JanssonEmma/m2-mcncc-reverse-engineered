@@ -1,0 +1,537 @@
+{
+  "graphs": [
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestStartFlag",
+        "address": "0805efc0"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "PC::GetCurrentQuestBeginFlag",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "0805efcf"
+          ]
+        },
+        {
+          "name": "PC::SetCurrentQuestBeginFlag",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "0805efe9"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestDoneFlag",
+        "address": "0805eff0"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "PC::ClearCurrentQuestBeginFlag",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "0805f019"
+          ]
+        },
+        {
+          "name": "PC::GetCurrentQuestBeginFlag",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "0805efff"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SendQuestInfoPakcet",
+        "address": "0805f020"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::__assert",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "0805f187",
+            "0805f492",
+            "0805f4c2"
+          ]
+        },
+        {
+          "name": "<EXTERNAL>::std::string::reserve",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "0805f1a5",
+            "0805f282",
+            "0805f362",
+            "0805f3f2"
+          ]
+        },
+        {
+          "name": "DESC::Packet",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/desc.cpp",
+              "line": 152,
+              "sha256": "8f733315275fd0252180e510513613f5d65f3d8518a5f9e172c6cab67b26bb67"
+            },
+            {
+              "path": "game/src/desc_client.cpp",
+              "line": 26,
+              "sha256": "49bdc10eb9380490f5b1625db5886564906581e3465395cd098dd28412afc049"
+            }
+          ],
+          "call_sites": [
+            "0805f146"
+          ]
+        },
+        {
+          "name": "TEMP_BUFFER::TEMP_BUFFER",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/buffer_manager.cpp",
+              "line": 32,
+              "sha256": "103e6d00ea93ad952d846162612a5b86d762a0c7bffcbfd7e4247987472a5fa2"
+            }
+          ],
+          "call_sites": [
+            "0805f061"
+          ]
+        },
+        {
+          "name": "TEMP_BUFFER::read_peek",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/buffer_manager.cpp",
+              "line": 34,
+              "sha256": "103e6d00ea93ad952d846162612a5b86d762a0c7bffcbfd7e4247987472a5fa2"
+            }
+          ],
+          "call_sites": [
+            "0805f125"
+          ]
+        },
+        {
+          "name": "TEMP_BUFFER::size",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/buffer_manager.cpp",
+              "line": 36,
+              "sha256": "103e6d00ea93ad952d846162612a5b86d762a0c7bffcbfd7e4247987472a5fa2"
+            }
+          ],
+          "call_sites": [
+            "0805f118"
+          ]
+        },
+        {
+          "name": "TEMP_BUFFER::write",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/buffer_manager.cpp",
+              "line": 35,
+              "sha256": "103e6d00ea93ad952d846162612a5b86d762a0c7bffcbfd7e4247987472a5fa2"
+            }
+          ],
+          "call_sites": [
+            "0805f07c",
+            "0805f0ae",
+            "0805f1d4",
+            "0805f239",
+            "0805f2b1",
+            "0805f319",
+            "0805f391",
+            "0805f421"
+          ]
+        },
+        {
+          "name": "TEMP_BUFFER::~TEMP_BUFFER",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/buffer_manager.cpp",
+              "line": 33,
+              "sha256": "103e6d00ea93ad952d846162612a5b86d762a0c7bffcbfd7e4247987472a5fa2"
+            }
+          ],
+          "call_sites": [
+            "0805f158"
+          ]
+        },
+        {
+          "name": "sys_log",
+          "state": "actual-core-logging",
+          "definitions": [],
+          "call_sites": [
+            "0805f0d4",
+            "0805f20f",
+            "0805f263",
+            "0805f2ec",
+            "0805f343",
+            "0805f3cc",
+            "0805f45c"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::ClearCurrentQuestBeginFlag",
+        "address": "08060400"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "08060418"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestBeginFlag",
+        "address": "08060430"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::__assert",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060499"
+          ]
+        },
+        {
+          "name": "CQuestManager::GetQuestIndexByName",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questmanager.cpp",
+              "line": 49,
+              "sha256": "fd568546b0f7714719a9a0adddeae0d5decc7509ef4044cdeb42fc25715d6933"
+            }
+          ],
+          "call_sites": [
+            "08060450"
+          ]
+        },
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "0806046b"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::GetCurrentQuestBeginFlag",
+        "address": "080604b0"
+      },
+      "has_more": false,
+      "callees": []
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestTitle",
+        "address": "080604d0"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::std::string::assign",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060508"
+          ]
+        },
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "080604ee"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetQuestTitle",
+        "address": "08060510"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::__assert",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060638"
+          ]
+        },
+        {
+          "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "0806060c"
+          ]
+        },
+        {
+          "name": "<EXTERNAL>::std::string::assign",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060598",
+            "080605dc"
+          ]
+        },
+        {
+          "name": "<EXTERNAL>::std::string::string",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060589"
+          ]
+        },
+        {
+          "name": "CQuestManager::GetQuestIndexByName",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questmanager.cpp",
+              "line": 49,
+              "sha256": "fd568546b0f7714719a9a0adddeae0d5decc7509ef4044cdeb42fc25715d6933"
+            }
+          ],
+          "call_sites": [
+            "08060536"
+          ]
+        },
+        {
+          "name": "PC::GetCurrentQuestBeginFlag",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "080605b0"
+          ]
+        },
+        {
+          "name": "PC::SendQuestInfoPakcet",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "080605cd"
+          ]
+        },
+        {
+          "name": "PC::SetCurrentQuestTitle",
+          "state": "complete-staged-quest-info-group",
+          "definitions": [],
+          "call_sites": [
+            "080605c5"
+          ]
+        },
+        {
+          "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::find",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "0806054f"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestClockName",
+        "address": "08060650"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::std::string::assign",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060688"
+          ]
+        },
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "0806066e"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestClockValue",
+        "address": "08060690"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "080606a8"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestCounterName",
+        "address": "080606c0"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::std::string::assign",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "080606f8"
+          ]
+        },
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "080606de"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestCounterValue",
+        "address": "08060700"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "08060718"
+          ]
+        }
+      ]
+    },
+    {
+      "root": {
+        "name": "PC::SetCurrentQuestIconFile",
+        "address": "08060730"
+      },
+      "has_more": false,
+      "callees": [
+        {
+          "name": "<EXTERNAL>::std::string::assign",
+          "state": "standard-runtime/header or staged-group",
+          "definitions": [],
+          "call_sites": [
+            "08060768"
+          ]
+        },
+        {
+          "name": "PC::SetSendFlag",
+          "state": "actual-current-source",
+          "definitions": [
+            {
+              "path": "game/src/questpc.cpp",
+              "line": 86,
+              "sha256": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba"
+            }
+          ],
+          "call_sites": [
+            "0806074e"
+          ]
+        }
+      ]
+    }
+  ],
+  "inlined_dependency": {
+    "name": "CQuestManager::GetCurrentCharacterPtr",
+    "status": "genuine original missing headerinline accessor staged; complete existing field, no othercallee",
+    "parent_instruction": "0805f135 load [manager+0x7c]",
+    "not_standalone_export": true
+  },
+  "data_gap": "packet_quest_info6 bytes missingproduction, complete source staged",
+  "enum_gap": "7usedmask values proven instructions; reference-only enumerator names not found in scannedoldDWARF, not promoted",
+  "unproven_unused_API": "PC::ClearSendFlag declaration only; sender directly clearsfield, no fake body supplied"
+}

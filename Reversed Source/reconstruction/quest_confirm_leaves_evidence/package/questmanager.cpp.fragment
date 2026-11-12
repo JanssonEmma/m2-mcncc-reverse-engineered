@@ -1,0 +1,7 @@
+// Whole original CQM range selector081a5400, unsignedpredicate includes negativefallback.
+namespace quest {
+void CQuestManager::SetSkinStyle(int style){
+    if(static_cast<unsigned int>(style)<6U)m_iCurrentSkin=style;
+    else m_iCurrentSkin=1;
+}
+}

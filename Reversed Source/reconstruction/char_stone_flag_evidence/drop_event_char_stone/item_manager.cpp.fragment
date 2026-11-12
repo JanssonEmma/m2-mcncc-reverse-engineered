@@ -1,0 +1,38 @@
+// 08194a40 and original item_manager.cpp local event owner at 0842d2c8.
+static struct DropEvent_CharStone {
+    int percent_lv01_10;
+    int percent_lv11_30;
+    int percent_lv31_MX;
+    int level_range;
+    bool alive;
+
+    DropEvent_CharStone()
+        : percent_lv01_10(100), percent_lv11_30(200), percent_lv31_MX(300),
+          level_range(10), alive(false) {}
+} gs_dropEvent_charStone;
+
+bool DropEvent_CharStone_SetValue(const std::string& name, int value)
+{
+    if (name == "drop_char_stone") {
+        gs_dropEvent_charStone.alive = value != 0;
+        sys_log(0, value ? "dropevent.drop_char_stone = on" : "dropevent.drop_char_stone = off");
+    } else if (name == "drop_char_stone.percent_lv01_10") {
+        gs_dropEvent_charStone.percent_lv01_10 = value;
+    } else if (name == "drop_char_stone.percent_lv11_30") {
+        gs_dropEvent_charStone.percent_lv11_30 = value;
+    } else if (name == "drop_char_stone.percent_lv31_MX") {
+        gs_dropEvent_charStone.percent_lv31_MX = value;
+    } else if (name == "drop_char_stone.level_range") {
+        gs_dropEvent_charStone.level_range = value;
+    } else {
+        return false;
+    }
+
+    sys_log(0, "dropevent.drop_char_stone: %d", static_cast<int>(gs_dropEvent_charStone.alive));
+    // The target loads each signed int into x87 and stores the quotient directly as double.
+    sys_log(0, "dropevent.drop_char_stone.percent_lv01_10: %f", gs_dropEvent_charStone.percent_lv01_10 / 100.0);
+    sys_log(0, "dropevent.drop_char_stone.percent_lv11_30: %f", gs_dropEvent_charStone.percent_lv11_30 / 100.0);
+    sys_log(0, "dropevent.drop_char_stone.percent_lv31_MX: %f", gs_dropEvent_charStone.percent_lv31_MX / 100.0);
+    sys_log(0, "dropevent.drop_char_stone.level_range: %d", gs_dropEvent_charStone.level_range);
+    return true;
+}

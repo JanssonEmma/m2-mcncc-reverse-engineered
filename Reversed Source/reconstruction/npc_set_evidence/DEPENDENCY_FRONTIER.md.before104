@@ -1,0 +1,22 @@
+# Checkpoint 103
+
+Checkpoint 103 restored the whole NPC state-script loader. All 117 registered runtime suites and ABI checks passed. The ledger indexes 1071 functions with evidence and 325 bounded source/test mappings.
+
+Next module is NPC::Set, the original directory traversal that invokes the loader. Historical checkpoint notes follow.
+
+# Remaining dependency frontier after checkpoint102
+
+Registered116. Checkpoint102 focused4+ABI/strict/O2 passed; lastFULL101/114 is historical prior-source validation. Ledger1070 evidence/324 bounded mappings/0warnings. No full116 claim.
+
+| Area | Integrated or staged | Remaining closure |
+| --- | --- | --- |
+| Quest PC storage | Real lifecycle, GetPCForce/GetPC, named timer registry cleanup, seven flags/timer helpers, nine state/query/confirm helpers, real QuestState and RewardData constructors and13 quest-info setters/protocol bodies verified; whole Save/Build/CancelRunning, SetLoaded inline and GiveItem/GiveExp producers integrated (Build matching static-only) | Build matching runtime remains unproven; EndRunning/reward execution/LevelUp/NPC dispatch and VM ownership; manager name/index/NPC/current queries and seven PC storage methods now verified |
+| Safebox/mall | Complete135-slot class/data/API; real constructor/Add/Save/getters/window/resize and CHAR pointer getters verified | Real populated destructor/__Destroy/Remove/MoveItem reach complete item-removal/stat chain; no production substitute exists |
+| Character stats | Full PointChange116cases/127targets, ApplyPoint, ModifyPoints, ComputeBattlePoints and ComputePoints candidates saved | Full application SCC must link actual quest/reward/mount/affect dependencies; no fake accumulator or partial switch |
+| Equipment/removal | Full RemoveItem/Destroy/RemoveFromCharacter/Unequip/SetWear/unique expiry/accessory degradation candidates saved | Complete safebox/removal/stat/affect chain; no ownerless-only path |
+| Affects/combat | IsAffectFlag, SendAffectRemovePacket and CreateFly verified; full RemoveAffect/Refresh/Compute/StartMuyeong/Muyeong and ComputeSkill evidence staged | Actual combat transitive dependencies; original Muyeong dangling temporary reference documented and not silently fixed |
+| Startup/data | Full skill factory, attribute maps/rows and selected original tables verified | Complete Boot/startup/dependencies, real database input and full server/VisualStudio linking; start-script file loading and registration are now real |
+
+Next useful investigation after allowance reset: remaining whole original Confirm/RunState/VM or other complete dependency closure after full callgraph review. Yield bridges/QuestError and CanStartQuest/WriteRunningStateToSyserr are now99verified; frontier-only Confirm/Run exports are not implementations. Preserve original ignored-status/stack behavior and unsafe empty-vector domain, no fallback repair. Checkpoint100 leaves are now integrated. Name/index queries, actual32-bit full-byte multiply/XOR hash, PC quest storage and file registration are now integrated. CQM API metadata has97 old entries, while the declaration set remains partial; preserve original owner/data without shadow classes. Lua-backed state-name/index query methods are integrated with actual supplied SDK; full coroutine/VM ownership remains separate. ClearQuest preserves the original matching-nonzero live-map-key use-after-free path; tests do not execute that unsafe domain. Full default QuestState still leaves both counters indeterminate; tests initialize them before further copies, and default-map insertion copy portability remains unproven. Loader retains original text-mode behavior; Windows CRLF/control-Z domains differ from FreeBSD and are documented rather than silently normalized.
+
+Read RESUME_CHECKPOINT.md for current proofs/workspace paths. Earlier staged integration payloads may have stale before-hashes after subsequent verified groups; never reapply an already-integrated package. No current build/agent is active after checkpoint102.

@@ -1,0 +1,6315 @@
+[
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x289497",
+    "unit": "exchange.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x2873e5",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x283c40",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x2873e5",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x283c40",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x284738",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x283d9d",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x283c6b",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x283c76",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CExchange",
+    "size": 92,
+    "die": "0x2a347e",
+    "unit": "exchange.cpp",
+    "fields": [
+      {
+        "name": "m_pCompany",
+        "type": {
+          "die": "0x2a36d8",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2a347e",
+            "tag": "DW_TAG_structure_type",
+            "name": "CExchange",
+            "size": 92
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pOwner",
+        "type": {
+          "die": "0x2a2dc5",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2a2dd0",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2a2dd6",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_abItemPos",
+        "type": {
+          "die": "0x28b2da",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2873e5",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x283c40",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "bounds": [
+            11
+          ]
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_apItems",
+        "type": {
+          "die": "0x2a36de",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2a30c8",
+            "tag": "DW_TAG_typedef",
+            "name": "LPITEM",
+            "size": null,
+            "type": {
+              "die": "0x2a30d3",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2a30d9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CItem",
+                "size": null
+              }
+            }
+          },
+          "bounds": [
+            11
+          ]
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_abItemDisplayPos",
+        "type": {
+          "die": "0x28b2da",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2873e5",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x283c40",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "bounds": [
+            11
+          ]
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bAccept",
+        "type": {
+          "die": "0x28d812",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lGold",
+        "type": {
+          "die": "0x283ede",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pGrid",
+        "type": {
+          "die": "0x2952b8",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2950fa",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x4ccc16",
+    "unit": "regen.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x4cab64",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x4c73bf",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x4cab64",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x4c73bf",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x4c7eb7",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x4c751c",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x4c73ea",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x4c73f5",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "regen",
+    "size": 64,
+    "die": "0x4e67e1",
+    "unit": "regen.cpp",
+    "fields": [
+      {
+        "name": "prev",
+        "type": {
+          "die": "0x4e67d0",
+          "tag": "DW_TAG_typedef",
+          "name": "LPREGEN",
+          "size": null,
+          "type": {
+            "die": "0x4e67db",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x4e67e1",
+              "tag": "DW_TAG_structure_type",
+              "name": "regen",
+              "size": 64
+            }
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "next",
+        "type": {
+          "die": "0x4e67d0",
+          "tag": "DW_TAG_typedef",
+          "name": "LPREGEN",
+          "size": null,
+          "type": {
+            "die": "0x4e67db",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x4e67e1",
+              "tag": "DW_TAG_structure_type",
+              "name": "regen",
+              "size": 64
+            }
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "lMapIndex",
+        "type": {
+          "die": "0x4c765d",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "access": null
+      },
+      {
+        "name": "type",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          12
+        ],
+        "access": null
+      },
+      {
+        "name": "sx",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          16
+        ],
+        "access": null
+      },
+      {
+        "name": "sy",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          20
+        ],
+        "access": null
+      },
+      {
+        "name": "ex",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          24
+        ],
+        "access": null
+      },
+      {
+        "name": "ey",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          28
+        ],
+        "access": null
+      },
+      {
+        "name": "z_section",
+        "type": {
+          "die": "0x4cab64",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x4c73bf",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          32
+        ],
+        "access": null
+      },
+      {
+        "name": "direction",
+        "type": {
+          "die": "0x4cab64",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x4c73bf",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          33
+        ],
+        "access": null
+      },
+      {
+        "name": "time",
+        "type": {
+          "die": "0x4cab4e",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x4c743d",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          36
+        ],
+        "access": null
+      },
+      {
+        "name": "percent",
+        "type": {
+          "die": "0x4cab64",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x4c73bf",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          40
+        ],
+        "access": null
+      },
+      {
+        "name": "max_count",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          44
+        ],
+        "access": null
+      },
+      {
+        "name": "count",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          48
+        ],
+        "access": null
+      },
+      {
+        "name": "vnum",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          52
+        ],
+        "access": null
+      },
+      {
+        "name": "is_aggressive",
+        "type": {
+          "die": "0x4d0f91",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          56
+        ],
+        "access": null
+      },
+      {
+        "name": "event",
+        "type": {
+          "die": "0x4e9d2a",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x4e9d35",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x4e9c5b",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x4e9c66",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          60
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CDungeon",
+    "size": 108,
+    "die": "0x4fd68a",
+    "unit": "regen.cpp",
+    "fields": [
+      {
+        "name": "m_lOrigMapIndex",
+        "type": {
+          "die": "0x4cab4e",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x4c743d",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lMapIndex",
+        "type": {
+          "die": "0x4cab4e",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x4c743d",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_set_pkCharacter",
+        "type": {
+          "die": "0x4e7299",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CHARACTER*,std::less<CHARACTER*>,std::allocator<CHARACTER*> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Flag",
+        "type": {
+          "die": "0x50c4f2",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkParty",
+        "type": {
+          "die": "0x50d7e2",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CParty*,int,std::less<CParty*>,std::allocator<std::pair<CParty* const, int> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Area",
+        "type": {
+          "die": "0x50f8b5",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x509e15",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x50683c",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0x506847",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": null
+              }
+            }
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_UniqueMob",
+        "type": {
+          "die": "0x50e93d",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CHARACTER*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CHARACTER*> > >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMobKill",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iStoneKill",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUsePotion",
+        "type": {
+          "die": "0x4d0f91",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUseRevive",
+        "type": {
+          "die": "0x4d0f91",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          69
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMonsterCount",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExitAllAtEliminate",
+        "type": {
+          "die": "0x4d0f91",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWarpAtEliminate",
+        "type": {
+          "die": "0x4d0f91",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          77
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iWarpDelay",
+        "type": {
+          "die": "0x4c73f5",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpMapIndex",
+        "type": {
+          "die": "0x4c765d",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpX",
+        "type": {
+          "die": "0x4c765d",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpY",
+        "type": {
+          "die": "0x4c765d",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stRegenFile",
+        "type": {
+          "die": "0x4d8230",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4d5236",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_regen",
+        "type": {
+          "die": "0x50f1c8",
+          "tag": "DW_TAG_structure_type",
+          "name": "list<regen*,std::allocator<regen*> >",
+          "size": 4
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "deadEvent",
+        "type": {
+          "die": "0x4e9d2a",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x4e9d35",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x4e9c5b",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x4e9c66",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x878c9f",
+    "unit": "questlua_dungeon.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x876bed",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x873448",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x876bed",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x873448",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x873f40",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x8735a5",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x873473",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x87347e",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CDungeon",
+    "size": 108,
+    "die": "0x8e4e3c",
+    "unit": "questlua_dungeon.cpp",
+    "fields": [
+      {
+        "name": "m_lOrigMapIndex",
+        "type": {
+          "die": "0x876bd7",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x8734c6",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lMapIndex",
+        "type": {
+          "die": "0x876bd7",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x8734c6",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_set_pkCharacter",
+        "type": {
+          "die": "0x892b02",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CHARACTER*,std::less<CHARACTER*>,std::allocator<CHARACTER*> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Flag",
+        "type": {
+          "die": "0x8aeff7",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkParty",
+        "type": {
+          "die": "0x8e2d69",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CParty*,int,std::less<CParty*>,std::allocator<std::pair<CParty* const, int> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Area",
+        "type": {
+          "die": "0x8e5704",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x8debad",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x8db5d4",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0x8db5df",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": null
+              }
+            }
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_UniqueMob",
+        "type": {
+          "die": "0x8e3ec4",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CHARACTER*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CHARACTER*> > >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMobKill",
+        "type": {
+          "die": "0x87347e",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iStoneKill",
+        "type": {
+          "die": "0x87347e",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUsePotion",
+        "type": {
+          "die": "0x87d01a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUseRevive",
+        "type": {
+          "die": "0x87d01a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          69
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMonsterCount",
+        "type": {
+          "die": "0x87347e",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExitAllAtEliminate",
+        "type": {
+          "die": "0x87d01a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWarpAtEliminate",
+        "type": {
+          "die": "0x87d01a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          77
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iWarpDelay",
+        "type": {
+          "die": "0x87347e",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpMapIndex",
+        "type": {
+          "die": "0x8736e6",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpX",
+        "type": {
+          "die": "0x8736e6",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpY",
+        "type": {
+          "die": "0x8736e6",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stRegenFile",
+        "type": {
+          "die": "0x8842b9",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x8812bf",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_regen",
+        "type": {
+          "die": "0x8e474f",
+          "tag": "DW_TAG_structure_type",
+          "name": "list<regen*,std::allocator<regen*> >",
+          "size": 4
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "deadEvent",
+        "type": {
+          "die": "0x8955b0",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x8955bb",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x8954e1",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x8954ec",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x8efe1b",
+    "unit": "safebox.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x8edd69",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x8ea5c4",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x8edd69",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x8ea5c4",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x8eb0bc",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x8ea721",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x8ea5ef",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x8ea5fa",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CSafebox",
+    "size": 560,
+    "die": "0x909e0c",
+    "unit": "safebox.cpp",
+    "fields": [
+      {
+        "name": "m_pkChrOwner",
+        "type": {
+          "die": "0x909770",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x909776",
+            "tag": "DW_TAG_structure_type",
+            "name": "CHARACTER",
+            "size": null
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkItems",
+        "type": {
+          "die": "0x90a04f",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x9099e2",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x9099e8",
+              "tag": "DW_TAG_structure_type",
+              "name": "CItem",
+              "size": null
+            }
+          },
+          "bounds": [
+            134
+          ]
+        },
+        "offset": [
+          4
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkGrid",
+        "type": {
+          "die": "0x8fbc3c",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x8fba7e",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          544
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_iSize",
+        "type": {
+          "die": "0x8ea5fa",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          548
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_lGold",
+        "type": {
+          "die": "0x8ea862",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          552
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_bWindowMode",
+        "type": {
+          "die": "0x8edd69",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x8ea5c4",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          556
+        ],
+        "access": 2
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x12565f3",
+    "unit": "shop.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x1254541",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1250d9c",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x1254541",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1250d9c",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x1251894",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x1250ef9",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x1250dc7",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x1250dd2",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CShop",
+    "size": 40,
+    "die": "0x1270613",
+    "unit": "shop.cpp",
+    "fields": [
+      {
+        "name": "m_dwVnum",
+        "type": {
+          "die": "0x125452b",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1250e1a",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwNPCVnum",
+        "type": {
+          "die": "0x125452b",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1250e1a",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pGrid",
+        "type": {
+          "die": "0x1262414",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1262256",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_guest",
+        "type": {
+          "die": "0x1271cbb",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CHARACTER*,bool,std::less<CHARACTER*>,std::allocator<std::pair<CHARACTER* const, bool> > >",
+          "size": 12
+        },
+        "offset": [
+          12
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_itemVector",
+        "type": {
+          "die": "0x127272a",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<CShop::shop_item,std::allocator<CShop::shop_item> >",
+          "size": 12
+        },
+        "offset": [
+          24
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkPC",
+        "type": {
+          "die": "0x126ff21",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x126ff2c",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x126ff32",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          36
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "CShopManager",
+    "size": 40,
+    "die": "0x12c7be1",
+    "unit": "shop.cpp",
+    "fields": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x12c8252",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<CShopManager>",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "access": 1
+      },
+      {
+        "name": "m_map_pkShop",
+        "type": {
+          "die": "0x12745d9",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CShop*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CShop*> > >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkShopByNPCVnum",
+        "type": {
+          "die": "0x12745d9",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CShop*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CShop*> > >",
+          "size": 12
+        },
+        "offset": [
+          16
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkShopByPC",
+        "type": {
+          "die": "0x12745d9",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CShop*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CShop*> > >",
+          "size": 12
+        },
+        "offset": [
+          28
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x150a5b4",
+    "unit": "blend_item.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x1508502",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1504d5d",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x1508502",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1504d5d",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x1505855",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x1504eba",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x1504d88",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x1504d93",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x16714df",
+    "unit": "questlua_item.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x166f42d",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x166bc88",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x166f42d",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x166bc88",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x166c780",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x166bde5",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x166bcb3",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x166bcbe",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x1e8ff92",
+    "unit": "char.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x1e8b233",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x1e8a898",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x1e8a766",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x1e8a771",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "regen",
+    "size": 64,
+    "die": "0x1eae956",
+    "unit": "char.cpp",
+    "fields": [
+      {
+        "name": "prev",
+        "type": {
+          "die": "0x1eae945",
+          "tag": "DW_TAG_typedef",
+          "name": "LPREGEN",
+          "size": null,
+          "type": {
+            "die": "0x1eae950",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eae956",
+              "tag": "DW_TAG_structure_type",
+              "name": "regen",
+              "size": 64
+            }
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "next",
+        "type": {
+          "die": "0x1eae945",
+          "tag": "DW_TAG_typedef",
+          "name": "LPREGEN",
+          "size": null,
+          "type": {
+            "die": "0x1eae950",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eae956",
+              "tag": "DW_TAG_structure_type",
+              "name": "regen",
+              "size": 64
+            }
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "lMapIndex",
+        "type": {
+          "die": "0x1e8a9d9",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "access": null
+      },
+      {
+        "name": "type",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          12
+        ],
+        "access": null
+      },
+      {
+        "name": "sx",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          16
+        ],
+        "access": null
+      },
+      {
+        "name": "sy",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          20
+        ],
+        "access": null
+      },
+      {
+        "name": "ex",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          24
+        ],
+        "access": null
+      },
+      {
+        "name": "ey",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          28
+        ],
+        "access": null
+      },
+      {
+        "name": "z_section",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          32
+        ],
+        "access": null
+      },
+      {
+        "name": "direction",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          33
+        ],
+        "access": null
+      },
+      {
+        "name": "time",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          36
+        ],
+        "access": null
+      },
+      {
+        "name": "percent",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          40
+        ],
+        "access": null
+      },
+      {
+        "name": "max_count",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          44
+        ],
+        "access": null
+      },
+      {
+        "name": "count",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          48
+        ],
+        "access": null
+      },
+      {
+        "name": "vnum",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          52
+        ],
+        "access": null
+      },
+      {
+        "name": "is_aggressive",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          56
+        ],
+        "access": null
+      },
+      {
+        "name": "event",
+        "type": {
+          "die": "0x1eb83d4",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x1eb83df",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eb8305",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x1eb8310",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          60
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CExchange",
+    "size": 92,
+    "die": "0x1ee4530",
+    "unit": "char.cpp",
+    "fields": [
+      {
+        "name": "m_pCompany",
+        "type": {
+          "die": "0x1ee478b",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ee4530",
+            "tag": "DW_TAG_structure_type",
+            "name": "CExchange",
+            "size": 92
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pOwner",
+        "type": {
+          "die": "0x1ea9914",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1ea991f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ea9925",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": 3812
+            }
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_abItemPos",
+        "type": {
+          "die": "0x1e91dd5",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8dee0",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1e8a73b",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "bounds": [
+            11
+          ]
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_apItems",
+        "type": {
+          "die": "0x1ee4791",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1eae7ca",
+            "tag": "DW_TAG_typedef",
+            "name": "LPITEM",
+            "size": null,
+            "type": {
+              "die": "0x1eae7d5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eae7db",
+                "tag": "DW_TAG_structure_type",
+                "name": "CItem",
+                "size": null
+              }
+            }
+          },
+          "bounds": [
+            11
+          ]
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_abItemDisplayPos",
+        "type": {
+          "die": "0x1e91dd5",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1e8dee0",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1e8a73b",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "bounds": [
+            11
+          ]
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bAccept",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lGold",
+        "type": {
+          "die": "0x1e8a9d9",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pGrid",
+        "type": {
+          "die": "0x1e9bdb3",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e9bbf5",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "CShop",
+    "size": 40,
+    "die": "0x1ee96bb",
+    "unit": "char.cpp",
+    "fields": [
+      {
+        "name": "m_dwVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwNPCVnum",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pGrid",
+        "type": {
+          "die": "0x1e9bdb3",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e9bbf5",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_guest",
+        "type": {
+          "die": "0x1ef3b1d",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CHARACTER*,bool,std::less<CHARACTER*>,std::allocator<std::pair<CHARACTER* const, bool> > >",
+          "size": 12
+        },
+        "offset": [
+          12
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_itemVector",
+        "type": {
+          "die": "0x1ef4313",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<CShop::shop_item,std::allocator<CShop::shop_item> >",
+          "size": 12
+        },
+        "offset": [
+          24
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkPC",
+        "type": {
+          "die": "0x1ea9914",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x1ea991f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ea9925",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": 3812
+            }
+          }
+        },
+        "offset": [
+          36
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "CSafebox",
+    "size": 560,
+    "die": "0x1ef5aef",
+    "unit": "char.cpp",
+    "fields": [
+      {
+        "name": "m_pkChrOwner",
+        "type": {
+          "die": "0x1ea991f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ea9925",
+            "tag": "DW_TAG_structure_type",
+            "name": "CHARACTER",
+            "size": 3812
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkItems",
+        "type": {
+          "die": "0x1ef5d32",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1eae7d5",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eae7db",
+              "tag": "DW_TAG_structure_type",
+              "name": "CItem",
+              "size": null
+            }
+          },
+          "bounds": [
+            134
+          ]
+        },
+        "offset": [
+          4
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkGrid",
+        "type": {
+          "die": "0x1e9bdb3",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e9bbf5",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          544
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_iSize",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          548
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_lGold",
+        "type": {
+          "die": "0x1e8a9d9",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          552
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_bWindowMode",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          556
+        ],
+        "access": 2
+      }
+    ]
+  },
+  {
+    "name": "CDungeon",
+    "size": 108,
+    "die": "0x1ef5e85",
+    "unit": "char.cpp",
+    "fields": [
+      {
+        "name": "m_lOrigMapIndex",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lMapIndex",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_set_pkCharacter",
+        "type": {
+          "die": "0x1eb3296",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CHARACTER*,std::less<CHARACTER*>,std::allocator<CHARACTER*> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Flag",
+        "type": {
+          "die": "0x1efd4f4",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkParty",
+        "type": {
+          "die": "0x1f254be",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CParty*,int,std::less<CParty*>,std::allocator<std::pair<CParty* const, int> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Area",
+        "type": {
+          "die": "0x1f27591",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1ec5afb",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ec2522",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0x1ec252d",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": null
+              }
+            }
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_UniqueMob",
+        "type": {
+          "die": "0x1f26619",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CHARACTER*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CHARACTER*> > >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMobKill",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iStoneKill",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUsePotion",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUseRevive",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          69
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMonsterCount",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExitAllAtEliminate",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWarpAtEliminate",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          77
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iWarpDelay",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpMapIndex",
+        "type": {
+          "die": "0x1e8a9d9",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpX",
+        "type": {
+          "die": "0x1e8a9d9",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpY",
+        "type": {
+          "die": "0x1e8a9d9",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stRegenFile",
+        "type": {
+          "die": "0x1e9b5ac",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1e985b2",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_regen",
+        "type": {
+          "die": "0x1f26ea4",
+          "tag": "DW_TAG_structure_type",
+          "name": "list<regen*,std::allocator<regen*> >",
+          "size": 4
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "deadEvent",
+        "type": {
+          "die": "0x1eb83d4",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x1eb83df",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1eb8305",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x1eb8310",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x21cef61",
+    "unit": "party.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x21cceaf",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x21c970a",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x21cceaf",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x21c970a",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x21ca202",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x21c9867",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x21c9735",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x21c9740",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CParty",
+    "size": 160,
+    "die": "0x220021d",
+    "unit": "party.cpp",
+    "fields": [
+      {
+        "name": "_vptr$CParty",
+        "type": {
+          "die": "0x222da5a",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x222da60",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x222da4f",
+              "tag": "DW_TAG_subroutine_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x21c9740",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "m_memberMap",
+        "type": {
+          "die": "0x2203964",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CParty::SMember,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CParty::SMember> > >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_dwLeaderPID",
+        "type": {
+          "die": "0x21cce99",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x21c9788",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          16
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkChrLeader",
+        "type": {
+          "die": "0x21e81b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x21e81c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x21e81c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          20
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_eventUpdate",
+        "type": {
+          "die": "0x21eb927",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x21eb932",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x21eb858",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x21eb863",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          24
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_itNextOwner",
+        "type": {
+          "die": "0x22036f5",
+          "tag": "DW_TAG_structure_type",
+          "name": "_Rb_tree_iterator<std::pair<const long unsigned int, CParty::SMember>,std::pair<const long unsigned int, CParty::SMember>&,std::pair<const long unsigned int, CParty::SMember>*>",
+          "size": 4
+        },
+        "offset": [
+          28
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_iExpDistributionMode",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkChrExpCentralize",
+        "type": {
+          "die": "0x21e81b6",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x21e81c1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x21e81c7",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          36
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwPartyStartTime",
+        "type": {
+          "die": "0x21cce99",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x21c9788",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          40
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwPartyHealTime",
+        "type": {
+          "die": "0x21cce99",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x21c9788",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bPartyHealReady",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bCanUsePartyHeal",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          49
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_anRoleCount",
+        "type": {
+          "die": "0x21cc4c2",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x21c9740",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "bounds": [
+            7
+          ]
+        },
+        "offset": [
+          52
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_anMaxRole",
+        "type": {
+          "die": "0x21cc4c2",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x21c9740",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "bounds": [
+            7
+          ]
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iLongTimeExpBonus",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          116
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iLeadership",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          120
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iExpBonus",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          124
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iAttBonus",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          128
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iDefBonus",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          132
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iCountNearPartyMember",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          136
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bPCParty",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          140
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_iFlag",
+        "type": {
+          "die": "0x22051b8",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          144
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkDungeon",
+        "type": {
+          "die": "0x221f809",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x221ef36",
+            "tag": "DW_TAG_structure_type",
+            "name": "CDungeon",
+            "size": 108
+          }
+        },
+        "offset": [
+          156
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "CDungeon",
+    "size": 108,
+    "die": "0x221ef36",
+    "unit": "party.cpp",
+    "fields": [
+      {
+        "name": "m_lOrigMapIndex",
+        "type": {
+          "die": "0x21cce99",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x21c9788",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lMapIndex",
+        "type": {
+          "die": "0x21cce99",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x21c9788",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_set_pkCharacter",
+        "type": {
+          "die": "0x21e8e25",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CHARACTER*,std::less<CHARACTER*>,std::allocator<CHARACTER*> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Flag",
+        "type": {
+          "die": "0x22051b8",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkParty",
+        "type": {
+          "die": "0x221ce63",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CParty*,int,std::less<CParty*>,std::allocator<std::pair<CParty* const, int> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Area",
+        "type": {
+          "die": "0x221f7fe",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x22137d9",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2210200",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0x221020b",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": null
+              }
+            }
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_UniqueMob",
+        "type": {
+          "die": "0x221dfbe",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CHARACTER*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CHARACTER*> > >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMobKill",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iStoneKill",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUsePotion",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUseRevive",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          69
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMonsterCount",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExitAllAtEliminate",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWarpAtEliminate",
+        "type": {
+          "die": "0x21d32dc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          77
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iWarpDelay",
+        "type": {
+          "die": "0x21c9740",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpMapIndex",
+        "type": {
+          "die": "0x21c99a8",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpX",
+        "type": {
+          "die": "0x21c99a8",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpY",
+        "type": {
+          "die": "0x21c99a8",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stRegenFile",
+        "type": {
+          "die": "0x21da57b",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x21d7581",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_regen",
+        "type": {
+          "die": "0x221e849",
+          "tag": "DW_TAG_structure_type",
+          "name": "list<regen*,std::allocator<regen*> >",
+          "size": 4
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "deadEvent",
+        "type": {
+          "die": "0x21eb927",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x21eb932",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x21eb858",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x21eb863",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x2233fce",
+    "unit": "questlua_party.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x2231f1c",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x222e777",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x2231f1c",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x222e777",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x222f26f",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x222e8d4",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x222e7a2",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x222e7ad",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x257d355",
+    "unit": "item.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x25785f6",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x2577c5b",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x2577b29",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x2577b34",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CItem",
+    "size": 160,
+    "die": "0x25973be",
+    "unit": "item.cpp",
+    "fields": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x25985ed",
+          "tag": "DW_TAG_structure_type",
+          "name": "CEntity",
+          "size": null
+        },
+        "offset": [
+          0
+        ],
+        "access": 1
+      },
+      {
+        "name": "m_pProto",
+        "type": {
+          "die": "0x25a11a2",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x25a11a8",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x257e3e3",
+              "tag": "DW_TAG_typedef",
+              "name": "TItemTable",
+              "size": null,
+              "type": {
+                "die": "0x257e1e7",
+                "tag": "DW_TAG_structure_type",
+                "name": "SItemTable",
+                "size": 154
+              }
+            }
+          }
+        },
+        "offset": [
+          56
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pOwner",
+        "type": {
+          "die": "0x25970e3",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x25970ee",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x25970f4",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWindow",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwID",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bEquipped",
+        "type": {
+          "die": "0x25816d0",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwVID",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bCell",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwCount",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lFlag",
+        "type": {
+          "die": "0x2577d9c",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwLastOwnerPID",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExchanging",
+        "type": {
+          "die": "0x25816d0",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_alSockets",
+        "type": {
+          "die": "0x257d27c",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2577d9c",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "bounds": [
+            2
+          ]
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_aAttr",
+        "type": {
+          "die": "0x257d28c",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x257d1a4",
+            "tag": "DW_TAG_typedef",
+            "name": "TPlayerItemAttribute",
+            "size": null,
+            "type": {
+              "die": "0x257d11a",
+              "tag": "DW_TAG_structure_type",
+              "name": "TPlayerItemAttribute",
+              "size": 3
+            }
+          },
+          "bounds": [
+            6
+          ]
+        },
+        "offset": [
+          112
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkDestroyEvent",
+        "type": {
+          "die": "0x259acae",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x259acb9",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x259abdf",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x259abea",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          136
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkUniqueExpireEvent",
+        "type": {
+          "die": "0x259acae",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x259acb9",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x259abdf",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x259abea",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          140
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkAccessorySocketExpireEvent",
+        "type": {
+          "die": "0x259acae",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x259acb9",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x259abdf",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x259abea",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          144
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pkOwnershipEvent",
+        "type": {
+          "die": "0x259acae",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x259acb9",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x259abdf",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x259abea",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          148
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwOwnershipPID",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          152
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bSkipSave",
+        "type": {
+          "die": "0x25816d0",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          156
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x2737129",
+    "unit": "item_addon.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x2735077",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x27318d2",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x2735077",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x27318d2",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x27323ca",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x2731a2f",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x27318fd",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x2731908",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x27e3111",
+    "unit": "char_item.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x27e105f",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x27dd8ba",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x27e105f",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x27dd8ba",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x27de3b2",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x27dda17",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x27dd8e5",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x27dd8f0",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CDungeon",
+    "size": 108,
+    "die": "0x2866b59",
+    "unit": "char_item.cpp",
+    "fields": [
+      {
+        "name": "m_lOrigMapIndex",
+        "type": {
+          "die": "0x27e1049",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x27dd938",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lMapIndex",
+        "type": {
+          "die": "0x27e1049",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x27dd938",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_set_pkCharacter",
+        "type": {
+          "die": "0x27fe09a",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CHARACTER*,std::less<CHARACTER*>,std::allocator<CHARACTER*> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Flag",
+        "type": {
+          "die": "0x284e8b5",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkParty",
+        "type": {
+          "die": "0x2864a86",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CParty*,int,std::less<CParty*>,std::allocator<std::pair<CParty* const, int> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Area",
+        "type": {
+          "die": "0x2867421",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x283a8fc",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2837323",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0x283732e",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": null
+              }
+            }
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_UniqueMob",
+        "type": {
+          "die": "0x2865be1",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CHARACTER*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CHARACTER*> > >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMobKill",
+        "type": {
+          "die": "0x27dd8f0",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iStoneKill",
+        "type": {
+          "die": "0x27dd8f0",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUsePotion",
+        "type": {
+          "die": "0x27e748c",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUseRevive",
+        "type": {
+          "die": "0x27e748c",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          69
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMonsterCount",
+        "type": {
+          "die": "0x27dd8f0",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExitAllAtEliminate",
+        "type": {
+          "die": "0x27e748c",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWarpAtEliminate",
+        "type": {
+          "die": "0x27e748c",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          77
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iWarpDelay",
+        "type": {
+          "die": "0x27dd8f0",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpMapIndex",
+        "type": {
+          "die": "0x27ddb58",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpX",
+        "type": {
+          "die": "0x27ddb58",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpY",
+        "type": {
+          "die": "0x27ddb58",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stRegenFile",
+        "type": {
+          "die": "0x27ee72b",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x27eb731",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_regen",
+        "type": {
+          "die": "0x286646c",
+          "tag": "DW_TAG_structure_type",
+          "name": "list<regen*,std::allocator<regen*> >",
+          "size": 4
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "deadEvent",
+        "type": {
+          "die": "0x2800bb8",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x2800bc3",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2800ae9",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x2800af4",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x28843b5",
+    "unit": "dungeon.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x2882303",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x287eb5e",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x2882303",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x287eb5e",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x287f656",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x287ecbb",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x287eb89",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x287eb94",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "regen",
+    "size": 64,
+    "die": "0x289e094",
+    "unit": "dungeon.cpp",
+    "fields": [
+      {
+        "name": "prev",
+        "type": {
+          "die": "0x289e083",
+          "tag": "DW_TAG_typedef",
+          "name": "LPREGEN",
+          "size": null,
+          "type": {
+            "die": "0x289e08e",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x289e094",
+              "tag": "DW_TAG_structure_type",
+              "name": "regen",
+              "size": 64
+            }
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "next",
+        "type": {
+          "die": "0x289e083",
+          "tag": "DW_TAG_typedef",
+          "name": "LPREGEN",
+          "size": null,
+          "type": {
+            "die": "0x289e08e",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x289e094",
+              "tag": "DW_TAG_structure_type",
+              "name": "regen",
+              "size": 64
+            }
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "lMapIndex",
+        "type": {
+          "die": "0x287edfc",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "access": null
+      },
+      {
+        "name": "type",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          12
+        ],
+        "access": null
+      },
+      {
+        "name": "sx",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          16
+        ],
+        "access": null
+      },
+      {
+        "name": "sy",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          20
+        ],
+        "access": null
+      },
+      {
+        "name": "ex",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          24
+        ],
+        "access": null
+      },
+      {
+        "name": "ey",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          28
+        ],
+        "access": null
+      },
+      {
+        "name": "z_section",
+        "type": {
+          "die": "0x2882303",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x287eb5e",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          32
+        ],
+        "access": null
+      },
+      {
+        "name": "direction",
+        "type": {
+          "die": "0x2882303",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x287eb5e",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          33
+        ],
+        "access": null
+      },
+      {
+        "name": "time",
+        "type": {
+          "die": "0x28822ed",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x287ebdc",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          36
+        ],
+        "access": null
+      },
+      {
+        "name": "percent",
+        "type": {
+          "die": "0x2882303",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x287eb5e",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          40
+        ],
+        "access": null
+      },
+      {
+        "name": "max_count",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          44
+        ],
+        "access": null
+      },
+      {
+        "name": "count",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          48
+        ],
+        "access": null
+      },
+      {
+        "name": "vnum",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          52
+        ],
+        "access": null
+      },
+      {
+        "name": "is_aggressive",
+        "type": {
+          "die": "0x2888730",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          56
+        ],
+        "access": null
+      },
+      {
+        "name": "event",
+        "type": {
+          "die": "0x28a0afc",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x28a0b07",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x28a0a2d",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x28a0a38",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          60
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CDungeon",
+    "size": 108,
+    "die": "0x28af97d",
+    "unit": "dungeon.cpp",
+    "fields": [
+      {
+        "name": "m_lOrigMapIndex",
+        "type": {
+          "die": "0x28822ed",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x287ebdc",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lMapIndex",
+        "type": {
+          "die": "0x28822ed",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x287ebdc",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_set_pkCharacter",
+        "type": {
+          "die": "0x28a9bb9",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CHARACTER*,std::less<CHARACTER*>,std::allocator<CHARACTER*> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Flag",
+        "type": {
+          "die": "0x28ab47d",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_pkParty",
+        "type": {
+          "die": "0x28ace21",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<CParty*,int,std::less<CParty*>,std::allocator<std::pair<CParty* const, int> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_Area",
+        "type": {
+          "die": "0x28b0245",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x28a6cfe",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x28a2e1d",
+              "tag": "DW_TAG_typedef",
+              "name": "TAreaMap",
+              "size": null,
+              "type": {
+                "die": "0x28a2e28",
+                "tag": "DW_TAG_structure_type",
+                "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,TAreaInfo,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, TAreaInfo> > >",
+                "size": 12
+              }
+            }
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_map_UniqueMob",
+        "type": {
+          "die": "0x28ae5a4",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CHARACTER*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CHARACTER*> > >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMobKill",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iStoneKill",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUsePotion",
+        "type": {
+          "die": "0x2888730",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          68
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bUseRevive",
+        "type": {
+          "die": "0x2888730",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          69
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iMonsterCount",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bExitAllAtEliminate",
+        "type": {
+          "die": "0x2888730",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bWarpAtEliminate",
+        "type": {
+          "die": "0x2888730",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          77
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iWarpDelay",
+        "type": {
+          "die": "0x287eb94",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          80
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpMapIndex",
+        "type": {
+          "die": "0x287edfc",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpX",
+        "type": {
+          "die": "0x287edfc",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_lWarpY",
+        "type": {
+          "die": "0x287edfc",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stRegenFile",
+        "type": {
+          "die": "0x288f9cf",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x288c9d5",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_regen",
+        "type": {
+          "die": "0x28af116",
+          "tag": "DW_TAG_structure_type",
+          "name": "list<regen*,std::allocator<regen*> >",
+          "size": 4
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "deadEvent",
+        "type": {
+          "die": "0x28a0afc",
+          "tag": "DW_TAG_typedef",
+          "name": "LPEVENT",
+          "size": null,
+          "type": {
+            "die": "0x28a0b07",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x28a0a2d",
+              "tag": "DW_TAG_typedef",
+              "name": "EVENT",
+              "size": null,
+              "type": {
+                "die": "0x28a0a38",
+                "tag": "DW_TAG_structure_type",
+                "name": "event",
+                "size": 88
+              }
+            }
+          }
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x28f9478",
+    "unit": "item_attribute.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x28f73c6",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x28f3c21",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x28f73c6",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x28f3c21",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x28f4719",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x28f3d7e",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x28f3c4c",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x28f3c57",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x2adb29d",
+    "unit": "item_manager.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x2ad91eb",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2ad5a46",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x2ad91eb",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2ad5a46",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x2ad653e",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ba3",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x2ad5a71",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x2ad5a7c",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "CSafebox",
+    "size": 560,
+    "die": "0x2b40e1b",
+    "unit": "item_manager.cpp",
+    "fields": [
+      {
+        "name": "m_pkChrOwner",
+        "type": {
+          "die": "0x2af4bf2",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2af4bf8",
+            "tag": "DW_TAG_structure_type",
+            "name": "CHARACTER",
+            "size": null
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkItems",
+        "type": {
+          "die": "0x2b4105e",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2af4ebb",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2af4ec1",
+              "tag": "DW_TAG_structure_type",
+              "name": "CItem",
+              "size": null
+            }
+          },
+          "bounds": [
+            134
+          ]
+        },
+        "offset": [
+          4
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_pkGrid",
+        "type": {
+          "die": "0x2ae70be",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2ae6f00",
+            "tag": "DW_TAG_structure_type",
+            "name": "CGrid",
+            "size": 12
+          }
+        },
+        "offset": [
+          544
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_iSize",
+        "type": {
+          "die": "0x2ad5a7c",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          548
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_lGold",
+        "type": {
+          "die": "0x2ad5ce4",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset": [
+          552
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_bWindowMode",
+        "type": {
+          "die": "0x2ad91eb",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2ad5a46",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          556
+        ],
+        "access": 2
+      }
+    ]
+  },
+  {
+    "name": "ITEM_MANAGER",
+    "size": 172,
+    "die": "0x2b414fd",
+    "unit": "item_manager.cpp",
+    "fields": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x2b427c6",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<ITEM_MANAGER>",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "access": 1
+      },
+      {
+        "name": "m_vec_prototype",
+        "type": {
+          "die": "0x2afd6f5",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<SItemTable,std::allocator<SItemTable> >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_ItemRefineFrom",
+        "type": {
+          "die": "0x2aff4e5",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,long unsigned int,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, long unsigned int> > >",
+          "size": 12
+        },
+        "offset": [
+          16
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_iTopOfTable",
+        "type": {
+          "die": "0x2ad5a7c",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          28
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_VIDMap",
+        "type": {
+          "die": "0x2b00ce4",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CItem*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CItem*> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_dwVIDCount",
+        "type": {
+          "die": "0x2ad91d5",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ac4",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_dwCurrentID",
+        "type": {
+          "die": "0x2ad91d5",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ac4",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          48
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_set_pkItemForDelayedSave",
+        "type": {
+          "die": "0x2b0270d",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<CItem*,std::less<CItem*>,std::allocator<CItem*> >",
+          "size": 12
+        },
+        "offset": [
+          52
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_pkItemByID",
+        "type": {
+          "die": "0x2b00ce4",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CItem*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CItem*> > >",
+          "size": 12
+        },
+        "offset": [
+          64
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_dwEtcItemDropProb",
+        "type": {
+          "die": "0x2aff4e5",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,long unsigned int,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, long unsigned int> > >",
+          "size": 12
+        },
+        "offset": [
+          76
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_pkDropItemGroup",
+        "type": {
+          "die": "0x2b03e5b",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CDropItemGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CDropItemGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          88
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_pkSpecialItemGroup",
+        "type": {
+          "die": "0x2b055b2",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CSpecialItemGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CSpecialItemGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          100
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_pkMobItemGroup",
+        "type": {
+          "die": "0x2b06d09",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMobItemGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMobItemGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          112
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_pkLevelItemGroup",
+        "type": {
+          "die": "0x2b08460",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CLevelItemGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CLevelItemGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          124
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_pkGloveItemGroup",
+        "type": {
+          "die": "0x2b09bb7",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CBuyerThiefGlovesItemGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CBuyerThiefGlovesItemGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          136
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_ItemToSpecialGroup",
+        "type": {
+          "die": "0x2b0b30e",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,int,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, int> > >",
+          "size": 12
+        },
+        "offset": [
+          148
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_map_vid",
+        "type": {
+          "die": "0x2b0ca5f",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,SItemTable,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, SItemTable> > >",
+          "size": 12
+        },
+        "offset": [
+          160
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "SPlayerSkill",
+    "size": 6,
+    "die": "0x2cabf13",
+    "unit": "itemlog.cpp",
+    "fields": [
+      {
+        "name": "bMasterType",
+        "type": {
+          "die": "0x2ca9e61",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2ca66bc",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "bLevel",
+        "type": {
+          "die": "0x2ca9e61",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2ca66bc",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ],
+        "access": null
+      },
+      {
+        "name": "tNextRead",
+        "type": {
+          "die": "0x2ca71b4",
+          "tag": "DW_TAG_typedef",
+          "name": "time_t",
+          "size": null,
+          "type": {
+            "die": "0x2ca6819",
+            "tag": "DW_TAG_typedef",
+            "name": "__time_t",
+            "size": null,
+            "type": {
+              "die": "0x2ca66e7",
+              "tag": "DW_TAG_typedef",
+              "name": "__int32_t",
+              "size": null,
+              "type": {
+                "die": "0x2ca66f2",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "offset": [
+          2
+        ],
+        "access": null
+      }
+    ]
+  }
+]

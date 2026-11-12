@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804f540",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "__lzo_init2",
+      "address": "0804f540"
+    },
+    "code": "\r\nint __lzo_init2(uint v,int s1,int s2,int s3,int s4,int s5,int s6,int s7,int s8,int s9)\r\n\r\n{\r\n  uint uVar1;\r\n  \r\n                    /* Unresolved local var: int r@[DW_OP_reg0(EAX)] */\r\n  __lzo_init_done = 1;\r\n  uVar1 = 0xffffffff;\r\n  if (v != 0) {\r\n    if ((((((s1 == -1) || (s1 == 2)) && ((s2 == -1 || (s2 == 4)))) && ((s3 == -1 || (s3 == 4)))) &&\r\n        ((s4 == -1 || (s4 == 4)))) &&\r\n       (((((s5 == -1 || (s5 == 4)) && ((s6 == -1 || (s6 == 4)))) && ((s7 == -1 || (s7 == 4)))) &&\r\n        (((s8 == -1 || (s8 == 4)) && ((s9 == -1 || (s9 == 4)))))))) {\r\n      uVar1 = _lzo_config_check();\r\n      uVar1 = (uVar1 == 0) - 1 & uVar1;\r\n    }\r\n    else {\r\n      uVar1 = 0xffffffff;\r\n    }\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

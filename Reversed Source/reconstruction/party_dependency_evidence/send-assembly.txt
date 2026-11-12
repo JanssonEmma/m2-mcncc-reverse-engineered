@@ -1,0 +1,123 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08142c10 <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER>:
+ 8142c10:	55                   	push   %ebp
+ 8142c11:	89 e5                	mov    %esp,%ebp
+ 8142c13:	57                   	push   %edi
+ 8142c14:	56                   	push   %esi
+ 8142c15:	53                   	push   %ebx
+ 8142c16:	83 ec 6c             	sub    $0x6c,%esp
+ 8142c19:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8142c1c:	8b 78 18             	mov    0x18(%eax),%edi
+ 8142c1f:	85 ff                	test   %edi,%edi
+ 8142c21:	0f 84 c8 00 00 00    	je     8142cef <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER+0xdf>
+ 8142c27:	89 04 24             	mov    %eax,(%esp)
+ 8142c2a:	8d 55 b8             	lea    -0x48(%ebp),%edx
+ 8142c2d:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8142c31:	e8 1a 12 ff ff       	call   8133e50 <_ZN9CHARACTER22BuildUpdatePartyPacketER19packet_party_update>
+ 8142c36:	8b 55 08             	mov    0x8(%ebp),%edx
+ 8142c39:	8b 42 04             	mov    0x4(%edx),%eax
+ 8142c3c:	8b 50 08             	mov    0x8(%eax),%edx
+ 8142c3f:	89 45 a8             	mov    %eax,-0x58(%ebp)
+ 8142c42:	39 c2                	cmp    %eax,%edx
+ 8142c44:	89 55 d8             	mov    %edx,-0x28(%ebp)
+ 8142c47:	0f 84 a2 00 00 00    	je     8142cef <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER+0xdf>
+ 8142c4d:	8d 76 00             	lea    0x0(%esi),%esi
+ 8142c50:	8b 42 14             	mov    0x14(%edx),%eax
+ 8142c53:	85 c0                	test   %eax,%eax
+ 8142c55:	74 79                	je     8142cd0 <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER+0xc0>
+ 8142c57:	8b 70 18             	mov    0x18(%eax),%esi
+ 8142c5a:	85 f6                	test   %esi,%esi
+ 8142c5c:	74 72                	je     8142cd0 <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER+0xc0>
+ 8142c5e:	8b b8 f4 00 00 00    	mov    0xf4(%eax),%edi
+ 8142c64:	89 04 24             	mov    %eax,(%esp)
+ 8142c67:	e8 c4 4c fe ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 8142c6c:	89 c3                	mov    %eax,%ebx
+ 8142c6e:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8142c71:	8b b0 f4 00 00 00    	mov    0xf4(%eax),%esi
+ 8142c77:	89 04 24             	mov    %eax,(%esp)
+ 8142c7a:	e8 b1 4c fe ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 8142c7f:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+ 8142c83:	bb 00 84 22 08       	mov    $0x8228400,%ebx
+ 8142c88:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8142c8c:	89 7c 24 14          	mov    %edi,0x14(%esp)
+ 8142c90:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 8142c94:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8142c98:	c7 04 24 02 00 00 00 	movl   $0x2,(%esp)
+ 8142c9f:	e8 fc 55 07 00       	call   81b82a0 <sys_log>
+ 8142ca4:	8b 45 d8             	mov    -0x28(%ebp),%eax
+ 8142ca7:	b9 15 00 00 00       	mov    $0x15,%ecx
+ 8142cac:	8d 55 b8             	lea    -0x48(%ebp),%edx
+ 8142caf:	83 c0 10             	add    $0x10,%eax
+ 8142cb2:	8b 40 04             	mov    0x4(%eax),%eax
+ 8142cb5:	8b 40 18             	mov    0x18(%eax),%eax
+ 8142cb8:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 8142cbc:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8142cc0:	89 04 24             	mov    %eax,(%esp)
+ 8142cc3:	e8 48 70 ff ff       	call   8139d10 <_ZN4DESC6PacketEPKvi>
+ 8142cc8:	90                   	nop
+ 8142cc9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 8142cd0:	8d 45 d8             	lea    -0x28(%ebp),%eax
+ 8142cd3:	89 04 24             	mov    %eax,(%esp)
+ 8142cd6:	e8 05 e8 f0 ff       	call   80514e0 <_ZNSt22_Rb_tree_base_iterator12_M_incrementEv>
+ 8142cdb:	8b 55 08             	mov    0x8(%ebp),%edx
+ 8142cde:	8b 42 04             	mov    0x4(%edx),%eax
+ 8142ce1:	8b 55 d8             	mov    -0x28(%ebp),%edx
+ 8142ce4:	89 45 a8             	mov    %eax,-0x58(%ebp)
+ 8142ce7:	39 c2                	cmp    %eax,%edx
+ 8142ce9:	0f 85 61 ff ff ff    	jne    8142c50 <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER+0x40>
+ 8142cef:	83 c4 6c             	add    $0x6c,%esp
+ 8142cf2:	5b                   	pop    %ebx
+ 8142cf3:	5e                   	pop    %esi
+ 8142cf4:	5f                   	pop    %edi
+ 8142cf5:	5d                   	pop    %ebp
+ 8142cf6:	c3                   	ret
+ 8142cf7:	90                   	nop
+ 8142cf8:	90                   	nop
+ 8142cf9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+
+08142d00 <_ZN6CParty21SendPartyInfoAllToOneEP9CHARACTER>:
+ 8142d00:	55                   	push   %ebp
+ 8142d01:	89 e5                	mov    %esp,%ebp
+ 8142d03:	57                   	push   %edi
+ 8142d04:	56                   	push   %esi
+ 8142d05:	53                   	push   %ebx
+ 8142d06:	83 ec 6c             	sub    $0x6c,%esp
+ 8142d09:	8b 55 08             	mov    0x8(%ebp),%edx
+ 8142d0c:	8b 42 04             	mov    0x4(%edx),%eax
+ 8142d0f:	8b 50 08             	mov    0x8(%eax),%edx
+ 8142d12:	89 45 a8             	mov    %eax,-0x58(%ebp)
+ 8142d15:	39 c2                	cmp    %eax,%edx
+ 8142d17:	89 55 d8             	mov    %edx,-0x28(%ebp)
+ 8142d1a:	74 6f                	je     8142d8b <_ZN6CParty21SendPartyInfoAllToOneEP9CHARACTER+0x8b>
+ 8142d1c:	89 d1                	mov    %edx,%ecx
+ 8142d1e:	89 f6                	mov    %esi,%esi
+ 8142d20:	8b 51 14             	mov    0x14(%ecx),%edx
+ 8142d23:	85 d2                	test   %edx,%edx
+ 8142d25:	75 6c                	jne    8142d93 <_ZN6CParty21SendPartyInfoAllToOneEP9CHARACTER+0x93>
+ 8142d27:	fc                   	cld
+ 8142d28:	8b 59 10             	mov    0x10(%ecx),%ebx
+ 8142d2b:	89 d0                	mov    %edx,%eax
+ 8142d2d:	b9 05 00 00 00       	mov    $0x5,%ecx
+ 8142d32:	8d 7d b8             	lea    -0x48(%ebp),%edi
+ 8142d35:	f3 ab                	rep stos %eax,%es:(%edi)
+ 8142d37:	c6 07 00             	movb   $0x0,(%edi)
+ 8142d3a:	8b 45 d8             	mov    -0x28(%ebp),%eax
+ 8142d3d:	c6 45 b8 4f          	movb   $0x4f,-0x48(%ebp)
+ 8142d41:	89 5d b9             	mov    %ebx,-0x47(%ebp)
+ 8142d44:	83 c0 10             	add    $0x10,%eax
+ 8142d47:	c6 45 be ff          	movb   $0xff,-0x42(%ebp)
+ 8142d4b:	0f b6 40 09          	movzbl 0x9(%eax),%eax
+ 8142d4f:	88 45 bd             	mov    %al,-0x43(%ebp)
+ 8142d52:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 8142d55:	8b 42 18             	mov    0x18(%edx),%eax
+ 8142d58:	ba 15 00 00 00       	mov    $0x15,%edx
+ 8142d5d:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 8142d61:	8d 55 b8             	lea    -0x48(%ebp),%edx
+ 8142d64:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8142d68:	89 04 24             	mov    %eax,(%esp)
+ 8142d6b:	e8 a0 6f ff ff       	call   8139d10 <_ZN4DESC6PacketEPKvi>

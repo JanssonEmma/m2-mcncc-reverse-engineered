@@ -1,0 +1,34 @@
+// Add to FULL existing ITEM_MANAGER public API (both nonconst):
+// DWORD GetNewID();
+// bool SetMaxItemID(DWORD dwID);
+// Config ownership: extern DWORD g_dwItemIDRange[2];
+// Define ONCE in config.cpp: DWORD g_dwItemIDRange[2]={0,0};
+// g_dwItemIDRange[1] is original address083231a8, NOT a second symbol.
+DWORD ITEM_MANAGER::GetNewID()
+{
+    assert(m_dwCurrentID != 0);
+    // Original FreeBSD assertion ABI at08192239 has four arguments:
+    // __assert("GetNewID","item_manager.cpp",199,"m_dwCurrentID != 0").
+    // Standard assert here preserves fatal source semantics; it does not claim
+    // identical host-platform diagnostic spelling or original file/line.
+    DWORD value=m_dwCurrentID;
+    if(value<g_dwItemIDRange[1]) m_dwCurrentID=value+1;
+    else {
+        _sys_err("GetNewID",203,"FATAL ERROR! ITEM ID Overflow, contact your administrator!");
+        thecore_shutdown(); // Existing REAL libthecore implementation.
+        value=0;
+    }
+    return value;
+}
+bool ITEM_MANAGER::SetMaxItemID(DWORD id)
+{
+    if(id==0) return false;
+    if(g_dwItemIDRange[0]<id && id<g_dwItemIDRange[1]) {
+        m_dwCurrentID=id;
+        sys_log(0,"ITEM: ID start at %lu",id);
+        return true;
+    }
+    _sys_err("SetMaxItemID",218,"FATAL ERROR! item id out of range! id %lu, range %lu ~ %lu",id,g_dwItemIDRange[0],g_dwItemIDRange[1]);
+    thecore_shutdown();
+    return false;
+}

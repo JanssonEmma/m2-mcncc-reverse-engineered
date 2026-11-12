@@ -1,0 +1,10 @@
+// Original common/tables.h566-571, questpc.cpp CU DIE0x1c8413.
+// Complete original record; DWORD/long are four bytes in the target ABI.
+#pragma pack(push,1)
+typedef struct SQuestTable {
+    DWORD dwPID;
+    char szName[33];
+    char szState[65];
+    long lValue;
+} TQuestTable;
+#pragma pack(pop)

@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "__static_initialization_and_destruction_0",
+    "address": "080fb840"
+  },
+  "code": "\r\nvoid __static_initialization_and_destruction_0(int __initialize_p,int __priority)\r\n\r\n{\r\n  int unaff_EBX;\r\n  \r\n  if (__priority == 0xffff) {\r\n    if (__initialize_p == 1) {\r\n      std::ios_base::Init::Init((Init *)&std::__ioinit);\r\n      BUFFER_MANAGER::BUFFER_MANAGER(&buffer_manager);\r\n    }\r\n    if (__initialize_p == 0) {\r\n      BUFFER_MANAGER::~BUFFER_MANAGER(&buffer_manager,unaff_EBX);\r\n      std::ios_base::Init::~Init((Init *)&std::__ioinit);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

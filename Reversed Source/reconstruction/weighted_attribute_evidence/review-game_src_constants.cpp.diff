@@ -1,0 +1,12 @@
+--- CURRENT/game/src/constants.cpp
++++ WEIGHTED/game/src/constants.cpp
+@@ -285,3 +285,9 @@
+ const int* aiPercentByDeltaLev=0;
+ const int* aiPercentByDeltaLevForBoss=0;
+ const int* aiChainLightningCountBySkillLevel=0;
++
++// Original constants.cpp full owning-by-value maps and exact data.
++TItemAttrMap g_map_itemAttr;
++TItemAttrMap g_map_itemRare;
++const int aiItemMagicAttributePercentHigh[5] = {30,40,20,8,2};
++const int aiItemMagicAttributePercentLow[5] = {50,40,10,0,0};

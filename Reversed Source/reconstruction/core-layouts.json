@@ -1,0 +1,845 @@
+[
+  {
+    "unit": "event.c",
+    "die": "0x1ed59",
+    "name": "SQueueElement",
+    "byte_size": 12,
+    "members": [
+      {
+        "name": "pvData",
+        "kind": "DW_TAG_member",
+        "type_die": "0x665",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "iKey",
+        "kind": "DW_TAG_member",
+        "type_die": "0x74",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "bCancel",
+        "kind": "DW_TAG_member",
+        "type_die": "0x9c10",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN13SQueueElementaSERKS_"
+      },
+      {
+        "name": "SQueueElement",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "SQueueElement",
+        "virtuality": null,
+        "linkage_name": null
+      }
+    ]
+  },
+  {
+    "unit": "event.c",
+    "die": "0x1edf9",
+    "name": "CEventQueue",
+    "byte_size": 16,
+    "members": [
+      {
+        "name": "m_pq_queue",
+        "kind": "DW_TAG_member",
+        "type_die": "0x1f8d2",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueueaSERKS_"
+      },
+      {
+        "name": "CEventQueue",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "CEventQueue",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "~CEventQueue",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "Enqueue",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7EnqueueEPvi"
+      },
+      {
+        "name": "Dequeue",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7DequeueEv"
+      },
+      {
+        "name": "Delete",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue6DeleteEP13SQueueElement"
+      },
+      {
+        "name": "Requeue",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7RequeueEP13SQueueElementi"
+      },
+      {
+        "name": "GetTopKey",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue9GetTopKeyEv"
+      },
+      {
+        "name": "Size",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue4SizeEv"
+      },
+      {
+        "name": "Destroy",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7DestroyEv"
+      }
+    ]
+  },
+  {
+    "unit": "event.c",
+    "die": "0x1fb2f",
+    "name": "event",
+    "byte_size": 88,
+    "members": [
+      {
+        "name": "func",
+        "kind": "DW_TAG_member",
+        "type_die": "0x1fc04",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "dwInfoID",
+        "kind": "DW_TAG_member",
+        "type_die": "0x37cd",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "info",
+        "kind": "DW_TAG_member",
+        "type_die": "0x665",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      },
+      {
+        "name": "q_el",
+        "kind": "DW_TAG_member",
+        "type_die": "0x1efe0",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              12
+            ]
+          }
+        ]
+      },
+      {
+        "name": "is_force_to_end",
+        "kind": "DW_TAG_member",
+        "type_die": "0x272",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ]
+      },
+      {
+        "name": "is_processing",
+        "kind": "DW_TAG_member",
+        "type_die": "0x272",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              17
+            ]
+          }
+        ]
+      },
+      {
+        "name": "file",
+        "kind": "DW_TAG_member",
+        "type_die": "0x637c",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              18
+            ]
+          }
+        ]
+      },
+      {
+        "name": "line",
+        "kind": "DW_TAG_member",
+        "type_die": "0x74",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              84
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN5eventaSERKS_"
+      },
+      {
+        "name": "event",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "event",
+        "virtuality": null,
+        "linkage_name": null
+      }
+    ]
+  },
+  {
+    "unit": "event_queue.c",
+    "die": "0x4608c",
+    "name": "SQueueElement",
+    "byte_size": 12,
+    "members": [
+      {
+        "name": "pvData",
+        "kind": "DW_TAG_member",
+        "type_die": "0x27998",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "iKey",
+        "kind": "DW_TAG_member",
+        "type_die": "0x273a7",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "bCancel",
+        "kind": "DW_TAG_member",
+        "type_die": "0x30f43",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN13SQueueElementaSERKS_"
+      },
+      {
+        "name": "SQueueElement",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "SQueueElement",
+        "virtuality": null,
+        "linkage_name": null
+      }
+    ]
+  },
+  {
+    "unit": "event_queue.c",
+    "die": "0x4612c",
+    "name": "CEventQueue",
+    "byte_size": 16,
+    "members": [
+      {
+        "name": "m_pq_queue",
+        "kind": "DW_TAG_member",
+        "type_die": "0x472de",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueueaSERKS_"
+      },
+      {
+        "name": "CEventQueue",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "CEventQueue",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "~CEventQueue",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "Enqueue",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7EnqueueEPvi"
+      },
+      {
+        "name": "Dequeue",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7DequeueEv"
+      },
+      {
+        "name": "Delete",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue6DeleteEP13SQueueElement"
+      },
+      {
+        "name": "Requeue",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7RequeueEP13SQueueElementi"
+      },
+      {
+        "name": "GetTopKey",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue9GetTopKeyEv"
+      },
+      {
+        "name": "Size",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue4SizeEv"
+      },
+      {
+        "name": "Destroy",
+        "virtuality": null,
+        "linkage_name": "_ZN11CEventQueue7DestroyEv"
+      }
+    ]
+  },
+  {
+    "unit": "FSM.cpp",
+    "die": "0x6ad94",
+    "name": "CFSM",
+    "byte_size": 44,
+    "members": [
+      {
+        "name": "_vptr$CFSM",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b858",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_pCurrentState",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b864",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_pNewState",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b864",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_stateInitial",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6af95",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              12
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN4CFSMaSERKS_"
+      },
+      {
+        "name": "CFSM",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "CFSM",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "~CFSM",
+        "virtuality": 1,
+        "linkage_name": null
+      },
+      {
+        "name": "Update",
+        "virtuality": 1,
+        "linkage_name": "_ZN4CFSM6UpdateEv"
+      },
+      {
+        "name": "IsState",
+        "virtuality": null,
+        "linkage_name": "_ZN4CFSM7IsStateER6CState"
+      },
+      {
+        "name": "GotoState",
+        "virtuality": null,
+        "linkage_name": "_ZN4CFSM9GotoStateER6CState"
+      },
+      {
+        "name": "BeginStateInitial",
+        "virtuality": 1,
+        "linkage_name": "_ZN4CFSM17BeginStateInitialEv"
+      },
+      {
+        "name": "StateInitial",
+        "virtuality": 1,
+        "linkage_name": "_ZN4CFSM12StateInitialEv"
+      },
+      {
+        "name": "EndStateInitial",
+        "virtuality": 1,
+        "linkage_name": "_ZN4CFSM15EndStateInitialEv"
+      }
+    ]
+  },
+  {
+    "unit": "FSM.cpp",
+    "die": "0x6af95",
+    "name": "CStateTemplate<CFSM>",
+    "byte_size": 32,
+    "members": [
+      {
+        "name": null,
+        "kind": "DW_TAG_inheritance",
+        "type_die": "0x6b224",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_pInstance",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6af08",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_pfnBeginState",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b0f8",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_pfnState",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b0f8",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_pfnEndState",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b0f8",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN14CStateTemplateI4CFSMEaSERKS1_"
+      },
+      {
+        "name": "CStateTemplate",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "~CStateTemplate",
+        "virtuality": 1,
+        "linkage_name": null
+      },
+      {
+        "name": "CStateTemplate",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "Set",
+        "virtuality": null,
+        "linkage_name": "_ZN14CStateTemplateI4CFSME3SetEPS0_MS0_FvvES4_S4_"
+      },
+      {
+        "name": "ExecuteBeginState",
+        "virtuality": 1,
+        "linkage_name": "_ZN14CStateTemplateI4CFSME17ExecuteBeginStateEv"
+      },
+      {
+        "name": "ExecuteState",
+        "virtuality": 1,
+        "linkage_name": "_ZN14CStateTemplateI4CFSME12ExecuteStateEv"
+      },
+      {
+        "name": "ExecuteEndState",
+        "virtuality": 1,
+        "linkage_name": "_ZN14CStateTemplateI4CFSME15ExecuteEndStateEv"
+      }
+    ]
+  },
+  {
+    "unit": "FSM.cpp",
+    "die": "0x6b224",
+    "name": "CState",
+    "byte_size": 4,
+    "members": [
+      {
+        "name": "_vptr$CState",
+        "kind": "DW_TAG_member",
+        "type_die": "0x6b858",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN6CStateaSERKS_"
+      },
+      {
+        "name": "CState",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "CState",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "~CState",
+        "virtuality": 1,
+        "linkage_name": null
+      },
+      {
+        "name": "ExecuteBeginState",
+        "virtuality": 1,
+        "linkage_name": "_ZN6CState17ExecuteBeginStateEv"
+      },
+      {
+        "name": "ExecuteState",
+        "virtuality": 1,
+        "linkage_name": "_ZN6CState12ExecuteStateEv"
+      },
+      {
+        "name": "ExecuteEndState",
+        "virtuality": 1,
+        "linkage_name": "_ZN6CState15ExecuteEndStateEv"
+      }
+    ]
+  },
+  {
+    "unit": "file_loader.cpp",
+    "die": "0x45542c",
+    "name": "CMemoryTextFileLoader",
+    "byte_size": 16,
+    "members": [
+      {
+        "name": "_vptr$CMemoryTextFileLoader",
+        "kind": "DW_TAG_member",
+        "type_die": "0x4585c6",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "m_stLineVector",
+        "kind": "DW_TAG_member",
+        "type_die": "0x4542c8",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN21CMemoryTextFileLoaderaSERKS_"
+      },
+      {
+        "name": "CMemoryTextFileLoader",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "CMemoryTextFileLoader",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "~CMemoryTextFileLoader",
+        "virtuality": 1,
+        "linkage_name": null
+      },
+      {
+        "name": "Bind",
+        "virtuality": null,
+        "linkage_name": "_ZN21CMemoryTextFileLoader4BindEiPKv"
+      },
+      {
+        "name": "GetLineCount",
+        "virtuality": null,
+        "linkage_name": "_ZN21CMemoryTextFileLoader12GetLineCountEv"
+      },
+      {
+        "name": "CheckLineIndex",
+        "virtuality": null,
+        "linkage_name": "_ZN21CMemoryTextFileLoader14CheckLineIndexEm"
+      },
+      {
+        "name": "SplitLine",
+        "virtuality": null,
+        "linkage_name": "_ZN21CMemoryTextFileLoader9SplitLineEmPSt6vectorISsSaISsEEPKc"
+      },
+      {
+        "name": "GetLineString",
+        "virtuality": null,
+        "linkage_name": "_ZN21CMemoryTextFileLoader13GetLineStringEm"
+      }
+    ]
+  },
+  {
+    "unit": "vector.cpp",
+    "die": "0x24f3b83",
+    "name": "SVector",
+    "byte_size": 12,
+    "members": [
+      {
+        "name": "x",
+        "kind": "DW_TAG_member",
+        "type_die": "0x24d8bcc",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "y",
+        "kind": "DW_TAG_member",
+        "type_die": "0x24d8bcc",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "z",
+        "kind": "DW_TAG_member",
+        "type_die": "0x24d8bcc",
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "virtuality": null,
+        "linkage_name": "_ZN7SVectoraSERKS_"
+      },
+      {
+        "name": "SVector",
+        "virtuality": null,
+        "linkage_name": null
+      },
+      {
+        "name": "SVector",
+        "virtuality": null,
+        "linkage_name": null
+      }
+    ]
+  }
+]

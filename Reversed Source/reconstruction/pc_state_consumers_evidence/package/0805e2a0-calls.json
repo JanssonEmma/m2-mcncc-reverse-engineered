@@ -1,0 +1,71 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestStateName",
+    "address": "0805e2a0"
+  },
+  "callers": null,
+  "callees": {
+    "items": [
+      {
+        "call_site": "0805e2cb",
+        "target": "081a5240",
+        "name": "CQuestManager::GetQuestStateIndex",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805e2dc",
+        "target": "0804bd1c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0805e2e8",
+        "target": "0804c97c",
+        "name": "<EXTERNAL>::strlen",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0805e2fd",
+        "target": "0804caec",
+        "name": "<EXTERNAL>::std::string::append",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0805e316",
+        "target": "0805de00",
+        "name": "PC::SetFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805e33e",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0805e367",
+        "target": "0804c9ac",
+        "name": "<EXTERNAL>::__assert",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 100,
+    "total": 7,
+    "has_more": false
+  }
+}

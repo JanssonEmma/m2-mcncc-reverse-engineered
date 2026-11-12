@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08122ac0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8122ac0",
+    "function": {
+      "name": "CTextFileLoader::SetChildNode",
+      "address": "08122ac0"
+    },
+    "signature": "BOOL SetChildNode(CTextFileLoader * this, string * c_rstrKeyHead, DWORD dwIndex)",
+    "code": "\r\n/* DWARF original prototype: BOOL SetChildNode(CTextFileLoader * this, string * c_rstrKeyHead, DWORD\r\n   dwIndex) */\r\n\r\nBOOL __thiscall\r\nCTextFileLoader::SetChildNode(CTextFileLoader *this,string *c_rstrKeyHead,DWORD dwIndex)\r\n\r\n{\r\n  char *pcVar1;\r\n  BOOL BVar2;\r\n  char szKey [33];\r\n  \r\n                    /* Unresolved local var: size_t __n@[???] */\r\n  pcVar1 = (c_rstrKeyHead->_M_dataplus)._M_p;\r\n  pcVar1[*(int *)(pcVar1 + -0xc)] = std::string::_Rep::_S_terminal;\r\n  snprintf(szKey,0x20,\"%s%02u\",(c_rstrKeyHead->_M_dataplus)._M_p,dwIndex);\r\n  BVar2 = SetChildNode(this,szKey);\r\n  return BVar2;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

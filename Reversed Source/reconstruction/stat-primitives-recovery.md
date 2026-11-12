@@ -1,0 +1,13 @@
+# Job/state helpers and old stat records
+
+Target SHA25661fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c. Source locations preserve old DWARF: RaceToJob080f2d50 in input_login.cpp, GetJob0812a580 in char.cpp, IsDead081485e0/IsStun08148080 in char_battle.cpp. All four signatures remain non-const where applicable. Complete EPositions and record declarations are recovered.
+
+RaceToJob clears required output before dispatch, maps unsigned0..7 to four old jobs and returnsfalse/output0 otherwise. GetJob reads raw m_points.job, independently of GetRaceNum/polymorph/mob race; failed lookup logs exact GetJob:1569 name/race andreturns0. IsDead reads position==0, IsStun tests instant flagbit8, with no HP/affect checks or mutation.
+
+SPlayerSkill/TPlayerSkill is packed6 bytes with two BYTEs and signed int32 tNextRead. Original time_t resolves to signed int4, notlong; spelling terminal int preserves exact representation without redefining host CRT time_t. packet_point_change/TPacketGCPointChange is packed17 bytes with int header0,DWORD VID4,BYTE type8,long amount9/value13. The four-byte header is intentional original data. Native time APIs and complete PointChange behavior are not claimed.
+
+The new regression invokes all four real methods and actual CHARACTER construction/name/race code. It checks exhaustive raw byte jobs, invalid unsigned conversion boundaries,251 exact diagnostics across byte/name/race scenarios, raw-job independence, HP/state/flag grids, no point-record mutation, complete six-byte signed-time vectors and seventeen-byte point packet golden/extreme values. Only external logging/syscalls and unrelated existing lifecycle boundaries are fixtures. Normal focused tests and O2 integration including four SQL/config/API objects pass; modified character/battle/login source passes strict32-bit C++03 syntax and complete record/signature ABI checks.
+
+Six isolated character suites now link actual input_login.cpp and char_battle.cpp. Separate unused-input fixture includes full input.h and aborts on base destructor/Process or LoginAnalyze use; it contains no tested helper implementation. Full DESC graph uses actual input.cpp and its existing dispatch boundary instead. No production source was trimmed or relocated to avoid a link dependency.
+
+Full checkpoint67 completed exit0 with64 exact runtime commands and check-abi. Raw signatures, assembly, diagnostics/jump bytes and caller evidence are archived in stat_primitives_evidence/, with six complete normalized exports in stat-primitives-addressed-ghidra.json. Whole stat mutation, input dispatch, lifecycle, native external APIs and server linking remain unfinished.

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08164d20",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "GetDeltaByDegree",
+      "address": "08164d20"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid GetDeltaByDegree(float fDegree,float fDistance,float *x,float *y)\r\n\r\n{\r\n  float fVar1;\r\n  double dVar2;\r\n  \r\n                    /* Unresolved local var: float fRadian@[DW_OP_reg12(ST1)] */\r\n  fVar1 = _DAT_0822b49c * fDegree;\r\n  dVar2 = sin((double)fVar1);\r\n  *x = (float)dVar2 * fDistance;\r\n  dVar2 = cos((double)fVar1);\r\n  *y = (float)dVar2 * fDistance;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

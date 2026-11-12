@@ -1,0 +1,431 @@
+{
+  "symbols": [
+    {
+      "name": "_ZN5quest13CQuestManager12GotoEndStateERNS_10QuestStateE",
+      "address": "0805cd10",
+      "size": 110,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN5quest13CQuestManager9OpenStateERKSsi",
+      "address": "0805cd80",
+      "size": 88,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN5quest13CQuestManager9AddScriptERKSs",
+      "address": "081a4f30",
+      "size": 20,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN5quest13CQuestManager10SendScriptEv",
+      "address": "081a4f50",
+      "size": 467,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN5quest13CQuestManager11ClearScriptEv",
+      "address": "081a4ee0",
+      "size": 69,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN5quest13CQuestManager10CloseStateERNS_10QuestStateE",
+      "address": "0805d000",
+      "size": 70,
+      "type": "STT_FUNC"
+    }
+  ],
+  "dies": [
+    {
+      "cu": "questlua.cpp",
+      "name": "GotoEndState",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x1bc9bc",
+      "low_pc": "0805cd10",
+      "linkage": "_ZN5quest13CQuestManager12GotoEndStateERNS_10QuestStateE",
+      "decl_file": "questlua.cpp",
+      "decl_line": 2124,
+      "parents": [
+        {
+          "tag": "DW_TAG_compile_unit",
+          "name": "questlua.cpp",
+          "die": "0x1149ba"
+        }
+      ],
+      "type": {
+        "name": "void"
+      },
+      "parameters": [
+        {
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x1b1bc5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b1ba8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x15e48c",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          }
+        },
+        {
+          "name": "qs",
+          "artificial": null,
+          "type": {
+            "die": "0x1bc9ed",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x14d828",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "name": "OpenState",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x1bcb66",
+      "low_pc": "0805cd80",
+      "linkage": "_ZN5quest13CQuestManager9OpenStateERKSsi",
+      "decl_file": "questlua.cpp",
+      "decl_line": 2136,
+      "parents": [
+        {
+          "tag": "DW_TAG_compile_unit",
+          "name": "questlua.cpp",
+          "die": "0x1149ba"
+        }
+      ],
+      "type": {
+        "die": "0x14d6f8",
+        "tag": "DW_TAG_structure_type",
+        "name": "QuestState",
+        "size": 60
+      },
+      "parameters": [
+        {
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x1b1bc5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b1ba8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x15e48c",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          }
+        },
+        {
+          "name": "quest_name",
+          "artificial": null,
+          "type": {
+            "die": "0x1bcbb6",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x125db0",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x125db6",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x125d86",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x122864",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "state_index",
+          "artificial": null,
+          "type": {
+            "die": "0x114a23",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          }
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "name": "CloseState",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x1bcc6e",
+      "low_pc": "0805d000",
+      "linkage": "_ZN5quest13CQuestManager10CloseStateERNS_10QuestStateE",
+      "decl_file": "questlua.cpp",
+      "decl_line": 2214,
+      "parents": [
+        {
+          "tag": "DW_TAG_compile_unit",
+          "name": "questlua.cpp",
+          "die": "0x1149ba"
+        }
+      ],
+      "type": {
+        "name": "void"
+      },
+      "parameters": [
+        {
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x1b1bc5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b1ba8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x15e48c",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          }
+        },
+        {
+          "name": "qs",
+          "artificial": null,
+          "type": {
+            "die": "0x1bcc9e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x14d828",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "name": "ClearScript",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x2c45e44",
+      "low_pc": "081a4ee0",
+      "linkage": "_ZN5quest13CQuestManager11ClearScriptEv",
+      "decl_file": "questmanager.cpp",
+      "decl_line": 863,
+      "parents": [
+        {
+          "tag": "DW_TAG_compile_unit",
+          "name": "questmanager.cpp",
+          "die": "0x2bc2d10"
+        }
+      ],
+      "type": {
+        "name": "void"
+      },
+      "parameters": [
+        {
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "name": "AddScript",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x2c45ed3",
+      "low_pc": "081a4f30",
+      "linkage": "_ZN5quest13CQuestManager9AddScriptERKSs",
+      "decl_file": "questmanager.cpp",
+      "decl_line": 869,
+      "parents": [
+        {
+          "tag": "DW_TAG_compile_unit",
+          "name": "questmanager.cpp",
+          "die": "0x2bc2d10"
+        }
+      ],
+      "type": {
+        "name": "void"
+      },
+      "parameters": [
+        {
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          }
+        },
+        {
+          "name": "str",
+          "artificial": null,
+          "type": {
+            "die": "0x2c45f23",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "name": "SendScript",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x2c45f51",
+      "low_pc": "081a4f50",
+      "linkage": "_ZN5quest13CQuestManager10SendScriptEv",
+      "decl_file": "questmanager.cpp",
+      "decl_line": 874,
+      "parents": [
+        {
+          "tag": "DW_TAG_compile_unit",
+          "name": "questmanager.cpp",
+          "die": "0x2bc2d10"
+        }
+      ],
+      "type": {
+        "name": "void"
+      },
+      "parameters": [
+        {
+          "name": "this",
+          "artificial": true,
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

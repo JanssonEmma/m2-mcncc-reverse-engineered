@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0806aa10",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CImage::PutData",
+      "address": "0806aa10"
+    },
+    "code": "\r\n/* DWARF original prototype: void PutData(CImage * this, uint x, uint y, uint width, uint height,\r\n   void * data) */\r\n\r\nvoid __thiscall CImage::PutData(CImage *this,uint x,uint y,uint width,uint height,void *data)\r\n\r\n{\r\n  Pixel *pPVar1;\r\n  uint uVar2;\r\n  \r\n                    /* Unresolved local var: Pixel * ppxSrc@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: Pixel * ppxDst@[DW_OP_reg3(EBX)] */\r\n  if (0x200 < width + x) {\r\n    __assert(\"PutData\",\"Image.cpp\",0x34);\r\n  }\r\n  if (0x200 < height + y) {\r\n    __assert(\"PutData\",\"Image.cpp\",0x35);\r\n  }\r\n                    /* Unresolved local var: uint i@[DW_OP_reg7(EDI)] */\r\n  uVar2 = 0;\r\n  if (height != 0) {\r\n    pPVar1 = this->m_aapxBuf[y] + x;\r\n    do {\r\n      uVar2 = uVar2 + 1;\r\n      (*thecore_memcpy)(pPVar1,data,width * 4);\r\n      data = (void *)((int)data + width * 4);\r\n      pPVar1 = pPVar1 + 0x200;\r\n    } while (uVar2 < height);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

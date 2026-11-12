@@ -1,0 +1,33 @@
+// In questnpc.cpp include <cstdio>, <dirent.h>, <strings.h>, and "config.h".
+void NPC::Set(unsigned int vnum, const std::string& script_name)
+{
+    m_vnum = vnum;
+
+    char path[1024];
+    CQuestManager::TEventNameMap::iterator nextEvent =
+        CQuestManager::instance().m_mapEventName.begin();
+    while (nextEvent != CQuestManager::instance().m_mapEventName.end()) {
+        CQuestManager::TEventNameMap::iterator event = nextEvent++;
+        for (std::set<std::string>::const_iterator objectDir = g_setQuestObjectDir.begin();
+             objectDir != g_setQuestObjectDir.end(); ++objectDir) {
+            const int prefixLength = std::sprintf(path, "%s/%s/%s/", objectDir->c_str(),
+                                                  script_name.c_str(), event->first.c_str());
+            const int eventIndex = event->second;
+            DIR* directory = opendir(path);
+            if (!directory)
+                continue;
+
+            while (dirent* entry = readdir(directory)) {
+                if (entry->d_name[0] == '.' || strncasecmp(entry->d_name, "CVS", 3) == 0)
+                    continue;
+
+                sys_log(1, "QUEST reading %s", entry->d_name);
+                // The original interprets the name as a format and imposes no bound here.
+                std::sprintf(path + prefixLength, entry->d_name);
+                sys_log(0, "Quest reading %s", path);
+                LoadStateScript(eventIndex, path, entry->d_name);
+            }
+            closedir(directory);
+        }
+    }
+}

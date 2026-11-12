@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063e70",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::AttackedByPoison",
+      "address": "08063e70"
+    },
+    "code": "\r\n/* DWARF original prototype: void AttackedByPoison(CHARACTER * this, LPCHARACTER pkAttacker) */\r\n\r\nvoid __thiscall CHARACTER::AttackedByPoison(CHARACTER *this,LPCHARACTER pkAttacker)\r\n\r\n{\r\n  uint uVar1;\r\n  int iVar2;\r\n  DWORD dwInfoID;\r\n  LPEVENT pEVar3;\r\n  char *pcVar4;\r\n  char *pcVar5;\r\n  DWORD DVar6;\r\n  uint uVar7;\r\n  int iVar8;\r\n  TPoisonEventInfo *info;\r\n  char buf [256];\r\n  \r\n                    /* Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  if ((this->m_pkPoisonEvent == (LPEVENT)0x0) &&\r\n     ((this->m_bHasPoisoned == false || ((this->super_CEntity).m_lpDesc != (LPDESC)0x0)))) {\r\n    if (pkAttacker != (LPCHARACTER)0x0) {\r\n      uVar7 = (uint)(pkAttacker->m_points).level;\r\n      uVar1 = (uint)(this->m_points).level;\r\n      if (uVar7 < uVar1) {\r\n                    /* Unresolved local var: int delta@[DW_OP_reg3(EBX)] */\r\n        iVar8 = uVar1 - uVar7;\r\n        if (8 < iVar8) {\r\n          iVar8 = 8;\r\n        }\r\n        iVar2 = number_ex(1,100,\"char_resist.cpp\",0xa1);\r\n        if (poison_level_adjust[iVar8] < iVar2) {\r\n          return;\r\n        }\r\n      }\r\n    }\r\n    this->m_bHasPoisoned = true;\r\n    AddAffect(this,0xd1,'\\0',0,4,0x1f,0,true,false);\r\n    dwInfoID = __AllocEventInfo(0xc,&info);\r\n    DVar6 = 0;\r\n    info->ch = this;\r\n    info->count = 10;\r\n    if (pkAttacker != (LPCHARACTER)0x0) {\r\n      DVar6 = pkAttacker->m_dwPlayerID;\r\n    }\r\n    info->attacker_pid = DVar6;\r\n    pEVar3 = event_create_ex(poison_event,dwInfoID,1,\"char_resist.cpp\",0xb3);\r\n    this->m_pkPoisonEvent = pEVar3;\r\n    if ((test_server != 0) && (pkAttacker != (LPCHARACTER)0x0)) {\r\n      pcVar4 = GetName(this);\r\n      pcVar5 = GetName(pkAttacker);\r\n      sprintf(buf,\"POISON %s -> %s\",pcVar5,pcVar4);\r\n      ChatPacket(pkAttacker,'\\x01',\"%s\",buf);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

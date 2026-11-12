@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804e620",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Deque_base<event*,std::allocator<event*>_>::_M_initialize_map",
+      "address": "0804e620"
+    },
+    "code": "\r\n/* DWARF original prototype: void _M_initialize_map(_Deque_base<event*,std::allocator<event*>_> *\r\n   this, size_t __num_elements) */\r\n\r\nvoid __thiscall\r\n_Deque_base<event*,std::allocator<event*>_>::_M_initialize_map\r\n          (_Deque_base<event*,std::allocator<event*>_> *this,size_t __num_elements)\r\n\r\n{\r\n  int iVar1;\r\n  LPEVENT **__nfinish;\r\n  uint uVar2;\r\n  LPEVENT *ppEVar3;\r\n  uint *puVar4;\r\n  LPEVENT **pppEVar5;\r\n  uint local_18 [2];\r\n  \r\n                    /* Unresolved local var: size_t __num_nodes@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: LPEVENT * * __nstart@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: LPEVENT * * __nfinish@[DW_OP_reg6(ESI)] */\r\n  puVar4 = local_18;\r\n  local_18[1] = 8;\r\n  iVar1 = (__num_elements >> 7) + 1;\r\n  local_18[0] = (__num_elements >> 7) + 3;\r\n  if (local_18[0] < 9) {\r\n    puVar4 = local_18 + 1;\r\n  }\r\n  uVar2 = *puVar4;\r\n                    /* Unresolved local var: LPEVENT * * __ret@[DW_OP_reg2(EDX)] */\r\n  pppEVar5 = (LPEVENT **)0x0;\r\n  (this->super__Deque_alloc_base<event*,std::allocator<event*>,true>)._M_map_size = uVar2;\r\n  if (uVar2 != 0) {\r\n    pppEVar5 = (LPEVENT **)std::__default_alloc_template<true,0>::allocate(uVar2 << 2);\r\n  }\r\n  (this->super__Deque_alloc_base<event*,std::allocator<event*>,true>)._M_map = pppEVar5;\r\n  pppEVar5 = pppEVar5 +\r\n             ((this->super__Deque_alloc_base<event*,std::allocator<event*>,true>)._M_map_size -\r\n              iVar1 >> 1);\r\n  __nfinish = pppEVar5 + iVar1;\r\n  _M_create_nodes(this,pppEVar5,__nfinish);\r\n  ppEVar3 = *pppEVar5;\r\n  (this->_M_start)._M_node = pppEVar5;\r\n  (this->_M_start)._M_first = ppEVar3;\r\n  (this->_M_start)._M_last = ppEVar3 + 0x80;\r\n  (this->_M_finish)._M_node = __nfinish + -1;\r\n  ppEVar3 = __nfinish[-1];\r\n  (this->_M_finish)._M_first = ppEVar3;\r\n  (this->_M_finish)._M_last = ppEVar3 + 0x80;\r\n  (this->_M_start)._M_cur = (this->_M_start)._M_first;\r\n  (this->_M_finish)._M_cur = (this->_M_finish)._M_first + (__num_elements & 0x7f);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

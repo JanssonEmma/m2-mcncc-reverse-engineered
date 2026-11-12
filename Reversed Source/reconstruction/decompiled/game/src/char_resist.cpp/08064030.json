@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08064030",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::RemoveFire",
+      "address": "08064030"
+    },
+    "code": "\r\n/* DWARF original prototype: void RemoveFire(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::RemoveFire(CHARACTER *this)\r\n\r\n{\r\n  RemoveAffect(this,0xd8);\r\n  event_cancel(&this->m_pkFireEvent);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

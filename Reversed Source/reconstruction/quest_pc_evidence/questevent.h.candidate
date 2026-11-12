@@ -1,0 +1,23 @@
+#ifndef MCNCC_GAME_QUESTEVENT_H
+#define MCNCC_GAME_QUESTEVENT_H
+#include "event.h"
+namespace quest {
+// COMPLETE old plain records16 under32-bit, NO modern EVENTINFO base/vptr/ctor.
+struct quest_server_event_info {
+    int time_cycle;
+    unsigned int npc_id;
+    unsigned int arg;
+    char* name;
+};
+struct quest_event_info {
+    int time_cycle;
+    unsigned int player_id;
+    unsigned int npc_id;
+    char* name;
+};
+void CancelTimerEvent(LPEVENT* ppEvent);
+// Complete original remaining public API declarations; bodies still pending.
+LPEVENT quest_create_server_timer_event(const char*,double,unsigned int,bool,unsigned int);
+LPEVENT quest_create_timer_event(const char*,unsigned int,double,unsigned int,bool);
+}
+#endif

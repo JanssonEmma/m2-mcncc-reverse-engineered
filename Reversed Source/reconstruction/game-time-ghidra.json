@@ -1,0 +1,18 @@
+{
+  "0x08146c20": {
+    "function": {
+      "name": "get_global_time",
+      "address": "08146c20"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\ntime_t get_global_time(void)\r\n\r\n{\r\n  time_t tVar1;\r\n  \r\n  tVar1 = time((time_t *)0x0);\r\n  return tVar1 + global_time_gap;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08146c40": {
+    "function": {
+      "name": "set_global_time",
+      "address": "08146c40"
+    },
+    "code": "\r\nvoid set_global_time(time_t t)\r\n\r\n{\r\n  time_t tVar1;\r\n  time_t ct;\r\n  char *pcVar2;\r\n  char time_str_buf [33];\r\n  \r\n  tVar1 = time((time_t *)0x0);\r\n  global_time_gap = t - tVar1;\r\n  ct = get_global_time();\r\n  pcVar2 = time_str(ct);\r\n  snprintf(time_str_buf,0x20,\"%s\",pcVar2);\r\n  sys_log(0,\"GLOBAL_TIME: %s time_gap %d\",time_str_buf,global_time_gap);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

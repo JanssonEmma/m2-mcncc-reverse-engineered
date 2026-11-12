@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b66b0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "socket_connect",
+      "address": "081b66b0"
+    },
+    "code": "\r\nsocket_t socket_connect(char *host,WORD port)\r\n\r\n{\r\n  hostent *phVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  sockaddr_in *psVar4;\r\n  char *pcVar5;\r\n  socket_t s;\r\n  sockaddr_in server_addr;\r\n  \r\n  psVar4 = &server_addr;\r\n                    /* Unresolved local var: int rslt@[DW_OP_reg3(EBX)] */\r\n  for (iVar3 = 4; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n    psVar4->sin_len = '\\0';\r\n    psVar4->sin_family = '\\0';\r\n    psVar4->sin_port = 0;\r\n    psVar4 = (sockaddr_in *)&psVar4->sin_addr;\r\n  }\r\n  if (((uint)(int)*host < 0x100) && ((_DefaultRuneLocale[*host * 4 + 0x35] & 4) != 0)) {\r\n    server_addr.sin_addr.s_addr = __inet_addr(host);\r\n  }\r\n  else {\r\n                    /* Unresolved local var: hostent * hp@[DW_OP_reg0(EAX)] */\r\n    phVar1 = gethostbyname(host);\r\n    if (phVar1 == (hostent *)0x0) {\r\n      _sys_err(\"socket_connect\",0xe5,\"socket_connect(): can not connect to %s:%d\",host,(uint)port);\r\n      return -1;\r\n    }\r\n    (*thecore_memcpy)(&server_addr.sin_addr,*phVar1->h_addr_list,4);\r\n  }\r\n  server_addr.sin_family = '\\x02';\r\n                    /* Unresolved local var: __uint16_t __X@[DW_OP_reg0(EAX)] */\r\n  server_addr.sin_port = CONCAT11((char)port,(char)(port >> 8));\r\n  iVar3 = socket(2,1,0);\r\n  if (iVar3 < 0) {\r\n    pcVar5 = \"socket\";\r\n    goto LAB_081b6813;\r\n  }\r\n  socket_keepalive(iVar3);\r\n  socket_sndbuf(iVar3,0x38e38);\r\n  socket_rcvbuf(iVar3,0x38e38);\r\n  socket_timeout(iVar3,10,0);\r\n  socket_lingeron(iVar3);\r\n  iVar2 = connect(iVar3,(sockaddr *)&server_addr,0x10);\r\n  if (-1 < iVar2) {\r\n    return iVar3;\r\n  }\r\n  socket_close(iVar3);\r\n  if (iVar2 == 0x33) {\r\n    pcVar5 = \"HOST %s:%d is not reachable from this host.\";\r\n    iVar3 = 0x119;\r\n  }\r\n  else if (iVar2 < 0x34) {\r\n    if (iVar2 == 4) {\r\n      pcVar5 = \"HOST %s:%d connection timeout.\";\r\n      iVar3 = 0x10b;\r\n    }\r\n    else {\r\nLAB_081b67e3:\r\n      pcVar5 = \"HOST %s:%d, could not connect.\";\r\n      iVar3 = 0x11d;\r\n    }\r\n  }\r\n  else {\r\n    if (iVar2 != 0x3d) goto LAB_081b67e3;\r\n    iVar3 = 0x112;\r\n    pcVar5 = \"HOST %s:%d port is not opened. connection refused.\";\r\n  }\r\n  _sys_err(\"socket_connect\",iVar3,pcVar5,host,(uint)port);\r\n  pcVar5 = \"connect\";\r\nLAB_081b6813:\r\n  perror(pcVar5);\r\n  return -1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

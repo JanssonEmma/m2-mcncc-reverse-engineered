@@ -1,0 +1,84 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+081430f0 <_ZN6CParty18GetLeaderCharacterEv>:
+ 81430f0:	55                   	push   %ebp
+ 81430f1:	89 e5                	mov    %esp,%ebp
+ 81430f3:	56                   	push   %esi
+ 81430f4:	53                   	push   %ebx
+ 81430f5:	81 ec a0 00 00 00    	sub    $0xa0,%esp
+ 81430fb:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 81430fe:	89 1c 24             	mov    %ebx,(%esp)
+ 8143101:	8d 73 04             	lea    0x4(%ebx),%esi
+ 8143104:	e8 47 e9 ff ff       	call   8141a50 <_ZN6CParty12GetLeaderPIDEv>
+ 8143109:	89 85 74 ff ff ff    	mov    %eax,-0x8c(%ebp)
+ 814310f:	8d 55 e8             	lea    -0x18(%ebp),%edx
+ 8143112:	8d 85 74 ff ff ff    	lea    -0x8c(%ebp),%eax
+ 8143118:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 814311c:	89 14 24             	mov    %edx,(%esp)
+ 814311f:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 8143123:	e8 38 1f 00 00       	call   8145060 <_ZNSt8_Rb_treeImSt4pairIKmN6CParty7SMemberEESt10_Select1stIS4_ESt4lessImESaIS4_EE11lower_boundERS1_>
+ 8143128:	8b 43 04             	mov    0x4(%ebx),%eax
+ 814312b:	83 ec 04             	sub    $0x4,%esp
+ 814312e:	8b 55 e8             	mov    -0x18(%ebp),%edx
+ 8143131:	89 45 d8             	mov    %eax,-0x28(%ebp)
+ 8143134:	39 c2                	cmp    %eax,%edx
+ 8143136:	74 0f                	je     8143147 <_ZN6CParty18GetLeaderCharacterEv+0x57>
+ 8143138:	8b 42 10             	mov    0x10(%edx),%eax
+ 814313b:	39 85 74 ff ff ff    	cmp    %eax,-0x8c(%ebp)
+ 8143141:	0f 83 9c 00 00 00    	jae    81431e3 <_ZN6CParty18GetLeaderCharacterEv+0xf3>
+ 8143147:	89 55 b8             	mov    %edx,-0x48(%ebp)
+ 814314a:	8d 5d a8             	lea    -0x58(%ebp),%ebx
+ 814314d:	8d 55 a0             	lea    -0x60(%ebp),%edx
+ 8143150:	f0 83 05 c8 23 32 08 	lock addl $0x1,0x83223c8
+ 8143157:	01 
+ 8143158:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 814315c:	8b 85 74 ff ff ff    	mov    -0x8c(%ebp),%eax
+ 8143162:	c7 45 a0 cc 23 32 08 	movl   $0x83223cc,-0x60(%ebp)
+ 8143169:	89 45 a8             	mov    %eax,-0x58(%ebp)
+ 814316c:	8b 45 98             	mov    -0x68(%ebp),%eax
+ 814316f:	89 45 ac             	mov    %eax,-0x54(%ebp)
+ 8143172:	0f b6 45 9c          	movzbl -0x64(%ebp),%eax
+ 8143176:	88 45 b0             	mov    %al,-0x50(%ebp)
+ 8143179:	0f b6 45 9d          	movzbl -0x63(%ebp),%eax
+ 814317d:	88 45 b1             	mov    %al,-0x4f(%ebp)
+ 8143180:	0f b6 45 9e          	movzbl -0x62(%ebp),%eax
+ 8143184:	88 45 b2             	mov    %al,-0x4e(%ebp)
+ 8143187:	8d 45 b4             	lea    -0x4c(%ebp),%eax
+ 814318a:	89 04 24             	mov    %eax,(%esp)
+ 814318d:	e8 8a 8b f0 ff       	call   804bd1c <_ZNSsC1ERKSs@plt>
+ 8143192:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 8143196:	8b 45 b8             	mov    -0x48(%ebp),%eax
+ 8143199:	8d 4d c8             	lea    -0x38(%ebp),%ecx
+ 814319c:	89 0c 24             	mov    %ecx,(%esp)
+ 814319f:	8d 95 78 ff ff ff    	lea    -0x88(%ebp),%edx
+ 81431a5:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 81431a9:	89 85 78 ff ff ff    	mov    %eax,-0x88(%ebp)
+ 81431af:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 81431b3:	e8 e8 1e 00 00       	call   81450a0 <_ZNSt8_Rb_treeImSt4pairIKmN6CParty7SMemberEESt10_Select1stIS4_ESt4lessImESaIS4_EE13insert_uniqueESt17_Rb_tree_iteratorIS4_RS4_PS4_ERKS4_>
+ 81431b8:	8b 45 c8             	mov    -0x38(%ebp),%eax
+ 81431bb:	83 ec 04             	sub    $0x4,%esp
+ 81431be:	89 1c 24             	mov    %ebx,(%esp)
+ 81431c1:	8d 5d 88             	lea    -0x78(%ebp),%ebx
+ 81431c4:	89 45 e8             	mov    %eax,-0x18(%ebp)
+ 81431c7:	e8 84 24 00 00       	call   8145650 <_ZNSt4pairIKmN6CParty7SMemberEED1Ev>
+ 81431cc:	8b 55 a0             	mov    -0x60(%ebp),%edx
+ 81431cf:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+ 81431d4:	8d 4a f4             	lea    -0xc(%edx),%ecx
+ 81431d7:	f0 0f c1 42 fc       	lock xadd %eax,-0x4(%edx)
+ 81431dc:	85 c0                	test   %eax,%eax
+ 81431de:	7e 0d                	jle    81431ed <_ZN6CParty18GetLeaderCharacterEv+0xfd>
+ 81431e0:	8b 55 e8             	mov    -0x18(%ebp),%edx
+ 81431e3:	8b 42 14             	mov    0x14(%edx),%eax
+ 81431e6:	8d 65 f8             	lea    -0x8(%ebp),%esp
+ 81431e9:	5b                   	pop    %ebx
+ 81431ea:	5e                   	pop    %esi
+ 81431eb:	5d                   	pop    %ebp
+ 81431ec:	c3                   	ret
+ 81431ed:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 81431f1:	89 0c 24             	mov    %ecx,(%esp)
+ 81431f4:	e8 33 98 f0 ff       	call   804ca2c <_ZNSs4_Rep10_M_destroyERKSaIcE@plt>
+ 81431f9:	eb e5                	jmp    81431e0 <_ZN6CParty18GetLeaderCharacterEv+0xf0>

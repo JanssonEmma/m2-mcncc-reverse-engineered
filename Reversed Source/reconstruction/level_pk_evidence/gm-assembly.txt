@@ -1,0 +1,18 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08132170 <_ZN9CHARACTER10GetGMLevelEv>:
+ 8132170:	55                   	push   %ebp
+ 8132171:	a1 9c 31 32 08       	mov    0x832319c,%eax
+ 8132176:	89 e5                	mov    %esp,%ebp
+ 8132178:	85 c0                	test   %eax,%eax
+ 813217a:	75 0c                	jne    8132188 <_ZN9CHARACTER10GetGMLevelEv+0x18>
+ 813217c:	8b 45 08             	mov    0x8(%ebp),%eax
+ 813217f:	0f b6 80 b0 0b 00 00 	movzbl 0xbb0(%eax),%eax
+ 8132186:	5d                   	pop    %ebp
+ 8132187:	c3                   	ret
+ 8132188:	b8 05 00 00 00       	mov    $0x5,%eax
+ 813218d:	eb f7                	jmp    8132186 <_ZN9CHARACTER10GetGMLevelEv+0x16>

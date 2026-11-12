@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08192250",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8192250",
+    "function": {
+      "name": "ITEM_MANAGER::SetMaxItemID",
+      "address": "08192250"
+    },
+    "signature": "bool SetMaxItemID(ITEM_MANAGER * this, DWORD dwID)",
+    "code": "\r\n/* DWARF original prototype: bool SetMaxItemID(ITEM_MANAGER * this, DWORD dwID) */\r\n\r\nbool __thiscall ITEM_MANAGER::SetMaxItemID(ITEM_MANAGER *this,DWORD dwID)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = false;\r\n  if (dwID != 0) {\r\n    if ((g_dwItemIDRange < dwID) && (dwID < DAT_083231a8)) {\r\n      this->m_dwCurrentID = dwID;\r\n      sys_log(0,\"ITEM: ID start at %lu\",dwID);\r\n      bVar1 = true;\r\n    }\r\n    else {\r\n      _sys_err(\"SetMaxItemID\",0xda,\"FATAL ERROR! item id out of range! id %lu, range %lu ~ %lu\",dwID\r\n               ,g_dwItemIDRange,DAT_083231a8);\r\n      thecore_shutdown();\r\n      bVar1 = false;\r\n    }\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

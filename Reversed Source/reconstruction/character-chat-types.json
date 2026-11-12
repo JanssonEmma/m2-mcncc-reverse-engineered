@@ -1,0 +1,199 @@
+[
+  {
+    "name": "CHAT_MAX_LEN",
+    "die": "0x1e8e8c0",
+    "tag": "DW_TAG_enumerator",
+    "type": {
+      "name": "void"
+    },
+    "size": null,
+    "const_value": 85,
+    "children": []
+  },
+  {
+    "name": "packet_chat",
+    "die": "0x1ede762",
+    "tag": "DW_TAG_structure_type",
+    "type": {
+      "name": "void"
+    },
+    "size": 9,
+    "const_value": null,
+    "children": [
+      {
+        "name": "header",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "size",
+        "type": {
+          "die": "0x1e8deeb",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a75f",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "size": 2
+          }
+        },
+        "offset": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "name": "type",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "name": "id",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "name": "bEmpire",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "packet_chat",
+    "die": "0x1ede7d9",
+    "tag": "DW_TAG_subprogram",
+    "type": {
+      "name": "void"
+    },
+    "size": null,
+    "const_value": null,
+    "children": []
+  },
+  {
+    "name": "packet_chat",
+    "die": "0x1ede7f1",
+    "tag": "DW_TAG_subprogram",
+    "type": {
+      "name": "void"
+    },
+    "size": null,
+    "const_value": null,
+    "children": []
+  },
+  {
+    "name": "TPacketGCChat",
+    "die": "0x1ede818",
+    "tag": "DW_TAG_typedef",
+    "type": {
+      "die": "0x1ede762",
+      "tag": "DW_TAG_structure_type",
+      "name": "packet_chat",
+      "size": 9
+    },
+    "size": null,
+    "const_value": null,
+    "children": []
+  },
+  {
+    "name": "chatbuf",
+    "die": "0x1f4d8f6",
+    "tag": "DW_TAG_variable",
+    "type": {
+      "die": "0x1edba85",
+      "tag": "DW_TAG_array_type",
+      "name": null,
+      "size": null,
+      "type": {
+        "die": "0x1e8a96f",
+        "tag": "DW_TAG_base_type",
+        "name": "char",
+        "size": 1
+      },
+      "bounds": [
+        85
+      ]
+    },
+    "size": null,
+    "const_value": null,
+    "children": []
+  }
+]

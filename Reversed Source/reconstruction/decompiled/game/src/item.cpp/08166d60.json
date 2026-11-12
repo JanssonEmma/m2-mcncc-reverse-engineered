@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08166d60",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8166d60",
+    "function": {
+      "name": "CItem::DistanceValid",
+      "address": "08166d60"
+    },
+    "signature": "bool DistanceValid(CItem * this, LPCHARACTER ch)",
+    "code": "\r\n/* DWARF original prototype: bool DistanceValid(CItem * this, LPCHARACTER ch) */\r\n\r\nbool __thiscall CItem::DistanceValid(CItem *this,LPCHARACTER ch)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  \r\n                    /* Unresolved local var: int iDist@[DW_OP_reg0(EAX)] */\r\n  if ((this->super_CEntity).m_pSectree == (SECTREE *)0x0) {\r\n    bVar1 = false;\r\n  }\r\n  else {\r\n    iVar2 = DISTANCE_APPROX((this->super_CEntity).m_pos.x - (ch->super_CEntity).m_pos.x,\r\n                            (this->super_CEntity).m_pos.y - (ch->super_CEntity).m_pos.y);\r\n    bVar1 = iVar2 < 0x12d;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

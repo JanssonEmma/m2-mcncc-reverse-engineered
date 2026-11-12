@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804ea00",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CEventQueue::CEventQueue",
+      "address": "0804ea00"
+    },
+    "code": "\r\n/* WARNING: Removing unreachable block (ram,0x0804ea81) */\r\n/* DWARF original prototype: void CEventQueue(CEventQueue * this) */\r\n\r\nvoid __thiscall CEventQueue::CEventQueue(CEventQueue *this)\r\n\r\n{\r\n  (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n  super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_start =\r\n       (TQueueElement **)0x0;\r\n  (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n  super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_finish =\r\n       (TQueueElement **)0x0;\r\n  (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n  super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_end_of_storage =\r\n       (TQueueElement **)0x0;\r\n  memmove((void *)0x0,(void *)0x0,0);\r\n  (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n  super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_finish =\r\n       (TQueueElement **)0x0;\r\n  make_heap<__gnu_cxx::__normal_iterator<TQueueElement**,_std::vector<TQueueElement*,_std::allocator<TQueueElement*>_>_>,_CEventQueue::FuncQueueComp>\r\n            ((__normal_iterator<SQueueElement**,std::vector<SQueueElement*,_std::allocator<SQueueElement*>_>_>\r\n              )(this->m_pq_queue).c.\r\n               super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n               super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_start\r\n             ,(__normal_iterator<SQueueElement**,std::vector<SQueueElement*,_std::allocator<SQueueElement*>_>_>\r\n               )0x0,(FuncQueueComp)0x0);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

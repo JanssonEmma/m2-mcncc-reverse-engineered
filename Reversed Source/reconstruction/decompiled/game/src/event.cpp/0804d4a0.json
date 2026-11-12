@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804d4a0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "event_count",
+      "address": "0804d4a0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint event_count(void)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = CEventQueue::Size(&cxx_q);\r\n  return iVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

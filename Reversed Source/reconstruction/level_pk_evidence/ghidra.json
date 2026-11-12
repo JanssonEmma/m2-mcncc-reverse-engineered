@@ -1,0 +1,26 @@
+[
+  {
+    "function": {
+      "name": "CHARACTER::SetLevel",
+      "address": "0812a5f0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetLevel(CHARACTER * this, BYTE level) */\r\n\r\nvoid __thiscall CHARACTER::SetLevel(CHARACTER *this,BYTE level)\r\n\r\n{\r\n  BYTE BVar1;\r\n  \r\n  (this->m_points).level = level;\r\n  if ((this->super_CEntity).m_lpDesc == (LPDESC)0x0) {\r\n    return;\r\n  }\r\n  if ((level < PK_PROTECT_LEVEL) || (BVar1 = GetGMLevel(this), BVar1 != '\\0')) {\r\n    level = '\\x03';\r\n  }\r\n  else {\r\n    if (this->m_bPKMode != '\\x03') {\r\n      return;\r\n    }\r\n    level = '\\0';\r\n  }\r\n  SetPKMode(this,level);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CHARACTER::GetGMLevel",
+      "address": "08132170"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetGMLevel(CHARACTER * this) */\r\n\r\nBYTE __thiscall CHARACTER::GetGMLevel(CHARACTER *this)\r\n\r\n{\r\n  BYTE BVar1;\r\n  \r\n  if (test_server == 0) {\r\n    BVar1 = (this->m_pointsInstant).gm_level;\r\n  }\r\n  else {\r\n    BVar1 = '\\x05';\r\n  }\r\n  return BVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CHARACTER::SetPKMode",
+      "address": "081541e0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetPKMode(CHARACTER * this, BYTE bPKMode) */\r\n\r\nvoid __thiscall CHARACTER::SetPKMode(CHARACTER *this,BYTE bPKMode)\r\n\r\n{\r\n  char *pcVar1;\r\n  \r\n  if ((bPKMode < 5) && (this->m_bPKMode != bPKMode)) {\r\n    if ((bPKMode == '\\x04') && (this->m_pGuild == (CGuild *)0x0)) {\r\n      bPKMode = '\\x02';\r\n    }\r\n    this->m_bPKMode = bPKMode;\r\n    UpdatePacket(this);\r\n    pcVar1 = GetName(this);\r\n    sys_log(0,\"PK_MODE: %s %d\",pcVar1,(uint)this->m_bPKMode);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

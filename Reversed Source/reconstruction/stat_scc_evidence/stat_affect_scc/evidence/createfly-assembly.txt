@@ -1,0 +1,46 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08147740 <_ZN9CHARACTER9CreateFlyEhPS_>:
+ 8147740:	55                   	push   %ebp
+ 8147741:	b9 0a 00 00 00       	mov    $0xa,%ecx
+ 8147746:	89 e5                	mov    %esp,%ebp
+ 8147748:	83 ec 28             	sub    $0x28,%esp
+ 814774b:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 814774e:	c6 45 e8 46          	movb   $0x46,-0x18(%ebp)
+ 8147752:	8b 55 08             	mov    0x8(%ebp),%edx
+ 8147755:	88 45 e9             	mov    %al,-0x17(%ebp)
+ 8147758:	8b 82 f4 00 00 00    	mov    0xf4(%edx),%eax
+ 814775e:	89 45 ea             	mov    %eax,-0x16(%ebp)
+ 8147761:	8b 45 10             	mov    0x10(%ebp),%eax
+ 8147764:	8b 80 f4 00 00 00    	mov    0xf4(%eax),%eax
+ 814776a:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 814776e:	89 14 24             	mov    %edx,(%esp)
+ 8147771:	89 45 ee             	mov    %eax,-0x12(%ebp)
+ 8147774:	31 c0                	xor    %eax,%eax
+ 8147776:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 814777a:	8d 45 e8             	lea    -0x18(%ebp),%eax
+ 814777d:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8147781:	e8 2a 54 06 00       	call   81acbb0 <_ZN7CEntity12PacketAroundEPKviPS_>
+ 8147786:	89 ec                	mov    %ebp,%esp
+ 8147788:	5d                   	pop    %ebp
+ 8147789:	c3                   	ret
+ 814778a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+
+08147790 <_ZN9CHARACTER12DistributeSPEPS_i>:
+ 8147790:	55                   	push   %ebp
+ 8147791:	89 e5                	mov    %esp,%ebp
+ 8147793:	83 ec 28             	sub    $0x28,%esp
+ 8147796:	89 75 f8             	mov    %esi,-0x8(%ebp)
+ 8147799:	8b 75 0c             	mov    0xc(%ebp),%esi
+ 814779c:	89 5d f4             	mov    %ebx,-0xc(%ebp)
+ 814779f:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 81477a2:	89 7d fc             	mov    %edi,-0x4(%ebp)
+ 81477a5:	8b 86 28 09 00 00    	mov    0x928(%esi),%eax
+ 81477ab:	39                   	.byte 0x39
+ 81477ac:	86 10                	xchg   %dl,(%eax)
+ 81477ae:	05                   	.byte 0x5
+	...

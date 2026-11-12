@@ -1,0 +1,716 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8a30",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"printdata\",\n    \"address\": \"081b8a30\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nvoid printdata(bool *data,int bytes)\\r\\n\\r\\n{\\r\\n  uint uVar1;\\r\\n  bool *pbVar2;\\r\\n  int iVar3;\\r\\n  int iVar4;\\r\\n  int j;\\r\\n  \\r\\n                    /* Unresolved local var: int i@[DW_OP_reg6(ESI)]\\r\\n                       Unresolved local var: int k@[DW_OP_reg7(EDI)]\\r\\n                       Unresolved local var: bool * p@[DW_OP_reg3(EBX)] */\\r\\n  fwrite(\\\"------------------------------------------------------------------\\\\n\\\",1,0x43,__stderrp);\\r\\n  j = bytes;\\r\\n  do {\\r\\n    iVar4 = j;\\r\\n    if (0x10 < j) {\\r\\n      iVar4 = 0x10;\\r\\n    }\\r\\n    iVar3 = 0;\\r\\n    pbVar2 = data;\\r\\n    do {\\r\\n      if (iVar3 < iVar4) {\\r\\n        fprintf(__stderrp,\\\"%02x \\\",(uint)*pbVar2);\\r\\n      }\\r\\n      else {\\r\\n        fwrite(&DAT_08234088,1,3,__stderrp);\\r\\n      }\\r\\n      iVar3 = iVar3 + 1;\\r\\n      pbVar2 = pbVar2 + 1;\\r\\n    } while (iVar3 < 0x10);\\r\\n    fwrite(\\\"| \\\",1,2,__stderrp);\\r\\n    pbVar2 = data;\\r\\n    if (0 < iVar4) {\\r\\n      do {\\r\\n        uVar1 = (uint)*pbVar2;\\r\\n        if ((uVar1 & 0xe0) < 0x91) {\\r\\n          if (uVar1 < 0x100) {\\r\\n            uVar1 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar1 * 4);\\r\\n          }\\r\\n          else {\\r\\n            uVar1 = ___runetype(uVar1);\\r\\n          }\\r\\n          if ((uVar1 & 0x40000) != 0) goto LAB_081b8b23;\\r\\nLAB_081b8bc2:\\r\\n          uVar1 = 0x2e;\\r\\n        }\\r\\n        else {\\r\\nLAB_081b8b23:\\r\\n          uVar1 = (uint)pbVar2[1];\\r\\n          if ((uVar1 & 0xe0) < 0x91) {\\r\\n            if (uVar1 < 0x100) {\\r\\n              uVar1 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar1 * 4);\\r\\n            }\\r\\n            else {\\r\\n              uVar1 = ___runetype(uVar1);\\r\\n            }\\r\\n            if ((uVar1 & 0x40000) == 0) goto LAB_081b8bc2;\\r\\n          }\\r\\n          uVar1 = (uint)*pbVar2;\\r\\n        }\\r\\n        fputc(uVar1,__stderrp);\\r\\n        iVar4 = iVar4 + -1;\\r\\n        pbVar2 = pbVar2 + 1;\\r\\n      } while (iVar4 != 0);\\r\\n    }\\r\\n    fputc(10,__stderrp);\\r\\n    j = j + -0x10;\\r\\n    data = data + 0x10;\\r\\n    if (j < 1) {\\r\\n      fwrite(\\\"------------------------------------------------------------------\\\\n\\\",1,0x43,__stderrp\\r\\n            );\\r\\n      return;\\r\\n    }\\r\\n  } while( true );\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "printdata",
+              "address": "081b8a30"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid printdata(bool *data,int bytes)\r\n\r\n{\r\n  uint uVar1;\r\n  bool *pbVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int j;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int k@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: bool * p@[DW_OP_reg3(EBX)] */\r\n  fwrite(\"------------------------------------------------------------------\\n\",1,0x43,__stderrp);\r\n  j = bytes;\r\n  do {\r\n    iVar4 = j;\r\n    if (0x10 < j) {\r\n      iVar4 = 0x10;\r\n    }\r\n    iVar3 = 0;\r\n    pbVar2 = data;\r\n    do {\r\n      if (iVar3 < iVar4) {\r\n        fprintf(__stderrp,\"%02x \",(uint)*pbVar2);\r\n      }\r\n      else {\r\n        fwrite(&DAT_08234088,1,3,__stderrp);\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n      pbVar2 = pbVar2 + 1;\r\n    } while (iVar3 < 0x10);\r\n    fwrite(\"| \",1,2,__stderrp);\r\n    pbVar2 = data;\r\n    if (0 < iVar4) {\r\n      do {\r\n        uVar1 = (uint)*pbVar2;\r\n        if ((uVar1 & 0xe0) < 0x91) {\r\n          if (uVar1 < 0x100) {\r\n            uVar1 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar1 * 4);\r\n          }\r\n          else {\r\n            uVar1 = ___runetype(uVar1);\r\n          }\r\n          if ((uVar1 & 0x40000) != 0) goto LAB_081b8b23;\r\nLAB_081b8bc2:\r\n          uVar1 = 0x2e;\r\n        }\r\n        else {\r\nLAB_081b8b23:\r\n          uVar1 = (uint)pbVar2[1];\r\n          if ((uVar1 & 0xe0) < 0x91) {\r\n            if (uVar1 < 0x100) {\r\n              uVar1 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar1 * 4);\r\n            }\r\n            else {\r\n              uVar1 = ___runetype(uVar1);\r\n            }\r\n            if ((uVar1 & 0x40000) == 0) goto LAB_081b8bc2;\r\n          }\r\n          uVar1 = (uint)*pbVar2;\r\n        }\r\n        fputc(uVar1,__stderrp);\r\n        iVar4 = iVar4 + -1;\r\n        pbVar2 = pbVar2 + 1;\r\n      } while (iVar4 != 0);\r\n    }\r\n    fputc(10,__stderrp);\r\n    j = j + -0x10;\r\n    data = data + 0x10;\r\n    if (j < 1) {\r\n      fwrite(\"------------------------------------------------------------------\\n\",1,0x43,__stderrp\r\n            );\r\n      return;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8d00",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"time_str\",\n    \"address\": \"081b8d00\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention */\\r\\n\\r\\nchar * time_str(time_t ct)\\r\\n\\r\\n{\\r\\n  tm *__tp;\\r\\n  size_t sVar1;\\r\\n  \\r\\n  __tp = localtime(&ct);\\r\\n  time_str::time_s = asctime(__tp);\\r\\n  sVar1 = strlen(time_str::time_s);\\r\\n  time_str::time_s[sVar1 - 6] = '\\\\0';\\r\\n  time_str::time_s = time_str::time_s + 4;\\r\\n  return time_str::time_s;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "time_str",
+              "address": "081b8d00"
+            },
+            "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nchar * time_str(time_t ct)\r\n\r\n{\r\n  tm *__tp;\r\n  size_t sVar1;\r\n  \r\n  __tp = localtime(&ct);\r\n  time_str::time_s = asctime(__tp);\r\n  sVar1 = strlen(time_str::time_s);\r\n  time_str::time_s[sVar1 - 6] = '\\0';\r\n  time_str::time_s = time_str::time_s + 4;\r\n  return time_str::time_s;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8d50",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"trim_and_lower\",\n    \"address\": \"081b8d50\"\n  },\n  \"code\": \"\\r\\nvoid trim_and_lower(char *dest,char *src,int max_len)\\r\\n\\r\\n{\\r\\n  char *pcVar1;\\r\\n  char cVar2;\\r\\n  uint uVar3;\\r\\n  int len;\\r\\n  \\r\\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)] */\\r\\n  len = 0;\\r\\n  if (src != (char *)0x0) {\\r\\n    cVar2 = *src;\\r\\n    pcVar1 = dest;\\r\\n    if (cVar2 == '\\\\0') {\\r\\n      cVar2 = *src;\\r\\njoined_r0x081b8dff:\\r\\n      do {\\r\\n        dest = pcVar1;\\r\\n        if (cVar2 == '\\\\0') goto LAB_081b8dc0;\\r\\n        dest = pcVar1 + 1;\\r\\n        if ((byte)(cVar2 + 0xbfU) < 0x1a) {\\r\\n          cVar2 = cVar2 + ' ';\\r\\n        }\\r\\n        *pcVar1 = cVar2;\\r\\n        src = src + 1;\\r\\n        len = len + 1;\\r\\n        if (max_len <= len) goto LAB_081b8dc0;\\r\\n        cVar2 = *src;\\r\\n        pcVar1 = dest;\\r\\n      } while( true );\\r\\n    }\\r\\n    do {\\r\\n      uVar3 = (uint)cVar2;\\r\\n      if (0x90 < (uVar3 & 0xe0)) goto joined_r0x081b8dff;\\r\\n      if (uVar3 < 0x100) {\\r\\n        uVar3 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar3 * 4);\\r\\n      }\\r\\n      else {\\r\\n        uVar3 = ___runetype(uVar3);\\r\\n      }\\r\\n      if ((uVar3 & 0x4000) == 0) {\\r\\n        cVar2 = *src;\\r\\n        goto joined_r0x081b8dff;\\r\\n      }\\r\\n      src = src + 1;\\r\\n      cVar2 = *src;\\r\\n    } while (cVar2 != '\\\\0');\\r\\nLAB_081b8dc0:\\r\\n    do {\\r\\n      *dest = '\\\\0';\\r\\n      cVar2 = dest[-1];\\r\\n      if (cVar2 == '\\\\0') {\\r\\n        return;\\r\\n      }\\r\\n      uVar3 = (uint)cVar2;\\r\\n      if (uVar3 < 0x100) {\\r\\n        uVar3 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar3 * 4);\\r\\n      }\\r\\n      else {\\r\\n        uVar3 = ___runetype(uVar3);\\r\\n      }\\r\\n      dest = dest + -1;\\r\\n    } while ((uVar3 & 0x4000) != 0);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "trim_and_lower",
+              "address": "081b8d50"
+            },
+            "code": "\r\nvoid trim_and_lower(char *dest,char *src,int max_len)\r\n\r\n{\r\n  char *pcVar1;\r\n  char cVar2;\r\n  uint uVar3;\r\n  int len;\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)] */\r\n  len = 0;\r\n  if (src != (char *)0x0) {\r\n    cVar2 = *src;\r\n    pcVar1 = dest;\r\n    if (cVar2 == '\\0') {\r\n      cVar2 = *src;\r\njoined_r0x081b8dff:\r\n      do {\r\n        dest = pcVar1;\r\n        if (cVar2 == '\\0') goto LAB_081b8dc0;\r\n        dest = pcVar1 + 1;\r\n        if ((byte)(cVar2 + 0xbfU) < 0x1a) {\r\n          cVar2 = cVar2 + ' ';\r\n        }\r\n        *pcVar1 = cVar2;\r\n        src = src + 1;\r\n        len = len + 1;\r\n        if (max_len <= len) goto LAB_081b8dc0;\r\n        cVar2 = *src;\r\n        pcVar1 = dest;\r\n      } while( true );\r\n    }\r\n    do {\r\n      uVar3 = (uint)cVar2;\r\n      if (0x90 < (uVar3 & 0xe0)) goto joined_r0x081b8dff;\r\n      if (uVar3 < 0x100) {\r\n        uVar3 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar3 * 4);\r\n      }\r\n      else {\r\n        uVar3 = ___runetype(uVar3);\r\n      }\r\n      if ((uVar3 & 0x4000) == 0) {\r\n        cVar2 = *src;\r\n        goto joined_r0x081b8dff;\r\n      }\r\n      src = src + 1;\r\n      cVar2 = *src;\r\n    } while (cVar2 != '\\0');\r\nLAB_081b8dc0:\r\n    do {\r\n      *dest = '\\0';\r\n      cVar2 = dest[-1];\r\n      if (cVar2 == '\\0') {\r\n        return;\r\n      }\r\n      uVar3 = (uint)cVar2;\r\n      if (uVar3 < 0x100) {\r\n        uVar3 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar3 * 4);\r\n      }\r\n      else {\r\n        uVar3 = ___runetype(uVar3);\r\n      }\r\n      dest = dest + -1;\r\n    } while ((uVar3 & 0x4000) != 0);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8e60",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"lower_string\",\n    \"address\": \"081b8e60\"\n  },\n  \"code\": \"\\r\\nvoid lower_string(char *src,char *dest,int len)\\r\\n\\r\\n{\\r\\n  char *pcVar1;\\r\\n  int iVar2;\\r\\n  char local_11;\\r\\n  \\r\\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)]\\r\\n                       Unresolved local var: int i@[DW_OP_reg3(EBX)] */\\r\\n  iVar2 = 0;\\r\\n  local_11 = *src;\\r\\n  if ((local_11 != '\\\\0') && (pcVar1 = dest, 0 < len)) {\\r\\n    do {\\r\\n      dest = pcVar1 + 1;\\r\\n      if ((byte)(local_11 + 0xbfU) < 0x1a) {\\r\\n        local_11 = local_11 + ' ';\\r\\n      }\\r\\n      src = src + 1;\\r\\n      iVar2 = iVar2 + 1;\\r\\n      *pcVar1 = local_11;\\r\\n      local_11 = *src;\\r\\n    } while ((local_11 != '\\\\0') && (pcVar1 = dest, iVar2 < len));\\r\\n  }\\r\\n  *dest = '\\\\0';\\r\\n  if (iVar2 < len) {\\r\\n    iVar2 = len - iVar2;\\r\\n    do {\\r\\n      *dest = '\\\\0';\\r\\n      dest = dest + 1;\\r\\n      iVar2 = iVar2 + -1;\\r\\n    } while (iVar2 != 0);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "lower_string",
+              "address": "081b8e60"
+            },
+            "code": "\r\nvoid lower_string(char *src,char *dest,int len)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  char local_11;\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int i@[DW_OP_reg3(EBX)] */\r\n  iVar2 = 0;\r\n  local_11 = *src;\r\n  if ((local_11 != '\\0') && (pcVar1 = dest, 0 < len)) {\r\n    do {\r\n      dest = pcVar1 + 1;\r\n      if ((byte)(local_11 + 0xbfU) < 0x1a) {\r\n        local_11 = local_11 + ' ';\r\n      }\r\n      src = src + 1;\r\n      iVar2 = iVar2 + 1;\r\n      *pcVar1 = local_11;\r\n      local_11 = *src;\r\n    } while ((local_11 != '\\0') && (pcVar1 = dest, iVar2 < len));\r\n  }\r\n  *dest = '\\0';\r\n  if (iVar2 < len) {\r\n    iVar2 = len - iVar2;\r\n    do {\r\n      *dest = '\\0';\r\n      dest = dest + 1;\r\n      iVar2 = iVar2 + -1;\r\n    } while (iVar2 != 0);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8ed0",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"str_dup\",\n    \"address\": \"081b8ed0\"\n  },\n  \"code\": \"\\r\\nchar * str_dup(char *source)\\r\\n\\r\\n{\\r\\n  size_t sVar1;\\r\\n  char *pcVar2;\\r\\n  \\r\\n                    /* Unresolved local var: char * new_line@[DW_OP_reg0(EAX)] */\\r\\n  sVar1 = strlen(source);\\r\\n  pcVar2 = calloc(sVar1 + 1,1);\\r\\n  if (pcVar2 != (char *)0x0) {\\r\\n    pcVar2 = strcpy(pcVar2,source);\\r\\n    return pcVar2;\\r\\n  }\\r\\n  perror(\\\"malloc failure\\\");\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n  abort();\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "str_dup",
+              "address": "081b8ed0"
+            },
+            "code": "\r\nchar * str_dup(char *source)\r\n\r\n{\r\n  size_t sVar1;\r\n  char *pcVar2;\r\n  \r\n                    /* Unresolved local var: char * new_line@[DW_OP_reg0(EAX)] */\r\n  sVar1 = strlen(source);\r\n  pcVar2 = calloc(sVar1 + 1,1);\r\n  if (pcVar2 != (char *)0x0) {\r\n    pcVar2 = strcpy(pcVar2,source);\r\n    return pcVar2;\r\n  }\r\n  perror(\"malloc failure\");\r\n                    /* WARNING: Subroutine does not return */\r\n  abort();\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8f20",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"is_abbrev\",\n    \"address\": \"081b8f20\"\n  },\n  \"code\": \"\\r\\nint is_abbrev(char *arg1,char *arg2)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  char cVar2;\\r\\n  int iVar3;\\r\\n  int iVar4;\\r\\n  \\r\\n  iVar3 = 0;\\r\\n  cVar1 = *arg1;\\r\\n  if (cVar1 != '\\\\0') {\\r\\n    cVar2 = *arg2;\\r\\n    while (cVar2 != '\\\\0') {\\r\\n      iVar3 = (int)cVar1;\\r\\n      if ((byte)(cVar1 + 0xbfU) < 0x1a) {\\r\\n        iVar3 = iVar3 + 0x20;\\r\\n      }\\r\\n      if ((byte)(cVar2 + 0xbfU) < 0x1a) {\\r\\n        iVar4 = cVar2 + 0x20;\\r\\n      }\\r\\n      else {\\r\\n        iVar4 = (int)cVar2;\\r\\n      }\\r\\n      if (iVar3 != iVar4) {\\r\\n        return 0;\\r\\n      }\\r\\n      arg1 = arg1 + 1;\\r\\n      arg2 = arg2 + 1;\\r\\n      cVar1 = *arg1;\\r\\n      if (cVar1 == '\\\\0') goto LAB_081b8f78;\\r\\n      cVar2 = *arg2;\\r\\n    }\\r\\n    iVar3 = 0;\\r\\n    if (cVar1 == '\\\\0') {\\r\\nLAB_081b8f78:\\r\\n      iVar3 = 1;\\r\\n    }\\r\\n  }\\r\\n  return iVar3;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "is_abbrev",
+              "address": "081b8f20"
+            },
+            "code": "\r\nint is_abbrev(char *arg1,char *arg2)\r\n\r\n{\r\n  char cVar1;\r\n  char cVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  iVar3 = 0;\r\n  cVar1 = *arg1;\r\n  if (cVar1 != '\\0') {\r\n    cVar2 = *arg2;\r\n    while (cVar2 != '\\0') {\r\n      iVar3 = (int)cVar1;\r\n      if ((byte)(cVar1 + 0xbfU) < 0x1a) {\r\n        iVar3 = iVar3 + 0x20;\r\n      }\r\n      if ((byte)(cVar2 + 0xbfU) < 0x1a) {\r\n        iVar4 = cVar2 + 0x20;\r\n      }\r\n      else {\r\n        iVar4 = (int)cVar2;\r\n      }\r\n      if (iVar3 != iVar4) {\r\n        return 0;\r\n      }\r\n      arg1 = arg1 + 1;\r\n      arg2 = arg2 + 1;\r\n      cVar1 = *arg1;\r\n      if (cVar1 == '\\0') goto LAB_081b8f78;\r\n      cVar2 = *arg2;\r\n    }\r\n    iVar3 = 0;\r\n    if (cVar1 == '\\0') {\r\nLAB_081b8f78:\r\n      iVar3 = 1;\r\n    }\r\n  }\r\n  return iVar3;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b8fa0",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"filesize\",\n    \"address\": \"081b8fa0\"\n  },\n  \"code\": \"\\r\\nint filesize(FILE_conflict *fp)\\r\\n\\r\\n{\\r\\n  long __off;\\r\\n  long lVar1;\\r\\n  \\r\\n                    /* Unresolved local var: int pos@[DW_OP_reg7(EDI)]\\r\\n                       Unresolved local var: int size@[DW_OP_reg6(ESI)] */\\r\\n  __off = ftell((FILE *)fp);\\r\\n  fseek((FILE *)fp,0,2);\\r\\n  lVar1 = ftell((FILE *)fp);\\r\\n  fseek((FILE *)fp,__off,0);\\r\\n  return lVar1;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "filesize",
+              "address": "081b8fa0"
+            },
+            "code": "\r\nint filesize(FILE_conflict *fp)\r\n\r\n{\r\n  long __off;\r\n  long lVar1;\r\n  \r\n                    /* Unresolved local var: int pos@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int size@[DW_OP_reg6(ESI)] */\r\n  __off = ftell((FILE *)fp);\r\n  fseek((FILE *)fp,0,2);\r\n  lVar1 = ftell((FILE *)fp);\r\n  fseek((FILE *)fp,__off,0);\r\n  return lVar1;\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "address": "081b9000",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"function\": {\n    \"name\": \"parse_token\",\n    \"address\": \"081b9000\"\n  },\n  \"code\": \"\\r\\nvoid parse_token(char *src,char *token,char *value)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  uint uVar2;\\r\\n  char *pcVar3;\\r\\n  \\r\\n                    /* Unresolved local var: char * tmp@[DW_OP_reg3(EBX)] */\\r\\n  cVar1 = *src;\\r\\n  do {\\r\\n    if ((cVar1 == '\\\\0') || (cVar1 == ':')) {\\r\\n      *token = '\\\\0';\\r\\n      pcVar3 = src + 2;\\r\\n      cVar1 = *pcVar3;\\r\\n      while (cVar1 != '\\\\0') {\\r\\n        if ((cVar1 != '\\\\n') && (cVar1 != '\\\\r')) {\\r\\n          *value = cVar1;\\r\\n          value = value + 1;\\r\\n        }\\r\\n        pcVar3 = pcVar3 + 1;\\r\\n        cVar1 = *pcVar3;\\r\\n      }\\r\\n      *value = '\\\\0';\\r\\n      return;\\r\\n    }\\r\\n    uVar2 = (uint)cVar1;\\r\\n    if ((uVar2 & 0xe0) < 0x91) {\\r\\n      if (uVar2 < 0x100) {\\r\\n        uVar2 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar2 * 4);\\r\\n      }\\r\\n      else {\\r\\n        uVar2 = ___runetype(uVar2);\\r\\n      }\\r\\n      pcVar3 = token;\\r\\n      if ((uVar2 & 0x4000) == 0) {\\r\\n        cVar1 = *src;\\r\\n        goto LAB_081b90b0;\\r\\n      }\\r\\n    }\\r\\n    else {\\r\\nLAB_081b90b0:\\r\\n      pcVar3 = token + 1;\\r\\n      if ((byte)(cVar1 + 0xbfU) < 0x1a) {\\r\\n        cVar1 = cVar1 + ' ';\\r\\n      }\\r\\n      *token = cVar1;\\r\\n    }\\r\\n    src = src + 1;\\r\\n    cVar1 = *src;\\r\\n    token = pcVar3;\\r\\n  } while( true );\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+            }
+          ],
+          "structuredContent": {
+            "function": {
+              "name": "parse_token",
+              "address": "081b9000"
+            },
+            "code": "\r\nvoid parse_token(char *src,char *token,char *value)\r\n\r\n{\r\n  char cVar1;\r\n  uint uVar2;\r\n  char *pcVar3;\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg3(EBX)] */\r\n  cVar1 = *src;\r\n  do {\r\n    if ((cVar1 == '\\0') || (cVar1 == ':')) {\r\n      *token = '\\0';\r\n      pcVar3 = src + 2;\r\n      cVar1 = *pcVar3;\r\n      while (cVar1 != '\\0') {\r\n        if ((cVar1 != '\\n') && (cVar1 != '\\r')) {\r\n          *value = cVar1;\r\n          value = value + 1;\r\n        }\r\n        pcVar3 = pcVar3 + 1;\r\n        cVar1 = *pcVar3;\r\n      }\r\n      *value = '\\0';\r\n      return;\r\n    }\r\n    uVar2 = (uint)cVar1;\r\n    if ((uVar2 & 0xe0) < 0x91) {\r\n      if (uVar2 < 0x100) {\r\n        uVar2 = *(uint *)(_CurrentRuneLocale + 0x34 + uVar2 * 4);\r\n      }\r\n      else {\r\n        uVar2 = ___runetype(uVar2);\r\n      }\r\n      pcVar3 = token;\r\n      if ((uVar2 & 0x4000) == 0) {\r\n        cVar1 = *src;\r\n        goto LAB_081b90b0;\r\n      }\r\n    }\r\n    else {\r\nLAB_081b90b0:\r\n      pcVar3 = token + 1;\r\n      if ((byte)(cVar1 + 0xbfU) < 0x1a) {\r\n        cVar1 = cVar1 + ' ';\r\n      }\r\n      *token = cVar1;\r\n    }\r\n    src = src + 1;\r\n    cVar1 = *src;\r\n    token = pcVar3;\r\n  } while( true );\r\n}\r\n\r\n",
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    }
+  ],
+  "trim_assembly": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"081b8d50\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d51\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d53\",\n      \"bytes\": \"57\",\n      \"instruction\": \"PUSH EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d54\",\n      \"bytes\": \"56\",\n      \"instruction\": \"PUSH ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d55\",\n      \"bytes\": \"53\",\n      \"instruction\": \"PUSH EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d56\",\n      \"bytes\": \"83ec0c\",\n      \"instruction\": \"SUB ESP,0xc\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d59\",\n      \"bytes\": \"8b550c\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d5c\",\n      \"bytes\": \"c745f000000000\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x10],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d63\",\n      \"bytes\": \"8b5d08\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d66\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d68\",\n      \"bytes\": \"89d6\",\n      \"instruction\": \"MOV ESI,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d6a\",\n      \"bytes\": \"747c\",\n      \"instruction\": \"JZ 0x081b8de8\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d6c\",\n      \"bytes\": \"0fb602\",\n      \"instruction\": \"MOVZX EAX,byte ptr [EDX]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d6f\",\n      \"bytes\": \"84c0\",\n      \"instruction\": \"TEST AL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d71\",\n      \"bytes\": \"0f84d6000000\",\n      \"instruction\": \"JZ 0x081b8e4d\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d77\",\n      \"bytes\": \"88c1\",\n      \"instruction\": \"MOV CL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d79\",\n      \"bytes\": \"8db42600000000\",\n      \"instruction\": \"LEA ESI,[ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d80\",\n      \"bytes\": \"0fbed1\",\n      \"instruction\": \"MOVSX EDX,CL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d83\",\n      \"bytes\": \"89d0\",\n      \"instruction\": \"MOV EAX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d85\",\n      \"bytes\": \"25e0000000\",\n      \"instruction\": \"AND EAX,0xe0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d8a\",\n      \"bytes\": \"3d90000000\",\n      \"instruction\": \"CMP EAX,0x90\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d8f\",\n      \"bytes\": \"7f6c\",\n      \"instruction\": \"JG 0x081b8dfd\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d91\",\n      \"bytes\": \"81faff000000\",\n      \"instruction\": \"CMP EDX,0xff\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d97\",\n      \"bytes\": \"0f87a3000000\",\n      \"instruction\": \"JA 0x081b8e40\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8d9d\",\n      \"bytes\": \"a1d0233208\",\n      \"instruction\": \"MOV EAX,[0x083223d0]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8da2\",\n      \"bytes\": \"8b449034\",\n      \"instruction\": \"MOV EAX,dword ptr [EAX + EDX*0x4 + 0x34]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8da6\",\n      \"bytes\": \"2500400000\",\n      \"instruction\": \"AND EAX,0x4000\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dab\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dad\",\n      \"bytes\": \"744b\",\n      \"instruction\": \"JZ 0x081b8dfa\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8daf\",\n      \"bytes\": \"46\",\n      \"instruction\": \"INC ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8db0\",\n      \"bytes\": \"0fb60e\",\n      \"instruction\": \"MOVZX ECX,byte ptr [ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8db3\",\n      \"bytes\": \"84c9\",\n      \"instruction\": \"TEST CL,CL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8db5\",\n      \"bytes\": \"75c9\",\n      \"instruction\": \"JNZ 0x081b8d80\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8db7\",\n      \"bytes\": \"89f6\",\n      \"instruction\": \"MOV ESI,ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8db9\",\n      \"bytes\": \"8dbc2700000000\",\n      \"instruction\": \"LEA EDI,[EDI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dc0\",\n      \"bytes\": \"c60300\",\n      \"instruction\": \"MOV byte ptr [EBX],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dc3\",\n      \"bytes\": \"4b\",\n      \"instruction\": \"DEC EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dc4\",\n      \"bytes\": \"0fb603\",\n      \"instruction\": \"MOVZX EAX,byte ptr [EBX]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dc7\",\n      \"bytes\": \"84c0\",\n      \"instruction\": \"TEST AL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dc9\",\n      \"bytes\": \"741d\",\n      \"instruction\": \"JZ 0x081b8de8\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dcb\",\n      \"bytes\": \"0fbed0\",\n      \"instruction\": \"MOVSX EDX,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dce\",\n      \"bytes\": \"81faff000000\",\n      \"instruction\": \"CMP EDX,0xff\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dd4\",\n      \"bytes\": \"771a\",\n      \"instruction\": \"JA 0x081b8df0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dd6\",\n      \"bytes\": \"a1d0233208\",\n      \"instruction\": \"MOV EAX,[0x083223d0]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8ddb\",\n      \"bytes\": \"8b449034\",\n      \"instruction\": \"MOV EAX,dword ptr [EAX + EDX*0x4 + 0x34]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8ddf\",\n      \"bytes\": \"2500400000\",\n      \"instruction\": \"AND EAX,0x4000\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8de4\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8de6\",\n      \"bytes\": \"75d8\",\n      \"instruction\": \"JNZ 0x081b8dc0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8de8\",\n      \"bytes\": \"83c40c\",\n      \"instruction\": \"ADD ESP,0xc\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8deb\",\n      \"bytes\": \"5b\",\n      \"instruction\": \"POP EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dec\",\n      \"bytes\": \"5e\",\n      \"instruction\": \"POP ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8ded\",\n      \"bytes\": \"5f\",\n      \"instruction\": \"POP EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dee\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8def\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8df0\",\n      \"bytes\": \"891424\",\n      \"instruction\": \"MOV dword ptr [ESP],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8df3\",\n      \"bytes\": \"e82435e9ff\",\n      \"instruction\": \"CALL 0x0804c31c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8df8\",\n      \"bytes\": \"ebe5\",\n      \"instruction\": \"JMP 0x081b8ddf\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dfa\",\n      \"bytes\": \"0fb60e\",\n      \"instruction\": \"MOVZX ECX,byte ptr [ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dfd\",\n      \"bytes\": \"84c9\",\n      \"instruction\": \"TEST CL,CL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8dff\",\n      \"bytes\": \"74bf\",\n      \"instruction\": \"JZ 0x081b8dc0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e01\",\n      \"bytes\": \"eb0d\",\n      \"instruction\": \"JMP 0x081b8e10\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e10\",\n      \"bytes\": \"88c8\",\n      \"instruction\": \"MOV AL,CL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e12\",\n      \"bytes\": \"89df\",\n      \"instruction\": \"MOV EDI,EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e14\",\n      \"bytes\": \"2c41\",\n      \"instruction\": \"SUB AL,0x41\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e16\",\n      \"bytes\": \"43\",\n      \"instruction\": \"INC EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e17\",\n      \"bytes\": \"88ca\",\n      \"instruction\": \"MOV DL,CL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e19\",\n      \"bytes\": \"3c19\",\n      \"instruction\": \"CMP AL,0x19\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e1b\",\n      \"bytes\": \"7703\",\n      \"instruction\": \"JA 0x081b8e20\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e1d\",\n      \"bytes\": \"80c220\",\n      \"instruction\": \"ADD DL,0x20\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e20\",\n      \"bytes\": \"8817\",\n      \"instruction\": \"MOV byte ptr [EDI],DL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e22\",\n      \"bytes\": \"46\",\n      \"instruction\": \"INC ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e23\",\n      \"bytes\": \"8b4510\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0x10]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e26\",\n      \"bytes\": \"ff45f0\",\n      \"instruction\": \"INC dword ptr [EBP + -0x10]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e29\",\n      \"bytes\": \"3945f0\",\n      \"instruction\": \"CMP dword ptr [EBP + -0x10],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e2c\",\n      \"bytes\": \"7d92\",\n      \"instruction\": \"JGE 0x081b8dc0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e2e\",\n      \"bytes\": \"0fb606\",\n      \"instruction\": \"MOVZX EAX,byte ptr [ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e31\",\n      \"bytes\": \"84c0\",\n      \"instruction\": \"TEST AL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e33\",\n      \"bytes\": \"88c1\",\n      \"instruction\": \"MOV CL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e35\",\n      \"bytes\": \"75d9\",\n      \"instruction\": \"JNZ 0x081b8e10\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e37\",\n      \"bytes\": \"eb87\",\n      \"instruction\": \"JMP 0x081b8dc0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e40\",\n      \"bytes\": \"891424\",\n      \"instruction\": \"MOV dword ptr [ESP],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e43\",\n      \"bytes\": \"e8d434e9ff\",\n      \"instruction\": \"CALL 0x0804c31c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e48\",\n      \"bytes\": \"e959ffffff\",\n      \"instruction\": \"JMP 0x081b8da6\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e4d\",\n      \"bytes\": \"0fb60a\",\n      \"instruction\": \"MOVZX ECX,byte ptr [EDX]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b8e50\",\n      \"bytes\": \"ebab\",\n      \"instruction\": \"JMP 0x081b8dfd\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 150,\n  \"total\": 85,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "081b8d50",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081b8d51",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081b8d53",
+          "bytes": "57",
+          "instruction": "PUSH EDI",
+          "comment": null
+        },
+        {
+          "address": "081b8d54",
+          "bytes": "56",
+          "instruction": "PUSH ESI",
+          "comment": null
+        },
+        {
+          "address": "081b8d55",
+          "bytes": "53",
+          "instruction": "PUSH EBX",
+          "comment": null
+        },
+        {
+          "address": "081b8d56",
+          "bytes": "83ec0c",
+          "instruction": "SUB ESP,0xc",
+          "comment": null
+        },
+        {
+          "address": "081b8d59",
+          "bytes": "8b550c",
+          "instruction": "MOV EDX,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "081b8d5c",
+          "bytes": "c745f000000000",
+          "instruction": "MOV dword ptr [EBP + -0x10],0x0",
+          "comment": null
+        },
+        {
+          "address": "081b8d63",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081b8d66",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081b8d68",
+          "bytes": "89d6",
+          "instruction": "MOV ESI,EDX",
+          "comment": null
+        },
+        {
+          "address": "081b8d6a",
+          "bytes": "747c",
+          "instruction": "JZ 0x081b8de8",
+          "comment": null
+        },
+        {
+          "address": "081b8d6c",
+          "bytes": "0fb602",
+          "instruction": "MOVZX EAX,byte ptr [EDX]",
+          "comment": null
+        },
+        {
+          "address": "081b8d6f",
+          "bytes": "84c0",
+          "instruction": "TEST AL,AL",
+          "comment": null
+        },
+        {
+          "address": "081b8d71",
+          "bytes": "0f84d6000000",
+          "instruction": "JZ 0x081b8e4d",
+          "comment": null
+        },
+        {
+          "address": "081b8d77",
+          "bytes": "88c1",
+          "instruction": "MOV CL,AL",
+          "comment": null
+        },
+        {
+          "address": "081b8d79",
+          "bytes": "8db42600000000",
+          "instruction": "LEA ESI,[ESI]",
+          "comment": null
+        },
+        {
+          "address": "081b8d80",
+          "bytes": "0fbed1",
+          "instruction": "MOVSX EDX,CL",
+          "comment": null
+        },
+        {
+          "address": "081b8d83",
+          "bytes": "89d0",
+          "instruction": "MOV EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081b8d85",
+          "bytes": "25e0000000",
+          "instruction": "AND EAX,0xe0",
+          "comment": null
+        },
+        {
+          "address": "081b8d8a",
+          "bytes": "3d90000000",
+          "instruction": "CMP EAX,0x90",
+          "comment": null
+        },
+        {
+          "address": "081b8d8f",
+          "bytes": "7f6c",
+          "instruction": "JG 0x081b8dfd",
+          "comment": null
+        },
+        {
+          "address": "081b8d91",
+          "bytes": "81faff000000",
+          "instruction": "CMP EDX,0xff",
+          "comment": null
+        },
+        {
+          "address": "081b8d97",
+          "bytes": "0f87a3000000",
+          "instruction": "JA 0x081b8e40",
+          "comment": null
+        },
+        {
+          "address": "081b8d9d",
+          "bytes": "a1d0233208",
+          "instruction": "MOV EAX,[0x083223d0]",
+          "comment": null
+        },
+        {
+          "address": "081b8da2",
+          "bytes": "8b449034",
+          "instruction": "MOV EAX,dword ptr [EAX + EDX*0x4 + 0x34]",
+          "comment": null
+        },
+        {
+          "address": "081b8da6",
+          "bytes": "2500400000",
+          "instruction": "AND EAX,0x4000",
+          "comment": null
+        },
+        {
+          "address": "081b8dab",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081b8dad",
+          "bytes": "744b",
+          "instruction": "JZ 0x081b8dfa",
+          "comment": null
+        },
+        {
+          "address": "081b8daf",
+          "bytes": "46",
+          "instruction": "INC ESI",
+          "comment": null
+        },
+        {
+          "address": "081b8db0",
+          "bytes": "0fb60e",
+          "instruction": "MOVZX ECX,byte ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081b8db3",
+          "bytes": "84c9",
+          "instruction": "TEST CL,CL",
+          "comment": null
+        },
+        {
+          "address": "081b8db5",
+          "bytes": "75c9",
+          "instruction": "JNZ 0x081b8d80",
+          "comment": null
+        },
+        {
+          "address": "081b8db7",
+          "bytes": "89f6",
+          "instruction": "MOV ESI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081b8db9",
+          "bytes": "8dbc2700000000",
+          "instruction": "LEA EDI,[EDI]",
+          "comment": null
+        },
+        {
+          "address": "081b8dc0",
+          "bytes": "c60300",
+          "instruction": "MOV byte ptr [EBX],0x0",
+          "comment": null
+        },
+        {
+          "address": "081b8dc3",
+          "bytes": "4b",
+          "instruction": "DEC EBX",
+          "comment": null
+        },
+        {
+          "address": "081b8dc4",
+          "bytes": "0fb603",
+          "instruction": "MOVZX EAX,byte ptr [EBX]",
+          "comment": null
+        },
+        {
+          "address": "081b8dc7",
+          "bytes": "84c0",
+          "instruction": "TEST AL,AL",
+          "comment": null
+        },
+        {
+          "address": "081b8dc9",
+          "bytes": "741d",
+          "instruction": "JZ 0x081b8de8",
+          "comment": null
+        },
+        {
+          "address": "081b8dcb",
+          "bytes": "0fbed0",
+          "instruction": "MOVSX EDX,AL",
+          "comment": null
+        },
+        {
+          "address": "081b8dce",
+          "bytes": "81faff000000",
+          "instruction": "CMP EDX,0xff",
+          "comment": null
+        },
+        {
+          "address": "081b8dd4",
+          "bytes": "771a",
+          "instruction": "JA 0x081b8df0",
+          "comment": null
+        },
+        {
+          "address": "081b8dd6",
+          "bytes": "a1d0233208",
+          "instruction": "MOV EAX,[0x083223d0]",
+          "comment": null
+        },
+        {
+          "address": "081b8ddb",
+          "bytes": "8b449034",
+          "instruction": "MOV EAX,dword ptr [EAX + EDX*0x4 + 0x34]",
+          "comment": null
+        },
+        {
+          "address": "081b8ddf",
+          "bytes": "2500400000",
+          "instruction": "AND EAX,0x4000",
+          "comment": null
+        },
+        {
+          "address": "081b8de4",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081b8de6",
+          "bytes": "75d8",
+          "instruction": "JNZ 0x081b8dc0",
+          "comment": null
+        },
+        {
+          "address": "081b8de8",
+          "bytes": "83c40c",
+          "instruction": "ADD ESP,0xc",
+          "comment": null
+        },
+        {
+          "address": "081b8deb",
+          "bytes": "5b",
+          "instruction": "POP EBX",
+          "comment": null
+        },
+        {
+          "address": "081b8dec",
+          "bytes": "5e",
+          "instruction": "POP ESI",
+          "comment": null
+        },
+        {
+          "address": "081b8ded",
+          "bytes": "5f",
+          "instruction": "POP EDI",
+          "comment": null
+        },
+        {
+          "address": "081b8dee",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081b8def",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "081b8df0",
+          "bytes": "891424",
+          "instruction": "MOV dword ptr [ESP],EDX",
+          "comment": null
+        },
+        {
+          "address": "081b8df3",
+          "bytes": "e82435e9ff",
+          "instruction": "CALL 0x0804c31c",
+          "comment": null
+        },
+        {
+          "address": "081b8df8",
+          "bytes": "ebe5",
+          "instruction": "JMP 0x081b8ddf",
+          "comment": null
+        },
+        {
+          "address": "081b8dfa",
+          "bytes": "0fb60e",
+          "instruction": "MOVZX ECX,byte ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081b8dfd",
+          "bytes": "84c9",
+          "instruction": "TEST CL,CL",
+          "comment": null
+        },
+        {
+          "address": "081b8dff",
+          "bytes": "74bf",
+          "instruction": "JZ 0x081b8dc0",
+          "comment": null
+        },
+        {
+          "address": "081b8e01",
+          "bytes": "eb0d",
+          "instruction": "JMP 0x081b8e10",
+          "comment": null
+        },
+        {
+          "address": "081b8e10",
+          "bytes": "88c8",
+          "instruction": "MOV AL,CL",
+          "comment": null
+        },
+        {
+          "address": "081b8e12",
+          "bytes": "89df",
+          "instruction": "MOV EDI,EBX",
+          "comment": null
+        },
+        {
+          "address": "081b8e14",
+          "bytes": "2c41",
+          "instruction": "SUB AL,0x41",
+          "comment": null
+        },
+        {
+          "address": "081b8e16",
+          "bytes": "43",
+          "instruction": "INC EBX",
+          "comment": null
+        },
+        {
+          "address": "081b8e17",
+          "bytes": "88ca",
+          "instruction": "MOV DL,CL",
+          "comment": null
+        },
+        {
+          "address": "081b8e19",
+          "bytes": "3c19",
+          "instruction": "CMP AL,0x19",
+          "comment": null
+        },
+        {
+          "address": "081b8e1b",
+          "bytes": "7703",
+          "instruction": "JA 0x081b8e20",
+          "comment": null
+        },
+        {
+          "address": "081b8e1d",
+          "bytes": "80c220",
+          "instruction": "ADD DL,0x20",
+          "comment": null
+        },
+        {
+          "address": "081b8e20",
+          "bytes": "8817",
+          "instruction": "MOV byte ptr [EDI],DL",
+          "comment": null
+        },
+        {
+          "address": "081b8e22",
+          "bytes": "46",
+          "instruction": "INC ESI",
+          "comment": null
+        },
+        {
+          "address": "081b8e23",
+          "bytes": "8b4510",
+          "instruction": "MOV EAX,dword ptr [EBP + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "081b8e26",
+          "bytes": "ff45f0",
+          "instruction": "INC dword ptr [EBP + -0x10]",
+          "comment": null
+        },
+        {
+          "address": "081b8e29",
+          "bytes": "3945f0",
+          "instruction": "CMP dword ptr [EBP + -0x10],EAX",
+          "comment": null
+        },
+        {
+          "address": "081b8e2c",
+          "bytes": "7d92",
+          "instruction": "JGE 0x081b8dc0",
+          "comment": null
+        },
+        {
+          "address": "081b8e2e",
+          "bytes": "0fb606",
+          "instruction": "MOVZX EAX,byte ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081b8e31",
+          "bytes": "84c0",
+          "instruction": "TEST AL,AL",
+          "comment": null
+        },
+        {
+          "address": "081b8e33",
+          "bytes": "88c1",
+          "instruction": "MOV CL,AL",
+          "comment": null
+        },
+        {
+          "address": "081b8e35",
+          "bytes": "75d9",
+          "instruction": "JNZ 0x081b8e10",
+          "comment": null
+        },
+        {
+          "address": "081b8e37",
+          "bytes": "eb87",
+          "instruction": "JMP 0x081b8dc0",
+          "comment": null
+        },
+        {
+          "address": "081b8e40",
+          "bytes": "891424",
+          "instruction": "MOV dword ptr [ESP],EDX",
+          "comment": null
+        },
+        {
+          "address": "081b8e43",
+          "bytes": "e8d434e9ff",
+          "instruction": "CALL 0x0804c31c",
+          "comment": null
+        },
+        {
+          "address": "081b8e48",
+          "bytes": "e959ffffff",
+          "instruction": "JMP 0x081b8da6",
+          "comment": null
+        },
+        {
+          "address": "081b8e4d",
+          "bytes": "0fb60a",
+          "instruction": "MOVZX ECX,byte ptr [EDX]",
+          "comment": null
+        },
+        {
+          "address": "081b8e50",
+          "bytes": "ebab",
+          "instruction": "JMP 0x081b8dfd",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 150,
+      "total": 85,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

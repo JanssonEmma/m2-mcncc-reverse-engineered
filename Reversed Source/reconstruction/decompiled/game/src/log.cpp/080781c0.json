@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080781c0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "LogManager::LogManager",
+      "address": "080781c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void LogManager(LogManager * this) */\r\n\r\nvoid __thiscall LogManager::LogManager(LogManager *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n                    /* Unresolved local var: int offset@[???] */\r\n  bVar1 = singleton<LogManager>::ms_singleton != (LogManager *)0x0;\r\n  (this->super_singleton<LogManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_081fa610;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0xd);\r\n  }\r\n  (this->super_singleton<LogManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__LogManager_081fa600;\r\n  singleton<LogManager>::ms_singleton = this;\r\n  CAsyncSQL::CAsyncSQL(&this->m_sql);\r\n  this->m_bIsConnect = false;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

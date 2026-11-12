@@ -1,0 +1,17 @@
+# Only complete closed original bodies. Full destructor/Remove/MoveItem are declarations until actual stat/item SCC closes.
+SAFEBOX_CLOSED_SOURCES = $(TARGET_WALKING_SOURCES) ../../game/src/safebox.cpp ../../libgame/src/grid.cc
+SAFEBOX_CLOSED_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) safebox_desc_output_syscalls.o
+safebox_closed_regression$(EXEEXT): safebox_closed_regression.cpp $(SAFEBOX_CLOSED_SOURCES) $(SAFEBOX_CLOSED_OBJECTS) $(DESC_TEST_HEADERS) ../../game/src/safebox.h
+	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long safebox_closed_regression.cpp $(SAFEBOX_CLOSED_SOURCES) $(SAFEBOX_CLOSED_OBJECTS) $(LDFLAGS) -o $@
+safebox_desc_output_syscalls.o: safebox_desc_output_syscalls.c desc_output_syscalls.c socket_hooks.h fdwatch_shim/assert.h fdwatch_shim/sys/event.h socket_shim/sys/socket.h socket_shim/errno.h
+	$(CC) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CFLAGS) -UNDEBUG -c safebox_desc_output_syscalls.c -o $@
+.PHONY: check-safebox-closed check-safebox-closed-abi clean-safebox-closed
+check-safebox-closed: safebox_closed_regression$(EXEEXT)
+	./safebox_closed_regression$(EXEEXT)
+check-abi: check-safebox-closed-abi
+check-safebox-closed-abi: safebox_closed_abi.cpp ../../game/src/safebox.h ../../common/tables.h ../../game/src/char.h
+	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long -Wno-invalid-offsetof -m32 -fsyntax-only safebox_closed_abi.cpp
+clean: clean-safebox-closed
+clean-safebox-closed:
+	$(RM) safebox_closed_regression$(EXEEXT) safebox_desc_output_syscalls.o
+

@@ -1,0 +1,24 @@
+# Copy staged test files to reconstruction/tests; compile actual libthecore main.c
+# with per-function/data sections so unrelated uncalled startup APIs are removed.
+# This is NOT a new/thecore_shutdown replacement: original source store and real
+# shutdowned global are retained. The full main.c object is compiled unchanged.
+item_id_core.o: ../../libthecore/src/main.c ../../libthecore/include/main.h
+	$(CC) -Iposix_shim $(CPPFLAGS) $(CFLAGS) -ffunction-sections -fdata-sections -c ../../libthecore/src/main.c -o $@
+item_id_syscalls.o: item_id_syscalls.c desc_output_syscalls.c
+	$(CC) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CFLAGS) -c item_id_syscalls.c -o $@
+# item_id_desc_fixture.cpp is existing full desc_fixture.cpp with ONLY its fake
+# thecore_heart/thecore_pulse definitions removed. All other fixture code intact.
+# Actual main.c now owns those symbols. No descriptors/CHAR are instantiated by
+# this test; ID tests use full actual ITEM_MANAGER constructor/destructor.
+ITEM_ID_SOURCES = $(filter-out desc_fixture.cpp,$(TARGET_WALKING_SOURCES)) item_id_desc_fixture.cpp
+ITEM_ID_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) item_id_syscalls.o item_id_core.o
+item_id_regression$(EXEEXT): item_id_regression.cpp $(ITEM_ID_SOURCES) $(ITEM_ID_OBJECTS) ../../game/src/item_manager.h ../../game/src/config.h
+	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long item_id_regression.cpp $(ITEM_ID_SOURCES) $(ITEM_ID_OBJECTS) $(LDFLAGS) -Wl,--gc-sections -o $@
+# Add to RUNTIME_TESTS/check and clean object names. Parent should mirror O2 flags
+# for this recipe. Do not compile with NDEBUG: assertions are the test checks.
+# check-abi addition (strict target ABI and public nonconst signatures):
+# $(CXX) $(CPPFLAGS) $(CXXFLAGS) -m32 -fsyntax-only item_id_abi.cpp
+# Optional independent child death invocation: ./item_id_regression --assert-zero
+# Must terminate nonzero/abort; exit99 means assert disabled and is a failure.
+# Host assertion diagnostics differ from original FreeBSD file/line/ABI; do not
+# compare diagnostic text or force external assertion function to return.

@@ -1,0 +1,49 @@
+// Staged game/src/party.cpp methods. Requires full party.h.candidate and packet
+// additions, plus real BuildUpdatePartyPacket in char.cpp before runtime use.
+#include "party.h"
+#include "char.h"
+#include "desc.h"
+#include "desc_client.h"
+#include "packet.h"
+#include "../../common/packet.h"
+#include "../../libthecore/include/log.h"
+
+// 08141a50.
+DWORD CParty::GetLeaderPID() { return m_dwLeaderPID; }
+
+// 08142480: unconditional DB request. No membership, PC-party or null-client guard.
+void CParty::RequestSetMemberLevel(DWORD pid,BYTE level) {
+    TPacketPartySetMemberLevel p;
+    p.dwLeaderPID=GetLeaderPID();p.dwPID=pid;p.bLevel=level;
+    db_clientdesc->DBPacket(56,0,&p,sizeof(p));
+}
+
+// 08142c10 (CHARACTER* overload). Deliberately ignores the builder's bool result.
+void CParty::SendPartyInfoOneToAll(CHARACTER* ch) {
+    if(!ch->GetDesc()) return;
+    TPacketGCPartyUpdate p;
+    ch->BuildUpdatePartyPacket(p);
+    for(TMemberMap::iterator it=m_memberMap.begin();it!=m_memberMap.end();++it) {
+        CHARACTER* recipient=it->second.pCharacter;
+        if(recipient && recipient->GetDesc()) {
+            sys_log(2,"PARTY send info %s[%d] to %s[%d]",ch->GetName(),static_cast<DWORD>(ch->GetVID()),recipient->GetName(),static_cast<DWORD>(recipient->GetVID()));
+            // Reload from iterator after sys_log, matching the target call path.
+            it->second.pCharacter->GetDesc()->Packet(&p,sizeof(p));
+        }
+    }
+}
+
+// 08143310. Absent member returns role0 without insertion.
+BYTE CParty::GetRole(DWORD pid) {
+    TMemberMap::iterator it=m_memberMap.find(pid);
+    return it==m_memberMap.end()?0:it->second.bRole;
+}
+// 081430f0. Preserve operator[] insertion for a missing leader; do not harden.
+CHARACTER* CParty::GetLeaderCharacter() { return m_memberMap[GetLeaderPID()].pCharacter; }
+// 08144620. Unsigned comparison is observable for negative near-member counts.
+int CParty::GetExpBonusPercent() {
+    if(static_cast<unsigned int>(m_iCountNearPartyMember)<2U) return 0;
+    return static_cast<int>(static_cast<unsigned int>(m_iLongTimeExpBonus)+static_cast<unsigned int>(m_iExpBonus));
+}
+// Inline callsite in08133e50 reads m_iExpBonus directly.
+int CParty::GetPartyBonusExpPercent() { return m_iExpBonus; }

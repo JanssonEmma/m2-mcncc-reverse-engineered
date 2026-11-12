@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b8440",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "log_file_init",
+      "address": "081b8440"
+    },
+    "code": "\r\nLPLOGFILE log_file_init(char *filename,char *openmode)\r\n\r\n{\r\n  tm *ptVar1;\r\n  FILE *pFVar2;\r\n  LPLOGFILE plVar3;\r\n  char *pcVar4;\r\n  int iVar5;\r\n  tm *ptVar6;\r\n  time_t time_s;\r\n  tm curr_tm;\r\n  \r\n                    /* Unresolved local var: LPLOGFILE logfile@[???]\r\n                       Unresolved local var: FILE.conflict * fp@[DW_OP_reg6(ESI)] */\r\n  time_s = time((time_t *)0x0);\r\n  ptVar1 = localtime(&time_s);\r\n  ptVar6 = &curr_tm;\r\n  for (iVar5 = 0xb; iVar5 != 0; iVar5 = iVar5 + -1) {\r\n    ptVar6->tm_sec = ptVar1->tm_sec;\r\n    ptVar1 = (tm *)&ptVar1->tm_min;\r\n    ptVar6 = (tm *)&ptVar6->tm_min;\r\n  }\r\n  pFVar2 = fopen(filename,openmode);\r\n  plVar3 = (LPLOGFILE)0x0;\r\n  if (pFVar2 != (FILE *)0x0) {\r\n    plVar3 = malloc(0x10);\r\n    pcVar4 = strdup(filename);\r\n    plVar3->filename = pcVar4;\r\n    plVar3->fp = (FILE_conflict *)pFVar2;\r\n    plVar3->last_hour = curr_tm.tm_hour;\r\n    plVar3->last_day = curr_tm.tm_mday;\r\n  }\r\n  return plVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

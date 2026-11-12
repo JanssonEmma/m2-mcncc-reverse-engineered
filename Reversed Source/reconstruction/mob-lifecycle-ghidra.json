@@ -1,0 +1,546 @@
+{
+  "080f5010": {
+    "function": {
+      "name": "CMob::CMob",
+      "address": "080f5010"
+    },
+    "code": "\r\n/* DWARF original prototype: void CMob(CMob * this) */\r\n\r\nvoid __thiscall CMob::CMob(CMob *this)\r\n\r\n{\r\n  int iVar1;\r\n  TMobSkillInfo *pTVar2;\r\n  \r\n  iVar1 = 4;\r\n  pTVar2 = this->m_mobSkillInfo;\r\n  do {\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_start = (TMobSplashAttackInfo *)0x0;\r\n    iVar1 = iVar1 + -1;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_finish = (TMobSplashAttackInfo *)0x0;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_end_of_storage = (TMobSplashAttackInfo *)0x0;\r\n    pTVar2 = pTVar2 + 1;\r\n  } while (iVar1 != -1);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080f5060": {
+    "function": {
+      "name": "CMob::CMob",
+      "address": "080f5060"
+    },
+    "code": "\r\n/* DWARF original prototype: void CMob(CMob * this) */\r\n\r\nvoid __thiscall CMob::CMob(CMob *this)\r\n\r\n{\r\n  int iVar1;\r\n  TMobSkillInfo *pTVar2;\r\n  \r\n  iVar1 = 4;\r\n  pTVar2 = this->m_mobSkillInfo;\r\n  do {\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_start = (TMobSplashAttackInfo *)0x0;\r\n    iVar1 = iVar1 + -1;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_finish = (TMobSplashAttackInfo *)0x0;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_end_of_storage = (TMobSplashAttackInfo *)0x0;\r\n    pTVar2 = pTVar2 + 1;\r\n  } while (iVar1 != -1);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080f50b0": {
+    "function": {
+      "name": "CMob::CMob",
+      "address": "080f50b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void CMob(CMob * this, CMob * c_pkMob) */\r\n\r\nvoid __thiscall CMob::CMob(CMob *this,CMob *c_pkMob)\r\n\r\n{\r\n  int iVar1;\r\n  TMobSkillInfo *pTVar2;\r\n  \r\n  iVar1 = 4;\r\n  pTVar2 = this->m_mobSkillInfo;\r\n  do {\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_start = (TMobSplashAttackInfo *)0x0;\r\n    iVar1 = iVar1 + -1;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_finish = (TMobSplashAttackInfo *)0x0;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_end_of_storage = (TMobSplashAttackInfo *)0x0;\r\n    pTVar2 = pTVar2 + 1;\r\n  } while (iVar1 != -1);\r\n  memcpy(this,c_pkMob,0xff);\r\n  (this->m_table).Skills[2].bLevel = '\\x19';\r\n  (this->m_table).Skills[2].dwVnum = 0x100;\r\n  (this->m_table).Skills[3].dwVnum = 0x100;\r\n  (this->m_table).Skills[3].bLevel = '\\x19';\r\n  (this->m_table).Skills[4].dwVnum = 0x100;\r\n  (this->m_table).Skills[4].bLevel = '\\x19';\r\n  this->m_mobSkillInfo[0].dwSkillVnum = c_pkMob->m_mobSkillInfo[0].dwSkillVnum;\r\n  this->m_mobSkillInfo[0].bSkillLevel = c_pkMob->m_mobSkillInfo[0].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[0].vecSplashAttack,&c_pkMob->m_mobSkillInfo[0].vecSplashAttack);\r\n  this->m_mobSkillInfo[1].dwSkillVnum = c_pkMob->m_mobSkillInfo[1].dwSkillVnum;\r\n  this->m_mobSkillInfo[1].bSkillLevel = c_pkMob->m_mobSkillInfo[1].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[1].vecSplashAttack,&c_pkMob->m_mobSkillInfo[1].vecSplashAttack);\r\n  this->m_mobSkillInfo[2].dwSkillVnum = c_pkMob->m_mobSkillInfo[2].dwSkillVnum;\r\n  this->m_mobSkillInfo[2].bSkillLevel = c_pkMob->m_mobSkillInfo[2].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[2].vecSplashAttack,&c_pkMob->m_mobSkillInfo[2].vecSplashAttack);\r\n  this->m_mobSkillInfo[3].dwSkillVnum = c_pkMob->m_mobSkillInfo[3].dwSkillVnum;\r\n  this->m_mobSkillInfo[3].bSkillLevel = c_pkMob->m_mobSkillInfo[3].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[3].vecSplashAttack,&c_pkMob->m_mobSkillInfo[3].vecSplashAttack);\r\n  this->m_mobSkillInfo[4].dwSkillVnum = c_pkMob->m_mobSkillInfo[4].dwSkillVnum;\r\n  this->m_mobSkillInfo[4].bSkillLevel = c_pkMob->m_mobSkillInfo[4].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[4].vecSplashAttack,&c_pkMob->m_mobSkillInfo[4].vecSplashAttack);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080f5240": {
+    "function": {
+      "name": "CMob::CMob",
+      "address": "080f5240"
+    },
+    "code": "\r\n/* DWARF original prototype: void CMob(CMob * this, CMob * c_pkMob) */\r\n\r\nvoid __thiscall CMob::CMob(CMob *this,CMob *c_pkMob)\r\n\r\n{\r\n  int iVar1;\r\n  TMobSkillInfo *pTVar2;\r\n  \r\n  iVar1 = 4;\r\n  pTVar2 = this->m_mobSkillInfo;\r\n  do {\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_start = (TMobSplashAttackInfo *)0x0;\r\n    iVar1 = iVar1 + -1;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_finish = (TMobSplashAttackInfo *)0x0;\r\n    (pTVar2->vecSplashAttack).\r\n    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n    _M_end_of_storage = (TMobSplashAttackInfo *)0x0;\r\n    pTVar2 = pTVar2 + 1;\r\n  } while (iVar1 != -1);\r\n  memcpy(this,c_pkMob,0xff);\r\n  (this->m_table).Skills[2].bLevel = '\\x19';\r\n  (this->m_table).Skills[2].dwVnum = 0x100;\r\n  (this->m_table).Skills[3].dwVnum = 0x100;\r\n  (this->m_table).Skills[3].bLevel = '\\x19';\r\n  (this->m_table).Skills[4].dwVnum = 0x100;\r\n  (this->m_table).Skills[4].bLevel = '\\x19';\r\n  this->m_mobSkillInfo[0].dwSkillVnum = c_pkMob->m_mobSkillInfo[0].dwSkillVnum;\r\n  this->m_mobSkillInfo[0].bSkillLevel = c_pkMob->m_mobSkillInfo[0].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[0].vecSplashAttack,&c_pkMob->m_mobSkillInfo[0].vecSplashAttack);\r\n  this->m_mobSkillInfo[1].dwSkillVnum = c_pkMob->m_mobSkillInfo[1].dwSkillVnum;\r\n  this->m_mobSkillInfo[1].bSkillLevel = c_pkMob->m_mobSkillInfo[1].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[1].vecSplashAttack,&c_pkMob->m_mobSkillInfo[1].vecSplashAttack);\r\n  this->m_mobSkillInfo[2].dwSkillVnum = c_pkMob->m_mobSkillInfo[2].dwSkillVnum;\r\n  this->m_mobSkillInfo[2].bSkillLevel = c_pkMob->m_mobSkillInfo[2].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[2].vecSplashAttack,&c_pkMob->m_mobSkillInfo[2].vecSplashAttack);\r\n  this->m_mobSkillInfo[3].dwSkillVnum = c_pkMob->m_mobSkillInfo[3].dwSkillVnum;\r\n  this->m_mobSkillInfo[3].bSkillLevel = c_pkMob->m_mobSkillInfo[3].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[3].vecSplashAttack,&c_pkMob->m_mobSkillInfo[3].vecSplashAttack);\r\n  this->m_mobSkillInfo[4].dwSkillVnum = c_pkMob->m_mobSkillInfo[4].dwSkillVnum;\r\n  this->m_mobSkillInfo[4].bSkillLevel = c_pkMob->m_mobSkillInfo[4].bSkillLevel;\r\n  vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::operator=\r\n            (&this->m_mobSkillInfo[4].vecSplashAttack,&c_pkMob->m_mobSkillInfo[4].vecSplashAttack);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080f53d0": {
+    "function": {
+      "name": "CMob::~CMob",
+      "address": "080f53d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CMob(CMob * this, int __in_chrg) */\r\n\r\nvoid __thiscall CMob::~CMob(CMob *this,int __in_chrg)\r\n\r\n{\r\n  CMob *pCVar1;\r\n  TMobSplashAttackInfo *pTVar2;\r\n  int iVar3;\r\n  CMob *pCVar4;\r\n  \r\n  if (this != (CMob *)0xffffff00) {\r\n    pCVar4 = this + 1;\r\n    while ((CMob *)this->m_mobSkillInfo != pCVar4) {\r\n      pCVar1 = pCVar4 + -1;\r\n      for (pTVar2 = pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                    ._M_start;\r\n          pTVar2 != pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                    ._M_finish; pTVar2 = pTVar2 + 1) {\r\n      }\r\n      pTVar2 = pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n               super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n               super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n               ._M_start;\r\n      iVar3 = (int)pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                   super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                   super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                   ._M_end_of_storage - (int)pTVar2 >> 3;\r\n      pCVar4 = (CMob *)(pCVar1->m_mobSkillInfo + 4);\r\n      if (iVar3 != 0) {\r\n        std::__default_alloc_template<true,0>::deallocate(pTVar2,iVar3 << 3);\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080f5440": {
+    "function": {
+      "name": "CMob::~CMob",
+      "address": "080f5440"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CMob(CMob * this, int __in_chrg) */\r\n\r\nvoid __thiscall CMob::~CMob(CMob *this,int __in_chrg)\r\n\r\n{\r\n  CMob *pCVar1;\r\n  TMobSplashAttackInfo *pTVar2;\r\n  int iVar3;\r\n  CMob *pCVar4;\r\n  \r\n  if (this != (CMob *)0xffffff00) {\r\n    pCVar4 = this + 1;\r\n    while ((CMob *)this->m_mobSkillInfo != pCVar4) {\r\n      pCVar1 = pCVar4 + -1;\r\n      for (pTVar2 = pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                    ._M_start;\r\n          pTVar2 != pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                    ._M_finish; pTVar2 = pTVar2 + 1) {\r\n      }\r\n      pTVar2 = pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n               super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n               super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n               ._M_start;\r\n      iVar3 = (int)pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                   super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                   super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                   ._M_end_of_storage - (int)pTVar2 >> 3;\r\n      pCVar4 = (CMob *)(pCVar1->m_mobSkillInfo + 4);\r\n      if (iVar3 != 0) {\r\n        std::__default_alloc_template<true,0>::deallocate(pTVar2,iVar3 << 3);\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "mobCopyAssembly": {
+    "items": [
+      {
+        "address": "080f50b0",
+        "bytes": "55",
+        "instruction": "PUSH EBP",
+        "comment": null
+      },
+      {
+        "address": "080f50b1",
+        "bytes": "b904000000",
+        "instruction": "MOV ECX,0x4",
+        "comment": null
+      },
+      {
+        "address": "080f50b6",
+        "bytes": "89e5",
+        "instruction": "MOV EBP,ESP",
+        "comment": null
+      },
+      {
+        "address": "080f50b8",
+        "bytes": "57",
+        "instruction": "PUSH EDI",
+        "comment": null
+      },
+      {
+        "address": "080f50b9",
+        "bytes": "56",
+        "instruction": "PUSH ESI",
+        "comment": null
+      },
+      {
+        "address": "080f50ba",
+        "bytes": "53",
+        "instruction": "PUSH EBX",
+        "comment": null
+      },
+      {
+        "address": "080f50bb",
+        "bytes": "83ec2c",
+        "instruction": "SUB ESP,0x2c",
+        "comment": null
+      },
+      {
+        "address": "080f50be",
+        "bytes": "8b5d08",
+        "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+        "comment": null
+      },
+      {
+        "address": "080f50c1",
+        "bytes": "8b750c",
+        "instruction": "MOV ESI,dword ptr [EBP + 0xc]",
+        "comment": null
+      },
+      {
+        "address": "080f50c4",
+        "bytes": "8dbb00010000",
+        "instruction": "LEA EDI,[EBX + 0x100]",
+        "comment": null
+      },
+      {
+        "address": "080f50ca",
+        "bytes": "89fa",
+        "instruction": "MOV EDX,EDI",
+        "comment": null
+      },
+      {
+        "address": "080f50cc",
+        "bytes": "8d742600",
+        "instruction": "LEA ESI,[ESI]",
+        "comment": null
+      },
+      {
+        "address": "080f50d0",
+        "bytes": "c7420800000000",
+        "instruction": "MOV dword ptr [EDX + 0x8],0x0",
+        "comment": null
+      },
+      {
+        "address": "080f50d7",
+        "bytes": "49",
+        "instruction": "DEC ECX",
+        "comment": null
+      },
+      {
+        "address": "080f50d8",
+        "bytes": "8d4208",
+        "instruction": "LEA EAX,[EDX + 0x8]",
+        "comment": null
+      },
+      {
+        "address": "080f50db",
+        "bytes": "c7400400000000",
+        "instruction": "MOV dword ptr [EAX + 0x4],0x0",
+        "comment": null
+      },
+      {
+        "address": "080f50e2",
+        "bytes": "83c214",
+        "instruction": "ADD EDX,0x14",
+        "comment": null
+      },
+      {
+        "address": "080f50e5",
+        "bytes": "83f9ff",
+        "instruction": "CMP ECX,-0x1",
+        "comment": null
+      },
+      {
+        "address": "080f50e8",
+        "bytes": "c7400800000000",
+        "instruction": "MOV dword ptr [EAX + 0x8],0x0",
+        "comment": null
+      },
+      {
+        "address": "080f50ef",
+        "bytes": "75df",
+        "instruction": "JNZ 0x080f50d0",
+        "comment": null
+      },
+      {
+        "address": "080f50f1",
+        "bytes": "89742404",
+        "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+        "comment": null
+      },
+      {
+        "address": "080f50f5",
+        "bytes": "b8ff000000",
+        "instruction": "MOV EAX,0xff",
+        "comment": null
+      },
+      {
+        "address": "080f50fa",
+        "bytes": "891c24",
+        "instruction": "MOV dword ptr [ESP],EBX",
+        "comment": null
+      },
+      {
+        "address": "080f50fd",
+        "bytes": "89442408",
+        "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5101",
+        "bytes": "e8c66cf5ff",
+        "instruction": "CALL 0x0804bdcc",
+        "comment": null
+      },
+      {
+        "address": "080f5106",
+        "bytes": "c683ef00000019",
+        "instruction": "MOV byte ptr [EBX + 0xef],0x19",
+        "comment": null
+      },
+      {
+        "address": "080f510d",
+        "bytes": "b900010000",
+        "instruction": "MOV ECX,0x100",
+        "comment": null
+      },
+      {
+        "address": "080f5112",
+        "bytes": "ba00010000",
+        "instruction": "MOV EDX,0x100",
+        "comment": null
+      },
+      {
+        "address": "080f5117",
+        "bytes": "898beb000000",
+        "instruction": "MOV dword ptr [EBX + 0xeb],ECX",
+        "comment": null
+      },
+      {
+        "address": "080f511d",
+        "bytes": "b800010000",
+        "instruction": "MOV EAX,0x100",
+        "comment": null
+      },
+      {
+        "address": "080f5122",
+        "bytes": "8993f0000000",
+        "instruction": "MOV dword ptr [EBX + 0xf0],EDX",
+        "comment": null
+      },
+      {
+        "address": "080f5128",
+        "bytes": "c683f400000019",
+        "instruction": "MOV byte ptr [EBX + 0xf4],0x19",
+        "comment": null
+      },
+      {
+        "address": "080f512f",
+        "bytes": "8983f5000000",
+        "instruction": "MOV dword ptr [EBX + 0xf5],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5135",
+        "bytes": "c683f900000019",
+        "instruction": "MOV byte ptr [EBX + 0xf9],0x19",
+        "comment": null
+      },
+      {
+        "address": "080f513c",
+        "bytes": "8b8600010000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x100]",
+        "comment": null
+      },
+      {
+        "address": "080f5142",
+        "bytes": "898300010000",
+        "instruction": "MOV dword ptr [EBX + 0x100],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5148",
+        "bytes": "0fb68604010000",
+        "instruction": "MOVZX EAX,byte ptr [ESI + 0x104]",
+        "comment": null
+      },
+      {
+        "address": "080f514f",
+        "bytes": "884704",
+        "instruction": "MOV byte ptr [EDI + 0x4],AL",
+        "comment": null
+      },
+      {
+        "address": "080f5152",
+        "bytes": "8d8608010000",
+        "instruction": "LEA EAX,[ESI + 0x108]",
+        "comment": null
+      },
+      {
+        "address": "080f5158",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f515c",
+        "bytes": "8d8308010000",
+        "instruction": "LEA EAX,[EBX + 0x108]",
+        "comment": null
+      },
+      {
+        "address": "080f5162",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5165",
+        "bytes": "e856260000",
+        "instruction": "CALL 0x080f77c0",
+        "comment": null
+      },
+      {
+        "address": "080f516a",
+        "bytes": "8b8614010000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x114]",
+        "comment": null
+      },
+      {
+        "address": "080f5170",
+        "bytes": "898314010000",
+        "instruction": "MOV dword ptr [EBX + 0x114],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5176",
+        "bytes": "0fb68618010000",
+        "instruction": "MOVZX EAX,byte ptr [ESI + 0x118]",
+        "comment": null
+      },
+      {
+        "address": "080f517d",
+        "bytes": "888318010000",
+        "instruction": "MOV byte ptr [EBX + 0x118],AL",
+        "comment": null
+      },
+      {
+        "address": "080f5183",
+        "bytes": "8d861c010000",
+        "instruction": "LEA EAX,[ESI + 0x11c]",
+        "comment": null
+      },
+      {
+        "address": "080f5189",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f518d",
+        "bytes": "8d831c010000",
+        "instruction": "LEA EAX,[EBX + 0x11c]",
+        "comment": null
+      },
+      {
+        "address": "080f5193",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5196",
+        "bytes": "e825260000",
+        "instruction": "CALL 0x080f77c0",
+        "comment": null
+      },
+      {
+        "address": "080f519b",
+        "bytes": "8b8628010000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x128]",
+        "comment": null
+      },
+      {
+        "address": "080f51a1",
+        "bytes": "898328010000",
+        "instruction": "MOV dword ptr [EBX + 0x128],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f51a7",
+        "bytes": "0fb6862c010000",
+        "instruction": "MOVZX EAX,byte ptr [ESI + 0x12c]",
+        "comment": null
+      },
+      {
+        "address": "080f51ae",
+        "bytes": "88832c010000",
+        "instruction": "MOV byte ptr [EBX + 0x12c],AL",
+        "comment": null
+      },
+      {
+        "address": "080f51b4",
+        "bytes": "8d8630010000",
+        "instruction": "LEA EAX,[ESI + 0x130]",
+        "comment": null
+      },
+      {
+        "address": "080f51ba",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f51be",
+        "bytes": "8d8330010000",
+        "instruction": "LEA EAX,[EBX + 0x130]",
+        "comment": null
+      },
+      {
+        "address": "080f51c4",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f51c7",
+        "bytes": "e8f4250000",
+        "instruction": "CALL 0x080f77c0",
+        "comment": null
+      },
+      {
+        "address": "080f51cc",
+        "bytes": "8b863c010000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x13c]",
+        "comment": null
+      },
+      {
+        "address": "080f51d2",
+        "bytes": "89833c010000",
+        "instruction": "MOV dword ptr [EBX + 0x13c],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f51d8",
+        "bytes": "0fb68640010000",
+        "instruction": "MOVZX EAX,byte ptr [ESI + 0x140]",
+        "comment": null
+      },
+      {
+        "address": "080f51df",
+        "bytes": "888340010000",
+        "instruction": "MOV byte ptr [EBX + 0x140],AL",
+        "comment": null
+      },
+      {
+        "address": "080f51e5",
+        "bytes": "8d8644010000",
+        "instruction": "LEA EAX,[ESI + 0x144]",
+        "comment": null
+      },
+      {
+        "address": "080f51eb",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f51ef",
+        "bytes": "8d8344010000",
+        "instruction": "LEA EAX,[EBX + 0x144]",
+        "comment": null
+      },
+      {
+        "address": "080f51f5",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f51f8",
+        "bytes": "e8c3250000",
+        "instruction": "CALL 0x080f77c0",
+        "comment": null
+      },
+      {
+        "address": "080f51fd",
+        "bytes": "8b8650010000",
+        "instruction": "MOV EAX,dword ptr [ESI + 0x150]",
+        "comment": null
+      },
+      {
+        "address": "080f5203",
+        "bytes": "898350010000",
+        "instruction": "MOV dword ptr [EBX + 0x150],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5209",
+        "bytes": "0fb68654010000",
+        "instruction": "MOVZX EAX,byte ptr [ESI + 0x154]",
+        "comment": null
+      },
+      {
+        "address": "080f5210",
+        "bytes": "888354010000",
+        "instruction": "MOV byte ptr [EBX + 0x154],AL",
+        "comment": null
+      },
+      {
+        "address": "080f5216",
+        "bytes": "8d8658010000",
+        "instruction": "LEA EAX,[ESI + 0x158]",
+        "comment": null
+      },
+      {
+        "address": "080f521c",
+        "bytes": "89442404",
+        "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5220",
+        "bytes": "8d8358010000",
+        "instruction": "LEA EAX,[EBX + 0x158]",
+        "comment": null
+      },
+      {
+        "address": "080f5226",
+        "bytes": "890424",
+        "instruction": "MOV dword ptr [ESP],EAX",
+        "comment": null
+      },
+      {
+        "address": "080f5229",
+        "bytes": "e892250000",
+        "instruction": "CALL 0x080f77c0",
+        "comment": null
+      },
+      {
+        "address": "080f522e",
+        "bytes": "83c42c",
+        "instruction": "ADD ESP,0x2c",
+        "comment": null
+      }
+    ],
+    "offset": 0,
+    "limit": 80,
+    "total": 85,
+    "has_more": true
+  },
+  "mobSplash": {
+    "function": {
+      "name": "CMob::AddSkillSplash",
+      "address": "080f54b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void AddSkillSplash(CMob * this, int iIndex, DWORD dwTiming, DWORD\r\n   dwHitDistance) */\r\n\r\nvoid __thiscall CMob::AddSkillSplash(CMob *this,int iIndex,DWORD dwTiming,DWORD dwHitDistance)\r\n\r\n{\r\n  TMobSplashAttackInfo *pTVar1;\r\n  TMobSplashAttackInfo local_1c;\r\n  \r\n  if ((uint)iIndex < 5) {\r\n    sys_log(0,\"SkillIndex %d timing %lu hit_distance %lu\",iIndex,dwTiming,dwHitDistance);\r\n    local_1c.dwTiming = dwTiming;\r\n    local_1c.dwHitDistance = dwHitDistance;\r\n    pTVar1 = this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n             super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n             super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n             ._M_finish;\r\n    if (pTVar1 == this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n                  super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                  super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                  ._M_end_of_storage) {\r\n      vector<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>::_M_insert_aux\r\n                (&this->m_mobSkillInfo[iIndex].vecSplashAttack,\r\n                 this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n                 super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                 super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                 ._M_finish,&local_1c);\r\n    }\r\n    else {\r\n      if (pTVar1 != (TMobSplashAttackInfo *)0x0) {\r\n        pTVar1->dwTiming = dwTiming;\r\n        pTVar1->dwHitDistance = dwHitDistance;\r\n      }\r\n      this->m_mobSkillInfo[iIndex].vecSplashAttack.\r\n      super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n      super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>.\r\n      _M_finish = pTVar1 + 1;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

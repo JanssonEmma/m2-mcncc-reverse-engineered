@@ -1,0 +1,15 @@
+// Insert into existing FULL CHARACTER class. No alternative app class.
+LPITEM AutoGiveItem(DWORD,BYTE,int,bool);
+int GetEmptyInventory(BYTE);
+bool IsEmptyItemGrid(BYTE,BYTE,int);
+bool GetQuickslot(BYTE,TQuickslot**);
+bool SetQuickslot(BYTE,TQuickslot&);
+bool DelQuickslot(BYTE);
+// Global helper prototype before AutoGive definition:
+// bool FN_check_item_socket(LPITEM);
+// Insert into existing FULL CItem class as missing (metadata method-api-dwarf.json):
+// bool SetCount(DWORD);
+// bool AddToGround(long,const PIXEL_POSITION&);
+// void StartDestroyEvent();
+// ITEM_MANAGER CreateItem full declaration, not method implementation:
+// LPITEM CreateItem(DWORD,DWORD,DWORD,bool,int);

@@ -1,0 +1,18 @@
+[
+  {
+    "function": {
+      "name": "CHARACTER::DelQuickslot",
+      "address": "08050840"
+    },
+    "code": "\r\n/* DWARF original prototype: bool DelQuickslot(CHARACTER * this, BYTE pos) */\r\n\r\nbool __thiscall CHARACTER::DelQuickslot(CHARACTER *this,BYTE pos)\r\n\r\n{\r\n  packet_quickslot_del pack_quickslot_del;\r\n  \r\n  if (pos < 0x24) {\r\n    this->m_quickslot[pos].type = '\\0';\r\n    this->m_quickslot[pos].pos = '\\0';\r\n    pack_quickslot_del.pos = pos;\r\n    pack_quickslot_del.header = '\\x1d';\r\n    DESC::Packet((this->super_CEntity).m_lpDesc,&pack_quickslot_del,2);\r\n  }\r\n  return pos < 0x24;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CHARACTER::IsEmptyItemGrid",
+      "address": "081714d0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsEmptyItemGrid(CHARACTER * this, BYTE bCell, BYTE bSize, int\r\n   iExceptionCell) */\r\n\r\nbool __thiscall CHARACTER::IsEmptyItemGrid(CHARACTER *this,BYTE bCell,BYTE bSize,int iExceptionCell)\r\n\r\n{\r\n  uint uVar1;\r\n  char cVar2;\r\n  byte bVar3;\r\n  char cVar4;\r\n  char cVar5;\r\n  bool bVar6;\r\n  int j_1;\r\n  int j;\r\n  BYTE bCell_local;\r\n  \r\n  bVar6 = false;\r\n  if (bCell < 0x5a) {\r\n    uVar1 = iExceptionCell + 1;\r\n    bVar3 = (this->m_pointsInstant).bItemGrid[bCell];\r\n    if (bVar3 == 0) {\r\n      bVar6 = true;\r\n      if (bSize != '\\x01') {\r\n                    /* Unresolved local var: BYTE bPage@[DW_OP_reg3(EBX)] */\r\n        j_1 = 1;\r\n        cVar2 = (char)((uint)bCell * 0x6d >> 8);\r\n        cVar5 = '\\x05';\r\n        do {\r\n                    /* Unresolved local var: BYTE p@[DW_OP_reg1(ECX)] */\r\n          bVar3 = bCell + cVar5;\r\n          if (0x59 < bVar3) {\r\n            return false;\r\n          }\r\n          cVar4 = (char)((uint)bVar3 * 0x6d >> 8);\r\n          if ((byte)(cVar4 + ((byte)(bVar3 - cVar4) >> 1)) >> 5 !=\r\n              (byte)(((byte)(bCell - cVar2) >> 1) + cVar2) >> 5) {\r\n            return false;\r\n          }\r\n          bVar3 = (this->m_pointsInstant).bItemGrid[bVar3];\r\n          if ((bVar3 != 0) && (bVar3 != uVar1)) {\r\n            return false;\r\n          }\r\n          j_1 = j_1 + 1;\r\n          cVar5 = cVar5 + '\\x05';\r\n        } while (j_1 < (int)(uint)bSize);\r\n        bVar6 = true;\r\n      }\r\n    }\r\n    else {\r\n                    /* Unresolved local var: BYTE bPage@[DW_OP_reg3(EBX)] */\r\n      if ((bVar3 == uVar1) && (bVar6 = true, bSize != '\\x01')) {\r\n        j = 1;\r\n        cVar2 = (char)((uint)bCell * 0x6d >> 8);\r\n        cVar5 = '\\x05';\r\n        do {\r\n                    /* Unresolved local var: BYTE p@[DW_OP_reg1(ECX)] */\r\n          bVar3 = bCell + cVar5;\r\n          if (0x59 < bVar3) {\r\n            return false;\r\n          }\r\n          cVar4 = (char)((uint)bVar3 * 0x6d >> 8);\r\n          if ((byte)(cVar4 + ((byte)(bVar3 - cVar4) >> 1)) >> 5 !=\r\n              (byte)(((byte)(bCell - cVar2) >> 1) + cVar2) >> 5) {\r\n            return false;\r\n          }\r\n          bVar3 = (this->m_pointsInstant).bItemGrid[bVar3];\r\n          if ((bVar3 != 0) && (bVar3 != uVar1)) {\r\n            return false;\r\n          }\r\n          j = j + 1;\r\n          cVar5 = cVar5 + '\\x05';\r\n          bVar6 = true;\r\n        } while (j < (int)(uint)bSize);\r\n      }\r\n    }\r\n  }\r\n  return bVar6;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

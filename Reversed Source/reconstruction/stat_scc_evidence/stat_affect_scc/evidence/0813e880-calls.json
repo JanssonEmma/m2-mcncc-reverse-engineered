@@ -1,0 +1,117 @@
+{
+  "function": {
+    "name": "CHARACTER::ComputeAffect",
+    "address": "0813e880"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0813e85f",
+        "caller": {
+          "name": "CHARACTER::RefreshAffect",
+          "address": "0813e780"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0813e9e7",
+        "caller": {
+          "name": "CHARACTER::RemoveAffect",
+          "address": "0813e9a0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0813e4f7",
+        "caller": {
+          "name": "CHARACTER::AddAffect",
+          "address": "0813e380"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0813e5fd",
+        "caller": {
+          "name": "CHARACTER::AddAffect",
+          "address": "0813e380"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0813d90d",
+        "caller": {
+          "name": "CHARACTER::ClearAffect",
+          "address": "0813d840"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0813e206",
+        "caller": {
+          "name": "CHARACTER::LoadAffect",
+          "address": "0813dfd0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0813dcc2",
+        "caller": {
+          "name": "CHARACTER::ProcessAffect",
+          "address": "0813da10"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 7,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0813e8c3",
+        "target": "080add20",
+        "name": "CGuild::UnderAnyWar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813e924",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813e94a",
+        "target": "08073890",
+        "name": "CHARACTER::StartMuyeongEvent",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813e95c",
+        "target": "08073900",
+        "name": "CHARACTER::StopMuyeongEvent",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 4,
+    "has_more": false
+  }
+}

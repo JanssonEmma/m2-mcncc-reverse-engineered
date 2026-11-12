@@ -1,0 +1,43 @@
+// Future addition before main in pc_state_helpers_regression.cpp. Existing
+// private-access test header and actual PC graph are reused; no fake lifecycle.
+static void CheckConstructedInputs(quest::PC& pc) {
+    quest::QuestState state;
+    assert(!state.co&&state.ico==0&&state.args==0&&state.suspend_state==0);
+    assert(state.iIndex==0&&!state.bStart&&state.st==-1);
+    assert(state._title.empty()&&state._clock_name.empty()&&state._counter_name.empty());
+    assert(state._icon_file.empty()&&state.chat_scripts.empty());
+    // Original constructor deliberately leaves these indeterminate.
+    // Initialize BEFORE explicit or implicit memberwise copy; do not test-read defaults.
+    state._clock_value=17;state._counter_value=-18;
+    pc.m_RunningQuestState=&state;
+    assert(pc.IsRunning()&&pc.GetRunningQuestState()==&state);
+    state.ico=-23;state.args=-2;state.suspend_state=5;state.iIndex=37;
+    state.bStart=true;state.st=-45;state._title="actual-state";
+    state._clock_name="clock";state._counter_name="counter";state._icon_file="icon";
+    state.chat_scripts.push_back(0); // Real vector input; no AArgScript allocation/ctor.
+    quest::QuestState copy(state);
+    assert(copy.co==state.co&&copy.ico==-23&&copy.args==-2&&copy.suspend_state==5);
+    assert(copy.iIndex==37&&copy.bStart&&copy.st==-45);
+    assert(copy._title=="actual-state"&&copy._clock_name=="clock"&&copy._counter_name=="counter");
+    assert(copy._clock_value==17&&copy._counter_value==-18&&copy._icon_file=="icon");
+    assert(copy.chat_scripts.size()==1&&copy.chat_scripts[0]==0);
+    copy._title="independent";copy.chat_scripts.clear();
+    assert(state._title=="actual-state"&&state.chat_scripts.size()==1);
+    assert(pc.GetRunningQuestState()->ico==-23);
+    pc.m_RunningQuestState=&copy;assert(pc.IsRunning()&&pc.GetRunningQuestState()==&copy);
+    pc.m_RunningQuestState=0;assert(!pc.IsRunning()&&!pc.GetRunningQuestState());
+    quest::RewardData none(quest::RewardData::REWARD_TYPE_NONE,0);
+    quest::RewardData exp(quest::RewardData::REWARD_TYPE_EXP,0xffffffffUL);
+    quest::RewardData item(quest::RewardData::REWARD_TYPE_ITEM,0x80000000UL,INT_MIN);
+    assert(none.type==quest::RewardData::REWARD_TYPE_NONE&&!none.value1&&!none.value2);
+    assert(exp.type==quest::RewardData::REWARD_TYPE_EXP&&exp.value1==0xffffffffUL&&!exp.value2);
+    assert(item.type==quest::RewardData::REWARD_TYPE_ITEM&&item.value1==0x80000000UL&&item.value2==INT_MIN);
+    pc.m_bIsGivenReward=false;assert(!pc.HasReward());
+    pc.m_vRewardData.push_back(none);assert(pc.HasReward());
+    pc.m_vRewardData.push_back(exp);pc.m_vRewardData.push_back(item);assert(pc.HasReward());
+    pc.m_bIsGivenReward=true;assert(pc.HasReward());
+    pc.m_vRewardData.clear();assert(pc.HasReward());
+    pc.m_bIsGivenReward=false;assert(!pc.HasReward());
+}
+// Call CheckConstructedInputs(pc) in main after the initial empty/default checks.
+// No VM-owned coroutine is allocated; string/vector destructors are actual STL.

@@ -1,0 +1,47 @@
+{
+  "function": {
+    "name": "CHARACTER::StartMuyeongEvent",
+    "address": "08073890"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0813e94a",
+        "caller": {
+          "name": "CHARACTER::ComputeAffect",
+          "address": "0813e880"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "080738be",
+        "target": "0804cc60",
+        "name": "__AllocEventInfo",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080738ef",
+        "target": "0804ceb0",
+        "name": "event_create_ex",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  }
+}

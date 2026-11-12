@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08112cc0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8112cc0",
+    "function": {
+      "name": "FN_get_new_motion_file",
+      "address": "08112cc0"
+    },
+    "signature": "char * FN_get_new_motion_file(FILE * fp, EPublicMotion motion_num)",
+    "code": "\r\n/* WARNING: Enum \"EPublicMotion\": Some values do not have unique names */\r\n\r\nchar * FN_get_new_motion_file(FILE *fp,EPublicMotion motion_num)\r\n\r\n{\r\n  char *pcVar1;\r\n  char *pcVar2;\r\n  int iVar3;\r\n  char *__s2;\r\n  char *v [4];\r\n  \r\n                    /* Unresolved local var: char * field@[DW_OP_reg3(EBX)] */\r\n  switch(motion_num) {\r\n  default:\r\n    goto switchD_08112cd7_caseD_0;\r\n  case MOTION_WALK:\r\n    __s2 = \"WALK\";\r\n    break;\r\n  case MOTION_RUN:\r\n    __s2 = \"RUN\";\r\n    break;\r\n  case MOTION_NORMAL_ATTACK:\r\n    __s2 = \"NORMAL_ATTACK\";\r\n    break;\r\n  case MOTION_SPECIAL_1:\r\n    __s2 = \"SPECIAL\";\r\n    break;\r\n  case MOTION_SPECIAL_2:\r\n    __s2 = \"SPECIAL1\";\r\n    break;\r\n  case MOTION_SPECIAL_3:\r\n    __s2 = \"SPECIAL2\";\r\n    break;\r\n  case MOTION_SPECIAL_4:\r\n    __s2 = \"SPECIAL3\";\r\n    break;\r\n  case MOTION_SPECIAL_5:\r\n    __s2 = \"SPECIAL4\";\r\n  }\r\n  while (pcVar1 = fgets(FN_get_new_motion_file::buf,0x400,(FILE *)fp), pcVar1 != (char *)0x0) {\r\n    strtok(FN_get_new_motion_file::buf,\" \\t\\r\\n\");\r\n    pcVar1 = strtok((char *)0x0,\" \\t\\r\\n\");\r\n    pcVar2 = strtok((char *)0x0,\" \\t\\r\\n\");\r\n    strtok((char *)0x0,\" \\t\\r\\n\");\r\n    if ((pcVar1 == (char *)0x0) || (pcVar2 == (char *)0x0)) break;\r\n    iVar3 = strcasecmp(pcVar1,__s2);\r\n    if (iVar3 == 0) {\r\n      return pcVar2;\r\n    }\r\n  }\r\nswitchD_08112cd7_caseD_0:\r\n  return \"\";\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

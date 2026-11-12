@@ -1,0 +1,39 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestCounterValue",
+    "address": "08060700"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0816951b",
+        "caller": {
+          "name": "quest_set_counter_value",
+          "address": "081694a0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "08060718",
+        "target": "080603e0",
+        "name": "PC::SetSendFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  }
+}

@@ -1,0 +1,10 @@
+#pragma pack(push,1)
+struct packet_party_update {
+    BYTE header;
+    DWORD pid;
+    BYTE role;
+    BYTE percent_hp;
+    short affects[7];
+};
+typedef packet_party_update TPacketGCPartyUpdate;
+#pragma pack(pop)

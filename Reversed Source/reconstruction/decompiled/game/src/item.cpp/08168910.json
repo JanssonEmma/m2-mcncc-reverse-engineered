@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168910",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168910",
+    "function": {
+      "name": "CItem::SetAccessorySocketDownGradeTime",
+      "address": "08168910"
+    },
+    "signature": "void SetAccessorySocketDownGradeTime(CItem * this, DWORD time)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketDownGradeTime(CItem * this, DWORD time) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketDownGradeTime(CItem *this,DWORD time)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  char *format;\r\n  \r\n  SetSocket(this,2,time);\r\n                    /* Unresolved local var: LPCHARACTER ch@[DW_OP_reg6(ESI)] */\r\n  if ((test_server != 0) && (this_00 = this->m_pOwner, this_00 != (CHARACTER *)0x0)) {\r\n    pTVar1 = this->m_pProto;\r\n    format = locale_find(&DAT_0822bce0,g_iUseLocale);\r\n    CHARACTER::ChatPacket\r\n              (this_00,'\\x01',format,(uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1,\r\n               time);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

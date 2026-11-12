@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812e230",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x812e230",
+    "function": {
+      "name": "CHARACTER::SetPoint",
+      "address": "0812e230"
+    },
+    "signature": "void SetPoint(CHARACTER * this, BYTE type, long val)",
+    "code": "\r\n/* DWARF original prototype: void SetPoint(CHARACTER * this, BYTE type, long val) */\r\n\r\nvoid __thiscall CHARACTER::SetPoint(CHARACTER *this,BYTE type,long val)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  (this->m_pointsInstant).points[type] = val;\r\n  if (type == '\\x13') {\r\n    DVar1 = get_dword_time();\r\n    if (DVar1 < this->m_dwMoveDuration + this->m_dwMoveStartTime) {\r\n      CalculateMoveDuration(this);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

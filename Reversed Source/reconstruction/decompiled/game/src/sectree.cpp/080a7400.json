@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080a7400",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "SECTREE::IncreasePC",
+      "address": "080a7400"
+    },
+    "code": "\r\n/* DWARF original prototype: void IncreasePC(SECTREE * this) */\r\n\r\nvoid __thiscall SECTREE::IncreasePC(SECTREE *this)\r\n\r\n{\r\n  LPSECTREE *ppSVar1;\r\n  int *piVar2;\r\n  _List_node<SECTREE*> *p_Var3;\r\n  _List_node<SECTREE*> *p_Var4;\r\n  _List_iterator<SECTREE*,SECTREE*&,SECTREE**> it_tree;\r\n  \r\n  p_Var3 = (this->m_neighbor_list).super__List_base<SECTREE*,std::allocator<SECTREE*>_>.\r\n           super__List_alloc_base<SECTREE*,std::allocator<SECTREE*>,true>._M_node;\r\n  p_Var4 = (_List_node<SECTREE*> *)(p_Var3->super__List_node_base)._M_next;\r\n  while (p_Var4 != p_Var3) {\r\n    ppSVar1 = &p_Var4->_M_data;\r\n    p_Var4 = (_List_node<SECTREE*> *)(p_Var4->super__List_node_base)._M_next;\r\n    piVar2 = &(*ppSVar1)->m_iPCCount;\r\n    *piVar2 = *piVar2 + 1;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

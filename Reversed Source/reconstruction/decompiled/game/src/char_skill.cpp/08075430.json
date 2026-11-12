@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08075430",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "FFindNearVictim::operator()",
+      "address": "08075430"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* DWARF original prototype: void operator()(FFindNearVictim * this, LPENTITY ent) */\r\n\r\nvoid __thiscall FFindNearVictim::operator()(FFindNearVictim *this,LPENTITY ent)\r\n\r\n{\r\n  bool bVar1;\r\n  _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> _Var2;\r\n  int dy;\r\n  int iVar3;\r\n  int dx;\r\n  LPCHARACTER pkChr;\r\n  \r\n                    /* Unresolved local var: float fDist@[DW_OP_reg12(ST1)] */\r\n  bVar1 = CEntity::IsType(ent,0);\r\n  if (bVar1) {\r\n    pkChr = (LPCHARACTER)ent;\r\n    _Var2 = _Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n            ::find(&this->m_excepts_set->_M_t,&pkChr);\r\n    if (((_Var2.super__Rb_tree_base_iterator._M_node ==\r\n          (_Rb_tree_base_iterator)\r\n          &((this->m_excepts_set->_M_t).super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n            super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n           super__Rb_tree_node_base) && (this->m_pkChrCenter != pkChr)) &&\r\n       (bVar1 = battle_is_attackable(this->m_pkChrAttacker,pkChr), bVar1)) {\r\n      dx = (this->m_pkChrCenter->super_CEntity).m_pos.x - (pkChr->super_CEntity).m_pos.x;\r\n      iVar3 = dx;\r\n      if (dx < 0) {\r\n        iVar3 = -dx;\r\n      }\r\n      if (iVar3 < 0x3e9) {\r\n        dy = (this->m_pkChrCenter->super_CEntity).m_pos.y - (pkChr->super_CEntity).m_pos.y;\r\n        iVar3 = dy;\r\n        if (dy < 0) {\r\n          iVar3 = -dy;\r\n        }\r\n        if ((iVar3 < 0x3e9) && (iVar3 = DISTANCE_APPROX(dx,dy), (float)iVar3 < _DAT_081f7250)) {\r\n          iVar3 = this->m_count + 1;\r\n          this->m_count = iVar3;\r\n          if ((iVar3 != 1) &&\r\n             (iVar3 = number_ex(1,this->m_count,\"char_skill.cpp\",0x359), iVar3 != 1)) {\r\n            return;\r\n          }\r\n          this->m_pkChrNextTarget = pkChr;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08139bb0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC::ProcessOutput",
+      "address": "08139bb0"
+    },
+    "code": "\r\n/* DWARF original prototype: int ProcessOutput(DESC * this) */\r\n\r\nint __thiscall DESC::ProcessOutput(DESC *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  int a;\r\n  size_t length;\r\n  char *data;\r\n  int iVar2;\r\n  \r\n                    /* Unresolved local var: int buffer_left@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int bytes_to_write@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int result@[DW_OP_reg7(EDI)] */\r\n  DVar1 = buffer_size(this->m_lpOutputBuffer);\r\n  iVar2 = 0;\r\n  if (DVar1 != 0) {\r\n    a = fdwatch_get_buffer_size(this->m_lpFdw,this->m_sock);\r\n    iVar2 = 0;\r\n    if (0 < a) {\r\n      DVar1 = buffer_size(this->m_lpOutputBuffer);\r\n      length = MIN(a,DVar1);\r\n      iVar2 = 0;\r\n      if (length != 0) {\r\n        data = buffer_read_peek(this->m_lpOutputBuffer);\r\n        iVar2 = socket_write(this->m_sock,data,length);\r\n        if (iVar2 == 0) {\r\n          max_bytes_written = MAX(length,max_bytes_written);\r\n          total_bytes_written = total_bytes_written + length;\r\n          current_bytes_written = current_bytes_written + length;\r\n          buffer_read_proceed(this->m_lpOutputBuffer,length);\r\n          DVar1 = buffer_size(this->m_lpOutputBuffer);\r\n          if (DVar1 != 0) {\r\n            fdwatch_add_fd(this->m_lpFdw,this->m_sock,this,2,1);\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

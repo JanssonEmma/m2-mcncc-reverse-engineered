@@ -1,0 +1,42 @@
+// Original concrete bodies all in char.cpp; append after required includes.
+// Staged real old dependency methods; add existing includes char.h,
+// mob_manager.h, questmanager.h, constants.h, config.h and core utils/log.
+// Explicit modulo32 arithmetic matches the ELF's add/lea/imul registers and
+// avoids introducing signed-overflow UB into reconstructed native code.
+namespace battle_points_detail {
+inline int add(int a,int b) {return static_cast<int>(static_cast<unsigned int>(a)+static_cast<unsigned int>(b));}
+inline int sub(int a,int b) {return static_cast<int>(static_cast<unsigned int>(a)-static_cast<unsigned int>(b));}
+inline int mul(int a,int b) {return static_cast<int>(static_cast<unsigned int>(a)*static_cast<unsigned int>(b));}
+}
+//0812bb80: actual const-reference return, non-const method. No null guard.
+const TMobTable& CHARACTER::GetMobTable() {return m_pkMobData->m_table;}
+//08135a20: no positivity or range clamp on a nonzero test-server override.
+int CHARACTER::GetPolymorphPower() {
+    if(test_server) {
+        int value=quest::CQuestManager::instance().GetEventFlag("poly");
+        if(value) return value;
+    }
+    int level=GetSkillLevel(129);
+    level=MINMAX(0,level,40);
+    return aiPolymorphPowerByLevel[level];
+}
+//0812df00: long return and non-const method are old DWARF, not modern API.
+long CHARACTER::GetPolymorphPoint(BYTE type) {
+    using namespace battle_points_detail;
+    if(!m_dwPolymorphRace || m_bPolyMaintainStat) return GetPoint(type);
+    const CMob* mob=CMobManager::instance().Get(m_dwPolymorphRace);
+    int power=GetPolymorphPower(); // Must happen even when mob lookup failed.
+    if(!mob) return GetPoint(type);
+    BYTE base=type;int stat;
+    switch(type) {
+    case 12:
+        if(GetJob()==3 || (GetJob()==2 && m_points.skill_group==2))base=15;
+        stat=mob->m_table.bStr;break;
+    case 13:stat=mob->m_table.bCon;break;
+    case 14:stat=mob->m_table.bDex;break;
+    case 15:stat=mob->m_table.bInt;break;
+    default:return GetPoint(type);
+    }
+    int bonus=mul(stat,power)/100; // Signed truncation after wrapped product.
+    return static_cast<long>(add(static_cast<int>(GetPoint(base)),bonus));
+}

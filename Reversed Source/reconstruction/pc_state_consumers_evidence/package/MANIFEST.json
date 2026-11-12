@@ -1,0 +1,324 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "status": "prepared_only_uncompiled_unapplied_WAIT_FOR_VERIFIED108",
+  "originals": [
+    {
+      "name": "PC::SetCurrentQuestStateName",
+      "address": "0805e2a0",
+      "instructions": 61,
+      "calls": 7
+    },
+    {
+      "name": "PC::SetQuestState(std::string,std::string)",
+      "address": "0805e380",
+      "instructions": 35,
+      "calls": 3
+    },
+    {
+      "name": "PC::SendFlagList",
+      "address": "08061980",
+      "instructions": 121,
+      "calls": 8
+    }
+  ],
+  "files": [
+    {
+      "path": "game/src/questpc.cpp",
+      "before": "d44301e6a22a1d440adaf0dde76402bf11d4bf84cf03f3d2bb2377eadab9e946",
+      "candidate": "questpc.cpp.candidate",
+      "after": "3e9a264dea75b61fdfd4ebafb042d30470a7e5bc2e9c894b5eade52c8e01532c"
+    }
+  ],
+  "current_read_guards": [
+    {
+      "path": "game/src/questpc.h",
+      "sha256": "25411da7dcbf7eb7e55d094d756ad0c3a8b294842e6f7fcd9aff23cfc02e9e37"
+    },
+    {
+      "path": "game/src/quest.h",
+      "sha256": "15dc242cf786c913ae8d672075965062f1301592cead80ded443d5bda416bdad"
+    },
+    {
+      "path": "common/singleton.h",
+      "sha256": "9b41ae333699361b4d9c580cbe8ecc2362eddaab8afdb1008f92fb94769d53b4"
+    },
+    {
+      "path": "game/src/char.cpp",
+      "sha256": "d17f8213ab5a046c47dfc8a5c38a2366d5479706c8e71999286f7ed220457841"
+    },
+    {
+      "path": "game/src/char.h",
+      "sha256": "a58cc3c4c7ef99e5f1cf93d86525464fc4412d1379acd4dc07523a31d560760d"
+    }
+  ],
+  "future_query_dependencies": [
+    "GetQuestStateName081a5130",
+    "GetQuestStateIndex081a5240",
+    "real58file Lua5.0.3 supplied SDK in liblua and actual28object SDK archives"
+  ],
+  "runtime_after_verified108": 109,
+  "sdk_expected_files": [
+    {
+      "path": "liblua/config",
+      "sha256": "a2d8e357164f812945fd1eaa13d288a6dc5fc9faa5761dfc6b83a1594c2b1605"
+    },
+    {
+      "path": "liblua/include/lauxlib.h",
+      "sha256": "4672f47c2cccdceb3d1e101aae3de74d72c07201e7e04d12970f7d447193ba2d"
+    },
+    {
+      "path": "liblua/include/lua.h",
+      "sha256": "a7401e2c7c5af12c39560d0c5dded2d391d5191b8c5b502652c69dc5250a1a56"
+    },
+    {
+      "path": "liblua/include/lualib.h",
+      "sha256": "57af080cee8b927a22b7af456b3f1dbeec7251f08fdee3bfe0e47b15fb527a55"
+    },
+    {
+      "path": "liblua/include/Makefile",
+      "sha256": "31401070900840a35e248c66ddc80e4b433403cfefb4484a9b8935dc27c587ad"
+    },
+    {
+      "path": "liblua/liblua.2008.vcproj",
+      "sha256": "494973bcfc219cf360f2aa439f5ff1eaa1b3e1877ee748508c86c501fb0b36f4"
+    },
+    {
+      "path": "liblua/liblua.2008.vcxproj",
+      "sha256": "b53b311767eeb433e0abeda96e4d02877a6260b1a1ac1298e4b1ffe3fcdb6773"
+    },
+    {
+      "path": "liblua/liblua.2008.vcxproj.filters",
+      "sha256": "62465ddcbcdf521098ac7055ffe4355dcac34c8a3f9012a0590d5507732772a9"
+    },
+    {
+      "path": "liblua/Makefile",
+      "sha256": "9e017fc81e43fe1cf1c7c81642ea4f559e2aa534ae661edbad1c2ecb85a06aee"
+    },
+    {
+      "path": "liblua/RECONSTRUCTION_PROVENANCE.md",
+      "sha256": "3cc4e9a9c388aafa802e77e822060162486f777c280307f14875b37c5961b6f4"
+    },
+    {
+      "path": "liblua/src/lapi.c",
+      "sha256": "0e56396e46247ba76ba3805b0782be777b2e1660536edca3854284fc4575a922"
+    },
+    {
+      "path": "liblua/src/lapi.h",
+      "sha256": "022ef9d91edcc934a805f9119f5f8f83b1191aff4794429d630e24f9cfd79f7e"
+    },
+    {
+      "path": "liblua/src/lcode.c",
+      "sha256": "5ece41ba7e28f63b1f1f203dd29fafc6d040b6e567b7b7545418b7ccace95d0b"
+    },
+    {
+      "path": "liblua/src/lcode.h",
+      "sha256": "85b019418a56976f862f8831c595a3a963255d33384c1bc42c8b45532ef825e1"
+    },
+    {
+      "path": "liblua/src/ldebug.c",
+      "sha256": "266dc0502e9f5186d2a539fde6eb71de8c9a58a547affec1fb38c723c9204b50"
+    },
+    {
+      "path": "liblua/src/ldebug.h",
+      "sha256": "055ddbe445795abfc3e6b0468898286dc4d4d92bb2132a9edee0fcd9a0cd08f0"
+    },
+    {
+      "path": "liblua/src/ldo.c",
+      "sha256": "92c23fd1a0bc54d1e67ec5a552535b9ec355b07c8ba8439b40a30e3b03222348"
+    },
+    {
+      "path": "liblua/src/ldo.h",
+      "sha256": "dff584cc1f616b01fd88d2777738c34c783cd1ab3c52e4640bee5acbb258ff0f"
+    },
+    {
+      "path": "liblua/src/ldump.c",
+      "sha256": "e25aa2273b482800c925e7ae98b5e859d8967848e4b320f5517fdaac07820dd0"
+    },
+    {
+      "path": "liblua/src/lfunc.c",
+      "sha256": "c769f34b7d00ca913bf4ce8bdc0151fab2a4a782e1f95ebacf86366680e7b290"
+    },
+    {
+      "path": "liblua/src/lfunc.h",
+      "sha256": "3c9c35adebb182df2348e4432dbada4a692d96562e9edb874385cc991620eb98"
+    },
+    {
+      "path": "liblua/src/lgc.c",
+      "sha256": "ff4f2131d0426a564f1a895cd640485ea3caa7344743584a420b4e2296f048de"
+    },
+    {
+      "path": "liblua/src/lgc.h",
+      "sha256": "24213de32927e051a465a5acf8f037262c47ed070941ef8a574fd287a81aeaa4"
+    },
+    {
+      "path": "liblua/src/lib/lauxlib.c",
+      "sha256": "1681bd85811bae3d59abcad46ea4c88165ddee8a4677a7091c705a1948d6adc2"
+    },
+    {
+      "path": "liblua/src/lib/lbaselib.c",
+      "sha256": "e468ffd16aefe4ada895cf79a0d824532163cfd3928e0e382a6308bd4ac01ab2"
+    },
+    {
+      "path": "liblua/src/lib/ldblib.c",
+      "sha256": "0228d943f877b1bc55631c7ea3020d4ebaf16328eb9a1116b4fabc185f7b3cdd"
+    },
+    {
+      "path": "liblua/src/lib/liolib.c",
+      "sha256": "50f538405e86b87c656ca5430b61a660604baeedc1a5b56388462f930ddf4031"
+    },
+    {
+      "path": "liblua/src/lib/lmathlib.c",
+      "sha256": "5bf1c5f77a3afcc1e02b510e999c5e3cfa0f15c21279834b96dfde2daa4a803c"
+    },
+    {
+      "path": "liblua/src/lib/loadlib.c",
+      "sha256": "e2f585d31fc6b0d456f8dcab6b869ae0847d278959de5f4ba4f6d5a588493c6a"
+    },
+    {
+      "path": "liblua/src/lib/lstrlib.c",
+      "sha256": "1855164421ba54b67a8e174becaffc1b12c384ed3bc3a2286c7a3cbea72c0be2"
+    },
+    {
+      "path": "liblua/src/lib/ltablib.c",
+      "sha256": "7be29309830f3e7f32e1256f602b16f82ac28bc7699f32f9c3979edc97f7df55"
+    },
+    {
+      "path": "liblua/src/lib/Makefile",
+      "sha256": "afab6fc7c95290eb88e9c3d20b08a93ad319ac27b65271349c4b3ca7a8bc581d"
+    },
+    {
+      "path": "liblua/src/llex.c",
+      "sha256": "b80188c469af53192f68d5e06175c4d3b07405a786deca006ff6263f76dbb605"
+    },
+    {
+      "path": "liblua/src/llex.h",
+      "sha256": "a4739f820a183d89068da11ae83d833136ec7e5d33fd0c9888267996a4eb746d"
+    },
+    {
+      "path": "liblua/src/llimits.h",
+      "sha256": "a25ea23ab714e828e9e81ae95f2f070a4415dcaedb028509fb775864d130b6a4"
+    },
+    {
+      "path": "liblua/src/lmem.c",
+      "sha256": "717b04278a0992a20b0761eacbc3ff97d097009446b613a3b6ee69833d219edc"
+    },
+    {
+      "path": "liblua/src/lmem.h",
+      "sha256": "d2e239846a3da230520b0569050b25b2e6bae7b940667490f52688e4e509502a"
+    },
+    {
+      "path": "liblua/src/lobject.c",
+      "sha256": "7b5896198fa1035795b6ac8bb1162c0c91839c3cddced1e59690a65ba346f2bf"
+    },
+    {
+      "path": "liblua/src/lobject.h",
+      "sha256": "0d33fff0363ff400e43e42c458dc94a0c29150435789cc29a089b16ab1889cd5"
+    },
+    {
+      "path": "liblua/src/lopcodes.c",
+      "sha256": "d455dc57a6c09fc9e8779eea4d88349f5bf9bbfcfa9294651675b597d87d9cec"
+    },
+    {
+      "path": "liblua/src/lopcodes.h",
+      "sha256": "1278c29df86002fd030b26a297d97bd1181ef7450d641472aa5c2f2a7085492b"
+    },
+    {
+      "path": "liblua/src/lparser.c",
+      "sha256": "786a5fe6d6d139400e71819c01d4d06af0029656924f7f8ba3da0e5dba73f299"
+    },
+    {
+      "path": "liblua/src/lparser.h",
+      "sha256": "599db5c0d5f9aad702b445a7a7486d85898a51a629eb0a8e945ac94369014d64"
+    },
+    {
+      "path": "liblua/src/lstate.c",
+      "sha256": "2fdd1c08c6e61c5a1246e95f5da066a18ed7d9a42cd50e38159601889079d80a"
+    },
+    {
+      "path": "liblua/src/lstate.h",
+      "sha256": "de692e979800d8ab69db58502a4e82904cf4b74a897cc230c67ac97f9870581a"
+    },
+    {
+      "path": "liblua/src/lstring.c",
+      "sha256": "898d5fb8b69d752622cdeec80dd138d14972c8e3d74770b16830d7559d948b63"
+    },
+    {
+      "path": "liblua/src/lstring.h",
+      "sha256": "67016cc24bdba333501fde9fbcbbef86be67f3dbe4c16db7ba71114e0342af62"
+    },
+    {
+      "path": "liblua/src/ltable.c",
+      "sha256": "57f2bdbafa9ddd7beb50acbd54a641ec6e6d2482ae7e8a823e37bc63a216f397"
+    },
+    {
+      "path": "liblua/src/ltable.h",
+      "sha256": "0e394cd78416e66ef81142ca35c4692b9e27d0981a23d1a868c275dc6488a6ea"
+    },
+    {
+      "path": "liblua/src/ltests.c",
+      "sha256": "9768d93e71e76d90934c46380719612d34c8602555f1eba4bd0b0753ff29f916"
+    },
+    {
+      "path": "liblua/src/ltm.c",
+      "sha256": "4ed026b9e4fc7a63b4083799109cac37f37988c9b3f132493ca859cf7f48c936"
+    },
+    {
+      "path": "liblua/src/ltm.h",
+      "sha256": "e12d77a160d6eed93a3553a5d32d6d89645af900fe109d04684839937d5241cd"
+    },
+    {
+      "path": "liblua/src/lundump.c",
+      "sha256": "ef3567b3ae125ca800e321f955a2b0ae6e82d1420283adcabac0106eaac56355"
+    },
+    {
+      "path": "liblua/src/lundump.h",
+      "sha256": "06393be3c34eb0cd152b2052c0aad87a19831957605acb4f0a0793990f85d664"
+    },
+    {
+      "path": "liblua/src/lvm.c",
+      "sha256": "bacdf0ffc84eb0818e2c197f3d3daa934349fa01185afbd3bbb1a5c172eed619"
+    },
+    {
+      "path": "liblua/src/lvm.h",
+      "sha256": "0bcf16de9ab19d2022fd37cf3937e106b50b24a3d34ee445b0053dbbbf511d08"
+    },
+    {
+      "path": "liblua/src/lzio.c",
+      "sha256": "8039cc5f0ed41c5e60c3c71fab74be59ebcec2936a1a5fb27077fc364afeb3d5"
+    },
+    {
+      "path": "liblua/src/lzio.h",
+      "sha256": "b1580831144e902407fe088560a1766263d298b1438e0df2dee084ee40b48b53"
+    },
+    {
+      "path": "liblua/src/Makefile",
+      "sha256": "5fc039ceef0dfde443050c087d2191e3e43d94fe1187d06cc09098ddf1ce419b"
+    }
+  ],
+  "sdk_policy": "Supplied5.0.3 externalSDK, not recoveredold5.0 or proven internalABI. No fakeVM or packinglayoutrepair. PublicopaqueAPI/actualsource only.",
+  "package_files": {
+    "0805e2a0-assembly.json": "6d73c97707944001486edfe957ecc05fbc75c300d80526809bccb7744933da6e",
+    "0805e2a0-calls.json": "0e1a5fa50f4168493934a3d0b88d5c49e99f2c515eb6e1a0ef6e96f90889e196",
+    "0805e2a0-decompile.json": "72ed6142d6181877a7fd2264f3022088164c89a3e73a35cca319db456d2a9359",
+    "0805e380-assembly.json": "9ebd416a056cd80e3d1dc564fdf2bd463a3cc34245210f3b9f20457a3b81adf5",
+    "0805e380-calls.json": "d917ee2fa49360adbcbe20f05dc6e2d00ddba40440507dd1016eaa19dcd6af9b",
+    "0805e380-decompile.json": "da599b7979cbfedac1b48491f831eeeb130b67e75b6ed47172c6e6dc234366dc",
+    "08061980-assembly.json": "08d0dda9b80baf42656de83253a635d5bff086b75f3a6aac468ae14aec29ed04",
+    "08061980-calls.json": "963c6d9055177794a7755b50d9e216e4a4da968620661fae10658e2193431ad7",
+    "08061980-decompile.json": "46f2dd36d4b2aa735b2c6e6ab680dc5b8e76b447ccc2ea60b5a75923fd6b958c",
+    "apply.py": "7b2cfaa5d55a9b2515d3dc704bf482d5031965b915b52492d4ea4c3c66b69b44",
+    "fix_sdk_guard_count.py": "1cb78a9097fb1387f598eca61131c85fb65813d4453ff46bebc698cbc0762cee",
+    "HANDOFF.md": "530fe858f2cdeb18e56b1e6b62989ea0f60e080b5fe0bd680b2fe310608b7448",
+    "Makefile.addition": "3a120ccc6401fae7a064adfa025ab40ec494084f5e98817d6d54706c55077a7e",
+    "original-full-PC-api.json": "dedd5f92c40538273505cf500ead840cdf3fea9654018574a925a35c696c8695",
+    "pc_state_consumers_abi.cpp": "df806f49798c28a4389eedf1816af7a970efac89b5f7e2f032e28a7229f3ce00",
+    "pc_state_consumers_desc_output_syscalls.c": "aa6fecdc754ae3d0f05e61416390cb3c561fdeb63a068b1c7357c9b76ed7c9d4",
+    "pc_state_consumers_regression.cpp": "8c789da287ee96c137ef008aef608184dcbfffde9cedbed91b899f69c1f57f53",
+    "prepare.py": "80a4f58194b3da0df6ff8f438c9acd0c6c19b78776b962a794e8a8c5331934b9",
+    "prepare_integration.py": "80d11f202e6cbe2e8cb52bfdf0e7c82b5b56baa71cce17cc89680d3a4f8c1acf",
+    "questpc.cpp.candidate": "3e9a264dea75b61fdfd4ebafb042d30470a7e5bc2e9c894b5eade52c8e01532c",
+    "questpc.cpp.fragment": "a6291bf1f94ac94f3e3ab9cd6a17e3b41ad369bd559c68bd044c69d74b05b70d",
+    "validate.py": "c7499a2ce6fd70cc9e60f70a6dfe364e8de9fecaa85fc2ae638074ad9c83bd36"
+  },
+  "builds_or_project_mutations": false
+}

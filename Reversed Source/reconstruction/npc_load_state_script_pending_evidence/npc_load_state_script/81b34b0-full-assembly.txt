@@ -1,0 +1,333 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+081b34b0 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_>:
+ 81b34b0:	55                   	push   ebp
+ 81b34b1:	89 e5                	mov    ebp,esp
+ 81b34b3:	57                   	push   edi
+ 81b34b4:	56                   	push   esi
+ 81b34b5:	53                   	push   ebx
+ 81b34b6:	83 ec 7c             	sub    esp,0x7c
+ 81b34b9:	8b 4d 10             	mov    ecx,DWORD PTR [ebp+0x10]
+ 81b34bc:	85 c9                	test   ecx,ecx
+ 81b34be:	0f 84 2e 01 00 00    	je     81b35f2 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x142>
+ 81b34c4:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 81b34c7:	8b 42 08             	mov    eax,DWORD PTR [edx+0x8]
+ 81b34ca:	8b 5a 04             	mov    ebx,DWORD PTR [edx+0x4]
+ 81b34cd:	29 d8                	sub    eax,ebx
+ 81b34cf:	c1 f8 02             	sar    eax,0x2
+ 81b34d2:	69 c0 39 8e e3 38    	imul   eax,eax,0x38e38e39
+ 81b34d8:	39 c8                	cmp    eax,ecx
+ 81b34da:	0f 83 7e 01 00 00    	jae    81b365e <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x1ae>
+ 81b34e0:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 81b34e3:	8b 10                	mov    edx,DWORD PTR [eax]
+ 81b34e5:	89 d8                	mov    eax,ebx
+ 81b34e7:	8d 5d 10             	lea    ebx,[ebp+0x10]
+ 81b34ea:	29 d0                	sub    eax,edx
+ 81b34ec:	c1 f8 02             	sar    eax,0x2
+ 81b34ef:	69 c0 39 8e e3 38    	imul   eax,eax,0x38e38e39
+ 81b34f5:	39 c8                	cmp    eax,ecx
+ 81b34f7:	89 45 a0             	mov    DWORD PTR [ebp-0x60],eax
+ 81b34fa:	72 03                	jb     81b34ff <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x4f>
+ 81b34fc:	8d 5d a0             	lea    ebx,[ebp-0x60]
+ 81b34ff:	03 03                	add    eax,DWORD PTR [ebx]
+ 81b3501:	c7 45 98 00 00 00 00 	mov    DWORD PTR [ebp-0x68],0x0
+ 81b3508:	89 45 9c             	mov    DWORD PTR [ebp-0x64],eax
+ 81b350b:	0f 85 32 01 00 00    	jne    81b3643 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x193>
+ 81b3511:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b3514:	8b 4d 0c             	mov    ecx,DWORD PTR [ebp+0xc]
+ 81b3517:	8b 45 98             	mov    eax,DWORD PTR [ebp-0x68]
+ 81b351a:	c6 44 24 0c 00       	mov    BYTE PTR [esp+0xc],0x0
+ 81b351f:	89 4c 24 04          	mov    DWORD PTR [esp+0x4],ecx
+ 81b3523:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+ 81b3527:	e8 24 1f 00 00       	call   81b5450 <_ZSt24__uninitialized_copy_auxIN9__gnu_cxx17__normal_iteratorIPN5quest10AArgScriptESt6vectorIS3_SaIS3_EEEES8_ET0_T_SA_S9_12__false_type>
+ 81b352c:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b352f:	8b 55 14             	mov    edx,DWORD PTR [ebp+0x14]
+ 81b3532:	c6 44 24 0c 00       	mov    BYTE PTR [esp+0xc],0x0
+ 81b3537:	89 54 24 08          	mov    DWORD PTR [esp+0x8],edx
+ 81b353b:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+ 81b353e:	89 54 24 04          	mov    DWORD PTR [esp+0x4],edx
+ 81b3542:	e8 69 20 00 00       	call   81b55b0 <_ZSt26__uninitialized_fill_n_auxIN9__gnu_cxx17__normal_iteratorIPN5quest10AArgScriptESt6vectorIS3_SaIS3_EEEEjS3_ET_S9_T0_RKT1_12__false_type>
+ 81b3547:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b354a:	8b 51 04             	mov    edx,DWORD PTR [ecx+0x4]
+ 81b354d:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+ 81b3551:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 81b3554:	c6 44 24 0c 00       	mov    BYTE PTR [esp+0xc],0x0
+ 81b3559:	89 54 24 04          	mov    DWORD PTR [esp+0x4],edx
+ 81b355d:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b3560:	e8 eb 1e 00 00       	call   81b5450 <_ZSt24__uninitialized_copy_auxIN9__gnu_cxx17__normal_iteratorIPN5quest10AArgScriptESt6vectorIS3_SaIS3_EEEES8_ET0_T_SA_S9_12__false_type>
+ 81b3565:	89 45 94             	mov    DWORD PTR [ebp-0x6c],eax
+ 81b3568:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b356b:	8b 11                	mov    edx,DWORD PTR [ecx]
+ 81b356d:	8b 79 04             	mov    edi,DWORD PTR [ecx+0x4]
+ 81b3570:	89 d6                	mov    esi,edx
+ 81b3572:	39 fa                	cmp    edx,edi
+ 81b3574:	74 48                	je     81b35be <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x10e>
+ 81b3576:	89 d3                	mov    ebx,edx
+ 81b3578:	90                   	nop
+ 81b3579:	8d b4 26 00 00 00 00 	lea    esi,[esi+eiz*1+0x0]
+ 81b3580:	8b 53 10             	mov    edx,DWORD PTR [ebx+0x10]
+ 81b3583:	8b 43 18             	mov    eax,DWORD PTR [ebx+0x18]
+ 81b3586:	29 d0                	sub    eax,edx
+ 81b3588:	0f 85 a4 00 00 00    	jne    81b3632 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x182>
+ 81b358e:	8b 53 04             	mov    edx,DWORD PTR [ebx+0x4]
+ 81b3591:	8b 43 0c             	mov    eax,DWORD PTR [ebx+0xc]
+ 81b3594:	29 d0                	sub    eax,edx
+ 81b3596:	0f 85 85 00 00 00    	jne    81b3621 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x171>
+ 81b359c:	8b 13                	mov    edx,DWORD PTR [ebx]
+ 81b359e:	b8 ff ff ff ff       	mov    eax,0xffffffff
+ 81b35a3:	8d 4a f4             	lea    ecx,[edx-0xc]
+ 81b35a6:	f0 0f c1 42 fc       	lock xadd DWORD PTR [edx-0x4],eax
+ 81b35ab:	85 c0                	test   eax,eax
+ 81b35ad:	7e 61                	jle    81b3610 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x160>
+ 81b35af:	83 c6 24             	add    esi,0x24
+ 81b35b2:	83 c3 24             	add    ebx,0x24
+ 81b35b5:	39 fe                	cmp    esi,edi
+ 81b35b7:	75 c7                	jne    81b3580 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0xd0>
+ 81b35b9:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b35bc:	8b 11                	mov    edx,DWORD PTR [ecx]
+ 81b35be:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 81b35c1:	8b 48 08             	mov    ecx,DWORD PTR [eax+0x8]
+ 81b35c4:	29 d1                	sub    ecx,edx
+ 81b35c6:	c1 f9 02             	sar    ecx,0x2
+ 81b35c9:	89 c8                	mov    eax,ecx
+ 81b35cb:	69 c0 39 8e e3 38    	imul   eax,eax,0x38e38e39
+ 81b35d1:	85 c0                	test   eax,eax
+ 81b35d3:	75 25                	jne    81b35fa <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x14a>
+ 81b35d5:	8b 4d 98             	mov    ecx,DWORD PTR [ebp-0x68]
+ 81b35d8:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 81b35db:	8b 45 94             	mov    eax,DWORD PTR [ebp-0x6c]
+ 81b35de:	89 0a                	mov    DWORD PTR [edx],ecx
+ 81b35e0:	89 42 04             	mov    DWORD PTR [edx+0x4],eax
+ 81b35e3:	8b 55 9c             	mov    edx,DWORD PTR [ebp-0x64]
+ 81b35e6:	8d 04 d2             	lea    eax,[edx+edx*8]
+ 81b35e9:	8d 04 81             	lea    eax,[ecx+eax*4]
+ 81b35ec:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b35ef:	89 41 08             	mov    DWORD PTR [ecx+0x8],eax
+ 81b35f2:	83 c4 7c             	add    esp,0x7c
+ 81b35f5:	5b                   	pop    ebx
+ 81b35f6:	5e                   	pop    esi
+ 81b35f7:	5f                   	pop    edi
+ 81b35f8:	5d                   	pop    ebp
+ 81b35f9:	c3                   	ret
+ 81b35fa:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b35fd:	8d 04 8d 00 00 00 00 	lea    eax,[ecx*4+0x0]
+ 81b3604:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b3608:	e8 9f 90 e9 ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 81b360d:	eb c6                	jmp    81b35d5 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x125>
+ 81b360f:	90                   	nop
+ 81b3610:	89 0c 24             	mov    DWORD PTR [esp],ecx
+ 81b3613:	8d 45 a8             	lea    eax,[ebp-0x58]
+ 81b3616:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b361a:	e8 0d 94 e9 ff       	call   804ca2c <_ZNSs4_Rep10_M_destroyERKSaIcE@plt>
+ 81b361f:	eb 8e                	jmp    81b35af <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0xff>
+ 81b3621:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b3625:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b3628:	e8 7f 90 e9 ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 81b362d:	e9 6a ff ff ff       	jmp    81b359c <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0xec>
+ 81b3632:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b3636:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b3639:	e8 6e 90 e9 ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 81b363e:	e9 4b ff ff ff       	jmp    81b358e <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0xde>
+ 81b3643:	8d 04 c0             	lea    eax,[eax+eax*8]
+ 81b3646:	c1 e0 02             	shl    eax,0x2
+ 81b3649:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b364c:	e8 1b 84 e9 ff       	call   804ba6c <_ZNSt24__default_alloc_templateILb1ELi0EE8allocateEj@plt>
+ 81b3651:	89 45 98             	mov    DWORD PTR [ebp-0x68],eax
+ 81b3654:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b3657:	8b 11                	mov    edx,DWORD PTR [ecx]
+ 81b3659:	e9 b3 fe ff ff       	jmp    81b3511 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x61>
+ 81b365e:	8b 4d 14             	mov    ecx,DWORD PTR [ebp+0x14]
+ 81b3661:	8d 45 b8             	lea    eax,[ebp-0x48]
+ 81b3664:	31 f6                	xor    esi,esi
+ 81b3666:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b3669:	89 4c 24 04          	mov    DWORD PTR [esp+0x4],ecx
+ 81b366d:	e8 aa 86 e9 ff       	call   804bd1c <_ZNSsC1ERKSs@plt>
+ 81b3672:	c7 45 c4 00 00 00 00 	mov    DWORD PTR [ebp-0x3c],0x0
+ 81b3679:	8b 7d 14             	mov    edi,DWORD PTR [ebp+0x14]
+ 81b367c:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+ 81b367f:	83 c7 04             	add    edi,0x4
+ 81b3682:	8b 4f 04             	mov    ecx,DWORD PTR [edi+0x4]
+ 81b3685:	c7 45 c0 00 00 00 00 	mov    DWORD PTR [ebp-0x40],0x0
+ 81b368c:	8b 50 04             	mov    edx,DWORD PTR [eax+0x4]
+ 81b368f:	c7 45 bc 00 00 00 00 	mov    DWORD PTR [ebp-0x44],0x0
+ 81b3696:	89 cb                	mov    ebx,ecx
+ 81b3698:	29 d3                	sub    ebx,edx
+ 81b369a:	0f 85 2e 02 00 00    	jne    81b38ce <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x41e>
+ 81b36a0:	89 75 bc             	mov    DWORD PTR [ebp-0x44],esi
+ 81b36a3:	8d 04 33             	lea    eax,[ebx+esi*1]
+ 81b36a6:	89 cb                	mov    ebx,ecx
+ 81b36a8:	89 75 c0             	mov    DWORD PTR [ebp-0x40],esi
+ 81b36ab:	29 d3                	sub    ebx,edx
+ 81b36ad:	89 5c 24 08          	mov    DWORD PTR [esp+0x8],ebx
+ 81b36b1:	8d 1c 33             	lea    ebx,[ebx+esi*1]
+ 81b36b4:	89 54 24 04          	mov    DWORD PTR [esp+0x4],edx
+ 81b36b8:	89 34 24             	mov    DWORD PTR [esp],esi
+ 81b36bb:	89 45 c4             	mov    DWORD PTR [ebp-0x3c],eax
+ 81b36be:	e8 a9 85 e9 ff       	call   804bc6c <memmove@plt>
+ 81b36c3:	89 5d c0             	mov    DWORD PTR [ebp-0x40],ebx
+ 81b36c6:	8b 75 14             	mov    esi,DWORD PTR [ebp+0x14]
+ 81b36c9:	8b 55 14             	mov    edx,DWORD PTR [ebp+0x14]
+ 81b36cc:	c7 45 d0 00 00 00 00 	mov    DWORD PTR [ebp-0x30],0x0
+ 81b36d3:	83 c6 10             	add    esi,0x10
+ 81b36d6:	8b 4a 10             	mov    ecx,DWORD PTR [edx+0x10]
+ 81b36d9:	c7 45 c8 00 00 00 00 	mov    DWORD PTR [ebp-0x38],0x0
+ 81b36e0:	8b 5e 04             	mov    ebx,DWORD PTR [esi+0x4]
+ 81b36e3:	c7 45 cc 00 00 00 00 	mov    DWORD PTR [ebp-0x34],0x0
+ 81b36ea:	29 cb                	sub    ebx,ecx
+ 81b36ec:	89 1c 24             	mov    DWORD PTR [esp],ebx
+ 81b36ef:	e8 fc 8f ff ff       	call   81ac6f0 <_ZNSt14__simple_allocIcSt24__default_alloc_templateILb1ELi0EEE8allocateEj>
+ 81b36f4:	89 45 cc             	mov    DWORD PTR [ebp-0x34],eax
+ 81b36f7:	8b 4d 14             	mov    ecx,DWORD PTR [ebp+0x14]
+ 81b36fa:	8d 1c 03             	lea    ebx,[ebx+eax*1]
+ 81b36fd:	89 45 c8             	mov    DWORD PTR [ebp-0x38],eax
+ 81b3700:	89 c7                	mov    edi,eax
+ 81b3702:	89 5d d0             	mov    DWORD PTR [ebp-0x30],ebx
+ 81b3705:	8b 41 10             	mov    eax,DWORD PTR [ecx+0x10]
+ 81b3708:	8b 5e 04             	mov    ebx,DWORD PTR [esi+0x4]
+ 81b370b:	89 3c 24             	mov    DWORD PTR [esp],edi
+ 81b370e:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b3712:	29 c3                	sub    ebx,eax
+ 81b3714:	89 5c 24 08          	mov    DWORD PTR [esp+0x8],ebx
+ 81b3718:	e8 4f 85 e9 ff       	call   804bc6c <memmove@plt>
+ 81b371d:	8b 55 14             	mov    edx,DWORD PTR [ebp+0x14]
+ 81b3720:	8d 04 3b             	lea    eax,[ebx+edi*1]
+ 81b3723:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b3726:	89 45 cc             	mov    DWORD PTR [ebp-0x34],eax
+ 81b3729:	8b 42 1c             	mov    eax,DWORD PTR [edx+0x1c]
+ 81b372c:	8b 71 04             	mov    esi,DWORD PTR [ecx+0x4]
+ 81b372f:	89 45 d4             	mov    DWORD PTR [ebp-0x2c],eax
+ 81b3732:	8b 42 20             	mov    eax,DWORD PTR [edx+0x20]
+ 81b3735:	89 f7                	mov    edi,esi
+ 81b3737:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+ 81b373a:	89 45 d8             	mov    DWORD PTR [ebp-0x28],eax
+ 81b373d:	29 d7                	sub    edi,edx
+ 81b373f:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+ 81b3742:	c1 ff 02             	sar    edi,0x2
+ 81b3745:	89 fb                	mov    ebx,edi
+ 81b3747:	69 db 39 8e e3 38    	imul   ebx,ebx,0x38e38e39
+ 81b374d:	39 c3                	cmp    ebx,eax
+ 81b374f:	0f 86 10 01 00 00    	jbe    81b3865 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x3b5>
+ 81b3755:	c6 44 24 0c 00       	mov    BYTE PTR [esp+0xc],0x0
+ 81b375a:	8d 04 c0             	lea    eax,[eax+eax*8]
+ 81b375d:	89 f2                	mov    edx,esi
+ 81b375f:	89 74 24 08          	mov    DWORD PTR [esp+0x8],esi
+ 81b3763:	c1 e0 02             	shl    eax,0x2
+ 81b3766:	89 f3                	mov    ebx,esi
+ 81b3768:	89 74 24 04          	mov    DWORD PTR [esp+0x4],esi
+ 81b376c:	29 c2                	sub    edx,eax
+ 81b376e:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b3771:	e8 7a 18 00 00       	call   81b4ff0 <_ZSt24__uninitialized_copy_auxIPN5quest10AArgScriptES2_ET0_T_S4_S3_12__false_type>
+ 81b3776:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+ 81b3779:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b377c:	8d 04 d2             	lea    eax,[edx+edx*8]
+ 81b377f:	c1 e0 02             	shl    eax,0x2
+ 81b3782:	29 c3                	sub    ebx,eax
+ 81b3784:	89 df                	mov    edi,ebx
+ 81b3786:	01 41 04             	add    DWORD PTR [ecx+0x4],eax
+ 81b3789:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 81b378c:	29 c7                	sub    edi,eax
+ 81b378e:	c1 ff 02             	sar    edi,0x2
+ 81b3791:	69 ff 39 8e e3 38    	imul   edi,edi,0x38e38e39
+ 81b3797:	85 ff                	test   edi,edi
+ 81b3799:	7e 4f                	jle    81b37ea <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x33a>
+ 81b379b:	90                   	nop
+ 81b379c:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+ 81b37a0:	83 ee 24             	sub    esi,0x24
+ 81b37a3:	83 eb 24             	sub    ebx,0x24
+ 81b37a6:	4f                   	dec    edi
+ 81b37a7:	89 5c 24 04          	mov    DWORD PTR [esp+0x4],ebx
+ 81b37ab:	89 34 24             	mov    DWORD PTR [esp],esi
+ 81b37ae:	e8 19 88 e9 ff       	call   804bfcc <_ZNSs6assignERKSs@plt>
+ 81b37b3:	8d 43 04             	lea    eax,[ebx+0x4]
+ 81b37b6:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b37ba:	8d 46 04             	lea    eax,[esi+0x4]
+ 81b37bd:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b37c0:	e8 bb 16 00 00       	call   81b4e80 <_ZNSt6vectorIcSaIcEEaSERKS1_>
+ 81b37c5:	8d 56 10             	lea    edx,[esi+0x10]
+ 81b37c8:	8d 43 10             	lea    eax,[ebx+0x10]
+ 81b37cb:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b37cf:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b37d2:	e8 a9 16 00 00       	call   81b4e80 <_ZNSt6vectorIcSaIcEEaSERKS1_>
+ 81b37d7:	8b 43 1c             	mov    eax,DWORD PTR [ebx+0x1c]
+ 81b37da:	85 ff                	test   edi,edi
+ 81b37dc:	89 46 1c             	mov    DWORD PTR [esi+0x1c],eax
+ 81b37df:	8b 43 20             	mov    eax,DWORD PTR [ebx+0x20]
+ 81b37e2:	89 46 20             	mov    DWORD PTR [esi+0x20],eax
+ 81b37e5:	7f b9                	jg     81b37a0 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x2f0>
+ 81b37e7:	8b 55 10             	mov    edx,DWORD PTR [ebp+0x10]
+ 81b37ea:	89 75 a4             	mov    DWORD PTR [ebp-0x5c],esi
+ 81b37ed:	8d 04 d2             	lea    eax,[edx+edx*8]
+ 81b37f0:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+ 81b37f3:	8d 4d b8             	lea    ecx,[ebp-0x48]
+ 81b37f6:	89 4c 24 08          	mov    DWORD PTR [esp+0x8],ecx
+ 81b37fa:	8d 04 82             	lea    eax,[edx+eax*4]
+ 81b37fd:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b3801:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b3804:	e8 67 17 00 00       	call   81b4f70 <_ZSt4fillIN9__gnu_cxx17__normal_iteratorIPN5quest10AArgScriptESt6vectorIS3_SaIS3_EEEES3_EvT_S9_RKT0_>
+ 81b3809:	8b 55 c8             	mov    edx,DWORD PTR [ebp-0x38]
+ 81b380c:	8b 45 d0             	mov    eax,DWORD PTR [ebp-0x30]
+ 81b380f:	29 d0                	sub    eax,edx
+ 81b3811:	75 44                	jne    81b3857 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x3a7>
+ 81b3813:	8b 55 bc             	mov    edx,DWORD PTR [ebp-0x44]
+ 81b3816:	8b 45 c4             	mov    eax,DWORD PTR [ebp-0x3c]
+ 81b3819:	29 d0                	sub    eax,edx
+ 81b381b:	75 2c                	jne    81b3849 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x399>
+ 81b381d:	8b 55 b8             	mov    edx,DWORD PTR [ebp-0x48]
+ 81b3820:	8d 5d a8             	lea    ebx,[ebp-0x58]
+ 81b3823:	b8 ff ff ff ff       	mov    eax,0xffffffff
+ 81b3828:	8d 4a f4             	lea    ecx,[edx-0xc]
+ 81b382b:	f0 0f c1 42 fc       	lock xadd DWORD PTR [edx-0x4],eax
+ 81b3830:	85 c0                	test   eax,eax
+ 81b3832:	0f 8f ba fd ff ff    	jg     81b35f2 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x142>
+ 81b3838:	89 5c 24 04          	mov    DWORD PTR [esp+0x4],ebx
+ 81b383c:	89 0c 24             	mov    DWORD PTR [esp],ecx
+ 81b383f:	e8 e8 91 e9 ff       	call   804ca2c <_ZNSs4_Rep10_M_destroyERKSaIcE@plt>
+ 81b3844:	e9 a9 fd ff ff       	jmp    81b35f2 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x142>
+ 81b3849:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b384d:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b3850:	e8 57 8e e9 ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 81b3855:	eb c6                	jmp    81b381d <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x36d>
+ 81b3857:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b385b:	89 14 24             	mov    DWORD PTR [esp],edx
+ 81b385e:	e8 49 8e e9 ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 81b3863:	eb ae                	jmp    81b3813 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x363>
+ 81b3865:	c6 44 24 0c 00       	mov    BYTE PTR [esp+0xc],0x0
+ 81b386a:	8d 55 b8             	lea    edx,[ebp-0x48]
+ 81b386d:	29 d8                	sub    eax,ebx
+ 81b386f:	89 54 24 08          	mov    DWORD PTR [esp+0x8],edx
+ 81b3873:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 81b3877:	89 34 24             	mov    DWORD PTR [esp],esi
+ 81b387a:	e8 e1 18 00 00       	call   81b5160 <_ZSt26__uninitialized_fill_n_auxIPN5quest10AArgScriptEjS1_ET_S3_T0_RKT1_12__false_type>
+ 81b387f:	8b 4d 08             	mov    ecx,DWORD PTR [ebp+0x8]
+ 81b3882:	8b 45 10             	mov    eax,DWORD PTR [ebp+0x10]
+ 81b3885:	8b 51 04             	mov    edx,DWORD PTR [ecx+0x4]
+ 81b3888:	29 d8                	sub    eax,ebx
+ 81b388a:	8d 04 c0             	lea    eax,[eax+eax*8]
+ 81b388d:	8d 04 82             	lea    eax,[edx+eax*4]
+ 81b3890:	89 41 04             	mov    DWORD PTR [ecx+0x4],eax
+ 81b3893:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+ 81b3897:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 81b389a:	c6 44 24 0c 00       	mov    BYTE PTR [esp+0xc],0x0
+ 81b389f:	89 74 24 04          	mov    DWORD PTR [esp+0x4],esi
+ 81b38a3:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b38a6:	e8 25 1a 00 00       	call   81b52d0 <_ZSt24__uninitialized_copy_auxIN9__gnu_cxx17__normal_iteratorIPN5quest10AArgScriptESt6vectorIS3_SaIS3_EEEES4_ET0_T_SA_S9_12__false_type>
+ 81b38ab:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 81b38ae:	8d 04 bd 00 00 00 00 	lea    eax,[edi*4+0x0]
+ 81b38b5:	8d 4d b8             	lea    ecx,[ebp-0x48]
+ 81b38b8:	01 42 04             	add    DWORD PTR [edx+0x4],eax
+ 81b38bb:	89 4c 24 08          	mov    DWORD PTR [esp+0x8],ecx
+ 81b38bf:	89 74 24 04          	mov    DWORD PTR [esp+0x4],esi
+ 81b38c3:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 81b38c6:	89 04 24             	mov    DWORD PTR [esp],eax
+ 81b38c9:	e9 36 ff ff ff       	jmp    81b3804 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x354>
+ 81b38ce:	89 1c 24             	mov    DWORD PTR [esp],ebx
+ 81b38d1:	e8 96 81 e9 ff       	call   804ba6c <_ZNSt24__default_alloc_templateILb1ELi0EE8allocateEj@plt>
+ 81b38d6:	89 c6                	mov    esi,eax
+ 81b38d8:	8b 4f 04             	mov    ecx,DWORD PTR [edi+0x4]
+ 81b38db:	8b 45 14             	mov    eax,DWORD PTR [ebp+0x14]
+ 81b38de:	8b 50 04             	mov    edx,DWORD PTR [eax+0x4]
+ 81b38e1:	e9 ba fd ff ff       	jmp    81b36a0 <_ZNSt6vectorIN5quest10AArgScriptESaIS1_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS1_S3_EEjRKS1_+0x1f0>

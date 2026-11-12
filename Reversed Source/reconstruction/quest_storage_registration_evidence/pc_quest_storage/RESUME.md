@@ -1,0 +1,51 @@
+# PC quest-storage package — READY for parent normal/O2/strict/full validation
+
+Verified parent baseline91/full99 plus actual manager query package CURRENT100. This adds ONE suite -> expected101. No child F writes, builds, target execution, status/coverage promotion or new gameplay/manager/Lua stubs. Source/test payload frozen after static checks below; notify parent before changing it.
+
+## Guarded integration
+
+integration/plan.json contains6files: currentquestpc.h/.cpp, newruntime+ABI+externalCobserver, currentMakefile. prepare.py is additive/rebasable, requires actual typed CQM GetQuestIndexByName declaration AND body before rendering. Current plan guards applied100 CQM header/body SHA in addition to every changedsource/payload/newfileabsence. Parent run python work/pc_quest_storage/apply.py --apply (default noflag validatesonly). Checks ALL6payload/source/newfile and BOTH actualdependency hashes before ANYwrite, backups preserved. If ROOTsources/managerchange, review and rerun prepare.py beforeapply. All operational text IO explicitUTF8. No production file changed by child.
+
+Canonical maincheck is implemented, not just a phonytarget: ./pc_quest_storage_regression immediately BEFORE ./quest_manager_indices_regression, matching RUNTIME_TESTS firsttwo. prepare.py/finalize.py assert entire canonicalcheck executionlist EXACTLYequals registry, newexecutiononce, current100->101. Separate check-pc-quest-storage is optional; fullcheck does not depend on thatphony and therefore runs newruntimeonce.
+
+Parent focused pc_quest_storage_regression plus existing pc_state_helpers/pc_flags_timers/query suites andcheck-abi; then preferred validate.py --root "PROJECT_ROOT\Reversed Source" --out "PROJECT_ROOT\Reversed Source\reconstruction\tests". --out explicitlysupports native F object/exe outputs; helperwrites uniquelyprefixed pc_quest_storage_*O2objects/exe and pc-quest-storage-*receipts/logs. Defaultout is WORKSPACE validation/. strict32 C++03pedantic-errors tests ABI/newtest/actualquestpc.cpp; O2 actualCPPgraph+5distinctSQL/observer objects. Helper asserts real event.cpp/event_queue.cpp +MCNCC_TEST_REAL_EVENTS and questpc/event/manager actualsources; no LTO/GC/no appmocks. NOhelper/build invoked by child. Parentfull101+ABI still required before coverage activation.
+
+## Complete originals and inline scope
+
+7 standalone full bodies, originalquestpc.cpp:
+HasQuest08060c10; GetQuest08060ca0; GetCurrentQuestIndex0805dda0; SetQuest0805e5a0; integer SetQuestState0805e400; private AddQuestStateChange0805e4b0; ClearQuest080617f0. Normalized-originals.json and7pendingmappings referencecompleteexports and actualruntime. Refresh source/test lines/SHA only AFTERpasses.
+
+4 ORIGINALheaderinline semantic bodies: quest_begin/quest_end/quest_find at originalquestpc.h181/186/191, exact nativeQuestInfoIterator NONCONST, DWORD findarg; nested TQuestStateChangeInfo ctor originalheader85, complete3fieldsDWORD index/int previous/int next. FullPC/QuestState/Reward/state records alreadyreal, unchangedlayout/ownership/API. metadata.json and inline-scope.json retainall declarationtypes/mangles/inlineparentlocations and actualinstruction snippets. NO fabricatedstandaloneinlinefunctionaddress/status; parentinstruction addresses are provenanceonly. No oldSTL entirePC sizeof assumptions. ABIchecks exacttypedmembers and12byteplainstate-change offsets0/4/8 only.
+
+Ghidra get_program_info firstlivecall confirmed originalSHA61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c. Ninefulloriginalexports retained evidence/storage-all-ghidra.json (7closed+2Lua-backed wrappers), exhaustivecallgraphs and staticassembly; no truncatedbody. Reused prior SetQuest evidence, no originalbinaryexecution. dependency-matrix.json records exactoriginalcallee/callsites/currentactualsourceanchors+SHA.
+
+## Actual dependency closure and exact behavior
+
+All7 storage methods use only currentactual CQM::GetQuestIndexByName(conststd::string&)->unsignedint NONCONST, existing actual PC flag/pending-save/ClearTimer/CancelTimerEvent and actual fullPC/QuestState/STL lifecycle. Manager actualhash/namequeries are ROOT/quest_level ownership, not duplicated. Existing TESTONLY unrelated manager owning-Lua/NPC destructor boundary requires L0/m_mapNPCempty; our fixture satisfies it. PC/QuestState constructors/destructors, registry/scheduler and flags are actual. No fake manager/query/PC lifecycle/state/coroutine methods.
+
+HasQuest resolvesname thenfind, no zeroindexrejection or mapmutation. GetQuest uses actualoperator[]: missingnamesresolve0andshare0state; returns mutable QuestState&, defaultiIndex remains0 ratherthanrequestedID. DefaultQuestState counters remain indeterminate as original; implicitcopy/operator[] has olduninitialized-scalar caveat. Tests inspect ONLY explicitlyinitialized defaultfields, then explicitlyinitialize counters before further use/copy. No zero-initialization repair.
+
+GetCurrentQuestIndex calls actualGetCurrentQuestName referencegetter then managerquery, returns int preserving highbitconversion. Doesnotread runningstateindex. SetQuest queriesonce, find->insert(copy) OR existingrecordassignment, assigns CURRENTquestname from LIVE namearg, then m_RunningQuestState=&map[index] (actualoperator[]), sendmask0, LastState=input.st, constructsstatusflag, reloadsinput.st AFTERsuffixconstruction, actualSetFlag(false), destroysflagtemp, writesCURRENT runningpointer->iIndex, donefalse. Do NOTcacheincomingname/record/pointer across callbacks or use staleinsertiterator. Sourceexplicitflag scope matches temporarydestructionBEFORE finalpointer/index write, shown805e994..9cd. Selfassignment/livenamefieldalias kept.
+
+Integer SetQuestState buildsstatusflag, actualGetFlag (mayrereadafterbothloggercallbacks), destroysflagtemp, ONLYqueueswhenprev!=next. It doesnotset maprecord.st orflags. AddQuestStateChange queriesindex BEFORE externaldiagnostic, then appends3fieldrecord to CURRENTvector aftercallback; vectorstate/index mustnotbereadearly. No drain/VM execution performed. Original int/DWORD boundaries/masks remainraw.
+
+ClearQuest FULL originalbody: copyname+'.', preincrement flagiterator; fornonzeroprefixmatch SetFlag(now->first,0,false); clear ALLtimers regardlessquestname, capturequestbegin, then managernamequery, linearunsignedkeyiteration setting ONLYmatchingrecord.st=0, no erase/contextreset. BEGINcapturedafterClearTimer BEFOREquery. Fullflagbranch retained; no namecopy/guard or narrowedemptyflagsbody.
+
+## Explicit original unsafe-domain boundary
+
+ClearQuest's matchedNONZEROflag branch passes a LIVE map-key reference to SetFlag(0)->DeleteFlag, which erases thatkey then calls SaveFlag(name,0) through danglingstd::stringreference. Originalaliasbug is NOTfixed/copied. Parent explicitlyallows completebodyintegration with this domain documented/excludedruntime. Test uses matchingZEROflags andnonmatchingnonzeroflags, no danglingread/artificialallocator-retention trick. Other existingflag-keyalias domains likewise remain unmodified. Iteratormutation that erases upcomingnodes during callbacks, destroyedquest-name refs and erasedrunningstate pointers are not executed or hardened.
+
+GetQuestdefault uninitializedcounters are notread untilexplicitfixtureinitialization; no assertion oftheirvalues. No fakeAArgScriptobject/ctor. AArgScript has no standaloneoriginalconstructor; onlydefaultinlineinstance at81af25d..263 isoptimizer-dead with indexstoresnotprovable. Modernreference zeroesindices, but evidencehere cannotprove olddefaults. We doNOTadd anyAArgScriptbody. Statechat_scripts tests use legalNULLpointerelements (vectorstorage/copy/assignment, neverpointeedereference). This doesnotclaim nonnullpointee execution/ownership or fullAArgctor recovery. FullrealQuestState string/vector records remain intact.
+
+## Meaningful actual regression
+
+- Realmanager m_hmQuestName is TESTINPUT only, actualquery/hash runs: missing0aliases, allDWORD highbit keys/signconversion, fullbinarystringNUL/nonASCII/300bytes, unchangedquerytable onmiss, mutable returnedreference/recordidentity, everyiteratororder/unsigned0..max/findmissnoninsertion. No managerquery observer/fakehash.
+- Full SetQuest insertion/update/selfassignment, allscalar/string/binarytext/vectorfields, separatevectorstorage withlegalNULLentries, stablemaprecordaddress, actualstatusflag/pending-save mutation, state0 deletion, livequest-name alias into overwrittentargettitle (queryoldkey, currentnamechanges, statusnewname), currentindexqueryindependentofrunningmapkey. Loggercallbackredirects CURRENT runningpointer andchanges input/sendmask/LastState/done afteroriginalcachedstatecopies; finalindex/done behaviorprovenwithoutfakeSetFlag.
+- Integerstatequeue actualGetFlag callback rereads undernormal/test_servernegative (2logs), equalstate noqueue, missingstate0/noqueue andINTMINqueue, cachedqueryindex vs callbackchangingmanagerindex+clearing/pushingCURRENTvector, all25prev/nextsignedextremes causingrealvectorreallocations. No immediateQuestInfo/flag/pendingmutation, noLuaresolution.
+- ClearQuest realquest_event_info allocations/namearrays, actualAddTimer/CancelTimerEvent/registry/scheduler, clearsunrelatedtimer too. ClearTimerlogcallback changesactualmanagernameindex beforelaterquery, matchingonlynewtarget.st reset, record/context/flags/otherfields unchanged. Empty/no-match/zero domains safe; matchednonzerokeyalias explicitlynotexecuted. RealPC destructioncleansremainingemptytimermap, no fakeappteardown.
+
+## Frontier retained, not promoted
+
+questpc.cpp.lua-frontier.candidate has FULL original SetQuestState(string,string)0805e380 and SetCurrentQuestStateName0805e2a0. Both need actual CQM::GetQuestStateIndex and its Lua/table/error/stack lifecycle, which is OUTSIDE thismanagerquerygroup. No narrow fake implementation, no oldconstcharwrapper guessed. Full61API staysdeclared withoutclaimedrecoveredbodies elsewhere. AArgCtor uncertainty inmetadata retained, no broadVM expansion.
+
+Static childchecks only: PythonAST, CPPdelimiterbalance, all6payloadSHA/newfileguards, currentactualmanagerdependencyhashes, 101canonicalexecutionregistry equality. No C++syntax/runtime/O2/ABI/fullpassclaimed. Sourcepayloadfrozenready afterthesechecks; reserve remainingwork for parent normalvalidation fixes.

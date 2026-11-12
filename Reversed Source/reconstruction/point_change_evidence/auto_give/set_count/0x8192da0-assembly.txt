@@ -1,0 +1,168 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08192da0 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem>:
+ 8192da0:	55                   	push   %ebp
+ 8192da1:	89 e5                	mov    %esp,%ebp
+ 8192da3:	56                   	push   %esi
+ 8192da4:	53                   	push   %ebx
+ 8192da5:	83 ec 40             	sub    $0x40,%esp
+ 8192da8:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8192dab:	8b 75 08             	mov    0x8(%ebp),%esi
+ 8192dae:	8b 50 34             	mov    0x34(%eax),%edx
+ 8192db1:	85 d2                	test   %edx,%edx
+ 8192db3:	74 0b                	je     8192dc0 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x20>
+ 8192db5:	89 04 24             	mov    %eax,(%esp)
+ 8192db8:	e8 03 3e fd ff       	call   8166bc0 <_ZN5CItem16RemoveFromGroundEv>
+ 8192dbd:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8192dc0:	8b 40 3c             	mov    0x3c(%eax),%eax
+ 8192dc3:	85 c0                	test   %eax,%eax
+ 8192dc5:	74 4d                	je     8192e14 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x74>
+ 8192dc7:	89 04 24             	mov    %eax,(%esp)
+ 8192dca:	bb 49 14 23 08       	mov    $0x8231449,%ebx
+ 8192dcf:	e8 5c 4b f9 ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 8192dd4:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 8192dd7:	8b 52 38             	mov    0x38(%edx),%edx
+ 8192dda:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 8192dde:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 8192de2:	85 d2                	test   %edx,%edx
+ 8192de4:	8d 4a 1d             	lea    0x1d(%edx),%ecx
+ 8192de7:	0f 94 c2             	sete   %dl
+ 8192dea:	c7 04 24 aa 12 23 08 	movl   $0x82312aa,(%esp)
+ 8192df1:	0f b6 d2             	movzbl %dl,%edx
+ 8192df4:	4a                   	dec    %edx
+ 8192df5:	21 d1                	and    %edx,%ecx
+ 8192df7:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 8192dfb:	b9 f5 01 00 00       	mov    $0x1f5,%ecx
+ 8192e00:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 8192e04:	e8 47 53 02 00       	call   81b8150 <_sys_err>
+ 8192e09:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8192e0c:	89 04 24             	mov    %eax,(%esp)
+ 8192e0f:	e8 1c 3c fd ff       	call   8166a30 <_ZN5CItem19RemoveFromCharacterEv>
+ 8192e14:	8d 55 e8             	lea    -0x18(%ebp),%edx
+ 8192e17:	8d 45 0c             	lea    0xc(%ebp),%eax
+ 8192e1a:	89 14 24             	mov    %edx,(%esp)
+ 8192e1d:	8d 5e 34             	lea    0x34(%esi),%ebx
+ 8192e20:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8192e24:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8192e28:	e8 d3 6b 00 00       	call   8199a00 <_ZNSt8_Rb_treeIP5CItemS1_St9_IdentityIS1_ESt4lessIS1_ESaIS1_EE4findERKS1_>
+ 8192e2d:	8b 4d e8             	mov    -0x18(%ebp),%ecx
+ 8192e30:	83 ec 04             	sub    $0x4,%esp
+ 8192e33:	8b 56 34             	mov    0x34(%esi),%edx
+ 8192e36:	39 d1                	cmp    %edx,%ecx
+ 8192e38:	0f 85 5a 01 00 00    	jne    8192f98 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x1f8>
+ 8192e3e:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8192e41:	8b 58 44             	mov    0x44(%eax),%ebx
+ 8192e44:	8b 40 38             	mov    0x38(%eax),%eax
+ 8192e47:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8192e4e:	89 5d e4             	mov    %ebx,-0x1c(%ebp)
+ 8192e51:	85 c0                	test   %eax,%eax
+ 8192e53:	8d 50 1d             	lea    0x1d(%eax),%edx
+ 8192e56:	0f 94 c0             	sete   %al
+ 8192e59:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 8192e5d:	0f b6 c0             	movzbl %al,%eax
+ 8192e60:	48                   	dec    %eax
+ 8192e61:	21 c2                	and    %eax,%edx
+ 8192e63:	b8 67 14 23 08       	mov    $0x8231467,%eax
+ 8192e68:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192e6c:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 8192e70:	e8 2b 54 02 00       	call   81b82a0 <sys_log>
+ 8192e75:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8192e78:	80 b8 9c 00 00 00 00 	cmpb   $0x0,0x9c(%eax)
+ 8192e7f:	0f 85 0b 01 00 00    	jne    8192f90 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x1f0>
+ 8192e85:	8b 5d e4             	mov    -0x1c(%ebp),%ebx
+ 8192e88:	85 db                	test   %ebx,%ebx
+ 8192e8a:	0f 85 94 00 00 00    	jne    8192f24 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x184>
+ 8192e90:	0f b6 88 9c 00 00 00 	movzbl 0x9c(%eax),%ecx
+ 8192e97:	8b 40 38             	mov    0x38(%eax),%eax
+ 8192e9a:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 8192e9e:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8192ea5:	85 c0                	test   %eax,%eax
+ 8192ea7:	8d 50 1d             	lea    0x1d(%eax),%edx
+ 8192eaa:	0f 94 c0             	sete   %al
+ 8192ead:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 8192eb1:	0f b6 c0             	movzbl %al,%eax
+ 8192eb4:	48                   	dec    %eax
+ 8192eb5:	21 c2                	and    %eax,%edx
+ 8192eb7:	b8 00 18 23 08       	mov    $0x8231800,%eax
+ 8192ebc:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 8192ec0:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192ec4:	e8 d7 53 02 00       	call   81b82a0 <sys_log>
+ 8192ec9:	8b 45 e4             	mov    -0x1c(%ebp),%eax
+ 8192ecc:	85 c0                	test   %eax,%eax
+ 8192ece:	75 40                	jne    8192f10 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x170>
+ 8192ed0:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8192ed3:	8d 56 20             	lea    0x20(%esi),%edx
+ 8192ed6:	8b 40 4c             	mov    0x4c(%eax),%eax
+ 8192ed9:	89 14 24             	mov    %edx,(%esp)
+ 8192edc:	89 45 dc             	mov    %eax,-0x24(%ebp)
+ 8192edf:	8d 45 dc             	lea    -0x24(%ebp),%eax
+ 8192ee2:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192ee6:	e8 75 6b 00 00       	call   8199a60 <_ZNSt8_Rb_treeImSt4pairIKmP5CItemESt10_Select1stIS4_ESt4lessImESaIS4_EE5eraseERS1_>
+ 8192eeb:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 8192eee:	85 d2                	test   %edx,%edx
+ 8192ef0:	75 0e                	jne    8192f00 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x160>
+ 8192ef2:	8d 65 f8             	lea    -0x8(%ebp),%esp
+ 8192ef5:	5b                   	pop    %ebx
+ 8192ef6:	5e                   	pop    %esi
+ 8192ef7:	5d                   	pop    %ebp
+ 8192ef8:	c3                   	ret
+ 8192ef9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 8192f00:	8b 02                	mov    (%edx),%eax
+ 8192f02:	89 14 24             	mov    %edx,(%esp)
+ 8192f05:	ff 50 04             	call   *0x4(%eax)
+ 8192f08:	eb e8                	jmp    8192ef2 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x152>
+ 8192f0a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 8192f10:	8d 56 40             	lea    0x40(%esi),%edx
+ 8192f13:	8d 45 e4             	lea    -0x1c(%ebp),%eax
+ 8192f16:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192f1a:	89 14 24             	mov    %edx,(%esp)
+ 8192f1d:	e8 3e 6b 00 00       	call   8199a60 <_ZNSt8_Rb_treeImSt4pairIKmP5CItemESt10_Select1stIS4_ESt4lessImESaIS4_EE5eraseERS1_>
+ 8192f22:	eb ac                	jmp    8192ed0 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x130>
+ 8192f24:	8b 40 5c             	mov    0x5c(%eax),%eax
+ 8192f27:	bb 1f 00 00 00       	mov    $0x1f,%ebx
+ 8192f2c:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8192f30:	89 45 e0             	mov    %eax,-0x20(%ebp)
+ 8192f33:	b8 08 00 00 00       	mov    $0x8,%eax
+ 8192f38:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8192f3c:	31 c0                	xor    %eax,%eax
+ 8192f3e:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8192f42:	a1 e4 58 32 08       	mov    0x83258e4,%eax
+ 8192f47:	89 04 24             	mov    %eax,(%esp)
+ 8192f4a:	e8 f1 cb fa ff       	call   813fb40 <_ZN11CLIENT_DESC14DBPacketHeaderEhmm>
+ 8192f4f:	8d 45 e4             	lea    -0x1c(%ebp),%eax
+ 8192f52:	b9 04 00 00 00       	mov    $0x4,%ecx
+ 8192f57:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192f5b:	a1 e4 58 32 08       	mov    0x83258e4,%eax
+ 8192f60:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 8192f64:	89 04 24             	mov    %eax,(%esp)
+ 8192f67:	e8 04 cd fa ff       	call   813fc70 <_ZN11CLIENT_DESC6PacketEPKvi>
+ 8192f6c:	8d 45 e0             	lea    -0x20(%ebp),%eax
+ 8192f6f:	ba 04 00 00 00       	mov    $0x4,%edx
+ 8192f74:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192f78:	a1 e4 58 32 08       	mov    0x83258e4,%eax
+ 8192f7d:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 8192f81:	89 04 24             	mov    %eax,(%esp)
+ 8192f84:	e8 e7 cc fa ff       	call   813fc70 <_ZN11CLIENT_DESC6PacketEPKvi>
+ 8192f89:	e9 3b ff ff ff       	jmp    8192ec9 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x129>
+ 8192f8e:	89 f6                	mov    %esi,%esi
+ 8192f90:	8b 5d e4             	mov    -0x1c(%ebp),%ebx
+ 8192f93:	e9 f8 fe ff ff       	jmp    8192e90 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0xf0>
+ 8192f98:	8d 42 0c             	lea    0xc(%edx),%eax
+ 8192f9b:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8192f9f:	8d 42 08             	lea    0x8(%edx),%eax
+ 8192fa2:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8192fa6:	8b 46 34             	mov    0x34(%esi),%eax
+ 8192fa9:	89 0c 24             	mov    %ecx,(%esp)
+ 8192fac:	83 c0 04             	add    $0x4,%eax
+ 8192faf:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192fb3:	e8 18 b3 eb ff       	call   804e2d0 <_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS0_S1_S1_>
+ 8192fb8:	89 04 24             	mov    %eax,(%esp)
+ 8192fbb:	ba 14 00 00 00       	mov    $0x14,%edx
+ 8192fc0:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8192fc4:	e8 e3 96 eb ff       	call   804c6ac <_ZNSt24__default_alloc_templateILb1ELi0EE10deallocateEPvj@plt>
+ 8192fc9:	ff 4b 04             	decl   0x4(%ebx)
+ 8192fcc:	e9 6d fe ff ff       	jmp    8192e3e <_ZN12ITEM_MANAGER11DestroyItemEP5CItem+0x9e>

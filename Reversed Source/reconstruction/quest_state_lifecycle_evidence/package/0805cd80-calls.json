@@ -1,0 +1,39 @@
+{
+  "function": {
+    "name": "quest::CQuestManager::OpenState",
+    "address": "0805cd80"
+  },
+  "callers": null,
+  "callees": {
+    "items": [
+      {
+        "call_site": "0805cd95",
+        "target": "0805d230",
+        "name": "QuestState::QuestState",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805cdac",
+        "target": "081bebc4",
+        "name": "lua_newthread",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0805cdc2",
+        "target": "081cbe24",
+        "name": "luaL_ref",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 100,
+    "total": 3,
+    "has_more": false
+  }
+}

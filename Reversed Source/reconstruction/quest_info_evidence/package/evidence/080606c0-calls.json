@@ -1,0 +1,47 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestCounterName",
+    "address": "080606c0"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0816943b",
+        "caller": {
+          "name": "quest_set_counter_name",
+          "address": "081693c0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "080606de",
+        "target": "080603e0",
+        "name": "PC::SetSendFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080606f8",
+        "target": "0804bfcc",
+        "name": "<EXTERNAL>::std::string::assign",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  }
+}

@@ -1,0 +1,60 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08166a30 <_ZN5CItem19RemoveFromCharacterEv>:
+ 8166a30:	55                   	push   %ebp
+ 8166a31:	89 e5                	mov    %esp,%ebp
+ 8166a33:	83 ec 18             	sub    $0x18,%esp
+ 8166a36:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 8166a39:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8166a3c:	8b 53 3c             	mov    0x3c(%ebx),%edx
+ 8166a3f:	85 d2                	test   %edx,%edx
+ 8166a41:	74 7e                	je     8166ac1 <_ZN5CItem19RemoveFromCharacterEv+0x91>
+ 8166a43:	80 7b 48 00          	cmpb   $0x0,0x48(%ebx)
+ 8166a47:	75 6e                	jne    8166ab7 <_ZN5CItem19RemoveFromCharacterEv+0x87>
+ 8166a49:	0f b6 43 40          	movzbl 0x40(%ebx),%eax
+ 8166a4d:	3c 03                	cmp    $0x3,%al
+ 8166a4f:	74 2f                	je     8166a80 <_ZN5CItem19RemoveFromCharacterEv+0x50>
+ 8166a51:	3c 04                	cmp    $0x4,%al
+ 8166a53:	74 2b                	je     8166a80 <_ZN5CItem19RemoveFromCharacterEv+0x50>
+ 8166a55:	0f b6 43 50          	movzbl 0x50(%ebx),%eax
+ 8166a59:	3c 59                	cmp    $0x59,%al
+ 8166a5b:	76 43                	jbe    8166aa0 <_ZN5CItem19RemoveFromCharacterEv+0x70>
+ 8166a5d:	c7 04 24 59 b8 22 08 	movl   $0x822b859,(%esp)
+ 8166a64:	b8 e0 b9 22 08       	mov    $0x822b9e0,%eax
+ 8166a69:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8166a6d:	b8 ff 00 00 00       	mov    $0xff,%eax
+ 8166a72:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8166a76:	e8 d5 16 05 00       	call   81b8150 <_sys_err>
+ 8166a7b:	90                   	nop
+ 8166a7c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 8166a80:	c7 43 3c 00 00 00 00 	movl   $0x0,0x3c(%ebx)
+ 8166a87:	c6 43 50 00          	movb   $0x0,0x50(%ebx)
+ 8166a8b:	c6 43 40 00          	movb   $0x0,0x40(%ebx)
+ 8166a8f:	89 1c 24             	mov    %ebx,(%esp)
+ 8166a92:	e8 a9 11 00 00       	call   8167c40 <_ZN5CItem4SaveEv>
+ 8166a97:	89 d8                	mov    %ebx,%eax
+ 8166a99:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 8166a9c:	89 ec                	mov    %ebp,%esp
+ 8166a9e:	5d                   	pop    %ebp
+ 8166a9f:	c3                   	ret
+ 8166aa0:	89 14 24             	mov    %edx,(%esp)
+ 8166aa3:	31 c9                	xor    %ecx,%ecx
+ 8166aa5:	0f b6 c0             	movzbl %al,%eax
+ 8166aa8:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 8166aac:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8166ab0:	e8 fb a4 00 00       	call   8170fb0 <_ZN9CHARACTER7SetItemEhP5CItem>
+ 8166ab5:	eb c9                	jmp    8166a80 <_ZN5CItem19RemoveFromCharacterEv+0x50>
+ 8166ab7:	89 1c 24             	mov    %ebx,(%esp)
+ 8166aba:	e8 b1 0f 00 00       	call   8167a70 <_ZN5CItem7UnequipEv>
+ 8166abf:	eb ca                	jmp    8166a8b <_ZN5CItem19RemoveFromCharacterEv+0x5b>
+ 8166ac1:	c7 04 24 59 b8 22 08 	movl   $0x822b859,(%esp)
+ 8166ac8:	b8 20 ba 22 08       	mov    $0x822ba20,%eax
+ 8166acd:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8166ad1:	b8 eb 00 00 00       	mov    $0xeb,%eax
+ 8166ad6:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8166ada:	e8 71 16 05 00       	call   81b8150 <_sys_err>
+ 8166adf:	eb b6                	jmp    8166a97 <_ZN5CItem19RemoveFromCharacterEv+0x67>

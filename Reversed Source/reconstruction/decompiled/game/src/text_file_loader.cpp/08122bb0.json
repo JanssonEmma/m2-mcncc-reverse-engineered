@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08122bb0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8122bb0",
+    "function": {
+      "name": "CTextFileLoader::SetParentNode",
+      "address": "08122bb0"
+    },
+    "signature": "BOOL SetParentNode(CTextFileLoader * this)",
+    "code": "\r\n/* DWARF original prototype: BOOL SetParentNode(CTextFileLoader * this) */\r\n\r\nBOOL __thiscall CTextFileLoader::SetParentNode(CTextFileLoader *this)\r\n\r\n{\r\n  SGroupNode *pSVar1;\r\n  int __line;\r\n  \r\n  if (this->m_pcurNode == (SGroupNode *)0x0) {\r\n    __line = 0xe2;\r\n  }\r\n  else {\r\n    pSVar1 = this->m_pcurNode->pParentNode;\r\n    if (pSVar1 != (SGroupNode *)0x0) {\r\n      this->m_pcurNode = pSVar1;\r\n      return 1;\r\n    }\r\n    __line = 0xe8;\r\n  }\r\n  __assert(\"SetParentNode\",\"text_file_loader.cpp\",__line);\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

@@ -1,0 +1,646 @@
+[
+  {
+    "unit": "log.cpp",
+    "name": "CAsyncSQL",
+    "size": 1152,
+    "members": [
+      {
+        "name": "m_hDB",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x46d38e",
+          "tag": "DW_TAG_typedef",
+          "name": "MYSQL",
+          "size": null,
+          "type": {
+            "die": "0x46cf65",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_mysql",
+            "size": 952
+          }
+        }
+      },
+      {
+        "name": "m_stHost",
+        "offset": [
+          952
+        ],
+        "type": {
+          "die": "0x4698e1",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4668e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "m_stUser",
+        "offset": [
+          956
+        ],
+        "type": {
+          "die": "0x4698e1",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4668e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "m_stPassword",
+        "offset": [
+          960
+        ],
+        "type": {
+          "die": "0x4698e1",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4668e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "m_stDB",
+        "offset": [
+          964
+        ],
+        "type": {
+          "die": "0x4698e1",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4668e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "m_stLocale",
+        "offset": [
+          968
+        ],
+        "type": {
+          "die": "0x4698e1",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4668e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "m_iMsgCount",
+        "offset": [
+          972
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      },
+      {
+        "name": "m_aiPipe",
+        "offset": [
+          976
+        ],
+        "type": {
+          "die": "0x4719a1",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x458aa6",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "bounds": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "m_queue_query",
+        "offset": [
+          984
+        ],
+        "type": {
+          "die": "0x470007",
+          "tag": "DW_TAG_structure_type",
+          "name": "queue<_SQLMsg*,std::deque<_SQLMsg*, std::allocator<_SQLMsg*> > >",
+          "size": 40
+        }
+      },
+      {
+        "name": "m_queue_query_copy",
+        "offset": [
+          1024
+        ],
+        "type": {
+          "die": "0x470007",
+          "tag": "DW_TAG_structure_type",
+          "name": "queue<_SQLMsg*,std::deque<_SQLMsg*, std::allocator<_SQLMsg*> > >",
+          "size": 40
+        }
+      },
+      {
+        "name": "m_map_kSQLMsgUnfinished",
+        "offset": [
+          1064
+        ],
+        "type": {
+          "die": "0x470f64",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<int,_SQLMsg*,std::less<int>,std::allocator<std::pair<const int, _SQLMsg*> > >",
+          "size": 12
+        }
+      },
+      {
+        "name": "m_queue_result",
+        "offset": [
+          1076
+        ],
+        "type": {
+          "die": "0x470007",
+          "tag": "DW_TAG_structure_type",
+          "name": "queue<_SQLMsg*,std::deque<_SQLMsg*, std::allocator<_SQLMsg*> > >",
+          "size": 40
+        }
+      },
+      {
+        "name": "m_bEnd",
+        "offset": [
+          1116
+        ],
+        "type": {
+          "die": "0x462642",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        }
+      },
+      {
+        "name": "m_hThread",
+        "offset": [
+          1120
+        ],
+        "type": {
+          "die": "0x45be8e",
+          "tag": "DW_TAG_typedef",
+          "name": "pthread_t",
+          "size": null,
+          "type": {
+            "die": "0x45be99",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x45be9f",
+              "tag": "DW_TAG_structure_type",
+              "name": "pthread",
+              "size": null
+            }
+          }
+        }
+      },
+      {
+        "name": "m_mtxQuery",
+        "offset": [
+          1124
+        ],
+        "type": {
+          "die": "0x4719b1",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x45bebc",
+            "tag": "DW_TAG_typedef",
+            "name": "pthread_mutex_t",
+            "size": null,
+            "type": {
+              "die": "0x45bec7",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x45becd",
+                "tag": "DW_TAG_structure_type",
+                "name": "pthread_mutex",
+                "size": null
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "m_mtxResult",
+        "offset": [
+          1128
+        ],
+        "type": {
+          "die": "0x4719b1",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x45bebc",
+            "tag": "DW_TAG_typedef",
+            "name": "pthread_mutex_t",
+            "size": null,
+            "type": {
+              "die": "0x45bec7",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x45becd",
+                "tag": "DW_TAG_structure_type",
+                "name": "pthread_mutex",
+                "size": null
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "m_sem",
+        "offset": [
+          1132
+        ],
+        "type": {
+          "die": "0x46dc36",
+          "tag": "DW_TAG_structure_type",
+          "name": "CSemaphore",
+          "size": 4
+        }
+      },
+      {
+        "name": "m_iQueryFinished",
+        "offset": [
+          1136
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      },
+      {
+        "name": "m_ulThreadID",
+        "offset": [
+          1140
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "m_bConnected",
+        "offset": [
+          1144
+        ],
+        "type": {
+          "die": "0x462642",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        }
+      },
+      {
+        "name": "m_iCopiedQuery",
+        "offset": [
+          1148
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQLaSERKS_"
+      },
+      {
+        "name": "CAsyncSQL",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "CAsyncSQL",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "~CAsyncSQL",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "Quit",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL4QuitEv"
+      },
+      {
+        "name": "Setup",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL5SetupEPKcS1_S1_S1_S1_b"
+      },
+      {
+        "name": "Setup",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL5SetupEPS_b"
+      },
+      {
+        "name": "Connect",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL7ConnectEv"
+      },
+      {
+        "name": "QueryLocaleSet",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL14QueryLocaleSetEv"
+      },
+      {
+        "name": "AsyncQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL10AsyncQueryEPKc"
+      },
+      {
+        "name": "ReturnQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL11ReturnQueryEPKcPv"
+      },
+      {
+        "name": "DirectQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL11DirectQueryEPKc"
+      },
+      {
+        "name": "CountQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL10CountQueryEv"
+      },
+      {
+        "name": "CountResult",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL11CountResultEv"
+      },
+      {
+        "name": "PushResult",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL10PushResultEP7_SQLMsg"
+      },
+      {
+        "name": "PopResult",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL9PopResultEPP7_SQLMsg"
+      },
+      {
+        "name": "ChildLoop",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL9ChildLoopEv"
+      },
+      {
+        "name": "GetSQLHandle",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL12GetSQLHandleEv"
+      },
+      {
+        "name": "CountQueryFinished",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL18CountQueryFinishedEv"
+      },
+      {
+        "name": "ResetQueryFinished",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL18ResetQueryFinishedEv"
+      },
+      {
+        "name": "DumpQueryQueue",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL14DumpQueryQueueEP7__sFILE"
+      },
+      {
+        "name": "Destroy",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL7DestroyEv"
+      },
+      {
+        "name": "PushQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL9PushQueryEP7_SQLMsg"
+      },
+      {
+        "name": "PeekQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL9PeekQueryEPP7_SQLMsg"
+      },
+      {
+        "name": "PopQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL8PopQueryEi"
+      },
+      {
+        "name": "PeekQueryFromCopyQueue",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL22PeekQueryFromCopyQueueEPP7_SQLMsg"
+      },
+      {
+        "name": "CopyQuery",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL9CopyQueryEv"
+      },
+      {
+        "name": "PopQueryFromCopyQueue",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL21PopQueryFromCopyQueueEv"
+      },
+      {
+        "name": "GetCopiedQueryCount",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL19GetCopiedQueryCountEv"
+      },
+      {
+        "name": "ResetCopiedQueryCount",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL21ResetCopiedQueryCountEv"
+      },
+      {
+        "name": "AddCopiedQueryCount",
+        "address": null,
+        "linkage": "_ZN9CAsyncSQL19AddCopiedQueryCountEi"
+      }
+    ]
+  },
+  {
+    "unit": "log.cpp",
+    "name": "LogManager",
+    "size": 1160,
+    "members": [
+      {
+        "name": null,
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x477d49",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<LogManager>",
+          "size": 4
+        }
+      },
+      {
+        "name": "m_sql",
+        "offset": [
+          4
+        ],
+        "type": {
+          "die": "0x4714af",
+          "tag": "DW_TAG_structure_type",
+          "name": "CAsyncSQL",
+          "size": 1152
+        }
+      },
+      {
+        "name": "m_bIsConnect",
+        "offset": [
+          1156
+        ],
+        "type": {
+          "die": "0x462642",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN10LogManageraSERKS_"
+      },
+      {
+        "name": "LogManager",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "LogManager",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "~LogManager",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "IsConnected",
+        "address": null,
+        "linkage": "_ZN10LogManager11IsConnectedEv"
+      },
+      {
+        "name": "Connect",
+        "address": null,
+        "linkage": "_ZN10LogManager7ConnectEPKcS1_S1_S1_"
+      },
+      {
+        "name": "Query",
+        "address": null,
+        "linkage": "_ZN10LogManager5QueryEPKcz"
+      },
+      {
+        "name": "ItemLog",
+        "address": null,
+        "linkage": "_ZN10LogManager7ItemLogEmmmmPKcS1_"
+      },
+      {
+        "name": "CharLog",
+        "address": null,
+        "linkage": "_ZN10LogManager7CharLogEmmmmPKcS1_"
+      },
+      {
+        "name": "LoginLog",
+        "address": null,
+        "linkage": "_ZN10LogManager8LoginLogEbmmhhm"
+      },
+      {
+        "name": "MoneyLog",
+        "address": null,
+        "linkage": "_ZN10LogManager8MoneyLogEhmi"
+      },
+      {
+        "name": "HackLog",
+        "address": null,
+        "linkage": "_ZN10LogManager7HackLogEPKcS1_S1_S1_"
+      },
+      {
+        "name": "HackCRCLog",
+        "address": null,
+        "linkage": "_ZN10LogManager10HackCRCLogEPKcS1_S1_S1_m"
+      },
+      {
+        "name": "GoldBarLog",
+        "address": null,
+        "linkage": "_ZN10LogManager10GoldBarLogEmm11GOLDBAR_HOWPKc"
+      },
+      {
+        "name": "PCBangLoginLog",
+        "address": null,
+        "linkage": "_ZN10LogManager14PCBangLoginLogEmPKcmm"
+      },
+      {
+        "name": "CubeLog",
+        "address": null,
+        "linkage": "_ZN10LogManager7CubeLogEmmmmmib"
+      },
+      {
+        "name": "EscapeString",
+        "address": null,
+        "linkage": "_ZN10LogManager12EscapeStringEPvPKvm"
+      },
+      {
+        "name": "SpeedHackLog",
+        "address": null,
+        "linkage": "_ZN10LogManager12SpeedHackLogEmmmi"
+      }
+    ]
+  }
+]

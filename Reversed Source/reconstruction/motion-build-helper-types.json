@@ -1,0 +1,116 @@
+[
+  {
+    "name": "FN_get_new_motion_file",
+    "return": {
+      "die": "0x1bc40fe",
+      "tag": "DW_TAG_pointer_type",
+      "name": null,
+      "size": 4,
+      "type": {
+        "die": "0x1bc3cdb",
+        "tag": "DW_TAG_base_type",
+        "name": "char",
+        "size": 1
+      }
+    },
+    "parameters": [
+      {
+        "name": "fp",
+        "type": {
+          "die": "0x1bdd0de",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1bc4196",
+            "tag": "DW_TAG_typedef",
+            "name": "FILE",
+            "size": null,
+            "type": {
+              "die": "0x1bc3f65",
+              "tag": "DW_TAG_structure_type",
+              "name": "__sFILE",
+              "size": 88
+            }
+          }
+        }
+      },
+      {
+        "name": "motion_num",
+        "type": {
+          "die": "0x1be3139",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "EPublicMotion",
+          "size": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "FN_get_old_motion_file",
+    "return": {
+      "die": "0x1bc40fe",
+      "tag": "DW_TAG_pointer_type",
+      "name": null,
+      "size": 4,
+      "type": {
+        "die": "0x1bc3cdb",
+        "tag": "DW_TAG_base_type",
+        "name": "char",
+        "size": 1
+      }
+    },
+    "parameters": [
+      {
+        "name": "motion_num",
+        "type": {
+          "die": "0x1be3139",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "EPublicMotion",
+          "size": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "FN_get_monster_motion_file",
+    "return": {
+      "die": "0x1bc40fe",
+      "tag": "DW_TAG_pointer_type",
+      "name": null,
+      "size": 4,
+      "type": {
+        "die": "0x1bc3cdb",
+        "tag": "DW_TAG_base_type",
+        "name": "char",
+        "size": 1
+      }
+    },
+    "parameters": [
+      {
+        "name": "motion_folder",
+        "type": {
+          "die": "0x1bc40fe",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1bc3cdb",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "motion_num",
+        "type": {
+          "die": "0x1be3139",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "EPublicMotion",
+          "size": 4
+        }
+      }
+    ]
+  }
+]

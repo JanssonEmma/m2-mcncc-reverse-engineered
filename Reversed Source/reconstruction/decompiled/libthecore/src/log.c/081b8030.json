@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b8030",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "log_init",
+      "address": "081b8030"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint log_init(void)\r\n\r\n{\r\n  LPLOGFILE logfile;\r\n  \r\n  log_file_set_dir(\"./log\");\r\n  log_file_sys = log_file_init(\"syslog\",\"a+\");\r\n  if (log_file_sys != (LPLOGFILE)0x0) {\r\n    log_file_err = log_file_init(\"syserr\",\"a+\");\r\n    logfile = log_file_sys;\r\n    if (log_file_err != (LPLOGFILE)0x0) {\r\n      log_file_pt = log_file_init(\"PTS\",\"w\");\r\n      if (log_file_pt != (LPLOGFILE)0x0) {\r\n        return 1;\r\n      }\r\n      log_file_destroy(log_file_sys);\r\n      logfile = log_file_err;\r\n    }\r\n    log_file_destroy(logfile);\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

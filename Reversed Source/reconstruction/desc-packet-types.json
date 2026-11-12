@@ -1,0 +1,263 @@
+[
+  {
+    "node": {
+      "die": "0x1f9bb17",
+      "tag": "DW_TAG_structure_type",
+      "name": "SPacketGGRelay",
+      "size": 30
+    },
+    "children": [
+      {
+        "name": "bHeader",
+        "type": {
+          "die": "0x1f622f9",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1f5eb54",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset_expr": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "szName",
+        "type": {
+          "die": "0x1f63f86",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1f5ed88",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "upper_bounds": [
+            24
+          ]
+        },
+        "offset_expr": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lSize",
+        "type": {
+          "die": "0x1f5edf2",
+          "tag": "DW_TAG_base_type",
+          "name": "long int",
+          "size": 4
+        },
+        "offset_expr": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              26
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1f9bb71",
+      "tag": "DW_TAG_subprogram",
+      "name": "SPacketGGRelay",
+      "size": null
+    },
+    "children": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x1f9bb9f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1f9bb17",
+            "tag": "DW_TAG_structure_type",
+            "name": "SPacketGGRelay",
+            "size": 30
+          }
+        },
+        "offset_expr": null
+      },
+      {
+        "name": null,
+        "type": {
+          "die": "0x1f9bba5",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1f9bbab",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1f9bb17",
+              "tag": "DW_TAG_structure_type",
+              "name": "SPacketGGRelay",
+              "size": 30
+            }
+          }
+        },
+        "offset_expr": null
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1f9bb89",
+      "tag": "DW_TAG_subprogram",
+      "name": "SPacketGGRelay",
+      "size": null
+    },
+    "children": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x1f9bb9f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1f9bb17",
+            "tag": "DW_TAG_structure_type",
+            "name": "SPacketGGRelay",
+            "size": 30
+          }
+        },
+        "offset_expr": null
+      }
+    ]
+  },
+  {
+    "node": {
+      "die": "0x1f9bbb0",
+      "tag": "DW_TAG_typedef",
+      "name": "TPacketGGRelay",
+      "size": null,
+      "type": {
+        "die": "0x1f9bb17",
+        "tag": "DW_TAG_structure_type",
+        "name": "SPacketGGRelay",
+        "size": 30
+      }
+    },
+    "children": []
+  },
+  {
+    "node": {
+      "die": "0x1fc8037",
+      "tag": "DW_TAG_subprogram",
+      "name": "__packet_encode",
+      "size": null,
+      "type": {
+        "die": "0x1f68726",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      }
+    },
+    "children": [
+      {
+        "name": "pbuf",
+        "type": {
+          "die": "0x1f62653",
+          "tag": "DW_TAG_typedef",
+          "name": "LPBUFFER",
+          "size": null,
+          "type": {
+            "die": "0x1f6265e",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1f6258f",
+              "tag": "DW_TAG_structure_type",
+              "name": "buffer",
+              "size": 32
+            }
+          }
+        },
+        "offset_expr": null
+      },
+      {
+        "name": "data",
+        "type": {
+          "die": "0x1f6b5c4",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1f6b5ca",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null
+          }
+        },
+        "offset_expr": null
+      },
+      {
+        "name": "length",
+        "type": {
+          "die": "0x1f5eb8a",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset_expr": null
+      },
+      {
+        "name": "file",
+        "type": {
+          "die": "0x1f5f1ef",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1f5f1f5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1f5ed88",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "offset_expr": null
+      },
+      {
+        "name": "line",
+        "type": {
+          "die": "0x1f5eb8a",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset_expr": null
+      }
+    ]
+  }
+]

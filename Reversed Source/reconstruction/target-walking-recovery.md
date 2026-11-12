@@ -1,0 +1,9 @@
+# Target HP and walking updates
+
+Original BroadcastTargetPacket08132670 and SetNowWalking081341a0 are reconstructed in char.cpp with full ECharType and original packed6-byte target/walk records. Complete69/45-instruction exports, signatures and raw strings were checked; final17-function dependency package is archived in target_walking_evidence, normalized exports in target-walking-addressed-ghidra.json.
+
+Target broadcast returns on an empty set before division. Descriptor-owning actor reportsHP0 independent of raw type; otherwise signed32 HP*100 wraps before signed divide and clamp0..100. Required division operands remain original preconditions. Pointer-set iterator advances before sending, allowing current-entry removal. Missing recipient descriptor emits exact4801 diagnostic then actual abort, without a new skip/null guard.
+
+Walking acts on changed flag OR any raw type other thanPC6. True refreshes clock even on repeated NPC requests; false preserves starttime. It uses actual PacketView and separate actual MonsterLog for non-PCs. Walking preference remains untouched. Tests cover all256types/twoboolstates, exact view/observer/sector/self fanout, actual manager monitoring and CP949 payloads. Distance-boundary coordinates6244/6245 explicitly verify actual approximate distance6000/6001. Tests execute a child that observes diagnostic then actual SIGABRT and exits87; Windows absolute executable paths with spaces are quoted correctly.
+
+Normal, selected application/fourSQLbackend O2 and strict32-bit source/signature/record checks pass. Full checkpoint69 completed exit0 with66 exact runtime commands plus ABI. No tested application method is mocked: only external clock/log/memory/signal observers and existing unrelated lifecycle boundaries remain. Original binary execution, full PointChange/stat feedback, remaining lifecycle and server linking remain unfinished.

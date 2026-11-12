@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "CQuestManager::GetCurrentNPCCharacterPtr",
+    "address": "081a5700"
+  },
+  "code": "\r\n/* DWARF original prototype: LPCHARACTER GetCurrentNPCCharacterPtr(CQuestManager * this) */\r\n\r\nLPCHARACTER __thiscall CQuestManager::GetCurrentNPCCharacterPtr(CQuestManager *this)\r\n\r\n{\r\n  LPCHARACTER pCVar1;\r\n  \r\n  pCVar1 = (LPCHARACTER)0x0;\r\n  if (this->m_pCurrentCharacter != (CHARACTER *)0x0) {\r\n    pCVar1 = CHARACTER::GetQuestNPC(this->m_pCurrentCharacter);\r\n  }\r\n  return pCVar1;\r\n}\r\n\r\n",
+  "truncated": false
+}

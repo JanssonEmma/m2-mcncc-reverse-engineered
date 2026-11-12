@@ -1,0 +1,318 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+0805f020 <_ZN5quest2PC19SendQuestInfoPakcetEv>:
+ 805f020:	55                   	push   %ebp
+ 805f021:	89 e5                	mov    %esp,%ebp
+ 805f023:	57                   	push   %edi
+ 805f024:	56                   	push   %esi
+ 805f025:	53                   	push   %ebx
+ 805f026:	83 ec 4c             	sub    $0x4c,%esp
+ 805f029:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 805f02c:	8b 77 58             	mov    0x58(%edi),%esi
+ 805f02f:	85 f6                	test   %esi,%esi
+ 805f031:	0f 84 69 04 00 00    	je     805f4a0 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x480>
+ 805f037:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f03a:	85 c0                	test   %eax,%eax
+ 805f03c:	0f 84 2e 04 00 00    	je     805f470 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x450>
+ 805f042:	c6 45 d8 51          	movb   $0x51,-0x28(%ebp)
+ 805f046:	0f b7 40 0c          	movzwl 0xc(%eax),%eax
+ 805f04a:	66 c7 45 d9 06 00    	movw   $0x6,-0x27(%ebp)
+ 805f050:	66 89 45 db          	mov    %ax,-0x25(%ebp)
+ 805f054:	0f b6 47 58          	movzbl 0x58(%edi),%eax
+ 805f058:	88 45 dd             	mov    %al,-0x23(%ebp)
+ 805f05b:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f05e:	89 04 24             	mov    %eax,(%esp)
+ 805f061:	e8 6a c6 09 00       	call   80fb6d0 <_ZN11TEMP_BUFFERC1Ev>
+ 805f066:	b8 06 00 00 00       	mov    $0x6,%eax
+ 805f06b:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f06f:	8d 45 d8             	lea    -0x28(%ebp),%eax
+ 805f072:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f076:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f079:	89 04 24             	mov    %eax,(%esp)
+ 805f07c:	e8 7f c7 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f081:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f084:	89 d0                	mov    %edx,%eax
+ 805f086:	83 e0 01             	and    $0x1,%eax
+ 805f089:	84 c0                	test   %al,%al
+ 805f08b:	74 4f                	je     805f0dc <_ZN5quest2PC19SendQuestInfoPakcetEv+0xbc>
+ 805f08d:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f090:	80 78 10 00          	cmpb   $0x0,0x10(%eax)
+ 805f094:	b8 01 00 00 00       	mov    $0x1,%eax
+ 805f099:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f09d:	8d 45 c7             	lea    -0x39(%ebp),%eax
+ 805f0a0:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f0a4:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f0a7:	0f 95 45 c7          	setne  -0x39(%ebp)
+ 805f0ab:	89 04 24             	mov    %eax,(%esp)
+ 805f0ae:	e8 4d c7 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f0b3:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f0b7:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f0be:	40                   	inc    %eax
+ 805f0bf:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f0c3:	0f b6 45 c7          	movzbl -0x39(%ebp),%eax
+ 805f0c7:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f0cb:	b8 14 73 1f 08       	mov    $0x81f7314,%eax
+ 805f0d0:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f0d4:	e8 c7 91 15 00       	call   81b82a0 <sys_log>
+ 805f0d9:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f0dc:	f6 c2 02             	test   $0x2,%dl
+ 805f0df:	0f 85 fb 02 00 00    	jne    805f3e0 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x3c0>
+ 805f0e5:	f6 c2 04             	test   $0x4,%dl
+ 805f0e8:	0f 85 62 02 00 00    	jne    805f350 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x330>
+ 805f0ee:	f6 c2 08             	test   $0x8,%dl
+ 805f0f1:	0f 85 09 02 00 00    	jne    805f300 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x2e0>
+ 805f0f7:	f6 c2 10             	test   $0x10,%dl
+ 805f0fa:	0f 85 70 01 00 00    	jne    805f270 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x250>
+ 805f100:	f6 c2 20             	test   $0x20,%dl
+ 805f103:	0f 85 17 01 00 00    	jne    805f220 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x200>
+ 805f109:	f6 c2 40             	test   $0x40,%dl
+ 805f10c:	0f 85 81 00 00 00    	jne    805f193 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x173>
+ 805f112:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f115:	89 04 24             	mov    %eax,(%esp)
+ 805f118:	e8 03 c7 09 00       	call   80fb820 <_ZN11TEMP_BUFFER4sizeEv>
+ 805f11d:	89 c6                	mov    %eax,%esi
+ 805f11f:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f122:	89 04 24             	mov    %eax,(%esp)
+ 805f125:	e8 b6 c6 09 00       	call   80fb7e0 <_ZN11TEMP_BUFFER9read_peekEv>
+ 805f12a:	89 c3                	mov    %eax,%ebx
+ 805f12c:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 805f131:	85 c0                	test   %eax,%eax
+ 805f133:	74 30                	je     805f165 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x145>
+ 805f135:	8b 40 7c             	mov    0x7c(%eax),%eax
+ 805f138:	8b 40 18             	mov    0x18(%eax),%eax
+ 805f13b:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 805f13f:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 805f143:	89 04 24             	mov    %eax,(%esp)
+ 805f146:	e8 c5 ab 0d 00       	call   8139d10 <_ZN4DESC6PacketEPKvi>
+ 805f14b:	c7 47 58 00 00 00 00 	movl   $0x0,0x58(%edi)
+ 805f152:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f155:	89 04 24             	mov    %eax,(%esp)
+ 805f158:	e8 23 c6 09 00       	call   80fb780 <_ZN11TEMP_BUFFERD1Ev>
+ 805f15d:	83 c4 4c             	add    $0x4c,%esp
+ 805f160:	5b                   	pop    %ebx
+ 805f161:	5e                   	pop    %esi
+ 805f162:	5f                   	pop    %edi
+ 805f163:	5d                   	pop    %ebp
+ 805f164:	c3                   	ret
+ 805f165:	c7 04 24 5c 72 1f 08 	movl   $0x81f725c,(%esp)
+ 805f16c:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 805f171:	b9 1a 00 00 00       	mov    $0x1a,%ecx
+ 805f176:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 805f17a:	ba fa 62 1f 08       	mov    $0x81f62fa,%edx
+ 805f17f:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 805f183:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 805f187:	e8 20 d8 fe ff       	call   804c9ac <__assert@plt>
+ 805f18c:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 805f191:	eb a2                	jmp    805f135 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x115>
+ 805f193:	be 19 00 00 00       	mov    $0x19,%esi
+ 805f198:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 805f19c:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f19f:	83 c0 2c             	add    $0x2c,%eax
+ 805f1a2:	89 04 24             	mov    %eax,(%esp)
+ 805f1a5:	e8 72 cf fe ff       	call   804c11c <_ZNSs7reserveEj@plt>
+ 805f1aa:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f1b1:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f1b4:	8b 41 2c             	mov    0x2c(%ecx),%eax
+ 805f1b7:	8b 58 f4             	mov    -0xc(%eax),%ebx
+ 805f1ba:	01 d8                	add    %ebx,%eax
+ 805f1bc:	88 10                	mov    %dl,(%eax)
+ 805f1be:	8b 41 2c             	mov    0x2c(%ecx),%eax
+ 805f1c1:	b9 19 00 00 00       	mov    $0x19,%ecx
+ 805f1c6:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 805f1ca:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f1ce:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f1d1:	89 04 24             	mov    %eax,(%esp)
+ 805f1d4:	e8 27 c6 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f1d9:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f1dd:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f1e0:	83 c0 19             	add    $0x19,%eax
+ 805f1e3:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f1e7:	8b 41 2c             	mov    0x2c(%ecx),%eax
+ 805f1ea:	8b 50 f4             	mov    -0xc(%eax),%edx
+ 805f1ed:	01 d0                	add    %edx,%eax
+ 805f1ef:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f1f6:	88 10                	mov    %dl,(%eax)
+ 805f1f8:	8b 41 2c             	mov    0x2c(%ecx),%eax
+ 805f1fb:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f202:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f206:	b8 27 73 1f 08       	mov    $0x81f7327,%eax
+ 805f20b:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f20f:	e8 8c 90 15 00       	call   81b82a0 <sys_log>
+ 805f214:	e9 f9 fe ff ff       	jmp    805f112 <_ZN5quest2PC19SendQuestInfoPakcetEv+0xf2>
+ 805f219:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 805f220:	b8 04 00 00 00       	mov    $0x4,%eax
+ 805f225:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f229:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f22c:	83 c0 28             	add    $0x28,%eax
+ 805f22f:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f233:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f236:	89 04 24             	mov    %eax,(%esp)
+ 805f239:	e8 c2 c5 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f23e:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f242:	83 c0 04             	add    $0x4,%eax
+ 805f245:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f249:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f24c:	8b 40 28             	mov    0x28(%eax),%eax
+ 805f24f:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f256:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f25a:	b8 3a 73 1f 08       	mov    $0x81f733a,%eax
+ 805f25f:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f263:	e8 38 90 15 00       	call   81b82a0 <sys_log>
+ 805f268:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f26b:	e9 99 fe ff ff       	jmp    805f109 <_ZN5quest2PC19SendQuestInfoPakcetEv+0xe9>
+ 805f270:	be 11 00 00 00       	mov    $0x11,%esi
+ 805f275:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 805f279:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f27c:	83 c0 20             	add    $0x20,%eax
+ 805f27f:	89 04 24             	mov    %eax,(%esp)
+ 805f282:	e8 95 ce fe ff       	call   804c11c <_ZNSs7reserveEj@plt>
+ 805f287:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f28e:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f291:	8b 41 20             	mov    0x20(%ecx),%eax
+ 805f294:	8b 58 f4             	mov    -0xc(%eax),%ebx
+ 805f297:	01 d8                	add    %ebx,%eax
+ 805f299:	88 10                	mov    %dl,(%eax)
+ 805f29b:	8b 41 20             	mov    0x20(%ecx),%eax
+ 805f29e:	b9 11 00 00 00       	mov    $0x11,%ecx
+ 805f2a3:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 805f2a7:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f2ab:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f2ae:	89 04 24             	mov    %eax,(%esp)
+ 805f2b1:	e8 4a c5 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f2b6:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f2ba:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f2bd:	83 c0 11             	add    $0x11,%eax
+ 805f2c0:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f2c4:	8b 41 20             	mov    0x20(%ecx),%eax
+ 805f2c7:	8b 50 f4             	mov    -0xc(%eax),%edx
+ 805f2ca:	01 d0                	add    %edx,%eax
+ 805f2cc:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f2d3:	88 10                	mov    %dl,(%eax)
+ 805f2d5:	8b 41 20             	mov    0x20(%ecx),%eax
+ 805f2d8:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f2df:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f2e3:	b8 51 73 1f 08       	mov    $0x81f7351,%eax
+ 805f2e8:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f2ec:	e8 af 8f 15 00       	call   81b82a0 <sys_log>
+ 805f2f1:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f2f4:	e9 07 fe ff ff       	jmp    805f100 <_ZN5quest2PC19SendQuestInfoPakcetEv+0xe0>
+ 805f2f9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 805f300:	b8 04 00 00 00       	mov    $0x4,%eax
+ 805f305:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f309:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f30c:	83 c0 24             	add    $0x24,%eax
+ 805f30f:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f313:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f316:	89 04 24             	mov    %eax,(%esp)
+ 805f319:	e8 e2 c4 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f31e:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f322:	83 c0 04             	add    $0x4,%eax
+ 805f325:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f329:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f32c:	8b 40 24             	mov    0x24(%eax),%eax
+ 805f32f:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f336:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f33a:	b8 67 73 1f 08       	mov    $0x81f7367,%eax
+ 805f33f:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f343:	e8 58 8f 15 00       	call   81b82a0 <sys_log>
+ 805f348:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f34b:	e9 a7 fd ff ff       	jmp    805f0f7 <_ZN5quest2PC19SendQuestInfoPakcetEv+0xd7>
+ 805f350:	be 11 00 00 00       	mov    $0x11,%esi
+ 805f355:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 805f359:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f35c:	83 c0 1c             	add    $0x1c,%eax
+ 805f35f:	89 04 24             	mov    %eax,(%esp)
+ 805f362:	e8 b5 cd fe ff       	call   804c11c <_ZNSs7reserveEj@plt>
+ 805f367:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f36e:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f371:	8b 41 1c             	mov    0x1c(%ecx),%eax
+ 805f374:	8b 58 f4             	mov    -0xc(%eax),%ebx
+ 805f377:	01 d8                	add    %ebx,%eax
+ 805f379:	88 10                	mov    %dl,(%eax)
+ 805f37b:	8b 41 1c             	mov    0x1c(%ecx),%eax
+ 805f37e:	b9 11 00 00 00       	mov    $0x11,%ecx
+ 805f383:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 805f387:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f38b:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f38e:	89 04 24             	mov    %eax,(%esp)
+ 805f391:	e8 6a c4 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f396:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f39a:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f39d:	83 c0 11             	add    $0x11,%eax
+ 805f3a0:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f3a4:	8b 41 1c             	mov    0x1c(%ecx),%eax
+ 805f3a7:	8b 50 f4             	mov    -0xc(%eax),%edx
+ 805f3aa:	01 d0                	add    %edx,%eax
+ 805f3ac:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f3b3:	88 10                	mov    %dl,(%eax)
+ 805f3b5:	8b 41 1c             	mov    0x1c(%ecx),%eax
+ 805f3b8:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f3bf:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f3c3:	b8 7c 73 1f 08       	mov    $0x81f737c,%eax
+ 805f3c8:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f3cc:	e8 cf 8e 15 00       	call   81b82a0 <sys_log>
+ 805f3d1:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f3d4:	e9 15 fd ff ff       	jmp    805f0ee <_ZN5quest2PC19SendQuestInfoPakcetEv+0xce>
+ 805f3d9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 805f3e0:	be 1f 00 00 00       	mov    $0x1f,%esi
+ 805f3e5:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 805f3e9:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f3ec:	83 c0 18             	add    $0x18,%eax
+ 805f3ef:	89 04 24             	mov    %eax,(%esp)
+ 805f3f2:	e8 25 cd fe ff       	call   804c11c <_ZNSs7reserveEj@plt>
+ 805f3f7:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f3fe:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f401:	8b 41 18             	mov    0x18(%ecx),%eax
+ 805f404:	8b 58 f4             	mov    -0xc(%eax),%ebx
+ 805f407:	01 d8                	add    %ebx,%eax
+ 805f409:	88 10                	mov    %dl,(%eax)
+ 805f40b:	8b 41 18             	mov    0x18(%ecx),%eax
+ 805f40e:	b9 1f 00 00 00       	mov    $0x1f,%ecx
+ 805f413:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 805f417:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f41b:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 805f41e:	89 04 24             	mov    %eax,(%esp)
+ 805f421:	e8 da c3 09 00       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 805f426:	0f b7 45 d9          	movzwl -0x27(%ebp),%eax
+ 805f42a:	8b 4f 2c             	mov    0x2c(%edi),%ecx
+ 805f42d:	83 c0 1f             	add    $0x1f,%eax
+ 805f430:	66 89 45 d9          	mov    %ax,-0x27(%ebp)
+ 805f434:	8b 41 18             	mov    0x18(%ecx),%eax
+ 805f437:	8b 50 f4             	mov    -0xc(%eax),%edx
+ 805f43a:	01 d0                	add    %edx,%eax
+ 805f43c:	0f b6 15 18 17 32 08 	movzbl 0x8321718,%edx
+ 805f443:	88 10                	mov    %dl,(%eax)
+ 805f445:	8b 41 18             	mov    0x18(%ecx),%eax
+ 805f448:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 805f44f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f453:	b8 90 73 1f 08       	mov    $0x81f7390,%eax
+ 805f458:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f45c:	e8 3f 8e 15 00       	call   81b82a0 <sys_log>
+ 805f461:	8b 57 58             	mov    0x58(%edi),%edx
+ 805f464:	e9 7c fc ff ff       	jmp    805f0e5 <_ZN5quest2PC19SendQuestInfoPakcetEv+0xc5>
+ 805f469:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 805f470:	c7 04 24 6e 72 1f 08 	movl   $0x81f726e,(%esp)
+ 805f477:	b8 9f 73 1f 08       	mov    $0x81f739f,%eax
+ 805f47c:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 805f480:	b8 ef 00 00 00       	mov    $0xef,%eax
+ 805f485:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 805f489:	b8 b3 73 1f 08       	mov    $0x81f73b3,%eax
+ 805f48e:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 805f492:	e8 15 d5 fe ff       	call   804c9ac <__assert@plt>
+ 805f497:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 805f49a:	e9 a3 fb ff ff       	jmp    805f042 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x22>
+ 805f49f:	90                   	nop
+ 805f4a0:	c7 04 24 6e 72 1f 08 	movl   $0x81f726e,(%esp)
+ 805f4a7:	bb bf 73 1f 08       	mov    $0x81f73bf,%ebx
+ 805f4ac:	b9 ee 00 00 00       	mov    $0xee,%ecx
+ 805f4b1:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 805f4b5:	ba b3 73 1f 08       	mov    $0x81f73b3,%edx
+ 805f4ba:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 805f4be:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 805f4c2:	e8 e5 d4 fe ff       	call   804c9ac <__assert@plt>
+ 805f4c7:	e9 6b fb ff ff       	jmp    805f037 <_ZN5quest2PC19SendQuestInfoPakcetEv+0x17>
+ 805f4cc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi

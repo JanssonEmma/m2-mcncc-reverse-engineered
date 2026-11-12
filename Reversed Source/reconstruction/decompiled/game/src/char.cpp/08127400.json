@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08127400",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER::Create",
+      "address": "08127400"
+    },
+    "code": "\r\n/* DWARF original prototype: void Create(CHARACTER * this, char * c_pszName, DWORD vid, bool isPC)\r\n    */\r\n\r\nvoid __thiscall CHARACTER::Create(CHARACTER *this,char *c_pszName,DWORD vid,bool isPC)\r\n\r\n{\r\n  crc_t cVar1;\r\n  uint *puVar2;\r\n  uint *puVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  bool isPC_local;\r\n  char crc_string [129];\r\n  \r\n  Create::s_crc = Create::s_crc + 1;\r\n  snprintf(crc_string,0x80,\"%s%p%d\",c_pszName,this,Create::s_crc);\r\n  puVar3 = (uint *)crc_string;\r\n  do {\r\n    puVar2 = puVar3;\r\n    puVar3 = puVar2 + 1;\r\n    uVar4 = *puVar2 + 0xfefefeff & ~*puVar2;\r\n    uVar5 = uVar4 & 0x80808080;\r\n  } while (uVar5 == 0);\r\n  if ((uVar4 & 0x8080) == 0) {\r\n    uVar5 = uVar5 >> 0x10;\r\n    puVar3 = (uint *)((int)puVar2 + 6);\r\n  }\r\n  cVar1 = get_crc32(crc_string,\r\n                    (size_t)((int)puVar3 +\r\n                            ((-3 - (uint)CARRY1((byte)uVar5,(byte)uVar5)) - (int)crc_string)));\r\n  (this->m_vid).m_crc = cVar1;\r\n  (this->m_vid).m_id = vid;\r\n  if (isPC) {\r\n    strlen(c_pszName);\r\n    std::string::assign((char *)&this->m_stName,(uint)c_pszName);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

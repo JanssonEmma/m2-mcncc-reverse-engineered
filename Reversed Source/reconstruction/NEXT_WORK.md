@@ -1,0 +1,15 @@
+# Next character teardown work
+
+The goal is active. Continue autonomously without routine questions. Checkpoint43 full runtime/ABI pass is in checkpoint-43-validation.log and validation-status.json. Actual CHARACTER constructor and CHARACTER_MANAGER CreateCharacter are now production code. Creation/initialization pass focused O0/O2 and32-bit syntax. Character destructor, unrecovered virtuals, quest Lua lifecycle and sector ownership remain explicit test boundaries.
+
+Start CHARACTER::Destroy081274f0 dependency closure. Full body is saved in character-destroy-ghidra.json. Helpers CloseMyShop, ClearStone, ClearSync, ClearTarget, ClearItem and StopMuyeongEvent are saved in character-destroy-helper-ghidra.json. Do not promote no-op production cleanup or reduced subsystem class shells.
+
+Complete old dependency type metadata was extracted across char/item/party/shop/exchange/safebox/dungeon/regen CUs into destruction-dependency-types.json. It includes CItem160/20 fields, ITEM_MANAGER172/17 fields, CShop40/6, CShopManager40/4, CExchange92/8, CSafebox560/6, CParty160/23, CDungeon108/21, regen64/17 and packed SPlayerSkill6/3. Multiple CU observations are retained, so select by name and relevant unit and compare consistency. Some nested member records require further extraction before declaring by-value data. Preserve original file placement using the supplied reference tree.
+
+Destroy ordering: CloseMyShop; detach dungeon; HorseSummon(false,false); rider ClearHorseInfo virtual (vtable slot18, not StopRiding); detach descriptor; cancel exchange; SetVictim(null); remove shop guest; ClearStone/Sync/Target/Item; party delete/unlink/quit; delete mob instance; decrement regen count; delete safebox/mall; clear spawned set; StopMuyeongEvent;13 named event cancels; cancel copied values of mob-skill event map then clear; ClearAffect(false); delete[] skill levels; CEntity Destroy; remove sector membership; unregister monster log iff flag.
+
+StopMuyeongEvent is actually in char_skill.cpp at08073900 (not char.cpp) and just event_cancel(&m_pkMuyeongEvent). Stage its source when adding relevant cleanup. ClearItem is in char_item.cpp and iterates109 slots, sets skip-save, flushes manager save, removes ownership, destroys item, syncs quickslot. Quest manager/PC/NPC full data declarations exist but Lua/quest lifecycle is pending.
+
+Shared DESC_PACKET_SOURCES now includes real entity/entity_view/FSM/horse/char/manager/quest plus character_fixture.cpp and quest_flag_fixture.cpp. Isolated no-OS suites have unreachable float/MINMAX in character_unused_clock.cpp. entity_regression links real constructor dependencies and remaining character destructor/virtual fixture instead of the removed entity_spatial_fixture.cpp. character_manager_regression likewise uses real character dependencies instead of the removed character_manager_unused.cpp.
+
+Keep PROJECT_ROOT/Reversed Source as destination and REFERENCE_PROJECT/Source/srv/server read-only reference. Do not execute original binary. Full server link and Visual Studio integration remain unfinished; native Windows support is deferred.

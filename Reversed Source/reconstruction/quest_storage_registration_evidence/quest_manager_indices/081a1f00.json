@@ -1,0 +1,218 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CQuestManager::FindNPCIDByName\",\n    \"address\": \"081a1f00\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: uint FindNPCIDByName(CQuestManager * this, string * name) */\\r\\n\\r\\nuint __thiscall CQuestManager::FindNPCIDByName(CQuestManager *this,string *name)\\r\\n\\r\\n{\\r\\n  uint uVar1;\\r\\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>*>\\r\\n  it;\\r\\n  \\r\\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>\\r\\n  ::find((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>\\r\\n          *)&it,(string *)&this->m_mapNPCNameID);\\r\\n  uVar1 = 0;\\r\\n  if (it.super__Rb_tree_base_iterator._M_node !=\\r\\n      (_Rb_tree_base_iterator)\\r\\n      &((this->m_mapNPCNameID)._M_t.\\r\\n        super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>\\r\\n        .\\r\\n        super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,true>\\r\\n       ._M_header)->super__Rb_tree_node_base) {\\r\\n    uVar1 = *(uint *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\\r\\n  }\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CQuestManager::FindNPCIDByName",
+        "address": "081a1f00"
+      },
+      "code": "\r\n/* DWARF original prototype: uint FindNPCIDByName(CQuestManager * this, string * name) */\r\n\r\nuint __thiscall CQuestManager::FindNPCIDByName(CQuestManager *this,string *name)\r\n\r\n{\r\n  uint uVar1;\r\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>*>\r\n  it;\r\n  \r\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>\r\n  ::find((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>\r\n          *)&it,(string *)&this->m_mapNPCNameID);\r\n  uVar1 = 0;\r\n  if (it.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_mapNPCNameID)._M_t.\r\n        super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    uVar1 = *(uint *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CQuestManager::FindNPCIDByName\",\n    \"address\": \"081a1f00\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"081a1f20\",\n        \"target\": \"081a8f90\",\n        \"name\": \"_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>::find\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 1,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CQuestManager::FindNPCIDByName",
+        "address": "081a1f00"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "081a1f20",
+            "target": "081a8f90",
+            "name": "_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_unsigned_int>_>_>::find",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 1,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"081a1f00\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f01\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f03\",\n      \"bytes\": \"83ec38\",\n      \"instruction\": \"SUB ESP,0x38\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f06\",\n      \"bytes\": \"895dfc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x4],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f09\",\n      \"bytes\": \"8b450c\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f0c\",\n      \"bytes\": \"8d4de8\",\n      \"instruction\": \"LEA ECX,[EBP + -0x18]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f0f\",\n      \"bytes\": \"890c24\",\n      \"instruction\": \"MOV dword ptr [ESP],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f12\",\n      \"bytes\": \"8b5d08\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f15\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f19\",\n      \"bytes\": \"8d5354\",\n      \"instruction\": \"LEA EDX,[EBX + 0x54]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f1c\",\n      \"bytes\": \"89542404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f20\",\n      \"bytes\": \"e86b700000\",\n      \"instruction\": \"CALL 0x081a8f90\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f25\",\n      \"bytes\": \"8b4354\",\n      \"instruction\": \"MOV EAX,dword ptr [EBX + 0x54]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f28\",\n      \"bytes\": \"83ec04\",\n      \"instruction\": \"SUB ESP,0x4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f2b\",\n      \"bytes\": \"31c9\",\n      \"instruction\": \"XOR ECX,ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f2d\",\n      \"bytes\": \"8b55e8\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + -0x18]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f30\",\n      \"bytes\": \"8945d8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x28],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f33\",\n      \"bytes\": \"39c2\",\n      \"instruction\": \"CMP EDX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f35\",\n      \"bytes\": \"7403\",\n      \"instruction\": \"JZ 0x081a1f3a\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f37\",\n      \"bytes\": \"8b4a14\",\n      \"instruction\": \"MOV ECX,dword ptr [EDX + 0x14]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f3a\",\n      \"bytes\": \"8b5dfc\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + -0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f3d\",\n      \"bytes\": \"89c8\",\n      \"instruction\": \"MOV EAX,ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f3f\",\n      \"bytes\": \"89ec\",\n      \"instruction\": \"MOV ESP,EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f41\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081a1f42\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 25,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "081a1f00",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081a1f01",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081a1f03",
+          "bytes": "83ec38",
+          "instruction": "SUB ESP,0x38",
+          "comment": null
+        },
+        {
+          "address": "081a1f06",
+          "bytes": "895dfc",
+          "instruction": "MOV dword ptr [EBP + -0x4],EBX",
+          "comment": null
+        },
+        {
+          "address": "081a1f09",
+          "bytes": "8b450c",
+          "instruction": "MOV EAX,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "081a1f0c",
+          "bytes": "8d4de8",
+          "instruction": "LEA ECX,[EBP + -0x18]",
+          "comment": null
+        },
+        {
+          "address": "081a1f0f",
+          "bytes": "890c24",
+          "instruction": "MOV dword ptr [ESP],ECX",
+          "comment": null
+        },
+        {
+          "address": "081a1f12",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081a1f15",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "081a1f19",
+          "bytes": "8d5354",
+          "instruction": "LEA EDX,[EBX + 0x54]",
+          "comment": null
+        },
+        {
+          "address": "081a1f1c",
+          "bytes": "89542404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EDX",
+          "comment": null
+        },
+        {
+          "address": "081a1f20",
+          "bytes": "e86b700000",
+          "instruction": "CALL 0x081a8f90",
+          "comment": null
+        },
+        {
+          "address": "081a1f25",
+          "bytes": "8b4354",
+          "instruction": "MOV EAX,dword ptr [EBX + 0x54]",
+          "comment": null
+        },
+        {
+          "address": "081a1f28",
+          "bytes": "83ec04",
+          "instruction": "SUB ESP,0x4",
+          "comment": null
+        },
+        {
+          "address": "081a1f2b",
+          "bytes": "31c9",
+          "instruction": "XOR ECX,ECX",
+          "comment": null
+        },
+        {
+          "address": "081a1f2d",
+          "bytes": "8b55e8",
+          "instruction": "MOV EDX,dword ptr [EBP + -0x18]",
+          "comment": null
+        },
+        {
+          "address": "081a1f30",
+          "bytes": "8945d8",
+          "instruction": "MOV dword ptr [EBP + -0x28],EAX",
+          "comment": null
+        },
+        {
+          "address": "081a1f33",
+          "bytes": "39c2",
+          "instruction": "CMP EDX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081a1f35",
+          "bytes": "7403",
+          "instruction": "JZ 0x081a1f3a",
+          "comment": null
+        },
+        {
+          "address": "081a1f37",
+          "bytes": "8b4a14",
+          "instruction": "MOV ECX,dword ptr [EDX + 0x14]",
+          "comment": null
+        },
+        {
+          "address": "081a1f3a",
+          "bytes": "8b5dfc",
+          "instruction": "MOV EBX,dword ptr [EBP + -0x4]",
+          "comment": null
+        },
+        {
+          "address": "081a1f3d",
+          "bytes": "89c8",
+          "instruction": "MOV EAX,ECX",
+          "comment": null
+        },
+        {
+          "address": "081a1f3f",
+          "bytes": "89ec",
+          "instruction": "MOV ESP,EBP",
+          "comment": null
+        },
+        {
+          "address": "081a1f41",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081a1f42",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 25,
+      "has_more": false
+    },
+    "isError": false
+  }
+]

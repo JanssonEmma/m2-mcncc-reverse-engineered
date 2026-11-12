@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08074d00",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>::_M_erase",
+      "address": "08074d00"
+    },
+    "code": "\r\n/* DWARF original prototype: void\r\n   _M_erase(_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n   * this, _Rb_tree_node<CHARACTER*> * __x) */\r\n\r\nvoid __thiscall\r\n_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n::_M_erase(_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n           *this,_Rb_tree_node<CHARACTER*> *__x)\r\n\r\n{\r\n  _Rb_tree_node<CHARACTER*> *p_Var1;\r\n  \r\n  while (__x != (_Rb_tree_node<CHARACTER*> *)0x0) {\r\n                    /* Unresolved local var: _Rb_tree_node<CHARACTER*> * __y@[DW_OP_reg3(EBX)] */\r\n    _M_erase(this,(_Rb_tree_node<CHARACTER*> *)(__x->super__Rb_tree_node_base)._M_right);\r\n    p_Var1 = (_Rb_tree_node<CHARACTER*> *)(__x->super__Rb_tree_node_base)._M_left;\r\n    std::__default_alloc_template<true,0>::deallocate(__x,0x14);\r\n    __x = p_Var1;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

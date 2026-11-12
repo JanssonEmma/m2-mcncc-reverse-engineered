@@ -1,0 +1,19 @@
+--- CURRENT/reconstruction/tests/quest_flag_fixture.cpp
++++ PC/reconstruction/tests/quest_flag_fixture.cpp
+@@ -1,10 +1,11 @@
+-//Explicit test-only quest lifecycle; production Lua/quest cleanup remains pending.
++// TEST ONLY owning-Lua/NPC boundary. Real manager ctor and PC lifecycle now linked.
+ #include "../../game/src/questmanager.h"
++#include <cassert>
+ #include <cstdlib>
+ namespace quest {
+-CQuestManager::CQuestManager() {}
+-CQuestManager::~CQuestManager() {}
+-//No suite using this fixture populates PC/NPC execution registries.
+-PC::~PC() { std::abort(); }
++CQuestManager::~CQuestManager() {
++    assert(L==0 && m_mapNPC.empty()); // Never pretend to close a VM/NPC script registry.
++    // Complete member destruction follows, including ACTUAL PC timer cleanup.
++}
+ NPC::~NPC() { std::abort(); }
+ }

@@ -1,0 +1,4 @@
+// Old CItem public inline API; BYTE() methods are NON-CONST and null-safe.
+BYTE GetType() { return m_pProto?m_pProto->bType:0; }
+BYTE GetSubType() { return m_pProto?m_pProto->bSubType:0; }
+// GetValue(DWORD) already recovered; direct armor values1,5 are required.

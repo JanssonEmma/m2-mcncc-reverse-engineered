@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7910",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "buffer_delete",
+      "address": "081b7910"
+    },
+    "code": "\r\nvoid buffer_delete(LPBUFFER buffer)\r\n\r\n{\r\n  buffer_reset(buffer);\r\n  if ((buffer->flag & 1) == 0) {\r\n    if (0x20000 < buffer->mem_size) {\r\n      free(buffer->mem_data);\r\n      free(buffer);\r\n      return;\r\n    }\r\n    if (buffer->mem_size < 0x2001) {\r\n      buffer->next = buffer_poll;\r\n      buffer_poll = buffer;\r\n    }\r\n    else {\r\n      buffer->next = buffer_poll_big;\r\n      buffer_poll_big = buffer;\r\n    }\r\n  }\r\n  else {\r\n    buffer->mem_data = (char *)0x0;\r\n    buffer->next = buffer_nodelete_poll;\r\n    buffer_nodelete_poll = buffer;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

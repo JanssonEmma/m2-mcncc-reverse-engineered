@@ -1,0 +1,8 @@
+#include "packet.h"
+void CHARACTER::CreateFly(BYTE type,LPCHARACTER victim)
+{
+    TPacketGCCreateFly packet;
+    packet.bHeader=70;packet.bType=type;
+    packet.dwStartVID=static_cast<DWORD>(m_vid);packet.dwEndVID=static_cast<DWORD>(victim->m_vid);
+    PacketAround(&packet,10,0);
+}

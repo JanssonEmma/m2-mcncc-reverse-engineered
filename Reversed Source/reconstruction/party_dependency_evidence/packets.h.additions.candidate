@@ -1,0 +1,20 @@
+// Packet declarations required by the staged methods. Place DB payload in the
+// existing common packet declarations and client payload in game packet.h.
+#pragma pack(push,1)
+struct SPacketPartySetMemberLevel {
+    DWORD dwLeaderPID;
+    DWORD dwPID;
+    BYTE bLevel;
+};
+typedef SPacketPartySetMemberLevel TPacketPartySetMemberLevel;
+struct packet_party_update {
+    BYTE header;
+    DWORD pid;
+    BYTE role;
+    BYTE percent_hp;
+    short affects[7];
+};
+typedef packet_party_update TPacketGCPartyUpdate;
+#pragma pack(pop)
+// HEADER_GD_PARTY_SET_MEMBER_LEVEL=56; HEADER_GC_PARTY_UPDATE=79.
+// CHARACTER public declaration: bool BuildUpdatePartyPacket(TPacketGCPartyUpdate& out);

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080cd6b0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CInputHandshake::CInputHandshake",
+      "address": "080cd6b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void CInputHandshake(CInputHandshake * this) */\r\n\r\nvoid __thiscall CInputHandshake::CInputHandshake(CInputHandshake *this)\r\n\r\n{\r\n  CPacketInfo *this_00;\r\n  TPacketElement *pTVar1;\r\n  \r\n                    /* Unresolved local var: CPacketInfoCG * pkPacketInfo@[???]\r\n                       Unresolved local var: TPacketElement * pkElem@[DW_OP_reg0(EAX)] */\r\n  CInputProcessor::CInputProcessor(&this->super_CInputProcessor);\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputHandshake_08216748;\r\n  this_00 = operator_new(0x18);\r\n  CPacketInfoCG::CPacketInfoCG((CPacketInfoCG *)this_00);\r\n  pTVar1 = CPacketInfo::GetElement(this_00,0xfe);\r\n  pTVar1->bSequencePacket = false;\r\n  pTVar1->iSize = pTVar1->iSize + -1;\r\n  this->m_pMainPacketInfo = (this->super_CInputProcessor).m_pPacketInfo;\r\n  CInputProcessor::BindPacketInfo(&this->super_CInputProcessor,this_00);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168430",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168430",
+    "function": {
+      "name": "CItem::IsPolymorphItem",
+      "address": "08168430"
+    },
+    "signature": "bool IsPolymorphItem(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: bool IsPolymorphItem(CItem * this) */\r\n\r\nbool __thiscall CItem::IsPolymorphItem(CItem *this)\r\n\r\n{\r\n  BYTE BVar1;\r\n  \r\n  BVar1 = '\\0';\r\n  if (this->m_pProto != (TItemTable *)0x0) {\r\n    BVar1 = this->m_pProto->bType;\r\n  }\r\n  return BVar1 == '\\x13';\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

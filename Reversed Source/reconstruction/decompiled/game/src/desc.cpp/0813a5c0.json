@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813a5c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC::Log",
+      "address": "0813a5c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void Log(DESC * this, char * format, ...) */\r\n\r\nvoid __thiscall DESC::Log(DESC *this,char *format,...)\r\n\r\n{\r\n  tm *ptVar1;\r\n  int iVar2;\r\n  tm *ptVar3;\r\n  time_t ct;\r\n  tm tm;\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  if (this->m_pLogFile != (FILE *)0x0) {\r\n    ct = get_global_time();\r\n    ptVar1 = localtime(&ct);\r\n    ptVar3 = &tm;\r\n    for (iVar2 = 0xb; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n      ptVar3->tm_sec = ptVar1->tm_sec;\r\n      ptVar1 = (tm *)&ptVar1->tm_min;\r\n      ptVar3 = (tm *)&ptVar3->tm_min;\r\n    }\r\n    fprintf((FILE *)this->m_pLogFile,\"%02d %02d %02d:%02d:%02d | \",tm.tm_mon + 1,tm.tm_mday,\r\n            tm.tm_hour,tm.tm_min,tm.tm_sec);\r\n    vfprintf((FILE *)this->m_pLogFile,format,&stack0x0000000c);\r\n    fputc(10,(FILE *)this->m_pLogFile);\r\n    fflush((FILE *)this->m_pLogFile);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

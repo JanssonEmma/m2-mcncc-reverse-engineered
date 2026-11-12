@@ -1,0 +1,5233 @@
+{
+  "classes": [
+    {
+      "cu": "main.cpp",
+      "class": {
+        "tag": "DW_TAG_structure_type",
+        "name": "CProfiler",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_byte_size": 1072,
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_low_pc": null,
+          "DW_AT_inline": null,
+          "DW_AT_MIPS_linkage_name": null,
+          "DW_AT_const_value": null
+        },
+        "children": [
+          {
+            "tag": "DW_TAG_structure_type",
+            "name": "SProfileStackData",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": 16,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_member",
+                "name": "iCallStep",
+                "type": {
+                  "die": "0xa2d77b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "iStartTime",
+                "type": {
+                  "die": "0xa2d9e3",
+                  "tag": "DW_TAG_base_type",
+                  "name": "long int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "iEndTime",
+                "type": {
+                  "die": "0xa2d9e3",
+                  "tag": "DW_TAG_base_type",
+                  "name": "long int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      8
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "strName",
+                "type": {
+                  "die": "0xa3ea16",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0xa3b5bc",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      12
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "operator=",
+                "type": {
+                  "die": "0xab9c49",
+                  "tag": "DW_TAG_reference_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab984c",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SProfileStackData",
+                    "size": 16
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": "_ZN9CProfiler17SProfileStackDataaSERKS0_",
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c4f",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab984c",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileStackData",
+                        "size": 16
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c55",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c5b",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab984c",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "SProfileStackData",
+                          "size": 16
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "SProfileStackData",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c4f",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab984c",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileStackData",
+                        "size": 16
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c55",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c5b",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab984c",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "SProfileStackData",
+                          "size": 16
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "SProfileStackData",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c4f",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab984c",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileStackData",
+                        "size": 16
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "~SProfileStackData",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c4f",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab984c",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileStackData",
+                        "size": 16
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xa2d77b",
+                      "tag": "DW_TAG_base_type",
+                      "name": "int",
+                      "size": 4
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_structure_type",
+            "name": "SProfileAccumData",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": 20,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_member",
+                "name": "iStartTime",
+                "type": {
+                  "die": "0xa2d77b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "iCallingCount",
+                "type": {
+                  "die": "0xa2d77b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      4
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "iCollapsedTime",
+                "type": {
+                  "die": "0xa2d77b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      8
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "iDepth",
+                "type": {
+                  "die": "0xa2d77b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      12
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_member",
+                "name": "strName",
+                "type": {
+                  "die": "0xa3ea16",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0xa3b5bc",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "offset": [
+                  {
+                    "op": "DW_OP_plus_uconst",
+                    "args": [
+                      16
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "operator=",
+                "type": {
+                  "die": "0xab9c60",
+                  "tag": "DW_TAG_reference_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab98f1",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SProfileAccumData",
+                    "size": 20
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": "_ZN9CProfiler17SProfileAccumDataaSERKS0_",
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c66",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab98f1",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileAccumData",
+                        "size": 20
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c6c",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c72",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab98f1",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "SProfileAccumData",
+                          "size": 20
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "SProfileAccumData",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c66",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab98f1",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileAccumData",
+                        "size": 20
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c6c",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c72",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab98f1",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "SProfileAccumData",
+                          "size": 20
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "SProfileAccumData",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c66",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab98f1",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileAccumData",
+                        "size": 20
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "~SProfileAccumData",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c66",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab98f1",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "SProfileAccumData",
+                        "size": 20
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xa2d77b",
+                      "tag": "DW_TAG_base_type",
+                      "name": "int",
+                      "size": 4
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_structure_type",
+            "name": "stringhash",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": 1,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "operator=",
+                "type": {
+                  "die": "0xab9c77",
+                  "tag": "DW_TAG_reference_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab99a4",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "stringhash",
+                    "size": 1
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": "_ZN9CProfiler10stringhashaSERKS0_",
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c7d",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab99a4",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "stringhash",
+                        "size": 1
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c83",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c89",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab99a4",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "stringhash",
+                          "size": 1
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "stringhash",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c7d",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab99a4",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "stringhash",
+                        "size": 1
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c83",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c89",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab99a4",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "stringhash",
+                          "size": 1
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "stringhash",
+                "type": {
+                  "name": "void"
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c7d",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab99a4",
+                        "tag": "DW_TAG_structure_type",
+                        "name": "stringhash",
+                        "size": 1
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              },
+              {
+                "tag": "DW_TAG_subprogram",
+                "name": "operator()",
+                "type": {
+                  "die": "0xa2db60",
+                  "tag": "DW_TAG_typedef",
+                  "name": "size_t",
+                  "size": null,
+                  "type": {
+                    "die": "0xa2d88c",
+                    "tag": "DW_TAG_typedef",
+                    "name": "__size_t",
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d782",
+                      "tag": "DW_TAG_typedef",
+                      "name": "__uint32_t",
+                      "size": null,
+                      "type": {
+                        "die": "0xa2d78d",
+                        "tag": "DW_TAG_base_type",
+                        "name": "unsigned int",
+                        "size": 4
+                      }
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": "_ZNK9CProfiler10stringhashclERKSs",
+                  "DW_AT_const_value": null
+                },
+                "children": [
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xab9c8e",
+                      "tag": "DW_TAG_pointer_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xab9c89",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xab99a4",
+                          "tag": "DW_TAG_structure_type",
+                          "name": "stringhash",
+                          "size": 1
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  },
+                  {
+                    "tag": "DW_TAG_formal_parameter",
+                    "name": null,
+                    "type": {
+                      "die": "0xa3ea40",
+                      "tag": "DW_TAG_reference_type",
+                      "name": null,
+                      "size": 4,
+                      "type": {
+                        "die": "0xa3ea46",
+                        "tag": "DW_TAG_const_type",
+                        "name": null,
+                        "size": null,
+                        "type": {
+                          "die": "0xa3ea16",
+                          "tag": "DW_TAG_typedef",
+                          "name": "string",
+                          "size": null,
+                          "type": {
+                            "die": "0xa3b5bc",
+                            "tag": "DW_TAG_structure_type",
+                            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                            "size": 4
+                          }
+                        }
+                      }
+                    },
+                    "attrs": {
+                      "DW_AT_byte_size": null,
+                      "DW_AT_accessibility": null,
+                      "DW_AT_virtuality": null,
+                      "DW_AT_low_pc": null,
+                      "DW_AT_inline": null,
+                      "DW_AT_MIPS_linkage_name": null,
+                      "DW_AT_const_value": null
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_inheritance",
+            "name": null,
+            "type": {
+              "die": "0xaf3487",
+              "tag": "DW_TAG_structure_type",
+              "name": "singleton<CProfiler>",
+              "size": 4
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 1,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_member",
+            "name": "m_ProfileStackDataCount",
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_member",
+            "name": "m_ProfileStackDatas",
+            "type": {
+              "die": "0xafac0d",
+              "tag": "DW_TAG_array_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0xab984c",
+                "tag": "DW_TAG_structure_type",
+                "name": "SProfileStackData",
+                "size": 16
+              },
+              "bounds": [
+                63
+              ]
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  8
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_member",
+            "name": "m_ProfileAccumDataMap",
+            "type": {
+              "die": "0xabbe48",
+              "tag": "DW_TAG_structure_type",
+              "name": "hash_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::SProfileAccumData,CProfiler::stringhash,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+              "size": 20
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  1032
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_member",
+            "name": "m_vec_Accum",
+            "type": {
+              "die": "0xabc859",
+              "tag": "DW_TAG_structure_type",
+              "name": "vector<CProfiler::SProfileAccumData*,std::allocator<CProfiler::SProfileAccumData*> >",
+              "size": 12
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  1052
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_member",
+            "name": "m_iAccumDepth",
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  1064
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_member",
+            "name": "m_iCallStep",
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "offset": [
+              {
+                "op": "DW_OP_plus_uconst",
+                "args": [
+                  1068
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_typedef",
+            "name": "TProfileStackData",
+            "type": {
+              "die": "0xab984c",
+              "tag": "DW_TAG_structure_type",
+              "name": "SProfileStackData",
+              "size": 16
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            }
+          },
+          {
+            "tag": "DW_TAG_typedef",
+            "name": "TProfileAccumData",
+            "type": {
+              "die": "0xab98f1",
+              "tag": "DW_TAG_structure_type",
+              "name": "SProfileAccumData",
+              "size": 20
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            }
+          },
+          {
+            "tag": "DW_TAG_typedef",
+            "name": "TProfileAccumDataMap",
+            "type": {
+              "die": "0xabbe48",
+              "tag": "DW_TAG_structure_type",
+              "name": "hash_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::SProfileAccumData,CProfiler::stringhash,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+              "size": 20
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            }
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "operator=",
+            "type": {
+              "die": "0xafac1d",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xab983a",
+                "tag": "DW_TAG_structure_type",
+                "name": "CProfiler",
+                "size": 1072
+              }
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfileraSERKS_",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xafac23",
+                  "tag": "DW_TAG_reference_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xafac29",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xab983a",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "CProfiler",
+                      "size": 1072
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "CProfiler",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xafac23",
+                  "tag": "DW_TAG_reference_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xafac29",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xab983a",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "CProfiler",
+                      "size": 1072
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "CProfiler",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "~CProfiler",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": 1,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": null,
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2d77b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "Initialize",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler10InitializeEv",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "Clear",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler5ClearEv",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "Push",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler4PushEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "Pop",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler3PopEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "PushAccum",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler9PushAccumEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "PopAccum",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler8PopAccumEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "Log",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler3LogEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "Print",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler5PrintEP7__sFILE",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa471dc",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2de34",
+                    "tag": "DW_TAG_typedef",
+                    "name": "FILE",
+                    "size": null,
+                    "type": {
+                      "die": "0xa2dc03",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "__sFILE",
+                      "size": 88
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "PrintOneStackData",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler17PrintOneStackDataEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "PrintOneAccumData",
+            "type": {
+              "name": "void"
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": null,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler17PrintOneAccumDataEPKc",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          },
+          {
+            "tag": "DW_TAG_subprogram",
+            "name": "GetProfileStackDataPointer",
+            "type": {
+              "die": "0xa37317",
+              "tag": "DW_TAG_base_type",
+              "name": "bool",
+              "size": 1
+            },
+            "attrs": {
+              "DW_AT_byte_size": null,
+              "DW_AT_accessibility": 2,
+              "DW_AT_virtuality": null,
+              "DW_AT_low_pc": null,
+              "DW_AT_inline": null,
+              "DW_AT_MIPS_linkage_name": "_ZN9CProfiler26GetProfileStackDataPointerEPKcPPNS_17SProfileStackDataE",
+              "DW_AT_const_value": null
+            },
+            "children": [
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xaf31cd",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab983a",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "CProfiler",
+                    "size": 1072
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xa2dde0",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xa2dde6",
+                    "tag": "DW_TAG_const_type",
+                    "name": null,
+                    "size": null,
+                    "type": {
+                      "die": "0xa2d979",
+                      "tag": "DW_TAG_base_type",
+                      "name": "char",
+                      "size": 1
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              },
+              {
+                "tag": "DW_TAG_formal_parameter",
+                "name": null,
+                "type": {
+                  "die": "0xafac2e",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xab9c4f",
+                    "tag": "DW_TAG_pointer_type",
+                    "name": null,
+                    "size": 4,
+                    "type": {
+                      "die": "0xab984c",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "SProfileStackData",
+                      "size": 16
+                    }
+                  }
+                },
+                "attrs": {
+                  "DW_AT_byte_size": null,
+                  "DW_AT_accessibility": null,
+                  "DW_AT_virtuality": null,
+                  "DW_AT_low_pc": null,
+                  "DW_AT_inline": null,
+                  "DW_AT_MIPS_linkage_name": null,
+                  "DW_AT_const_value": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "methods": [
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "clear",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134883264,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE5clearEv",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0xaf32eb",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabbd5b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xabb43b",
+                "tag": "DW_TAG_structure_type",
+                "name": "hashtable<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 20
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134883276,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "CProfiler",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134884448,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": null,
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0xaf31f5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xaf31cd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xab983a",
+                "tag": "DW_TAG_structure_type",
+                "name": "CProfiler",
+                "size": 1072
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "singleton",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884457,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "SProfileStackData",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884512,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "hash_map",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884543,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "Initialize",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884665,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZN9CProfiler10InitializeEv",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "vector",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884688,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "~CProfiler",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": 1,
+        "DW_AT_low_pc": 134884816,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": null,
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0xaf31f5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xaf31cd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xab983a",
+                "tag": "DW_TAG_structure_type",
+                "name": "CProfiler",
+                "size": 1072
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~vector",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884834,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~hash_map",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884860,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~SProfileStackData",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134884936,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~singleton",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": 1,
+            "DW_AT_low_pc": 134884979,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "~CProfiler",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": 1,
+        "DW_AT_low_pc": 134885104,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": null,
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0xaf31f5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xaf31cd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xab983a",
+                "tag": "DW_TAG_structure_type",
+                "name": "CProfiler",
+                "size": 1072
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~vector",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134885122,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~hash_map",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134885148,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~SProfileStackData",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134885224,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~singleton",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": 1,
+            "DW_AT_low_pc": 134885264,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "reserve",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134888272,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZNSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EE7reserveEj",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0xaf3312",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabb41e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaba9a0",
+                "tag": "DW_TAG_structure_type",
+                "name": "vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 12
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__n",
+          "type": {
+            "die": "0xa2db60",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0xa2d88c",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0xa2d782",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0xa2d78d",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "capacity",
+          "type": {
+            "die": "0xa2db60",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0xa2d88c",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0xa2d782",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0xa2d78d",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134888303,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNKSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EE8capacityEv",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134888318,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "_M_fill_insert",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": 2,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134888480,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZNSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EE14_M_fill_insertENS0_17__normal_iteratorIPS8_SA_EEjRKS8_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0xaf3312",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabb41e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaba9a0",
+                "tag": "DW_TAG_structure_type",
+                "name": "vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 12
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__position",
+          "type": {
+            "die": "0xabaf90",
+            "tag": "DW_TAG_structure_type",
+            "name": "__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >**,std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__n",
+          "type": {
+            "die": "0xa2db60",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0xa2d88c",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0xa2d782",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0xa2d78d",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__x",
+          "type": {
+            "die": "0xafd9de",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabb418",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xabaf8b",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaba170",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xaba176",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                    "size": 28
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134888531,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134888776,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "fill<__gnu_cxx::__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >**, std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >, __gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >*>",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134888976,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZSt4fillIN9__gnu_cxx17__normal_iteratorIPPNS0_15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESt6vectorIS9_SaIS6_EEEES9_EvT_SF_RKT0_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__first",
+          "type": {
+            "die": "0xabaf90",
+            "tag": "DW_TAG_structure_type",
+            "name": "__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >**,std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__last",
+          "type": {
+            "die": "0xabaf90",
+            "tag": "DW_TAG_structure_type",
+            "name": "__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >**,std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__value",
+          "type": {
+            "die": "0xafdfe6",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabb418",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xabaf8b",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaba170",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xaba176",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                    "size": 28
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator!=<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >**, std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+          "type": {
+            "die": "0xa37317",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134888983,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "fill_n<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >**, unsigned int, __gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >*>",
+      "type": {
+        "die": "0xaba8a1",
+        "tag": "DW_TAG_pointer_type",
+        "name": null,
+        "size": 4,
+        "type": {
+          "die": "0xaba170",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaba176",
+            "tag": "DW_TAG_structure_type",
+            "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+            "size": 28
+          }
+        }
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134889040,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZSt6fill_nIPPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEEjS8_ET_SA_T0_RKT1_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__first",
+          "type": {
+            "die": "0xaba8a1",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xaba170",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaba176",
+                "tag": "DW_TAG_structure_type",
+                "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                "size": 28
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__n",
+          "type": {
+            "die": "0xa2d78d",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned int",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__value",
+          "type": {
+            "die": "0xafe071",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabb418",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xabaf8b",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaba170",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xaba176",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                    "size": 28
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "fill_n<__gnu_cxx::__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >**, std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >, unsigned int, __gnu_cxx::_Hashtable_node<std::pair<const std::string, CProfiler::SProfileAccumData> >*>",
+      "type": {
+        "die": "0xabaf90",
+        "tag": "DW_TAG_structure_type",
+        "name": "__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >**,std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+        "size": 4
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 134889088,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZSt6fill_nIN9__gnu_cxx17__normal_iteratorIPPNS0_15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESt6vectorIS9_SaIS6_EEEEjS9_ET_SF_T0_RKT1_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__first",
+          "type": {
+            "die": "0xabaf90",
+            "tag": "DW_TAG_structure_type",
+            "name": "__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >**,std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__n",
+          "type": {
+            "die": "0xa2d78d",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned int",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__value",
+          "type": {
+            "die": "0xafe0d9",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xabb418",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xabaf8b",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaba170",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0xaba176",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                    "size": 28
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator++",
+          "type": {
+            "die": "0xaf7cef",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xabaf90",
+              "tag": "DW_TAG_structure_type",
+              "name": "__normal_iterator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >**,std::vector<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >*, std::allocator<CProfiler::SProfileAccumData> > >",
+              "size": 4
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 134889124,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx17__normal_iteratorIPPNS_15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESt6vectorIS8_SaIS5_EEEppEv",
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "Print",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135067792,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": "_ZN9CProfiler5PrintEP7__sFILE",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x11a2c15",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x11a2be1",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x11759a8",
+                "tag": "DW_TAG_structure_type",
+                "name": "CProfiler",
+                "size": null
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "fp",
+          "type": {
+            "die": "0x1147f87",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x112f2b8",
+              "tag": "DW_TAG_typedef",
+              "name": "FILE",
+              "size": null,
+              "type": {
+                "die": "0x112f087",
+                "tag": "DW_TAG_structure_type",
+                "name": "__sFILE",
+                "size": 88
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "stLine",
+          "type": {
+            "die": "0x113fe9a",
+            "tag": "DW_TAG_typedef",
+            "name": "string",
+            "size": null,
+            "type": {
+              "die": "0x113ca40",
+              "tag": "DW_TAG_structure_type",
+              "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+              "size": 4
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "basic_string",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135067923,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135067941,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "~basic_string",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135068134,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "PushAccum",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135617120,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": "_ZN9CProfiler9PushAccumEPKc",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x23765e8",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x23765a8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2347835",
+                "tag": "DW_TAG_structure_type",
+                "name": "CProfiler",
+                "size": null
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "c_szName",
+          "type": {
+            "die": "0x22c24f8",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x22c24fe",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x22c2091",
+                "tag": "DW_TAG_base_type",
+                "name": "char",
+                "size": 1
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "it",
+          "type": {
+            "die": "0x2349985",
+            "tag": "DW_TAG_structure_type",
+            "name": "_Hashtable_iterator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+            "size": 8
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "rData",
+          "type": {
+            "die": "0x2388509",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2347a5a",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x23478e4",
+                "tag": "DW_TAG_structure_type",
+                "name": "SProfileAccumData",
+                "size": 20
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "find",
+          "type": {
+            "die": "0x2349985",
+            "tag": "DW_TAG_structure_type",
+            "name": "_Hashtable_iterator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+            "size": 8
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135617138,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx8hash_mapISsN9CProfiler17SProfileAccumDataENS1_10stringhashESt8equal_toISsESaIS2_EE4findERKSs",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator==",
+          "type": {
+            "die": "0x22cba2f",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135617376,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNK9__gnu_cxx19_Hashtable_iteratorISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EEeqERKSC_",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135617429,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "find",
+      "type": {
+        "die": "0x2349985",
+        "tag": "DW_TAG_structure_type",
+        "name": "_Hashtable_iterator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+        "size": 8
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135618256,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE4findERS2_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x237667a",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2349b55",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2349235",
+                "tag": "DW_TAG_structure_type",
+                "name": "hashtable<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 20
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__key",
+          "type": {
+            "die": "0x2376713",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x22d317f",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x22d3185",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x22d3155",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x22cfcd4",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__n",
+          "type": {
+            "die": "0x22c2278",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x22c1fa4",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1e9a",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1ea5",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__first",
+          "type": {
+            "die": "0x2347f6a",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f70",
+              "tag": "DW_TAG_structure_type",
+              "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+              "size": 28
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "_M_bkt_num_key",
+          "type": {
+            "die": "0x22c2278",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x22c1fa4",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1e9a",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1ea5",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": 3,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135618271,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNK9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE14_M_bkt_num_keyERS2_",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator[]",
+          "type": {
+            "die": "0x2349207",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f6a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2347f70",
+                "tag": "DW_TAG_structure_type",
+                "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                "size": 28
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135618346,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EEixEj",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator()",
+          "type": {
+            "die": "0x22cba2f",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135618381,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNKSt8equal_toISsEclERKSsS2_",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "_Hashtable_iterator",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135618467,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "_M_insert_aux",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": 2,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135622800,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZNSt6vectorIPN9CProfiler17SProfileAccumDataESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x23886e7",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x234b0d1",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x234a653",
+                "tag": "DW_TAG_structure_type",
+                "name": "vector<CProfiler::SProfileAccumData*,std::allocator<CProfiler::SProfileAccumData*> >",
+                "size": 12
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__position",
+          "type": {
+            "die": "0x234ac43",
+            "tag": "DW_TAG_structure_type",
+            "name": "__normal_iterator<CProfiler::SProfileAccumData**,std::vector<CProfiler::SProfileAccumData*, std::allocator<CProfiler::SProfileAccumData*> > >",
+            "size": 4
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__x",
+          "type": {
+            "die": "0x238aeae",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x234b0cb",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x234ac3e",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2347a60",
+                  "tag": "DW_TAG_pointer_type",
+                  "name": null,
+                  "size": 4,
+                  "type": {
+                    "die": "0x23478e4",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "SProfileAccumData",
+                    "size": 20
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135622823,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135622885,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "resize",
+      "type": {
+        "name": "void"
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135623072,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE6resizeEj",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x237667a",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2349b55",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2349235",
+                "tag": "DW_TAG_structure_type",
+                "name": "hashtable<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 20
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__num_elements_hint",
+          "type": {
+            "die": "0x22c2278",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x22c1fa4",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1e9a",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1ea5",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__old_n",
+          "type": {
+            "die": "0x22d129b",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x22c2278",
+              "tag": "DW_TAG_typedef",
+              "name": "size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1fa4",
+                "tag": "DW_TAG_typedef",
+                "name": "__size_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1e9a",
+                  "tag": "DW_TAG_typedef",
+                  "name": "__uint32_t",
+                  "size": null,
+                  "type": {
+                    "die": "0x22c1ea5",
+                    "tag": "DW_TAG_base_type",
+                    "name": "unsigned int",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "size",
+          "type": {
+            "die": "0x22c2278",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x22c1fa4",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1e9a",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1ea5",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623090,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNKSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EE4sizeEv",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623116,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "insert_unique_noresize",
+      "type": {
+        "die": "0x2349b72",
+        "tag": "DW_TAG_structure_type",
+        "name": "pair<__gnu_cxx::_Hashtable_iterator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>, std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::stringhash, std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >, std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<CProfiler::SProfileAccumData> >,bool>",
+        "size": 12
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135623520,
+        "DW_AT_inline": null,
+        "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE22insert_unique_noresizeERKS5_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x237667a",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2349b55",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2349235",
+                "tag": "DW_TAG_structure_type",
+                "name": "hashtable<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 20
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__obj",
+          "type": {
+            "die": "0x238c0a7",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2348113",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2348119",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2348040",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::SProfileAccumData>",
+                  "size": 24
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__n",
+          "type": {
+            "die": "0x22d129b",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x22c2278",
+              "tag": "DW_TAG_typedef",
+              "name": "size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1fa4",
+                "tag": "DW_TAG_typedef",
+                "name": "__size_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1e9a",
+                  "tag": "DW_TAG_typedef",
+                  "name": "__uint32_t",
+                  "size": null,
+                  "type": {
+                    "die": "0x22c1ea5",
+                    "tag": "DW_TAG_base_type",
+                    "name": "unsigned int",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__first",
+          "type": {
+            "die": "0x2347f6a",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f70",
+              "tag": "DW_TAG_structure_type",
+              "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+              "size": 28
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__tmp",
+          "type": {
+            "die": "0x2347f6a",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f70",
+              "tag": "DW_TAG_structure_type",
+              "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+              "size": 28
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "_M_bkt_num",
+          "type": {
+            "die": "0x22c2278",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x22c1fa4",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1e9a",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1ea5",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": 3,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623535,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNK9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE10_M_bkt_numERKS5_",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator[]",
+          "type": {
+            "die": "0x2349207",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f6a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2347f70",
+                "tag": "DW_TAG_structure_type",
+                "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                "size": 28
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623625,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EEixEj",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_lexical_block",
+          "name": null,
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "pair",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623777,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "operator[]",
+          "type": {
+            "die": "0x2349207",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f6a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2347f70",
+                "tag": "DW_TAG_structure_type",
+                "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+                "size": 28
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623780,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZNSt6vectorIPN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEESaIS5_EEixEj",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "pair",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623833,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "_M_new_node",
+      "type": {
+        "die": "0x2347f6a",
+        "tag": "DW_TAG_pointer_type",
+        "name": null,
+        "size": 4,
+        "type": {
+          "die": "0x2347f70",
+          "tag": "DW_TAG_structure_type",
+          "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+          "size": 28
+        }
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": 3,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135623872,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE11_M_new_nodeERKS5_",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x237667a",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2349b55",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2349235",
+                "tag": "DW_TAG_structure_type",
+                "name": "hashtable<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData>,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::stringhash,std::_Select1st<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<CProfiler::SProfileAccumData> >",
+                "size": 20
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__obj",
+          "type": {
+            "die": "0x238c3fe",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2348113",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2348119",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2348040",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CProfiler::SProfileAccumData>",
+                  "size": 24
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__n",
+          "type": {
+            "die": "0x2347f6a",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f70",
+              "tag": "DW_TAG_structure_type",
+              "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+              "size": 28
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "_M_get_node",
+          "type": {
+            "die": "0x2347f6a",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f70",
+              "tag": "DW_TAG_structure_type",
+              "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+              "size": 28
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": 3,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623873,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": "_ZN9__gnu_cxx9hashtableISt4pairIKSsN9CProfiler17SProfileAccumDataEESsNS3_10stringhashESt10_Select1stIS5_ESt8equal_toISsESaIS4_EE11_M_get_nodeEv",
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_inlined_subroutine",
+          "name": "_Construct<std::pair<const std::string, CProfiler::SProfileAccumData>, std::pair<const std::string, CProfiler::SProfileAccumData> >",
+          "type": {
+            "name": "void"
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": 135623921,
+            "DW_AT_inline": 2,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    },
+    {
+      "tag": "DW_TAG_subprogram",
+      "name": "allocate",
+      "type": {
+        "die": "0x2347f6a",
+        "tag": "DW_TAG_pointer_type",
+        "name": null,
+        "size": 4,
+        "type": {
+          "die": "0x2347f70",
+          "tag": "DW_TAG_structure_type",
+          "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+          "size": 28
+        }
+      },
+      "attrs": {
+        "DW_AT_byte_size": null,
+        "DW_AT_accessibility": null,
+        "DW_AT_virtuality": null,
+        "DW_AT_low_pc": 135624000,
+        "DW_AT_inline": 2,
+        "DW_AT_MIPS_linkage_name": "_ZNSaIN9__gnu_cxx15_Hashtable_nodeISt4pairIKSsN9CProfiler17SProfileAccumDataEEEEE8allocateEjPKv",
+        "DW_AT_const_value": null
+      },
+      "children": [
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "this",
+          "type": {
+            "die": "0x238c4c4",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2348029",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2347d8a",
+                "tag": "DW_TAG_structure_type",
+                "name": "allocator<__gnu_cxx::_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> > >",
+                "size": 1
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": "__n",
+          "type": {
+            "die": "0x22c2278",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x22c1fa4",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x22c1e9a",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x22c1ea5",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_formal_parameter",
+          "name": null,
+          "type": {
+            "die": "0x22ce8cd",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x22ce8d3",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        },
+        {
+          "tag": "DW_TAG_variable",
+          "name": "__ret",
+          "type": {
+            "die": "0x2347f6a",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2347f70",
+              "tag": "DW_TAG_structure_type",
+              "name": "_Hashtable_node<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CProfiler::SProfileAccumData> >",
+              "size": 28
+            }
+          },
+          "attrs": {
+            "DW_AT_byte_size": null,
+            "DW_AT_accessibility": null,
+            "DW_AT_virtuality": null,
+            "DW_AT_low_pc": null,
+            "DW_AT_inline": null,
+            "DW_AT_MIPS_linkage_name": null,
+            "DW_AT_const_value": null
+          }
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    {
+      "name": "_ZZN9singletonI9CProfilerED1EvE8__func__",
+      "address": "0x81ff2ba",
+      "size": 10,
+      "type": "STT_OBJECT"
+    },
+    {
+      "name": "_ZZN9singletonI9CProfilerEC1EvE8__func__",
+      "address": "0x81ff339",
+      "size": 10,
+      "type": "STT_OBJECT"
+    },
+    {
+      "name": "_ZZN9singletonI9CProfilerE8instanceEvE8__func__",
+      "address": "0x821640c",
+      "size": 9,
+      "type": "STT_OBJECT"
+    },
+    {
+      "name": "_ZZN9singletonI9CProfilerE8instanceEvE8__func__",
+      "address": "0x8228e7b",
+      "size": 9,
+      "type": "STT_OBJECT"
+    },
+    {
+      "name": "_ZTV9singletonI9CProfilerE",
+      "address": "0x81ff550",
+      "size": 16,
+      "type": "STT_OBJECT"
+    },
+    {
+      "name": "_ZN9CProfiler9PushAccumEPKc",
+      "address": "0x8155a60",
+      "size": 1025,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN9CProfilerD1Ev",
+      "address": "0x80a2dd0",
+      "size": 275,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN9singletonI9CProfilerE12ms_singletonE",
+      "address": "0x823eba0",
+      "size": 4,
+      "type": "STT_OBJECT"
+    },
+    {
+      "name": "_ZN9singletonI9CProfilerED1Ev",
+      "address": "0x80a3aa0",
+      "size": 76,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN9CProfilerD0Ev",
+      "address": "0x80a2ef0",
+      "size": 286,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN9CProfilerC1Ev",
+      "address": "0x80a2c60",
+      "size": 357,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN9CProfiler5PrintEP7__sFILE",
+      "address": "0x80cf890",
+      "size": 418,
+      "type": "STT_FUNC"
+    },
+    {
+      "name": "_ZN9singletonI9CProfilerED0Ev",
+      "address": "0x80a3af0",
+      "size": 90,
+      "type": "STT_FUNC"
+    }
+  ]
+}

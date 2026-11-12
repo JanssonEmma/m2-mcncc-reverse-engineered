@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08166a30",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8166a30",
+    "function": {
+      "name": "CItem::RemoveFromCharacter",
+      "address": "08166a30"
+    },
+    "signature": "LPITEM RemoveFromCharacter(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: LPITEM RemoveFromCharacter(CItem * this) */\r\n\r\nLPITEM __thiscall CItem::RemoveFromCharacter(CItem *this)\r\n\r\n{\r\n                    /* Unresolved local var: LPCHARACTER pOwner@[???] */\r\n  if (this->m_pOwner == (CHARACTER *)0x0) {\r\n    _sys_err(\"RemoveFromCharacter\",0xeb,\"Item::RemoveFromCharacter owner null\");\r\n  }\r\n  else {\r\n    if (this->m_bEquipped == false) {\r\n      if ((this->m_bWindow != '\\x03') && (this->m_bWindow != '\\x04')) {\r\n        if (this->m_bCell < 0x5a) {\r\n          CHARACTER::SetItem(this->m_pOwner,this->m_bCell,(LPITEM)0x0);\r\n        }\r\n        else {\r\n          _sys_err(\"RemoveFromCharacter\",0xff,\"CItem::RemoveFromCharacter: pos >= INVENTORY_MAX_NUM\"\r\n                  );\r\n        }\r\n      }\r\n      this->m_pOwner = (LPCHARACTER)0x0;\r\n      this->m_bCell = '\\0';\r\n    }\r\n    else {\r\n      Unequip(this);\r\n    }\r\n    this->m_bWindow = '\\0';\r\n    Save(this);\r\n  }\r\n  return this;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

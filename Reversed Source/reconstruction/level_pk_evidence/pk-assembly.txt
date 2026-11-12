@@ -1,0 +1,40 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+081541e0 <_ZN9CHARACTER9SetPKModeEh>:
+ 81541e0:	55                   	push   %ebp
+ 81541e1:	89 e5                	mov    %esp,%ebp
+ 81541e3:	83 ec 18             	sub    $0x18,%esp
+ 81541e6:	0f b6 45 0c          	movzbl 0xc(%ebp),%eax
+ 81541ea:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 81541ed:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 81541f0:	3c 04                	cmp    $0x4,%al
+ 81541f2:	77 46                	ja     815423a <_ZN9CHARACTER9SetPKModeEh+0x5a>
+ 81541f4:	38 83 04 0d 00 00    	cmp    %al,0xd04(%ebx)
+ 81541fa:	74 3e                	je     815423a <_ZN9CHARACTER9SetPKModeEh+0x5a>
+ 81541fc:	3c 04                	cmp    $0x4,%al
+ 81541fe:	74 41                	je     8154241 <_ZN9CHARACTER9SetPKModeEh+0x61>
+ 8154200:	88 83 04 0d 00 00    	mov    %al,0xd04(%ebx)
+ 8154206:	89 1c 24             	mov    %ebx,(%esp)
+ 8154209:	e8 92 46 fd ff       	call   81288a0 <_ZN9CHARACTER12UpdatePacketEv>
+ 815420e:	89 1c 24             	mov    %ebx,(%esp)
+ 8154211:	e8 1a 37 fd ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 8154216:	0f b6 93 04 0d 00 00 	movzbl 0xd04(%ebx),%edx
+ 815421d:	bb 21 8d 22 08       	mov    $0x8228d21,%ebx
+ 8154222:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8154226:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 815422a:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 815422e:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8154235:	e8 66 40 06 00       	call   81b82a0 <sys_log>
+ 815423a:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 815423d:	89 ec                	mov    %ebp,%esp
+ 815423f:	5d                   	pop    %ebp
+ 8154240:	c3                   	ret
+ 8154241:	8b 93 a8 0c 00 00    	mov    0xca8(%ebx),%edx
+ 8154247:	85 d2                	test   %edx,%edx
+ 8154249:	75 b5                	jne    8154200 <_ZN9CHARACTER9SetPKModeEh+0x20>
+ 815424b:	b0 02                	mov    $0x2,%al
+ 815424d:	eb b1                	jmp    8154200 <_ZN9CHARACTER9SetPKModeEh+0x20>

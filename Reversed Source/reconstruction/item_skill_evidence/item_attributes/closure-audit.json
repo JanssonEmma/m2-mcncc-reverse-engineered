@@ -1,0 +1,63 @@
+{
+  "status": "workspace-only; staged; not compiled/run",
+  "binary_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "closed": [
+    {
+      "name": "AlterToSocketItem",
+      "address": "08168170",
+      "file": "item.cpp",
+      "dependencies": [
+        "SetSocket(actual)",
+        "sys_log"
+      ]
+    },
+    {
+      "name": "GetAttributeSetIndex",
+      "address": "08186cf0",
+      "dependencies": []
+    },
+    {
+      "name": "HasAttr",
+      "address": "08186d90",
+      "dependencies": []
+    },
+    {
+      "name": "GetAttributeCount",
+      "address": "081876a0",
+      "dependencies": []
+    },
+    {
+      "name": "FindAttribute",
+      "address": "081876c0",
+      "dependencies": []
+    },
+    {
+      "name": "SetAttribute",
+      "address": "08187800",
+      "dependencies": [
+        "UpdatePacket(actual)",
+        "Save(actual)",
+        "ItemLog(actual)"
+      ]
+    },
+    {
+      "name": "AddAttribute(BYTE,short)",
+      "address": "08186e30",
+      "dependencies": [
+        "HasAttr(batch)",
+        "GetAttributeCount(batch)",
+        "SetAttribute(batch)",
+        "_sys_err"
+      ]
+    }
+  ],
+  "open": [
+    "full attribute-map static/data initialization and weighted selection closure",
+    "full addon manager/random helpers and original recursive RemoveAttributeType behavior",
+    "full unique expiration event",
+    "full blend table/lifecycle",
+    "full zero-count removal/Unequip/ModifyPoints/accessory-degrade SCC"
+  ],
+  "production_edits": false,
+  "builds": false
+}

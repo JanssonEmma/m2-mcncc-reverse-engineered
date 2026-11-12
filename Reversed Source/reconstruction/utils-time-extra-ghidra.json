@@ -1,0 +1,332 @@
+{
+  "0x081b93c0": {
+    "decompilation": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"function\": {\n    \"name\": \"thecore_msleep\",\n    \"address\": \"081b93c0\"\n  },\n  \"code\": \"\\r\\nvoid thecore_msleep(DWORD dwMillisecond)\\r\\n\\r\\n{\\r\\n  thecore_msleep::tv_sleep.tv_usec = dwMillisecond * 1000;\\r\\n  thecore_msleep::tv_sleep.tv_sec = dwMillisecond / 1000;\\r\\n  thecore_sleep(&thecore_msleep::tv_sleep);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+        }
+      ],
+      "structuredContent": {
+        "function": {
+          "name": "thecore_msleep",
+          "address": "081b93c0"
+        },
+        "code": "\r\nvoid thecore_msleep(DWORD dwMillisecond)\r\n\r\n{\r\n  thecore_msleep::tv_sleep.tv_usec = dwMillisecond * 1000;\r\n  thecore_msleep::tv_sleep.tv_sec = dwMillisecond / 1000;\r\n  thecore_sleep(&thecore_msleep::tv_sleep);\r\n  return;\r\n}\r\n\r\n",
+        "truncated": false
+      },
+      "isError": false
+    },
+    "disassembly": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"items\": [\n    {\n      \"address\": \"081b93c0\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93c1\",\n      \"bytes\": \"bad34d6210\",\n      \"instruction\": \"MOV EDX,0x10624dd3\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93c6\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93c8\",\n      \"bytes\": \"8b4d08\",\n      \"instruction\": \"MOV ECX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93cb\",\n      \"bytes\": \"89c8\",\n      \"instruction\": \"MOV EAX,ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93cd\",\n      \"bytes\": \"69c9e8030000\",\n      \"instruction\": \"IMUL ECX,ECX,0x3e8\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93d3\",\n      \"bytes\": \"f7e2\",\n      \"instruction\": \"MUL EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93d5\",\n      \"bytes\": \"890d30d44208\",\n      \"instruction\": \"MOV dword ptr [0x0842d430],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93db\",\n      \"bytes\": \"c1ea06\",\n      \"instruction\": \"SHR EDX,0x6\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93de\",\n      \"bytes\": \"89152cd44208\",\n      \"instruction\": \"MOV dword ptr [0x0842d42c],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93e4\",\n      \"bytes\": \"c745082cd44208\",\n      \"instruction\": \"MOV dword ptr [EBP + 0x8],0x842d42c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93eb\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b93ec\",\n      \"bytes\": \"e95fffffff\",\n      \"instruction\": \"JMP 0x081b9350\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 150,\n  \"total\": 13,\n  \"has_more\": false\n}"
+        }
+      ],
+      "structuredContent": {
+        "items": [
+          {
+            "address": "081b93c0",
+            "bytes": "55",
+            "instruction": "PUSH EBP",
+            "comment": null
+          },
+          {
+            "address": "081b93c1",
+            "bytes": "bad34d6210",
+            "instruction": "MOV EDX,0x10624dd3",
+            "comment": null
+          },
+          {
+            "address": "081b93c6",
+            "bytes": "89e5",
+            "instruction": "MOV EBP,ESP",
+            "comment": null
+          },
+          {
+            "address": "081b93c8",
+            "bytes": "8b4d08",
+            "instruction": "MOV ECX,dword ptr [EBP + 0x8]",
+            "comment": null
+          },
+          {
+            "address": "081b93cb",
+            "bytes": "89c8",
+            "instruction": "MOV EAX,ECX",
+            "comment": null
+          },
+          {
+            "address": "081b93cd",
+            "bytes": "69c9e8030000",
+            "instruction": "IMUL ECX,ECX,0x3e8",
+            "comment": null
+          },
+          {
+            "address": "081b93d3",
+            "bytes": "f7e2",
+            "instruction": "MUL EDX",
+            "comment": null
+          },
+          {
+            "address": "081b93d5",
+            "bytes": "890d30d44208",
+            "instruction": "MOV dword ptr [0x0842d430],ECX",
+            "comment": null
+          },
+          {
+            "address": "081b93db",
+            "bytes": "c1ea06",
+            "instruction": "SHR EDX,0x6",
+            "comment": null
+          },
+          {
+            "address": "081b93de",
+            "bytes": "89152cd44208",
+            "instruction": "MOV dword ptr [0x0842d42c],EDX",
+            "comment": null
+          },
+          {
+            "address": "081b93e4",
+            "bytes": "c745082cd44208",
+            "instruction": "MOV dword ptr [EBP + 0x8],0x842d42c",
+            "comment": null
+          },
+          {
+            "address": "081b93eb",
+            "bytes": "5d",
+            "instruction": "POP EBP",
+            "comment": null
+          },
+          {
+            "address": "081b93ec",
+            "bytes": "e95fffffff",
+            "instruction": "JMP 0x081b9350",
+            "comment": null
+          }
+        ],
+        "offset": 0,
+        "limit": 150,
+        "total": 13,
+        "has_more": false
+      },
+      "isError": false
+    }
+  },
+  "0x081b9460": {
+    "decompilation": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"function\": {\n    \"name\": \"rdtsc\",\n    \"address\": \"081b9460\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\\r\\n\\r\\nulonglong rdtsc(void)\\r\\n\\r\\n{\\r\\n  ulonglong uVar1;\\r\\n  \\r\\n                    /* Unresolved local var: ulonglong x@[DW_OP_reg0(EAX)] */\\r\\n  uVar1 = rdtsc();\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+        }
+      ],
+      "structuredContent": {
+        "function": {
+          "name": "rdtsc",
+          "address": "081b9460"
+        },
+        "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nulonglong rdtsc(void)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  \r\n                    /* Unresolved local var: ulonglong x@[DW_OP_reg0(EAX)] */\r\n  uVar1 = rdtsc();\r\n  return uVar1;\r\n}\r\n\r\n",
+        "truncated": false
+      },
+      "isError": false
+    },
+    "disassembly": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"items\": [\n    {\n      \"address\": \"081b9460\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9461\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9463\",\n      \"bytes\": \"0f31\",\n      \"instruction\": \"RDTSC\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9465\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9466\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 150,\n  \"total\": 5,\n  \"has_more\": false\n}"
+        }
+      ],
+      "structuredContent": {
+        "items": [
+          {
+            "address": "081b9460",
+            "bytes": "55",
+            "instruction": "PUSH EBP",
+            "comment": null
+          },
+          {
+            "address": "081b9461",
+            "bytes": "89e5",
+            "instruction": "MOV EBP,ESP",
+            "comment": null
+          },
+          {
+            "address": "081b9463",
+            "bytes": "0f31",
+            "instruction": "RDTSC",
+            "comment": null
+          },
+          {
+            "address": "081b9465",
+            "bytes": "5d",
+            "instruction": "POP EBP",
+            "comment": null
+          },
+          {
+            "address": "081b9466",
+            "bytes": "c3",
+            "instruction": "RET",
+            "comment": null
+          }
+        ],
+        "offset": 0,
+        "limit": 150,
+        "total": 5,
+        "has_more": false
+      },
+      "isError": false
+    }
+  },
+  "0x081b9470": {
+    "decompilation": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"function\": {\n    \"name\": \"get_float_time\",\n    \"address\": \"081b9470\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\\r\\n\\r\\nfloat get_float_time(void)\\r\\n\\r\\n{\\r\\n  timeval tv;\\r\\n  \\r\\n  gettimeofday((timeval *)&tv,(__timezone_ptr_t)0x0);\\r\\n  return (float)(tv.tv_sec + -0x3f0b388a) + (float)tv.tv_usec / _DAT_08202920;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+        }
+      ],
+      "structuredContent": {
+        "function": {
+          "name": "get_float_time",
+          "address": "081b9470"
+        },
+        "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nfloat get_float_time(void)\r\n\r\n{\r\n  timeval tv;\r\n  \r\n  gettimeofday((timeval *)&tv,(__timezone_ptr_t)0x0);\r\n  return (float)(tv.tv_sec + -0x3f0b388a) + (float)tv.tv_usec / _DAT_08202920;\r\n}\r\n\r\n",
+        "truncated": false
+      },
+      "isError": false
+    },
+    "disassembly": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"items\": [\n    {\n      \"address\": \"081b9470\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9471\",\n      \"bytes\": \"31c0\",\n      \"instruction\": \"XOR EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9473\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9475\",\n      \"bytes\": \"83ec18\",\n      \"instruction\": \"SUB ESP,0x18\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9478\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b947c\",\n      \"bytes\": \"8d45f8\",\n      \"instruction\": \"LEA EAX,[EBP + -0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b947f\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9482\",\n      \"bytes\": \"e88530e9ff\",\n      \"instruction\": \"CALL 0x0804c50c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9487\",\n      \"bytes\": \"db45fc\",\n      \"instruction\": \"FILD dword ptr [EBP + -0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b948a\",\n      \"bytes\": \"8b45f8\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b948d\",\n      \"bytes\": \"d83520292008\",\n      \"instruction\": \"FDIV float ptr [0x08202920]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9493\",\n      \"bytes\": \"2d8a380b3f\",\n      \"instruction\": \"SUB EAX,0x3f0b388a\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9498\",\n      \"bytes\": \"50\",\n      \"instruction\": \"PUSH EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b9499\",\n      \"bytes\": \"db0424\",\n      \"instruction\": \"FILD dword ptr [ESP]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b949c\",\n      \"bytes\": \"83c404\",\n      \"instruction\": \"ADD ESP,0x4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b949f\",\n      \"bytes\": \"89ec\",\n      \"instruction\": \"MOV ESP,EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b94a1\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b94a2\",\n      \"bytes\": \"dec1\",\n      \"instruction\": \"FADDP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081b94a4\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 150,\n  \"total\": 19,\n  \"has_more\": false\n}"
+        }
+      ],
+      "structuredContent": {
+        "items": [
+          {
+            "address": "081b9470",
+            "bytes": "55",
+            "instruction": "PUSH EBP",
+            "comment": null
+          },
+          {
+            "address": "081b9471",
+            "bytes": "31c0",
+            "instruction": "XOR EAX,EAX",
+            "comment": null
+          },
+          {
+            "address": "081b9473",
+            "bytes": "89e5",
+            "instruction": "MOV EBP,ESP",
+            "comment": null
+          },
+          {
+            "address": "081b9475",
+            "bytes": "83ec18",
+            "instruction": "SUB ESP,0x18",
+            "comment": null
+          },
+          {
+            "address": "081b9478",
+            "bytes": "89442404",
+            "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+            "comment": null
+          },
+          {
+            "address": "081b947c",
+            "bytes": "8d45f8",
+            "instruction": "LEA EAX,[EBP + -0x8]",
+            "comment": null
+          },
+          {
+            "address": "081b947f",
+            "bytes": "890424",
+            "instruction": "MOV dword ptr [ESP],EAX",
+            "comment": null
+          },
+          {
+            "address": "081b9482",
+            "bytes": "e88530e9ff",
+            "instruction": "CALL 0x0804c50c",
+            "comment": null
+          },
+          {
+            "address": "081b9487",
+            "bytes": "db45fc",
+            "instruction": "FILD dword ptr [EBP + -0x4]",
+            "comment": null
+          },
+          {
+            "address": "081b948a",
+            "bytes": "8b45f8",
+            "instruction": "MOV EAX,dword ptr [EBP + -0x8]",
+            "comment": null
+          },
+          {
+            "address": "081b948d",
+            "bytes": "d83520292008",
+            "instruction": "FDIV float ptr [0x08202920]",
+            "comment": null
+          },
+          {
+            "address": "081b9493",
+            "bytes": "2d8a380b3f",
+            "instruction": "SUB EAX,0x3f0b388a",
+            "comment": null
+          },
+          {
+            "address": "081b9498",
+            "bytes": "50",
+            "instruction": "PUSH EAX",
+            "comment": null
+          },
+          {
+            "address": "081b9499",
+            "bytes": "db0424",
+            "instruction": "FILD dword ptr [ESP]",
+            "comment": null
+          },
+          {
+            "address": "081b949c",
+            "bytes": "83c404",
+            "instruction": "ADD ESP,0x4",
+            "comment": null
+          },
+          {
+            "address": "081b949f",
+            "bytes": "89ec",
+            "instruction": "MOV ESP,EBP",
+            "comment": null
+          },
+          {
+            "address": "081b94a1",
+            "bytes": "5d",
+            "instruction": "POP EBP",
+            "comment": null
+          },
+          {
+            "address": "081b94a2",
+            "bytes": "dec1",
+            "instruction": "FADDP",
+            "comment": null
+          },
+          {
+            "address": "081b94a4",
+            "bytes": "c3",
+            "instruction": "RET",
+            "comment": null
+          }
+        ],
+        "offset": 0,
+        "limit": 150,
+        "total": 19,
+        "has_more": false
+      },
+      "isError": false
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7b20",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "buffer_read_proceed",
+      "address": "081b7b20"
+    },
+    "code": "\r\nvoid buffer_read_proceed(LPBUFFER buffer,int length)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  \r\n  if (length != 0) {\r\n    if (length < 0) {\r\n      _sys_err(\"buffer_read_proceed\",0xb0,\r\n               \"buffer_proceed: length argument lower than zero (length: %d)\",length);\r\n      iVar2 = buffer->length;\r\n    }\r\n    else {\r\n      iVar2 = buffer->length;\r\n      if (iVar2 < length) {\r\n        _sys_err(\"buffer_read_proceed\",0xb3,\r\n                 \"buffer_proceed: length argument bigger than buffer (length: %d, buffer: %d)\",\r\n                 length,iVar2);\r\n        iVar2 = buffer->length;\r\n        length = iVar2;\r\n      }\r\n    }\r\n    if (iVar2 <= length) {\r\n      buffer_reset(buffer);\r\n      return;\r\n    }\r\n    pcVar1 = buffer->read_point + length;\r\n    if (buffer->mem_size < (int)pcVar1 - (int)buffer->mem_data) {\r\n      _sys_err(\"buffer_read_proceed\",0xbd,\r\n               \"buffer_read_proceed: buffer overflow! length %d read_point %d\",length,\r\n               (int)buffer->read_point - (int)buffer->mem_data);\r\n                    /* WARNING: Subroutine does not return */\r\n      abort();\r\n    }\r\n    buffer->read_point = pcVar1;\r\n    buffer->length = iVar2 - length;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

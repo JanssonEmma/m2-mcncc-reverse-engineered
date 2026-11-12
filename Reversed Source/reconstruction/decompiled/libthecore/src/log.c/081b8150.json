@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b8150",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "_sys_err",
+      "address": "081b8150"
+    },
+    "code": "\r\nvoid _sys_err(char *func,int line,char *format,...)\r\n\r\n{\r\n  tm *__tp;\r\n  char *__s;\r\n  size_t sVar1;\r\n  int iVar2;\r\n  time_t ct;\r\n  char buf [1026];\r\n  \r\n                    /* Unresolved local var: va_list args@[???]\r\n                       Unresolved local var: char * time_s@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int len@[DW_OP_reg2(EDX)] */\r\n  ct = time((time_t *)0x0);\r\n  __tp = localtime(&ct);\r\n  __s = asctime(__tp);\r\n  if (log_file_err != (LPLOGFILE)0x0) {\r\n    sVar1 = strlen(__s);\r\n    __s[sVar1 - 1] = '\\0';\r\n    iVar2 = snprintf(buf,0x400,\"SYSERR: %-15.15s :: %s: \",__s + 4,func);\r\n    buf[0x401] = '\\0';\r\n    if (iVar2 < 0x400) {\r\n      vsnprintf(buf + iVar2,0x400 - iVar2,format,&stack0x00000010);\r\n    }\r\n    strcat(buf,\"\\n\");\r\n    fputs(buf,(FILE *)log_file_err->fp);\r\n    fflush((FILE *)log_file_err->fp);\r\n    fputs(buf,(FILE *)log_file_sys->fp);\r\n    fflush((FILE *)log_file_sys->fp);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "project": "PROJECT_ROOT\\Reversed Source",
+  "checkpoint": 109,
+  "archive": "quest_output_empire_evidence",
+  "receipt": "work/checkpoint-109-focused.receipt.json",
+  "source_guards": "work\\checkpoint109_spawn_and_output\\applied.json",
+  "status_key": "checkpoint109_quest_output_empire",
+  "baseline_key": "checkpoint108_startup_spatial",
+  "suites": [
+    "quest_lua_queries_regression",
+    "sectree_manager_regression"
+  ],
+  "abi": false,
+  "reviews": [
+    {
+      "address": "08055fb0",
+      "export": "work\\quest_lua_direct_output\\08055fb0-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_left_image("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "08056110",
+      "export": "work\\quest_lua_direct_output\\08056110-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_top_image("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "08057120",
+      "export": "work\\quest_lua_direct_output\\08057120-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_time_to_str("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "08057180",
+      "export": "work\\quest_lua_direct_output\\08057180-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_chat("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "080573d0",
+      "export": "work\\quest_lua_direct_output\\080573d0-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_cmdchat("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "08057620",
+      "export": "work\\quest_lua_direct_output\\08057620-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_syschat("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "08057870",
+      "export": "work\\quest_lua_direct_output\\08057870-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/questlua.cpp",
+          "anchor": "_notice("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestDirectOutputCallbacks("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Ordinary valid Lua/CHAR/time input domain."
+    },
+    {
+      "address": "080b7140",
+      "export": "work\\sectree_empire\\080b7140-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/sectree_manager.cpp",
+          "anchor": "GetEmpireFromMapIndex("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/sectree_manager_regression.cpp",
+          "anchor": "int main("
+        }
+      ],
+      "review_scope": "Whole original body, actual owner and focused runtime checks.",
+      "reviewer": "Checkpoint 109 binary and focused validation",
+      "limitations": "Original unsigned32 map ranges and gaps."
+    }
+  ],
+  "evidence_packages": [
+    "work\\checkpoint109_spawn_and_output",
+    "work\\quest_lua_direct_output",
+    "work\\sectree_empire"
+  ],
+  "workspace_resume": "outputs/METIN2_RESUME.md",
+  "summary": "restored seven quest output/time callbacks and GetEmpireFromMapIndex.",
+  "next": "The direct Lua callbacks preserve exact script markers, descriptor packet types and UTC conversion. The spatial manager now has all direct lookups needed by SpawnMob and ProcessEventFlag. SpawnMob still requires the genuine SetProto, Show and character destruction paths. Continue staging complete non-Monarch startup dependencies, including character-stone event settings and Metin drop selection."
+}

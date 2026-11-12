@@ -1,0 +1,86 @@
+{
+  "items": [
+    {
+      "address": "08187670",
+      "bytes": "55",
+      "instruction": "PUSH EBP",
+      "comment": null
+    },
+    {
+      "address": "08187671",
+      "bytes": "ba04000000",
+      "instruction": "MOV EDX,0x4",
+      "comment": null
+    },
+    {
+      "address": "08187676",
+      "bytes": "89e5",
+      "instruction": "MOV EBP,ESP",
+      "comment": null
+    },
+    {
+      "address": "08187678",
+      "bytes": "8b4508",
+      "instruction": "MOV EAX,dword ptr [EBP + 0x8]",
+      "comment": null
+    },
+    {
+      "address": "0818767b",
+      "bytes": "90",
+      "instruction": "NOP",
+      "comment": null
+    },
+    {
+      "address": "0818767c",
+      "bytes": "8d742600",
+      "instruction": "LEA ESI,[ESI]",
+      "comment": null
+    },
+    {
+      "address": "08187680",
+      "bytes": "c6407000",
+      "instruction": "MOV byte ptr [EAX + 0x70],0x0",
+      "comment": null
+    },
+    {
+      "address": "08187684",
+      "bytes": "66c740710000",
+      "instruction": "MOV word ptr [EAX + 0x71],0x0",
+      "comment": null
+    },
+    {
+      "address": "0818768a",
+      "bytes": "83c003",
+      "instruction": "ADD EAX,0x3",
+      "comment": null
+    },
+    {
+      "address": "0818768d",
+      "bytes": "4a",
+      "instruction": "DEC EDX",
+      "comment": null
+    },
+    {
+      "address": "0818768e",
+      "bytes": "79f0",
+      "instruction": "JNS 0x08187680",
+      "comment": null
+    },
+    {
+      "address": "08187690",
+      "bytes": "5d",
+      "instruction": "POP EBP",
+      "comment": null
+    },
+    {
+      "address": "08187691",
+      "bytes": "c3",
+      "instruction": "RET",
+      "comment": null
+    }
+  ],
+  "offset": 0,
+  "limit": 1000,
+  "total": 13,
+  "has_more": false
+}

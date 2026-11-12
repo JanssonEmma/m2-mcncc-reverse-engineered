@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08074aa0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>::find",
+      "address": "08074aa0"
+    },
+    "code": "\r\n/* DWARF original prototype: _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*>\r\n   find(_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n   * this, LPCHARACTER * __k) */\r\n\r\n_Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> __thiscall\r\n_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n::find(_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n       *this,LPCHARACTER *__k)\r\n\r\n{\r\n  _Rb_tree_base_iterator _Var1;\r\n  _Rb_tree_node_base *p_Var2;\r\n  _Rb_tree_node_base *p_Var3;\r\n  _Rb_tree_base_iterator _Var4;\r\n  \r\n                    /* Unresolved local var: _Rb_tree_node<CHARACTER*> * __y@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: _Rb_tree_node<CHARACTER*> * __x@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var:\r\n                       _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> __j@[???]\r\n                        */\r\n  _Var1._M_node =\r\n       &((this->super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>).\r\n         super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n        super__Rb_tree_node_base;\r\n  _Var4._M_node = _Var1._M_node;\r\n  if ((_Var1._M_node)->_M_parent != (_Rb_tree_node_base *)0x0) {\r\n    p_Var2 = (_Var1._M_node)->_M_parent;\r\n    do {\r\n      if ((LPCHARACTER)p_Var2[1]._M_color < *__k) {\r\n        p_Var3 = p_Var2->_M_right;\r\n      }\r\n      else {\r\n        p_Var3 = p_Var2->_M_left;\r\n        _Var4._M_node = p_Var2;\r\n      }\r\n      p_Var2 = p_Var3;\r\n    } while (p_Var3 != (_Rb_tree_node_base *)0x0);\r\n  }\r\n  if ((_Var4._M_node == _Var1._M_node) || (*__k < (LPCHARACTER)_Var4._M_node[1]._M_color)) {\r\n    _Var4._M_node = _Var1._M_node;\r\n  }\r\n  return (_Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*>)_Var4._M_node;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

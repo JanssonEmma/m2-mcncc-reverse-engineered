@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080cd000",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CInputProcessor::CInputProcessor",
+      "address": "080cd000"
+    },
+    "code": "\r\n/* DWARF original prototype: void CInputProcessor(CInputProcessor * this) */\r\n\r\nvoid __thiscall CInputProcessor::CInputProcessor(CInputProcessor *this)\r\n\r\n{\r\n  this->_vptr_CInputProcessor = (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  this->m_pPacketInfo = (CPacketInfo *)0x0;\r\n  this->m_iBufferLeft = 0;\r\n  if ((char)CInputProcessor()::s_PacketInfo == '\\0') {\r\n    CPacketInfoCG::CPacketInfoCG((CPacketInfoCG *)CInputProcessor()::s_PacketInfo);\r\n    CInputProcessor()::s_PacketInfo._0_1_ = '\\x01';\r\n    atexit(__tcf_0);\r\n  }\r\n  if (this->m_pPacketInfo == (CPacketInfo *)0x0) {\r\n    BindPacketInfo(this,(CPacketInfo *)CInputProcessor()::s_PacketInfo);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

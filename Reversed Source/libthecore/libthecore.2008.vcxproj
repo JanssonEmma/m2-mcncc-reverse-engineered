@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="Current">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{5945D143-5140-5E11-9F1F-7E4C540DFEFB}</ProjectGuid>
+    <ProjectName>libthecore</ProjectName>
+    <RootNamespace>libthecore</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(MSBuildThisFileDirectory)..\ReversedSource.VS.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>NOMINMAX;_USE_32BIT_TIME_T;_DEBUG</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir);$(ReversedProjectIncludes);$(ReversedSystemIncludes)</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++17</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>NOMINMAX;_USE_32BIT_TIME_T;NDEBUG</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir);$(ReversedProjectIncludes);$(ReversedSystemIncludes)</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++17</AdditionalOptions>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="src\buffer.c" />
+    <ClCompile Include="src\fdwatch.c" />
+    <ClCompile Include="src\gost.c" />
+    <ClCompile Include="src\hangul.c" />
+    <ClCompile Include="src\heart.c" />
+    <ClCompile Include="src\kstbl.c" />
+    <ClCompile Include="src\log.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\memcpy.c" />
+    <ClCompile Include="src\signal.c" />
+    <ClCompile Include="src\socket.c" />
+    <ClCompile Include="src\tea.c" />
+    <ClCompile Include="src\utils.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\buffer.h" />
+    <ClInclude Include="include\crypt.h" />
+    <ClInclude Include="include\fdwatch.h" />
+    <ClInclude Include="include\hangul.h" />
+    <ClInclude Include="include\heart.h" />
+    <ClInclude Include="include\kstbl.h" />
+    <ClInclude Include="include\log.h" />
+    <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\memcpy.h" />
+    <ClInclude Include="include\signal.h" />
+    <ClInclude Include="include\socket.h" />
+    <ClInclude Include="include\typedef.h" />
+    <ClInclude Include="include\utils.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

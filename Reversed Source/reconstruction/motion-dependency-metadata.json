@@ -1,0 +1,2538 @@
+[
+  {
+    "name": "D3DXVECTOR3",
+    "unit": "motion.cpp",
+    "size": 12,
+    "members": [
+      {
+        "name": "x",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bc780b",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "y",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bc780b",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          4
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "z",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bc780b",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bc78b7",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1bc783f",
+            "tag": "DW_TAG_structure_type",
+            "name": "D3DXVECTOR3",
+            "size": 12
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN11D3DXVECTOR3aSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc78bd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc783f",
+                "tag": "DW_TAG_structure_type",
+                "name": "D3DXVECTOR3",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc78c3",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc78c9",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1bc783f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "D3DXVECTOR3",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "D3DXVECTOR3",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc78bd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc783f",
+                "tag": "DW_TAG_structure_type",
+                "name": "D3DXVECTOR3",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc78c3",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc78c9",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1bc783f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "D3DXVECTOR3",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "D3DXVECTOR3",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc78bd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc783f",
+                "tag": "DW_TAG_structure_type",
+                "name": "D3DXVECTOR3",
+                "size": 12
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMotion",
+    "unit": "motion.cpp",
+    "size": 28,
+    "members": [
+      {
+        "name": "m_isEmpty",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_stFileName",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bd4918",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1bd191e",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_fDuration",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bc780b",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_isAccumulation",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          12
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_vec3Accumulation",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1bc7b9d",
+          "tag": "DW_TAG_typedef",
+          "name": "D3DVECTOR",
+          "size": null,
+          "type": {
+            "die": "0x1bc78ce",
+            "tag": "DW_TAG_typedef",
+            "name": "D3DXVECTOR3",
+            "size": null,
+            "type": {
+              "die": "0x1bc783f",
+              "tag": "DW_TAG_structure_type",
+              "name": "D3DXVECTOR3",
+              "size": 12
+            }
+          }
+        },
+        "offset": [
+          16
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1be3378",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1be321e",
+            "tag": "DW_TAG_structure_type",
+            "name": "CMotion",
+            "size": 28
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotionaSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be3384",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be338a",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be321e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be3384",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be338a",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be321e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "~CMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3add",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "LoadFromFile",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotion12LoadFromFileEPKc",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc4142",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc4148",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1bc3cdb",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "LoadMobSkillFromFile",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotion20LoadMobSkillFromFileEPKcP4CMobi",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc4142",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc4148",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1bc3cdb",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be338f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be3395",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMob",
+                "size": 356
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3add",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetDuration",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bc780b",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZNK7CMotion11GetDurationEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be3462",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be338a",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be321e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetAccumVector",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1be3468",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1be346e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1bc7b9d",
+              "tag": "DW_TAG_typedef",
+              "name": "D3DVECTOR",
+              "size": null,
+              "type": {
+                "die": "0x1bc78ce",
+                "tag": "DW_TAG_typedef",
+                "name": "D3DXVECTOR3",
+                "size": null,
+                "type": {
+                  "die": "0x1bc783f",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "D3DXVECTOR3",
+                  "size": 12
+                }
+              }
+            }
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZNK7CMotion14GetAccumVectorEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be3462",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be338a",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be321e",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "IsEmpty",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotion7IsEmptyEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMotionSet",
+    "unit": "motion.cpp",
+    "size": 12,
+    "members": [
+      {
+        "name": "m_map_pkMotion",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1be4965",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMotion*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMotion*> > >",
+          "size": 12
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1be4fc3",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1be4eb6",
+            "tag": "DW_TAG_structure_type",
+            "name": "CMotionSet",
+            "size": 12
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN10CMotionSetaSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fc9",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4eb6",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fcf",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4fd5",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be4eb6",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionSet",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fc9",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4eb6",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fcf",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4fd5",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be4eb6",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionSet",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fc9",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4eb6",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "~CMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fc9",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4eb6",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3add",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "Insert",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN10CMotionSet6InsertEmP7CMotion",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fc9",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4eb6",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be337e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be321e",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Load",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN10CMotionSet4LoadEPKcii",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fc9",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4eb6",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc4142",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1bc4148",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1bc3cdb",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3add",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3add",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1be3462",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1be338a",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1be321e",
+              "tag": "DW_TAG_structure_type",
+              "name": "CMotion",
+              "size": 28
+            }
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZNK10CMotionSet9GetMotionEm",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1be4fda",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1be4fd5",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1be4eb6",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionSet",
+                  "size": 12
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMotionManager",
+    "unit": "motion.cpp",
+    "size": 16,
+    "members": [
+      {
+        "name": null,
+        "tag": "DW_TAG_inheritance",
+        "type": {
+          "die": "0x1c05e81",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<CMotionManager>",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_map_pkMotionSet",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1be61e6",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMotionSet*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMotionSet*> > >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1c0a21a",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1c05af9",
+            "tag": "DW_TAG_structure_type",
+            "name": "CMotionManager",
+            "size": 16
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN14CMotionManageraSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c0a220",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c0a226",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1c05af9",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionManager",
+                  "size": 16
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotionManager",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c0a220",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c0a226",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1c05af9",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionManager",
+                  "size": 16
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotionManager",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "~CMotionManager",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3add",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bcd679",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN14CMotionManager5BuildEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1be4fda",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1be4fd5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1be4eb6",
+              "tag": "DW_TAG_structure_type",
+              "name": "CMotionSet",
+              "size": 12
+            }
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN14CMotionManager12GetMotionSetEm",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1be3462",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1be338a",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1be321e",
+              "tag": "DW_TAG_structure_type",
+              "name": "CMotion",
+              "size": 28
+            }
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN14CMotionManager9GetMotionEmm",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetMotionDuration",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1bc780b",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN14CMotionManager17GetMotionDurationEmm",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c05c2a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1c05af9",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionManager",
+                "size": 16
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1bc3b25",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "D3DXVECTOR3",
+    "unit": "char.cpp",
+    "size": 12,
+    "members": [
+      {
+        "name": "x",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e8e49f",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "y",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e8e49f",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          4
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "z",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e8e49f",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1e8e54b",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e8e4d3",
+            "tag": "DW_TAG_structure_type",
+            "name": "D3DXVECTOR3",
+            "size": 12
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN11D3DXVECTOR3aSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8e551",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8e4d3",
+                "tag": "DW_TAG_structure_type",
+                "name": "D3DXVECTOR3",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8e557",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8e55d",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e8e4d3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "D3DXVECTOR3",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "D3DXVECTOR3",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8e551",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8e4d3",
+                "tag": "DW_TAG_structure_type",
+                "name": "D3DXVECTOR3",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8e557",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8e55d",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e8e4d3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "D3DXVECTOR3",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "D3DXVECTOR3",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8e551",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8e4d3",
+                "tag": "DW_TAG_structure_type",
+                "name": "D3DXVECTOR3",
+                "size": 12
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMotion",
+    "unit": "char.cpp",
+    "size": 28,
+    "members": [
+      {
+        "name": "m_isEmpty",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_stFileName",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e9b5ac",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1e985b2",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_fDuration",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e8e49f",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_isAccumulation",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          12
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "m_vec3Accumulation",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1e8e831",
+          "tag": "DW_TAG_typedef",
+          "name": "D3DVECTOR",
+          "size": null,
+          "type": {
+            "die": "0x1e8e562",
+            "tag": "DW_TAG_typedef",
+            "name": "D3DXVECTOR3",
+            "size": null,
+            "type": {
+              "die": "0x1e8e4d3",
+              "tag": "DW_TAG_structure_type",
+              "name": "D3DXVECTOR3",
+              "size": 12
+            }
+          }
+        },
+        "offset": [
+          16
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1ed8f75",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ed8e1b",
+            "tag": "DW_TAG_structure_type",
+            "name": "CMotion",
+            "size": 28
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotionaSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f81",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8f87",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1ed8e1b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f81",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8f87",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1ed8e1b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "~CMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a771",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "LoadFromFile",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotion12LoadFromFileEPKc",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8add6",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8addc",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e8a96f",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "LoadMobSkillFromFile",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotion20LoadMobSkillFromFileEPKcP4CMobi",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8add6",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8addc",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e8a96f",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f8c",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8f92",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMob",
+                "size": 356
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a771",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetDuration",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1e8e49f",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "size": 4
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZNK7CMotion11GetDurationEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed905f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8f87",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1ed8e1b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetAccumVector",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1ed9065",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ed906b",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1e8e831",
+              "tag": "DW_TAG_typedef",
+              "name": "D3DVECTOR",
+              "size": null,
+              "type": {
+                "die": "0x1e8e562",
+                "tag": "DW_TAG_typedef",
+                "name": "D3DXVECTOR3",
+                "size": null,
+                "type": {
+                  "die": "0x1e8e4d3",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "D3DXVECTOR3",
+                  "size": 12
+                }
+              }
+            }
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZNK7CMotion14GetAccumVectorEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed905f",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8f87",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1ed8e1b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotion",
+                  "size": 28
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "IsEmpty",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN7CMotion7IsEmptyEv",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMotionSet",
+    "unit": "char.cpp",
+    "size": 12,
+    "members": [
+      {
+        "name": "m_map_pkMotion",
+        "tag": "DW_TAG_member",
+        "type": {
+          "die": "0x1ed9cc5",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMotion*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMotion*> > >",
+          "size": 12
+        },
+        "offset": [
+          0
+        ],
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "operator=",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1eda323",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1eda216",
+            "tag": "DW_TAG_structure_type",
+            "name": "CMotionSet",
+            "size": 12
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN10CMotionSetaSERKS_",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda329",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda216",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda32f",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda335",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1eda216",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionSet",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda329",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda216",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda32f",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda335",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1eda216",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionSet",
+                  "size": 12
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "CMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda329",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda216",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "~CMotionSet",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": null,
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda329",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda216",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a771",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "Insert",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "name": "void"
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN10CMotionSet6InsertEmP7CMotion",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda329",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda216",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1ed8f7b",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1ed8e1b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotion",
+                "size": 28
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Load",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZN10CMotionSet4LoadEPKcii",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda329",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda216",
+                "tag": "DW_TAG_structure_type",
+                "name": "CMotionSet",
+                "size": 12
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8add6",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e8addc",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e8a96f",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a771",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a771",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "name": "GetMotion",
+        "tag": "DW_TAG_subprogram",
+        "type": {
+          "die": "0x1ed905f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ed8f87",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1ed8e1b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CMotion",
+              "size": 28
+            }
+          }
+        },
+        "offset": null,
+        "address": null,
+        "linkage": "_ZNK10CMotionSet9GetMotionEm",
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1eda33a",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1eda335",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1eda216",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CMotionSet",
+                  "size": 12
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e8a7b9",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

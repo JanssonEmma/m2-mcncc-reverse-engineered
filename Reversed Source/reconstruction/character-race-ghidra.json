@@ -1,0 +1,18 @@
+{
+  "GetRaceNum": {
+    "function": {
+      "name": "CHARACTER::GetRaceNum",
+      "address": "0812a4e0"
+    },
+    "code": "\r\n/* DWARF original prototype: WORD GetRaceNum(CHARACTER * this) */\r\n\r\nWORD __thiscall CHARACTER::GetRaceNum(CHARACTER *this)\r\n\r\n{\r\n  WORD WVar1;\r\n  \r\n  if (this->m_dwPolymorphRace == 0) {\r\n    if (this->m_pkMobData == (CMob *)0x0) {\r\n      WVar1 = (WORD)(this->m_points).job;\r\n    }\r\n    else {\r\n      WVar1 = (WORD)(this->m_pkMobData->m_table).dwVnum;\r\n    }\r\n  }\r\n  else {\r\n    WVar1 = (WORD)this->m_dwPolymorphRace;\r\n  }\r\n  return WVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "UnregisterRaceNumMap_pending": {
+    "function": {
+      "name": "CHARACTER_MANAGER::UnregisterRaceNumMap",
+      "address": "0818e7d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void UnregisterRaceNumMap(CHARACTER_MANAGER * this, LPCHARACTER ch) */\r\n\r\nvoid __thiscall CHARACTER_MANAGER::UnregisterRaceNumMap(CHARACTER_MANAGER *this,LPCHARACTER ch)\r\n\r\n{\r\n  DWORD dwVnum;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>,std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>&,std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>*>\r\n  it;\r\n  \r\n  CHARACTER::GetRaceNum(ch);\r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>,std::_Select1st<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>_>_>\r\n  ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>,std::_Select1st<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>_>_>\r\n          *)&it,(DWORD *)&this->m_map_pkChrByRaceNum);\r\n  if (it.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_map_pkChrByRaceNum)._M_t.\r\n        super__Rb_tree_base<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>,std::allocator<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>,std::allocator<std::pair<const_long_unsigned_int,_std::set<CHARACTER*,_std::less<CHARACTER*>,_std::allocator<CHARACTER*>_>_>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    _Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n    ::erase((_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n             *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14),&ch);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

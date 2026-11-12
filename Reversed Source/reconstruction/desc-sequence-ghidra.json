@@ -1,0 +1,18 @@
+{
+  "0x0813acc0": {
+    "function": {
+      "name": "DESC::GetSequence",
+      "address": "0813acc0"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetSequence(DESC * this) */\r\n\r\nBYTE __thiscall DESC::GetSequence(DESC *this)\r\n\r\n{\r\n  return gc_abSequence[this->m_iCurrentSequence];\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813ace0": {
+    "function": {
+      "name": "DESC::SetNextSequence",
+      "address": "0813ace0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetNextSequence(DESC * this) */\r\n\r\nvoid __thiscall DESC::SetNextSequence(DESC *this)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = this->m_iCurrentSequence + 1;\r\n  this->m_iCurrentSequence = iVar1;\r\n  if (iVar1 == 0x10000) {\r\n    this->m_iCurrentSequence = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

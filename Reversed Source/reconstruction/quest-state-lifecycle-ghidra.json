@@ -1,0 +1,53 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "function": {
+        "name": "quest::CQuestManager::OpenState",
+        "address": "0805cd80"
+      },
+      "code": "\r\n/* DWARF original prototype: QuestState OpenState(CQuestManager * this, string * quest_name, int\r\n   state_index) */\r\n\r\nQuestState * __thiscall\r\nquest::CQuestManager::OpenState\r\n          (QuestState *__return_storage_ptr__,CQuestManager *this,string *quest_name,int state_index\r\n          )\r\n\r\n{\r\n  lua_State *plVar1;\r\n  int iVar2;\r\n  \r\n                    /* Unresolved local var: QuestState qs@[DW_OP_breg3(EBX): 0] */\r\n  QuestState::QuestState(__return_storage_ptr__);\r\n  __return_storage_ptr__->args = 0;\r\n  __return_storage_ptr__->st = state_index;\r\n  plVar1 = lua_newthread(*(lua_State **)(this + 0x34));\r\n  __return_storage_ptr__->co = plVar1;\r\n  iVar2 = luaL_ref(*(lua_State **)(this + 0x34),-10000);\r\n  __return_storage_ptr__->ico = iVar2;\r\n  return __return_storage_ptr__;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "quest::CQuestManager::CloseState",
+        "address": "0805d000"
+      },
+      "code": "\r\n/* DWARF original prototype: void CloseState(CQuestManager * this, QuestState * qs) */\r\n\r\nvoid __thiscall quest::CQuestManager::CloseState(CQuestManager *this,QuestState *qs)\r\n\r\n{\r\n  if (qs->co != (lua_State *)0x0) {\r\n    luaL_unref(*(lua_State **)(this + 0x34),-10000,qs->ico);\r\n    qs->co = (lua_State *)0x0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "quest::CQuestManager::GotoEndState",
+        "address": "0805cd10"
+      },
+      "code": "\r\n/* DWARF original prototype: void GotoEndState(CQuestManager * this, QuestState * qs) */\r\n\r\nvoid __thiscall quest::CQuestManager::GotoEndState(CQuestManager *this,QuestState *qs)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  allocator local_2c [16];\r\n  int local_1c [4];\r\n  \r\n  std::string::string((string *)local_1c,\"[DONE]\",local_2c);\r\n  ::CQuestManager::AddScript((CQuestManager *)this,(string *)local_1c);\r\n  LOCK();\r\n  piVar1 = (int *)(local_1c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_1c[0] + -0xc));\r\n  }\r\n  ::CQuestManager::SendScript((CQuestManager *)this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CQuestManager::ClearScript",
+        "address": "081a4ee0"
+      },
+      "code": "\r\n/* DWARF original prototype: void ClearScript(CQuestManager * this) */\r\n\r\nvoid __thiscall CQuestManager::ClearScript(CQuestManager *this)\r\n\r\n{\r\n  std::string::_M_mutate\r\n            ((uint)&this->m_strScript,0,*(uint *)((this->m_strScript)._M_dataplus._M_p + -0xc));\r\n  this->m_iCurrentSkin = 1;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CQuestManager::AddScript",
+        "address": "081a4f30"
+      },
+      "code": "\r\n/* DWARF original prototype: void AddScript(CQuestManager * this, string * str) */\r\n\r\nvoid __thiscall CQuestManager::AddScript(CQuestManager *this,string *str)\r\n\r\n{\r\n  std::string::append((string *)&this->m_strScript);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CQuestManager::SendScript",
+        "address": "081a4f50"
+      },
+      "code": "\r\n/* DWARF original prototype: void SendScript(CQuestManager * this) */\r\n\r\nvoid __thiscall CQuestManager::SendScript(CQuestManager *this)\r\n\r\n{\r\n  string *psVar1;\r\n  bool bVar2;\r\n  PC *pPVar3;\r\n  int iVar4;\r\n  char *pcVar5;\r\n  TEMP_BUFFER buf;\r\n  packet_script packet_script;\r\n  undefined2 uStack_26;\r\n  \r\n  if (this->m_bNoSend == false) {\r\n    psVar1 = &this->m_strScript;\r\n    iVar4 = std::string::compare((char *)psVar1);\r\n    if ((iVar4 == 0) || (iVar4 = std::string::compare((char *)psVar1), iVar4 == 0)) {\r\n      pPVar3 = this->m_pCurrentPC;\r\n                    /* Unresolved local var: bool temp@[DW_OP_reg0(EAX)] */\r\n      if (((pPVar3 != (PC *)0x0) &&\r\n          (((bVar2 = pPVar3->m_bShouldSendDone, pPVar3->m_bShouldSendDone = false, bVar2 == false &&\r\n            (iVar4 = std::string::compare((char *)psVar1), iVar4 == 0)) &&\r\n           (this->m_iCurrentSkin == 1)))) && (this->m_bError == false)) goto LAB_081a4f66;\r\n      this->m_iCurrentSkin = 0;\r\n    }\r\n    packet_script.header = '-';\r\n    packet_script.skin = (BYTE)this->m_iCurrentSkin;\r\n    stack0xffffffd8 =\r\n         CONCAT22(uStack_26,(short)*(undefined4 *)((this->m_strScript)._M_dataplus._M_p + -0xc));\r\n    TEMP_BUFFER::TEMP_BUFFER(&buf);\r\n    packet_script.size = (short)stack0xffffffd8 + 6;\r\n    TEMP_BUFFER::write(&buf,&packet_script,6);\r\n    pcVar5 = (this->m_strScript)._M_dataplus._M_p;\r\n    iVar4 = *(int *)(pcVar5 + -0xc);\r\n    if (-1 < *(int *)(pcVar5 + -4)) {\r\n      std::string::_M_leak_hard();\r\n      pcVar5 = (this->m_strScript)._M_dataplus._M_p;\r\n    }\r\n    TEMP_BUFFER::write(&buf,pcVar5,iVar4);\r\n    iVar4 = TEMP_BUFFER::size(&buf);\r\n    pcVar5 = TEMP_BUFFER::read_peek(&buf);\r\n    DESC::Packet((this->m_pCurrentCharacter->super_CEntity).m_lpDesc,pcVar5,iVar4);\r\n    if (test_server != 0) {\r\n      iVar4 = TEMP_BUFFER::size(&buf);\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n      pcVar5 = (this->m_strScript)._M_dataplus._M_p;\r\n      pcVar5[*(int *)(pcVar5 + -0xc)] = std::string::_Rep::_S_terminal;\r\n      pcVar5 = \"m_strScript %s size %d\";\r\n      sys_log(0,\"m_strScript %s size %d\",(this->m_strScript)._M_dataplus._M_p,iVar4);\r\n    }\r\n    ClearScript(this);\r\n    TEMP_BUFFER::~TEMP_BUFFER(&buf,(int)pcVar5);\r\n  }\r\n  else {\r\n    this->m_bNoSend = false;\r\nLAB_081a4f66:\r\n    ClearScript(this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

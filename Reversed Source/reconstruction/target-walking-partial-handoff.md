@@ -1,0 +1,9 @@
+# Interrupted target/walking recovery
+
+Delegated task reached the account usage limit before a final handoff. All staged artifacts were preserved in target_walking_partial_evidence/. No target/walking production methods were added or tested. Complete saved function exports are normalized in target-walking-partial-ghidra.json; completeness of the dependency closure is not claimed.
+
+Ready candidate bodies: BroadcastTargetPacket08132670 and SetNowWalking081341a0, original char.cpp placement. Target and walk packet records are both6 bytes; ECharType has10 entries with PC6. Required original classes already have complete data. Actual PacketView, MonsterLog, GetPoint/type/VID, distance and descriptor transport exist; inspect source rather than treating name presence as proof.
+
+Candidate semantics requiring explicit tests: empty targeted set returns before any HP division; target with descriptor reportsHP0, otherwise wrapped signed32 HP*100/maxHP clamped0..100; advance recipient iterator before sending; missing recipient descriptor logs BroadcastTargetPacket:4801 then aborts. Walking acts on flag change OR raw type!=PC6; entering walking refreshes clock, leaving does not; sends through actual PacketView and non-PC MonsterLog raw CP949 strings. Preserve original caller preconditions for nonzero/safe signed division. Do not invent guards.
+
+Remaining review/test plan: all byte char types and two bool states, PC unchanged suppression, repeated NPC actions, exact6-byte records/fanout/clock changes/log strings, descriptor-target branch, NPC HP clamp/wrap, callback removal of current set member, and a child fatal-path test that verifies exact diagnostic before abort. Use existing real application modules with only external observations; no production stubs. Full PointChange/stat/party/lifecycle/server reconstruction remains unfinished.

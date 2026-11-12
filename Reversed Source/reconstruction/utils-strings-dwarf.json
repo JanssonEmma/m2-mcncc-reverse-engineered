@@ -1,0 +1,328 @@
+[
+  {
+    "name": "printdata",
+    "address": "0x81b8a30",
+    "return": "void",
+    "parameters": [
+      {
+        "name": "data",
+        "type": {
+          "die": "0x2db66f7",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db66fd",
+            "tag": "DW_TAG_const_type",
+            "type": {
+              "die": "0x2db42d5",
+              "tag": "DW_TAG_base_type",
+              "DW_AT_name": "unsigned char",
+              "DW_AT_byte_size": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "bytes",
+        "type": {
+          "die": "0x2db430b",
+          "tag": "DW_TAG_base_type",
+          "DW_AT_name": "int",
+          "DW_AT_byte_size": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "time_str",
+    "address": "0x81b8d00",
+    "return": {
+      "die": "0x2db4825",
+      "tag": "DW_TAG_pointer_type",
+      "DW_AT_byte_size": 4,
+      "type": {
+        "die": "0x2db4509",
+        "tag": "DW_TAG_base_type",
+        "DW_AT_name": "char",
+        "DW_AT_byte_size": 1
+      }
+    },
+    "parameters": [
+      {
+        "name": "ct",
+        "type": {
+          "die": "0x2db4b90",
+          "tag": "DW_TAG_typedef",
+          "DW_AT_name": "time_t",
+          "type": {
+            "die": "0x2db4432",
+            "tag": "DW_TAG_typedef",
+            "DW_AT_name": "__time_t",
+            "type": {
+              "die": "0x2db4300",
+              "tag": "DW_TAG_typedef",
+              "DW_AT_name": "__int32_t",
+              "type": {
+                "die": "0x2db430b",
+                "tag": "DW_TAG_base_type",
+                "DW_AT_name": "int",
+                "DW_AT_byte_size": 4
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "trim_and_lower",
+    "address": "0x81b8d50",
+    "return": "void",
+    "parameters": [
+      {
+        "name": "dest",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      },
+      {
+        "name": "src",
+        "type": {
+          "die": "0x2db486b",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4871",
+            "tag": "DW_TAG_const_type",
+            "type": {
+              "die": "0x2db4509",
+              "tag": "DW_TAG_base_type",
+              "DW_AT_name": "char",
+              "DW_AT_byte_size": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "max_len",
+        "type": {
+          "die": "0x2db430b",
+          "tag": "DW_TAG_base_type",
+          "DW_AT_name": "int",
+          "DW_AT_byte_size": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "lower_string",
+    "address": "0x81b8e60",
+    "return": "void",
+    "parameters": [
+      {
+        "name": "src",
+        "type": {
+          "die": "0x2db486b",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4871",
+            "tag": "DW_TAG_const_type",
+            "type": {
+              "die": "0x2db4509",
+              "tag": "DW_TAG_base_type",
+              "DW_AT_name": "char",
+              "DW_AT_byte_size": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "dest",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      },
+      {
+        "name": "len",
+        "type": {
+          "die": "0x2db430b",
+          "tag": "DW_TAG_base_type",
+          "DW_AT_name": "int",
+          "DW_AT_byte_size": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "str_dup",
+    "address": "0x81b8ed0",
+    "return": {
+      "die": "0x2db4825",
+      "tag": "DW_TAG_pointer_type",
+      "DW_AT_byte_size": 4,
+      "type": {
+        "die": "0x2db4509",
+        "tag": "DW_TAG_base_type",
+        "DW_AT_name": "char",
+        "DW_AT_byte_size": 1
+      }
+    },
+    "parameters": [
+      {
+        "name": "source",
+        "type": {
+          "die": "0x2db486b",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4871",
+            "tag": "DW_TAG_const_type",
+            "type": {
+              "die": "0x2db4509",
+              "tag": "DW_TAG_base_type",
+              "DW_AT_name": "char",
+              "DW_AT_byte_size": 1
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "is_abbrev",
+    "address": "0x81b8f20",
+    "return": {
+      "die": "0x2db430b",
+      "tag": "DW_TAG_base_type",
+      "DW_AT_name": "int",
+      "DW_AT_byte_size": 4
+    },
+    "parameters": [
+      {
+        "name": "arg1",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      },
+      {
+        "name": "arg2",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "filesize",
+    "address": "0x81b8fa0",
+    "return": {
+      "die": "0x2db430b",
+      "tag": "DW_TAG_base_type",
+      "DW_AT_name": "int",
+      "DW_AT_byte_size": 4
+    },
+    "parameters": [
+      {
+        "name": "fp",
+        "type": {
+          "die": "0x2db69dc",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db48a8",
+            "tag": "DW_TAG_typedef",
+            "DW_AT_name": "FILE",
+            "type": {
+              "die": "0x2db46d1",
+              "tag": "DW_TAG_structure_type",
+              "DW_AT_name": "__sFILE",
+              "DW_AT_byte_size": 88
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "parse_token",
+    "address": "0x81b9000",
+    "return": "void",
+    "parameters": [
+      {
+        "name": "src",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      },
+      {
+        "name": "token",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      },
+      {
+        "name": "value",
+        "type": {
+          "die": "0x2db4825",
+          "tag": "DW_TAG_pointer_type",
+          "DW_AT_byte_size": 4,
+          "type": {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "DW_AT_name": "char",
+            "DW_AT_byte_size": 1
+          }
+        }
+      }
+    ]
+  }
+]

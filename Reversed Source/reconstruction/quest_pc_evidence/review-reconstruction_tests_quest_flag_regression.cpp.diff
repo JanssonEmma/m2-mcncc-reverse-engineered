@@ -1,0 +1,10 @@
+--- CURRENT/reconstruction/tests/quest_flag_regression.cpp
++++ PC/reconstruction/tests/quest_flag_regression.cpp
+@@ -12,6 +12,7 @@
+ #include <climits>
+ #include <cstdio>
+ #include <cstdlib>
++int max_bytes_written,current_bytes_written,total_bytes_written;
+ int main() {
+     assert(!quest::CQuestManager::instance_ptr());
+     {

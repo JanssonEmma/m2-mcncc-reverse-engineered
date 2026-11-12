@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081665e0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x081665e0",
+    "function": {
+      "name": "CItem::EncodeInsertPacket",
+      "address": "081665e0"
+    },
+    "signature": "void EncodeInsertPacket(CItem * this, LPENTITY ent)",
+    "code": "\r\n/* DWARF original prototype: void EncodeInsertPacket(CItem * this, LPENTITY ent) */\r\n\r\nvoid __thiscall CItem::EncodeInsertPacket(CItem *this,LPENTITY ent)\r\n\r\n{\r\n  char *pcVar1;\r\n  packet_item_ground_add pack;\r\n  \r\n                    /* Unresolved local var: LPDESC d@[???]\r\n                       Unresolved local var: PIXEL_POSITION * c_pos@[???] */\r\n  if (ent->m_lpDesc != (DESC *)0x0) {\r\n    pack.bHeader = '\\x1a';\r\n    pack.x = (this->super_CEntity).m_pos.x;\r\n    pack.y = (this->super_CEntity).m_pos.y;\r\n    pack.z = (this->super_CEntity).m_pos.z;\r\n    pack.dwVnum = this->m_pProto->dwVnum;\r\n    pack.dwVID = this->m_dwVID;\r\n    DESC::Packet(ent->m_lpDesc,&pack,0x15);\r\n    pcVar1 = CHARACTER::GetName((CHARACTER *)ent);\r\n    sys_log(2,\"Item::EncodeInsertPacket %s to %s\",\r\n            (uint)this->m_pProto->szLocaleName & (this->m_pProto == (TItemTable *)0x0) - 1,pcVar1);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

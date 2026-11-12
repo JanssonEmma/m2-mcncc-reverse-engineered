@@ -1,0 +1,28 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08193080 <_ZN12ITEM_MANAGER8GetTableEm>:
+ 8193080:	55                   	push   %ebp
+ 8193081:	89 e5                	mov    %esp,%ebp
+ 8193083:	83 ec 18             	sub    $0x18,%esp
+ 8193086:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 8193089:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 819308c:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 819308f:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8193093:	89 1c 24             	mov    %ebx,(%esp)
+ 8193096:	e8 25 00 00 00       	call   81930c0 <_ZN12ITEM_MANAGER10RealNumberEm>
+ 819309b:	31 d2                	xor    %edx,%edx
+ 819309d:	85 c0                	test   %eax,%eax
+ 819309f:	78 0d                	js     81930ae <_ZN12ITEM_MANAGER8GetTableEm+0x2e>
+ 81930a1:	89 c2                	mov    %eax,%edx
+ 81930a3:	8b 4b 04             	mov    0x4(%ebx),%ecx
+ 81930a6:	69 d2 9a 00 00 00    	imul   $0x9a,%edx,%edx
+ 81930ac:	01 ca                	add    %ecx,%edx
+ 81930ae:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 81930b1:	89 d0                	mov    %edx,%eax
+ 81930b3:	89 ec                	mov    %ebp,%esp
+ 81930b5:	5d                   	pop    %ebp
+ 81930b6:	c3                   	ret

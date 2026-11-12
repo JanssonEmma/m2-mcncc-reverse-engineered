@@ -1,0 +1,7 @@
+// config.h (ensure BYTE typedef header is included):
+// #include "../../libthecore/include/typedef.h"
+extern BYTE PK_PROTECT_LEVEL;
+// ONE definition in locale_service.cpp, matching reference placement. Add the
+// typedef header there if not already included; this module is shared by tests.
+BYTE PK_PROTECT_LEVEL=30;
+// Do not define it again in config.cpp/item_socket_config/desc_fixture.

@@ -1,0 +1,140 @@
+{
+  "items": [
+    {
+      "address": "080f2030",
+      "bytes": "55",
+      "instruction": "PUSH EBP",
+      "comment": null
+    },
+    {
+      "address": "080f2031",
+      "bytes": "89e5",
+      "instruction": "MOV EBP,ESP",
+      "comment": null
+    },
+    {
+      "address": "080f2033",
+      "bytes": "8b5508",
+      "instruction": "MOV EDX,dword ptr [EBP + 0x8]",
+      "comment": null
+    },
+    {
+      "address": "080f2036",
+      "bytes": "53",
+      "instruction": "PUSH EBX",
+      "comment": null
+    },
+    {
+      "address": "080f2037",
+      "bytes": "8b4d0c",
+      "instruction": "MOV ECX,dword ptr [EBP + 0xc]",
+      "comment": null
+    },
+    {
+      "address": "080f203a",
+      "bytes": "89d3",
+      "instruction": "MOV EBX,EDX",
+      "comment": null
+    },
+    {
+      "address": "080f203c",
+      "bytes": "01cb",
+      "instruction": "ADD EBX,ECX",
+      "comment": null
+    },
+    {
+      "address": "080f203e",
+      "bytes": "31c9",
+      "instruction": "XOR ECX,ECX",
+      "comment": null
+    },
+    {
+      "address": "080f2040",
+      "bytes": "39da",
+      "instruction": "CMP EDX,EBX",
+      "comment": null
+    },
+    {
+      "address": "080f2042",
+      "bytes": "731c",
+      "instruction": "JNC 0x080f2060",
+      "comment": null
+    },
+    {
+      "address": "080f2044",
+      "bytes": "8db600000000",
+      "instruction": "LEA ESI,[ESI]",
+      "comment": null
+    },
+    {
+      "address": "080f204a",
+      "bytes": "8dbf00000000",
+      "instruction": "LEA EDI,[EDI]",
+      "comment": null
+    },
+    {
+      "address": "080f2050",
+      "bytes": "0fbe02",
+      "instruction": "MOVSX EAX,byte ptr [EDX]",
+      "comment": null
+    },
+    {
+      "address": "080f2053",
+      "bytes": "69c993010001",
+      "instruction": "IMUL ECX,ECX,0x1000193",
+      "comment": null
+    },
+    {
+      "address": "080f2059",
+      "bytes": "42",
+      "instruction": "INC EDX",
+      "comment": null
+    },
+    {
+      "address": "080f205a",
+      "bytes": "31c1",
+      "instruction": "XOR ECX,EAX",
+      "comment": null
+    },
+    {
+      "address": "080f205c",
+      "bytes": "39da",
+      "instruction": "CMP EDX,EBX",
+      "comment": null
+    },
+    {
+      "address": "080f205e",
+      "bytes": "72f0",
+      "instruction": "JC 0x080f2050",
+      "comment": null
+    },
+    {
+      "address": "080f2060",
+      "bytes": "5b",
+      "instruction": "POP EBX",
+      "comment": null
+    },
+    {
+      "address": "080f2061",
+      "bytes": "89c8",
+      "instruction": "MOV EAX,ECX",
+      "comment": null
+    },
+    {
+      "address": "080f2063",
+      "bytes": "5d",
+      "instruction": "POP EBP",
+      "comment": null
+    },
+    {
+      "address": "080f2064",
+      "bytes": "c3",
+      "instruction": "RET",
+      "comment": null
+    }
+  ],
+  "offset": 0,
+  "limit": 60,
+  "total": 22,
+  "has_more": false
+}

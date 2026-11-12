@@ -1,0 +1,60 @@
+{
+  "address": "081874d0",
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::PutAttribute\",\n    \"address\": \"081874d0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void PutAttribute(CItem * this, int * aiAttrPercentTable) */\\r\\n\\r\\nvoid __thiscall CItem::PutAttribute(CItem *this,int *aiAttrPercentTable)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  int iVar2;\\r\\n  int iVar3;\\r\\n  \\r\\n                    /* Unresolved local var: int iAttrLevelPercent@[DW_OP_reg0(EAX)]\\r\\n                       Unresolved local var: int i@[DW_OP_reg1(ECX)] */\\r\\n  iVar2 = number_ex(1,100,\\\"item_attribute.cpp\\\",0xac);\\r\\n  iVar3 = 0;\\r\\n  do {\\r\\n    piVar1 = aiAttrPercentTable + iVar3;\\r\\n    if (iVar2 <= *piVar1) break;\\r\\n    iVar3 = iVar3 + 1;\\r\\n    iVar2 = iVar2 - *piVar1;\\r\\n  } while (iVar3 < 5);\\r\\n  PutAttributeWithLevel(this,(char)iVar3 + '\\\\x01');\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::PutAttribute",
+        "address": "081874d0"
+      },
+      "code": "\r\n/* DWARF original prototype: void PutAttribute(CItem * this, int * aiAttrPercentTable) */\r\n\r\nvoid __thiscall CItem::PutAttribute(CItem *this,int *aiAttrPercentTable)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n                    /* Unresolved local var: int iAttrLevelPercent@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: int i@[DW_OP_reg1(ECX)] */\r\n  iVar2 = number_ex(1,100,\"item_attribute.cpp\",0xac);\r\n  iVar3 = 0;\r\n  do {\r\n    piVar1 = aiAttrPercentTable + iVar3;\r\n    if (iVar2 <= *piVar1) break;\r\n    iVar3 = iVar3 + 1;\r\n    iVar2 = iVar2 - *piVar1;\r\n  } while (iVar3 < 5);\r\n  PutAttributeWithLevel(this,(char)iVar3 + '\\x01');\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::PutAttribute\",\n    \"address\": \"081874d0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"08187500\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08187532\",\n        \"target\": \"08187060\",\n        \"name\": \"CItem::PutAttributeWithLevel\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 2,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::PutAttribute",
+        "address": "081874d0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "08187500",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08187532",
+            "target": "08187060",
+            "name": "CItem::PutAttributeWithLevel",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 2,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

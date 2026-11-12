@@ -1,0 +1,560 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::RemoveTimer\",\n    \"address\": \"0805ee10\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void RemoveTimer(PC * this, string * name) */\\r\\n\\r\\nvoid __thiscall PC::RemoveTimer(PC *this,string *name)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  size_t *psVar2;\\r\\n  int iVar3;\\r\\n  _Rb_tree_color _Var4;\\r\\n  _Rb_tree_node_base *p_Var5;\\r\\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>*>\\r\\n  it;\\r\\n  \\r\\n                    /* Unresolved local var: _Atomic_word __result@[DW_OP_reg0(EAX)] */\\r\\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n  ::find((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n          *)&it,(string *)&this->m_TimerMap);\\r\\n  if (it.super__Rb_tree_base_iterator._M_node !=\\r\\n      (_Rb_tree_base_iterator)\\r\\n      &((this->m_TimerMap)._M_t.\\r\\n        super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n        .\\r\\n        super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n       ._M_header)->super__Rb_tree_node_base) {\\r\\n                    /* Unresolved local var:\\r\\n                       _Rb_tree_node<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>\\r\\n                       * __y@[???] */\\r\\n    sys_log(0,\\\"QUEST remove timer %p\\\",\\r\\n            *(undefined4 *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14));\\r\\n    CancelTimerEvent((LPEVENT *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14));\\r\\n    p_Var5 = _Rb_tree_rebalance_for_erase\\r\\n                       ((_Rb_tree_node_base *)it.super__Rb_tree_base_iterator._M_node,\\r\\n                        &(((this->m_TimerMap)._M_t.\\r\\n                           super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n                           .\\r\\n                           super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n                          ._M_header)->super__Rb_tree_node_base)._M_parent,\\r\\n                        &(((this->m_TimerMap)._M_t.\\r\\n                           super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n                           .\\r\\n                           super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n                          ._M_header)->super__Rb_tree_node_base)._M_left,\\r\\n                        &(((this->m_TimerMap)._M_t.\\r\\n                           super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n                           .\\r\\n                           super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n                          ._M_header)->super__Rb_tree_node_base)._M_right);\\r\\n    _Var4 = p_Var5[1]._M_color;\\r\\n    LOCK();\\r\\n    piVar1 = (int *)(_Var4 - 4);\\r\\n    iVar3 = *piVar1;\\r\\n    *piVar1 = *piVar1 + -1;\\r\\n    UNLOCK();\\r\\n    if (iVar3 < 1) {\\r\\n      std::string::_Rep::_M_destroy((allocator *)(_Var4 - 0xc));\\r\\n    }\\r\\n    std::__default_alloc_template<true,0>::deallocate(p_Var5,0x18);\\r\\n    psVar2 = &(this->m_TimerMap)._M_t._M_node_count;\\r\\n    *psVar2 = *psVar2 - 1;\\r\\n  }\\r\\n  sys_log(1,\\\"QUEST timer map size %d by RemoveTimer\\\",(this->m_TimerMap)._M_t._M_node_count);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::RemoveTimer",
+        "address": "0805ee10"
+      },
+      "code": "\r\n/* DWARF original prototype: void RemoveTimer(PC * this, string * name) */\r\n\r\nvoid __thiscall PC::RemoveTimer(PC *this,string *name)\r\n\r\n{\r\n  int *piVar1;\r\n  size_t *psVar2;\r\n  int iVar3;\r\n  _Rb_tree_color _Var4;\r\n  _Rb_tree_node_base *p_Var5;\r\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>*>\r\n  it;\r\n  \r\n                    /* Unresolved local var: _Atomic_word __result@[DW_OP_reg0(EAX)] */\r\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n  ::find((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n          *)&it,(string *)&this->m_TimerMap);\r\n  if (it.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_TimerMap)._M_t.\r\n        super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n                    /* Unresolved local var:\r\n                       _Rb_tree_node<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>\r\n                       * __y@[???] */\r\n    sys_log(0,\"QUEST remove timer %p\",\r\n            *(undefined4 *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14));\r\n    CancelTimerEvent((LPEVENT *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14));\r\n    p_Var5 = _Rb_tree_rebalance_for_erase\r\n                       ((_Rb_tree_node_base *)it.super__Rb_tree_base_iterator._M_node,\r\n                        &(((this->m_TimerMap)._M_t.\r\n                           super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n                           .\r\n                           super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n                          ._M_header)->super__Rb_tree_node_base)._M_parent,\r\n                        &(((this->m_TimerMap)._M_t.\r\n                           super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n                           .\r\n                           super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n                          ._M_header)->super__Rb_tree_node_base)._M_left,\r\n                        &(((this->m_TimerMap)._M_t.\r\n                           super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n                           .\r\n                           super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n                          ._M_header)->super__Rb_tree_node_base)._M_right);\r\n    _Var4 = p_Var5[1]._M_color;\r\n    LOCK();\r\n    piVar1 = (int *)(_Var4 - 4);\r\n    iVar3 = *piVar1;\r\n    *piVar1 = *piVar1 + -1;\r\n    UNLOCK();\r\n    if (iVar3 < 1) {\r\n      std::string::_Rep::_M_destroy((allocator *)(_Var4 - 0xc));\r\n    }\r\n    std::__default_alloc_template<true,0>::deallocate(p_Var5,0x18);\r\n    psVar2 = &(this->m_TimerMap)._M_t._M_node_count;\r\n    *psVar2 = *psVar2 - 1;\r\n  }\r\n  sys_log(1,\"QUEST timer map size %d by RemoveTimer\",(this->m_TimerMap)._M_t._M_node_count);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::RemoveTimer\",\n    \"address\": \"0805ee10\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0805ee36\",\n        \"target\": \"08062740\",\n        \"name\": \"_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>::find\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ee62\",\n        \"target\": \"081b82a0\",\n        \"name\": \"sys_log\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ee8e\",\n        \"target\": \"081b82a0\",\n        \"name\": \"sys_log\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ee9c\",\n        \"target\": \"081ad980\",\n        \"name\": \"CancelTimerEvent\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805eecb\",\n        \"target\": \"0804e2d0\",\n        \"name\": \"_Rb_tree_rebalance_for_erase\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805eef2\",\n        \"target\": \"0804c6ac\",\n        \"name\": \"<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0805ef06\",\n        \"target\": \"0804ca2c\",\n        \"name\": \"<EXTERNAL>::std::string::_Rep::_M_destroy\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 7,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::RemoveTimer",
+        "address": "0805ee10"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0805ee36",
+            "target": "08062740",
+            "name": "_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>::find",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ee62",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ee8e",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ee9c",
+            "target": "081ad980",
+            "name": "CancelTimerEvent",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805eecb",
+            "target": "0804e2d0",
+            "name": "_Rb_tree_rebalance_for_erase",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805eef2",
+            "target": "0804c6ac",
+            "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0805ef06",
+            "target": "0804ca2c",
+            "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 7,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"0805ee10\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee11\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee13\",\n      \"bytes\": \"83ec78\",\n      \"instruction\": \"SUB ESP,0x78\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee16\",\n      \"bytes\": \"8975f8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x8],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee19\",\n      \"bytes\": \"8b550c\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee1c\",\n      \"bytes\": \"8d45d8\",\n      \"instruction\": \"LEA EAX,[EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee1f\",\n      \"bytes\": \"895df4\",\n      \"instruction\": \"MOV dword ptr [EBP + -0xc],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee22\",\n      \"bytes\": \"8b7508\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee25\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee28\",\n      \"bytes\": \"89542408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee2c\",\n      \"bytes\": \"8d5e4c\",\n      \"instruction\": \"LEA EBX,[ESI + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee2f\",\n      \"bytes\": \"897dfc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x4],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee32\",\n      \"bytes\": \"895c2404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee36\",\n      \"bytes\": \"e805390000\",\n      \"instruction\": \"CALL 0x08062740\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee3b\",\n      \"bytes\": \"8b464c\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee3e\",\n      \"bytes\": \"83ec04\",\n      \"instruction\": \"SUB ESP,0x4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee41\",\n      \"bytes\": \"8b55d8\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee44\",\n      \"bytes\": \"8945c8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x38],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee47\",\n      \"bytes\": \"39c2\",\n      \"instruction\": \"CMP EDX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee49\",\n      \"bytes\": \"7529\",\n      \"instruction\": \"JNZ 0x0805ee74\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee4b\",\n      \"bytes\": \"8b4304\",\n      \"instruction\": \"MOV EAX,dword ptr [EBX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee4e\",\n      \"bytes\": \"c7042401000000\",\n      \"instruction\": \"MOV dword ptr [ESP],0x1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee55\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee59\",\n      \"bytes\": \"b800751f08\",\n      \"instruction\": \"MOV EAX,0x81f7500\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee5e\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee62\",\n      \"bytes\": \"e839941500\",\n      \"instruction\": \"CALL 0x081b82a0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee67\",\n      \"bytes\": \"8b5df4\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee6a\",\n      \"bytes\": \"8b75f8\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + -0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee6d\",\n      \"bytes\": \"8b7dfc\",\n      \"instruction\": \"MOV EDI,dword ptr [EBP + -0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee70\",\n      \"bytes\": \"89ec\",\n      \"instruction\": \"MOV ESP,EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee72\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee73\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee74\",\n      \"bytes\": \"8b4214\",\n      \"instruction\": \"MOV EAX,dword ptr [EDX + 0x14]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee77\",\n      \"bytes\": \"8d7d98\",\n      \"instruction\": \"LEA EDI,[EBP + -0x68]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee7a\",\n      \"bytes\": \"c7042400000000\",\n      \"instruction\": \"MOV dword ptr [ESP],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee81\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee85\",\n      \"bytes\": \"b8e9721f08\",\n      \"instruction\": \"MOV EAX,0x81f72e9\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee8a\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee8e\",\n      \"bytes\": \"e80d941500\",\n      \"instruction\": \"CALL 0x081b82a0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee93\",\n      \"bytes\": \"8b45d8\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee96\",\n      \"bytes\": \"83c014\",\n      \"instruction\": \"ADD EAX,0x14\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee99\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ee9c\",\n      \"bytes\": \"e8dfea1400\",\n      \"instruction\": \"CALL 0x081ad980\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eea1\",\n      \"bytes\": \"8b464c\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eea4\",\n      \"bytes\": \"8b55d8\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eea7\",\n      \"bytes\": \"83c00c\",\n      \"instruction\": \"ADD EAX,0xc\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeaa\",\n      \"bytes\": \"8944240c\",\n      \"instruction\": \"MOV dword ptr [ESP + 0xc],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeae\",\n      \"bytes\": \"8b464c\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeb1\",\n      \"bytes\": \"8955b8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x48],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeb4\",\n      \"bytes\": \"8955a8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x58],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeb7\",\n      \"bytes\": \"83c008\",\n      \"instruction\": \"ADD EAX,0x8\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeba\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eebe\",\n      \"bytes\": \"8b464c\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eec1\",\n      \"bytes\": \"891424\",\n      \"instruction\": \"MOV dword ptr [ESP],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eec4\",\n      \"bytes\": \"83c004\",\n      \"instruction\": \"ADD EAX,0x4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eec7\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eecb\",\n      \"bytes\": \"e800f4feff\",\n      \"instruction\": \"CALL 0x0804e2d0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eed0\",\n      \"bytes\": \"8b5010\",\n      \"instruction\": \"MOV EDX,dword ptr [EAX + 0x10]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eed3\",\n      \"bytes\": \"89c6\",\n      \"instruction\": \"MOV ESI,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eed5\",\n      \"bytes\": \"b8ffffffff\",\n      \"instruction\": \"MOV EAX,0xffffffff\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeda\",\n      \"bytes\": \"8d4af4\",\n      \"instruction\": \"LEA ECX,[EDX + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eedd\",\n      \"bytes\": \"f00fc142fc\",\n      \"instruction\": \"XADD.LOCK dword ptr [EDX + -0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eee2\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eee4\",\n      \"bytes\": \"7e19\",\n      \"instruction\": \"JLE 0x0805eeff\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eee6\",\n      \"bytes\": \"893424\",\n      \"instruction\": \"MOV dword ptr [ESP],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eee9\",\n      \"bytes\": \"b818000000\",\n      \"instruction\": \"MOV EAX,0x18\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeee\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eef2\",\n      \"bytes\": \"e8b5d7feff\",\n      \"instruction\": \"CALL 0x0804c6ac\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eef7\",\n      \"bytes\": \"ff4b04\",\n      \"instruction\": \"DEC dword ptr [EBX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eefa\",\n      \"bytes\": \"e94cffffff\",\n      \"instruction\": \"JMP 0x0805ee4b\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eeff\",\n      \"bytes\": \"897c2404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef03\",\n      \"bytes\": \"890c24\",\n      \"instruction\": \"MOV dword ptr [ESP],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef06\",\n      \"bytes\": \"e821dbfeff\",\n      \"instruction\": \"CALL 0x0804ca2c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef0b\",\n      \"bytes\": \"ebd9\",\n      \"instruction\": \"JMP 0x0805eee6\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 74,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "0805ee10",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ee11",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "0805ee13",
+          "bytes": "83ec78",
+          "instruction": "SUB ESP,0x78",
+          "comment": null
+        },
+        {
+          "address": "0805ee16",
+          "bytes": "8975f8",
+          "instruction": "MOV dword ptr [EBP + -0x8],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ee19",
+          "bytes": "8b550c",
+          "instruction": "MOV EDX,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805ee1c",
+          "bytes": "8d45d8",
+          "instruction": "LEA EAX,[EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805ee1f",
+          "bytes": "895df4",
+          "instruction": "MOV dword ptr [EBP + -0xc],EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ee22",
+          "bytes": "8b7508",
+          "instruction": "MOV ESI,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805ee25",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee28",
+          "bytes": "89542408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ee2c",
+          "bytes": "8d5e4c",
+          "instruction": "LEA EBX,[ESI + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ee2f",
+          "bytes": "897dfc",
+          "instruction": "MOV dword ptr [EBP + -0x4],EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ee32",
+          "bytes": "895c2404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ee36",
+          "bytes": "e805390000",
+          "instruction": "CALL 0x08062740",
+          "comment": null
+        },
+        {
+          "address": "0805ee3b",
+          "bytes": "8b464c",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ee3e",
+          "bytes": "83ec04",
+          "instruction": "SUB ESP,0x4",
+          "comment": null
+        },
+        {
+          "address": "0805ee41",
+          "bytes": "8b55d8",
+          "instruction": "MOV EDX,dword ptr [EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805ee44",
+          "bytes": "8945c8",
+          "instruction": "MOV dword ptr [EBP + -0x38],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee47",
+          "bytes": "39c2",
+          "instruction": "CMP EDX,EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee49",
+          "bytes": "7529",
+          "instruction": "JNZ 0x0805ee74",
+          "comment": null
+        },
+        {
+          "address": "0805ee4b",
+          "bytes": "8b4304",
+          "instruction": "MOV EAX,dword ptr [EBX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805ee4e",
+          "bytes": "c7042401000000",
+          "instruction": "MOV dword ptr [ESP],0x1",
+          "comment": null
+        },
+        {
+          "address": "0805ee55",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee59",
+          "bytes": "b800751f08",
+          "instruction": "MOV EAX,0x81f7500",
+          "comment": null
+        },
+        {
+          "address": "0805ee5e",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee62",
+          "bytes": "e839941500",
+          "instruction": "CALL 0x081b82a0",
+          "comment": null
+        },
+        {
+          "address": "0805ee67",
+          "bytes": "8b5df4",
+          "instruction": "MOV EBX,dword ptr [EBP + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805ee6a",
+          "bytes": "8b75f8",
+          "instruction": "MOV ESI,dword ptr [EBP + -0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805ee6d",
+          "bytes": "8b7dfc",
+          "instruction": "MOV EDI,dword ptr [EBP + -0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805ee70",
+          "bytes": "89ec",
+          "instruction": "MOV ESP,EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ee72",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ee73",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "0805ee74",
+          "bytes": "8b4214",
+          "instruction": "MOV EAX,dword ptr [EDX + 0x14]",
+          "comment": null
+        },
+        {
+          "address": "0805ee77",
+          "bytes": "8d7d98",
+          "instruction": "LEA EDI,[EBP + -0x68]",
+          "comment": null
+        },
+        {
+          "address": "0805ee7a",
+          "bytes": "c7042400000000",
+          "instruction": "MOV dword ptr [ESP],0x0",
+          "comment": null
+        },
+        {
+          "address": "0805ee81",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee85",
+          "bytes": "b8e9721f08",
+          "instruction": "MOV EAX,0x81f72e9",
+          "comment": null
+        },
+        {
+          "address": "0805ee8a",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee8e",
+          "bytes": "e80d941500",
+          "instruction": "CALL 0x081b82a0",
+          "comment": null
+        },
+        {
+          "address": "0805ee93",
+          "bytes": "8b45d8",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805ee96",
+          "bytes": "83c014",
+          "instruction": "ADD EAX,0x14",
+          "comment": null
+        },
+        {
+          "address": "0805ee99",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ee9c",
+          "bytes": "e8dfea1400",
+          "instruction": "CALL 0x081ad980",
+          "comment": null
+        },
+        {
+          "address": "0805eea1",
+          "bytes": "8b464c",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805eea4",
+          "bytes": "8b55d8",
+          "instruction": "MOV EDX,dword ptr [EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805eea7",
+          "bytes": "83c00c",
+          "instruction": "ADD EAX,0xc",
+          "comment": null
+        },
+        {
+          "address": "0805eeaa",
+          "bytes": "8944240c",
+          "instruction": "MOV dword ptr [ESP + 0xc],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eeae",
+          "bytes": "8b464c",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805eeb1",
+          "bytes": "8955b8",
+          "instruction": "MOV dword ptr [EBP + -0x48],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805eeb4",
+          "bytes": "8955a8",
+          "instruction": "MOV dword ptr [EBP + -0x58],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805eeb7",
+          "bytes": "83c008",
+          "instruction": "ADD EAX,0x8",
+          "comment": null
+        },
+        {
+          "address": "0805eeba",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eebe",
+          "bytes": "8b464c",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805eec1",
+          "bytes": "891424",
+          "instruction": "MOV dword ptr [ESP],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805eec4",
+          "bytes": "83c004",
+          "instruction": "ADD EAX,0x4",
+          "comment": null
+        },
+        {
+          "address": "0805eec7",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eecb",
+          "bytes": "e800f4feff",
+          "instruction": "CALL 0x0804e2d0",
+          "comment": null
+        },
+        {
+          "address": "0805eed0",
+          "bytes": "8b5010",
+          "instruction": "MOV EDX,dword ptr [EAX + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "0805eed3",
+          "bytes": "89c6",
+          "instruction": "MOV ESI,EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eed5",
+          "bytes": "b8ffffffff",
+          "instruction": "MOV EAX,0xffffffff",
+          "comment": null
+        },
+        {
+          "address": "0805eeda",
+          "bytes": "8d4af4",
+          "instruction": "LEA ECX,[EDX + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805eedd",
+          "bytes": "f00fc142fc",
+          "instruction": "XADD.LOCK dword ptr [EDX + -0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eee2",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eee4",
+          "bytes": "7e19",
+          "instruction": "JLE 0x0805eeff",
+          "comment": null
+        },
+        {
+          "address": "0805eee6",
+          "bytes": "893424",
+          "instruction": "MOV dword ptr [ESP],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805eee9",
+          "bytes": "b818000000",
+          "instruction": "MOV EAX,0x18",
+          "comment": null
+        },
+        {
+          "address": "0805eeee",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eef2",
+          "bytes": "e8b5d7feff",
+          "instruction": "CALL 0x0804c6ac",
+          "comment": null
+        },
+        {
+          "address": "0805eef7",
+          "bytes": "ff4b04",
+          "instruction": "DEC dword ptr [EBX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805eefa",
+          "bytes": "e94cffffff",
+          "instruction": "JMP 0x0805ee4b",
+          "comment": null
+        },
+        {
+          "address": "0805eeff",
+          "bytes": "897c2404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ef03",
+          "bytes": "890c24",
+          "instruction": "MOV dword ptr [ESP],ECX",
+          "comment": null
+        },
+        {
+          "address": "0805ef06",
+          "bytes": "e821dbfeff",
+          "instruction": "CALL 0x0804ca2c",
+          "comment": null
+        },
+        {
+          "address": "0805ef0b",
+          "bytes": "ebd9",
+          "instruction": "JMP 0x0805eee6",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 74,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

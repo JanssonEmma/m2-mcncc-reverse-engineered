@@ -1,0 +1,11 @@
+# Add source fixture + ABI gate under reconstruction/tests. Uses CURRENT parent's
+# full DB/CHAR/item/SQL/descriptor graph; no new app mocks or SQL calls.
+quickslot_chain_regression$(EXEEXT): quickslot_chain_regression.cpp $(AUTOGIVE_CLOSED_SOURCES) $(AUTOGIVE_CLOSED_OBJECTS) ../../game/src/event.cpp ../../game/src/event_queue.cpp
+	$(CXX) -DMCNCC_TEST_REAL_EVENTS -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long quickslot_chain_regression.cpp ../../game/src/event.cpp ../../game/src/event_queue.cpp $(AUTOGIVE_CLOSED_SOURCES) $(AUTOGIVE_CLOSED_OBJECTS) $(LDFLAGS) -o $@
+# Add runtime target/check line; O2 same graph with parent flags.
+# Strict32 public nonconst signature gate:
+# $(CXX) $(CPPFLAGS) $(CXXFLAGS) -m32 -fsyntax-only quickslot_chain_abi.cpp
+# Parentapply only adds two methods to EXISTING char_quickslot.cpp, already in
+# shared source graph. No new production translation unit/link closure required.
+# Do NOT integrate SetCount.cpp.candidate until full Unequip/removal/destruction
+# behavior closes. No partial zero-owner paths and no substitutes.

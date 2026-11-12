@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0817f870",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x817f870",
+    "function": {
+      "name": "CHARACTER::FindSpecifyItem",
+      "address": "0817f870"
+    },
+    "signature": "LPITEM FindSpecifyItem(CHARACTER * this, DWORD vnum)",
+    "code": "\r\n/* DWARF original prototype: LPITEM FindSpecifyItem(CHARACTER * this, DWORD vnum) */\r\n\r\nLPITEM __thiscall CHARACTER::FindSpecifyItem(CHARACTER *this,DWORD vnum)\r\n\r\n{\r\n  LPITEM pCVar1;\r\n  DWORD DVar2;\r\n  int iVar3;\r\n  BYTE bCell;\r\n  DWORD vnum_local;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg6(ESI)] */\r\n  iVar3 = 0;\r\n  do {\r\n    bCell = (BYTE)iVar3;\r\n    pCVar1 = GetItem(this,bCell);\r\n    if (pCVar1 != (LPITEM)0x0) {\r\n      pCVar1 = GetItem(this,bCell);\r\n      DVar2 = 0;\r\n      if (pCVar1->m_pProto != (TItemTable *)0x0) {\r\n        DVar2 = pCVar1->m_pProto->dwVnum;\r\n      }\r\n      if (DVar2 == vnum) {\r\n        pCVar1 = GetItem(this,bCell);\r\n        return pCVar1;\r\n      }\r\n    }\r\n    iVar3 = iVar3 + 1;\r\n    if (0x59 < iVar3) {\r\n      return (LPITEM)0x0;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

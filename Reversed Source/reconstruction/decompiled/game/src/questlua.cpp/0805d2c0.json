@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0805d2c0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "FWarpAllToVillage::operator()",
+      "address": "0805d2c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void operator()(FWarpAllToVillage * this, LPENTITY ent) */\r\n\r\nvoid __thiscall FWarpAllToVillage::operator()(FWarpAllToVillage *this,LPENTITY ent)\r\n\r\n{\r\n  byte bVar1;\r\n  undefined4 uVar2;\r\n  bool bVar3;\r\n  char *pcVar4;\r\n  \r\n  bVar3 = CEntity::IsType(ent,0);\r\n                    /* Unresolved local var: LPCHARACTER ch@[???] */\r\n  if ((bVar3) && (ent->m_lpDesc != (LPDESC)0x0)) {\r\n                    /* Unresolved local var: BYTE bEmpire@[DW_OP_reg0(EAX)] */\r\n    bVar1 = *(byte *)((int)&ent[0x3f].m_map_view._M_t.\r\n                            super__Rb_tree_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>_>\r\n                            .\r\n                            super__Rb_tree_alloc_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>,true>\r\n                            ._M_header + 1);\r\n    if (bVar1 == 0) {\r\n      uVar2 = *(undefined4 *)&ent[4].m_map_view._M_t._M_key_compare;\r\n      pcVar4 = CHARACTER::GetName((CHARACTER *)ent);\r\n      if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      CQuestManager::QuestError\r\n                ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,\"operator()\",0x477,\r\n                 \"Unkonwn Empire %s %d \",pcVar4,uVar2);\r\n    }\r\n    else {\r\n      CHARACTER::WarpSet((CHARACTER *)ent,*(long *)(g_start_position + (uint)bVar1 * 8),\r\n                         *(long *)(g_start_position + (uint)bVar1 * 8 + 4),0);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

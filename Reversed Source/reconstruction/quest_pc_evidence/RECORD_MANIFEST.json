@@ -1,0 +1,68 @@
+{
+  "checkpoint": 88,
+  "production_writes": false,
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-88-retry-validation.receipt.json": "c57bf7afdb3e37e1afb0e445122bea94bd6a4d1b85a1758900c79aebffdf0be0",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-pc-focused-retry.receipt.json": "ec2654bd5cf17fa6d17f1618c73ad00c28d1af874428fa34260346b2116d2c8e",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-pc-lookup-o2.receipt.json": "7d7da5e1a86233afe6c8d10a39d15eacf450d29651b7870153c56f5a50f02cab",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-pc-m32.log": "7a4a40fbdb0fe49c6087bbabe55ab486d064747b9be5d31e67805d9aab618f63"
+  },
+  "source_guards": {
+    "game/src/questpc.h": "0f2983db20780020d216904aa666a0edc553a6a9076b32994acd9907110890a4",
+    "game/src/questmanager.h": "3faed5677b5fe29dd91daddab7e1ffdfbbfc67f38522e50c59ac02197eb7007f",
+    "game/src/questmanager.cpp": "52951eef57d512a99e8e2191b0256b7849b9d8f5b0911817935b0d4989022898",
+    "game/src/questpc.cpp": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf",
+    "game/src/questevent.cpp": "d5f64c11db7b175e7f610d12ffee8b33ac24352cda5152bbb9acfe768f86b144",
+    "game/src/questevent.h": "e3b38aaa5088b5b855b96d9e427fc14b06bbc938d0c48b6e62392f0db12730f3",
+    "reconstruction/tests/quest_flag_fixture.cpp": "cdd8cc62b78c0a709bb81edcbe059ad63a374862927867115ea60e814a27c3fe",
+    "reconstruction/tests/desc_fixture.cpp": "135c1ae2850b81d46cf0d654e48394a9f59ebe647548fe610a16c444ad12ebcf",
+    "reconstruction/tests/entity_packet_fixture.cpp": "af681647b4a03bd0ef2b98190b8e71c894b627505ea9a7e8d5e643d1fe760ecd",
+    "reconstruction/tests/quest_flag_regression.cpp": "8bae8345e31b94c6187cb5cbee0814072e11549779434acb7ed5786d5de349a2",
+    "reconstruction/tests/quest_pc_lookup_regression.cpp": "2fd3de7c352adcf0db55aa294cf2998e0726fe52c6910846d528291c008df281",
+    "reconstruction/tests/quest_pc_lookup_abi.cpp": "85bdeaa90d2eeff03475d9aa96c17aeef98706bb4de0d84dca33b38192a44386",
+    "reconstruction/tests/quest_pc_lookup_desc_output_syscalls.c": "2034c638791aec297e884e1f0bfe198a22a3e3e5f6c2f89542f4082ce291087a",
+    "reconstruction/tests/Makefile": "d1044e2db8ff7e6d324c1f7e500da1fa1de81356f9dac7734f771adfd8a0d347",
+    "reconstruction/tests/item_id_desc_fixture.cpp": "c76ad152b568e9fdd3b8a973bafd71a0d8758e8d0febe6416b184f674b642d0c"
+  },
+  "source_guard_review": {
+    "review": "TEST ONLY explicit existing desc_test_allow_clock declaration and main entry call before logging; other13 applied payload files exact. No production semantic or observer change.",
+    "guards": {
+      "game/src/questpc.h": "0f2983db20780020d216904aa666a0edc553a6a9076b32994acd9907110890a4",
+      "game/src/questmanager.h": "3faed5677b5fe29dd91daddab7e1ffdfbbfc67f38522e50c59ac02197eb7007f",
+      "game/src/questmanager.cpp": "52951eef57d512a99e8e2191b0256b7849b9d8f5b0911817935b0d4989022898",
+      "game/src/questpc.cpp": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf",
+      "game/src/questevent.cpp": "d5f64c11db7b175e7f610d12ffee8b33ac24352cda5152bbb9acfe768f86b144",
+      "game/src/questevent.h": "e3b38aaa5088b5b855b96d9e427fc14b06bbc938d0c48b6e62392f0db12730f3",
+      "reconstruction/tests/quest_flag_fixture.cpp": "cdd8cc62b78c0a709bb81edcbe059ad63a374862927867115ea60e814a27c3fe",
+      "reconstruction/tests/desc_fixture.cpp": "135c1ae2850b81d46cf0d654e48394a9f59ebe647548fe610a16c444ad12ebcf",
+      "reconstruction/tests/entity_packet_fixture.cpp": "af681647b4a03bd0ef2b98190b8e71c894b627505ea9a7e8d5e643d1fe760ecd",
+      "reconstruction/tests/quest_flag_regression.cpp": "8bae8345e31b94c6187cb5cbee0814072e11549779434acb7ed5786d5de349a2",
+      "reconstruction/tests/quest_pc_lookup_regression.cpp": "2fd3de7c352adcf0db55aa294cf2998e0726fe52c6910846d528291c008df281",
+      "reconstruction/tests/quest_pc_lookup_abi.cpp": "85bdeaa90d2eeff03475d9aa96c17aeef98706bb4de0d84dca33b38192a44386",
+      "reconstruction/tests/quest_pc_lookup_desc_output_syscalls.c": "2034c638791aec297e884e1f0bfe198a22a3e3e5f6c2f89542f4082ce291087a",
+      "reconstruction/tests/Makefile": "d1044e2db8ff7e6d324c1f7e500da1fa1de81356f9dac7734f771adfd8a0d347",
+      "reconstruction/tests/item_id_desc_fixture.cpp": "c76ad152b568e9fdd3b8a973bafd71a0d8758e8d0febe6416b184f674b642d0c"
+    },
+    "additional_review": "TEST ONLY item_id uses copied descriptor fixture outside shared desc_fixture; append exact same unused legacy FindEventInfo abort under !MCNCC_TEST_REAL_EVENTS. Existing item_id real shutdown/core globals remain unchanged. No success stand-in or production changes.",
+    "additional_guards": {
+      "reconstruction/tests/item_id_desc_fixture.cpp": "c76ad152b568e9fdd3b8a973bafd71a0d8758e8d0febe6416b184f674b642d0c"
+    }
+  },
+  "mapping_addresses": [
+    "0805d580",
+    "0805d790",
+    "0805d900",
+    "0805db30",
+    "0805dd60",
+    "0805dd70",
+    "0805dd90",
+    "0805ef10",
+    "0819f0f0",
+    "0819f5e0",
+    "081a4d40",
+    "081a4e50",
+    "081ad980"
+  ],
+  "baseline_overrides_sha256": "3db1a3d4c08ab11f6d7e0139c1e14a8cc950113f68f55bdb52b6a8047fbc3546",
+  "note": "Checkpoint88: complete PC data/61 original API declarations, actual ctor/dtor/timer cleanup/ID/name, original plain timer info/cancel and manager constructor/GetPCForce/GetPC integrate. Full real event scheduler/registry and actual PID lookup tested; destructor-owned timers, legacy fixture/link migration and preserved indeterminate fields retained. Focused4+ABI, optimized actual application/event graph with4 distinct SQL objects, parent-confirmed strict32 exit0 and all96 actually executed runtimes+ABI pass.13 addressed variants correspond to10 semantic source methods; implicit copy and inline getter add no invented addresses. Original LastState remains indeterminate and implicitly copied; test avoidance does not prove portable definedness. Manager Lua-owning destructor/NPC/VM execution remain honest TEST boundaries; full leveling/quest/stat/server closure unfinished."
+}

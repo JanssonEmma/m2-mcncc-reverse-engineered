@@ -1,0 +1,94 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "origin": "11canonical complete closed original bodies. C2constructor08096b70 retained separately as ABIduplicate evidence, no duplicate mapping.",
+  "functions": [
+    {
+      "function": {
+        "name": "CSafebox::CSafebox",
+        "address": "08096c50"
+      },
+      "code": "\r\n/* DWARF original prototype: void CSafebox(CSafebox * this, LPCHARACTER pkChrOwner, int iSize, DWORD\r\n   dwGold) */\r\n\r\nvoid __thiscall CSafebox::CSafebox(CSafebox *this,LPCHARACTER pkChrOwner,int iSize,DWORD dwGold)\r\n\r\n{\r\n  uint uVar1;\r\n  CGrid *this_00;\r\n  CItem **ppCVar2;\r\n  \r\n  this->m_iSize = iSize;\r\n  this->m_pkChrOwner = pkChrOwner;\r\n  this->m_lGold = dwGold;\r\n  if (pkChrOwner == (LPCHARACTER)0x0) {\r\n    __assert(\"CSafebox\",\"safebox.cpp\",0xc);\r\n  }\r\n  ppCVar2 = this->m_pkItems;\r\n  uVar1 = 0x21c;\r\n  if (((uint)ppCVar2 & 4) != 0) {\r\n    this->m_pkItems[0] = (CItem *)0x0;\r\n    ppCVar2 = this->m_pkItems + 1;\r\n    uVar1 = 0x218;\r\n  }\r\n  for (uVar1 = uVar1 >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n    *ppCVar2 = (CItem *)0x0;\r\n    ppCVar2 = ppCVar2 + 1;\r\n  }\r\n  if (this->m_iSize == 0) {\r\n    this->m_pkGrid = (CGrid *)0x0;\r\n  }\r\n  else {\r\n    this_00 = operator_new(0xc);\r\n    CGrid::CGrid(this_00,5,this->m_iSize);\r\n    this->m_pkGrid = this_00;\r\n  }\r\n  this->m_bWindowMode = '\\x03';\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::SetWindowMode",
+        "address": "08096d50"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetWindowMode(CSafebox * this, BYTE bMode) */\r\n\r\nvoid __thiscall CSafebox::SetWindowMode(CSafebox *this,BYTE bMode)\r\n\r\n{\r\n  this->m_bWindowMode = bMode;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::Add",
+        "address": "08096e70"
+      },
+      "code": "\r\n/* DWARF original prototype: bool Add(CSafebox * this, DWORD dwPos, LPITEM pkItem) */\r\n\r\nbool __thiscall CSafebox::Add(CSafebox *this,DWORD dwPos,LPITEM pkItem)\r\n\r\n{\r\n  BYTE BVar1;\r\n  CHARACTER *pCVar2;\r\n  TItemTable *pTVar3;\r\n  DWORD DVar4;\r\n  bool bVar5;\r\n  byte bVar6;\r\n  undefined4 uVar7;\r\n  char *pcVar8;\r\n  TPacketGCItemSet pack;\r\n  \r\n  bVar5 = IsValidPosition(this,dwPos);\r\n  if (bVar5) {\r\n    pkItem->m_bWindow = this->m_bWindowMode;\r\n    pCVar2 = this->m_pkChrOwner;\r\n    pkItem->m_bCell = (BYTE)dwPos;\r\n    pkItem->m_pOwner = pCVar2;\r\n    CItem::Save(pkItem);\r\n    if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    ITEM_MANAGER::FlushDelayedSave(singleton<ITEM_MANAGER>::ms_singleton,pkItem);\r\n    bVar6 = 0;\r\n    if (pkItem->m_pProto != (TItemTable *)0x0) {\r\n      bVar6 = pkItem->m_pProto->bSize;\r\n    }\r\n    CGrid::Put(this->m_pkGrid,dwPos,1,(uint)bVar6);\r\n    BVar1 = this->m_bWindowMode;\r\n    this->m_pkItems[dwPos] = pkItem;\r\n    if (BVar1 == '\\x03') {\r\n      pack.header = 'U';\r\n    }\r\n    else {\r\n      pack.header = 0x80;\r\n    }\r\n    pack.vnum = 0;\r\n    if (pkItem->m_pProto != (TItemTable *)0x0) {\r\n      pack.vnum = pkItem->m_pProto->dwVnum;\r\n    }\r\n    pack.count = (BYTE)pkItem->m_dwCount;\r\n    pack.pos = (BYTE)dwPos;\r\n    (*thecore_memcpy)(pack.alSockets,pkItem->m_alSockets,0xc);\r\n    (*thecore_memcpy)(pack.aAttr,pkItem->m_aAttr,0x15);\r\n    DESC::Packet((this->m_pkChrOwner->super_CEntity).m_lpDesc,&pack,0x28);\r\n    pTVar3 = pkItem->m_pProto;\r\n    DVar4 = pkItem->m_dwCount;\r\n    pcVar8 = CHARACTER::GetName(this->m_pkChrOwner);\r\n    sys_log(1,\"SAFEBOX: ADD %s %s count %d\",pcVar8,\r\n            (uint)pTVar3->szLocaleName & (pTVar3 == (TItemTable *)0x0) - 1,DVar4);\r\n    bVar5 = true;\r\n  }\r\n  else {\r\n    uVar7 = CGrid::GetSize(this->m_pkGrid);\r\n    _sys_err(\"Add\",0x3a,\"SAFEBOX: item on wrong position at %d (size of grid = %d)\",dwPos,uVar7);\r\n    bVar5 = false;\r\n  }\r\n  return bVar5;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::Get",
+        "address": "08097050"
+      },
+      "code": "\r\n/* DWARF original prototype: LPITEM Get(CSafebox * this, DWORD dwPos) */\r\n\r\nLPITEM __thiscall CSafebox::Get(CSafebox *this,DWORD dwPos)\r\n\r\n{\r\n  uint uVar1;\r\n  LPITEM pCVar2;\r\n  \r\n  uVar1 = CGrid::GetSize(this->m_pkGrid);\r\n  pCVar2 = (LPITEM)0x0;\r\n  if (dwPos < uVar1) {\r\n    pCVar2 = this->m_pkItems[dwPos];\r\n  }\r\n  return pCVar2;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::Save",
+        "address": "080971d0"
+      },
+      "code": "\r\n/* DWARF original prototype: void Save(CSafebox * this) */\r\n\r\nvoid __thiscall CSafebox::Save(CSafebox *this)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  TSafeboxTable *pTVar3;\r\n  TSafeboxTable t;\r\n  \r\n  pTVar3 = &t;\r\n  for (iVar2 = 2; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    pTVar3->dwID = 0;\r\n    pTVar3 = (TSafeboxTable *)&pTVar3->bSize;\r\n  }\r\n  *(undefined2 *)&pTVar3->dwID = 0;\r\n  *(undefined1 *)((int)&pTVar3->dwID + 2) = 0;\r\n  t.dwID = (((this->m_pkChrOwner->super_CEntity).m_lpDesc)->m_accountTable).id;\r\n  t.dwGold = this->m_lGold;\r\n  CLIENT_DESC::DBPacket(db_clientdesc,'\\r',0,&t,0xb);\r\n  pcVar1 = CHARACTER::GetName(this->m_pkChrOwner);\r\n  sys_log(1,\"SAFEBOX: SAVE %s\",pcVar1);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::IsEmpty",
+        "address": "08097270"
+      },
+      "code": "\r\n/* DWARF original prototype: bool IsEmpty(CSafebox * this, DWORD dwPos, BYTE bSize) */\r\n\r\nbool __thiscall CSafebox::IsEmpty(CSafebox *this,DWORD dwPos,BYTE bSize)\r\n\r\n{\r\n  undefined1 uVar1;\r\n  \r\n  uVar1 = 0;\r\n  if (this->m_pkGrid != (CGrid *)0x0) {\r\n    uVar1 = CGrid::IsEmpty(this->m_pkGrid,dwPos,1,(uint)bSize);\r\n  }\r\n  return (bool)uVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::ChangeSize",
+        "address": "080972c0"
+      },
+      "code": "\r\n/* DWARF original prototype: void ChangeSize(CSafebox * this, int iSize) */\r\n\r\nvoid __thiscall CSafebox::ChangeSize(CSafebox *this,int iSize)\r\n\r\n{\r\n  CGrid *pCVar1;\r\n  CGrid *this_00;\r\n  \r\n                    /* Unresolved local var: CGrid * pkOldGrid@[DW_OP_reg7(EDI)] */\r\n  if (this->m_iSize < iSize) {\r\n    this->m_iSize = iSize;\r\n    pCVar1 = this->m_pkGrid;\r\n    if (pCVar1 == (CGrid *)0x0) {\r\n      this_00 = operator_new(0xc);\r\n      CGrid::CGrid(this_00,5,this->m_iSize);\r\n    }\r\n    else {\r\n      this_00 = operator_new(0xc);\r\n      CGrid::CGrid(this_00,pCVar1,5,this->m_iSize);\r\n    }\r\n    this->m_pkGrid = this_00;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::GetItem",
+        "address": "08097360"
+      },
+      "code": "\r\n/* DWARF original prototype: LPITEM GetItem(CSafebox * this, BYTE bCell) */\r\n\r\nLPITEM __thiscall CSafebox::GetItem(CSafebox *this,BYTE bCell)\r\n\r\n{\r\n  LPITEM pCVar1;\r\n  uint uVar2;\r\n  \r\n  uVar2 = (uint)bCell;\r\n  if ((int)uVar2 < this->m_iSize * 5) {\r\n    pCVar1 = this->m_pkItems[uVar2];\r\n  }\r\n  else {\r\n    _sys_err(\"GetItem\",0x9f,\"CHARACTER::GetItem: invalid item cell %d\",uVar2);\r\n    pCVar1 = (LPITEM)0x0;\r\n  }\r\n  return pCVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CSafebox::IsValidPosition",
+        "address": "08097730"
+      },
+      "code": "\r\n/* DWARF original prototype: bool IsValidPosition(CSafebox * this, DWORD dwPos) */\r\n\r\nbool __thiscall CSafebox::IsValidPosition(CSafebox *this,DWORD dwPos)\r\n\r\n{\r\n  uint uVar1;\r\n  bool bVar2;\r\n  \r\n  bVar2 = false;\r\n  if (this->m_pkGrid != (CGrid *)0x0) {\r\n    uVar1 = CGrid::GetSize(this->m_pkGrid);\r\n    bVar2 = dwPos < uVar1;\r\n  }\r\n  return bVar2;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetSafebox",
+        "address": "08133660"
+      },
+      "code": "\r\n/* DWARF original prototype: CSafebox * GetSafebox(CHARACTER * this) */\r\n\r\nCSafebox * __thiscall CHARACTER::GetSafebox(CHARACTER *this)\r\n\r\n{\r\n  return this->m_pkSafebox;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetMall",
+        "address": "08133b70"
+      },
+      "code": "\r\n/* DWARF original prototype: CSafebox * GetMall(CHARACTER * this) */\r\n\r\nCSafebox * __thiscall CHARACTER::GetMall(CHARACTER *this)\r\n\r\n{\r\n  return this->m_pkMall;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

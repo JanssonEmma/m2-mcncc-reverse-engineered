@@ -1,0 +1,1960 @@
+[
+  {
+    "node": {
+      "die": "0x1b73cb0",
+      "tag": "DW_TAG_structure_type",
+      "name": "DBManager",
+      "size": 2372
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_inheritance",
+        "name": null,
+        "type": {
+          "die": "0x1b73bd1",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<DBManager>",
+          "size": 4
+        },
+        "attrs": {
+          "DW_AT_accessibility": 1,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            0
+          ],
+          "DW_AT_decl_file": null,
+          "DW_AT_decl_line": null,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_sql",
+        "type": {
+          "die": "0x1b2a448",
+          "tag": "DW_TAG_structure_type",
+          "name": "CAsyncSQL",
+          "size": 1152
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            4
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 136,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_sql_direct",
+        "type": {
+          "die": "0x1b2a448",
+          "tag": "DW_TAG_structure_type",
+          "name": "CAsyncSQL",
+          "size": 1152
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            132,
+            9
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 137,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_bIsConnect",
+        "type": {
+          "die": "0x1b1af02",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            132,
+            18
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 138,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_map_dbstring",
+        "type": {
+          "die": "0x1b33409",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >",
+          "size": 12
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            136,
+            18
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 140,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_vec_GreetMessage",
+        "type": {
+          "die": "0x1b33e84",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,std::allocator<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > >",
+          "size": 12
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            148,
+            18
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 141,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_map_pkLoginData",
+        "type": {
+          "die": "0x1b35c5d",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CLoginData*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CLoginData*> > >",
+          "size": 12
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            160,
+            18
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 142,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "mapLDBilling",
+        "type": {
+          "die": "0x1b3787e",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CLoginData*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CLoginData*> > >",
+          "size": 12
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            172,
+            18
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 143,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_vec_kUseTime",
+        "type": {
+          "die": "0x1b382f3",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<SUseTime,std::allocator<SUseTime> >",
+          "size": 12
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": [
+            35,
+            184,
+            18
+          ],
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 144,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": []
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1b73caa",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1b73cb0",
+            "tag": "DW_TAG_structure_type",
+            "name": "DBManager",
+            "size": 2372
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": null,
+          "DW_AT_decl_line": null,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManageraSERKS_"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b87de4",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b87dea",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b73cb0",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "DBManager",
+                  "size": 2372
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DBManager",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": null,
+          "DW_AT_decl_line": null,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b87de4",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b87dea",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b73cb0",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "DBManager",
+                  "size": 2372
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DBManager",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 88,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~DBManager",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": 1,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 93,
+          "DW_AT_MIPS_linkage_name": null
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11366",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IsConnected",
+        "type": {
+          "die": "0x1b1af02",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 137,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager11IsConnectedEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Connect",
+        "type": {
+          "die": "0x1b1af02",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 97,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager7ConnectEPKcS1_S1_S1_"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Query",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 113,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager5QueryEPKcz"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DirectQuery",
+        "type": {
+          "die": "0x1b28338",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1b28081",
+            "tag": "DW_TAG_typedef",
+            "name": "SQLMsg",
+            "size": null,
+            "type": {
+              "die": "0x1b27d87",
+              "tag": "DW_TAG_structure_type",
+              "name": "_SQLMsg",
+              "size": 40
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 125,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager11DirectQueryEPKcz"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "ReturnQuery",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 147,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager11ReturnQueryEimPvPKcz"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11366",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b113ae",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11957",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "EscapeString",
+        "type": {
+          "die": "0x1b113ae",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 142,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12EscapeStringEPvPKvm"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11957",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b1dda0",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b1dda6",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b113ae",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Process",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 177,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager7ProcessEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "AnalyzeReturnQuery",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 765,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager18AnalyzeReturnQueryEP7_SQLMsg"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b28338",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b28081",
+                "tag": "DW_TAG_typedef",
+                "name": "SQLMsg",
+                "size": null,
+                "type": {
+                  "die": "0x1b27d87",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "_SQLMsg",
+                  "size": 40
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SendMoneyLog",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 1500,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12SendMoneyLogEhmi"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11330",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b113ae",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11366",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "LoginPrepare",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 529,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12LoginPrepareEhmlP4DESCPmPi"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11330",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b113ae",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b115ce",
+              "tag": "DW_TAG_base_type",
+              "name": "long int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b304af",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b304b5",
+                "tag": "DW_TAG_structure_type",
+                "name": "DESC",
+                "size": null
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b227cd",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b14abf",
+                "tag": "DW_TAG_typedef",
+                "name": "DWORD",
+                "size": null,
+                "type": {
+                  "die": "0x1b113ae",
+                  "tag": "DW_TAG_base_type",
+                  "name": "long unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b14d43",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b11366",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SendAuthLogin",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 502,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager13SendAuthLoginEP4DESC"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b304af",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b304b5",
+                "tag": "DW_TAG_structure_type",
+                "name": "DESC",
+                "size": null
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SendLoginPing",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 486,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager13SendLoginPingEPKc"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "InsertLoginData",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 213,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager15InsertLoginDataEP10CLoginData"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b36181",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b36187",
+                "tag": "DW_TAG_structure_type",
+                "name": "CLoginData",
+                "size": 100
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DeleteLoginData",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 218,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager15DeleteLoginDataEP10CLoginData"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b36181",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b36187",
+                "tag": "DW_TAG_structure_type",
+                "name": "CLoginData",
+                "size": 100
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetLoginData",
+        "type": {
+          "die": "0x1b36181",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1b36187",
+            "tag": "DW_TAG_structure_type",
+            "name": "CLoginData",
+            "size": 100
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 203,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12GetLoginDataEm"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b113ae",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetBilling",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 233,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager10SetBillingEmbb"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b113ae",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b1af02",
+              "tag": "DW_TAG_base_type",
+              "name": "bool",
+              "size": 1
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b1af02",
+              "tag": "DW_TAG_base_type",
+              "name": "bool",
+              "size": 1
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "PushBilling",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 260,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager11PushBillingEP10CLoginData"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b36181",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b36187",
+                "tag": "DW_TAG_structure_type",
+                "name": "CLoginData",
+                "size": 100
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "FlushBilling",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 291,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12FlushBillingEb"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b1af02",
+              "tag": "DW_TAG_base_type",
+              "name": "bool",
+              "size": 1
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CheckBilling",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 462,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12CheckBillingEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "StopAllBilling",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 1536,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager14StopAllBillingEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CountQuery",
+        "type": {
+          "die": "0x1b14abf",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1b113ae",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 118,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager10CountQueryEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CountQueryResult",
+        "type": {
+          "die": "0x1b14abf",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1b113ae",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 119,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager16CountQueryResultEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "ResetQueryResult",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 107,
+          "DW_AT_decl_line": 120,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager16ResetQueryResultEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RequestBlockException",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 1544,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager21RequestBlockExceptionEPKci"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b119cb",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b119d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b11564",
+                  "tag": "DW_TAG_base_type",
+                  "name": "char",
+                  "size": 1
+                }
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b11366",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "LoadDBString",
+        "type": {
+          "name": "void"
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 1481,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager12LoadDBStringEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetDBString",
+        "type": {
+          "die": "0x1b221cb",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1b221d1",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b221a1",
+              "tag": "DW_TAG_typedef",
+              "name": "string",
+              "size": null,
+              "type": {
+                "die": "0x1b1f1a7",
+                "tag": "DW_TAG_structure_type",
+                "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 1486,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager11GetDBStringERKSs"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b221cb",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b221d1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1b221a1",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x1b1f1a7",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetGreetMessage",
+        "type": {
+          "die": "0x1b348f1",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1b348f7",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b33e84",
+              "tag": "DW_TAG_structure_type",
+              "name": "vector<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,std::allocator<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > >",
+              "size": 12
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": null,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 1495,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager15GetGreetMessageEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "PopResult",
+        "type": {
+          "die": "0x1b28338",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1b28081",
+            "tag": "DW_TAG_typedef",
+            "name": "SQLMsg",
+            "size": null,
+            "type": {
+              "die": "0x1b27d87",
+              "tag": "DW_TAG_structure_type",
+              "name": "_SQLMsg",
+              "size": 40
+            }
+          }
+        },
+        "attrs": {
+          "DW_AT_accessibility": 3,
+          "DW_AT_virtuality": null,
+          "DW_AT_vtable_elem_location": null,
+          "DW_AT_data_member_location": null,
+          "DW_AT_decl_file": 1,
+          "DW_AT_decl_line": 167,
+          "DW_AT_MIPS_linkage_name": "_ZN9DBManager9PopResultEv"
+        },
+        "parameters": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1b74de5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1b73cb0",
+                "tag": "DW_TAG_structure_type",
+                "name": "DBManager",
+                "size": 2372
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804cd30",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "FindEventInfo",
+      "address": "0804cd30"
+    },
+    "code": "\r\nvoid * FindEventInfo(DWORD dwID)\r\n\r\n{\r\n  void *pvVar1;\r\n  _Rb_tree_iterator<std::pair<const_int,_event_info*>,std::pair<const_int,_event_info*>&,std::pair<const_int,_event_info*>*>\r\n  it;\r\n  \r\n  _Rb_tree<int,std::pair<const_int,_event_info*>,std::_Select1st<std::pair<const_int,_event_info*>_>,std::less<int>,std::allocator<std::pair<const_int,_event_info*>_>_>\r\n  ::find((_Rb_tree<int,std::pair<const_int,_event_info*>,std::_Select1st<std::pair<const_int,_event_info*>_>,std::less<int>,std::allocator<std::pair<const_int,_event_info*>_>_>\r\n          *)&it,(int *)&g_event_info);\r\n  pvVar1 = (void *)0x0;\r\n  if ((_Rb_tree_alloc_base<std::pair<const_int,_event_info*>,std::allocator<std::pair<const_int,_event_info*>_>,true>\r\n       )it.super__Rb_tree_base_iterator._M_node !=\r\n      g_event_info._M_t.\r\n      super__Rb_tree_base<std::pair<const_int,_event_info*>,std::allocator<std::pair<const_int,_event_info*>_>_>\r\n      .\r\n      super__Rb_tree_alloc_base<std::pair<const_int,_event_info*>,std::allocator<std::pair<const_int,_event_info*>_>,true>\r\n      ._M_header) {\r\n    pvVar1 = *(void **)(*(int *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14) + 4);\r\n  }\r\n  return pvVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

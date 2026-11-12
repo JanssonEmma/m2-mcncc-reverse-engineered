@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b90e0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "tm_calc",
+      "address": "081b90e0"
+    },
+    "code": "\r\ntm * tm_calc(tm *curr_tm,int days)\r\n\r\n{\r\n  tm *ptVar1;\r\n  int iVar2;\r\n  uint uVar3;\r\n  int *piVar4;\r\n  int *piVar5;\r\n  tm *ptVar6;\r\n  time_t time_s;\r\n  int monthdays [12];\r\n  \r\n  piVar4 = &DAT_082340e4;\r\n  piVar5 = monthdays;\r\n                    /* Unresolved local var: char yoon@[???] */\r\n  for (iVar2 = 0xc; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *piVar5 = *piVar4;\r\n    piVar4 = piVar4 + 1;\r\n    piVar5 = piVar5 + 1;\r\n  }\r\n  if (curr_tm == (tm *)0x0) {\r\n    time_s = time((time_t *)0x0);\r\n    ptVar1 = localtime(&time_s);\r\n    ptVar6 = &tm_calc::new_tm;\r\n    for (iVar2 = 0xb; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n      ptVar6->tm_sec = ptVar1->tm_sec;\r\n      ptVar1 = (tm *)&ptVar1->tm_min;\r\n      ptVar6 = (tm *)&ptVar6->tm_min;\r\n    }\r\n  }\r\n  else {\r\n    (*thecore_memcpy)(&tm_calc::new_tm,curr_tm,0x2c);\r\n  }\r\n  if (((tm_calc::new_tm.tm_mon == 1) && (uVar3 = tm_calc::new_tm.tm_year + 0x76c, (uVar3 & 3) == 0))\r\n     && ((uVar3 != ((int)uVar3 / 100) * 100 || (uVar3 == ((int)uVar3 / 400) * 400)))) {\r\n    tm_calc::new_tm.tm_mday = tm_calc::new_tm.tm_mday + 1;\r\n    monthdays[1] = 0x1d;\r\n  }\r\n  else {\r\n    monthdays[1] = 0x1c;\r\n  }\r\n  tm_calc::new_tm.tm_mday = days + tm_calc::new_tm.tm_mday;\r\n  if (tm_calc::new_tm.tm_mday < 1) {\r\n    tm_calc::new_tm.tm_mon = tm_calc::new_tm.tm_mon + -1;\r\n    if (tm_calc::new_tm.tm_mon < 0) {\r\n      tm_calc::new_tm.tm_year = tm_calc::new_tm.tm_year + -1;\r\n      tm_calc::new_tm.tm_mon = 0xb;\r\n    }\r\n    tm_calc::new_tm.tm_mday = tm_calc::new_tm.tm_mday + monthdays[tm_calc::new_tm.tm_mon];\r\n  }\r\n  else if (monthdays[tm_calc::new_tm.tm_mon] < tm_calc::new_tm.tm_mday) {\r\n    tm_calc::new_tm.tm_mon = tm_calc::new_tm.tm_mon + 1;\r\n    if (0xb < tm_calc::new_tm.tm_mon) {\r\n      tm_calc::new_tm.tm_year = tm_calc::new_tm.tm_year + 1;\r\n      tm_calc::new_tm.tm_mon = 0;\r\n    }\r\n    tm_calc::new_tm.tm_mday = monthdays[tm_calc::new_tm.tm_mon] - tm_calc::new_tm.tm_mday;\r\n  }\r\n  return &tm_calc::new_tm;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

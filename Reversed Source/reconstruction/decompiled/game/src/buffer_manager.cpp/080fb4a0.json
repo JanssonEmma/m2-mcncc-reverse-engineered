@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080fb4a0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "BUFFER_MANAGER::Destroy",
+      "address": "080fb4a0"
+    },
+    "code": "\r\n/* DWARF original prototype: void Destroy(BUFFER_MANAGER * this) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::Destroy(BUFFER_MANAGER *this)\r\n\r\n{\r\n  LPBUFFER buffer;\r\n  LPBUFFER *ppbVar1;\r\n  _Deque_iterator<buffer*,buffer*&,buffer**> __tmp;\r\n  \r\n  __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                 _M_finish._M_cur;\r\n  if (__tmp._M_cur !=\r\n      (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_cur) {\r\n    do {\r\n                    /* Unresolved local var: LPBUFFER buf@[DW_OP_reg3(EBX)] */\r\n      if (__tmp._M_cur ==\r\n          (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n          _M_first) {\r\n        __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                       _M_finish._M_node[-1] + 0x80;\r\n      }\r\n      buffer = __tmp._M_cur[-1];\r\n      ppbVar1 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish\r\n                ._M_cur;\r\n      if (ppbVar1 ==\r\n          (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n          _M_first) {\r\n        deque<buffer*,std::allocator<buffer*>_>::_M_pop_back_aux(&(this->buffer_stack).c);\r\n      }\r\n      else {\r\n        (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur\r\n             = ppbVar1 + -1;\r\n      }\r\n      buffer_delete(buffer);\r\n      __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                     _M_finish._M_cur;\r\n    } while (__tmp._M_cur !=\r\n             (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start.\r\n             _M_cur);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

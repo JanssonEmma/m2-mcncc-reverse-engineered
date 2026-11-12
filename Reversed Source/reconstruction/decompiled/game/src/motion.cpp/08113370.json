@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08113370",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8113370",
+    "function": {
+      "name": "CMotionManager::GetMotionSet",
+      "address": "08113370"
+    },
+    "signature": "CMotionSet * GetMotionSet(CMotionManager * this, DWORD dwVnum)",
+    "code": "\r\n/* DWARF original prototype: CMotionSet * GetMotionSet(CMotionManager * this, DWORD dwVnum) */\r\n\r\nCMotionSet * __thiscall CMotionManager::GetMotionSet(CMotionManager *this,DWORD dwVnum)\r\n\r\n{\r\n  CMotionSet *pCVar1;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_CMotionSet*>,std::pair<const_long_unsigned_int,_CMotionSet*>&,std::pair<const_long_unsigned_int,_CMotionSet*>*>\r\n  it;\r\n  \r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CMotionSet*>,std::_Select1st<std::pair<const_long_unsigned_int,_CMotionSet*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CMotionSet*>_>_>\r\n  ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CMotionSet*>,std::_Select1st<std::pair<const_long_unsigned_int,_CMotionSet*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CMotionSet*>_>_>\r\n          *)&it,(DWORD *)&this->m_map_pkMotionSet);\r\n  pCVar1 = (CMotionSet *)0x0;\r\n  if ((_Rb_tree_base_iterator)\r\n      &((this->m_map_pkMotionSet)._M_t.\r\n        super__Rb_tree_base<std::pair<const_long_unsigned_int,_CMotionSet*>,std::allocator<std::pair<const_long_unsigned_int,_CMotionSet*>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CMotionSet*>,std::allocator<std::pair<const_long_unsigned_int,_CMotionSet*>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base != it.super__Rb_tree_base_iterator._M_node) {\r\n    pCVar1 = *(CMotionSet **)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return pCVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

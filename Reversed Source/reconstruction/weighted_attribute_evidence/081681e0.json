@@ -1,0 +1,726 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AlterToMagicItem\",\n    \"address\": \"081681e0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void AlterToMagicItem(CItem * this) */\\r\\n\\r\\nvoid __thiscall CItem::AlterToMagicItem(CItem *this)\\r\\n\\r\\n{\\r\\n  TItemTable *pTVar1;\\r\\n  BYTE BVar2;\\r\\n  int iVar3;\\r\\n  int iVar4;\\r\\n  int iVar5;\\r\\n  \\r\\n                    /* Unresolved local var: int idx@[DW_OP_reg0(EAX)]\\r\\n                       Unresolved local var: int iSecondPct@[DW_OP_reg6(ESI)]\\r\\n                       Unresolved local var: int iThirdPct@[DW_OP_reg7(EDI)] */\\r\\n  iVar3 = GetAttributeSetIndex(this);\\r\\n  if (iVar3 < 0) {\\r\\n    return;\\r\\n  }\\r\\n  if (g_iUseLocale == 0) {\\r\\n    pTVar1 = this->m_pProto;\\r\\n    BVar2 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar2 = pTVar1->bType;\\r\\n    }\\r\\n    if (BVar2 == '\\\\x01') {\\r\\n      iVar3 = 0x1e;\\r\\n      iVar5 = 0xf;\\r\\n      goto LAB_08168260;\\r\\n    }\\r\\n    if (BVar2 != '\\\\x02') {\\r\\n      return;\\r\\n    }\\r\\n    BVar2 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar2 = pTVar1->bSubType;\\r\\n    }\\r\\n    iVar3 = 10;\\r\\n    if (BVar2 == '\\\\0') {\\r\\n      iVar3 = 0x14;\\r\\n      iVar5 = 10;\\r\\n      goto LAB_08168260;\\r\\n    }\\r\\n  }\\r\\n  else {\\r\\n    pTVar1 = this->m_pProto;\\r\\n    BVar2 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar2 = pTVar1->bType;\\r\\n    }\\r\\n    if (BVar2 != '\\\\x01') {\\r\\n      if (BVar2 != '\\\\x02') {\\r\\n        return;\\r\\n      }\\r\\n      BVar2 = '\\\\0';\\r\\n      if (pTVar1 != (TItemTable *)0x0) {\\r\\n        BVar2 = pTVar1->bSubType;\\r\\n      }\\r\\n      if (BVar2 == '\\\\0') {\\r\\n        iVar5 = 2;\\r\\n        iVar3 = 10;\\r\\n      }\\r\\n      else {\\r\\n        iVar3 = 10;\\r\\n        iVar5 = 1;\\r\\n      }\\r\\n      goto LAB_08168260;\\r\\n    }\\r\\n    iVar3 = 0x14;\\r\\n  }\\r\\n  iVar5 = 5;\\r\\nLAB_08168260:\\r\\n  PutAttribute(this,(int *)aiItemMagicAttributePercentHigh);\\r\\n  iVar4 = number_ex(1,100,\\\"item.cpp\\\",0x417);\\r\\n  if (iVar4 <= iVar3) {\\r\\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\\r\\n  }\\r\\n  iVar3 = number_ex(1,100,\\\"item.cpp\\\",0x41a);\\r\\n  if (iVar3 <= iVar5) {\\r\\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AlterToMagicItem",
+        "address": "081681e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void AlterToMagicItem(CItem * this) */\r\n\r\nvoid __thiscall CItem::AlterToMagicItem(CItem *this)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  BYTE BVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  \r\n                    /* Unresolved local var: int idx@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: int iSecondPct@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int iThirdPct@[DW_OP_reg7(EDI)] */\r\n  iVar3 = GetAttributeSetIndex(this);\r\n  if (iVar3 < 0) {\r\n    return;\r\n  }\r\n  if (g_iUseLocale == 0) {\r\n    pTVar1 = this->m_pProto;\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bType;\r\n    }\r\n    if (BVar2 == '\\x01') {\r\n      iVar3 = 0x1e;\r\n      iVar5 = 0xf;\r\n      goto LAB_08168260;\r\n    }\r\n    if (BVar2 != '\\x02') {\r\n      return;\r\n    }\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bSubType;\r\n    }\r\n    iVar3 = 10;\r\n    if (BVar2 == '\\0') {\r\n      iVar3 = 0x14;\r\n      iVar5 = 10;\r\n      goto LAB_08168260;\r\n    }\r\n  }\r\n  else {\r\n    pTVar1 = this->m_pProto;\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bType;\r\n    }\r\n    if (BVar2 != '\\x01') {\r\n      if (BVar2 != '\\x02') {\r\n        return;\r\n      }\r\n      BVar2 = '\\0';\r\n      if (pTVar1 != (TItemTable *)0x0) {\r\n        BVar2 = pTVar1->bSubType;\r\n      }\r\n      if (BVar2 == '\\0') {\r\n        iVar5 = 2;\r\n        iVar3 = 10;\r\n      }\r\n      else {\r\n        iVar3 = 10;\r\n        iVar5 = 1;\r\n      }\r\n      goto LAB_08168260;\r\n    }\r\n    iVar3 = 0x14;\r\n  }\r\n  iVar5 = 5;\r\nLAB_08168260:\r\n  PutAttribute(this,(int *)aiItemMagicAttributePercentHigh);\r\n  iVar4 = number_ex(1,100,\"item.cpp\",0x417);\r\n  if (iVar4 <= iVar3) {\r\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\r\n  }\r\n  iVar3 = number_ex(1,100,\"item.cpp\",0x41a);\r\n  if (iVar3 <= iVar5) {\r\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AlterToMagicItem\",\n    \"address\": \"081681e0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"081681f5\",\n        \"target\": \"08186cf0\",\n        \"name\": \"CItem::GetAttributeSetIndex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816826c\",\n        \"target\": \"081874d0\",\n        \"name\": \"CItem::PutAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08168293\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081682be\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081682d7\",\n        \"target\": \"081874d0\",\n        \"name\": \"CItem::PutAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081682ed\",\n        \"target\": \"081874d0\",\n        \"name\": \"CItem::PutAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 6,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AlterToMagicItem",
+        "address": "081681e0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "081681f5",
+            "target": "08186cf0",
+            "name": "CItem::GetAttributeSetIndex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816826c",
+            "target": "081874d0",
+            "name": "CItem::PutAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08168293",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081682be",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081682d7",
+            "target": "081874d0",
+            "name": "CItem::PutAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081682ed",
+            "target": "081874d0",
+            "name": "CItem::PutAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 6,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"081681e0\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681e1\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681e3\",\n      \"bytes\": \"83ec28\",\n      \"instruction\": \"SUB ESP,0x28\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681e6\",\n      \"bytes\": \"895df4\",\n      \"instruction\": \"MOV dword ptr [EBP + -0xc],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681e9\",\n      \"bytes\": \"8b5d08\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681ec\",\n      \"bytes\": \"8975f8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x8],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681ef\",\n      \"bytes\": \"897dfc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x4],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681f2\",\n      \"bytes\": \"891c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681f5\",\n      \"bytes\": \"e8f6ea0100\",\n      \"instruction\": \"CALL 0x08186cf0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681fa\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681fc\",\n      \"bytes\": \"7832\",\n      \"instruction\": \"JS 0x08168230\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081681fe\",\n      \"bytes\": \"8b3548253208\",\n      \"instruction\": \"MOV ESI,dword ptr [0x08322548]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168204\",\n      \"bytes\": \"85f6\",\n      \"instruction\": \"TEST ESI,ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168206\",\n      \"bytes\": \"0f8406010000\",\n      \"instruction\": \"JZ 0x08168312\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816820c\",\n      \"bytes\": \"8b5338\",\n      \"instruction\": \"MOV EDX,dword ptr [EBX + 0x38]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816820f\",\n      \"bytes\": \"31c0\",\n      \"instruction\": \"XOR EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168211\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168213\",\n      \"bytes\": \"7404\",\n      \"instruction\": \"JZ 0x08168219\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168215\",\n      \"bytes\": \"0fb64236\",\n      \"instruction\": \"MOVZX EAX,byte ptr [EDX + 0x36]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168219\",\n      \"bytes\": \"0fb6c0\",\n      \"instruction\": \"MOVZX EAX,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816821c\",\n      \"bytes\": \"83f801\",\n      \"instruction\": \"CMP EAX,0x1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816821f\",\n      \"bytes\": \"0f84de000000\",\n      \"instruction\": \"JZ 0x08168303\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168225\",\n      \"bytes\": \"83f802\",\n      \"instruction\": \"CMP EAX,0x2\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168228\",\n      \"bytes\": \"7413\",\n      \"instruction\": \"JZ 0x0816823d\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816822a\",\n      \"bytes\": \"8db600000000\",\n      \"instruction\": \"LEA ESI,[ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168230\",\n      \"bytes\": \"8b5df4\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168233\",\n      \"bytes\": \"8b75f8\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + -0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168236\",\n      \"bytes\": \"8b7dfc\",\n      \"instruction\": \"MOV EDI,dword ptr [EBP + -0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168239\",\n      \"bytes\": \"89ec\",\n      \"instruction\": \"MOV ESP,EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816823b\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816823c\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816823d\",\n      \"bytes\": \"31c0\",\n      \"instruction\": \"XOR EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816823f\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168241\",\n      \"bytes\": \"7404\",\n      \"instruction\": \"JZ 0x08168247\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168243\",\n      \"bytes\": \"0fb64237\",\n      \"instruction\": \"MOVZX EAX,byte ptr [EDX + 0x37]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168247\",\n      \"bytes\": \"84c0\",\n      \"instruction\": \"TEST AL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168249\",\n      \"bytes\": \"0f85a5000000\",\n      \"instruction\": \"JNZ 0x081682f4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816824f\",\n      \"bytes\": \"be0a000000\",\n      \"instruction\": \"MOV ESI,0xa\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168254\",\n      \"bytes\": \"bf02000000\",\n      \"instruction\": \"MOV EDI,0x2\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168259\",\n      \"bytes\": \"8db42600000000\",\n      \"instruction\": \"LEA ESI,[ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168260\",\n      \"bytes\": \"891c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168263\",\n      \"bytes\": \"b9d4ae2108\",\n      \"instruction\": \"MOV ECX,0x821aed4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168268\",\n      \"bytes\": \"894c2404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816826c\",\n      \"bytes\": \"e85ff20100\",\n      \"instruction\": \"CALL 0x081874d0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168271\",\n      \"bytes\": \"c7042401000000\",\n      \"instruction\": \"MOV dword ptr [ESP],0x1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168278\",\n      \"bytes\": \"b81e9f2108\",\n      \"instruction\": \"MOV EAX,0x8219f1e\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816827d\",\n      \"bytes\": \"ba17040000\",\n      \"instruction\": \"MOV EDX,0x417\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168282\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168286\",\n      \"bytes\": \"b864000000\",\n      \"instruction\": \"MOV EAX,0x64\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816828b\",\n      \"bytes\": \"8954240c\",\n      \"instruction\": \"MOV dword ptr [ESP + 0xc],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816828f\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168293\",\n      \"bytes\": \"e838100500\",\n      \"instruction\": \"CALL 0x081b92d0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168298\",\n      \"bytes\": \"39f0\",\n      \"instruction\": \"CMP EAX,ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816829a\",\n      \"bytes\": \"7e45\",\n      \"instruction\": \"JLE 0x081682e1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816829c\",\n      \"bytes\": \"c7042401000000\",\n      \"instruction\": \"MOV dword ptr [ESP],0x1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682a3\",\n      \"bytes\": \"b81a040000\",\n      \"instruction\": \"MOV EAX,0x41a\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682a8\",\n      \"bytes\": \"8944240c\",\n      \"instruction\": \"MOV dword ptr [ESP + 0xc],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682ac\",\n      \"bytes\": \"b81e9f2108\",\n      \"instruction\": \"MOV EAX,0x8219f1e\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682b1\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682b5\",\n      \"bytes\": \"b864000000\",\n      \"instruction\": \"MOV EAX,0x64\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682ba\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682be\",\n      \"bytes\": \"e80d100500\",\n      \"instruction\": \"CALL 0x081b92d0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682c3\",\n      \"bytes\": \"39f8\",\n      \"instruction\": \"CMP EAX,EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682c5\",\n      \"bytes\": \"0f8f65ffffff\",\n      \"instruction\": \"JG 0x08168230\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682cb\",\n      \"bytes\": \"891c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682ce\",\n      \"bytes\": \"bfe8ae2108\",\n      \"instruction\": \"MOV EDI,0x821aee8\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682d3\",\n      \"bytes\": \"897c2404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682d7\",\n      \"bytes\": \"e8f4f10100\",\n      \"instruction\": \"CALL 0x081874d0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682dc\",\n      \"bytes\": \"e94fffffff\",\n      \"instruction\": \"JMP 0x08168230\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682e1\",\n      \"bytes\": \"891c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682e4\",\n      \"bytes\": \"b8e8ae2108\",\n      \"instruction\": \"MOV EAX,0x821aee8\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682e9\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682ed\",\n      \"bytes\": \"e8def10100\",\n      \"instruction\": \"CALL 0x081874d0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682f2\",\n      \"bytes\": \"eba8\",\n      \"instruction\": \"JMP 0x0816829c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682f4\",\n      \"bytes\": \"be0a000000\",\n      \"instruction\": \"MOV ESI,0xa\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682f9\",\n      \"bytes\": \"bf01000000\",\n      \"instruction\": \"MOV EDI,0x1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081682fe\",\n      \"bytes\": \"e95dffffff\",\n      \"instruction\": \"JMP 0x08168260\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168303\",\n      \"bytes\": \"be14000000\",\n      \"instruction\": \"MOV ESI,0x14\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168308\",\n      \"bytes\": \"bf05000000\",\n      \"instruction\": \"MOV EDI,0x5\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816830d\",\n      \"bytes\": \"e94effffff\",\n      \"instruction\": \"JMP 0x08168260\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168312\",\n      \"bytes\": \"8b5338\",\n      \"instruction\": \"MOV EDX,dword ptr [EBX + 0x38]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168315\",\n      \"bytes\": \"31c0\",\n      \"instruction\": \"XOR EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168317\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168319\",\n      \"bytes\": \"7404\",\n      \"instruction\": \"JZ 0x0816831f\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816831b\",\n      \"bytes\": \"0fb64236\",\n      \"instruction\": \"MOVZX EAX,byte ptr [EDX + 0x36]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816831f\",\n      \"bytes\": \"0fb6c0\",\n      \"instruction\": \"MOVZX EAX,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168322\",\n      \"bytes\": \"83f801\",\n      \"instruction\": \"CMP EAX,0x1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168325\",\n      \"bytes\": \"742b\",\n      \"instruction\": \"JZ 0x08168352\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168327\",\n      \"bytes\": \"83f802\",\n      \"instruction\": \"CMP EAX,0x2\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816832a\",\n      \"bytes\": \"0f8500ffffff\",\n      \"instruction\": \"JNZ 0x08168230\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168330\",\n      \"bytes\": \"31c0\",\n      \"instruction\": \"XOR EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168332\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168334\",\n      \"bytes\": \"7404\",\n      \"instruction\": \"JZ 0x0816833a\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168336\",\n      \"bytes\": \"0fb64237\",\n      \"instruction\": \"MOVZX EAX,byte ptr [EDX + 0x37]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816833a\",\n      \"bytes\": \"84c0\",\n      \"instruction\": \"TEST AL,AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816833c\",\n      \"bytes\": \"be0a000000\",\n      \"instruction\": \"MOV ESI,0xa\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168341\",\n      \"bytes\": \"75c5\",\n      \"instruction\": \"JNZ 0x08168308\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168343\",\n      \"bytes\": \"be14000000\",\n      \"instruction\": \"MOV ESI,0x14\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168348\",\n      \"bytes\": \"bf0a000000\",\n      \"instruction\": \"MOV EDI,0xa\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816834d\",\n      \"bytes\": \"e90effffff\",\n      \"instruction\": \"JMP 0x08168260\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168352\",\n      \"bytes\": \"be1e000000\",\n      \"instruction\": \"MOV ESI,0x1e\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08168357\",\n      \"bytes\": \"bf0f000000\",\n      \"instruction\": \"MOV EDI,0xf\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0816835c\",\n      \"bytes\": \"e9fffeffff\",\n      \"instruction\": \"JMP 0x08168260\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 103,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "081681e0",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081681e1",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081681e3",
+          "bytes": "83ec28",
+          "instruction": "SUB ESP,0x28",
+          "comment": null
+        },
+        {
+          "address": "081681e6",
+          "bytes": "895df4",
+          "instruction": "MOV dword ptr [EBP + -0xc],EBX",
+          "comment": null
+        },
+        {
+          "address": "081681e9",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081681ec",
+          "bytes": "8975f8",
+          "instruction": "MOV dword ptr [EBP + -0x8],ESI",
+          "comment": null
+        },
+        {
+          "address": "081681ef",
+          "bytes": "897dfc",
+          "instruction": "MOV dword ptr [EBP + -0x4],EDI",
+          "comment": null
+        },
+        {
+          "address": "081681f2",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "081681f5",
+          "bytes": "e8f6ea0100",
+          "instruction": "CALL 0x08186cf0",
+          "comment": null
+        },
+        {
+          "address": "081681fa",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081681fc",
+          "bytes": "7832",
+          "instruction": "JS 0x08168230",
+          "comment": null
+        },
+        {
+          "address": "081681fe",
+          "bytes": "8b3548253208",
+          "instruction": "MOV ESI,dword ptr [0x08322548]",
+          "comment": null
+        },
+        {
+          "address": "08168204",
+          "bytes": "85f6",
+          "instruction": "TEST ESI,ESI",
+          "comment": null
+        },
+        {
+          "address": "08168206",
+          "bytes": "0f8406010000",
+          "instruction": "JZ 0x08168312",
+          "comment": null
+        },
+        {
+          "address": "0816820c",
+          "bytes": "8b5338",
+          "instruction": "MOV EDX,dword ptr [EBX + 0x38]",
+          "comment": null
+        },
+        {
+          "address": "0816820f",
+          "bytes": "31c0",
+          "instruction": "XOR EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "08168211",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "08168213",
+          "bytes": "7404",
+          "instruction": "JZ 0x08168219",
+          "comment": null
+        },
+        {
+          "address": "08168215",
+          "bytes": "0fb64236",
+          "instruction": "MOVZX EAX,byte ptr [EDX + 0x36]",
+          "comment": null
+        },
+        {
+          "address": "08168219",
+          "bytes": "0fb6c0",
+          "instruction": "MOVZX EAX,AL",
+          "comment": null
+        },
+        {
+          "address": "0816821c",
+          "bytes": "83f801",
+          "instruction": "CMP EAX,0x1",
+          "comment": null
+        },
+        {
+          "address": "0816821f",
+          "bytes": "0f84de000000",
+          "instruction": "JZ 0x08168303",
+          "comment": null
+        },
+        {
+          "address": "08168225",
+          "bytes": "83f802",
+          "instruction": "CMP EAX,0x2",
+          "comment": null
+        },
+        {
+          "address": "08168228",
+          "bytes": "7413",
+          "instruction": "JZ 0x0816823d",
+          "comment": null
+        },
+        {
+          "address": "0816822a",
+          "bytes": "8db600000000",
+          "instruction": "LEA ESI,[ESI]",
+          "comment": null
+        },
+        {
+          "address": "08168230",
+          "bytes": "8b5df4",
+          "instruction": "MOV EBX,dword ptr [EBP + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "08168233",
+          "bytes": "8b75f8",
+          "instruction": "MOV ESI,dword ptr [EBP + -0x8]",
+          "comment": null
+        },
+        {
+          "address": "08168236",
+          "bytes": "8b7dfc",
+          "instruction": "MOV EDI,dword ptr [EBP + -0x4]",
+          "comment": null
+        },
+        {
+          "address": "08168239",
+          "bytes": "89ec",
+          "instruction": "MOV ESP,EBP",
+          "comment": null
+        },
+        {
+          "address": "0816823b",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0816823c",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "0816823d",
+          "bytes": "31c0",
+          "instruction": "XOR EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "0816823f",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "08168241",
+          "bytes": "7404",
+          "instruction": "JZ 0x08168247",
+          "comment": null
+        },
+        {
+          "address": "08168243",
+          "bytes": "0fb64237",
+          "instruction": "MOVZX EAX,byte ptr [EDX + 0x37]",
+          "comment": null
+        },
+        {
+          "address": "08168247",
+          "bytes": "84c0",
+          "instruction": "TEST AL,AL",
+          "comment": null
+        },
+        {
+          "address": "08168249",
+          "bytes": "0f85a5000000",
+          "instruction": "JNZ 0x081682f4",
+          "comment": null
+        },
+        {
+          "address": "0816824f",
+          "bytes": "be0a000000",
+          "instruction": "MOV ESI,0xa",
+          "comment": null
+        },
+        {
+          "address": "08168254",
+          "bytes": "bf02000000",
+          "instruction": "MOV EDI,0x2",
+          "comment": null
+        },
+        {
+          "address": "08168259",
+          "bytes": "8db42600000000",
+          "instruction": "LEA ESI,[ESI]",
+          "comment": null
+        },
+        {
+          "address": "08168260",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "08168263",
+          "bytes": "b9d4ae2108",
+          "instruction": "MOV ECX,0x821aed4",
+          "comment": null
+        },
+        {
+          "address": "08168268",
+          "bytes": "894c2404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ECX",
+          "comment": null
+        },
+        {
+          "address": "0816826c",
+          "bytes": "e85ff20100",
+          "instruction": "CALL 0x081874d0",
+          "comment": null
+        },
+        {
+          "address": "08168271",
+          "bytes": "c7042401000000",
+          "instruction": "MOV dword ptr [ESP],0x1",
+          "comment": null
+        },
+        {
+          "address": "08168278",
+          "bytes": "b81e9f2108",
+          "instruction": "MOV EAX,0x8219f1e",
+          "comment": null
+        },
+        {
+          "address": "0816827d",
+          "bytes": "ba17040000",
+          "instruction": "MOV EDX,0x417",
+          "comment": null
+        },
+        {
+          "address": "08168282",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "08168286",
+          "bytes": "b864000000",
+          "instruction": "MOV EAX,0x64",
+          "comment": null
+        },
+        {
+          "address": "0816828b",
+          "bytes": "8954240c",
+          "instruction": "MOV dword ptr [ESP + 0xc],EDX",
+          "comment": null
+        },
+        {
+          "address": "0816828f",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "08168293",
+          "bytes": "e838100500",
+          "instruction": "CALL 0x081b92d0",
+          "comment": null
+        },
+        {
+          "address": "08168298",
+          "bytes": "39f0",
+          "instruction": "CMP EAX,ESI",
+          "comment": null
+        },
+        {
+          "address": "0816829a",
+          "bytes": "7e45",
+          "instruction": "JLE 0x081682e1",
+          "comment": null
+        },
+        {
+          "address": "0816829c",
+          "bytes": "c7042401000000",
+          "instruction": "MOV dword ptr [ESP],0x1",
+          "comment": null
+        },
+        {
+          "address": "081682a3",
+          "bytes": "b81a040000",
+          "instruction": "MOV EAX,0x41a",
+          "comment": null
+        },
+        {
+          "address": "081682a8",
+          "bytes": "8944240c",
+          "instruction": "MOV dword ptr [ESP + 0xc],EAX",
+          "comment": null
+        },
+        {
+          "address": "081682ac",
+          "bytes": "b81e9f2108",
+          "instruction": "MOV EAX,0x8219f1e",
+          "comment": null
+        },
+        {
+          "address": "081682b1",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "081682b5",
+          "bytes": "b864000000",
+          "instruction": "MOV EAX,0x64",
+          "comment": null
+        },
+        {
+          "address": "081682ba",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "081682be",
+          "bytes": "e80d100500",
+          "instruction": "CALL 0x081b92d0",
+          "comment": null
+        },
+        {
+          "address": "081682c3",
+          "bytes": "39f8",
+          "instruction": "CMP EAX,EDI",
+          "comment": null
+        },
+        {
+          "address": "081682c5",
+          "bytes": "0f8f65ffffff",
+          "instruction": "JG 0x08168230",
+          "comment": null
+        },
+        {
+          "address": "081682cb",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "081682ce",
+          "bytes": "bfe8ae2108",
+          "instruction": "MOV EDI,0x821aee8",
+          "comment": null
+        },
+        {
+          "address": "081682d3",
+          "bytes": "897c2404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EDI",
+          "comment": null
+        },
+        {
+          "address": "081682d7",
+          "bytes": "e8f4f10100",
+          "instruction": "CALL 0x081874d0",
+          "comment": null
+        },
+        {
+          "address": "081682dc",
+          "bytes": "e94fffffff",
+          "instruction": "JMP 0x08168230",
+          "comment": null
+        },
+        {
+          "address": "081682e1",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "081682e4",
+          "bytes": "b8e8ae2108",
+          "instruction": "MOV EAX,0x821aee8",
+          "comment": null
+        },
+        {
+          "address": "081682e9",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "081682ed",
+          "bytes": "e8def10100",
+          "instruction": "CALL 0x081874d0",
+          "comment": null
+        },
+        {
+          "address": "081682f2",
+          "bytes": "eba8",
+          "instruction": "JMP 0x0816829c",
+          "comment": null
+        },
+        {
+          "address": "081682f4",
+          "bytes": "be0a000000",
+          "instruction": "MOV ESI,0xa",
+          "comment": null
+        },
+        {
+          "address": "081682f9",
+          "bytes": "bf01000000",
+          "instruction": "MOV EDI,0x1",
+          "comment": null
+        },
+        {
+          "address": "081682fe",
+          "bytes": "e95dffffff",
+          "instruction": "JMP 0x08168260",
+          "comment": null
+        },
+        {
+          "address": "08168303",
+          "bytes": "be14000000",
+          "instruction": "MOV ESI,0x14",
+          "comment": null
+        },
+        {
+          "address": "08168308",
+          "bytes": "bf05000000",
+          "instruction": "MOV EDI,0x5",
+          "comment": null
+        },
+        {
+          "address": "0816830d",
+          "bytes": "e94effffff",
+          "instruction": "JMP 0x08168260",
+          "comment": null
+        },
+        {
+          "address": "08168312",
+          "bytes": "8b5338",
+          "instruction": "MOV EDX,dword ptr [EBX + 0x38]",
+          "comment": null
+        },
+        {
+          "address": "08168315",
+          "bytes": "31c0",
+          "instruction": "XOR EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "08168317",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "08168319",
+          "bytes": "7404",
+          "instruction": "JZ 0x0816831f",
+          "comment": null
+        },
+        {
+          "address": "0816831b",
+          "bytes": "0fb64236",
+          "instruction": "MOVZX EAX,byte ptr [EDX + 0x36]",
+          "comment": null
+        },
+        {
+          "address": "0816831f",
+          "bytes": "0fb6c0",
+          "instruction": "MOVZX EAX,AL",
+          "comment": null
+        },
+        {
+          "address": "08168322",
+          "bytes": "83f801",
+          "instruction": "CMP EAX,0x1",
+          "comment": null
+        },
+        {
+          "address": "08168325",
+          "bytes": "742b",
+          "instruction": "JZ 0x08168352",
+          "comment": null
+        },
+        {
+          "address": "08168327",
+          "bytes": "83f802",
+          "instruction": "CMP EAX,0x2",
+          "comment": null
+        },
+        {
+          "address": "0816832a",
+          "bytes": "0f8500ffffff",
+          "instruction": "JNZ 0x08168230",
+          "comment": null
+        },
+        {
+          "address": "08168330",
+          "bytes": "31c0",
+          "instruction": "XOR EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "08168332",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "08168334",
+          "bytes": "7404",
+          "instruction": "JZ 0x0816833a",
+          "comment": null
+        },
+        {
+          "address": "08168336",
+          "bytes": "0fb64237",
+          "instruction": "MOVZX EAX,byte ptr [EDX + 0x37]",
+          "comment": null
+        },
+        {
+          "address": "0816833a",
+          "bytes": "84c0",
+          "instruction": "TEST AL,AL",
+          "comment": null
+        },
+        {
+          "address": "0816833c",
+          "bytes": "be0a000000",
+          "instruction": "MOV ESI,0xa",
+          "comment": null
+        },
+        {
+          "address": "08168341",
+          "bytes": "75c5",
+          "instruction": "JNZ 0x08168308",
+          "comment": null
+        },
+        {
+          "address": "08168343",
+          "bytes": "be14000000",
+          "instruction": "MOV ESI,0x14",
+          "comment": null
+        },
+        {
+          "address": "08168348",
+          "bytes": "bf0a000000",
+          "instruction": "MOV EDI,0xa",
+          "comment": null
+        },
+        {
+          "address": "0816834d",
+          "bytes": "e90effffff",
+          "instruction": "JMP 0x08168260",
+          "comment": null
+        },
+        {
+          "address": "08168352",
+          "bytes": "be1e000000",
+          "instruction": "MOV ESI,0x1e",
+          "comment": null
+        },
+        {
+          "address": "08168357",
+          "bytes": "bf0f000000",
+          "instruction": "MOV EDI,0xf",
+          "comment": null
+        },
+        {
+          "address": "0816835c",
+          "bytes": "e9fffeffff",
+          "instruction": "JMP 0x08168260",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 103,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

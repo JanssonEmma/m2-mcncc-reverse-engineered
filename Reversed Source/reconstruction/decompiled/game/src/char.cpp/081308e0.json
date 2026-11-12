@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081308e0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER::ClearSync",
+      "address": "081308e0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ClearSync(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::ClearSync(CHARACTER *this)\r\n\r\n{\r\n  uint uVar1;\r\n  FuncClearSync in_stack_ffffffd0;\r\n  _List_node_base *local_2c [4];\r\n  _List_node<CHARACTER*> *local_1c [4];\r\n  \r\n  uVar1 = 0;\r\n  SetSyncOwner(this,(LPCHARACTER)0x0,true);\r\n  local_1c[0] = (this->m_kLst_pkChrSyncOwned).\r\n                super__List_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n                super__List_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_node;\r\n  local_2c[0] = (local_1c[0]->super__List_node_base)._M_next;\r\n  for_each<std::_List_iterator<CHARACTER*,_CHARACTER*&,_CHARACTER**>,_FuncClearSync>\r\n            ((FuncClearSync *)local_2c,(_List_iterator<CHARACTER*,CHARACTER*&,CHARACTER**>)local_1c,\r\n             (_List_iterator<CHARACTER*,CHARACTER*&,CHARACTER**>)(uVar1 & 0xffffff00),\r\n             in_stack_ffffffd0);\r\n  _List_base<CHARACTER*,std::allocator<CHARACTER*>_>::__clear\r\n            (&(this->m_kLst_pkChrSyncOwned).super__List_base<CHARACTER*,std::allocator<CHARACTER*>_>\r\n            );\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

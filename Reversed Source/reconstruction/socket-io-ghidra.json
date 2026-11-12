@@ -1,0 +1,82 @@
+{
+  "081b6250": {
+    "function": {
+      "name": "socket_udp_read",
+      "address": "081b6250"
+    },
+    "code": "\r\nint socket_udp_read(socket_t desc,char *read_point,size_t space_left,sockaddr *from,\r\n                   socklen_t *fromlen)\r\n\r\n{\r\n  ssize_t sVar1;\r\n  \r\n                    /* Unresolved local var: ssize_t ret@[DW_OP_reg0(EAX)] */\r\n  sVar1 = recvfrom(desc,read_point,space_left,0,(sockaddr *)from,fromlen);\r\n  return sVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b6290": {
+    "function": {
+      "name": "socket_read",
+      "address": "081b6290"
+    },
+    "code": "\r\nint socket_read(socket_t desc,char *read_point,size_t space_left)\r\n\r\n{\r\n  ssize_t sVar1;\r\n  int *piVar2;\r\n  bool bVar3;\r\n  \r\n                    /* Unresolved local var: int ret@[DW_OP_reg0(EAX)] */\r\n  sVar1 = recv(desc,read_point,space_left,0);\r\n  if ((sVar1 < 1) && (bVar3 = sVar1 != 0, sVar1 = -1, bVar3)) {\r\n    piVar2 = (int *)__error();\r\n    if ((*piVar2 == 4) ||\r\n       (((piVar2 = (int *)__error(), *piVar2 == 0x23 || (piVar2 = (int *)__error(), *piVar2 == 0x23)\r\n         ) || (piVar2 = (int *)__error(), *piVar2 == 0xb)))) {\r\n      sVar1 = 0;\r\n    }\r\n    else {\r\n      _sys_err(\"socket_read\",0x3a,\"about to lose connection\");\r\n      sVar1 = -1;\r\n    }\r\n  }\r\n  return sVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b6330": {
+    "function": {
+      "name": "socket_write_tcp",
+      "address": "081b6330"
+    },
+    "code": "\r\nint socket_write_tcp(socket_t desc,char *txt,int length)\r\n\r\n{\r\n  ssize_t sVar1;\r\n  int *piVar2;\r\n  bool bVar3;\r\n  \r\n                    /* Unresolved local var: int bytes_written@[DW_OP_reg0(EAX)] */\r\n  sVar1 = send(desc,txt,length,0);\r\n  if ((sVar1 < 1) && (bVar3 = sVar1 != 0, sVar1 = -1, bVar3)) {\r\n    piVar2 = (int *)__error();\r\n    if ((*piVar2 != 0x23) && (piVar2 = (int *)__error(), *piVar2 != 0x23)) {\r\n      piVar2 = (int *)__error();\r\n      return (*piVar2 == 0xb) - 1;\r\n    }\r\n    sVar1 = 0;\r\n  }\r\n  return sVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b63a0": {
+    "function": {
+      "name": "socket_write",
+      "address": "081b63a0"
+    },
+    "code": "\r\nint socket_write(socket_t desc,char *data,size_t length)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  undefined4 *puVar3;\r\n  char *format;\r\n  \r\n  do {\r\n    iVar1 = socket_write_tcp(desc,data,length);\r\n    if (iVar1 < 0) {\r\n      piVar2 = (int *)__error();\r\n      if (*piVar2 == 0x23) {\r\n        puVar3 = (undefined4 *)__error();\r\n        *puVar3 = 0x23;\r\n      }\r\n      piVar2 = (int *)__error();\r\n      if (*piVar2 == 0x23) {\r\n        format = \"socket write would block, about to close!\";\r\n        iVar1 = 0x6d;\r\n      }\r\n      else {\r\n        format = \"write to desc error\";\r\n        iVar1 = 0x6f;\r\n      }\r\n      _sys_err(\"socket_write\",iVar1,format);\r\n      return -1;\r\n    }\r\n    data = data + iVar1;\r\n    length = length - iVar1;\r\n  } while (length != 0);\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b6440": {
+    "function": {
+      "name": "socket_bind",
+      "address": "081b6440"
+    },
+    "code": "\r\nint socket_bind(char *ip,int port,int protocol)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  char *pcVar3;\r\n  int iVar4;\r\n  sockaddr_in *psVar5;\r\n  char *format;\r\n  sockaddr_in sa;\r\n  \r\n                    /* Unresolved local var: int s@[DW_OP_reg3(EBX)] */\r\n  iVar1 = socket(2,protocol,0);\r\n  if (iVar1 < 0) {\r\n    piVar2 = (int *)__error();\r\n    pcVar3 = strerror(*piVar2);\r\n    format = \"socket: %s\";\r\n    iVar1 = 0x89;\r\n  }\r\n  else {\r\n    socket_reuse(iVar1);\r\n    socket_lingeroff(iVar1);\r\n    psVar5 = &sa;\r\n    for (iVar4 = 4; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n      psVar5->sin_len = '\\0';\r\n      psVar5->sin_family = '\\0';\r\n      psVar5->sin_port = 0;\r\n      psVar5 = (sockaddr_in *)&psVar5->sin_addr;\r\n    }\r\n    sa.sin_family = '\\x02';\r\n    sa.sin_addr.s_addr = __inet_addr(ip);\r\n                    /* Unresolved local var: __uint16_t __X@[DW_OP_reg0(EAX)] */\r\n    sa.sin_port = CONCAT11((char)(port & 0xffffU),(char)((port & 0xffffU) >> 8));\r\n    iVar4 = bind(iVar1,(sockaddr *)&sa,0x10);\r\n    if (-1 < iVar4) {\r\n      socket_nonblock(iVar1);\r\n      if (protocol != 1) {\r\n        sys_log(0,\"SYSTEM: BINDING UDP PORT ON [%d]\",port);\r\n        return iVar1;\r\n      }\r\n      sys_log(0,\"SYSTEM: BINDING TCP PORT ON [%d]\",port);\r\n      listen(iVar1,0x80);\r\n      return iVar1;\r\n    }\r\n    piVar2 = (int *)__error();\r\n    pcVar3 = strerror(*piVar2);\r\n    format = \"bind: %s\";\r\n    iVar1 = 0x97;\r\n  }\r\n  _sys_err(\"socket_bind\",iVar1,format,pcVar3);\r\n  return -1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b6580": {
+    "function": {
+      "name": "socket_tcp_bind",
+      "address": "081b6580"
+    },
+    "code": "\r\nint socket_tcp_bind(char *ip,int port)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = socket_bind(ip,port,1);\r\n  return iVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b65b0": {
+    "function": {
+      "name": "socket_udp_bind",
+      "address": "081b65b0"
+    },
+    "code": "\r\nint socket_udp_bind(char *ip,int port)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = socket_bind(ip,port,2);\r\n  return iVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b65e0": {
+    "function": {
+      "name": "socket_close",
+      "address": "081b65e0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid socket_close(socket_t s)\r\n\r\n{\r\n  close(s);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b65f0": {
+    "function": {
+      "name": "socket_accept",
+      "address": "081b65f0"
+    },
+    "code": "\r\nsocket_t socket_accept(socket_t s,sockaddr_in *peer)\r\n\r\n{\r\n  int s_00;\r\n  int *piVar1;\r\n  char *pcVar2;\r\n  socklen_t i;\r\n  \r\n                    /* Unresolved local var: socket_t desc@[DW_OP_reg3(EBX)] */\r\n  i = 0x10;\r\n  s_00 = accept(s,(sockaddr *)peer,&i);\r\n  if (s_00 == -1) {\r\n    piVar1 = (int *)__error();\r\n    pcVar2 = strerror(*piVar1);\r\n    _sys_err(\"socket_accept\",0xc4,\"accept: %s (fd %d)\",pcVar2,s);\r\n  }\r\n  else {\r\n    if (s_00 < 0xffdc) {\r\n      socket_nonblock(s_00);\r\n      socket_lingeroff(s_00);\r\n      return s_00;\r\n    }\r\n    _sys_err(\"socket_accept\",0xca,\"SOCKET FD 65500 LIMIT! %d\",s_00);\r\n    socket_close(s);\r\n  }\r\n  return -1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b66b0": {
+    "function": {
+      "name": "socket_connect",
+      "address": "081b66b0"
+    },
+    "code": "\r\nsocket_t socket_connect(char *host,WORD port)\r\n\r\n{\r\n  hostent *phVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  sockaddr_in *psVar4;\r\n  char *pcVar5;\r\n  socket_t s;\r\n  sockaddr_in server_addr;\r\n  \r\n  psVar4 = &server_addr;\r\n                    /* Unresolved local var: int rslt@[DW_OP_reg3(EBX)] */\r\n  for (iVar3 = 4; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n    psVar4->sin_len = '\\0';\r\n    psVar4->sin_family = '\\0';\r\n    psVar4->sin_port = 0;\r\n    psVar4 = (sockaddr_in *)&psVar4->sin_addr;\r\n  }\r\n  if (((uint)(int)*host < 0x100) && ((_DefaultRuneLocale[*host * 4 + 0x35] & 4) != 0)) {\r\n    server_addr.sin_addr.s_addr = __inet_addr(host);\r\n  }\r\n  else {\r\n                    /* Unresolved local var: hostent * hp@[DW_OP_reg0(EAX)] */\r\n    phVar1 = gethostbyname(host);\r\n    if (phVar1 == (hostent *)0x0) {\r\n      _sys_err(\"socket_connect\",0xe5,\"socket_connect(): can not connect to %s:%d\",host,(uint)port);\r\n      return -1;\r\n    }\r\n    (*thecore_memcpy)(&server_addr.sin_addr,*phVar1->h_addr_list,4);\r\n  }\r\n  server_addr.sin_family = '\\x02';\r\n                    /* Unresolved local var: __uint16_t __X@[DW_OP_reg0(EAX)] */\r\n  server_addr.sin_port = CONCAT11((char)port,(char)(port >> 8));\r\n  iVar3 = socket(2,1,0);\r\n  if (iVar3 < 0) {\r\n    pcVar5 = \"socket\";\r\n    goto LAB_081b6813;\r\n  }\r\n  socket_keepalive(iVar3);\r\n  socket_sndbuf(iVar3,0x38e38);\r\n  socket_rcvbuf(iVar3,0x38e38);\r\n  socket_timeout(iVar3,10,0);\r\n  socket_lingeron(iVar3);\r\n  iVar2 = connect(iVar3,(sockaddr *)&server_addr,0x10);\r\n  if (-1 < iVar2) {\r\n    return iVar3;\r\n  }\r\n  socket_close(iVar3);\r\n  if (iVar2 == 0x33) {\r\n    pcVar5 = \"HOST %s:%d is not reachable from this host.\";\r\n    iVar3 = 0x119;\r\n  }\r\n  else if (iVar2 < 0x34) {\r\n    if (iVar2 == 4) {\r\n      pcVar5 = \"HOST %s:%d connection timeout.\";\r\n      iVar3 = 0x10b;\r\n    }\r\n    else {\r\nLAB_081b67e3:\r\n      pcVar5 = \"HOST %s:%d, could not connect.\";\r\n      iVar3 = 0x11d;\r\n    }\r\n  }\r\n  else {\r\n    if (iVar2 != 0x3d) goto LAB_081b67e3;\r\n    iVar3 = 0x112;\r\n    pcVar5 = \"HOST %s:%d port is not opened. connection refused.\";\r\n  }\r\n  _sys_err(\"socket_connect\",iVar3,pcVar5,host,(uint)port);\r\n  pcVar5 = \"connect\";\r\nLAB_081b6813:\r\n  perror(pcVar5);\r\n  return -1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

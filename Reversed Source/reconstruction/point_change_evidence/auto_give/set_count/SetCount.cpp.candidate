@@ -1,0 +1,25 @@
+// COMPLETE original081668a0, staged only while Unequip/removal closure is open.
+bool CItem::SetCount(DWORD count)
+{
+    m_dwCount=count;
+    CHARACTER* owner;
+    if(count!=0 || (owner=m_pOwner)==0) {
+        UpdatePacket();
+        Save();
+        return true;
+    }
+    if(GetSubType()==7 || GetSubType()==0) {
+        const BYTE cell=m_bCell;
+        RemoveFromCharacter();
+        LPITEM next=owner->FindSpecifyItem(GetVnum()); // Original reloads prototype after removal.
+        if(next) owner->ChainQuickslotItem(next,1,cell);
+        else owner->SyncQuickslot(1,cell,255);
+        ITEM_MANAGER::instance().DestroyItem(this);
+    } else {
+        owner->SyncQuickslot(1,m_bCell,255);
+        ITEM_MANAGER& manager=ITEM_MANAGER::instance(); // Captured BEFORE removal.
+        LPITEM removed=RemoveFromCharacter();
+        manager.DestroyItem(removed);
+    }
+    return false;
+}

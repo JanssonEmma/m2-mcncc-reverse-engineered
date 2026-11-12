@@ -1,0 +1,4 @@
+// Original packet.h812, complete74-byte packet (long/DWORD target32).
+#pragma pack(push,1)
+typedef struct packet_quest_confirm { BYTE header; char msg[65]; long timeout; DWORD requestPID; } TPacketGCQuestConfirm;
+#pragma pack(pop)

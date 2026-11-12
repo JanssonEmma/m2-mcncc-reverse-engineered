@@ -1,0 +1,10 @@
+# Add real party.cpp and the explicit test-only full-data virtual/lifecycle
+# boundary to every legacy character executable's shared closure as described
+# in INTEGRATE_PARTY_TEST.txt. The new target also works before that migration.
+PARTY_PACKET_SOURCES = $(filter-out ../../game/src/party.cpp party_lifecycle_fixture.cpp,$(DESC_PACKET_SOURCES)) ../../game/src/party.cpp party_lifecycle_fixture.cpp
+
+party_dependency_regression$(EXEEXT): party_dependency_regression.cpp ../../game/src/item.cpp ../../game/src/item_manager.cpp ../../game/src/sectree.cpp ../../libgame/src/attribute.cc desc_fixture.cpp ../../game/src/desc.cpp $(PARTY_PACKET_SOURCES) $(DESC_PACKET_OBJECTS) party_desc_output_syscalls.o desc_fdwatch.o desc_socket.o desc_utils.o buffer_manager_core.o ../../game/src/event.cpp ../../game/src/event_queue.cpp $(ITEM_SOCKET_OBJECTS) $(ITEM_SOCKET_SOURCES)
+	$(CXX) -DMCNCC_TEST_REAL_EVENTS -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long party_dependency_regression.cpp ../../game/src/event.cpp ../../game/src/event_queue.cpp ../../game/src/item.cpp ../../game/src/item_manager.cpp ../../game/src/sectree.cpp ../../libgame/src/attribute.cc desc_fixture.cpp ../../game/src/desc.cpp $(PARTY_PACKET_SOURCES) $(DESC_PACKET_OBJECTS) party_desc_output_syscalls.o desc_fdwatch.o desc_socket.o desc_utils.o buffer_manager_core.o $(ITEM_SOCKET_SOURCES) $(ITEM_SOCKET_OBJECTS) $(LDFLAGS) -o $@
+
+party_desc_output_syscalls.o: party_desc_output_syscalls.c desc_output_syscalls.c socket_hooks.h fdwatch_shim/assert.h fdwatch_shim/sys/event.h socket_shim/sys/socket.h socket_shim/errno.h
+	$(CC) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CFLAGS) -c party_desc_output_syscalls.c -o $@

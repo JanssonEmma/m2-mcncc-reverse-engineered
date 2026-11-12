@@ -1,0 +1,79 @@
+[
+  {
+    "requested_address": "0x8168850",
+    "function": {
+      "name": "CItem::SetAccessorySocketGrade",
+      "address": "08168850"
+    },
+    "signature": "void SetAccessorySocketGrade(CItem * this, int iGrade)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketGrade(CItem * this, int iGrade) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketGrade(CItem *this,int iGrade)\r\n\r\n{\r\n  int v;\r\n  DWORD time;\r\n  \r\n                    /* Unresolved local var: int iDownTime@[DW_OP_reg1(ECX)] */\r\n  v = MINMAX(0,iGrade,this->m_alSockets[1]);\r\n  SetSocket(this,0,v);\r\n  time = *(DWORD *)(aiAccessorySocketDegradeTime + this->m_alSockets[0] * 4);\r\n  if (test_server != 0) {\r\n    time = (int)time / 0x3c;\r\n  }\r\n  SetAccessorySocketDownGradeTime(this,time);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  },
+  {
+    "requested_address": "0x81688d0",
+    "function": {
+      "name": "CItem::SetAccessorySocketMaxGrade",
+      "address": "081688d0"
+    },
+    "signature": "void SetAccessorySocketMaxGrade(CItem * this, int iMaxGrade)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketMaxGrade(CItem * this, int iMaxGrade) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketMaxGrade(CItem *this,int iMaxGrade)\r\n\r\n{\r\n  int v;\r\n  \r\n  v = MINMAX(0,iMaxGrade,3);\r\n  SetSocket(this,1,v);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  },
+  {
+    "requested_address": "0x8168910",
+    "function": {
+      "name": "CItem::SetAccessorySocketDownGradeTime",
+      "address": "08168910"
+    },
+    "signature": "void SetAccessorySocketDownGradeTime(CItem * this, DWORD time)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketDownGradeTime(CItem * this, DWORD time) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketDownGradeTime(CItem *this,DWORD time)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  char *format;\r\n  \r\n  SetSocket(this,2,time);\r\n                    /* Unresolved local var: LPCHARACTER ch@[DW_OP_reg6(ESI)] */\r\n  if ((test_server != 0) && (this_00 = this->m_pOwner, this_00 != (CHARACTER *)0x0)) {\r\n    pTVar1 = this->m_pProto;\r\n    format = locale_find(&DAT_0822bce0,g_iUseLocale);\r\n    CHARACTER::ChatPacket\r\n              (this_00,'\\x01',format,(uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1,\r\n               time);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  },
+  {
+    "requested_address": "0x8168a90",
+    "function": {
+      "name": "CItem::StartAccessorySocketExpireEvent",
+      "address": "08168a90"
+    },
+    "signature": "void StartAccessorySocketExpireEvent(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void StartAccessorySocketExpireEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StartAccessorySocketExpireEvent(CItem *this)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  DWORD dwInfoID;\r\n  LPEVENT pkEvent;\r\n  item_vid_event_info *info;\r\n  \r\n                    /* Unresolved local var: int iSec@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  bVar1 = IsAccessoryForSocket(this);\r\n  if ((((bVar1) && (this->m_pkAccessorySocketExpireEvent == (LPEVENT)0x0)) &&\r\n      (this->m_alSockets[1] != 0)) && (this->m_alSockets[0] != 0)) {\r\n    iVar2 = this->m_alSockets[2];\r\n    SetAccessorySocketExpireEvent(this,(LPEVENT)0x0);\r\n    if (iVar2 < 2) {\r\n      iVar2 = 5;\r\n    }\r\n    else {\r\n      iVar2 = MIN(iVar2,0x3c);\r\n    }\r\n    dwInfoID = __AllocEventInfo(4,&info);\r\n    info->item_vid = this->m_dwVID;\r\n    pkEvent = event_create_ex(accessory_socket_expire_event,dwInfoID,iVar2 * passes_per_sec,\r\n                              \"item.cpp\",0x4e8);\r\n    SetAccessorySocketExpireEvent(this,pkEvent);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  },
+  {
+    "requested_address": "0x8168b70",
+    "function": {
+      "name": "CItem::StopAccessorySocketExpireEvent",
+      "address": "08168b70"
+    },
+    "signature": "void StopAccessorySocketExpireEvent(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void StopAccessorySocketExpireEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StopAccessorySocketExpireEvent(CItem *this)\r\n\r\n{\r\n  DWORD time;\r\n  LPEVENT event;\r\n  int iVar1;\r\n  bool bVar2;\r\n  long lVar3;\r\n  \r\n                    /* Unresolved local var: int new_time@[DW_OP_reg3(EBX)] */\r\n  event = this->m_pkAccessorySocketExpireEvent;\r\n  if (event != (LPEVENT)0x0) {\r\n    bVar2 = IsAccessoryForSocket(this);\r\n    if (bVar2) {\r\n      iVar1 = this->m_alSockets[2];\r\n      lVar3 = event_time(event);\r\n      time = lVar3 / passes_per_sec + -0x3c + iVar1;\r\n      event_cancel(&this->m_pkAccessorySocketExpireEvent);\r\n      if ((int)time < 2) {\r\n        AccessorySocketDegrade(this);\r\n        return;\r\n      }\r\n      SetAccessorySocketDownGradeTime(this,time);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  },
+  {
+    "requested_address": "0x8168bf0",
+    "function": {
+      "name": "CItem::SetAccessorySocketExpireEvent",
+      "address": "08168bf0"
+    },
+    "signature": "void SetAccessorySocketExpireEvent(CItem * this, LPEVENT pkEvent)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketExpireEvent(CItem * this, LPEVENT pkEvent) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketExpireEvent(CItem *this,LPEVENT pkEvent)\r\n\r\n{\r\n  this->m_pkAccessorySocketExpireEvent = pkEvent;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  },
+  {
+    "requested_address": "0x8168c10",
+    "function": {
+      "name": "CItem::AccessorySocketDegrade",
+      "address": "08168c10"
+    },
+    "signature": "void AccessorySocketDegrade(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void AccessorySocketDegrade(CItem * this) */\r\n\r\nvoid __thiscall CItem::AccessorySocketDegrade(CItem *this)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  char *format;\r\n  DWORD time;\r\n  \r\n  if (0 < this->m_alSockets[0]) {\r\n                    /* Unresolved local var: LPCHARACTER ch@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int iDownTime@[DW_OP_reg3(EBX)] */\r\n    this_00 = this->m_pOwner;\r\n    if (this_00 != (CHARACTER *)0x0) {\r\n      pTVar1 = this->m_pProto;\r\n      format = locale_find(&DAT_0822bd20,g_iUseLocale);\r\n      CHARACTER::ChatPacket\r\n                (this_00,'\\x01',format,\r\n                 (uint)pTVar1->szLocaleName & (pTVar1 == (TItemTable *)0x0) - 1);\r\n    }\r\n    ModifyPoints(this,false);\r\n    SetAccessorySocketGrade(this,this->m_alSockets[0] + -1);\r\n    ModifyPoints(this,true);\r\n    time = *(DWORD *)(aiAccessorySocketDegradeTime + this->m_alSockets[0] * 4);\r\n    if (test_server != 0) {\r\n      time = (int)time / 0x3c;\r\n    }\r\n    SetAccessorySocketDownGradeTime(this,time);\r\n    if (time != 0) {\r\n      StartAccessorySocketExpireEvent(this);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "function": {
+        "name": "ITEM_MANAGER::GetNewID",
+        "address": "081921c0"
+      },
+      "code": "\r\n/* DWARF original prototype: DWORD GetNewID(ITEM_MANAGER * this) */\r\n\r\nDWORD __thiscall ITEM_MANAGER::GetNewID(ITEM_MANAGER *this)\r\n\r\n{\r\n  uint uVar1;\r\n  \r\n  uVar1 = this->m_dwCurrentID;\r\n  if (uVar1 == 0) {\r\n    __assert(\"GetNewID\",\"item_manager.cpp\",199);\r\n    uVar1 = this->m_dwCurrentID;\r\n  }\r\n  if (uVar1 < DAT_083231a8) {\r\n    this->m_dwCurrentID = uVar1 + 1;\r\n  }\r\n  else {\r\n    _sys_err(\"GetNewID\",0xcb,\"FATAL ERROR! ITEM ID Overflow, contact your administrator!\");\r\n    thecore_shutdown();\r\n    uVar1 = 0;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "081921c0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\db-lifecycle-ghidra.json"
+      }
+    },
+    {
+      "function": {
+        "name": "ITEM_MANAGER::SetMaxItemID",
+        "address": "08192250"
+      },
+      "code": "\r\n/* DWARF original prototype: bool SetMaxItemID(ITEM_MANAGER * this, DWORD dwID) */\r\n\r\nbool __thiscall ITEM_MANAGER::SetMaxItemID(ITEM_MANAGER *this,DWORD dwID)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = false;\r\n  if (dwID != 0) {\r\n    if ((g_dwItemIDRange < dwID) && (dwID < DAT_083231a8)) {\r\n      this->m_dwCurrentID = dwID;\r\n      sys_log(0,\"ITEM: ID start at %lu\",dwID);\r\n      bVar1 = true;\r\n    }\r\n    else {\r\n      _sys_err(\"SetMaxItemID\",0xda,\"FATAL ERROR! item id out of range! id %lu, range %lu ~ %lu\",dwID\r\n               ,g_dwItemIDRange,DAT_083231a8);\r\n      thecore_shutdown();\r\n      bVar1 = false;\r\n    }\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08192250",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\get_new_id\\setmax-ghidra.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "Find": {
+    "function": {
+      "name": "CHARACTER_MANAGER::Find",
+      "address": "0818c7d0"
+    },
+    "code": "\r\n/* DWARF original prototype: LPCHARACTER Find(CHARACTER_MANAGER * this, VID * vid) */\r\n\r\nLPCHARACTER __thiscall CHARACTER_MANAGER::Find(CHARACTER_MANAGER *this,VID *vid)\r\n\r\n{\r\n  bool bVar1;\r\n  LPCHARACTER pCVar2;\r\n  \r\n                    /* Unresolved local var: LPCHARACTER tch@[DW_OP_reg2(EDX)] */\r\n  pCVar2 = Find(this,vid->m_id);\r\n  if (pCVar2 != (LPCHARACTER)0x0) {\r\n    bVar1 = false;\r\n    if (((pCVar2->m_vid).m_id == vid->m_id) && ((pCVar2->m_vid).m_crc == vid->m_crc)) {\r\n      bVar1 = true;\r\n    }\r\n    if (bVar1) {\r\n      return pCVar2;\r\n    }\r\n  }\r\n  return (LPCHARACTER)0x0;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "inline": [
+    {
+      "cu": "char_battle.cpp",
+      "name": "VID",
+      "die": "0x23856af",
+      "origin": "0x22ed434",
+      "low": "0x8155806",
+      "high": "0x8155808",
+      "ranges": null,
+      "function": "0x81557d0",
+      "offset": 54,
+      "items": [
+        {
+          "address": "081557fd",
+          "bytes": "89c3",
+          "instruction": "MOV EBX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081557ff",
+          "bytes": "89c1",
+          "instruction": "MOV ECX,EAX",
+          "comment": null
+        },
+        {
+          "address": "08155801",
+          "bytes": "83c310",
+          "instruction": "ADD EBX,0x10",
+          "comment": null
+        },
+        {
+          "address": "08155804",
+          "bytes": "7417",
+          "instruction": "JZ 0x0815581d",
+          "comment": null
+        },
+        {
+          "address": "08155806",
+          "bytes": "8b06",
+          "instruction": "MOV EAX,dword ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "08155808",
+          "bytes": "8b560c",
+          "instruction": "MOV EDX,dword ptr [ESI + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "0815580b",
+          "bytes": "894110",
+          "instruction": "MOV dword ptr [ECX + 0x10],EAX",
+          "comment": null
+        },
+        {
+          "address": "0815580e",
+          "bytes": "8b4604",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "08155811",
+          "bytes": "894304",
+          "instruction": "MOV dword ptr [EBX + 0x4],EAX",
+          "comment": null
+        }
+      ]
+    },
+    {
+      "cu": "char.cpp",
+      "name": "operator=",
+      "die": "0x1f43d5c",
+      "origin": "0x1eaede7",
+      "low": "0x812741c",
+      "high": "0x812742d",
+      "ranges": null,
+      "function": "0x8127400",
+      "offset": 28,
+      "items": [
+        {
+          "address": "08127412",
+          "bytes": "0fb64514",
+          "instruction": "MOVZX EAX,byte ptr [EBP + 0x14]",
+          "comment": null
+        },
+        {
+          "address": "08127416",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "08127419",
+          "bytes": "8b7d08",
+          "instruction": "MOV EDI,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0812741c",
+          "bytes": "8db7f4000000",
+          "instruction": "LEA ESI,[EDI + 0xf4]",
+          "comment": null
+        },
+        {
+          "address": "08127422",
+          "bytes": "888547ffffff",
+          "instruction": "MOV byte ptr [EBP + 0xffffff47],AL",
+          "comment": null
+        },
+        {
+          "address": "08127428",
+          "bytes": "a1a0092408",
+          "instruction": "MOV EAX,[0x082409a0]",
+          "comment": null
+        },
+        {
+          "address": "0812742d",
+          "bytes": "897c2410",
+          "instruction": "MOV dword ptr [ESP + 0x10],EDI",
+          "comment": null
+        },
+        {
+          "address": "08127431",
+          "bytes": "40",
+          "instruction": "INC EAX",
+          "comment": null
+        },
+        {
+          "address": "08127432",
+          "bytes": "a3a0092408",
+          "instruction": "MOV [0x082409a0],EAX",
+          "comment": null
+        },
+        {
+          "address": "08127437",
+          "bytes": "89442414",
+          "instruction": "MOV dword ptr [ESP + 0x14],EAX",
+          "comment": null
+        }
+      ]
+    },
+    {
+      "cu": "char_battle.cpp",
+      "name": "operator!=",
+      "die": "0x237bc64",
+      "origin": "0x22ed48f",
+      "low": "0x8153e4d",
+      "high": "0x8153e72",
+      "ranges": null,
+      "function": "0x8153e30",
+      "offset": 29,
+      "items": [
+        {
+          "address": "08153e42",
+          "bytes": "85f6",
+          "instruction": "TEST ESI,ESI",
+          "comment": null
+        },
+        {
+          "address": "08153e44",
+          "bytes": "897dfc",
+          "instruction": "MOV dword ptr [EBP + -0x4],EDI",
+          "comment": null
+        },
+        {
+          "address": "08153e47",
+          "bytes": "0f848a000000",
+          "instruction": "JZ 0x08153ed7",
+          "comment": null
+        },
+        {
+          "address": "08153e4d",
+          "bytes": "8d96f4000000",
+          "instruction": "LEA EDX,[ESI + 0xf4]",
+          "comment": null
+        },
+        {
+          "address": "08153e53",
+          "bytes": "31c9",
+          "instruction": "XOR ECX,ECX",
+          "comment": null
+        },
+        {
+          "address": "08153e55",
+          "bytes": "8d83780d0000",
+          "instruction": "LEA EAX,[EBX + 0xd78]",
+          "comment": null
+        },
+        {
+          "address": "08153e5b",
+          "bytes": "8955ec",
+          "instruction": "MOV dword ptr [EBP + -0x14],EDX",
+          "comment": null
+        },
+        {
+          "address": "08153e5e",
+          "bytes": "8b96f4000000",
+          "instruction": "MOV EDX,dword ptr [ESI + 0xf4]",
+          "comment": null
+        },
+        {
+          "address": "08153e64",
+          "bytes": "3993780d0000",
+          "instruction": "CMP dword ptr [EBX + 0xd78],EDX",
+          "comment": null
+        },
+        {
+          "address": "08153e6a",
+          "bytes": "8945f0",
+          "instruction": "MOV dword ptr [EBP + -0x10],EAX",
+          "comment": null
+        },
+        {
+          "address": "08153e6d",
+          "bytes": "7456",
+          "instruction": "JZ 0x08153ec5",
+          "comment": null
+        },
+        {
+          "address": "08153e6f",
+          "bytes": "83f101",
+          "instruction": "XOR ECX,0x1",
+          "comment": null
+        },
+        {
+          "address": "08153e72",
+          "bytes": "84c9",
+          "instruction": "TEST CL,CL",
+          "comment": null
+        },
+        {
+          "address": "08153e74",
+          "bytes": "752a",
+          "instruction": "JNZ 0x08153ea0",
+          "comment": null
+        },
+        {
+          "address": "08153e76",
+          "bytes": "8993780d0000",
+          "instruction": "MOV dword ptr [EBX + 0xd78],EDX",
+          "comment": null
+        },
+        {
+          "address": "08153e7c",
+          "bytes": "8b7df0",
+          "instruction": "MOV EDI,dword ptr [EBP + -0x10]",
+          "comment": null
+        }
+      ]
+    },
+    {
+      "cu": "char_battle.cpp",
+      "name": "operator==",
+      "die": "0x237bc9e",
+      "origin": "0x22ed46e",
+      "low": "0x8153e53",
+      "high": "0x8153e55",
+      "ranges": null,
+      "function": "0x8153e30",
+      "offset": 35,
+      "items": [
+        {
+          "address": "08153e47",
+          "bytes": "0f848a000000",
+          "instruction": "JZ 0x08153ed7",
+          "comment": null
+        },
+        {
+          "address": "08153e4d",
+          "bytes": "8d96f4000000",
+          "instruction": "LEA EDX,[ESI + 0xf4]",
+          "comment": null
+        },
+        {
+          "address": "08153e53",
+          "bytes": "31c9",
+          "instruction": "XOR ECX,ECX",
+          "comment": null
+        },
+        {
+          "address": "08153e55",
+          "bytes": "8d83780d0000",
+          "instruction": "LEA EAX,[EBX + 0xd78]",
+          "comment": null
+        },
+        {
+          "address": "08153e5b",
+          "bytes": "8955ec",
+          "instruction": "MOV dword ptr [EBP + -0x14],EDX",
+          "comment": null
+        },
+        {
+          "address": "08153e5e",
+          "bytes": "8b96f4000000",
+          "instruction": "MOV EDX,dword ptr [ESI + 0xf4]",
+          "comment": null
+        }
+      ]
+    },
+    {
+      "cu": "char_battle.cpp",
+      "name": "Reset",
+      "die": "0x237bcf4",
+      "origin": "0x22ed4cc",
+      "low": "0x8153ee7",
+      "high": "0x8153ef9",
+      "ranges": null,
+      "function": "0x8153e30",
+      "offset": 183,
+      "items": [
+        {
+          "address": "08153edd",
+          "bytes": "8db3780d0000",
+          "instruction": "LEA ESI,[EBX + 0xd78]",
+          "comment": null
+        },
+        {
+          "address": "08153ee3",
+          "bytes": "85ff",
+          "instruction": "TEST EDI,EDI",
+          "comment": null
+        },
+        {
+          "address": "08153ee5",
+          "bytes": "7523",
+          "instruction": "JNZ 0x08153f0a",
+          "comment": null
+        },
+        {
+          "address": "08153ee7",
+          "bytes": "c7460400000000",
+          "instruction": "MOV dword ptr [ESI + 0x4],0x0",
+          "comment": null
+        },
+        {
+          "address": "08153eee",
+          "bytes": "31d2",
+          "instruction": "XOR EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "08153ef0",
+          "bytes": "8993780d0000",
+          "instruction": "MOV dword ptr [EBX + 0xd78],EDX",
+          "comment": null
+        },
+        {
+          "address": "08153ef6",
+          "bytes": "8b75f8",
+          "instruction": "MOV ESI,dword ptr [EBP + -0x8]",
+          "comment": null
+        },
+        {
+          "address": "08153ef9",
+          "bytes": "895d08",
+          "instruction": "MOV dword ptr [EBP + 0x8],EBX",
+          "comment": null
+        },
+        {
+          "address": "08153efc",
+          "bytes": "8b7dfc",
+          "instruction": "MOV EDI,dword ptr [EBP + -0x4]",
+          "comment": null
+        },
+        {
+          "address": "08153eff",
+          "bytes": "8b5df4",
+          "instruction": "MOV EBX,dword ptr [EBP + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "08153f02",
+          "bytes": "89ec",
+          "instruction": "MOV ESP,EBP",
+          "comment": null
+        },
+        {
+          "address": "08153f04",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        }
+      ]
+    }
+  ]
+}

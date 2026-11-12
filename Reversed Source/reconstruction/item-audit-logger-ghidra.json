@@ -1,0 +1,106 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "program": "game",
+  "origin": "live Ghidra MCP",
+  "functions": [
+    {
+      "function": {
+        "name": "LogManager::LogManager",
+        "address": "08078230"
+      },
+      "code": "\r\n/* DWARF original prototype: void LogManager(LogManager * this) */\r\n\r\nvoid __thiscall LogManager::LogManager(LogManager *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n                    /* Unresolved local var: int offset@[???] */\r\n  bVar1 = singleton<LogManager>::ms_singleton != (LogManager *)0x0;\r\n  (this->super_singleton<LogManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_081fa610;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0xd);\r\n  }\r\n  (this->super_singleton<LogManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__LogManager_081fa600;\r\n  singleton<LogManager>::ms_singleton = this;\r\n  CAsyncSQL::CAsyncSQL(&this->m_sql);\r\n  this->m_bIsConnect = false;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x08078230"
+    },
+    {
+      "function": {
+        "name": "LogManager::~LogManager",
+        "address": "08078310"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~LogManager(LogManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall LogManager::~LogManager(LogManager *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_singleton<LogManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__LogManager_081fa600;\r\n  CAsyncSQL::~CAsyncSQL(&this->m_sql);\r\n  (this->super_singleton<LogManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_081fa610;\r\n  if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<LogManager>::ms_singleton = (LogManager *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x08078310"
+    },
+    {
+      "function": {
+        "name": "LogManager::Query",
+        "address": "08078460"
+      },
+      "code": "\r\n/* DWARF original prototype: void Query(LogManager * this, char * c_pszFormat, ...) */\r\n\r\nvoid __thiscall LogManager::Query(LogManager *this,char *c_pszFormat,...)\r\n\r\n{\r\n  char szQuery [4096];\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  vsnprintf(szQuery,0x1000,c_pszFormat,&stack0x0000000c);\r\n  CAsyncSQL::AsyncQuery(&this->m_sql,szQuery);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x08078460"
+    },
+    {
+      "function": {
+        "name": "LogManager::ItemLog",
+        "address": "080784e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void ItemLog(LogManager * this, DWORD dwPID, DWORD x, DWORD y, DWORD\r\n   dwItemID, char * c_pszText, char * c_pszHint) */\r\n\r\nvoid __thiscall\r\nLogManager::ItemLog(LogManager *this,DWORD dwPID,DWORD x,DWORD y,DWORD dwItemID,char *c_pszText,\r\n                   char *c_pszHint)\r\n\r\n{\r\n  size_t length;\r\n  char *pcVar1;\r\n  \r\n  length = strlen(c_pszHint);\r\n  EscapeString(this,__escape_hint,c_pszHint,length);\r\n  pcVar1 = get_table_postfix();\r\n  sys_log(0,\r\n          \"INSERT DELAYED INTO log%s (type, time, who, x, y, what, how, hint) VALUES(\\'ITEM\\', NOW(), %lu, %lu, %lu, %lu, \\'%s\\', \\'%s\\')\"\r\n          ,pcVar1,dwPID,x,y,dwItemID,c_pszText,c_pszHint);\r\n  pcVar1 = get_table_postfix();\r\n  Query(this,\r\n        \"INSERT DELAYED INTO log%s (type, time, who, x, y, what, how, hint) VALUES(\\'ITEM\\', NOW(), %lu, %lu, %lu, %lu, \\'%s\\', \\'%s\\')\"\r\n        ,pcVar1,dwPID,x,y,dwItemID,c_pszText,__escape_hint);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x080784e0"
+    },
+    {
+      "function": {
+        "name": "CAsyncSQL::AsyncQuery",
+        "address": "081d4e30"
+      },
+      "code": "\r\n/* CAsyncSQL::AsyncQuery(char const*) */\r\n\r\nvoid __thiscall CAsyncSQL::AsyncQuery(CAsyncSQL *this,char *param_1)\r\n\r\n{\r\n  _SQLMsg *p_Var1;\r\n  int iVar2;\r\n  \r\n  p_Var1 = operator_new(0x28);\r\n  p_Var1->m_pkSQL = (MYSQL *)0x0;\r\n  p_Var1->iID = 0;\r\n  LOCK();\r\n  DAT_083223c8 = DAT_083223c8 + 1;\r\n  UNLOCK();\r\n  p_Var1->uiResultPos = 0;\r\n  p_Var1->uiSQLErrno = 0;\r\n  (p_Var1->vec_pkResult).super__Vector_base<_SQLResult*,std::allocator<_SQLResult*>_>.\r\n  super__Vector_alloc_base<_SQLResult*,std::allocator<_SQLResult*>,true>._M_finish =\r\n       (SQLResult **)0x0;\r\n  (p_Var1->vec_pkResult).super__Vector_base<_SQLResult*,std::allocator<_SQLResult*>_>.\r\n  super__Vector_alloc_base<_SQLResult*,std::allocator<_SQLResult*>,true>._M_end_of_storage =\r\n       (SQLResult **)0x0;\r\n  iVar2 = this->m_iMsgCount;\r\n  p_Var1->m_pkSQL = &this->m_hDB;\r\n  (p_Var1->stQuery)._M_dataplus._M_p = &DAT_083223cc;\r\n  iVar2 = iVar2 + 1;\r\n  this->m_iMsgCount = iVar2;\r\n  p_Var1->iID = iVar2;\r\n  (p_Var1->vec_pkResult).super__Vector_base<_SQLResult*,std::allocator<_SQLResult*>_>.\r\n  super__Vector_alloc_base<_SQLResult*,std::allocator<_SQLResult*>,true>._M_start =\r\n       (SQLResult **)0x0;\r\n  p_Var1->pvUserData = (void *)0x0;\r\n  p_Var1->bReturn = false;\r\n  strlen(param_1);\r\n  std::string::assign((char *)&p_Var1->stQuery,(uint)param_1);\r\n  PushQuery(this,p_Var1);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d4e30"
+    },
+    {
+      "function": {
+        "name": "CAsyncSQL::PushQuery",
+        "address": "081d50b0"
+      },
+      "code": "\r\n/* CAsyncSQL::PushQuery(_SQLMsg*) */\r\n\r\nvoid __thiscall CAsyncSQL::PushQuery(CAsyncSQL *this,_SQLMsg *param_1)\r\n\r\n{\r\n  SQLMsg **ppSVar1;\r\n  \r\n  pthread_mutex_lock((pthread_mutex_t *)this->m_mtxQuery);\r\n  ppSVar1 = (this->m_queue_query).c.super__Deque_base<_SQLMsg*,std::allocator<_SQLMsg*>_>._M_finish.\r\n            _M_cur;\r\n  if (ppSVar1 ==\r\n      (this->m_queue_query).c.super__Deque_base<_SQLMsg*,std::allocator<_SQLMsg*>_>._M_finish.\r\n      _M_last + -1) {\r\n    std::deque<_SQLMsg*,std::allocator<_SQLMsg*>>::_M_push_back_aux\r\n              ((deque<_SQLMsg*,std::allocator<_SQLMsg*>> *)&this->m_queue_query,&param_1);\r\n  }\r\n  else {\r\n    if (ppSVar1 != (SQLMsg **)0x0) {\r\n      *ppSVar1 = param_1;\r\n    }\r\n    (this->m_queue_query).c.super__Deque_base<_SQLMsg*,std::allocator<_SQLMsg*>_>._M_finish._M_cur =\r\n         ppSVar1 + 1;\r\n  }\r\n  CSemaphore::Release(&this->m_sem,1);\r\n  pthread_mutex_unlock((pthread_mutex_t *)this->m_mtxQuery);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d50b0"
+    },
+    {
+      "function": {
+        "name": "LogManager::EscapeString",
+        "address": "080784c0"
+      },
+      "code": "\r\n/* DWARF original prototype: ulong EscapeString(LogManager * this, void * to, void * from, ulong\r\n   length) */\r\n\r\nulong __thiscall LogManager::EscapeString(LogManager *this,void *to,void *from,ulong length)\r\n\r\n{\r\n  ulong uVar1;\r\n  \r\n  CAsyncSQL::GetSQLHandle(&this->m_sql);\r\n  uVar1 = mysql_real_escape_string();\r\n  return uVar1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x080784c0"
+    },
+    {
+      "function": {
+        "name": "CAsyncSQL::GetSQLHandle",
+        "address": "081d5cd0"
+      },
+      "code": "\r\n/* CAsyncSQL::GetSQLHandle() */\r\n\r\nCAsyncSQL * __thiscall CAsyncSQL::GetSQLHandle(CAsyncSQL *this)\r\n\r\n{\r\n  return this;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d5cd0"
+    },
+    {
+      "function": {
+        "name": "get_table_postfix",
+        "address": "080dac10"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nchar * get_table_postfix(void)\r\n\r\n{\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n  *(undefined1 *)\r\n   ((int)g_table_postfix._M_dataplus._M_p + *(int *)((int)g_table_postfix._M_dataplus._M_p + -0xc))\r\n       = std::string::_Rep::_S_terminal;\r\n  return g_table_postfix._M_dataplus._M_p._M_p;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x080dac10"
+    },
+    {
+      "function": {
+        "name": "LogManager::Connect",
+        "address": "080783f0"
+      },
+      "code": "\r\n/* DWARF original prototype: bool Connect(LogManager * this, char * host, char * user, char * pwd,\r\n   char * db) */\r\n\r\nbool __thiscall LogManager::Connect(LogManager *this,char *host,char *user,char *pwd,char *db)\r\n\r\n{\r\n  char cVar1;\r\n  \r\n                    /* Unresolved local var: size_t __n@[???] */\r\n  g_stLocale[*(int *)(g_stLocale + -0xc)] = std::string::_Rep::_S_terminal;\r\n  cVar1 = CAsyncSQL::Setup(&this->m_sql,host,user,pwd,db,g_stLocale,false);\r\n  if (cVar1 != '\\0') {\r\n    this->m_bIsConnect = true;\r\n  }\r\n  return this->m_bIsConnect;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x080783f0"
+    },
+    {
+      "function": {
+        "name": "LogManager::IsConnected",
+        "address": "080784b0"
+      },
+      "code": "\r\n/* DWARF original prototype: bool IsConnected(LogManager * this) */\r\n\r\nbool __thiscall LogManager::IsConnected(LogManager *this)\r\n\r\n{\r\n  return this->m_bIsConnect;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x080784b0"
+    }
+  ]
+}

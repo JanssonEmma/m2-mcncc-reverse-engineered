@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0818c7d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER_MANAGER::Find",
+      "address": "0818c7d0"
+    },
+    "code": "\r\n/* DWARF original prototype: LPCHARACTER Find(CHARACTER_MANAGER * this, VID * vid) */\r\n\r\nLPCHARACTER __thiscall CHARACTER_MANAGER::Find(CHARACTER_MANAGER *this,VID *vid)\r\n\r\n{\r\n  bool bVar1;\r\n  LPCHARACTER pCVar2;\r\n  \r\n                    /* Unresolved local var: LPCHARACTER tch@[DW_OP_reg2(EDX)] */\r\n  pCVar2 = Find(this,vid->m_id);\r\n  if (pCVar2 != (LPCHARACTER)0x0) {\r\n    bVar1 = false;\r\n    if (((pCVar2->m_vid).m_id == vid->m_id) && ((pCVar2->m_vid).m_crc == vid->m_crc)) {\r\n      bVar1 = true;\r\n    }\r\n    if (bVar1) {\r\n      return pCVar2;\r\n    }\r\n  }\r\n  return (LPCHARACTER)0x0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

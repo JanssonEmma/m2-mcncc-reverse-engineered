@@ -1,0 +1,680 @@
+[
+  {
+    "root": {
+      "name": "PC::GetCurrentQuestIndex",
+      "address": "0805dda0"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805ddf4"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestIndexByName",
+        "state": "actual-applied-manager-query100",
+        "definitions": [
+          {
+            "path": "game/src/questmanager.cpp",
+            "line": 45,
+            "sha256": "5eb96caa1e1fc24827000b1af82672737a41c8c8d423b256aa3e126d32051c01"
+          }
+        ],
+        "call_sites": [
+          "0805ddc6"
+        ]
+      },
+      {
+        "name": "PC::GetCurrentQuestName",
+        "state": "actual-current-source",
+        "definitions": [
+          {
+            "path": "game/src/questpc.cpp",
+            "line": 18,
+            "sha256": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90"
+          }
+        ],
+        "call_sites": [
+          "0805ddaf"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::SetCurrentQuestStateName",
+      "address": "0805e2a0"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e367"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e33e"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::append",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e2fd"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::string",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e2dc"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::strlen",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e2e8"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestStateIndex",
+        "state": "PENDING-full-Lua-state-resolution",
+        "definitions": [],
+        "call_sites": [
+          "0805e2cb"
+        ]
+      },
+      {
+        "name": "PC::SetFlag",
+        "state": "actual-current-source",
+        "definitions": [
+          {
+            "path": "game/src/questpc.cpp",
+            "line": 28,
+            "sha256": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90"
+          }
+        ],
+        "call_sites": [
+          "0805e316"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::SetQuestState",
+      "address": "0805e380"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e3f2"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestStateIndex",
+        "state": "PENDING-full-Lua-state-resolution",
+        "definitions": [],
+        "call_sites": [
+          "0805e3ac"
+        ]
+      },
+      {
+        "name": "PC::SetQuestState",
+        "state": "check-full-Lua-wrapper-frontier",
+        "definitions": [],
+        "call_sites": [
+          "0805e3c6"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::SetQuestState",
+      "address": "0805e400"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e49f"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::append",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e443"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::string",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e422"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::strlen",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e42e"
+        ]
+      },
+      {
+        "name": "PC::AddQuestStateChange",
+        "state": "staged-closed-PC-storage",
+        "definitions": [],
+        "call_sites": [
+          "0805e486"
+        ]
+      },
+      {
+        "name": "PC::GetFlag",
+        "state": "actual-current-source",
+        "definitions": [
+          {
+            "path": "game/src/questpc.cpp",
+            "line": 46,
+            "sha256": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90"
+          }
+        ],
+        "call_sites": [
+          "0805e452"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::AddQuestStateChange",
+      "address": "0805e4b0"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e585"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestIndexByName",
+        "state": "actual-applied-manager-query100",
+        "definitions": [
+          {
+            "path": "game/src/questmanager.cpp",
+            "line": 45,
+            "sha256": "5eb96caa1e1fc24827000b1af82672737a41c8c8d423b256aa3e126d32051c01"
+          }
+        ],
+        "call_sites": [
+          "0805e4d3"
+        ]
+      },
+      {
+        "name": "sys_log",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e512"
+        ]
+      },
+      {
+        "name": "vector<quest::PC::TQuestStateChangeInfo,std::allocator<quest::PC::TQuestStateChangeInfo>_>::_M_insert_aux",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e55c"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::SetQuest",
+      "address": "0805e5a0"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805ebe8"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805ea7a"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e9ef",
+          "0805e9fd",
+          "0805ea0e",
+          "0805ea1f",
+          "0805ea30",
+          "0805ea41",
+          "0805ea52",
+          "0805ea63",
+          "0805ea8b",
+          "0805ea9c",
+          "0805eaad",
+          "0805eabe",
+          "0805eacf",
+          "0805eae0",
+          "0805eaf1",
+          "0805eb02"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_dispose",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e8f2"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::append",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e98f"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::assign",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e808",
+          "0805eb59",
+          "0805eb6e",
+          "0805eb83",
+          "0805eba7"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::string",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e96e"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::strlen",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e97a"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestIndexByName",
+        "state": "actual-applied-manager-query100",
+        "definitions": [
+          {
+            "path": "game/src/questmanager.cpp",
+            "line": 45,
+            "sha256": "5eb96caa1e1fc24827000b1af82672737a41c8c8d423b256aa3e126d32051c01"
+          }
+        ],
+        "call_sites": [
+          "0805e5c3"
+        ]
+      },
+      {
+        "name": "PC::SetFlag",
+        "state": "actual-current-source",
+        "definitions": [
+          {
+            "path": "game/src/questpc.cpp",
+            "line": 28,
+            "sha256": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90"
+          }
+        ],
+        "call_sites": [
+          "0805e9ae"
+        ]
+      },
+      {
+        "name": "QuestState::QuestState",
+        "state": "actual-full-record constructor/implicit memberwise lifecycle, counter caveat",
+        "definitions": [],
+        "call_sites": [
+          "0805e62c",
+          "0805e64a",
+          "0805e668",
+          "0805e866",
+          "0805e884"
+        ]
+      },
+      {
+        "name": "QuestState::~QuestState",
+        "state": "actual-full-record constructor/implicit memberwise lifecycle, counter caveat",
+        "definitions": [],
+        "call_sites": [
+          "0805e8cf"
+        ]
+      },
+      {
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::find",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e5f4"
+        ]
+      },
+      {
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::insert_unique",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e683",
+          "0805e8b6"
+        ]
+      },
+      {
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::lower_bound",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e827"
+        ]
+      },
+      {
+        "name": "__simple_alloc<quest::AArgScript*,std::__default_alloc_template<true,_0>_>::deallocate",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e69d",
+          "0805e71c"
+        ]
+      },
+      {
+        "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*>_>::operator=",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805ebbc"
+        ]
+      },
+      {
+        "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*>_>::~vector",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0805e8dd"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::HasQuest",
+      "address": "08060c10"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060c92"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestIndexByName",
+        "state": "actual-applied-manager-query100",
+        "definitions": [
+          {
+            "path": "game/src/questmanager.cpp",
+            "line": 45,
+            "sha256": "5eb96caa1e1fc24827000b1af82672737a41c8c8d423b256aa3e126d32051c01"
+          }
+        ],
+        "call_sites": [
+          "08060c30"
+        ]
+      },
+      {
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::find",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060c4c"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::GetQuest",
+      "address": "08060ca0"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060e42"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060df8",
+          "08060e06",
+          "08060e14"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_dispose",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060da2"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestIndexByName",
+        "state": "actual-applied-manager-query100",
+        "definitions": [
+          {
+            "path": "game/src/questmanager.cpp",
+            "line": 45,
+            "sha256": "5eb96caa1e1fc24827000b1af82672737a41c8c8d423b256aa3e126d32051c01"
+          }
+        ],
+        "call_sites": [
+          "08060cca"
+        ]
+      },
+      {
+        "name": "QuestState::QuestState",
+        "state": "actual-full-record constructor/implicit memberwise lifecycle, counter caveat",
+        "definitions": [],
+        "call_sites": [
+          "08060d1f",
+          "08060d3d"
+        ]
+      },
+      {
+        "name": "QuestState::~QuestState",
+        "state": "actual-full-record constructor/implicit memberwise lifecycle, counter caveat",
+        "definitions": [],
+        "call_sites": [
+          "08060d7f"
+        ]
+      },
+      {
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::insert_unique",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060d69"
+        ]
+      },
+      {
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::lower_bound",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060ce9"
+        ]
+      },
+      {
+        "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*>_>::~vector",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08060d8d"
+        ]
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "PC::ClearQuest",
+      "address": "080617f0"
+    },
+    "has_more": false,
+    "callees": [
+      {
+        "name": "<EXTERNAL>::__assert",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "080618fb"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "080618c9"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::append",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08061829"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::compare",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "08061957"
+        ]
+      },
+      {
+        "name": "<EXTERNAL>::std::string::string",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0806180f"
+        ]
+      },
+      {
+        "name": "CQuestManager::GetQuestIndexByName",
+        "state": "actual-applied-manager-query100",
+        "definitions": [
+          {
+            "path": "game/src/questmanager.cpp",
+            "line": 45,
+            "sha256": "5eb96caa1e1fc24827000b1af82672737a41c8c8d423b256aa3e126d32051c01"
+          }
+        ],
+        "call_sites": [
+          "08061868"
+        ]
+      },
+      {
+        "name": "PC::ClearTimer",
+        "state": "actual-current-source",
+        "definitions": [
+          {
+            "path": "game/src/questpc.cpp",
+            "line": 20,
+            "sha256": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90"
+          }
+        ],
+        "call_sites": [
+          "08061847"
+        ]
+      },
+      {
+        "name": "PC::SetFlag",
+        "state": "actual-current-source",
+        "definitions": [
+          {
+            "path": "game/src/questpc.cpp",
+            "line": 28,
+            "sha256": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90"
+          }
+        ],
+        "call_sites": [
+          "08061979"
+        ]
+      },
+      {
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "state": "original-standard-library/header or pending",
+        "definitions": [],
+        "call_sites": [
+          "0806188b",
+          "08061916"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,213 @@
+[
+  {
+    "die": "0x1fb19",
+    "tag": "DW_TAG_typedef",
+    "attributes": {
+      "DW_AT_name": "LPEVENTINFO",
+      "DW_AT_type": 129789
+    },
+    "type": {
+      "die": "0x1fafd",
+      "tag": "DW_TAG_pointer_type",
+      "attributes": {
+        "DW_AT_byte_size": 4,
+        "DW_AT_type": 129671
+      },
+      "type": {
+        "die": "0x1fa87",
+        "tag": "DW_TAG_structure_type",
+        "attributes": {
+          "DW_AT_name": "event_info",
+          "DW_AT_byte_size": 8
+        }
+      }
+    }
+  },
+  {
+    "die": "0x1fb8f",
+    "tag": "DW_TAG_member",
+    "attributes": {
+      "DW_AT_name": "file",
+      "DW_AT_type": 25468
+    },
+    "type": {
+      "die": "0x637c",
+      "tag": "DW_TAG_array_type",
+      "attributes": {
+        "DW_AT_type": 626
+      },
+      "type": {
+        "die": "0x272",
+        "tag": "DW_TAG_base_type",
+        "attributes": {
+          "DW_AT_name": "char",
+          "DW_AT_byte_size": 1
+        }
+      },
+      "children": [
+        {
+          "die": "0x6385",
+          "tag": "DW_TAG_subrange_type",
+          "attributes": {
+            "DW_AT_type": 1072,
+            "DW_AT_upper_bound": 63
+          },
+          "type": {
+            "die": "0x430",
+            "tag": "DW_TAG_base_type",
+            "attributes": {
+              "DW_AT_name": "unsigned int",
+              "DW_AT_byte_size": 4
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "die": "0x1fc04",
+    "tag": "DW_TAG_typedef",
+    "attributes": {
+      "DW_AT_name": "TEVENTFUNC",
+      "DW_AT_type": 130063
+    },
+    "type": {
+      "die": "0x1fc0f",
+      "tag": "DW_TAG_pointer_type",
+      "attributes": {
+        "DW_AT_byte_size": 4,
+        "DW_AT_type": 130069
+      },
+      "type": {
+        "die": "0x1fc15",
+        "tag": "DW_TAG_subroutine_type",
+        "attributes": {
+          "DW_AT_type": 732
+        },
+        "type": {
+          "die": "0x2dc",
+          "tag": "DW_TAG_base_type",
+          "attributes": {
+            "DW_AT_name": "long int",
+            "DW_AT_byte_size": 4
+          }
+        },
+        "children": [
+          {
+            "die": "0x1fc1e",
+            "tag": "DW_TAG_formal_parameter",
+            "attributes": {
+              "DW_AT_type": 130046
+            },
+            "type": {
+              "die": "0x1fbfe",
+              "tag": "DW_TAG_pointer_type",
+              "attributes": {
+                "DW_AT_byte_size": 4,
+                "DW_AT_type": 129828
+              },
+              "type": {
+                "die": "0x1fb24",
+                "depth_limit": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "die": "0x26ef7",
+    "tag": "DW_TAG_variable",
+    "attributes": {
+      "DW_AT_name": "cxx_q",
+      "DW_AT_type": 126457,
+      "DW_AT_location": [
+        3,
+        196,
+        36,
+        50,
+        8
+      ]
+    },
+    "type": {
+      "die": "0x1edf9",
+      "tag": "DW_TAG_structure_type",
+      "attributes": {
+        "DW_AT_name": "CEventQueue",
+        "DW_AT_byte_size": 16
+      }
+    }
+  },
+  {
+    "die": "0x26f08",
+    "tag": "DW_TAG_variable",
+    "attributes": {
+      "DW_AT_name": "s_pool_event",
+      "DW_AT_type": 135474,
+      "DW_AT_external": true,
+      "DW_AT_location": [
+        3,
+        224,
+        36,
+        50,
+        8
+      ]
+    },
+    "type": {
+      "die": "0x21132",
+      "tag": "DW_TAG_structure_type",
+      "attributes": {
+        "DW_AT_name": "stack<event*,std::deque<event*, std::allocator<event*> > >",
+        "DW_AT_byte_size": 40
+      }
+    }
+  },
+  {
+    "die": "0x26f1b",
+    "tag": "DW_TAG_variable",
+    "attributes": {
+      "DW_AT_name": "g_event_info",
+      "DW_AT_type": 140523,
+      "DW_AT_external": true,
+      "DW_AT_location": [
+        3,
+        8,
+        37,
+        50,
+        8
+      ]
+    },
+    "type": {
+      "die": "0x224eb",
+      "tag": "DW_TAG_structure_type",
+      "attributes": {
+        "DW_AT_name": "map<int,event_info*,std::less<int>,std::allocator<std::pair<const int, event_info*> > >",
+        "DW_AT_byte_size": 12
+      }
+    }
+  },
+  {
+    "die": "0x26f2e",
+    "tag": "DW_TAG_variable",
+    "attributes": {
+      "DW_AT_name": "s_event_info_count",
+      "DW_AT_type": 116,
+      "DW_AT_location": [
+        3,
+        20,
+        37,
+        50,
+        8
+      ]
+    },
+    "type": {
+      "die": "0x74",
+      "tag": "DW_TAG_base_type",
+      "attributes": {
+        "DW_AT_name": "int",
+        "DW_AT_byte_size": 4
+      }
+    }
+  }
+]

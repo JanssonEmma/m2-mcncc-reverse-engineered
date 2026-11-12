@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168a90",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168a90",
+    "function": {
+      "name": "CItem::StartAccessorySocketExpireEvent",
+      "address": "08168a90"
+    },
+    "signature": "void StartAccessorySocketExpireEvent(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void StartAccessorySocketExpireEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StartAccessorySocketExpireEvent(CItem *this)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  DWORD dwInfoID;\r\n  LPEVENT pkEvent;\r\n  item_vid_event_info *info;\r\n  \r\n                    /* Unresolved local var: int iSec@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  bVar1 = IsAccessoryForSocket(this);\r\n  if ((((bVar1) && (this->m_pkAccessorySocketExpireEvent == (LPEVENT)0x0)) &&\r\n      (this->m_alSockets[1] != 0)) && (this->m_alSockets[0] != 0)) {\r\n    iVar2 = this->m_alSockets[2];\r\n    SetAccessorySocketExpireEvent(this,(LPEVENT)0x0);\r\n    if (iVar2 < 2) {\r\n      iVar2 = 5;\r\n    }\r\n    else {\r\n      iVar2 = MIN(iVar2,0x3c);\r\n    }\r\n    dwInfoID = __AllocEventInfo(4,&info);\r\n    info->item_vid = this->m_dwVID;\r\n    pkEvent = event_create_ex(accessory_socket_expire_event,dwInfoID,iVar2 * passes_per_sec,\r\n                              \"item.cpp\",0x4e8);\r\n    SetAccessorySocketExpireEvent(this,pkEvent);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

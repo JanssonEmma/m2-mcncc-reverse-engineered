@@ -1,0 +1,107 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"__static_initialization_and_destruction_0\",\n    \"address\": \"080e6cf0\"\n  },\n  \"code\": \"\\r\\nvoid __static_initialization_and_destruction_0(int __initialize_p,int __priority)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  \\r\\n  if (__priority == 0xffff) {\\r\\n    if (__initialize_p == 1) {\\r\\n      std::ios_base::Init::Init((Init *)&std::__ioinit);\\r\\n                    /* Unresolved local var:\\r\\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *\\r\\n                       __ret@[DW_OP_reg0(EAX)] */\\r\\n      g_map_itemAttr = (undefined4 *)0x0;\\r\\n      puVar1 = (undefined4 *)std::__default_alloc_template<true,0>::allocate(0x5c);\\r\\n      g_map_itemAttr = puVar1;\\r\\n      puVar1[1] = 0;\\r\\n      *puVar1 = 0;\\r\\n      DAT_0832329c = 0;\\r\\n      g_map_itemAttr[2] = g_map_itemAttr;\\r\\n      g_map_itemAttr[3] = g_map_itemAttr;\\r\\n                    /* Unresolved local var:\\r\\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *\\r\\n                       __ret@[DW_OP_reg0(EAX)] */\\r\\n      g_map_itemRare = (undefined4 *)0x0;\\r\\n      puVar1 = (undefined4 *)std::__default_alloc_template<true,0>::allocate(0x5c);\\r\\n      g_map_itemRare = puVar1;\\r\\n      puVar1[1] = 0;\\r\\n      *puVar1 = 0;\\r\\n      DAT_083232a8 = 0;\\r\\n      g_map_itemRare[2] = g_map_itemRare;\\r\\n      g_map_itemRare[3] = g_map_itemRare;\\r\\n    }\\r\\n    if (__initialize_p == 0) {\\r\\n      if (DAT_083232a8 != 0) {\\r\\n        _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n        ::_M_erase((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n                    *)&g_map_itemRare,\\r\\n                   (_Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *)\\r\\n                   g_map_itemRare[1]);\\r\\n        g_map_itemRare[2] = g_map_itemRare;\\r\\n        g_map_itemRare[1] = 0;\\r\\n        g_map_itemRare[3] = g_map_itemRare;\\r\\n        DAT_083232a8 = 0;\\r\\n      }\\r\\n      std::__default_alloc_template<true,0>::deallocate(g_map_itemRare,0x5c);\\r\\n    }\\r\\n    if (__initialize_p == 0) {\\r\\n      if (DAT_0832329c != 0) {\\r\\n        _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n        ::_M_erase((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\\r\\n                    *)&g_map_itemAttr,\\r\\n                   (_Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *)\\r\\n                   g_map_itemAttr[1]);\\r\\n        DAT_0832329c = 0;\\r\\n        g_map_itemAttr[2] = g_map_itemAttr;\\r\\n        g_map_itemAttr[1] = 0;\\r\\n        g_map_itemAttr[3] = g_map_itemAttr;\\r\\n      }\\r\\n      std::__default_alloc_template<true,0>::deallocate(g_map_itemAttr,0x5c);\\r\\n    }\\r\\n    if (__initialize_p == 0) {\\r\\n      std::ios_base::Init::~Init((Init *)&std::__ioinit);\\r\\n    }\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "__static_initialization_and_destruction_0",
+        "address": "080e6cf0"
+      },
+      "code": "\r\nvoid __static_initialization_and_destruction_0(int __initialize_p,int __priority)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  \r\n  if (__priority == 0xffff) {\r\n    if (__initialize_p == 1) {\r\n      std::ios_base::Init::Init((Init *)&std::__ioinit);\r\n                    /* Unresolved local var:\r\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *\r\n                       __ret@[DW_OP_reg0(EAX)] */\r\n      g_map_itemAttr = (undefined4 *)0x0;\r\n      puVar1 = (undefined4 *)std::__default_alloc_template<true,0>::allocate(0x5c);\r\n      g_map_itemAttr = puVar1;\r\n      puVar1[1] = 0;\r\n      *puVar1 = 0;\r\n      DAT_0832329c = 0;\r\n      g_map_itemAttr[2] = g_map_itemAttr;\r\n      g_map_itemAttr[3] = g_map_itemAttr;\r\n                    /* Unresolved local var:\r\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *\r\n                       __ret@[DW_OP_reg0(EAX)] */\r\n      g_map_itemRare = (undefined4 *)0x0;\r\n      puVar1 = (undefined4 *)std::__default_alloc_template<true,0>::allocate(0x5c);\r\n      g_map_itemRare = puVar1;\r\n      puVar1[1] = 0;\r\n      *puVar1 = 0;\r\n      DAT_083232a8 = 0;\r\n      g_map_itemRare[2] = g_map_itemRare;\r\n      g_map_itemRare[3] = g_map_itemRare;\r\n    }\r\n    if (__initialize_p == 0) {\r\n      if (DAT_083232a8 != 0) {\r\n        _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n        ::_M_erase((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n                    *)&g_map_itemRare,\r\n                   (_Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *)\r\n                   g_map_itemRare[1]);\r\n        g_map_itemRare[2] = g_map_itemRare;\r\n        g_map_itemRare[1] = 0;\r\n        g_map_itemRare[3] = g_map_itemRare;\r\n        DAT_083232a8 = 0;\r\n      }\r\n      std::__default_alloc_template<true,0>::deallocate(g_map_itemRare,0x5c);\r\n    }\r\n    if (__initialize_p == 0) {\r\n      if (DAT_0832329c != 0) {\r\n        _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n        ::_M_erase((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>\r\n                    *)&g_map_itemAttr,\r\n                   (_Rb_tree_node<std::pair<const_long_unsigned_int,_SItemAttrTable>_> *)\r\n                   g_map_itemAttr[1]);\r\n        DAT_0832329c = 0;\r\n        g_map_itemAttr[2] = g_map_itemAttr;\r\n        g_map_itemAttr[1] = 0;\r\n        g_map_itemAttr[3] = g_map_itemAttr;\r\n      }\r\n      std::__default_alloc_template<true,0>::deallocate(g_map_itemAttr,0x5c);\r\n    }\r\n    if (__initialize_p == 0) {\r\n      std::ios_base::Init::~Init((Init *)&std::__ioinit);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"__static_initialization_and_destruction_0\",\n    \"address\": \"080e6cf0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"080e6d3f\",\n        \"target\": \"0804c6ac\",\n        \"name\": \"<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080e6d6b\",\n        \"target\": \"0804c6ac\",\n        \"name\": \"<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080e6d83\",\n        \"target\": \"0804c7bc\",\n        \"name\": \"<EXTERNAL>::std::ios_base::Init::~Init\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080e6d9d\",\n        \"target\": \"080e6fa0\",\n        \"name\": \"_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::_M_erase\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"080e6ddb\",\n        \"target\": \"080e6fa0\",\n        \"name\": \"_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::_M_erase\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"080e6e0f\",\n        \"target\": \"0804c4bc\",\n        \"name\": \"<EXTERNAL>::std::ios_base::Init::Init\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080e6e2c\",\n        \"target\": \"0804ba6c\",\n        \"name\": \"<EXTERNAL>::std::__default_alloc_template<true,0>::allocate\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080e6e73\",\n        \"target\": \"0804ba6c\",\n        \"name\": \"<EXTERNAL>::std::__default_alloc_template<true,0>::allocate\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 8,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "__static_initialization_and_destruction_0",
+        "address": "080e6cf0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "080e6d3f",
+            "target": "0804c6ac",
+            "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080e6d6b",
+            "target": "0804c6ac",
+            "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::deallocate",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080e6d83",
+            "target": "0804c7bc",
+            "name": "<EXTERNAL>::std::ios_base::Init::~Init",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080e6d9d",
+            "target": "080e6fa0",
+            "name": "_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::_M_erase",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "080e6ddb",
+            "target": "080e6fa0",
+            "name": "_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_SItemAttrTable>,std::_Select1st<std::pair<const_long_unsigned_int,_SItemAttrTable>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_SItemAttrTable>_>_>::_M_erase",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "080e6e0f",
+            "target": "0804c4bc",
+            "name": "<EXTERNAL>::std::ios_base::Init::Init",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080e6e2c",
+            "target": "0804ba6c",
+            "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::allocate",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080e6e73",
+            "target": "0804ba6c",
+            "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::allocate",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 8,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

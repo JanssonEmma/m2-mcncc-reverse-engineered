@@ -1,0 +1,630 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::AddTimer\",\n    \"address\": \"0805ec00\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void AddTimer(PC * this, string * name, LPEVENT pEvent) */\\r\\n\\r\\nvoid __thiscall PC::AddTimer(PC *this,string *name,LPEVENT pEvent)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  int iVar2;\\r\\n  int local_5c [4];\\r\\n  int local_4c;\\r\\n  LPEVENT local_48;\\r\\n  pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,event*>\\r\\n  local_3c [5];\\r\\n  \\r\\n  RemoveTimer(this,name);\\r\\n  std::string::string((string *)local_5c,(string *)name);\\r\\n  std::string::string((string *)&local_4c,(string *)local_5c);\\r\\n  local_48 = pEvent;\\r\\n  std::string::string((string *)local_3c,(string *)&local_4c);\\r\\n  local_3c[0].second = local_48;\\r\\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n  ::insert_unique(&(this->m_TimerMap)._M_t,local_3c);\\r\\n  LOCK();\\r\\n  piVar1 = (int *)((int)local_3c[0].first._M_dataplus._M_p + -4);\\r\\n  iVar2 = *piVar1;\\r\\n  *piVar1 = *piVar1 + -1;\\r\\n  UNLOCK();\\r\\n  if (iVar2 < 1) {\\r\\n    std::string::_Rep::_M_destroy((allocator *)((int)local_3c[0].first._M_dataplus._M_p + -0xc));\\r\\n  }\\r\\n  LOCK();\\r\\n  piVar1 = (int *)(local_4c + -4);\\r\\n  iVar2 = *piVar1;\\r\\n  *piVar1 = *piVar1 + -1;\\r\\n  UNLOCK();\\r\\n  if (iVar2 < 1) {\\r\\n    std::string::_Rep::_M_destroy((allocator *)(local_4c + -0xc));\\r\\n  }\\r\\n  LOCK();\\r\\n  piVar1 = (int *)(local_5c[0] + -4);\\r\\n  iVar2 = *piVar1;\\r\\n  *piVar1 = *piVar1 + -1;\\r\\n  UNLOCK();\\r\\n  if (iVar2 < 1) {\\r\\n    std::string::_Rep::_M_destroy((allocator *)(local_5c[0] + -0xc));\\r\\n  }\\r\\n  sys_log(0,\\\"QUEST add timer %p %d\\\",pEvent,(this->m_TimerMap)._M_t._M_node_count);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::AddTimer",
+        "address": "0805ec00"
+      },
+      "code": "\r\n/* DWARF original prototype: void AddTimer(PC * this, string * name, LPEVENT pEvent) */\r\n\r\nvoid __thiscall PC::AddTimer(PC *this,string *name,LPEVENT pEvent)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int local_5c [4];\r\n  int local_4c;\r\n  LPEVENT local_48;\r\n  pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,event*>\r\n  local_3c [5];\r\n  \r\n  RemoveTimer(this,name);\r\n  std::string::string((string *)local_5c,(string *)name);\r\n  std::string::string((string *)&local_4c,(string *)local_5c);\r\n  local_48 = pEvent;\r\n  std::string::string((string *)local_3c,(string *)&local_4c);\r\n  local_3c[0].second = local_48;\r\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n  ::insert_unique(&(this->m_TimerMap)._M_t,local_3c);\r\n  LOCK();\r\n  piVar1 = (int *)((int)local_3c[0].first._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)local_3c[0].first._M_dataplus._M_p + -0xc));\r\n  }\r\n  LOCK();\r\n  piVar1 = (int *)(local_4c + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_4c + -0xc));\r\n  }\r\n  LOCK();\r\n  piVar1 = (int *)(local_5c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_5c[0] + -0xc));\r\n  }\r\n  sys_log(0,\"QUEST add timer %p %d\",pEvent,(this->m_TimerMap)._M_t._M_node_count);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::AddTimer\",\n    \"address\": \"0805ec00\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0805ec1c\",\n        \"target\": \"0805ee10\",\n        \"name\": \"PC::RemoveTimer\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ec31\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0805ec42\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0805ec57\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0805ec73\",\n        \"target\": \"080625c0\",\n        \"name\": \"_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>::insert_unique\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805eccf\",\n        \"target\": \"081b82a0\",\n        \"name\": \"sys_log\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ece7\",\n        \"target\": \"0804ca2c\",\n        \"name\": \"<EXTERNAL>::std::string::_Rep::_M_destroy\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0805ecf7\",\n        \"target\": \"0804ca2c\",\n        \"name\": \"<EXTERNAL>::std::string::_Rep::_M_destroy\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0805ed07\",\n        \"target\": \"0804ca2c\",\n        \"name\": \"<EXTERNAL>::std::string::_Rep::_M_destroy\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 9,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::AddTimer",
+        "address": "0805ec00"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0805ec1c",
+            "target": "0805ee10",
+            "name": "PC::RemoveTimer",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ec31",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0805ec42",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0805ec57",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0805ec73",
+            "target": "080625c0",
+            "name": "_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>::insert_unique",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805eccf",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ece7",
+            "target": "0804ca2c",
+            "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0805ecf7",
+            "target": "0804ca2c",
+            "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0805ed07",
+            "target": "0804ca2c",
+            "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 9,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"0805ec00\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec01\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec03\",\n      \"bytes\": \"57\",\n      \"instruction\": \"PUSH EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec04\",\n      \"bytes\": \"8d7dc8\",\n      \"instruction\": \"LEA EDI,[EBP + -0x38]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec07\",\n      \"bytes\": \"56\",\n      \"instruction\": \"PUSH ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec08\",\n      \"bytes\": \"53\",\n      \"instruction\": \"PUSH EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec09\",\n      \"bytes\": \"83ec7c\",\n      \"instruction\": \"SUB ESP,0x7c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec0c\",\n      \"bytes\": \"8b5d08\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec0f\",\n      \"bytes\": \"8b750c\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec12\",\n      \"bytes\": \"891c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec15\",\n      \"bytes\": \"83c34c\",\n      \"instruction\": \"ADD EBX,0x4c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec18\",\n      \"bytes\": \"89742404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec1c\",\n      \"bytes\": \"e8ef010000\",\n      \"instruction\": \"CALL 0x0805ee10\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec21\",\n      \"bytes\": \"895d94\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x6c],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec24\",\n      \"bytes\": \"8d5da8\",\n      \"instruction\": \"LEA EBX,[EBP + -0x58]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec27\",\n      \"bytes\": \"89742404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec2b\",\n      \"bytes\": \"8d75b8\",\n      \"instruction\": \"LEA ESI,[EBP + -0x48]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec2e\",\n      \"bytes\": \"891c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec31\",\n      \"bytes\": \"e8e6d0feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec36\",\n      \"bytes\": \"895c2404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec3a\",\n      \"bytes\": \"bbffffffff\",\n      \"instruction\": \"MOV EBX,0xffffffff\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec3f\",\n      \"bytes\": \"893424\",\n      \"instruction\": \"MOV dword ptr [ESP],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec42\",\n      \"bytes\": \"e8d5d0feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec47\",\n      \"bytes\": \"89742404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec4b\",\n      \"bytes\": \"8b4510\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0x10]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec4e\",\n      \"bytes\": \"8d7598\",\n      \"instruction\": \"LEA ESI,[EBP + -0x68]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec51\",\n      \"bytes\": \"893c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec54\",\n      \"bytes\": \"8945bc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x44],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec57\",\n      \"bytes\": \"e8c0d0feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec5c\",\n      \"bytes\": \"897c2408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec60\",\n      \"bytes\": \"8b45bc\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x44]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec63\",\n      \"bytes\": \"8b5594\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + -0x6c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec66\",\n      \"bytes\": \"8945cc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x34],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec69\",\n      \"bytes\": \"8d45d8\",\n      \"instruction\": \"LEA EAX,[EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec6c\",\n      \"bytes\": \"89542404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec70\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec73\",\n      \"bytes\": \"e848390000\",\n      \"instruction\": \"CALL 0x080625c0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec78\",\n      \"bytes\": \"8b45c8\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x38]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec7b\",\n      \"bytes\": \"83ec04\",\n      \"instruction\": \"SUB ESP,0x4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec7e\",\n      \"bytes\": \"89da\",\n      \"instruction\": \"MOV EDX,EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec80\",\n      \"bytes\": \"8d48f4\",\n      \"instruction\": \"LEA ECX,[EAX + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec83\",\n      \"bytes\": \"f00fc150fc\",\n      \"instruction\": \"XADD.LOCK dword ptr [EAX + -0x4],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec88\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec8a\",\n      \"bytes\": \"7e74\",\n      \"instruction\": \"JLE 0x0805ed00\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec8c\",\n      \"bytes\": \"8b45b8\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x48]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec8f\",\n      \"bytes\": \"89da\",\n      \"instruction\": \"MOV EDX,EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec91\",\n      \"bytes\": \"8d48f4\",\n      \"instruction\": \"LEA ECX,[EAX + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec94\",\n      \"bytes\": \"f00fc150fc\",\n      \"instruction\": \"XADD.LOCK dword ptr [EAX + -0x4],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec99\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec9b\",\n      \"bytes\": \"7e53\",\n      \"instruction\": \"JLE 0x0805ecf0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ec9d\",\n      \"bytes\": \"8b45a8\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x58]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eca0\",\n      \"bytes\": \"89da\",\n      \"instruction\": \"MOV EDX,EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eca2\",\n      \"bytes\": \"8d48f4\",\n      \"instruction\": \"LEA ECX,[EAX + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eca5\",\n      \"bytes\": \"f00fc150fc\",\n      \"instruction\": \"XADD.LOCK dword ptr [EAX + -0x4],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecaa\",\n      \"bytes\": \"85d2\",\n      \"instruction\": \"TEST EDX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecac\",\n      \"bytes\": \"7e32\",\n      \"instruction\": \"JLE 0x0805ece0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecae\",\n      \"bytes\": \"8b5594\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + -0x6c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecb1\",\n      \"bytes\": \"8b4204\",\n      \"instruction\": \"MOV EAX,dword ptr [EDX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecb4\",\n      \"bytes\": \"bad3721f08\",\n      \"instruction\": \"MOV EDX,0x81f72d3\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecb9\",\n      \"bytes\": \"89542404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecbd\",\n      \"bytes\": \"8944240c\",\n      \"instruction\": \"MOV dword ptr [ESP + 0xc],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecc1\",\n      \"bytes\": \"8b4510\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0x10]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecc4\",\n      \"bytes\": \"c7042400000000\",\n      \"instruction\": \"MOV dword ptr [ESP],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eccb\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805eccf\",\n      \"bytes\": \"e8cc951500\",\n      \"instruction\": \"CALL 0x081b82a0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecd4\",\n      \"bytes\": \"8d65f4\",\n      \"instruction\": \"LEA ESP,[EBP + -0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecd7\",\n      \"bytes\": \"5b\",\n      \"instruction\": \"POP EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecd8\",\n      \"bytes\": \"5e\",\n      \"instruction\": \"POP ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecd9\",\n      \"bytes\": \"5f\",\n      \"instruction\": \"POP EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecda\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecdb\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ece0\",\n      \"bytes\": \"89742404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ece4\",\n      \"bytes\": \"890c24\",\n      \"instruction\": \"MOV dword ptr [ESP],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ece7\",\n      \"bytes\": \"e840ddfeff\",\n      \"instruction\": \"CALL 0x0804ca2c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecec\",\n      \"bytes\": \"ebc0\",\n      \"instruction\": \"JMP 0x0805ecae\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecf0\",\n      \"bytes\": \"89742404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecf4\",\n      \"bytes\": \"890c24\",\n      \"instruction\": \"MOV dword ptr [ESP],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecf7\",\n      \"bytes\": \"e830ddfeff\",\n      \"instruction\": \"CALL 0x0804ca2c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ecfc\",\n      \"bytes\": \"eb9f\",\n      \"instruction\": \"JMP 0x0805ec9d\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ed00\",\n      \"bytes\": \"89742404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ed04\",\n      \"bytes\": \"890c24\",\n      \"instruction\": \"MOV dword ptr [ESP],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ed07\",\n      \"bytes\": \"e820ddfeff\",\n      \"instruction\": \"CALL 0x0804ca2c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ed0c\",\n      \"bytes\": \"e97bffffff\",\n      \"instruction\": \"JMP 0x0805ec8c\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 83,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "0805ec00",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ec01",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "0805ec03",
+          "bytes": "57",
+          "instruction": "PUSH EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ec04",
+          "bytes": "8d7dc8",
+          "instruction": "LEA EDI,[EBP + -0x38]",
+          "comment": null
+        },
+        {
+          "address": "0805ec07",
+          "bytes": "56",
+          "instruction": "PUSH ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ec08",
+          "bytes": "53",
+          "instruction": "PUSH EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec09",
+          "bytes": "83ec7c",
+          "instruction": "SUB ESP,0x7c",
+          "comment": null
+        },
+        {
+          "address": "0805ec0c",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805ec0f",
+          "bytes": "8b750c",
+          "instruction": "MOV ESI,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805ec12",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec15",
+          "bytes": "83c34c",
+          "instruction": "ADD EBX,0x4c",
+          "comment": null
+        },
+        {
+          "address": "0805ec18",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ec1c",
+          "bytes": "e8ef010000",
+          "instruction": "CALL 0x0805ee10",
+          "comment": null
+        },
+        {
+          "address": "0805ec21",
+          "bytes": "895d94",
+          "instruction": "MOV dword ptr [EBP + -0x6c],EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec24",
+          "bytes": "8d5da8",
+          "instruction": "LEA EBX,[EBP + -0x58]",
+          "comment": null
+        },
+        {
+          "address": "0805ec27",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ec2b",
+          "bytes": "8d75b8",
+          "instruction": "LEA ESI,[EBP + -0x48]",
+          "comment": null
+        },
+        {
+          "address": "0805ec2e",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec31",
+          "bytes": "e8e6d0feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "0805ec36",
+          "bytes": "895c2404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec3a",
+          "bytes": "bbffffffff",
+          "instruction": "MOV EBX,0xffffffff",
+          "comment": null
+        },
+        {
+          "address": "0805ec3f",
+          "bytes": "893424",
+          "instruction": "MOV dword ptr [ESP],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ec42",
+          "bytes": "e8d5d0feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "0805ec47",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ec4b",
+          "bytes": "8b4510",
+          "instruction": "MOV EAX,dword ptr [EBP + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "0805ec4e",
+          "bytes": "8d7598",
+          "instruction": "LEA ESI,[EBP + -0x68]",
+          "comment": null
+        },
+        {
+          "address": "0805ec51",
+          "bytes": "893c24",
+          "instruction": "MOV dword ptr [ESP],EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ec54",
+          "bytes": "8945bc",
+          "instruction": "MOV dword ptr [EBP + -0x44],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ec57",
+          "bytes": "e8c0d0feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "0805ec5c",
+          "bytes": "897c2408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ec60",
+          "bytes": "8b45bc",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x44]",
+          "comment": null
+        },
+        {
+          "address": "0805ec63",
+          "bytes": "8b5594",
+          "instruction": "MOV EDX,dword ptr [EBP + -0x6c]",
+          "comment": null
+        },
+        {
+          "address": "0805ec66",
+          "bytes": "8945cc",
+          "instruction": "MOV dword ptr [EBP + -0x34],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ec69",
+          "bytes": "8d45d8",
+          "instruction": "LEA EAX,[EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805ec6c",
+          "bytes": "89542404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ec70",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ec73",
+          "bytes": "e848390000",
+          "instruction": "CALL 0x080625c0",
+          "comment": null
+        },
+        {
+          "address": "0805ec78",
+          "bytes": "8b45c8",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x38]",
+          "comment": null
+        },
+        {
+          "address": "0805ec7b",
+          "bytes": "83ec04",
+          "instruction": "SUB ESP,0x4",
+          "comment": null
+        },
+        {
+          "address": "0805ec7e",
+          "bytes": "89da",
+          "instruction": "MOV EDX,EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec80",
+          "bytes": "8d48f4",
+          "instruction": "LEA ECX,[EAX + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805ec83",
+          "bytes": "f00fc150fc",
+          "instruction": "XADD.LOCK dword ptr [EAX + -0x4],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ec88",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ec8a",
+          "bytes": "7e74",
+          "instruction": "JLE 0x0805ed00",
+          "comment": null
+        },
+        {
+          "address": "0805ec8c",
+          "bytes": "8b45b8",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x48]",
+          "comment": null
+        },
+        {
+          "address": "0805ec8f",
+          "bytes": "89da",
+          "instruction": "MOV EDX,EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ec91",
+          "bytes": "8d48f4",
+          "instruction": "LEA ECX,[EAX + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805ec94",
+          "bytes": "f00fc150fc",
+          "instruction": "XADD.LOCK dword ptr [EAX + -0x4],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ec99",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ec9b",
+          "bytes": "7e53",
+          "instruction": "JLE 0x0805ecf0",
+          "comment": null
+        },
+        {
+          "address": "0805ec9d",
+          "bytes": "8b45a8",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x58]",
+          "comment": null
+        },
+        {
+          "address": "0805eca0",
+          "bytes": "89da",
+          "instruction": "MOV EDX,EBX",
+          "comment": null
+        },
+        {
+          "address": "0805eca2",
+          "bytes": "8d48f4",
+          "instruction": "LEA ECX,[EAX + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805eca5",
+          "bytes": "f00fc150fc",
+          "instruction": "XADD.LOCK dword ptr [EAX + -0x4],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ecaa",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ecac",
+          "bytes": "7e32",
+          "instruction": "JLE 0x0805ece0",
+          "comment": null
+        },
+        {
+          "address": "0805ecae",
+          "bytes": "8b5594",
+          "instruction": "MOV EDX,dword ptr [EBP + -0x6c]",
+          "comment": null
+        },
+        {
+          "address": "0805ecb1",
+          "bytes": "8b4204",
+          "instruction": "MOV EAX,dword ptr [EDX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805ecb4",
+          "bytes": "bad3721f08",
+          "instruction": "MOV EDX,0x81f72d3",
+          "comment": null
+        },
+        {
+          "address": "0805ecb9",
+          "bytes": "89542404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ecbd",
+          "bytes": "8944240c",
+          "instruction": "MOV dword ptr [ESP + 0xc],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ecc1",
+          "bytes": "8b4510",
+          "instruction": "MOV EAX,dword ptr [EBP + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "0805ecc4",
+          "bytes": "c7042400000000",
+          "instruction": "MOV dword ptr [ESP],0x0",
+          "comment": null
+        },
+        {
+          "address": "0805eccb",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805eccf",
+          "bytes": "e8cc951500",
+          "instruction": "CALL 0x081b82a0",
+          "comment": null
+        },
+        {
+          "address": "0805ecd4",
+          "bytes": "8d65f4",
+          "instruction": "LEA ESP,[EBP + -0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805ecd7",
+          "bytes": "5b",
+          "instruction": "POP EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ecd8",
+          "bytes": "5e",
+          "instruction": "POP ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ecd9",
+          "bytes": "5f",
+          "instruction": "POP EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ecda",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ecdb",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "0805ece0",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ece4",
+          "bytes": "890c24",
+          "instruction": "MOV dword ptr [ESP],ECX",
+          "comment": null
+        },
+        {
+          "address": "0805ece7",
+          "bytes": "e840ddfeff",
+          "instruction": "CALL 0x0804ca2c",
+          "comment": null
+        },
+        {
+          "address": "0805ecec",
+          "bytes": "ebc0",
+          "instruction": "JMP 0x0805ecae",
+          "comment": null
+        },
+        {
+          "address": "0805ecf0",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ecf4",
+          "bytes": "890c24",
+          "instruction": "MOV dword ptr [ESP],ECX",
+          "comment": null
+        },
+        {
+          "address": "0805ecf7",
+          "bytes": "e830ddfeff",
+          "instruction": "CALL 0x0804ca2c",
+          "comment": null
+        },
+        {
+          "address": "0805ecfc",
+          "bytes": "eb9f",
+          "instruction": "JMP 0x0805ec9d",
+          "comment": null
+        },
+        {
+          "address": "0805ed00",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ed04",
+          "bytes": "890c24",
+          "instruction": "MOV dword ptr [ESP],ECX",
+          "comment": null
+        },
+        {
+          "address": "0805ed07",
+          "bytes": "e820ddfeff",
+          "instruction": "CALL 0x0804ca2c",
+          "comment": null
+        },
+        {
+          "address": "0805ed0c",
+          "bytes": "e97bffffff",
+          "instruction": "JMP 0x0805ec8c",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 83,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

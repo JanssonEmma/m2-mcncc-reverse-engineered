@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080646a0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CExchange::CExchange",
+      "address": "080646a0"
+    },
+    "code": "\r\n/* DWARF original prototype: void CExchange(CExchange * this, LPCHARACTER pOwner) */\r\n\r\nvoid __thiscall CExchange::CExchange(CExchange *this,LPCHARACTER pOwner)\r\n\r\n{\r\n  int iVar1;\r\n  CGrid *this_00;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\r\n  iVar1 = 0;\r\n  this->m_pCompany = (CExchange *)0x0;\r\n  this->m_bAccept = false;\r\n  do {\r\n    this->m_abItemPos[iVar1] = '\\0';\r\n    this->m_apItems[iVar1] = (LPITEM)0x0;\r\n    this->m_abItemDisplayPos[iVar1] = '\\0';\r\n    iVar1 = iVar1 + 1;\r\n  } while (iVar1 < 0xc);\r\n  this->m_pOwner = pOwner;\r\n  this->m_lGold = 0;\r\n  CHARACTER::SetExchange(pOwner,this);\r\n  this_00 = operator_new(0xc);\r\n  CGrid::CGrid(this_00,4,3);\r\n  this->m_pGrid = this_00;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

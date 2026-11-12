@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804f8c0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "lzo1x_1_compress",
+      "address": "0804f8c0"
+    },
+    "code": "\r\nint lzo1x_1_compress(uchar *in,lzo_uint in_len,uchar *out,lzo_uint *out_len,void *wrkmem)\r\n\r\n{\r\n  uchar uVar1;\r\n  uint uVar2;\r\n  byte bVar3;\r\n  lzo_uint lVar4;\r\n  uchar *puVar5;\r\n  uchar *puVar6;\r\n  \r\n                    /* Unresolved local var: uchar * op@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: lzo_uint t@[DW_OP_reg1(ECX)] */\r\n  lVar4 = in_len;\r\n  puVar5 = out;\r\n  if (0xd < in_len) {\r\n    lVar4 = _lzo1x_1_do_compress(in,in_len,out,out_len,wrkmem);\r\n    puVar5 = out + *out_len;\r\n  }\r\n  if (lVar4 == 0) goto LAB_0804f90a;\r\n                    /* Unresolved local var: uchar * ii@[DW_OP_reg3(EBX)] */\r\n  puVar6 = in + (in_len - lVar4);\r\n  bVar3 = (byte)lVar4;\r\n  if ((puVar5 == out) && (lVar4 < 0xef)) {\r\n    uVar2 = (uint)(byte)(bVar3 + 0x11);\r\nLAB_0804f930:\r\n                    /* Unresolved local var: lzo_uint tt@[DW_OP_reg0(EAX)] */\r\n    *puVar5 = (uchar)uVar2;\r\n    puVar5 = puVar5 + 1;\r\n  }\r\n  else {\r\n    if (3 < lVar4) {\r\n      if (lVar4 < 0x13) {\r\n        uVar2 = (uint)(byte)(bVar3 - 3);\r\n      }\r\n      else {\r\n        *puVar5 = '\\0';\r\n        for (uVar2 = lVar4 - 0x12; puVar5 = puVar5 + 1, 0xff < uVar2; uVar2 = uVar2 - 0xff) {\r\n          *puVar5 = '\\0';\r\n        }\r\n      }\r\n      goto LAB_0804f930;\r\n    }\r\n    puVar5[-2] = puVar5[-2] | bVar3;\r\n  }\r\n  do {\r\n    uVar1 = *puVar6;\r\n    puVar6 = puVar6 + 1;\r\n    *puVar5 = uVar1;\r\n    puVar5 = puVar5 + 1;\r\n    lVar4 = lVar4 - 1;\r\n  } while (lVar4 != 0);\r\nLAB_0804f90a:\r\n  *puVar5 = '\\x11';\r\n  puVar5[1] = '\\0';\r\n  puVar5[2] = '\\0';\r\n  *out_len = (lzo_uint)(puVar5 + (3 - (int)out));\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

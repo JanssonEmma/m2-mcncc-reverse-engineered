@@ -1,0 +1,3506 @@
+[
+  {
+    "cu": "questlua.cpp",
+    "record": {
+      "die": "0x14d6f8",
+      "tag": "DW_TAG_structure_type",
+      "name": "QuestState",
+      "size": 60
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "co",
+        "type": {
+          "die": "0x133dc7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x133d96",
+            "tag": "DW_TAG_typedef",
+            "name": "lua_State",
+            "size": null,
+            "type": {
+              "die": "0x133da1",
+              "tag": "DW_TAG_structure_type",
+              "name": "lua_State",
+              "size": null
+            }
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 104,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "ico",
+        "type": {
+          "die": "0x114a23",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 105,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "args",
+        "type": {
+          "die": "0x1149ff",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 106,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "suspend_state",
+        "type": {
+          "die": "0x118192",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1149ed",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              10
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 107,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "iIndex",
+        "type": {
+          "die": "0x114a23",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              12
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 108,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bStart",
+        "type": {
+          "die": "0x11e5bf",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 109,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "st",
+        "type": {
+          "die": "0x114a23",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 110,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_title",
+        "type": {
+          "die": "0x125d86",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x122864",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 112,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_name",
+        "type": {
+          "die": "0x125d86",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x122864",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 113,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_name",
+        "type": {
+          "die": "0x125d86",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x122864",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              32
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 114,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_value",
+        "type": {
+          "die": "0x114a23",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              36
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 115,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_value",
+        "type": {
+          "die": "0x114a23",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              40
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 116,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_icon_file",
+        "type": {
+          "die": "0x125d86",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x122864",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              44
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 117,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "chat_scripts",
+        "type": {
+          "die": "0x14ce8d",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*> >",
+          "size": 12
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              48
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 119,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x14d828",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x14d6f8",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10QuestStateaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d82e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d834",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d83a",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x14d6f8",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d82e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d834",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d83a",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x14d6f8",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d82e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x114a23",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": true
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "quest.h",
+        "line": 121,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d82e",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questlua.cpp",
+    "record": {
+      "die": "0x14d9a1",
+      "tag": "DW_TAG_structure_type",
+      "name": "RewardData",
+      "size": 12
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_enumeration_type",
+        "name": "RewardType",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 17,
+        "inline": null,
+        "enumerators": [
+          {
+            "name": "REWARD_TYPE_NONE",
+            "value": 0
+          },
+          {
+            "name": "REWARD_TYPE_EXP",
+            "value": 1
+          },
+          {
+            "name": "REWARD_TYPE_ITEM",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "type",
+        "type": {
+          "die": "0x14d9ad",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "RewardType",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 21,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value1",
+        "type": {
+          "die": "0x11817c",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x114a6b",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 23,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value2",
+        "type": {
+          "die": "0x114a23",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 24,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x14da4e",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x14d9a1",
+            "tag": "DW_TAG_structure_type",
+            "name": "RewardData",
+            "size": 12
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10RewardDataaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14da54",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d9a1",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x14da5a",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14da60",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x14d9a1",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14da54",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d9a1",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x14da5a",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14da60",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x14d9a1",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 27,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x14da54",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d9a1",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x14d9ad",
+              "tag": "DW_TAG_enumeration_type",
+              "name": "RewardType",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x114a6b",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x114a23",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questpc.cpp",
+    "record": {
+      "die": "0x1e3b79",
+      "tag": "DW_TAG_structure_type",
+      "name": "QuestState",
+      "size": 60
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "co",
+        "type": {
+          "die": "0x1e0621",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e05f0",
+            "tag": "DW_TAG_typedef",
+            "name": "lua_State",
+            "size": null,
+            "type": {
+              "die": "0x1e05fb",
+              "tag": "DW_TAG_structure_type",
+              "name": "lua_State",
+              "size": null
+            }
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 104,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "ico",
+        "type": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 105,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "args",
+        "type": {
+          "die": "0x1c1f1c",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 106,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "suspend_state",
+        "type": {
+          "die": "0x1c56af",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1c1f0a",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              10
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 107,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "iIndex",
+        "type": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              12
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 108,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bStart",
+        "type": {
+          "die": "0x1cbadc",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 109,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "st",
+        "type": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 110,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_title",
+        "type": {
+          "die": "0x1d2d7b",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1cfd81",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 112,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_name",
+        "type": {
+          "die": "0x1d2d7b",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1cfd81",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 113,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_name",
+        "type": {
+          "die": "0x1d2d7b",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1cfd81",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              32
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 114,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_value",
+        "type": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              36
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 115,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_value",
+        "type": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              40
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 116,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_icon_file",
+        "type": {
+          "die": "0x1d2d7b",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x1cfd81",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              44
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 117,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "chat_scripts",
+        "type": {
+          "die": "0x1e30de",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*> >",
+          "size": 12
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              48
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 119,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1e3ca9",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e3b79",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10QuestStateaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3caf",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3b79",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3cb5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3cbb",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e3b79",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3caf",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3b79",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3cb5",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3cbb",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e3b79",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3caf",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3b79",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c1f40",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": true
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "quest.h",
+        "line": 121,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3caf",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3b79",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questpc.cpp",
+    "record": {
+      "die": "0x1e3e22",
+      "tag": "DW_TAG_structure_type",
+      "name": "RewardData",
+      "size": 12
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_enumeration_type",
+        "name": "RewardType",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 17,
+        "inline": null,
+        "enumerators": [
+          {
+            "name": "REWARD_TYPE_NONE",
+            "value": 0
+          },
+          {
+            "name": "REWARD_TYPE_EXP",
+            "value": 1
+          },
+          {
+            "name": "REWARD_TYPE_ITEM",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "type",
+        "type": {
+          "die": "0x1e3e2e",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "RewardType",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 21,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value1",
+        "type": {
+          "die": "0x1c5699",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1c1f88",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 23,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value2",
+        "type": {
+          "die": "0x1c1f40",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 24,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1e3ecf",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e3e22",
+            "tag": "DW_TAG_structure_type",
+            "name": "RewardData",
+            "size": 12
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10RewardDataaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3ed5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3e22",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3edb",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3ee1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e3e22",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3ed5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3e22",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3edb",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3ee1",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x1e3e22",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 27,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3ed5",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x1e3e22",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1e3e2e",
+              "tag": "DW_TAG_enumeration_type",
+              "name": "RewardType",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c1f88",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x1c1f40",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questmanager.cpp",
+    "record": {
+      "die": "0x2c03f60",
+      "tag": "DW_TAG_structure_type",
+      "name": "QuestState",
+      "size": 60
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "co",
+        "type": {
+          "die": "0x2be14e1",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2be14b0",
+            "tag": "DW_TAG_typedef",
+            "name": "lua_State",
+            "size": null,
+            "type": {
+              "die": "0x2be14bb",
+              "tag": "DW_TAG_structure_type",
+              "name": "lua_State",
+              "size": null
+            }
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 104,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "ico",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 105,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "args",
+        "type": {
+          "die": "0x2bc2d55",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 106,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "suspend_state",
+        "type": {
+          "die": "0x2bc64e8",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2bc2d43",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              10
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 107,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "iIndex",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              12
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 108,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bStart",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 109,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "st",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 110,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_title",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 112,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_name",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 113,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_name",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              32
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 114,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_value",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              36
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 115,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_value",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              40
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 116,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_icon_file",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              44
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 117,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "chat_scripts",
+        "type": {
+          "die": "0x2c034c5",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*> >",
+          "size": 12
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              48
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 119,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x2c04090",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2c03f60",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10QuestStateaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c04096",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c03f60",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0409c",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c040a2",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2c03f60",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c04096",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c03f60",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c0409c",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c040a2",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2c03f60",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c04096",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c03f60",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bc2d79",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": true
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "quest.h",
+        "line": 121,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c04096",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c03f60",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questmanager.cpp",
+    "record": {
+      "die": "0x2c04209",
+      "tag": "DW_TAG_structure_type",
+      "name": "RewardData",
+      "size": 12
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_enumeration_type",
+        "name": "RewardType",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 17,
+        "inline": null,
+        "enumerators": [
+          {
+            "name": "REWARD_TYPE_NONE",
+            "value": 0
+          },
+          {
+            "name": "REWARD_TYPE_EXP",
+            "value": 1
+          },
+          {
+            "name": "REWARD_TYPE_ITEM",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "type",
+        "type": {
+          "die": "0x2c04215",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "RewardType",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 21,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value1",
+        "type": {
+          "die": "0x2bc64d2",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2bc2dc1",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 23,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value2",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 24,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x2c042b6",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2c04209",
+            "tag": "DW_TAG_structure_type",
+            "name": "RewardData",
+            "size": 12
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10RewardDataaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c042bc",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c04209",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c042c2",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c042c8",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2c04209",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c042bc",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c04209",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c042c2",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c042c8",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2c04209",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 27,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c042bc",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c04209",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2c04215",
+              "tag": "DW_TAG_enumeration_type",
+              "name": "RewardType",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bc2dc1",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2bc2d79",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questevent.cpp",
+    "record": {
+      "die": "0x2d1588a",
+      "tag": "DW_TAG_structure_type",
+      "name": "QuestState",
+      "size": 60
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "co",
+        "type": {
+          "die": "0x2cfd9d3",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2cfd9a2",
+            "tag": "DW_TAG_typedef",
+            "name": "lua_State",
+            "size": null,
+            "type": {
+              "die": "0x2cfd9ad",
+              "tag": "DW_TAG_structure_type",
+              "name": "lua_State",
+              "size": null
+            }
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 104,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "ico",
+        "type": {
+          "die": "0x2cdf2f2",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 105,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "args",
+        "type": {
+          "die": "0x2cdf2ce",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 106,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "suspend_state",
+        "type": {
+          "die": "0x2ce2a61",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2cdf2bc",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              10
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 107,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "iIndex",
+        "type": {
+          "die": "0x2cdf2f2",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              12
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 108,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "bStart",
+        "type": {
+          "die": "0x2ce8e8e",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 109,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "st",
+        "type": {
+          "die": "0x2cdf2f2",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 110,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_title",
+        "type": {
+          "die": "0x2cf012d",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2ced133",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 112,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_name",
+        "type": {
+          "die": "0x2cf012d",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2ced133",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 113,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_name",
+        "type": {
+          "die": "0x2cf012d",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2ced133",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              32
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 114,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_clock_value",
+        "type": {
+          "die": "0x2cdf2f2",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              36
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 115,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_counter_value",
+        "type": {
+          "die": "0x2cdf2f2",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              40
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 116,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "_icon_file",
+        "type": {
+          "die": "0x2cf012d",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2ced133",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              44
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 117,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "chat_scripts",
+        "type": {
+          "die": "0x2d1524f",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*> >",
+          "size": 12
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              48
+            ]
+          }
+        ],
+        "file": "quest.h",
+        "line": 119,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x2d159ba",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2d1588a",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10QuestStateaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d159c0",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d1588a",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d159c6",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d159cc",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2d1588a",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d159c0",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d1588a",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d159c6",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d159cc",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2d1588a",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d159c0",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d1588a",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2cdf2f2",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": true
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "QuestState",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "quest.h",
+        "line": 121,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d159c0",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d1588a",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            },
+            "artificial": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cu": "questevent.cpp",
+    "record": {
+      "die": "0x2d15b33",
+      "tag": "DW_TAG_structure_type",
+      "name": "RewardData",
+      "size": 12
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_enumeration_type",
+        "name": "RewardType",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 17,
+        "inline": null,
+        "enumerators": [
+          {
+            "name": "REWARD_TYPE_NONE",
+            "value": 0
+          },
+          {
+            "name": "REWARD_TYPE_EXP",
+            "value": 1
+          },
+          {
+            "name": "REWARD_TYPE_ITEM",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "type",
+        "type": {
+          "die": "0x2d15b3f",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "RewardType",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 21,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value1",
+        "type": {
+          "die": "0x2ce2a4b",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2cdf33a",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 23,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "value2",
+        "type": {
+          "die": "0x2cdf2f2",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              8
+            ]
+          }
+        ],
+        "file": "questpc.h",
+        "line": 24,
+        "inline": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x2d15be0",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2d15b33",
+            "tag": "DW_TAG_structure_type",
+            "name": "RewardData",
+            "size": 12
+          }
+        },
+        "access": null,
+        "linkage": "_ZN5quest10RewardDataaSERKS0_",
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d15be6",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d15b33",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d15bec",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d15bf2",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2d15b33",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": true,
+        "location": null,
+        "file": null,
+        "line": null,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d15be6",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d15b33",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d15bec",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d15bf2",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2d15b33",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "RewardData",
+                  "size": 12
+                }
+              }
+            },
+            "artificial": null
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RewardData",
+        "type": {
+          "name": "void"
+        },
+        "access": null,
+        "linkage": null,
+        "artificial": null,
+        "location": null,
+        "file": "questpc.h",
+        "line": 27,
+        "inline": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d15be6",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2d15b33",
+                "tag": "DW_TAG_structure_type",
+                "name": "RewardData",
+                "size": 12
+              }
+            },
+            "artificial": true
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2d15b3f",
+              "tag": "DW_TAG_enumeration_type",
+              "name": "RewardType",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2cdf33a",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            },
+            "artificial": null
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0x2cdf2f2",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            },
+            "artificial": null
+          }
+        ]
+      }
+    ]
+  }
+]

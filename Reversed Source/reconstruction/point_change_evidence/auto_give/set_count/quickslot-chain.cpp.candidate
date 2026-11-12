@@ -1,0 +1,25 @@
+// Complete old helpers08050660/08050940. Full CHARACTER/CItem data and actual
+// SetQuickslot/DelQuickslot are already production, no substitute app methods.
+void CHARACTER::SyncQuickslot(BYTE type,BYTE oldPos,BYTE newPos)
+{
+    if(oldPos==newPos) return;
+    for(int i=0;i<36;++i) {
+        if(m_quickslot[i].type==type && m_quickslot[i].pos==oldPos) {
+            if(newPos==255) DelQuickslot((BYTE)i);
+            else {
+                TQuickslot slot;slot.pos=newPos;slot.type=type;
+                SetQuickslot((BYTE)i,slot);
+            }
+        }
+    }
+}
+void CHARACTER::ChainQuickslotItem(LPITEM item,BYTE type,BYTE oldPos)
+{
+    for(int i=0;i<36;++i) {
+        if(m_quickslot[i].type==type && m_quickslot[i].pos==oldPos) {
+            TQuickslot slot;slot.pos=item->GetCell();slot.type=type;
+            SetQuickslot((BYTE)i,slot);
+            return;
+        }
+    }
+}

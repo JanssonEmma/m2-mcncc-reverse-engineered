@@ -1,0 +1,49 @@
+{
+  "project": "PROJECT_ROOT\\Reversed Source",
+  "checkpoint": 111,
+  "archive": "metin_drop_evidence",
+  "receipt": "work/checkpoint-111-focused.receipt.json",
+  "source_guards": "work\\metin_drop\\applied.json",
+  "status_key": "checkpoint111_metin_drop",
+  "baseline_key": "checkpoint110_char_stone_flag",
+  "suites": [
+    "weighted_attribute_regression",
+    "desc_output_unit",
+    "input_regression",
+    "desc_flush_regression",
+    "character_name_regression",
+    "entity_regression",
+    "character_initialize_regression",
+    "character_manager_regression",
+    "character_creation_regression",
+    "item_regression"
+  ],
+  "abi": true,
+  "evidence_packages": [
+    "work\\metin_drop"
+  ],
+  "workspace_resume": "outputs/METIN2_RESUME.md",
+  "summary": "restored Metin drop selection with the original tables and genuine RNG utility.",
+  "next": "Next continue the whole SetProto dependency chain, including ApplyPoint/ComputePoints, the shop trigger and warp event, and the SpawnMob/Show lifecycle. The native tests use the genuine numeric utility projection in nine link graphs. Full startup, quest dispatch and server linking remain in scope.",
+  "reviews": [
+    {
+      "address": "08135d60",
+      "export": "work\\metin_drop\\08135d60-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/char.cpp",
+          "anchor": "void CHARACTER::DetermineDropMetinStone("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/weighted_attribute_regression.cpp",
+          "anchor": "static void MetinDropCases("
+        }
+      ],
+      "review_scope": "Original whole method and exact original mob and item drop tables with actual utility RNG.",
+      "reviewer": "Checkpoint 111 original data/instruction audit and focused runtime",
+      "limitations": "SpawnMob and full SetProto remain pending."
+    }
+  ]
+}

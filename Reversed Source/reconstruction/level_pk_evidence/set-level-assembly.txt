@@ -1,0 +1,42 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+0812a5f0 <_ZN9CHARACTER8SetLevelEh>:
+ 812a5f0:	55                   	push   %ebp
+ 812a5f1:	89 e5                	mov    %esp,%ebp
+ 812a5f3:	83 ec 18             	sub    $0x18,%esp
+ 812a5f6:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 812a5f9:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 812a5fc:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 812a5ff:	88 c2                	mov    %al,%dl
+ 812a601:	88 83 02 05 00 00    	mov    %al,0x502(%ebx)
+ 812a607:	8b 43 18             	mov    0x18(%ebx),%eax
+ 812a60a:	85 c0                	test   %eax,%eax
+ 812a60c:	74 42                	je     812a650 <_ZN9CHARACTER8SetLevelEh+0x60>
+ 812a60e:	3a 15 88 b4 23 08    	cmp    0x823b488,%dl
+ 812a614:	73 1a                	jae    812a630 <_ZN9CHARACTER8SetLevelEh+0x40>
+ 812a616:	c7 45 0c 03 00 00 00 	movl   $0x3,0xc(%ebp)
+ 812a61d:	89 5d 08             	mov    %ebx,0x8(%ebp)
+ 812a620:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 812a623:	89 ec                	mov    %ebp,%esp
+ 812a625:	5d                   	pop    %ebp
+ 812a626:	e9 b5 9b 02 00       	jmp    81541e0 <_ZN9CHARACTER9SetPKModeEh>
+ 812a62b:	90                   	nop
+ 812a62c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 812a630:	89 1c 24             	mov    %ebx,(%esp)
+ 812a633:	e8 38 7b 00 00       	call   8132170 <_ZN9CHARACTER10GetGMLevelEv>
+ 812a638:	84 c0                	test   %al,%al
+ 812a63a:	75 da                	jne    812a616 <_ZN9CHARACTER8SetLevelEh+0x26>
+ 812a63c:	80 bb 04 0d 00 00 03 	cmpb   $0x3,0xd04(%ebx)
+ 812a643:	74 12                	je     812a657 <_ZN9CHARACTER8SetLevelEh+0x67>
+ 812a645:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 812a649:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+ 812a650:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 812a653:	89 ec                	mov    %ebp,%esp
+ 812a655:	5d                   	pop    %ebp
+ 812a656:	c3                   	ret
+ 812a657:	c7 45 0c 00 00 00 00 	movl   $0x0,0xc(%ebp)
+ 812a65e:	eb bd                	jmp    812a61d <_ZN9CHARACTER8SetLevelEh+0x2d>

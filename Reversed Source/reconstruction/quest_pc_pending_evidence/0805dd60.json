@@ -1,0 +1,92 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::Destroy\",\n    \"address\": \"0805dd60\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void Destroy(PC * this) */\\r\\n\\r\\nvoid __thiscall PC::Destroy(PC *this)\\r\\n\\r\\n{\\r\\n  ClearTimer(this);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::Destroy",
+        "address": "0805dd60"
+      },
+      "code": "\r\n/* DWARF original prototype: void Destroy(PC * this) */\r\n\r\nvoid __thiscall PC::Destroy(PC *this)\r\n\r\n{\r\n  ClearTimer(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::Destroy\",\n    \"address\": \"0805dd60\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0805dd64\",\n        \"target\": \"0805ef10\",\n        \"name\": \"PC::ClearTimer\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 1,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::Destroy",
+        "address": "0805dd60"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0805dd64",
+            "target": "0805ef10",
+            "name": "PC::ClearTimer",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 1,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"0805dd60\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd61\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd63\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd64\",\n      \"bytes\": \"e9a7110000\",\n      \"instruction\": \"JMP 0x0805ef10\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 4,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "0805dd60",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "0805dd61",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "0805dd63",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0805dd64",
+          "bytes": "e9a7110000",
+          "instruction": "JMP 0x0805ef10",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 4,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

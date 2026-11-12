@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08068580",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "LocaleService_TransferDefaultSetting",
+      "address": "08068580"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid LocaleService_TransferDefaultSetting(void)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  \r\n  if (check_name == (code *)0x0) {\r\n    check_name = check_name_euckr;\r\n  }\r\n  if (is_twobyte == (code *)0x0) {\r\n    is_twobyte = is_twobyte_euckr;\r\n  }\r\n  if (exp_table == (undefined1 *)0x0) {\r\n    exp_table = exp_table_euckr;\r\n  }\r\n                    /* Unresolved local var: int job@[DW_OP_reg3(EBX)] */\r\n  iVar2 = 0;\r\n  while( true ) {\r\n    if (singleton<CTableBySkill>::ms_singleton == (CTableBySkill *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    bVar1 = CTableBySkill::Check(singleton<CTableBySkill>::ms_singleton);\r\n    if (!bVar1) break;\r\n    iVar2 = iVar2 + 1;\r\n    if (7 < iVar2) {\r\n      if (aiPercentByDeltaLevForBoss == (undefined1 *)0x0) {\r\n        aiPercentByDeltaLevForBoss = aiPercentByDeltaLevForBoss_euckr;\r\n      }\r\n      if (aiPercentByDeltaLev == (undefined1 *)0x0) {\r\n        aiPercentByDeltaLev = aiPercentByDeltaLev_euckr;\r\n      }\r\n      if (aiChainLightningCountBySkillLevel == (undefined1 *)0x0) {\r\n        aiChainLightningCountBySkillLevel = aiChainLightningCountBySkillLevel_euckr;\r\n      }\r\n      return;\r\n    }\r\n  }\r\n  fprintf(__stderrp,\"[NO SETTING SKILL] aiSkillPowerByLevelFromType[%d]\",iVar2);\r\n                    /* WARNING: Subroutine does not return */\r\n  exit(1);\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

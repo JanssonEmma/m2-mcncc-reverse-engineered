@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08114080",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8114080",
+    "function": {
+      "name": "CMotionSet::CMotionSet",
+      "address": "08114080"
+    },
+    "signature": "void CMotionSet(CMotionSet * this)",
+    "code": "\r\n/* WARNING: Type propagation algorithm not settling */\r\n/* DWARF original prototype: void CMotionSet(CMotionSet * this) */\r\n\r\nvoid __thiscall CMotionSet::CMotionSet(CMotionSet *this)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_CMotion*>_> *p_Var1;\r\n  \r\n  (this->m_map_pkMotion)._M_t.\r\n  super__Rb_tree_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n  .\r\n  super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>,true>\r\n  ._M_header = (_Rb_tree_node<std::pair<const_long_unsigned_int,_CMotion*>_> *)0x0;\r\n                    /* Unresolved local var:\r\n                       _Rb_tree_node<std::pair<const_long_unsigned_int,_CMotion*>_> *\r\n                       __ret@[DW_OP_reg0(EAX)] */\r\n  p_Var1 = (_Rb_tree_node<std::pair<const_long_unsigned_int,_CMotion*>_> *)\r\n           std::__default_alloc_template<true,0>::allocate(0x18);\r\n  (this->m_map_pkMotion)._M_t.\r\n  super__Rb_tree_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n  .\r\n  super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>,true>\r\n  ._M_header = p_Var1;\r\n  (p_Var1->super__Rb_tree_node_base)._M_parent = (_Rb_tree_node_base *)0x0;\r\n  (p_Var1->super__Rb_tree_node_base)._M_color = _M_red;\r\n  p_Var1 = (this->m_map_pkMotion)._M_t.\r\n           super__Rb_tree_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n           .\r\n           super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>,true>\r\n           ._M_header;\r\n  (this->m_map_pkMotion)._M_t._M_node_count = 0;\r\n  (p_Var1->super__Rb_tree_node_base)._M_left = &p_Var1->super__Rb_tree_node_base;\r\n  p_Var1 = (this->m_map_pkMotion)._M_t.\r\n           super__Rb_tree_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n           .\r\n           super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>,true>\r\n           ._M_header;\r\n  (p_Var1->super__Rb_tree_node_base)._M_right = &p_Var1->super__Rb_tree_node_base;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

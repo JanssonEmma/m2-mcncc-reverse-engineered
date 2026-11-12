@@ -1,0 +1,73 @@
+--- CURRENT/game/src/questpc.cpp
++++ PCSTORAGE/game/src/questpc.cpp
+@@ -1,5 +1,6 @@
+ #include "questpc.h"
+ #include "questevent.h"
++#include "config.h"
+ #include "../../libthecore/include/log.h"
+ namespace quest {
+ // PC C2 0805d580/C1 0805d790. LastState intentionally remains indeterminate.
+@@ -22,4 +23,63 @@
+         CancelTimerEvent(&it->second);
+     m_TimerMap.clear();
+ }
++// Complete original questpc.cpp flag and named-timer helpers.
++// 0805de00: diagnostic BEFORE map inspection, zero ignores skip-save via DeleteFlag.
++void PC::SetFlag(const std::string& name,int value,bool skipSave) {
++    sys_log(test_server?0:1,"QUEST Setting flag %s %d",name.c_str(),value);
++    if(value==0) { DeleteFlag(name);return; }
++    TFlagMap::iterator it=m_FlagMap.find(name);
++    if(it==m_FlagMap.end()) m_FlagMap.insert(std::make_pair(name,value));
++    else if(it->second==value) skipSave=true;
++    else it->second=value;
++    if(!skipSave) SaveFlag(name,value);
+ }
++// 0805dfe0: erase before staging zero; do not copy/fix aliasing name arguments.
++bool PC::DeleteFlag(const std::string& name) {
++    TFlagMap::iterator it=m_FlagMap.find(name);
++    if(it==m_FlagMap.end()) return false;
++    m_FlagMap.erase(it);
++    SaveFlag(name,0);
++    return true;
++}
++// 0805e0b0: debug ADDS a second log; reread value after each external callback.
++int PC::GetFlag(const std::string& name) {
++    TFlagMap::iterator it=m_FlagMap.find(name);
++    if(it==m_FlagMap.end()) return 0;
++    sys_log(1,"QUEST getting flag %s %d",name.c_str(),it->second);
++    if(test_server) sys_log(0,"QUEST getting flag %s %d",name.c_str(),it->second);
++    return it->second;
++}
++// 0805e180: pending map only, no DB/network/write-through side effects.
++void PC::SaveFlag(const std::string& name,int value) {
++    TFlagMap::iterator it=m_FlagSaveMap.find(name);
++    if(it==m_FlagSaveMap.end()) m_FlagSaveMap.insert(std::make_pair(name,value));
++    else if(it->second!=value) it->second=value;
++}
++// 0805ec00: RemoveTimer first, then INSERT (not assignment), then log.
++void PC::AddTimer(const std::string& name,LPEVENT event) {
++    RemoveTimer(name);
++    m_TimerMap.insert(std::make_pair(name,event));
++    sys_log(0,"QUEST add timer %p %d",static_cast<void*>(event),static_cast<int>(m_TimerMap.size()));
++}
++// 0805ed20: erase only; event and name ownership remain external/live.
++void PC::RemoveTimerNotCancel(const std::string& name) {
++    TTimerMap::iterator it=m_TimerMap.find(name);
++    if(it!=m_TimerMap.end()) {
++        sys_log(0,"QUEST remove with no cancel %p",static_cast<void*>(it->second));
++        m_TimerMap.erase(it);
++    }
++    sys_log(1,"QUEST timer map size %d by RemoveTimerNotCancel",static_cast<int>(m_TimerMap.size()));
++}
++// 0805ee10: log before cancel of LIVE map value, erase afterward.
++void PC::RemoveTimer(const std::string& name) {
++    TTimerMap::iterator it=m_TimerMap.find(name);
++    if(it!=m_TimerMap.end()) {
++        sys_log(0,"QUEST remove timer %p",static_cast<void*>(it->second));
++        CancelTimerEvent(&it->second);
++        m_TimerMap.erase(it);
++    }
++    sys_log(1,"QUEST timer map size %d by RemoveTimer",static_cast<int>(m_TimerMap.size()));
++}
++
++}

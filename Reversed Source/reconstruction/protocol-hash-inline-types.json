@@ -1,0 +1,1452 @@
+[
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x212b320",
+    "tag": "DW_TAG_subprogram",
+    "name": "operator()",
+    "parent": "stringhash",
+    "attributes": {
+      "DW_AT_low_pc": null,
+      "DW_AT_high_pc": null,
+      "DW_AT_abstract_origin": null,
+      "DW_AT_specification": null,
+      "DW_AT_inline": null,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x212b360",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x212b35b",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x212b2c9",
+              "tag": "DW_TAG_structure_type",
+              "name": "stringhash",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_type": "69331",
+          "DW_AT_artificial": "True"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x212b366",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x212b36c",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x212b33c",
+              "tag": "DW_TAG_typedef",
+              "name": "string",
+              "size": null,
+              "type": {
+                "die": "0x2128342",
+                "tag": "DW_TAG_structure_type",
+                "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_type": "69337"
+        }
+      },
+      {
+        "tag": "DW_TAG_typedef",
+        "name": "string",
+        "type": {
+          "die": "0x2128342",
+          "tag": "DW_TAG_structure_type",
+          "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+          "size": 4
+        },
+        "attributes": {
+          "DW_AT_name": "b'string'",
+          "DW_AT_decl_file": "51",
+          "DW_AT_decl_line": "60",
+          "DW_AT_type": "57013"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x213911c",
+    "tag": "DW_TAG_subprogram",
+    "name": "IsRetryWhenClosed",
+    "parent": "CLIENT_DESC",
+    "attributes": {
+      "DW_AT_low_pc": null,
+      "DW_AT_high_pc": null,
+      "DW_AT_abstract_origin": null,
+      "DW_AT_specification": null,
+      "DW_AT_inline": null,
+      "DW_AT_MIPS_linkage_name": "_ZN11CLIENT_DESC17IsRetryWhenClosedEv",
+      "DW_AT_decl_file": 137,
+      "DW_AT_decl_line": 20
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x2138fa3",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2138fa9",
+            "tag": "DW_TAG_structure_type",
+            "name": "CLIENT_DESC",
+            "size": 588
+          }
+        },
+        "attributes": {
+          "DW_AT_type": "125718",
+          "DW_AT_artificial": "True"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x217c993",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "encode_byte",
+    "parent": "DBPacketHeader",
+    "attributes": {
+      "DW_AT_low_pc": 135527259,
+      "DW_AT_high_pc": 135527264,
+      "DW_AT_abstract_origin": 402766,
+      "DW_AT_specification": null,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_decl_file": 135,
+      "DW_AT_decl_line": 5
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "ind",
+        "type": {
+          "die": "0x211a6ff",
+          "tag": "DW_TAG_base_type",
+          "name": "char",
+          "size": 1
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "402784"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x217c9ac",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "encode_4bytes",
+    "parent": "DBPacketHeader",
+    "attributes": {
+      "DW_AT_low_pc": 135527293,
+      "DW_AT_high_pc": 135527299,
+      "DW_AT_abstract_origin": 402808,
+      "DW_AT_specification": null,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_decl_file": 135,
+      "DW_AT_decl_line": 19
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "ind",
+        "type": {
+          "die": "0x211a501",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "402826"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x217c9c5",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "encode_4bytes",
+    "parent": "DBPacketHeader",
+    "attributes": {
+      "DW_AT_low_pc": 135527328,
+      "DW_AT_high_pc": 135527334,
+      "DW_AT_abstract_origin": 402808,
+      "DW_AT_specification": null,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_decl_file": 135,
+      "DW_AT_decl_line": 19
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "ind",
+        "type": {
+          "die": "0x211a501",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "402826"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x217c9db",
+    "tag": "DW_TAG_subprogram",
+    "name": "encode_byte",
+    "parent": "desc_client.cpp",
+    "attributes": {
+      "DW_AT_low_pc": null,
+      "DW_AT_high_pc": null,
+      "DW_AT_abstract_origin": null,
+      "DW_AT_specification": null,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_decl_file": 135,
+      "DW_AT_decl_line": 5
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "ind",
+        "type": {
+          "die": "0x211a6ff",
+          "tag": "DW_TAG_base_type",
+          "name": "char",
+          "size": 1
+        },
+        "attributes": {
+          "DW_AT_name": "b'ind'",
+          "DW_AT_decl_file": "135",
+          "DW_AT_decl_line": "5",
+          "DW_AT_type": "626"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "a",
+        "type": {
+          "die": "0x211b5ad",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x211a6ff",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            7
+          ]
+        },
+        "attributes": {
+          "DW_AT_name": "b'a'",
+          "DW_AT_decl_file": "135",
+          "DW_AT_decl_line": "6",
+          "DW_AT_type": "4384",
+          "DW_AT_external": "True"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_client.cpp",
+    "die": "0x217ca05",
+    "tag": "DW_TAG_subprogram",
+    "name": "encode_4bytes",
+    "parent": "desc_client.cpp",
+    "attributes": {
+      "DW_AT_low_pc": null,
+      "DW_AT_high_pc": null,
+      "DW_AT_abstract_origin": null,
+      "DW_AT_specification": null,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_decl_file": 135,
+      "DW_AT_decl_line": 19
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "ind",
+        "type": {
+          "die": "0x211a501",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "attributes": {
+          "DW_AT_name": "b'ind'",
+          "DW_AT_decl_file": "135",
+          "DW_AT_decl_line": "19",
+          "DW_AT_type": "116"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "a",
+        "type": {
+          "die": "0x211b5ad",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x211a6ff",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            7
+          ]
+        },
+        "attributes": {
+          "DW_AT_name": "b'a'",
+          "DW_AT_decl_file": "135",
+          "DW_AT_decl_line": "20",
+          "DW_AT_type": "4384",
+          "DW_AT_external": "True"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_manager.cpp",
+    "die": "0x239e7e6",
+    "tag": "DW_TAG_subprogram",
+    "name": "operator()",
+    "parent": "stringhash",
+    "attributes": {
+      "DW_AT_low_pc": null,
+      "DW_AT_high_pc": null,
+      "DW_AT_abstract_origin": null,
+      "DW_AT_specification": null,
+      "DW_AT_inline": null,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x239e826",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x239e821",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x239e78f",
+              "tag": "DW_TAG_structure_type",
+              "name": "stringhash",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_type": "69331",
+          "DW_AT_artificial": "True"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x239e82c",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x239e832",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x239e802",
+              "tag": "DW_TAG_typedef",
+              "name": "string",
+              "size": null,
+              "type": {
+                "die": "0x239b808",
+                "tag": "DW_TAG_structure_type",
+                "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_type": "69337"
+        }
+      },
+      {
+        "tag": "DW_TAG_typedef",
+        "name": "string",
+        "type": {
+          "die": "0x239b808",
+          "tag": "DW_TAG_structure_type",
+          "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+          "size": 4
+        },
+        "attributes": {
+          "DW_AT_name": "b'string'",
+          "DW_AT_decl_file": "51",
+          "DW_AT_decl_line": "60",
+          "DW_AT_type": "57013"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_manager.cpp",
+    "die": "0x23e6375",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "operator()",
+    "parent": "_M_bkt_num_key",
+    "attributes": {
+      "DW_AT_low_pc": 135630112,
+      "DW_AT_high_pc": 135630179,
+      "DW_AT_abstract_origin": 364216,
+      "DW_AT_specification": 69267,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x23e684e",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e826",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e821",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e78f",
+                "tag": "DW_TAG_structure_type",
+                "name": "stringhash",
+                "size": 1
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364227"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "str",
+        "type": {
+          "die": "0x23e6853",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e82c",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e832",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e802",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x239b808",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364238"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "s",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364250",
+          "DW_AT_location": "[82]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "end",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364260",
+          "DW_AT_location": "[83]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "h",
+        "type": {
+          "die": "0x238ddac",
+          "tag": "DW_TAG_typedef",
+          "name": "size_t",
+          "size": null,
+          "type": {
+            "die": "0x238dad8",
+            "tag": "DW_TAG_typedef",
+            "name": "__size_t",
+            "size": null,
+            "type": {
+              "die": "0x238d9ce",
+              "tag": "DW_TAG_typedef",
+              "name": "__uint32_t",
+              "size": null,
+              "type": {
+                "die": "0x238d9d9",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364272",
+          "DW_AT_location": "[81]"
+        }
+      },
+      {
+        "tag": "DW_TAG_inlined_subroutine",
+        "name": "c_str",
+        "type": {
+          "die": "0x238e02c",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x238e032",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238dbc5",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364304",
+          "DW_AT_low_pc": "135630114",
+          "DW_AT_high_pc": "135630135"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_manager.cpp",
+    "die": "0x23e680b",
+    "tag": "DW_TAG_subprogram",
+    "name": "operator()",
+    "parent": "desc_manager.cpp",
+    "attributes": {
+      "DW_AT_low_pc": null,
+      "DW_AT_high_pc": null,
+      "DW_AT_abstract_origin": null,
+      "DW_AT_specification": 69267,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x23e684e",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e826",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e821",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e78f",
+                "tag": "DW_TAG_structure_type",
+                "name": "stringhash",
+                "size": 1
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_name": "b'this'",
+          "DW_AT_type": "364283",
+          "DW_AT_artificial": "True"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "str",
+        "type": {
+          "die": "0x23e6853",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e82c",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e832",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e802",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x239b808",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_name": "b'str'",
+          "DW_AT_decl_file": "59",
+          "DW_AT_decl_line": "18",
+          "DW_AT_type": "364288"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "s",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_name": "b's'",
+          "DW_AT_decl_file": "59",
+          "DW_AT_decl_line": "19",
+          "DW_AT_type": "364293"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "end",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_name": "b'end'",
+          "DW_AT_decl_file": "59",
+          "DW_AT_decl_line": "20",
+          "DW_AT_type": "364293"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "h",
+        "type": {
+          "die": "0x238ddac",
+          "tag": "DW_TAG_typedef",
+          "name": "size_t",
+          "size": null,
+          "type": {
+            "die": "0x238dad8",
+            "tag": "DW_TAG_typedef",
+            "name": "__size_t",
+            "size": null,
+            "type": {
+              "die": "0x238d9ce",
+              "tag": "DW_TAG_typedef",
+              "name": "__uint32_t",
+              "size": null,
+              "type": {
+                "die": "0x238d9d9",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_name": "b'h'",
+          "DW_AT_decl_file": "59",
+          "DW_AT_decl_line": "21",
+          "DW_AT_type": "1113"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_manager.cpp",
+    "die": "0x23eb421",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "operator()",
+    "parent": "_M_bkt_num_key",
+    "attributes": {
+      "DW_AT_low_pc": 135634176,
+      "DW_AT_high_pc": 135634242,
+      "DW_AT_abstract_origin": 364216,
+      "DW_AT_specification": 69267,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x23e684e",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e826",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e821",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e78f",
+                "tag": "DW_TAG_structure_type",
+                "name": "stringhash",
+                "size": 1
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364227"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "str",
+        "type": {
+          "die": "0x23e6853",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e82c",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e832",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e802",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x239b808",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364238"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "s",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364250",
+          "DW_AT_location": "[82]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "end",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364260",
+          "DW_AT_location": "[83]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "h",
+        "type": {
+          "die": "0x238ddac",
+          "tag": "DW_TAG_typedef",
+          "name": "size_t",
+          "size": null,
+          "type": {
+            "die": "0x238dad8",
+            "tag": "DW_TAG_typedef",
+            "name": "__size_t",
+            "size": null,
+            "type": {
+              "die": "0x238d9ce",
+              "tag": "DW_TAG_typedef",
+              "name": "__uint32_t",
+              "size": null,
+              "type": {
+                "die": "0x238d9d9",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364272",
+          "DW_AT_location": "[81]"
+        }
+      },
+      {
+        "tag": "DW_TAG_inlined_subroutine",
+        "name": "c_str",
+        "type": {
+          "die": "0x238e02c",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x238e032",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238dbc5",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_sibling": "383838",
+          "DW_AT_abstract_origin": "364304",
+          "DW_AT_low_pc": "135634176",
+          "DW_AT_high_pc": "135634179"
+        }
+      },
+      {
+        "tag": "DW_TAG_inlined_subroutine",
+        "name": "assign",
+        "type": {
+          "name": "void"
+        },
+        "attributes": {
+          "DW_AT_sibling": "383863",
+          "DW_AT_abstract_origin": "364414",
+          "DW_AT_low_pc": "135634181",
+          "DW_AT_high_pc": "135634195"
+        }
+      },
+      {
+        "tag": "DW_TAG_inlined_subroutine",
+        "name": "_M_data",
+        "type": {
+          "die": "0x238dfe8",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x238dbc5",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364391",
+          "DW_AT_low_pc": "135634195",
+          "DW_AT_high_pc": "135634198"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_manager.cpp",
+    "die": "0x23eb92a",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "operator()",
+    "parent": "_M_bkt_num_key",
+    "attributes": {
+      "DW_AT_low_pc": 135634440,
+      "DW_AT_high_pc": 135634449,
+      "DW_AT_abstract_origin": 364216,
+      "DW_AT_specification": 69267,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x23e684e",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e826",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e821",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e78f",
+                "tag": "DW_TAG_structure_type",
+                "name": "stringhash",
+                "size": 1
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364227"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "str",
+        "type": {
+          "die": "0x23e6853",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e82c",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e832",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e802",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x239b808",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364238"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "s",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364250",
+          "DW_AT_location": "[82]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "end",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364260",
+          "DW_AT_location": "[83]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "h",
+        "type": {
+          "die": "0x238ddac",
+          "tag": "DW_TAG_typedef",
+          "name": "size_t",
+          "size": null,
+          "type": {
+            "die": "0x238dad8",
+            "tag": "DW_TAG_typedef",
+            "name": "__size_t",
+            "size": null,
+            "type": {
+              "die": "0x238d9ce",
+              "tag": "DW_TAG_typedef",
+              "name": "__uint32_t",
+              "size": null,
+              "type": {
+                "die": "0x238d9d9",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364272",
+          "DW_AT_location": "[81]"
+        }
+      },
+      {
+        "tag": "DW_TAG_inlined_subroutine",
+        "name": "c_str",
+        "type": {
+          "die": "0x238e02c",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x238e032",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238dbc5",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364304",
+          "DW_AT_low_pc": "135634440",
+          "DW_AT_high_pc": "135634449"
+        }
+      }
+    ]
+  },
+  {
+    "cu": "desc_manager.cpp",
+    "die": "0x23ebf7c",
+    "tag": "DW_TAG_inlined_subroutine",
+    "name": "operator()",
+    "parent": "_M_bkt_num_key",
+    "attributes": {
+      "DW_AT_low_pc": 135634821,
+      "DW_AT_high_pc": 135634823,
+      "DW_AT_abstract_origin": 364216,
+      "DW_AT_specification": 69267,
+      "DW_AT_inline": 2,
+      "DW_AT_MIPS_linkage_name": "_ZNK10stringhashclERKSs",
+      "DW_AT_decl_file": 59,
+      "DW_AT_decl_line": 18
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x23e684e",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e826",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e821",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e78f",
+                "tag": "DW_TAG_structure_type",
+                "name": "stringhash",
+                "size": 1
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364227"
+        }
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "str",
+        "type": {
+          "die": "0x23e6853",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x239e82c",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x239e832",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x239e802",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x239b808",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364238"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "s",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364250",
+          "DW_AT_location": "[82]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "end",
+        "type": {
+          "die": "0x23e6858",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x23e685e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238d991",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364260",
+          "DW_AT_location": "[83]"
+        }
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "h",
+        "type": {
+          "die": "0x238ddac",
+          "tag": "DW_TAG_typedef",
+          "name": "size_t",
+          "size": null,
+          "type": {
+            "die": "0x238dad8",
+            "tag": "DW_TAG_typedef",
+            "name": "__size_t",
+            "size": null,
+            "type": {
+              "die": "0x238d9ce",
+              "tag": "DW_TAG_typedef",
+              "name": "__uint32_t",
+              "size": null,
+              "type": {
+                "die": "0x238d9d9",
+                "tag": "DW_TAG_base_type",
+                "name": "unsigned int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364272",
+          "DW_AT_location": "[81]"
+        }
+      },
+      {
+        "tag": "DW_TAG_inlined_subroutine",
+        "name": "c_str",
+        "type": {
+          "die": "0x238e02c",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x238e032",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x238dbc5",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "attributes": {
+          "DW_AT_abstract_origin": "364304",
+          "DW_AT_low_pc": "135634821",
+          "DW_AT_high_pc": "135634823"
+        }
+      }
+    ]
+  }
+]

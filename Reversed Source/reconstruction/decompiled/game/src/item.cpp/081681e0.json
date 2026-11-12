@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081681e0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81681e0",
+    "function": {
+      "name": "CItem::AlterToMagicItem",
+      "address": "081681e0"
+    },
+    "signature": "void AlterToMagicItem(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void AlterToMagicItem(CItem * this) */\r\n\r\nvoid __thiscall CItem::AlterToMagicItem(CItem *this)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  BYTE BVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  \r\n                    /* Unresolved local var: int idx@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: int iSecondPct@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int iThirdPct@[DW_OP_reg7(EDI)] */\r\n  iVar3 = GetAttributeSetIndex(this);\r\n  if (iVar3 < 0) {\r\n    return;\r\n  }\r\n  if (g_iUseLocale == 0) {\r\n    pTVar1 = this->m_pProto;\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bType;\r\n    }\r\n    if (BVar2 == '\\x01') {\r\n      iVar3 = 0x1e;\r\n      iVar5 = 0xf;\r\n      goto LAB_08168260;\r\n    }\r\n    if (BVar2 != '\\x02') {\r\n      return;\r\n    }\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bSubType;\r\n    }\r\n    iVar3 = 10;\r\n    if (BVar2 == '\\0') {\r\n      iVar3 = 0x14;\r\n      iVar5 = 10;\r\n      goto LAB_08168260;\r\n    }\r\n  }\r\n  else {\r\n    pTVar1 = this->m_pProto;\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bType;\r\n    }\r\n    if (BVar2 != '\\x01') {\r\n      if (BVar2 != '\\x02') {\r\n        return;\r\n      }\r\n      BVar2 = '\\0';\r\n      if (pTVar1 != (TItemTable *)0x0) {\r\n        BVar2 = pTVar1->bSubType;\r\n      }\r\n      if (BVar2 == '\\0') {\r\n        iVar5 = 2;\r\n        iVar3 = 10;\r\n      }\r\n      else {\r\n        iVar3 = 10;\r\n        iVar5 = 1;\r\n      }\r\n      goto LAB_08168260;\r\n    }\r\n    iVar3 = 0x14;\r\n  }\r\n  iVar5 = 5;\r\nLAB_08168260:\r\n  PutAttribute(this,(int *)aiItemMagicAttributePercentHigh);\r\n  iVar4 = number_ex(1,100,\"item.cpp\",0x417);\r\n  if (iVar4 <= iVar3) {\r\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\r\n  }\r\n  iVar3 = number_ex(1,100,\"item.cpp\",0x41a);\r\n  if (iVar3 <= iVar5) {\r\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

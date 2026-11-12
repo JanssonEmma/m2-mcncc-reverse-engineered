@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08068ab0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "LC_IsEurope",
+      "address": "08068ab0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsEurope(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  bool bVar2;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  bVar2 = true;\r\n  if ((((eVar1 != LC_FRANCE) && (eVar1 != LC_ITALY)) && (eVar1 != LC_TURKEY)) &&\r\n     (((eVar1 != LC_POLAND && (eVar1 != LC_UK)) && (eVar1 != LC_SPAIN)))) {\r\n    bVar2 = eVar1 == LC_PORTUGAL;\r\n  }\r\n  return bVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08122b20",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8122b20",
+    "function": {
+      "name": "CTextFileLoader::SetChildNode",
+      "address": "08122b20"
+    },
+    "signature": "BOOL SetChildNode(CTextFileLoader * this, DWORD dwIndex)",
+    "code": "\r\n/* DWARF original prototype: BOOL SetChildNode(CTextFileLoader * this, DWORD dwIndex) */\r\n\r\nBOOL __thiscall CTextFileLoader::SetChildNode(CTextFileLoader *this,DWORD dwIndex)\r\n\r\n{\r\n  SGroupNode *pSVar1;\r\n  SGroupNode **ppSVar2;\r\n  int __line;\r\n  \r\n  pSVar1 = this->m_pcurNode;\r\n  if (pSVar1 == (SGroupNode *)0x0) {\r\n    __line = 0xcf;\r\n  }\r\n  else {\r\n    ppSVar2 = (pSVar1->ChildNodeVector).\r\n              super__Vector_base<CTextFileLoader::SGroupNode*,std::allocator<CTextFileLoader::SGroupNode*>_>\r\n              .\r\n              super__Vector_alloc_base<CTextFileLoader::SGroupNode*,std::allocator<CTextFileLoader::SGroupNode*>,true>\r\n              ._M_start;\r\n    if (dwIndex < (uint)((int)(pSVar1->ChildNodeVector).\r\n                              super__Vector_base<CTextFileLoader::SGroupNode*,std::allocator<CTextFileLoader::SGroupNode*>_>\r\n                              .\r\n                              super__Vector_alloc_base<CTextFileLoader::SGroupNode*,std::allocator<CTextFileLoader::SGroupNode*>,true>\r\n                              ._M_finish - (int)ppSVar2 >> 2)) {\r\n      this->m_pcurNode = ppSVar2[dwIndex];\r\n      return 1;\r\n    }\r\n    __line = 0xd5;\r\n  }\r\n  __assert(\"SetChildNode\",\"text_file_loader.cpp\",__line);\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

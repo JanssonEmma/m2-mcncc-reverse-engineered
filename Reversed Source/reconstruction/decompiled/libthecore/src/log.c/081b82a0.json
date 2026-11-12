@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b82a0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "sys_log",
+      "address": "081b82a0"
+    },
+    "code": "\r\nvoid sys_log(int lv,char *format,...)\r\n\r\n{\r\n  tm *__tp;\r\n  char *__s;\r\n  size_t sVar1;\r\n  time_t ct;\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  if ((lv <= log_level) && (log_file_sys != (LPLOGFILE)0x0)) {\r\n                    /* Unresolved local var: char * time_s@[DW_OP_reg3(EBX)] */\r\n    ct = time((time_t *)0x0);\r\n    __tp = localtime(&ct);\r\n    __s = asctime(__tp);\r\n    fprintf((FILE *)log_file_sys->fp,sys_log_header_string);\r\n    sVar1 = strlen(__s);\r\n    __s[sVar1 - 1] = '\\0';\r\n    fprintf((FILE *)log_file_sys->fp,\"%-15.15s :: \",__s + 4);\r\n    vfprintf((FILE *)log_file_sys->fp,format,&stack0x0000000c);\r\n    fputc(10,(FILE *)log_file_sys->fp);\r\n    fflush((FILE *)log_file_sys->fp);\r\n    if (0 < log_level) {\r\n      fprintf(__stdoutp,sys_log_header_string);\r\n      vfprintf(__stdoutp,format,&stack0x0000000c);\r\n      fputc(10,__stdoutp);\r\n      fflush(__stdoutp);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

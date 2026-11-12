@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063b20",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "GetPoisonDamageRate",
+      "address": "08063b20"
+    },
+    "code": "\r\nint GetPoisonDamageRate(LPCHARACTER ch)\r\n\r\n{\r\n  bool bVar1;\r\n  byte bVar2;\r\n  long lVar3;\r\n  int iVar4;\r\n  \r\n                    /* Unresolved local var: int iRate@[DW_OP_reg3(EBX)] */\r\n  if ((ch->super_CEntity).m_lpDesc == (LPDESC)0x0) {\r\n    bVar2 = CHARACTER::GetMobRank(ch);\r\n    iVar4 = poison_damage_rate[bVar2];\r\n  }\r\n  else {\r\n    bVar1 = LC_IsYMIR();\r\n    iVar4 = (!bVar1 - 1 & 0xfffffff6) + 0x32;\r\n  }\r\n  lVar3 = CHARACTER::GetPoint(ch,'Q');\r\n  iVar4 = MAX(0,iVar4 - lVar3);\r\n  return iVar4;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

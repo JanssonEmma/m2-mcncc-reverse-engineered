@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081928f0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81928f0",
+    "function": {
+      "name": "ITEM_MANAGER::FlushDelayedSave",
+      "address": "081928f0"
+    },
+    "signature": "void FlushDelayedSave(ITEM_MANAGER * this, LPITEM item)",
+    "code": "\r\n/* DWARF original prototype: void FlushDelayedSave(ITEM_MANAGER * this, LPITEM item) */\r\n\r\nvoid __thiscall ITEM_MANAGER::FlushDelayedSave(ITEM_MANAGER *this,LPITEM item)\r\n\r\n{\r\n  size_t *psVar1;\r\n  _Rb_tree_node<CItem*> *p_Var2;\r\n  _Rb_tree_node_base *p_Var3;\r\n  _Rb_tree<CItem*,CItem*,std::_Identity<CItem*>,std::less<CItem*>,std::allocator<CItem*>_> local_1c;\r\n  \r\n                    /* Unresolved local var: _Rb_tree_iterator<CItem*,CItem*_const&,CItem*_const*>\r\n                       it@[???] */\r\n  _Rb_tree<CItem*,CItem*,std::_Identity<CItem*>,std::less<CItem*>,std::allocator<CItem*>_>::find\r\n            (&local_1c,(LPITEM *)&this->m_set_pkItemForDelayedSave);\r\n  p_Var2 = (this->m_set_pkItemForDelayedSave)._M_t.\r\n           super__Rb_tree_base<CItem*,std::allocator<CItem*>_>.\r\n           super__Rb_tree_alloc_base<CItem*,std::allocator<CItem*>,true>._M_header;\r\n  if (local_1c.super__Rb_tree_base<CItem*,std::allocator<CItem*>_>.\r\n      super__Rb_tree_alloc_base<CItem*,std::allocator<CItem*>,true>._M_header !=\r\n      (_Rb_tree_alloc_base<CItem*,std::allocator<CItem*>,true>)p_Var2) {\r\n                    /* Unresolved local var: _Rb_tree_node<CItem*> * __y@[???] */\r\n    p_Var3 = _Rb_tree_rebalance_for_erase\r\n                       ((_Rb_tree_node_base *)\r\n                        local_1c.super__Rb_tree_base<CItem*,std::allocator<CItem*>_>.\r\n                        super__Rb_tree_alloc_base<CItem*,std::allocator<CItem*>,true>._M_header,\r\n                        &(((this->m_set_pkItemForDelayedSave)._M_t.\r\n                           super__Rb_tree_base<CItem*,std::allocator<CItem*>_>.\r\n                           super__Rb_tree_alloc_base<CItem*,std::allocator<CItem*>,true>._M_header)\r\n                         ->super__Rb_tree_node_base)._M_parent,\r\n                        &(p_Var2->super__Rb_tree_node_base)._M_left,\r\n                        &(p_Var2->super__Rb_tree_node_base)._M_right);\r\n    std::__default_alloc_template<true,0>::deallocate(p_Var3,0x14);\r\n    psVar1 = &(this->m_set_pkItemForDelayedSave)._M_t._M_node_count;\r\n    *psVar1 = *psVar1 - 1;\r\n    SaveSingleItem(this,item);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

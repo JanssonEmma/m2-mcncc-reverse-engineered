@@ -1,0 +1,25 @@
+#include "questpc.h"
+#include "questevent.h"
+#include "../../libthecore/include/log.h"
+namespace quest {
+// PC C2 0805d580/C1 0805d790. LastState intentionally remains indeterminate.
+// All complete STL members default construct; no VM/coroutine/reward behavior.
+PC::PC():m_bIsGivenReward(false),m_bShouldSendDone(false),m_dwID(0),
+    m_RunningQuestState(0),m_iSendToClient(0),m_bLoaded(false),
+    m_dwWaitConfirmFromPID(0),m_bConfirmWait(false) {}
+// D2 0805d900/D1 0805db30; standard complete member teardown follows Destroy.
+PC::~PC() { Destroy(); }
+// 0805dd60
+void PC::Destroy() { ClearTimer(); }
+// 0805dd70. Reset done BEFORE storing ID; no loaded/context reset.
+void PC::SetID(DWORD id) { m_bShouldSendDone=false; m_dwID=id; }
+// 0805dd90. Old API is NONCONST; returns const reference, no copy.
+const std::string& PC::GetCurrentQuestName() { return m_stCurQuest; }
+// 0805ef10. Every map value must be a non-null event (old precondition).
+void PC::ClearTimer() {
+    sys_log(0,"QUEST clear timer %d",static_cast<int>(m_TimerMap.size()));
+    for(std::map<std::string,LPEVENT>::iterator it=m_TimerMap.begin();it!=m_TimerMap.end();++it)
+        CancelTimerEvent(&it->second);
+    m_TimerMap.clear();
+}
+}

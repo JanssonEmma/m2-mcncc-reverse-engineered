@@ -1,0 +1,2190 @@
+[
+  {
+    "unit": "log.cpp",
+    "name": "st_net",
+    "size": 620,
+    "members": [
+      {
+        "name": "vio",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x46c0d6",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46bec7",
+            "tag": "DW_TAG_typedef",
+            "name": "Vio",
+            "size": null,
+            "type": {
+              "die": "0x46bed2",
+              "tag": "DW_TAG_structure_type",
+              "name": "st_vio",
+              "size": null
+            }
+          }
+        }
+      },
+      {
+        "name": "buff",
+        "offset": [
+          4
+        ],
+        "type": {
+          "die": "0x458f11",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458a70",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "buff_end",
+        "offset": [
+          8
+        ],
+        "type": {
+          "die": "0x458f11",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458a70",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "write_pos",
+        "offset": [
+          12
+        ],
+        "type": {
+          "die": "0x458f11",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458a70",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "read_pos",
+        "offset": [
+          16
+        ],
+        "type": {
+          "die": "0x458f11",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458a70",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "fd",
+        "offset": [
+          20
+        ],
+        "type": {
+          "die": "0x46be01",
+          "tag": "DW_TAG_typedef",
+          "name": "my_socket",
+          "size": null,
+          "type": {
+            "die": "0x458aa6",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "max_packet",
+        "offset": [
+          24
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "max_packet_size",
+        "offset": [
+          28
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "pkt_nr",
+        "offset": [
+          32
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "compress_pkt_nr",
+        "offset": [
+          36
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "write_timeout",
+        "offset": [
+          40
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "read_timeout",
+        "offset": [
+          44
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "retry_count",
+        "offset": [
+          48
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "fcntl",
+        "offset": [
+          52
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      },
+      {
+        "name": "compress",
+        "offset": [
+          56
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "remain_in_buf",
+        "offset": [
+          60
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "length",
+        "offset": [
+          64
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "buf_length",
+        "offset": [
+          68
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "where_b",
+        "offset": [
+          72
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "return_status",
+        "offset": [
+          76
+        ],
+        "type": {
+          "die": "0x46c0dc",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ab8",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned int",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "reading_or_writing",
+        "offset": [
+          80
+        ],
+        "type": {
+          "die": "0x458a70",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned char",
+          "size": 1
+        }
+      },
+      {
+        "name": "save_char",
+        "offset": [
+          81
+        ],
+        "type": {
+          "die": "0x458ca4",
+          "tag": "DW_TAG_base_type",
+          "name": "char",
+          "size": 1
+        }
+      },
+      {
+        "name": "no_send_ok",
+        "offset": [
+          82
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "last_error",
+        "offset": [
+          83
+        ],
+        "type": {
+          "die": "0x46c0e2",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            511
+          ]
+        }
+      },
+      {
+        "name": "sqlstate",
+        "offset": [
+          595
+        ],
+        "type": {
+          "die": "0x45a882",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            5
+          ]
+        }
+      },
+      {
+        "name": "last_errno",
+        "offset": [
+          604
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "error",
+        "offset": [
+          608
+        ],
+        "type": {
+          "die": "0x458a70",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned char",
+          "size": 1
+        }
+      },
+      {
+        "name": "query_cache_query",
+        "offset": [
+          612
+        ],
+        "type": {
+          "die": "0x46bdf6",
+          "tag": "DW_TAG_typedef",
+          "name": "gptr",
+          "size": null,
+          "type": {
+            "die": "0x4590c7",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x458ca4",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "report_error",
+        "offset": [
+          616
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "return_errno",
+        "offset": [
+          617
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN6st_netaSERKS_"
+      },
+      {
+        "name": "st_net",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "st_net",
+        "address": null,
+        "linkage": null
+      }
+    ]
+  },
+  {
+    "unit": "log.cpp",
+    "name": "st_mysql_options",
+    "size": 132,
+    "members": [
+      {
+        "name": "connect_timeout",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "read_timeout",
+        "offset": [
+          4
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "write_timeout",
+        "offset": [
+          8
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "port",
+        "offset": [
+          12
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "protocol",
+        "offset": [
+          16
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "client_flag",
+        "offset": [
+          20
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "host",
+        "offset": [
+          24
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "user",
+        "offset": [
+          28
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "password",
+        "offset": [
+          32
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "unix_socket",
+        "offset": [
+          36
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "db",
+        "offset": [
+          40
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "init_commands",
+        "offset": [
+          44
+        ],
+        "type": {
+          "die": "0x46ce90",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46ce8a",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_dynamic_array",
+            "size": null
+          }
+        }
+      },
+      {
+        "name": "my_cnf_file",
+        "offset": [
+          48
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "my_cnf_group",
+        "offset": [
+          52
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "charset_dir",
+        "offset": [
+          56
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "charset_name",
+        "offset": [
+          60
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "ssl_key",
+        "offset": [
+          64
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "ssl_cert",
+        "offset": [
+          68
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "ssl_ca",
+        "offset": [
+          72
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "ssl_capath",
+        "offset": [
+          76
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "ssl_cipher",
+        "offset": [
+          80
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "shared_memory_base_name",
+        "offset": [
+          84
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "max_allowed_packet",
+        "offset": [
+          88
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "use_ssl",
+        "offset": [
+          92
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "compress",
+        "offset": [
+          93
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "named_pipe",
+        "offset": [
+          94
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "rpl_probe",
+        "offset": [
+          95
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "rpl_parse",
+        "offset": [
+          96
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "no_master_reads",
+        "offset": [
+          97
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "separate_thread",
+        "offset": [
+          98
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "methods_to_use",
+        "offset": [
+          100
+        ],
+        "type": {
+          "die": "0x46cba3",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "mysql_option",
+          "size": 4
+        }
+      },
+      {
+        "name": "client_ip",
+        "offset": [
+          104
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "secure_auth",
+        "offset": [
+          108
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "local_infile_init",
+        "offset": [
+          112
+        ],
+        "type": {
+          "die": "0x46ceaf",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46ce96",
+            "tag": "DW_TAG_subroutine_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x458aa6",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        }
+      },
+      {
+        "name": "local_infile_read",
+        "offset": [
+          116
+        ],
+        "type": {
+          "die": "0x46cece",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46ceb5",
+            "tag": "DW_TAG_subroutine_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x458aa6",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        }
+      },
+      {
+        "name": "local_infile_end",
+        "offset": [
+          120
+        ],
+        "type": {
+          "die": "0x46cedf",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46ced4",
+            "tag": "DW_TAG_subroutine_type",
+            "name": null,
+            "size": null
+          }
+        }
+      },
+      {
+        "name": "local_infile_error",
+        "offset": [
+          124
+        ],
+        "type": {
+          "die": "0x46cece",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46ceb5",
+            "tag": "DW_TAG_subroutine_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x458aa6",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        }
+      },
+      {
+        "name": "local_infile_userdata",
+        "offset": [
+          128
+        ],
+        "type": {
+          "die": "0x459097",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN16st_mysql_optionsaSERKS_"
+      },
+      {
+        "name": "st_mysql_options",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "st_mysql_options",
+        "address": null,
+        "linkage": null
+      }
+    ]
+  },
+  {
+    "unit": "log.cpp",
+    "name": "st_mysql",
+    "size": 952,
+    "members": [
+      {
+        "name": "net",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x46c10a",
+          "tag": "DW_TAG_typedef",
+          "name": "NET",
+          "size": null,
+          "type": {
+            "die": "0x46bed8",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_net",
+            "size": 620
+          }
+        }
+      },
+      {
+        "name": "connector_fd",
+        "offset": [
+          620
+        ],
+        "type": {
+          "die": "0x46bdf6",
+          "tag": "DW_TAG_typedef",
+          "name": "gptr",
+          "size": null,
+          "type": {
+            "die": "0x4590c7",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x458ca4",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "host",
+        "offset": [
+          624
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "user",
+        "offset": [
+          628
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "passwd",
+        "offset": [
+          632
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "unix_socket",
+        "offset": [
+          636
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "server_version",
+        "offset": [
+          640
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "host_info",
+        "offset": [
+          644
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "info",
+        "offset": [
+          648
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "db",
+        "offset": [
+          652
+        ],
+        "type": {
+          "die": "0x4590c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "charset",
+        "offset": [
+          656
+        ],
+        "type": {
+          "die": "0x46d21e",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46d218",
+            "tag": "DW_TAG_structure_type",
+            "name": "charset_info_st",
+            "size": null
+          }
+        }
+      },
+      {
+        "name": "fields",
+        "offset": [
+          660
+        ],
+        "type": {
+          "die": "0x46d224",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46c871",
+            "tag": "DW_TAG_typedef",
+            "name": "MYSQL_FIELD",
+            "size": null,
+            "type": {
+              "die": "0x46c6ef",
+              "tag": "DW_TAG_structure_type",
+              "name": "st_mysql_field",
+              "size": 80
+            }
+          }
+        }
+      },
+      {
+        "name": "field_alloc",
+        "offset": [
+          664
+        ],
+        "type": {
+          "die": "0x46cad6",
+          "tag": "DW_TAG_typedef",
+          "name": "MEM_ROOT",
+          "size": null,
+          "type": {
+            "die": "0x46c9ee",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_mem_root",
+            "size": 32
+          }
+        }
+      },
+      {
+        "name": "affected_rows",
+        "offset": [
+          696
+        ],
+        "type": {
+          "die": "0x46c892",
+          "tag": "DW_TAG_typedef",
+          "name": "my_ulonglong",
+          "size": null,
+          "type": {
+            "die": "0x458adc",
+            "tag": "DW_TAG_base_type",
+            "name": "long long unsigned int",
+            "size": 8
+          }
+        }
+      },
+      {
+        "name": "insert_id",
+        "offset": [
+          704
+        ],
+        "type": {
+          "die": "0x46c892",
+          "tag": "DW_TAG_typedef",
+          "name": "my_ulonglong",
+          "size": null,
+          "type": {
+            "die": "0x458adc",
+            "tag": "DW_TAG_base_type",
+            "name": "long long unsigned int",
+            "size": 8
+          }
+        }
+      },
+      {
+        "name": "extra_info",
+        "offset": [
+          712
+        ],
+        "type": {
+          "die": "0x46c892",
+          "tag": "DW_TAG_typedef",
+          "name": "my_ulonglong",
+          "size": null,
+          "type": {
+            "die": "0x458adc",
+            "tag": "DW_TAG_base_type",
+            "name": "long long unsigned int",
+            "size": 8
+          }
+        }
+      },
+      {
+        "name": "thread_id",
+        "offset": [
+          720
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "packet_length",
+        "offset": [
+          724
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "port",
+        "offset": [
+          728
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "client_flag",
+        "offset": [
+          732
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "server_capabilities",
+        "offset": [
+          736
+        ],
+        "type": {
+          "die": "0x458aee",
+          "tag": "DW_TAG_base_type",
+          "name": "long unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "protocol_version",
+        "offset": [
+          740
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "field_count",
+        "offset": [
+          744
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "server_status",
+        "offset": [
+          748
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "server_language",
+        "offset": [
+          752
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "warning_count",
+        "offset": [
+          756
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "options",
+        "offset": [
+          760
+        ],
+        "type": {
+          "die": "0x46cc22",
+          "tag": "DW_TAG_structure_type",
+          "name": "st_mysql_options",
+          "size": 132
+        }
+      },
+      {
+        "name": "status",
+        "offset": [
+          892
+        ],
+        "type": {
+          "die": "0x46cefc",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "mysql_status",
+          "size": 4
+        }
+      },
+      {
+        "name": "free_me",
+        "offset": [
+          896
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "reconnect",
+        "offset": [
+          897
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "scramble",
+        "offset": [
+          898
+        ],
+        "type": {
+          "die": "0x4605bb",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          },
+          "bounds": [
+            20
+          ]
+        }
+      },
+      {
+        "name": "rpl_pivot",
+        "offset": [
+          919
+        ],
+        "type": {
+          "die": "0x46bdeb",
+          "tag": "DW_TAG_typedef",
+          "name": "my_bool",
+          "size": null,
+          "type": {
+            "die": "0x458ca4",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "size": 1
+          }
+        }
+      },
+      {
+        "name": "master",
+        "offset": [
+          920
+        ],
+        "type": {
+          "die": "0x46d22a",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46cf65",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_mysql",
+            "size": 952
+          }
+        }
+      },
+      {
+        "name": "next_slave",
+        "offset": [
+          924
+        ],
+        "type": {
+          "die": "0x46d22a",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46cf65",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_mysql",
+            "size": 952
+          }
+        }
+      },
+      {
+        "name": "last_used_slave",
+        "offset": [
+          928
+        ],
+        "type": {
+          "die": "0x46d22a",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46cf65",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_mysql",
+            "size": 952
+          }
+        }
+      },
+      {
+        "name": "last_used_con",
+        "offset": [
+          932
+        ],
+        "type": {
+          "die": "0x46d22a",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46cf65",
+            "tag": "DW_TAG_structure_type",
+            "name": "st_mysql",
+            "size": 952
+          }
+        }
+      },
+      {
+        "name": "stmts",
+        "offset": [
+          936
+        ],
+        "type": {
+          "die": "0x46d230",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46c6bf",
+            "tag": "DW_TAG_typedef",
+            "name": "LIST",
+            "size": null,
+            "type": {
+              "die": "0x46c62a",
+              "tag": "DW_TAG_structure_type",
+              "name": "st_list",
+              "size": 12
+            }
+          }
+        }
+      },
+      {
+        "name": "methods",
+        "offset": [
+          940
+        ],
+        "type": {
+          "die": "0x46d36c",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46d372",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x46d236",
+              "tag": "DW_TAG_structure_type",
+              "name": "st_mysql_methods",
+              "size": 60
+            }
+          }
+        }
+      },
+      {
+        "name": "thd",
+        "offset": [
+          944
+        ],
+        "type": {
+          "die": "0x459097",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4
+        }
+      },
+      {
+        "name": "unbuffered_fetch_owner",
+        "offset": [
+          948
+        ],
+        "type": {
+          "die": "0x46d377",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46bdeb",
+            "tag": "DW_TAG_typedef",
+            "name": "my_bool",
+            "size": null,
+            "type": {
+              "die": "0x458ca4",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN8st_mysqlaSERKS_"
+      },
+      {
+        "name": "st_mysql",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "st_mysql",
+        "address": null,
+        "linkage": null
+      }
+    ]
+  },
+  {
+    "unit": "log.cpp",
+    "name": "CSemaphore",
+    "size": 4,
+    "members": [
+      {
+        "name": "m_hSem",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x46dd3d",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x45c078",
+            "tag": "DW_TAG_typedef",
+            "name": "sem_t",
+            "size": null,
+            "type": {
+              "die": "0x45c083",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x45c089",
+                "tag": "DW_TAG_structure_type",
+                "name": "sem",
+                "size": null
+              }
+            }
+          }
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN10CSemaphoreaSERKS_"
+      },
+      {
+        "name": "CSemaphore",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "CSemaphore",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "~CSemaphore",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "Initialize",
+        "address": null,
+        "linkage": "_ZN10CSemaphore10InitializeEv"
+      },
+      {
+        "name": "Clear",
+        "address": null,
+        "linkage": "_ZN10CSemaphore5ClearEv"
+      },
+      {
+        "name": "Destroy",
+        "address": null,
+        "linkage": "_ZN10CSemaphore7DestroyEv"
+      },
+      {
+        "name": "Wait",
+        "address": null,
+        "linkage": "_ZN10CSemaphore4WaitEv"
+      },
+      {
+        "name": "Release",
+        "address": null,
+        "linkage": "_ZN10CSemaphore7ReleaseEi"
+      }
+    ]
+  },
+  {
+    "unit": "log.cpp",
+    "name": "_SQLResult",
+    "size": 16,
+    "members": [
+      {
+        "name": "pSQLResult",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x46db48",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46d4e4",
+            "tag": "DW_TAG_typedef",
+            "name": "MYSQL_RES",
+            "size": null,
+            "type": {
+              "die": "0x46d39a",
+              "tag": "DW_TAG_structure_type",
+              "name": "st_mysql_res",
+              "size": 84
+            }
+          }
+        }
+      },
+      {
+        "name": "iNumRows",
+        "offset": [
+          4
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      },
+      {
+        "name": "iAffectedRows",
+        "offset": [
+          8
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      },
+      {
+        "name": "iInsertID",
+        "offset": [
+          12
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN10_SQLResultaSERKS_"
+      },
+      {
+        "name": "_SQLResult",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "_SQLResult",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "~_SQLResult",
+        "address": null,
+        "linkage": null
+      }
+    ]
+  },
+  {
+    "unit": "log.cpp",
+    "name": "_SQLMsg",
+    "size": 40,
+    "members": [
+      {
+        "name": "m_pkSQL",
+        "offset": [
+          0
+        ],
+        "type": {
+          "die": "0x46d4c7",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x46d38e",
+            "tag": "DW_TAG_typedef",
+            "name": "MYSQL",
+            "size": null,
+            "type": {
+              "die": "0x46cf65",
+              "tag": "DW_TAG_structure_type",
+              "name": "st_mysql",
+              "size": 952
+            }
+          }
+        }
+      },
+      {
+        "name": "iID",
+        "offset": [
+          4
+        ],
+        "type": {
+          "die": "0x458aa6",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        }
+      },
+      {
+        "name": "stQuery",
+        "offset": [
+          8
+        ],
+        "type": {
+          "die": "0x4698e1",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x4668e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        }
+      },
+      {
+        "name": "vec_pkResult",
+        "offset": [
+          12
+        ],
+        "type": {
+          "die": "0x46e353",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<_SQLResult*,std::allocator<_SQLResult*> >",
+          "size": 12
+        }
+      },
+      {
+        "name": "uiResultPos",
+        "offset": [
+          24
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      },
+      {
+        "name": "pvUserData",
+        "offset": [
+          28
+        ],
+        "type": {
+          "die": "0x459097",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4
+        }
+      },
+      {
+        "name": "bReturn",
+        "offset": [
+          32
+        ],
+        "type": {
+          "die": "0x462642",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        }
+      },
+      {
+        "name": "uiSQLErrno",
+        "offset": [
+          36
+        ],
+        "type": {
+          "die": "0x458ab8",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        }
+      }
+    ],
+    "methods": [
+      {
+        "name": "operator=",
+        "address": null,
+        "linkage": "_ZN7_SQLMsgaSERKS_"
+      },
+      {
+        "name": "_SQLMsg",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "_SQLMsg",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "~_SQLMsg",
+        "address": null,
+        "linkage": null
+      },
+      {
+        "name": "Store",
+        "address": null,
+        "linkage": "_ZN7_SQLMsg5StoreEv"
+      },
+      {
+        "name": "Get",
+        "address": null,
+        "linkage": "_ZN7_SQLMsg3GetEv"
+      },
+      {
+        "name": "Next",
+        "address": null,
+        "linkage": "_ZN7_SQLMsg4NextEv"
+      }
+    ]
+  }
+]

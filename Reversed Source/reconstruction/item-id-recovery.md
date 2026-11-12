@@ -1,0 +1,5 @@
+# Item ID allocation and range setup — checkpoint76
+
+Checkpoint76: actual public nonconst GetNewID/SetMaxItemID and original zeroed8-byte item range are integrated. Range DWORD[2] spelling is ABI/usage-inferred, no variableDIE. Focused3+ABI, optimized actual IDcaller/C++/SQL paths, strict32 and full79 runtime commands+ABI pass. Dedicated ID test uses unchanged real shutdown code/state from complete compiled core main.c; PE TEST object projection drops only unused startup/idle sections and their unwind records, with shutdown code/data byte equality verified. Legacy unused shutdown boundaries abort. Standard source assert retains fatal semantics; host diagnostics differ and optional assert-zero death mode remains unexecuted. Full factory/horse/quest/stat/server linking remains unfinished.
+
+Evidence: point_change_evidence/auto_give/get_new_id/. Full receipt workspace work/checkpoint-76-validation.receipt.json; focused item-id-focused.receipt.json; O2 item-id-o2.log; strict32 item-id-m32.log; current object proof item-id-core-projection-proof.json. Core startup/native OS integration and old assertion diagnostic fidelity are not proved.

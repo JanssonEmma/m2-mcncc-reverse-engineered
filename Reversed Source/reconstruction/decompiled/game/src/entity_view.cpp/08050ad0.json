@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08050ad0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CEntity::ViewReencode",
+      "address": "08050ad0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ViewReencode(CEntity * this) */\r\n\r\nvoid __thiscall CEntity::ViewReencode(CEntity *this)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<CEntity*_const,_int>_> *p_Var1;\r\n  int *piVar2;\r\n  _Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n  _Var3;\r\n  _Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n  __tmp;\r\n  _Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n  it;\r\n  \r\n  if (this->m_bIsObserver == false) {\r\n    (*this->_vptr_CEntity[3])(this,this);\r\n    (*this->_vptr_CEntity[2])(this,this);\r\n    p_Var1 = (this->m_map_view)._M_t.\r\n             super__Rb_tree_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>,true>\r\n             ._M_header;\r\n    it.super__Rb_tree_base_iterator._M_node =\r\n         (_Rb_tree_base_iterator)(p_Var1->super__Rb_tree_node_base)._M_left;\r\n    if (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)p_Var1) {\r\n      do {\r\n                    /* Unresolved local var: LPENTITY entity@[DW_OP_reg3(EBX)] */\r\n        _Var3.super__Rb_tree_base_iterator._M_node = it.super__Rb_tree_base_iterator._M_node;\r\n        _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n        piVar2 = *(int **)((int)_Var3.super__Rb_tree_base_iterator._M_node + 0x10);\r\n        (*this->_vptr_CEntity[3])(this,piVar2);\r\n        if (this->m_bIsObserver == false) {\r\n          (*this->_vptr_CEntity[2])(this,piVar2);\r\n        }\r\n        if ((char)piVar2[1] == '\\0') {\r\n          (**(code **)(*piVar2 + 8))(piVar2,this);\r\n        }\r\n      } while (it.super__Rb_tree_base_iterator._M_node !=\r\n               (_Rb_tree_base_iterator)\r\n               &((this->m_map_view)._M_t.\r\n                 super__Rb_tree_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>_>\r\n                 .\r\n                 super__Rb_tree_alloc_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>,true>\r\n                ._M_header)->super__Rb_tree_node_base);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

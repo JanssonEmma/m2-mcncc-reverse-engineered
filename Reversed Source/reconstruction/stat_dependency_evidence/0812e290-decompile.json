@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"function\": {\n    \"name\": \"CHARACTER::GetAllowedGold\",\n    \"address\": \"0812e290\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: long GetAllowedGold(CHARACTER * this) */\\r\\n\\r\\nlong __thiscall CHARACTER::GetAllowedGold(CHARACTER *this)\\r\\n\\r\\n{\\r\\n  byte bVar1;\\r\\n  long lVar2;\\r\\n  \\r\\n  bVar1 = (this->m_points).level;\\r\\n  lVar2 = 100000;\\r\\n  if (10 < bVar1) {\\r\\n    lVar2 = ((0x14 < bVar1) - 1 & 0xfd0cb0a0) + 50000000;\\r\\n  }\\r\\n  return lVar2;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+    }
+  ],
+  "structuredContent": {
+    "function": {
+      "name": "CHARACTER::GetAllowedGold",
+      "address": "0812e290"
+    },
+    "code": "\r\n/* DWARF original prototype: long GetAllowedGold(CHARACTER * this) */\r\n\r\nlong __thiscall CHARACTER::GetAllowedGold(CHARACTER *this)\r\n\r\n{\r\n  byte bVar1;\r\n  long lVar2;\r\n  \r\n  bVar1 = (this->m_points).level;\r\n  lVar2 = 100000;\r\n  if (10 < bVar1) {\r\n    lVar2 = ((0x14 < bVar1) - 1 & 0xfd0cb0a0) + 50000000;\r\n  }\r\n  return lVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "isError": false
+}

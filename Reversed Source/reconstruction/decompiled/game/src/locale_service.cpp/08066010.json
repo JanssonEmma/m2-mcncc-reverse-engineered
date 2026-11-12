@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08066010",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "is_char_sjis",
+      "address": "08066010"
+    },
+    "code": "\r\nint is_char_sjis(char *p,char *e)\r\n\r\n{\r\n  byte bVar1;\r\n  int iVar2;\r\n  \r\n  if (((((byte)(*p + 0x7fU) < 0x1f) || ((byte)(*p + 0x20U) < 0x1d)) && (1 < (int)e - (int)p)) &&\r\n     ((bVar1 = p[1], (byte)(bVar1 - 0x40) < 0x3f || (((char)bVar1 < '\\0' && (bVar1 < 0xfd)))))) {\r\n    iVar2 = 1;\r\n  }\r\n  else {\r\n    iVar2 = 0;\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

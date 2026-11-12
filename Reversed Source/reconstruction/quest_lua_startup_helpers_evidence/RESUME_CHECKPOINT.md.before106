@@ -1,0 +1,7 @@
+# Metin2 reconstruction restart — checkpoint 105
+
+Checkpoint 105 restored RegisterNPCVnum and LoadTimerScript. Three focused runtime suites and ABI checks passed. There are 118 registered suites. Checkpoint 103 remains the latest full run with 117 suites. The ledger contains 1074 functions with evidence and 328 bounded source/test mappings.
+
+The two manager callers now use actual NPC::Set, directory APIs and the recovered Lua-backed state loader. Verification and hashes are in reconstruction/npc_set_callers_evidence. Set proof is in reconstruction/npc_set_evidence and the full checkpoint 103 proof is in reconstruction/npc_loader_evidence.
+
+Next review InitializeLua and SetEventFlag dependency closures for the whole quest manager startup. The Initialize callsite inventory is in work/npc_set_callers/081a0760-calls.json. Full dispatch, VM startup, reward/stat/item chains and server linking remain in scope. Keep the original executable unmodified and unexecuted. Follow reconstruction/VALIDATION_POLICY.md for batching.

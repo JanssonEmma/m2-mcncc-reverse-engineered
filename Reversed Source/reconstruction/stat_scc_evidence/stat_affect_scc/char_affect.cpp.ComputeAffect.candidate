@@ -1,0 +1,20 @@
+// Full saved auxiliary body, STILL SCC-dependent; no app substitute.
+void CHARACTER::ComputeAffect(CAffect* affect,bool add) {
+    using namespace mount_polymorph_detail;
+    if(add && affect->dwType>=151 && affect->dwType<=162 &&
+       (!m_pGuild || !m_pGuild->UnderAnyWar(3))) return;
+    DWORD flag=affect->dwFlag;
+    if(flag) {
+        unsigned int shifted=static_cast<unsigned int>(flag)-1U;
+        int index=static_cast<int>(Signed(shifted))>>5;
+        unsigned int mask=1U<<(shifted&31U);
+        if(add) m_afAffectFlag.bits[index]|=mask;
+        else m_afAffectFlag.bits[index]&=static_cast<DWORD>(~mask);
+    }
+    int amount=static_cast<int>(add?Signed(static_cast<unsigned int>(affect->lApplyValue)):
+                                     Sub(0,affect->lApplyValue));
+    PointChange(affect->bApplyOn,amount,false,false);
+    if(affect->dwType==78) {
+        if(add) StartMuyeongEvent();else StopMuyeongEvent();
+    }
+}

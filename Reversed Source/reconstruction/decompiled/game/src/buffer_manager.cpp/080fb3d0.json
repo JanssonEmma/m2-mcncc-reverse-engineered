@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080fb3d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "BUFFER_MANAGER::~BUFFER_MANAGER",
+      "address": "080fb3d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~BUFFER_MANAGER(BUFFER_MANAGER * this, int __in_chrg) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::~BUFFER_MANAGER(BUFFER_MANAGER *this,int __in_chrg)\r\n\r\n{\r\n  int in_stack_ffffff98;\r\n  \r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__BUFFER_MANAGER_0821ec48;\r\n  Destroy(this);\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::~_Deque_base\r\n            ((_Deque_base<buffer*,std::allocator<buffer*>_> *)&this->buffer_stack,in_stack_ffffff98)\r\n  ;\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<BUFFER_MANAGER>::ms_singleton = (BUFFER_MANAGER *)0x0;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

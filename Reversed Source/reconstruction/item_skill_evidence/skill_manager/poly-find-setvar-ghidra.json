@@ -1,0 +1,18 @@
+[
+  {
+    "function": {
+      "name": "CPoly::find",
+      "address": "081bd710"
+    },
+    "code": "\r\n/* CPoly::find(std::string const&) */\r\n\r\nundefined4 __thiscall CPoly::find(CPoly *this,string *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  byte *pbVar2;\r\n  int iVar3;\r\n  uint *puVar4;\r\n  uint uVar5;\r\n  int iVar6;\r\n  byte *pbVar7;\r\n  byte *pbVar8;\r\n  bool bVar9;\r\n  bool bVar10;\r\n  int local_2c;\r\n  int local_24;\r\n  uint local_20;\r\n  uint local_1c;\r\n  uint local_18;\r\n  uint local_14;\r\n  \r\n  local_24 = 0;\r\n  local_2c = *(int *)(this + 0x50) + -1;\r\n  if (-1 < local_2c) {\r\n    iVar1 = *(int *)(this + 0x44);\r\n    pbVar2 = *(byte **)param_1;\r\n    local_18 = *(uint *)(pbVar2 + -0xc);\r\n    do {\r\n      iVar6 = local_24 + local_2c >> 1;\r\n      iVar3 = *(int *)(*(int *)(this + 0x38) + *(int *)(iVar1 + iVar6 * 4) * 4);\r\n      local_14 = *(uint *)(*(int *)(iVar3 + 0x10) + -0xc);\r\n      puVar4 = &local_18;\r\n      if (local_14 <= local_18) {\r\n        puVar4 = &local_14;\r\n      }\r\n      uVar5 = *puVar4;\r\n      bVar9 = false;\r\n      bVar10 = true;\r\n      pbVar7 = *(byte **)(iVar3 + 0x10);\r\n      pbVar8 = pbVar2;\r\n      do {\r\n        if (uVar5 == 0) break;\r\n        uVar5 = uVar5 - 1;\r\n        bVar9 = *pbVar7 < *pbVar8;\r\n        bVar10 = *pbVar7 == *pbVar8;\r\n        pbVar7 = pbVar7 + 1;\r\n        pbVar8 = pbVar8 + 1;\r\n      } while (bVar10);\r\n      iVar3 = (int)(char)((!bVar9 && !bVar10) - bVar9);\r\n      if (iVar3 == 0) {\r\n        iVar3 = local_14 - local_18;\r\n      }\r\n      if (iVar3 == 0) {\r\n        return *(undefined4 *)(iVar1 + iVar6 * 4);\r\n      }\r\n      iVar3 = *(int *)(*(int *)(this + 0x38) + *(int *)(iVar1 + iVar6 * 4) * 4);\r\n      local_20 = *(uint *)(pbVar2 + -0xc);\r\n      local_1c = *(uint *)(*(int *)(iVar3 + 0x10) + -0xc);\r\n      puVar4 = &local_20;\r\n      if (local_1c <= local_20) {\r\n        puVar4 = &local_1c;\r\n      }\r\n      uVar5 = *puVar4;\r\n      bVar9 = false;\r\n      bVar10 = true;\r\n      pbVar7 = *(byte **)(iVar3 + 0x10);\r\n      pbVar8 = pbVar2;\r\n      do {\r\n        if (uVar5 == 0) break;\r\n        uVar5 = uVar5 - 1;\r\n        bVar9 = *pbVar7 < *pbVar8;\r\n        bVar10 = *pbVar7 == *pbVar8;\r\n        pbVar7 = pbVar7 + 1;\r\n        pbVar8 = pbVar8 + 1;\r\n      } while (bVar10);\r\n      iVar3 = (int)(char)((!bVar9 && !bVar10) - bVar9);\r\n      if (iVar3 == 0) {\r\n        iVar3 = local_1c - local_20;\r\n      }\r\n      if (iVar3 < 0) {\r\n        local_24 = iVar6 + 1;\r\n      }\r\n      else {\r\n        local_2c = iVar6 + -1;\r\n      }\r\n    } while (local_24 <= local_2c);\r\n  }\r\n  return 0xffffffff;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CPoly::SetVar",
+      "address": "081bda10"
+    },
+    "code": "\r\n/* CPoly::SetVar(std::string const&, double) */\r\n\r\nundefined4 __thiscall CPoly::SetVar(CPoly *this,string *param_1,double param_2)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  \r\n  if (this[0x18] == (CPoly)0x0) {\r\n    iVar1 = find(this,param_1);\r\n    uVar2 = 0;\r\n    if (iVar1 != -1) {\r\n      uVar2 = 1;\r\n      *(double *)(*(int *)(iVar1 * 4 + *(int *)(this + 0x38)) + 4) = param_2;\r\n    }\r\n  }\r\n  else {\r\n    uVar2 = 0;\r\n  }\r\n  return uVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

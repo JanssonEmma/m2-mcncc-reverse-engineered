@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0806a970",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CImage::Load",
+      "address": "0806a970"
+    },
+    "code": "\r\n/* DWARF original prototype: bool Load(CImage * this, char * c_szFileName) */\r\n\r\nbool __thiscall CImage::Load(CImage *this,char *c_szFileName)\r\n\r\n{\r\n  FILE *__stream;\r\n  uint uVar1;\r\n  Pixel (*paPVar2) [512];\r\n  \r\n                    /* Unresolved local var: FILE * fp@[DW_OP_reg3(EBX)] */\r\n  __stream = fopen(c_szFileName,\"rb\");\r\n  if (__stream == (FILE *)0x0) {\r\n    paPVar2 = this->m_aapxBuf;\r\n    uVar1 = 0x100000;\r\n    if (((uint)paPVar2 & 4) != 0) {\r\n      this->m_aapxBuf[0][0] = 0;\r\n      paPVar2 = (Pixel (*) [512])(this->m_aapxBuf[0] + 1);\r\n      uVar1 = 0xffffc;\r\n    }\r\n    for (uVar1 = uVar1 >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n      (*paPVar2)[0] = 0;\r\n      paPVar2 = (Pixel (*) [512])(*paPVar2 + 1);\r\n    }\r\n  }\r\n  else {\r\n    fread(this->m_aapxBuf,0x100000,1,__stream);\r\n    fclose(__stream);\r\n  }\r\n  return true;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

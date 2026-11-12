@@ -1,0 +1,74 @@
+{
+  "081b9800": {
+    "function": {
+      "name": "thecore_init",
+      "address": "081b9800"
+    },
+    "code": "\r\nint thecore_init(int fps,HEARTFUNC heartbeat_func)\r\n\r\n{\r\n  time_t tVar1;\r\n  __pid_t _Var2;\r\n  __uid_t _Var3;\r\n  int iVar4;\r\n  \r\n  tVar1 = time((time_t *)0x0);\r\n  _Var2 = getpid();\r\n  _Var3 = getuid();\r\n  srandom(_Var3 + tVar1 + _Var2);\r\n  srandomdev();\r\n  signal_setup();\r\n  iVar4 = log_init();\r\n  if ((iVar4 != 0) && (iVar4 = pid_init(), iVar4 != 0)) {\r\n    thecore_find_best_memcpy();\r\n    GOST_Init();\r\n    thecore_heart = heart_new((int)(1000000 / (longlong)fps),heartbeat_func);\r\n    return 1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b9890": {
+    "function": {
+      "name": "thecore_shutdown",
+      "address": "081b9890"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid thecore_shutdown(void)\r\n\r\n{\r\n  shutdowned = 1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b98a0": {
+    "function": {
+      "name": "thecore_idle",
+      "address": "081b98a0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint thecore_idle(void)\r\n\r\n{\r\n  DWORD DVar1;\r\n  DWORD DVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n                    /* Unresolved local var: int pulses@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: DWORD t@[DW_OP_reg6(ESI)] */\r\n  iVar4 = 0;\r\n  tics = tics + 1;\r\n  if (shutdowned == 0) {\r\n    DVar1 = get_dword_time();\r\n    iVar4 = heart_idle(thecore_heart);\r\n    if (iVar4 == 0) {\r\n      DVar2 = get_dword_time();\r\n      iVar3 = DVar2 - DVar1;\r\n      iVar4 = 0;\r\n    }\r\n    else {\r\n      DVar2 = get_dword_time();\r\n      iVar3 = DVar2 - DVar1;\r\n    }\r\n    thecore_profiler[0] = thecore_profiler[0] + iVar3;\r\n  }\r\n  return iVar4;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b9910": {
+    "function": {
+      "name": "thecore_destroy",
+      "address": "081b9910"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid thecore_destroy(void)\r\n\r\n{\r\n  pid_deinit();\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b9920": {
+    "function": {
+      "name": "thecore_pulse",
+      "address": "081b9920"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint thecore_pulse(void)\r\n\r\n{\r\n  return thecore_heart->pulse;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b9930": {
+    "function": {
+      "name": "thecore_pulse_per_second",
+      "address": "081b9930"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nfloat thecore_pulse_per_second(void)\r\n\r\n{\r\n  return (float)thecore_heart->passes_per_sec;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b9940": {
+    "function": {
+      "name": "thecore_time",
+      "address": "081b9940"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nfloat thecore_time(void)\r\n\r\n{\r\n  return (float)thecore_heart->pulse / (float)thecore_heart->passes_per_sec;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b9770": {
+    "function": {
+      "name": "pid_init",
+      "address": "081b9770"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint pid_init(void)\r\n\r\n{\r\n  FILE *__stream;\r\n  __pid_t _Var1;\r\n  \r\n                    /* Unresolved local var: FILE.conflict * fp@[DW_OP_reg3(EBX)] */\r\n  __stream = fopen(\"pid\",\"w\");\r\n  if (__stream == (FILE *)0x0) {\r\n    printf(\"pid_init(): could not open file for writing. (filename: ./pid)\");\r\n  }\r\n  else {\r\n    _Var1 = getpid();\r\n    fprintf(__stream,\"%d\",_Var1);\r\n    fclose(__stream);\r\n  }\r\n  return (uint)(__stream != (FILE *)0x0);\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b97e0": {
+    "function": {
+      "name": "pid_deinit",
+      "address": "081b97e0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid pid_deinit(void)\r\n\r\n{\r\n  remove(\"./pid\");\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

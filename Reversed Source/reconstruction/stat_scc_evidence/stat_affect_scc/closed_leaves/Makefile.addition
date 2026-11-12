@@ -1,0 +1,14 @@
+# Complete actual current graph; reuse existing explicit unrelated lifecycle/dispatch fixtures.
+AFFECT_PACKET_LEAF_SOURCES = $(filter-out ../../game/src/char_affect.cpp,$(TARGET_WALKING_SOURCES)) ../../game/src/char_affect.cpp
+AFFECT_PACKET_LEAF_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) desc_output_syscalls.o
+affect_packet_leaves_regression$(EXEEXT): affect_packet_leaves_regression.cpp $(AFFECT_PACKET_LEAF_SOURCES) $(AFFECT_PACKET_LEAF_OBJECTS) $(DESC_TEST_HEADERS)
+	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long affect_packet_leaves_regression.cpp $(AFFECT_PACKET_LEAF_SOURCES) $(AFFECT_PACKET_LEAF_OBJECTS) $(LDFLAGS) -o $@
+.PHONY: check-affect-packet-leaves check-affect-packet-leaves-abi clean-affect-packet-leaves
+check-affect-packet-leaves: affect_packet_leaves_regression$(EXEEXT)
+	./affect_packet_leaves_regression$(EXEEXT)
+check-abi: check-affect-packet-leaves-abi
+check-affect-packet-leaves-abi: affect_packet_leaves_abi.cpp ../../game/src/packet.h ../../common/tables.h ../../game/src/char.h
+	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long -m32 -fsyntax-only affect_packet_leaves_abi.cpp
+clean: clean-affect-packet-leaves
+clean-affect-packet-leaves:
+	$(RM) affect_packet_leaves_regression$(EXEEXT)

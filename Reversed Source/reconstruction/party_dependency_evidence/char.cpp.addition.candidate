@@ -1,0 +1,29 @@
+// Staged char.cpp addition; packet type forward declaration required in char.h.
+// Required includes: party.h, packet.h, locale.hpp, utils.h,
+// ../../libthecore/include/utils.h, ../../libthecore/include/log.h, <cstring>.
+// Exact public signature: bool BuildUpdatePartyPacket(TPacketGCPartyUpdate& out).
+// 08133e50. Caller preconditions retain a nonzero maxHP and valid party state.
+bool CHARACTER::BuildUpdatePartyPacket(TPacketGCPartyUpdate& out) {
+    if(!m_pkParty) return false; // Output is untouched on this path.
+    std::memset(&out,0,sizeof(out));
+    out.header=79;out.pid=m_dwPlayerID;
+    int hp100=static_cast<int>(static_cast<unsigned int>(m_points.hp)*100U);
+    out.percent_hp=static_cast<BYTE>(MINMAX(0,hp100/m_pointsInstant.iMaxHP,100));
+    out.role=m_pkParty->GetRole(m_dwPlayerID);
+    sys_log(1,"PARTY %s role is %d",GetName(),static_cast<unsigned int>(out.role));
+    CHARACTER* leader=m_pkParty->GetLeaderCharacter();
+    if(leader) {
+        int dx=static_cast<int>(static_cast<unsigned int>(GetX())-static_cast<unsigned int>(leader->GetX()));
+        int dy=static_cast<int>(static_cast<unsigned int>(GetY())-static_cast<unsigned int>(leader->GetY()));
+        if(DISTANCE_APPROX(dx,dy)<5000) {
+            out.affects[0]=static_cast<short>(g_iUseLocale==0?m_pkParty->GetExpBonusPercent():m_pkParty->GetPartyBonusExpPercent());
+            out.affects[1]=static_cast<short>(GetPoint(91));
+            out.affects[2]=static_cast<short>(GetPoint(92));
+            out.affects[3]=static_cast<short>(GetPoint(103));
+            out.affects[4]=static_cast<short>(GetPoint(104));
+            out.affects[5]=static_cast<short>(GetPoint(110));
+            out.affects[6]=static_cast<short>(GetPoint(111));
+        }
+    }
+    return true;
+}

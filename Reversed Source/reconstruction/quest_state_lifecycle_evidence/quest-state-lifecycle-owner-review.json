@@ -1,0 +1,2211 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "owner_audit": {
+    "symbols": [
+      {
+        "name": "_ZN5quest13CQuestManager12GotoEndStateERNS_10QuestStateE",
+        "address": "0805cd10",
+        "size": 110,
+        "type": "STT_FUNC"
+      },
+      {
+        "name": "_ZN5quest13CQuestManager9OpenStateERKSsi",
+        "address": "0805cd80",
+        "size": 88,
+        "type": "STT_FUNC"
+      },
+      {
+        "name": "_ZN5quest13CQuestManager9AddScriptERKSs",
+        "address": "081a4f30",
+        "size": 20,
+        "type": "STT_FUNC"
+      },
+      {
+        "name": "_ZN5quest13CQuestManager10SendScriptEv",
+        "address": "081a4f50",
+        "size": 467,
+        "type": "STT_FUNC"
+      },
+      {
+        "name": "_ZN5quest13CQuestManager11ClearScriptEv",
+        "address": "081a4ee0",
+        "size": 69,
+        "type": "STT_FUNC"
+      },
+      {
+        "name": "_ZN5quest13CQuestManager10CloseStateERNS_10QuestStateE",
+        "address": "0805d000",
+        "size": 70,
+        "type": "STT_FUNC"
+      }
+    ],
+    "dies": [
+      {
+        "cu": "questlua.cpp",
+        "name": "GotoEndState",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1bc9bc",
+        "low_pc": "0805cd10",
+        "linkage": "_ZN5quest13CQuestManager12GotoEndStateERNS_10QuestStateE",
+        "decl_file": "questlua.cpp",
+        "decl_line": 2124,
+        "parents": [
+          {
+            "tag": "DW_TAG_compile_unit",
+            "name": "questlua.cpp",
+            "die": "0x1149ba"
+          }
+        ],
+        "type": {
+          "name": "void"
+        },
+        "parameters": [
+          {
+            "name": "this",
+            "artificial": true,
+            "type": {
+              "die": "0x1b1bc5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1b1ba8",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x15e48c",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          },
+          {
+            "name": "qs",
+            "artificial": null,
+            "type": {
+              "die": "0x1bc9ed",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x14d828",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x14d6f8",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "cu": "questlua.cpp",
+        "name": "OpenState",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1bcb66",
+        "low_pc": "0805cd80",
+        "linkage": "_ZN5quest13CQuestManager9OpenStateERKSsi",
+        "decl_file": "questlua.cpp",
+        "decl_line": 2136,
+        "parents": [
+          {
+            "tag": "DW_TAG_compile_unit",
+            "name": "questlua.cpp",
+            "die": "0x1149ba"
+          }
+        ],
+        "type": {
+          "die": "0x14d6f8",
+          "tag": "DW_TAG_structure_type",
+          "name": "QuestState",
+          "size": 60
+        },
+        "parameters": [
+          {
+            "name": "this",
+            "artificial": true,
+            "type": {
+              "die": "0x1b1bc5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1b1ba8",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x15e48c",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          },
+          {
+            "name": "quest_name",
+            "artificial": null,
+            "type": {
+              "die": "0x1bcbb6",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x125db0",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x125db6",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x125d86",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x122864",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "state_index",
+            "artificial": null,
+            "type": {
+              "die": "0x114a23",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "cu": "questlua.cpp",
+        "name": "CloseState",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x1bcc6e",
+        "low_pc": "0805d000",
+        "linkage": "_ZN5quest13CQuestManager10CloseStateERNS_10QuestStateE",
+        "decl_file": "questlua.cpp",
+        "decl_line": 2214,
+        "parents": [
+          {
+            "tag": "DW_TAG_compile_unit",
+            "name": "questlua.cpp",
+            "die": "0x1149ba"
+          }
+        ],
+        "type": {
+          "name": "void"
+        },
+        "parameters": [
+          {
+            "name": "this",
+            "artificial": true,
+            "type": {
+              "die": "0x1b1bc5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x1b1ba8",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x15e48c",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": null
+                }
+              }
+            }
+          },
+          {
+            "name": "qs",
+            "artificial": null,
+            "type": {
+              "die": "0x1bcc9e",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x14d828",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x14d6f8",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "QuestState",
+                  "size": 60
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "cu": "questmanager.cpp",
+        "name": "ClearScript",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c45e44",
+        "low_pc": "081a4ee0",
+        "linkage": "_ZN5quest13CQuestManager11ClearScriptEv",
+        "decl_file": "questmanager.cpp",
+        "decl_line": 863,
+        "parents": [
+          {
+            "tag": "DW_TAG_compile_unit",
+            "name": "questmanager.cpp",
+            "die": "0x2bc2d10"
+          }
+        ],
+        "type": {
+          "name": "void"
+        },
+        "parameters": [
+          {
+            "name": "this",
+            "artificial": true,
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "cu": "questmanager.cpp",
+        "name": "AddScript",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c45ed3",
+        "low_pc": "081a4f30",
+        "linkage": "_ZN5quest13CQuestManager9AddScriptERKSs",
+        "decl_file": "questmanager.cpp",
+        "decl_line": 869,
+        "parents": [
+          {
+            "tag": "DW_TAG_compile_unit",
+            "name": "questmanager.cpp",
+            "die": "0x2bc2d10"
+          }
+        ],
+        "type": {
+          "name": "void"
+        },
+        "parameters": [
+          {
+            "name": "this",
+            "artificial": true,
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          },
+          {
+            "name": "str",
+            "artificial": null,
+            "type": {
+              "die": "0x2c45f23",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2bd3bde",
+                "tag": "DW_TAG_reference_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2bd3be4",
+                  "tag": "DW_TAG_const_type",
+                  "name": null,
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd3bb4",
+                    "tag": "DW_TAG_typedef",
+                    "name": "string",
+                    "size": null,
+                    "type": {
+                      "die": "0x2bd0bba",
+                      "tag": "DW_TAG_structure_type",
+                      "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                      "size": 4
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "cu": "questmanager.cpp",
+        "name": "SendScript",
+        "tag": "DW_TAG_subprogram",
+        "die": "0x2c45f51",
+        "low_pc": "081a4f50",
+        "linkage": "_ZN5quest13CQuestManager10SendScriptEv",
+        "decl_file": "questmanager.cpp",
+        "decl_line": 874,
+        "parents": [
+          {
+            "tag": "DW_TAG_compile_unit",
+            "name": "questmanager.cpp",
+            "die": "0x2bc2d10"
+          }
+        ],
+        "type": {
+          "name": "void"
+        },
+        "parameters": [
+          {
+            "name": "this",
+            "artificial": true,
+            "type": {
+              "die": "0x2c379a5",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2c37988",
+                "tag": "DW_TAG_pointer_type",
+                "name": null,
+                "size": 4,
+                "type": {
+                  "die": "0x2c18d2b",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CQuestManager",
+                  "size": 216
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "packet_ref": {
+    "path": "game/src/packet.h",
+    "anchor": "struct packet_script",
+    "line": 181,
+    "file_sha256": "f526cd3edbde195a0f0fff6bc7f66068d1376e107c4455d6070c633a82623817"
+  },
+  "packet_dwarf": [
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x15e690",
+        "tag": "DW_TAG_subprogram",
+        "name": "GotoEndState",
+        "size": null
+      },
+      "access": 3,
+      "line": 2124,
+      "file": "questlua.cpp",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1b1ba8",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x15e48c",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": null
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x14d828",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x14d6f8",
+              "tag": "DW_TAG_structure_type",
+              "name": "QuestState",
+              "size": 60
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x15e6af",
+        "tag": "DW_TAG_subprogram",
+        "name": "OpenState",
+        "size": null,
+        "type": {
+          "die": "0x14d6f8",
+          "tag": "DW_TAG_structure_type",
+          "name": "QuestState",
+          "size": 60
+        }
+      },
+      "access": null,
+      "line": 2136,
+      "file": "questlua.cpp",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1b1ba8",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x15e48c",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": null
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x125db0",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x125db6",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x125d86",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x122864",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x114a23",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x15e728",
+        "tag": "DW_TAG_subprogram",
+        "name": "CloseState",
+        "size": null
+      },
+      "access": null,
+      "line": 2214,
+      "file": "questlua.cpp",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1b1ba8",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x15e48c",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": null
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x14d828",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x14d6f8",
+              "tag": "DW_TAG_structure_type",
+              "name": "QuestState",
+              "size": 60
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x16816b",
+        "tag": "DW_TAG_structure_type",
+        "name": "packet_script",
+        "size": 6
+      },
+      "access": null,
+      "line": 1279,
+      "file": "packet.h",
+      "children": [
+        {
+          "name": "header",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x118192",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1149ed",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "size",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x11819d",
+            "tag": "DW_TAG_typedef",
+            "name": "WORD",
+            "size": null,
+            "type": {
+              "die": "0x114a11",
+              "tag": "DW_TAG_base_type",
+              "name": "short unsigned int",
+              "size": 2
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "name": "skin",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x118192",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x1149ed",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "name": "src_size",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x11819d",
+            "tag": "DW_TAG_typedef",
+            "name": "WORD",
+            "size": null,
+            "type": {
+              "die": "0x114a11",
+              "tag": "DW_TAG_base_type",
+              "name": "short unsigned int",
+              "size": 2
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "operator=",
+          "tag": "DW_TAG_subprogram",
+          "type": {
+            "die": "0x1681fc",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x16816b",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_script",
+              "size": 6
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "packet_script",
+          "tag": "DW_TAG_subprogram",
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        },
+        {
+          "name": "packet_script",
+          "tag": "DW_TAG_subprogram",
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x1681d4",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_script",
+        "size": null
+      },
+      "access": null,
+      "line": null,
+      "file": null,
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x168202",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x16816b",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_script",
+              "size": 6
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x168208",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x16820e",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x16816b",
+                "tag": "DW_TAG_structure_type",
+                "name": "packet_script",
+                "size": 6
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x1681ec",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_script",
+        "size": null
+      },
+      "access": null,
+      "line": null,
+      "file": null,
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x168202",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x16816b",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_script",
+              "size": 6
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x184d1a",
+        "tag": "DW_TAG_member",
+        "name": "packet_script",
+        "size": null,
+        "type": {
+          "die": "0x16816b",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_script",
+          "size": 6
+        }
+      },
+      "access": null,
+      "line": 71,
+      "file": "questlua.h",
+      "children": []
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x184ddd",
+        "tag": "DW_TAG_member",
+        "name": "packet_script",
+        "size": null,
+        "type": {
+          "die": "0x16816b",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_script",
+          "size": 6
+        }
+      },
+      "access": null,
+      "line": 102,
+      "file": "questlua.h",
+      "children": []
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x1b8372",
+        "tag": "DW_TAG_variable",
+        "name": "packet_script",
+        "size": null,
+        "type": {
+          "die": "0x16816b",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_script",
+          "size": 6
+        }
+      },
+      "access": null,
+      "line": 1426,
+      "file": "questlua.cpp",
+      "children": []
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x1bc9bc",
+        "tag": "DW_TAG_subprogram",
+        "name": "GotoEndState",
+        "size": null
+      },
+      "access": 3,
+      "line": 2124,
+      "file": "questlua.cpp",
+      "children": [
+        {
+          "name": "this",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1b1bc5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b1ba8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x15e48c",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "qs",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1bc9ed",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x14d828",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x1bcb66",
+        "tag": "DW_TAG_subprogram",
+        "name": "OpenState",
+        "size": null,
+        "type": {
+          "die": "0x14d6f8",
+          "tag": "DW_TAG_structure_type",
+          "name": "QuestState",
+          "size": 60
+        }
+      },
+      "access": null,
+      "line": 2136,
+      "file": "questlua.cpp",
+      "children": [
+        {
+          "name": "this",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1b1bc5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b1ba8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x15e48c",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "quest_name",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1bcbb6",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x125db0",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x125db6",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x125d86",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x122864",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "state_index",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x114a23",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        },
+        {
+          "name": "qs",
+          "tag": "DW_TAG_variable",
+          "type": {
+            "die": "0x14d6f8",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questlua.cpp",
+      "node": {
+        "die": "0x1bcc6e",
+        "tag": "DW_TAG_subprogram",
+        "name": "CloseState",
+        "size": null
+      },
+      "access": null,
+      "line": 2214,
+      "file": "questlua.cpp",
+      "children": [
+        {
+          "name": "this",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1b1bc5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1b1ba8",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x15e48c",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": null
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "qs",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x1bcc9e",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x14d828",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x14d6f8",
+                "tag": "DW_TAG_structure_type",
+                "name": "QuestState",
+                "size": 60
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be7884",
+        "tag": "DW_TAG_structure_type",
+        "name": "packet_script",
+        "size": 6
+      },
+      "access": null,
+      "line": 1279,
+      "file": "packet.h",
+      "children": [
+        {
+          "name": "header",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x2bc64e8",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x2bc2d43",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "size",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x2bc64f3",
+            "tag": "DW_TAG_typedef",
+            "name": "WORD",
+            "size": null,
+            "type": {
+              "die": "0x2bc2d67",
+              "tag": "DW_TAG_base_type",
+              "name": "short unsigned int",
+              "size": 2
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "name": "skin",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x2bc64e8",
+            "tag": "DW_TAG_typedef",
+            "name": "BYTE",
+            "size": null,
+            "type": {
+              "die": "0x2bc2d43",
+              "tag": "DW_TAG_base_type",
+              "name": "unsigned char",
+              "size": 1
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "name": "src_size",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x2bc64f3",
+            "tag": "DW_TAG_typedef",
+            "name": "WORD",
+            "size": null,
+            "type": {
+              "die": "0x2bc2d67",
+              "tag": "DW_TAG_base_type",
+              "name": "short unsigned int",
+              "size": 2
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "operator=",
+          "tag": "DW_TAG_subprogram",
+          "type": {
+            "die": "0x2be7915",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be7884",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_script",
+              "size": 6
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "packet_script",
+          "tag": "DW_TAG_subprogram",
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        },
+        {
+          "name": "packet_script",
+          "tag": "DW_TAG_subprogram",
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be78ed",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_script",
+        "size": null
+      },
+      "access": null,
+      "line": null,
+      "file": null,
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2be791b",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be7884",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_script",
+              "size": 6
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2be7921",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be7927",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2be7884",
+                "tag": "DW_TAG_structure_type",
+                "name": "packet_script",
+                "size": 6
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2be7905",
+        "tag": "DW_TAG_subprogram",
+        "name": "packet_script",
+        "size": null
+      },
+      "access": null,
+      "line": null,
+      "file": null,
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2be791b",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be7884",
+              "tag": "DW_TAG_structure_type",
+              "name": "packet_script",
+              "size": 6
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c1905e",
+        "tag": "DW_TAG_subprogram",
+        "name": "OpenState",
+        "size": null,
+        "type": {
+          "die": "0x2c03f60",
+          "tag": "DW_TAG_structure_type",
+          "name": "QuestState",
+          "size": 60
+        }
+      },
+      "access": null,
+      "line": 50,
+      "file": "questmanager.h",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2bd3bde",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2bd3be4",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2bd3bb4",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x2bd0bba",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2bc2d79",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c19084",
+        "tag": "DW_TAG_subprogram",
+        "name": "CloseState",
+        "size": null
+      },
+      "access": null,
+      "line": 51,
+      "file": "questmanager.h",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c04090",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c03f60",
+              "tag": "DW_TAG_structure_type",
+              "name": "QuestState",
+              "size": 60
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c197ce",
+        "tag": "DW_TAG_subprogram",
+        "name": "ClearScript",
+        "size": null
+      },
+      "access": null,
+      "line": 863,
+      "file": "questmanager.cpp",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c197e7",
+        "tag": "DW_TAG_subprogram",
+        "name": "SendScript",
+        "size": null
+      },
+      "access": null,
+      "line": 874,
+      "file": "questmanager.cpp",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c19800",
+        "tag": "DW_TAG_subprogram",
+        "name": "AddScript",
+        "size": null
+      },
+      "access": null,
+      "line": 869,
+      "file": "questmanager.cpp",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2bd3bde",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2bd3be4",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2bd3bb4",
+                "tag": "DW_TAG_typedef",
+                "name": "string",
+                "size": null,
+                "type": {
+                  "die": "0x2bd0bba",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c19aed",
+        "tag": "DW_TAG_subprogram",
+        "name": "GotoEndState",
+        "size": null
+      },
+      "access": 3,
+      "line": 181,
+      "file": "questmanager.h",
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c37988",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c18d2b",
+              "tag": "DW_TAG_structure_type",
+              "name": "CQuestManager",
+              "size": 216
+            }
+          },
+          "location": null
+        },
+        {
+          "name": null,
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c04090",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2c03f60",
+              "tag": "DW_TAG_structure_type",
+              "name": "QuestState",
+              "size": 60
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c45e44",
+        "tag": "DW_TAG_subprogram",
+        "name": "ClearScript",
+        "size": null
+      },
+      "access": null,
+      "line": 863,
+      "file": "questmanager.cpp",
+      "children": [
+        {
+          "name": "this",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "clear",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "name": "void"
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c45ed3",
+        "tag": "DW_TAG_subprogram",
+        "name": "AddScript",
+        "size": null
+      },
+      "access": null,
+      "line": 869,
+      "file": "questmanager.cpp",
+      "children": [
+        {
+          "name": "this",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "str",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c45f23",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2bd3bde",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2bd3be4",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0x2bd3bb4",
+                  "tag": "DW_TAG_typedef",
+                  "name": "string",
+                  "size": null,
+                  "type": {
+                    "die": "0x2bd0bba",
+                    "tag": "DW_TAG_structure_type",
+                    "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+                    "size": 4
+                  }
+                }
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "operator+=",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bd21c5",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2bd0bba",
+              "tag": "DW_TAG_structure_type",
+              "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+              "size": 4
+            }
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c45f51",
+        "tag": "DW_TAG_subprogram",
+        "name": "SendScript",
+        "size": null
+      },
+      "access": null,
+      "line": 874,
+      "file": "questmanager.cpp",
+      "children": [
+        {
+          "name": "this",
+          "tag": "DW_TAG_formal_parameter",
+          "type": {
+            "die": "0x2c379a5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x2c37988",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2c18d2b",
+                "tag": "DW_TAG_structure_type",
+                "name": "CQuestManager",
+                "size": 216
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "packet_script",
+          "tag": "DW_TAG_variable",
+          "type": {
+            "die": "0x2be7884",
+            "tag": "DW_TAG_structure_type",
+            "name": "packet_script",
+            "size": 6
+          },
+          "location": null
+        },
+        {
+          "name": "buf",
+          "tag": "DW_TAG_variable",
+          "type": {
+            "die": "0x2be2ebb",
+            "tag": "DW_TAG_structure_type",
+            "name": "TEMP_BUFFER",
+            "size": 4
+          },
+          "location": null
+        },
+        {
+          "name": "operator==<char, std::char_traits<char>, std::allocator<char> >",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bcc915",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "location": null
+        },
+        {
+          "name": "GetAndResetDoneFlag",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bcc915",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "location": null
+        },
+        {
+          "name": "size",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bc315e",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x2bc2e8a",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x2bc2d80",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x2bc2d8b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "size",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bc315e",
+            "tag": "DW_TAG_typedef",
+            "name": "size_t",
+            "size": null,
+            "type": {
+              "die": "0x2bc2e8a",
+              "tag": "DW_TAG_typedef",
+              "name": "__size_t",
+              "size": null,
+              "type": {
+                "die": "0x2bc2d80",
+                "tag": "DW_TAG_typedef",
+                "name": "__uint32_t",
+                "size": null,
+                "type": {
+                  "die": "0x2bc2d8b",
+                  "tag": "DW_TAG_base_type",
+                  "name": "unsigned int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "operator[]",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bcf99e",
+            "tag": "DW_TAG_reference_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2bc2f77",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "GetDesc",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2be17e5",
+            "tag": "DW_TAG_typedef",
+            "name": "LPDESC",
+            "size": null,
+            "type": {
+              "die": "0x2be17f0",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0x2be17f6",
+                "tag": "DW_TAG_structure_type",
+                "name": "DESC",
+                "size": null
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "c_str",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bc33de",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2bc33e4",
+              "tag": "DW_TAG_const_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0x2bc2f77",
+                "tag": "DW_TAG_base_type",
+                "name": "char",
+                "size": 1
+              }
+            }
+          },
+          "location": null
+        },
+        {
+          "name": "operator==<char, std::char_traits<char>, std::allocator<char> >",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bcc915",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "location": null
+        },
+        {
+          "name": "operator==<char, std::char_traits<char>, std::allocator<char> >",
+          "tag": "DW_TAG_inlined_subroutine",
+          "type": {
+            "die": "0x2bcc915",
+            "tag": "DW_TAG_base_type",
+            "name": "bool",
+            "size": 1
+          },
+          "location": null
+        }
+      ]
+    },
+    {
+      "cu": "questmanager.cpp",
+      "node": {
+        "die": "0x2c45f72",
+        "tag": "DW_TAG_variable",
+        "name": "packet_script",
+        "size": null,
+        "type": {
+          "die": "0x2be7884",
+          "tag": "DW_TAG_structure_type",
+          "name": "packet_script",
+          "size": 6
+        }
+      },
+      "access": null,
+      "line": 894,
+      "file": "questmanager.cpp",
+      "children": []
+    }
+  ],
+  "sdk_reuse": {
+    "status": "passed",
+    "scope": "verified actual SDK O2 reuse, not compilation by consumer",
+    "proof_index": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\quest-lua-queries-PROOF_INDEX.json",
+    "proof_index_sha256": "68fb2cab78c84af22edcb4fb1f939c42a23651bde2ef33262283afebd5412aa7",
+    "sdk_archives": [
+      {
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_aux_o2.a",
+        "sha256": "61d58b79418a0cc5eeb751c66c42744c36324bbdc323f9a48a1c9186b7d6618a"
+      },
+      {
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_core_o2.a",
+        "sha256": "f37b725f00820a1b1f9ff904f651c39ddc018cf69dc890a04f16349a0ab0b244"
+      }
+    ],
+    "sdk_objects": [
+      {
+        "name": "lapi",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lapi_o2.o",
+        "sha256": "f651db2e73ab41a27ab45f305739f159ed59c9e223518097bf5acd6c12aa7d55"
+      },
+      {
+        "name": "lcode",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lcode_o2.o",
+        "sha256": "d797c84689de4fa09c012bff2761109b0fb439f0683cfdb8157ec663a56a7a18"
+      },
+      {
+        "name": "ldebug",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ldebug_o2.o",
+        "sha256": "e0dce9ffaf32c70ecb1bbf6fefc7757d33e1921192e7e0beaf7418f076ef7a5f"
+      },
+      {
+        "name": "ldo",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ldo_o2.o",
+        "sha256": "7081febfd361debdb9d5b57fb3280f6cf8c2e4c7d4404464def82562bc2f44b8"
+      },
+      {
+        "name": "ldump",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ldump_o2.o",
+        "sha256": "5a7e6de02966689b0d0300f26e55408207001e7b41e7c3a56d15c235858db95e"
+      },
+      {
+        "name": "lfunc",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lfunc_o2.o",
+        "sha256": "38d61238ce68a8cb0d7dc4d1c91ee5b146edbc2ac08bcdbb67fa66efdd8127f3"
+      },
+      {
+        "name": "lgc",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lgc_o2.o",
+        "sha256": "c7f09ee37acdaf2d9c94c3b29dd75764c789f2546a62e5dc7745286ba2b334c2"
+      },
+      {
+        "name": "llex",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_llex_o2.o",
+        "sha256": "df5ebfa3cde5b389b67c6e596f8e40786d47222744ec05e9134f63ea18a01bd2"
+      },
+      {
+        "name": "lmem",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lmem_o2.o",
+        "sha256": "b07bc839f13ebb0fea7196c9aa0dda168e8c7314fd155a8d78343e1397b31689"
+      },
+      {
+        "name": "lobject",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lobject_o2.o",
+        "sha256": "d3983566a82dea6e1a8a27d325f71c8a2cdc0ac5078b618df8ea9aacd5fbd8f4"
+      },
+      {
+        "name": "lopcodes",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lopcodes_o2.o",
+        "sha256": "7e6c76a5de4a96e69320bb96b285fdd5af03b0e65964200fe136e22a0b18bde5"
+      },
+      {
+        "name": "lparser",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lparser_o2.o",
+        "sha256": "c563d644cef7d0439f1c1218e7c0a62c10bf33227dc0a859058147646bd36da8"
+      },
+      {
+        "name": "lstate",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lstate_o2.o",
+        "sha256": "1e3febc693d3b74ac421527cd643d6b198ae1d35170d29372202d50b5158fca8"
+      },
+      {
+        "name": "lstring",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lstring_o2.o",
+        "sha256": "d39f1d5d491d419fcb5b8ebeb97e8f33c85b13be1ac443e3f658a5646404315f"
+      },
+      {
+        "name": "ltable",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ltable_o2.o",
+        "sha256": "2cff95cd21345414ac7484c79994cf82f546184dc82e60e9af1ecf46a1be92c9"
+      },
+      {
+        "name": "ltests",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ltests_o2.o",
+        "sha256": "4c497941723ab83765dd7da93a9ff9d9e392539b6f265ebb2b2220b0e06a3887"
+      },
+      {
+        "name": "ltm",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ltm_o2.o",
+        "sha256": "a12e64762d141704ddaf8bdbb7b580ad72569d1f95c477cea129200ac9e53e3f"
+      },
+      {
+        "name": "lundump",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lundump_o2.o",
+        "sha256": "ca3f589a048c78971c3c16b0ea0a539e5e67f99b0d39e14661f9f3aa5c9c6f19"
+      },
+      {
+        "name": "lvm",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lvm_o2.o",
+        "sha256": "56548bcf416f437ca249c0444f2f3fb4dffab437bb76a8b96baf0c4fd0f6b762"
+      },
+      {
+        "name": "lzio",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lzio_o2.o",
+        "sha256": "e25d0f671ec83add86a133ae3c313c841f6627bc5e079bcae3a30576d98acc35"
+      },
+      {
+        "name": "lauxlib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lauxlib_o2.o",
+        "sha256": "e433735738be92cfb0886d271b2423962bca7c110b4232f3203fd050ddaf4f72"
+      },
+      {
+        "name": "lbaselib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lbaselib_o2.o",
+        "sha256": "97beb585dcda4aed2713a51662de60f274fbddf6b93923c92bfc5854eb37c5bc"
+      },
+      {
+        "name": "ldblib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ldblib_o2.o",
+        "sha256": "10a3d8c489eb8cbf9606a9df4b837805a7e3f9d1a3300ff450437b778b36e5f7"
+      },
+      {
+        "name": "liolib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_liolib_o2.o",
+        "sha256": "c7617a512b99994e476be584d450432ccfae2eba79d84017a36d34ccf45cae33"
+      },
+      {
+        "name": "lmathlib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lmathlib_o2.o",
+        "sha256": "d077e5afd51814fb43138d650b1613b0a194f59f0be746b8ac51ffa0720e5074"
+      },
+      {
+        "name": "ltablib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_ltablib_o2.o",
+        "sha256": "c75284c5c92247ba46dfad5b4954417742fac576559d3a91974976f3e8951165"
+      },
+      {
+        "name": "lstrlib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_lstrlib_o2.o",
+        "sha256": "bb2d237eb4addea576264bd8ee47d7d6310837d30370a7a11591bba0179d07c9"
+      },
+      {
+        "name": "loadlib",
+        "path": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_lua_queries_validation\\sdk_loadlib_o2.o",
+        "sha256": "e202d55833d43ac1a36cd45fbf0966e11df920ad8bbfe75be6d04abd59ee6de3"
+      }
+    ],
+    "sdk_source_count": 28,
+    "sdk_source_header_guards": 59
+  },
+  "sdk_subset_source_sha256": {
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lapi.c": "0e56396e46247ba76ba3805b0782be777b2e1660536edca3854284fc4575a922",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lcode.c": "5ece41ba7e28f63b1f1f203dd29fafc6d040b6e567b7b7545418b7ccace95d0b",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\ldebug.c": "266dc0502e9f5186d2a539fde6eb71de8c9a58a547affec1fb38c723c9204b50",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\ldo.c": "92c23fd1a0bc54d1e67ec5a552535b9ec355b07c8ba8439b40a30e3b03222348",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\ldump.c": "e25aa2273b482800c925e7ae98b5e859d8967848e4b320f5517fdaac07820dd0",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lfunc.c": "c769f34b7d00ca913bf4ce8bdc0151fab2a4a782e1f95ebacf86366680e7b290",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lgc.c": "ff4f2131d0426a564f1a895cd640485ea3caa7344743584a420b4e2296f048de",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\llex.c": "b80188c469af53192f68d5e06175c4d3b07405a786deca006ff6263f76dbb605",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lmem.c": "717b04278a0992a20b0761eacbc3ff97d097009446b613a3b6ee69833d219edc",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lobject.c": "7b5896198fa1035795b6ac8bb1162c0c91839c3cddced1e59690a65ba346f2bf",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lopcodes.c": "d455dc57a6c09fc9e8779eea4d88349f5bf9bbfcfa9294651675b597d87d9cec",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lparser.c": "786a5fe6d6d139400e71819c01d4d06af0029656924f7f8ba3da0e5dba73f299",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lstate.c": "2fdd1c08c6e61c5a1246e95f5da066a18ed7d9a42cd50e38159601889079d80a",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lstring.c": "898d5fb8b69d752622cdeec80dd138d14972c8e3d74770b16830d7559d948b63",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\ltable.c": "57f2bdbafa9ddd7beb50acbd54a641ec6e6d2482ae7e8a823e37bc63a216f397",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\ltests.c": "9768d93e71e76d90934c46380719612d34c8602555f1eba4bd0b0753ff29f916",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\ltm.c": "4ed026b9e4fc7a63b4083799109cac37f37988c9b3f132493ca859cf7f48c936",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lundump.c": "ef3567b3ae125ca800e321f955a2b0ae6e82d1420283adcabac0106eaac56355",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lvm.c": "bacdf0ffc84eb0818e2c197f3d3daa934349fa01185afbd3bbb1a5c172eed619",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lzio.c": "8039cc5f0ed41c5e60c3c71fab74be59ebcec2936a1a5fb27077fc364afeb3d5",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\lauxlib.c": "1681bd85811bae3d59abcad46ea4c88165ddee8a4677a7091c705a1948d6adc2",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\lbaselib.c": "e468ffd16aefe4ada895cf79a0d824532163cfd3928e0e382a6308bd4ac01ab2",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\ldblib.c": "0228d943f877b1bc55631c7ea3020d4ebaf16328eb9a1116b4fabc185f7b3cdd",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\liolib.c": "50f538405e86b87c656ca5430b61a660604baeedc1a5b56388462f930ddf4031",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\lmathlib.c": "5bf1c5f77a3afcc1e02b510e999c5e3cfa0f15c21279834b96dfde2daa4a803c",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\ltablib.c": "7be29309830f3e7f32e1256f602b16f82ac28bc7699f32f9c3979edc97f7df55",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\lstrlib.c": "1855164421ba54b67a8e174becaffc1b12c384ed3bc3a2286c7a3cbea72c0be2",
+    "PROJECT_ROOT\\Reversed Source\\liblua\\src\\lib\\loadlib.c": "e2f585d31fc6b0d456f8dcab6b869ae0847d278959de5f4ba4f6d5a588493c6a"
+  },
+  "policy": "OpenState runtime STATIC-ONLY: original sret directly constructs returnstorage; named-local C++ source may copy indeterminate default QuestState counters if NRVO omitted. Full original method retained, no zero repair/copyctor/API change; manual actual coroutine setup tests CloseState only and is not OpenState replacement/proof. Unsuppressed empty &script[0] C++03 unsafe domain excluded; no c_str repair. Native old COW/unshare/allocation/invalidcontext/stringborrowed/registry-corruption/format callback domains remain original. Actual SDK5.0.3 external publicAPI compatible only, not exact original5.0/internalABI (96/16 vs92/12);28SDKobjects/2archives reused by strictSDKsubset/all59fileSHA, not rebuilt by98. No fake VM/startup/RunState/Reward/EndRunning/server/VisualStudio equivalence."
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081305d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81305d0",
+    "function": {
+      "name": "CHARACTER::GetOriginalPart",
+      "address": "081305d0"
+    },
+    "signature": "WORD GetOriginalPart(CHARACTER * this, BYTE bPartPos)",
+    "code": "\r\n/* DWARF original prototype: WORD GetOriginalPart(CHARACTER * this, BYTE bPartPos) */\r\n\r\nWORD __thiscall CHARACTER::GetOriginalPart(CHARACTER *this,BYTE bPartPos)\r\n\r\n{\r\n  WORD WVar1;\r\n  BYTE bPartPos_00;\r\n  \r\n  if (bPartPos == '\\0') {\r\n    if ((this->super_CEntity).m_lpDesc != (LPDESC)0x0) {\r\n      return (ushort)(this->m_pointsInstant).bBasePart;\r\n    }\r\n    bPartPos_00 = '\\0';\r\n  }\r\n  else {\r\n    if (bPartPos != '\\x03') {\r\n      return 0;\r\n    }\r\n    bPartPos_00 = '\\x03';\r\n  }\r\n  WVar1 = GetPart(this,bPartPos_00);\r\n  return WVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

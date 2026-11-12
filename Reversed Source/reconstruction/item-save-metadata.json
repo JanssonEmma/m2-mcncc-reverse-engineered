@@ -1,0 +1,615 @@
+[
+  {
+    "name": "SPlayerItem",
+    "unit": "item.cpp",
+    "type": {
+      "name": "void"
+    },
+    "size": 52,
+    "address": null,
+    "linkage": null,
+    "fields": [
+      {
+        "name": "id",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "window",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          4
+        ]
+      },
+      {
+        "name": "pos",
+        "type": {
+          "die": "0x257b2ae",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b22",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "size": 2
+          }
+        },
+        "offset": [
+          5
+        ]
+      },
+      {
+        "name": "count",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          7
+        ]
+      },
+      {
+        "name": "vnum",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          11
+        ]
+      },
+      {
+        "name": "alSockets",
+        "type": {
+          "die": "0x257d27c",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2577d9c",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "bounds": [
+            2
+          ]
+        },
+        "offset": [
+          15
+        ]
+      },
+      {
+        "name": "aAttr",
+        "type": {
+          "die": "0x257d28c",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x257d1a4",
+            "tag": "DW_TAG_typedef",
+            "name": "TPlayerItemAttribute",
+            "size": null,
+            "type": {
+              "die": "0x257d11a",
+              "tag": "DW_TAG_structure_type",
+              "name": "TPlayerItemAttribute",
+              "size": 3
+            }
+          },
+          "bounds": [
+            6
+          ]
+        },
+        "offset": [
+          27
+        ]
+      },
+      {
+        "name": "owner",
+        "type": {
+          "die": "0x257b28d",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2577b7c",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          48
+        ]
+      }
+    ],
+    "parameters": []
+  },
+  {
+    "name": "Unequip",
+    "unit": "item.cpp",
+    "type": {
+      "die": "0x25816d0",
+      "tag": "DW_TAG_base_type",
+      "name": "bool",
+      "size": 1
+    },
+    "size": null,
+    "address": null,
+    "linkage": "_ZN5CItem7UnequipEv",
+    "fields": [],
+    "parameters": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x25973b8",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x25973be",
+            "tag": "DW_TAG_structure_type",
+            "name": "CItem",
+            "size": 160
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "packet_item_update",
+    "unit": "item.cpp",
+    "type": {
+      "name": "void"
+    },
+    "size": 36,
+    "address": null,
+    "linkage": null,
+    "fields": [
+      {
+        "name": "header",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "pos",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          1
+        ]
+      },
+      {
+        "name": "count",
+        "type": {
+          "die": "0x257b2a3",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2577afe",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          2
+        ]
+      },
+      {
+        "name": "alSockets",
+        "type": {
+          "die": "0x257d27c",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2577d9c",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "bounds": [
+            2
+          ]
+        },
+        "offset": [
+          3
+        ]
+      },
+      {
+        "name": "aAttr",
+        "type": {
+          "die": "0x257d28c",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x257d1a4",
+            "tag": "DW_TAG_typedef",
+            "name": "TPlayerItemAttribute",
+            "size": null,
+            "type": {
+              "die": "0x257d11a",
+              "tag": "DW_TAG_structure_type",
+              "name": "TPlayerItemAttribute",
+              "size": 3
+            }
+          },
+          "bounds": [
+            6
+          ]
+        },
+        "offset": [
+          15
+        ]
+      }
+    ],
+    "parameters": []
+  },
+  {
+    "name": "Unequip",
+    "unit": "item.cpp",
+    "type": {
+      "die": "0x25816d0",
+      "tag": "DW_TAG_base_type",
+      "name": "bool",
+      "size": 1
+    },
+    "size": null,
+    "address": 135690864,
+    "linkage": "_ZN5CItem7UnequipEv",
+    "fields": [],
+    "parameters": [
+      {
+        "name": "this",
+        "type": {
+          "die": "0x25d76e4",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x25973b8",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x25973be",
+              "tag": "DW_TAG_structure_type",
+              "name": "CItem",
+              "size": 160
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "SPlayerItem",
+    "unit": "item_manager.cpp",
+    "type": {
+      "name": "void"
+    },
+    "size": 52,
+    "address": null,
+    "linkage": null,
+    "fields": [
+      {
+        "name": "id",
+        "type": {
+          "die": "0x2ad91d5",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ac4",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "window",
+        "type": {
+          "die": "0x2ad91eb",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2ad5a46",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          4
+        ]
+      },
+      {
+        "name": "pos",
+        "type": {
+          "die": "0x2ad91f6",
+          "tag": "DW_TAG_typedef",
+          "name": "WORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5a6a",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "size": 2
+          }
+        },
+        "offset": [
+          5
+        ]
+      },
+      {
+        "name": "count",
+        "type": {
+          "die": "0x2ad91d5",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ac4",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          7
+        ]
+      },
+      {
+        "name": "vnum",
+        "type": {
+          "die": "0x2ad91d5",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ac4",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          11
+        ]
+      },
+      {
+        "name": "alSockets",
+        "type": {
+          "die": "0x2adb1c4",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2ad5ce4",
+            "tag": "DW_TAG_base_type",
+            "name": "long int",
+            "size": 4
+          },
+          "bounds": [
+            2
+          ]
+        },
+        "offset": [
+          15
+        ]
+      },
+      {
+        "name": "aAttr",
+        "type": {
+          "die": "0x2adb1d4",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2adb0ec",
+            "tag": "DW_TAG_typedef",
+            "name": "TPlayerItemAttribute",
+            "size": null,
+            "type": {
+              "die": "0x2adb062",
+              "tag": "DW_TAG_structure_type",
+              "name": "TPlayerItemAttribute",
+              "size": 3
+            }
+          },
+          "bounds": [
+            6
+          ]
+        },
+        "offset": [
+          27
+        ]
+      },
+      {
+        "name": "owner",
+        "type": {
+          "die": "0x2ad91d5",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2ad5ac4",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          48
+        ]
+      }
+    ],
+    "parameters": []
+  },
+  {
+    "name": "GetAccountTable",
+    "unit": "item_manager.cpp",
+    "type": {
+      "die": "0x2b494dc",
+      "tag": "DW_TAG_reference_type",
+      "name": null,
+      "size": 4,
+      "type": {
+        "die": "0x2adafc0",
+        "tag": "DW_TAG_typedef",
+        "name": "TAccountTable",
+        "size": null,
+        "type": {
+          "die": "0x2adaebb",
+          "tag": "DW_TAG_structure_type",
+          "name": "SAccountTable",
+          "size": 333
+        }
+      }
+    },
+    "size": null,
+    "address": null,
+    "linkage": "_ZN4DESC15GetAccountTableEv",
+    "fields": [],
+    "parameters": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x2af4b45",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2af4b4b",
+            "tag": "DW_TAG_structure_type",
+            "name": "DESC",
+            "size": null
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "GetAccountTable",
+    "unit": "item_manager.cpp",
+    "type": {
+      "die": "0x2b494dc",
+      "tag": "DW_TAG_reference_type",
+      "name": null,
+      "size": 4,
+      "type": {
+        "die": "0x2adafc0",
+        "tag": "DW_TAG_typedef",
+        "name": "TAccountTable",
+        "size": null,
+        "type": {
+          "die": "0x2adaebb",
+          "tag": "DW_TAG_structure_type",
+          "name": "SAccountTable",
+          "size": 333
+        }
+      }
+    },
+    "size": null,
+    "address": null,
+    "linkage": "_ZN4DESC15GetAccountTableEv",
+    "fields": [],
+    "parameters": [
+      {
+        "name": "this",
+        "type": {
+          "die": "0x2b494f9",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2af4b45",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2af4b4b",
+              "tag": "DW_TAG_structure_type",
+              "name": "DESC",
+              "size": null
+            }
+          }
+        }
+      }
+    ]
+  }
+]

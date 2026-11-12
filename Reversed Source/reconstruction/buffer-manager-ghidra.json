@@ -1,0 +1,162 @@
+{
+  "080fa800": {
+    "function": {
+      "name": "BUFFER_MANAGER::BUFFER_MANAGER",
+      "address": "080fa800"
+    },
+    "code": "\r\n/* DWARF original prototype: void BUFFER_MANAGER(BUFFER_MANAGER * this) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::BUFFER_MANAGER(BUFFER_MANAGER *this)\r\n\r\n{\r\n  LPBUFFER **pppbVar1;\r\n  LPBUFFER *ppbVar2;\r\n  LPBUFFER **pppbVar3;\r\n  int iVar4;\r\n  size_t __num_elements;\r\n  LPBUFFER *ppbVar5;\r\n  bool bVar6;\r\n  LPBUFFER *local_1cc;\r\n  LPBUFFER **local_1c0;\r\n  LPBUFFER *local_1ac;\r\n  LPBUFFER *local_1a4;\r\n  LPBUFFER **local_1a0;\r\n  _Deque_base<buffer*,std::allocator<buffer*>_> local_4c;\r\n  \r\n                    /* Unresolved local var: int offset@[???] */\r\n  bVar6 = singleton<BUFFER_MANAGER>::ms_singleton != (BUFFER_MANAGER *)0x0;\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (bVar6) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0xd);\r\n  }\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__BUFFER_MANAGER_0821ec48;\r\n  singleton<BUFFER_MANAGER>::ms_singleton = this;\r\n  local_4c.super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map = (LPBUFFER **)0x0;\r\n  local_4c.super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map_size = 0;\r\n  local_4c._M_start._M_cur = (LPBUFFER *)0x0;\r\n  local_4c._M_start._M_first = (LPBUFFER *)0x0;\r\n  local_4c._M_start._M_last = (LPBUFFER *)0x0;\r\n  local_4c._M_start._M_node = (LPBUFFER **)0x0;\r\n  local_4c._M_finish._M_cur = (LPBUFFER *)0x0;\r\n  local_4c._M_finish._M_first = (LPBUFFER *)0x0;\r\n  local_4c._M_finish._M_last = (LPBUFFER *)0x0;\r\n  local_4c._M_finish._M_node = (LPBUFFER **)0x0;\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::_M_initialize_map(&local_4c,0);\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n  super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map = (LPBUFFER **)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_cur =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur =\r\n       (LPBUFFER *)0x0;\r\n  __num_elements =\r\n       ((int)local_4c._M_finish._M_cur - (int)local_4c._M_finish._M_first >> 2) + -0x80 +\r\n       ((int)local_4c._M_finish._M_node - (int)local_4c._M_start._M_node >> 2) * 0x80 +\r\n       ((int)local_4c._M_start._M_last - (int)local_4c._M_start._M_cur >> 2);\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n  super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map_size = 0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_first =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_last =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_node =\r\n       (LPBUFFER **)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_first =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_last =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_node =\r\n       (LPBUFFER **)0x0;\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::_M_initialize_map\r\n            ((_Deque_base<buffer*,std::allocator<buffer*>_> *)&this->buffer_stack,__num_elements);\r\n  local_1cc = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start.\r\n              _M_cur;\r\n  ppbVar5 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start.\r\n            _M_last;\r\n                    /* Unresolved local var: ptrdiff_t __n@[DW_OP_reg1(ECX)] */\r\n  pppbVar1 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start.\r\n             _M_node;\r\n  ppbVar2 = local_4c._M_start._M_cur;\r\n  pppbVar3 = local_4c._M_start._M_node;\r\n  local_1a4 = local_4c._M_start._M_last;\r\n  for (iVar4 = ((int)local_4c._M_start._M_last - (int)local_4c._M_start._M_cur >> 2) +\r\n               ((int)local_4c._M_finish._M_cur - (int)local_4c._M_finish._M_first >> 2) + -0x80 +\r\n               ((int)local_4c._M_finish._M_node - (int)local_4c._M_start._M_node >> 2) * 0x80;\r\n      0 < iVar4; iVar4 = iVar4 + -1) {\r\n    local_1ac = ppbVar2 + 1;\r\n    *local_1cc = *ppbVar2;\r\n    local_1a0 = pppbVar3;\r\n    if (local_1ac == local_1a4) {\r\n      local_1a0 = pppbVar3 + 1;\r\n      local_1ac = pppbVar3[1];\r\n      local_1a4 = local_1ac + 0x80;\r\n    }\r\n    local_1cc = local_1cc + 1;\r\n    local_1c0 = pppbVar1;\r\n    if (local_1cc == ppbVar5) {\r\n      local_1c0 = pppbVar1 + 1;\r\n      local_1cc = pppbVar1[1];\r\n      ppbVar5 = local_1cc + 0x80;\r\n    }\r\n    pppbVar1 = local_1c0;\r\n    ppbVar2 = local_1ac;\r\n    pppbVar3 = local_1a0;\r\n  }\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::~_Deque_base(&local_4c,__num_elements);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fada0": {
+    "function": {
+      "name": "BUFFER_MANAGER::BUFFER_MANAGER",
+      "address": "080fada0"
+    },
+    "code": "\r\n/* DWARF original prototype: void BUFFER_MANAGER(BUFFER_MANAGER * this) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::BUFFER_MANAGER(BUFFER_MANAGER *this)\r\n\r\n{\r\n  _Deque_iterator<buffer*,buffer*_const&,buffer*_const*> __first;\r\n  _Deque_iterator<buffer*,buffer*_const&,buffer*_const*> __last;\r\n  _Deque_iterator<buffer*,buffer*&,buffer**> __result;\r\n  bool bVar1;\r\n  LPBUFFER *__in_chrg;\r\n  undefined7 in_stack_fffffe4d;\r\n  _Deque_iterator<buffer*,buffer*&,buffer**> local_7c [3];\r\n  _Deque_base<buffer*,std::allocator<buffer*>_> local_4c;\r\n  \r\n                    /* Unresolved local var: int offset@[???] */\r\n  bVar1 = singleton<BUFFER_MANAGER>::ms_singleton != (BUFFER_MANAGER *)0x0;\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0xd);\r\n  }\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__BUFFER_MANAGER_0821ec48;\r\n  singleton<BUFFER_MANAGER>::ms_singleton = this;\r\n  local_4c.super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map = (LPBUFFER **)0x0;\r\n  local_4c.super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map_size = 0;\r\n  local_4c._M_start._M_cur = (LPBUFFER *)0x0;\r\n  local_4c._M_start._M_first = (LPBUFFER *)0x0;\r\n  local_4c._M_start._M_last = (LPBUFFER *)0x0;\r\n  local_4c._M_start._M_node = (LPBUFFER **)0x0;\r\n  local_4c._M_finish._M_cur = (LPBUFFER *)0x0;\r\n  local_4c._M_finish._M_first = (LPBUFFER *)0x0;\r\n  local_4c._M_finish._M_last = (LPBUFFER *)0x0;\r\n  local_4c._M_finish._M_node = (LPBUFFER **)0x0;\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::_M_initialize_map(&local_4c,0);\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n  super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map_size = 0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n  super__Deque_alloc_base<buffer*,std::allocator<buffer*>,true>._M_map = (LPBUFFER **)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_cur =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_first =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_last =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_node =\r\n       (LPBUFFER **)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_first =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_last =\r\n       (LPBUFFER *)0x0;\r\n  (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_node =\r\n       (LPBUFFER **)0x0;\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::_M_initialize_map\r\n            ((_Deque_base<buffer*,std::allocator<buffer*>_> *)&this->buffer_stack,\r\n             ((int)local_4c._M_finish._M_cur - (int)local_4c._M_finish._M_first >> 2) + -0x80 +\r\n             ((int)local_4c._M_finish._M_node - (int)local_4c._M_start._M_node >> 2) * 0x80 +\r\n             ((int)local_4c._M_start._M_last - (int)local_4c._M_start._M_cur >> 2));\r\n  __first._M_first = local_4c._M_start._M_first;\r\n  __first._M_cur = local_4c._M_start._M_cur;\r\n  __first._M_last = local_4c._M_start._M_last;\r\n  __first._M_node = local_4c._M_start._M_node;\r\n  __last._M_first = local_4c._M_finish._M_first;\r\n  __last._M_cur = local_4c._M_finish._M_cur;\r\n  __last._M_last = local_4c._M_finish._M_last;\r\n  __last._M_node = local_4c._M_finish._M_node;\r\n  __result._M_first._0_1_ = 0;\r\n  __result._M_cur = (LPBUFFER *)&stack0xfffffe54;\r\n  __result._5_7_ = in_stack_fffffe4d;\r\n  __result._M_node =\r\n       (LPBUFFER **)\r\n       (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_cur;\r\n  __in_chrg = local_4c._M_start._M_cur;\r\n  __copy<std::_Deque_iterator<buffer*,_buffer*_const&,_buffer*_const*>,_std::_Deque_iterator<buffer*,_buffer*&,_buffer**>_>\r\n            (local_7c,__first,__last,__result,\r\n             (bidirectional_iterator_tag)\r\n             SUB41((this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                   _M_start._M_first,0));\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::~_Deque_base(&local_4c,(int)__in_chrg);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb210": {
+    "function": {
+      "name": "BUFFER_MANAGER::~BUFFER_MANAGER",
+      "address": "080fb210"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~BUFFER_MANAGER(BUFFER_MANAGER * this, int __in_chrg) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::~BUFFER_MANAGER(BUFFER_MANAGER *this,int __in_chrg)\r\n\r\n{\r\n  bool bVar1;\r\n  int in_stack_ffffff88;\r\n  \r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__BUFFER_MANAGER_0821ec48;\r\n  Destroy(this);\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::~_Deque_base\r\n            ((_Deque_base<buffer*,std::allocator<buffer*>_> *)&this->buffer_stack,in_stack_ffffff88)\r\n  ;\r\n  bVar1 = singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0;\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<BUFFER_MANAGER>::ms_singleton = (BUFFER_MANAGER *)0x0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb2f0": {
+    "function": {
+      "name": "BUFFER_MANAGER::~BUFFER_MANAGER",
+      "address": "080fb2f0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~BUFFER_MANAGER(BUFFER_MANAGER * this, int __in_chrg) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::~BUFFER_MANAGER(BUFFER_MANAGER *this,int __in_chrg)\r\n\r\n{\r\n  bool bVar1;\r\n  int in_stack_ffffff88;\r\n  \r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__BUFFER_MANAGER_0821ec48;\r\n  Destroy(this);\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::~_Deque_base\r\n            ((_Deque_base<buffer*,std::allocator<buffer*>_> *)&this->buffer_stack,in_stack_ffffff88)\r\n  ;\r\n  bVar1 = singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0;\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<BUFFER_MANAGER>::ms_singleton = (BUFFER_MANAGER *)0x0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb3d0": {
+    "function": {
+      "name": "BUFFER_MANAGER::~BUFFER_MANAGER",
+      "address": "080fb3d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~BUFFER_MANAGER(BUFFER_MANAGER * this, int __in_chrg) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::~BUFFER_MANAGER(BUFFER_MANAGER *this,int __in_chrg)\r\n\r\n{\r\n  int in_stack_ffffff98;\r\n  \r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__BUFFER_MANAGER_0821ec48;\r\n  Destroy(this);\r\n  _Deque_base<buffer*,std::allocator<buffer*>_>::~_Deque_base\r\n            ((_Deque_base<buffer*,std::allocator<buffer*>_> *)&this->buffer_stack,in_stack_ffffff98)\r\n  ;\r\n  (this->super_singleton<BUFFER_MANAGER>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<BUFFER_MANAGER>::ms_singleton = (BUFFER_MANAGER *)0x0;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb4a0": {
+    "function": {
+      "name": "BUFFER_MANAGER::Destroy",
+      "address": "080fb4a0"
+    },
+    "code": "\r\n/* DWARF original prototype: void Destroy(BUFFER_MANAGER * this) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::Destroy(BUFFER_MANAGER *this)\r\n\r\n{\r\n  LPBUFFER buffer;\r\n  LPBUFFER *ppbVar1;\r\n  _Deque_iterator<buffer*,buffer*&,buffer**> __tmp;\r\n  \r\n  __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                 _M_finish._M_cur;\r\n  if (__tmp._M_cur !=\r\n      (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_cur) {\r\n    do {\r\n                    /* Unresolved local var: LPBUFFER buf@[DW_OP_reg3(EBX)] */\r\n      if (__tmp._M_cur ==\r\n          (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n          _M_first) {\r\n        __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                       _M_finish._M_node[-1] + 0x80;\r\n      }\r\n      buffer = __tmp._M_cur[-1];\r\n      ppbVar1 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish\r\n                ._M_cur;\r\n      if (ppbVar1 ==\r\n          (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n          _M_first) {\r\n        deque<buffer*,std::allocator<buffer*>_>::_M_pop_back_aux(&(this->buffer_stack).c);\r\n      }\r\n      else {\r\n        (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur\r\n             = ppbVar1 + -1;\r\n      }\r\n      buffer_delete(buffer);\r\n      __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                     _M_finish._M_cur;\r\n    } while (__tmp._M_cur !=\r\n             (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start.\r\n             _M_cur);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb550": {
+    "function": {
+      "name": "BUFFER_MANAGER::get",
+      "address": "080fb550"
+    },
+    "code": "\r\n/* DWARF original prototype: LPBUFFER get(BUFFER_MANAGER * this) */\r\n\r\nLPBUFFER __thiscall BUFFER_MANAGER::get(BUFFER_MANAGER *this)\r\n\r\n{\r\n  LPBUFFER **pppbVar1;\r\n  LPBUFFER *ppbVar2;\r\n  LPBUFFER new_buffer;\r\n  _Deque_iterator<buffer*,buffer*&,buffer**> __tmp;\r\n  \r\n  __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                 _M_finish._M_cur;\r\n  if (__tmp._M_cur ==\r\n      (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_start._M_cur) {\r\n    new_buffer = buffer_new((void *)0x0,0x2000);\r\n    ppbVar2 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n              _M_cur;\r\n    if (ppbVar2 ==\r\n        (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_last\r\n        + -1) {\r\n      deque<buffer*,std::allocator<buffer*>_>::_M_push_back_aux(&(this->buffer_stack).c,&new_buffer)\r\n      ;\r\n    }\r\n    else {\r\n      if (ppbVar2 != (LPBUFFER *)0x0) {\r\n        *ppbVar2 = new_buffer;\r\n      }\r\n      (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur =\r\n           ppbVar2 + 1;\r\n    }\r\n    __tmp._M_cur = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>.\r\n                   _M_finish._M_cur;\r\n  }\r\n  __tmp._M_last =\r\n       (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_last;\r\n  __tmp._M_first =\r\n       (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_first\r\n  ;\r\n  pppbVar1 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n             _M_node;\r\n  __tmp._M_node = pppbVar1;\r\n  if (__tmp._M_cur == __tmp._M_first) {\r\n    __tmp._M_node = pppbVar1 + -1;\r\n    __tmp._M_first = pppbVar1[-1];\r\n    __tmp._M_cur = __tmp._M_first + 0x80;\r\n    __tmp._M_last = __tmp._M_cur;\r\n  }\r\n  new_buffer = __tmp._M_cur[-1];\r\n  ppbVar2 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n            _M_cur;\r\n  if (ppbVar2 ==\r\n      (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_first)\r\n  {\r\n    __tmp._M_cur = __tmp._M_cur + -1;\r\n    deque<buffer*,std::allocator<buffer*>_>::_M_pop_back_aux(&(this->buffer_stack).c);\r\n  }\r\n  else {\r\n    (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur =\r\n         ppbVar2 + -1;\r\n  }\r\n  return new_buffer;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb630": {
+    "function": {
+      "name": "BUFFER_MANAGER::release",
+      "address": "080fb630"
+    },
+    "code": "\r\n/* DWARF original prototype: void release(BUFFER_MANAGER * this, LPBUFFER buffer) */\r\n\r\nvoid __thiscall BUFFER_MANAGER::release(BUFFER_MANAGER *this,LPBUFFER buffer)\r\n\r\n{\r\n  LPBUFFER *ppbVar1;\r\n  \r\n  buffer_reset(buffer);\r\n  ppbVar1 = (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish.\r\n            _M_cur;\r\n  if (ppbVar1 ==\r\n      (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_last +\r\n      -1) {\r\n    deque<buffer*,std::allocator<buffer*>_>::_M_push_back_aux(&(this->buffer_stack).c,&buffer);\r\n  }\r\n  else {\r\n    if (ppbVar1 != (LPBUFFER *)0x0) {\r\n      *ppbVar1 = buffer;\r\n    }\r\n    (this->buffer_stack).c.super__Deque_base<buffer*,std::allocator<buffer*>_>._M_finish._M_cur =\r\n         ppbVar1 + 1;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb680": {
+    "function": {
+      "name": "TEMP_BUFFER::TEMP_BUFFER",
+      "address": "080fb680"
+    },
+    "code": "\r\n/* DWARF original prototype: void TEMP_BUFFER(TEMP_BUFFER * this) */\r\n\r\nvoid __thiscall TEMP_BUFFER::TEMP_BUFFER(TEMP_BUFFER *this)\r\n\r\n{\r\n  LPBUFFER pbVar1;\r\n  \r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pbVar1 = BUFFER_MANAGER::get(singleton<BUFFER_MANAGER>::ms_singleton);\r\n  this->buf = pbVar1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb6d0": {
+    "function": {
+      "name": "TEMP_BUFFER::TEMP_BUFFER",
+      "address": "080fb6d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void TEMP_BUFFER(TEMP_BUFFER * this) */\r\n\r\nvoid __thiscall TEMP_BUFFER::TEMP_BUFFER(TEMP_BUFFER *this)\r\n\r\n{\r\n  LPBUFFER pbVar1;\r\n  \r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pbVar1 = BUFFER_MANAGER::get(singleton<BUFFER_MANAGER>::ms_singleton);\r\n  this->buf = pbVar1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb720": {
+    "function": {
+      "name": "TEMP_BUFFER::~TEMP_BUFFER",
+      "address": "080fb720"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~TEMP_BUFFER(TEMP_BUFFER * this, int __in_chrg) */\r\n\r\nvoid __thiscall TEMP_BUFFER::~TEMP_BUFFER(TEMP_BUFFER *this,int __in_chrg)\r\n\r\n{\r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  BUFFER_MANAGER::release(singleton<BUFFER_MANAGER>::ms_singleton,this->buf);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb780": {
+    "function": {
+      "name": "TEMP_BUFFER::~TEMP_BUFFER",
+      "address": "080fb780"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~TEMP_BUFFER(TEMP_BUFFER * this, int __in_chrg) */\r\n\r\nvoid __thiscall TEMP_BUFFER::~TEMP_BUFFER(TEMP_BUFFER *this,int __in_chrg)\r\n\r\n{\r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  BUFFER_MANAGER::release(singleton<BUFFER_MANAGER>::ms_singleton,this->buf);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb7e0": {
+    "function": {
+      "name": "TEMP_BUFFER::read_peek",
+      "address": "080fb7e0"
+    },
+    "code": "\r\n/* DWARF original prototype: void * read_peek(TEMP_BUFFER * this) */\r\n\r\nvoid * __thiscall TEMP_BUFFER::read_peek(TEMP_BUFFER *this)\r\n\r\n{\r\n  void *pvVar1;\r\n  \r\n  pvVar1 = buffer_read_peek(this->buf);\r\n  return pvVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb800": {
+    "function": {
+      "name": "TEMP_BUFFER::write",
+      "address": "080fb800"
+    },
+    "code": "\r\n/* DWARF original prototype: void write(TEMP_BUFFER * this, void * data, int size) */\r\n\r\nvoid __thiscall TEMP_BUFFER::write(TEMP_BUFFER *this,void *data,int size)\r\n\r\n{\r\n  buffer_write(this->buf,data,size);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb820": {
+    "function": {
+      "name": "TEMP_BUFFER::size",
+      "address": "080fb820"
+    },
+    "code": "\r\n/* DWARF original prototype: int size(TEMP_BUFFER * this) */\r\n\r\nint __thiscall TEMP_BUFFER::size(TEMP_BUFFER *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = buffer_size(this->buf);\r\n  return DVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb840": {
+    "function": {
+      "name": "__static_initialization_and_destruction_0",
+      "address": "080fb840"
+    },
+    "code": "\r\nvoid __static_initialization_and_destruction_0(int __initialize_p,int __priority)\r\n\r\n{\r\n  int unaff_EBX;\r\n  \r\n  if (__priority == 0xffff) {\r\n    if (__initialize_p == 1) {\r\n      std::ios_base::Init::Init((Init *)&std::__ioinit);\r\n      BUFFER_MANAGER::BUFFER_MANAGER(&buffer_manager);\r\n    }\r\n    if (__initialize_p == 0) {\r\n      BUFFER_MANAGER::~BUFFER_MANAGER(&buffer_manager,unaff_EBX);\r\n      std::ios_base::Init::~Init((Init *)&std::__ioinit);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb8b0": {
+    "function": {
+      "name": "_GLOBAL__I__ZN14BUFFER_MANAGERC2Ev",
+      "address": "080fb8b0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid _GLOBAL__I__ZN14BUFFER_MANAGERC2Ev(void)\r\n\r\n{\r\n  __static_initialization_and_destruction_0(1,0xffff);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fb8d0": {
+    "function": {
+      "name": "_GLOBAL__D__ZN14BUFFER_MANAGERC2Ev",
+      "address": "080fb8d0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid _GLOBAL__D__ZN14BUFFER_MANAGERC2Ev(void)\r\n\r\n{\r\n  __static_initialization_and_destruction_0(0,0xffff);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fbe00": {
+    "function": {
+      "name": "singleton<BUFFER_MANAGER>::~singleton",
+      "address": "080fbe00"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~singleton(singleton<BUFFER_MANAGER> * this, int __in_chrg) */\r\n\r\nvoid __thiscall singleton<BUFFER_MANAGER>::~singleton(singleton<BUFFER_MANAGER> *this,int __in_chrg)\r\n\r\n{\r\n  this->_vptr_singleton = (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  ms_singleton = (BUFFER_MANAGER *)0x0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "080fbe50": {
+    "function": {
+      "name": "singleton<BUFFER_MANAGER>::~singleton",
+      "address": "080fbe50"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~singleton(singleton<BUFFER_MANAGER> * this, int __in_chrg) */\r\n\r\nvoid __thiscall singleton<BUFFER_MANAGER>::~singleton(singleton<BUFFER_MANAGER> *this,int __in_chrg)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = ms_singleton == (BUFFER_MANAGER *)0x0;\r\n  this->_vptr_singleton = (_func_int_varargs **)&PTR__singleton_0821ec58;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  ms_singleton = (BUFFER_MANAGER *)0x0;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

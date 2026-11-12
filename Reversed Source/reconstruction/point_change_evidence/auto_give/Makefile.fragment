@@ -1,0 +1,16 @@
+# Parent-only recipe, copy regression into reconstruction/tests. Do NOT compile
+# AutoGiveItem/CreateItem yet: their actual app dependency frontier remains open.
+# Assumes closed bodies placed into game/src/db.cpp, char_item.cpp and
+# char_quickslot.cpp. If parent chooses other files, change only this variable.
+AUTOGIVE_CLOSED_NEW_SOURCES = ../../game/src/db.cpp ../../game/src/char_quickslot.cpp
+# Existing DESC_PACKET_SOURCES already includes full char_item.cpp. If it is
+# updated globally to include char_quickslot.cpp, filter duplicate below.
+AUTOGIVE_CLOSED_SOURCES = $(filter-out $(DESC_PACKET_SOURCES),$(AUTOGIVE_CLOSED_NEW_SOURCES)) ../../game/src/item.cpp ../../game/src/item_manager.cpp ../../game/src/sectree.cpp ../../libgame/src/attribute.cc desc_fixture.cpp ../../game/src/desc.cpp $(DESC_PACKET_SOURCES) $(ITEM_SOCKET_SOURCES)
+AUTOGIVE_CLOSED_OBJECTS = $(DESC_PACKET_OBJECTS) desc_output_syscalls.o desc_fdwatch.o desc_socket.o desc_utils.o buffer_manager_core.o $(ITEM_SOCKET_OBJECTS)
+autogive_closed_regression$(EXEEXT): autogive_closed_regression.cpp $(AUTOGIVE_CLOSED_SOURCES) $(AUTOGIVE_CLOSED_OBJECTS) ../../game/src/event.cpp ../../game/src/event_queue.cpp
+	$(CXX) -DMCNCC_TEST_REAL_EVENTS -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long autogive_closed_regression.cpp ../../game/src/event.cpp ../../game/src/event_queue.cpp $(AUTOGIVE_CLOSED_SOURCES) $(AUTOGIVE_CLOSED_OBJECTS) $(LDFLAGS) -o $@
+# Add target to RUNTIME_TESTS + check recipe. O2 rebuild the same source graph
+# using existing parent convention; strict32 compile ABI gate separately.
+# All legacy CHAR executables need char_quickslot.cpp if char_item.cpp calls its
+# methods; update shared source lists, not just this one target. Full DBManager
+# real lifecycle introduces real SQL dependencies for its users only.

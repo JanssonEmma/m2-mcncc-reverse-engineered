@@ -1,0 +1,73 @@
+--- CURRENT/game/src/item_attribute.cpp
++++ WEIGHTED/game/src/item_attribute.cpp
+@@ -1,5 +1,8 @@
+ // Original item_attribute.cpp bodies; complete methods.
+ #include "item.h"
++#include "constants.h"
++#include "../../libthecore/include/utils.h"
++#include <vector>
+ #include "log.h"
+ #include "../../libthecore/include/log.h"
+ #include <cassert>
+@@ -58,3 +61,61 @@
+     if(index!=-1 && RemoveAttributeType(static_cast<BYTE>(index))) return true;
+     return false;
+ }
++
++// Exact old signed32 ADD/SUB register semantics, avoiding C++ signed overflow.
++static int AttrAdd32(int a,DWORD b) {
++    return static_cast<int>(static_cast<unsigned int>(a)+static_cast<unsigned int>(b));
++}
++static int AttrSub32(int a,int b) {
++    return static_cast<int>(static_cast<unsigned int>(a)-static_cast<unsigned int>(b));
++}
++// 08186ec0. Prototype required by HasAttr even when level0.
++void CItem::AddAttr(BYTE bApply,BYTE bLevel) {
++    if(HasAttr(bApply) || bLevel==0) return;
++    int i=GetAttributeCount();
++    if(i==5) {
++        _sys_err("AddAttr",101,"item attribute overflow!");
++    } else {
++        const TItemAttrTable& r=g_map_itemAttr[bApply];
++        long value=r.lValues[MIN(4,static_cast<int>(bLevel)-1)];
++        if(value) SetAttribute(i,bApply,static_cast<short>(value));
++    }
++}
++// 08187060. Operator[] side effects, level0 and zero/overflowed totals retained.
++void CItem::PutAttributeWithLevel(BYTE bLevel) {
++    int set=GetAttributeSetIndex();
++    if(set<0 || bLevel>5) return;
++    std::vector<int> avail;
++    int total=0;
++    for(int i=0;i<82;++i) {
++        const TItemAttrTable& r=g_map_itemAttr[i];
++        if(r.bMaxLevelBySet[set] && !HasAttr(static_cast<BYTE>(i))) {
++            avail.push_back(i);
++            total=AttrAdd32(total,r.dwProb);
++        }
++    }
++    unsigned int prob=static_cast<unsigned int>(number_ex(1,total,const_cast<char*>("item_attribute.cpp"),139));
++    int attr_idx=0;
++    for(DWORD i=0;i<avail.size();++i) {
++        const TItemAttrTable& r=g_map_itemAttr[avail[i]];
++        if(prob<=r.dwProb) { attr_idx=avail[i];break; }
++        prob-=static_cast<unsigned int>(r.dwProb);
++    }
++    if(!attr_idx) {
++        _sys_err("PutAttributeWithLevel",157,"Cannot put item attribute %d %d",set,static_cast<unsigned int>(bLevel));
++        return;
++    }
++    const TItemAttrTable& r=g_map_itemAttr[attr_idx];
++    if(bLevel>r.bMaxLevelBySet[set]) bLevel=r.bMaxLevelBySet[set];
++    AddAttr(static_cast<BYTE>(attr_idx),bLevel);
++}
++// 081874d0. Supplied weights need not sum100; leftoverlevel6 goes through guard.
++void CItem::PutAttribute(int* aiAttrPercentTable) {
++    int percent=number_ex(1,100,const_cast<char*>("item_attribute.cpp"),172);
++    int i;
++    for(i=0;i<5;++i) {
++        if(percent<=aiAttrPercentTable[i]) break;
++        percent=AttrSub32(percent,aiAttrPercentTable[i]);
++    }
++    PutAttributeWithLevel(static_cast<BYTE>(i+1));
++}

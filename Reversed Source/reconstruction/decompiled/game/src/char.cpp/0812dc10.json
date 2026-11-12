@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812dc10",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x812dc10",
+    "function": {
+      "name": "CHARACTER::CalculateMoveDuration",
+      "address": "0812dc10"
+    },
+    "signature": "void CalculateMoveDuration(CHARACTER * this)",
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* DWARF original prototype: void CalculateMoveDuration(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::CalculateMoveDuration(CHARACTER *this)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  long lVar4;\r\n  DWORD DVar5;\r\n  char *pcVar6;\r\n  int iVar7;\r\n  float fVar8;\r\n  double dVar9;\r\n  float motionSpeed;\r\n  \r\n                    /* Unresolved local var: float fDist@[???] */\r\n  iVar1 = (this->m_posDest).y;\r\n  iVar7 = (this->super_CEntity).m_pos.x;\r\n  iVar3 = (this->super_CEntity).m_pos.y;\r\n  iVar2 = (this->m_posDest).x;\r\n  (this->m_posStart).x = iVar7;\r\n  (this->m_posStart).y = iVar3;\r\n  iVar7 = iVar7 - iVar2;\r\n  iVar3 = iVar3 - iVar1;\r\n  dVar9 = sqrt((double)(iVar7 * iVar7 + iVar3 * iVar3));\r\n  fVar8 = GetMoveMotionSpeed(this);\r\n  lVar4 = GetLimitPoint(this,'\\x13');\r\n  DVar5 = CalculateDuration(lVar4,(int)ROUND(((float)dVar9 / fVar8) * _DAT_081f7250));\r\n  this->m_dwMoveDuration = DVar5;\r\n  if (this->m_bCharType != '\\x06') {\r\n    lVar4 = GetLimitPoint(this,'\\x13');\r\n    pcVar6 = GetName(this);\r\n    sys_log(1,\"%s: GOTO: distance %f, spd %u, duration %u, motion speed %f pos %d %d -> %d %d\",\r\n            pcVar6,(double)(float)dVar9,lVar4,this->m_dwMoveDuration,(double)fVar8,\r\n            (this->m_posStart).x,(this->m_posStart).y,(this->m_posDest).x,(this->m_posDest).y);\r\n  }\r\n  DVar5 = get_dword_time();\r\n  this->m_dwMoveStartTime = DVar5;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

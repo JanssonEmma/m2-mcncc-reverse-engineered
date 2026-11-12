@@ -1,0 +1,69 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08135a20 <_ZN9CHARACTER17GetPolymorphPowerEv>:
+ 8135a20:	55                   	push   %ebp
+ 8135a21:	89 e5                	mov    %esp,%ebp
+ 8135a23:	83 ec 48             	sub    $0x48,%esp
+ 8135a26:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 8135a29:	a1 9c 31 32 08       	mov    0x832319c,%eax
+ 8135a2e:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 8135a31:	85 c0                	test   %eax,%eax
+ 8135a33:	74 4f                	je     8135a84 <_ZN9CHARACTER17GetPolymorphPowerEv+0x64>
+ 8135a35:	8d 45 d8             	lea    -0x28(%ebp),%eax
+ 8135a38:	8d 5d e8             	lea    -0x18(%ebp),%ebx
+ 8135a3b:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8135a3f:	b8 82 6c 22 08       	mov    $0x8226c82,%eax
+ 8135a44:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8135a48:	89 1c 24             	mov    %ebx,(%esp)
+ 8135a4b:	e8 0c 6c f1 ff       	call   804c65c <_ZNSsC1EPKcRKSaIcE@plt>
+ 8135a50:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 8135a55:	85 c0                	test   %eax,%eax
+ 8135a57:	74 77                	je     8135ad0 <_ZN9CHARACTER17GetPolymorphPowerEv+0xb0>
+ 8135a59:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8135a5d:	8d 75 c8             	lea    -0x38(%ebp),%esi
+ 8135a60:	89 04 24             	mov    %eax,(%esp)
+ 8135a63:	e8 48 11 07 00       	call   81a6bb0 <_ZN5quest13CQuestManager12GetEventFlagERKSs>
+ 8135a68:	8b 55 e8             	mov    -0x18(%ebp),%edx
+ 8135a6b:	89 c3                	mov    %eax,%ebx
+ 8135a6d:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+ 8135a72:	8d 4a f4             	lea    -0xc(%edx),%ecx
+ 8135a75:	f0 0f c1 42 fc       	lock xadd %eax,-0x4(%edx)
+ 8135a7a:	85 c0                	test   %eax,%eax
+ 8135a7c:	7e 44                	jle    8135ac2 <_ZN9CHARACTER17GetPolymorphPowerEv+0xa2>
+ 8135a7e:	85 db                	test   %ebx,%ebx
+ 8135a80:	89 d8                	mov    %ebx,%eax
+ 8135a82:	75 34                	jne    8135ab8 <_ZN9CHARACTER17GetPolymorphPowerEv+0x98>
+ 8135a84:	8b 45 08             	mov    0x8(%ebp),%eax
+ 8135a87:	b9 81 00 00 00       	mov    $0x81,%ecx
+ 8135a8c:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 8135a90:	89 04 24             	mov    %eax,(%esp)
+ 8135a93:	e8 c8 da f3 ff       	call   8073560 <_ZN9CHARACTER13GetSkillLevelEm>
+ 8135a98:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8135a9c:	ba 28 00 00 00       	mov    $0x28,%edx
+ 8135aa1:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 8135aa5:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8135aac:	e8 ef 37 08 00       	call   81b92a0 <MINMAX>
+ 8135ab1:	8b 04 85 40 b5 21 08 	mov    0x821b540(,%eax,4),%eax
+ 8135ab8:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8135abb:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8135abe:	89 ec                	mov    %ebp,%esp
+ 8135ac0:	5d                   	pop    %ebp
+ 8135ac1:	c3                   	ret
+ 8135ac2:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 8135ac6:	89 0c 24             	mov    %ecx,(%esp)
+ 8135ac9:	e8 5e 6f f1 ff       	call   804ca2c <_ZNSs4_Rep10_M_destroyERKSaIcE@plt>
+ 8135ace:	eb ae                	jmp    8135a7e <_ZN9CHARACTER17GetPolymorphPowerEv+0x5e>
+ 8135ad0:	c7 04 24 d4 43 22 08 	movl   $0x82243d4,(%esp)
+ 8135ad7:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 8135adc:	be fa 62 1f 08       	mov    $0x81f62fa,%esi
+ 8135ae1:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8135ae5:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 8135aea:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8135aee:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 8135af2:	e8 b5 6e f1 ff       	call   804c9ac <__assert@plt>
+ 8135af7:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 8135afc:	e9 58 ff ff ff       	jmp    8135a59 <_ZN9CHARACTER17GetPolymorphPowerEv+0x39>

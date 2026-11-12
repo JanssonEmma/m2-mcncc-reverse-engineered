@@ -1,0 +1,133 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+0812df00 <_ZN9CHARACTER17GetPolymorphPointEh>:
+ 812df00:	55                   	push   %ebp
+ 812df01:	89 e5                	mov    %esp,%ebp
+ 812df03:	83 ec 28             	sub    $0x28,%esp
+ 812df06:	89 75 f8             	mov    %esi,-0x8(%ebp)
+ 812df09:	8b 75 08             	mov    0x8(%ebp),%esi
+ 812df0c:	89 5d f4             	mov    %ebx,-0xc(%ebp)
+ 812df0f:	89 7d fc             	mov    %edi,-0x4(%ebp)
+ 812df12:	8b 9e e4 00 00 00    	mov    0xe4(%esi),%ebx
+ 812df18:	0f b6 45 0c          	movzbl 0xc(%ebp),%eax
+ 812df1c:	85 db                	test   %ebx,%ebx
+ 812df1e:	88 45 f3             	mov    %al,-0xd(%ebp)
+ 812df21:	74 09                	je     812df2c <_ZN9CHARACTER17GetPolymorphPointEh+0x2c>
+ 812df23:	80 be e8 00 00 00 00 	cmpb   $0x0,0xe8(%esi)
+ 812df2a:	74 1b                	je     812df47 <_ZN9CHARACTER17GetPolymorphPointEh+0x47>
+ 812df2c:	0f b6 45 f3          	movzbl -0xd(%ebp),%eax
+ 812df30:	89 75 08             	mov    %esi,0x8(%ebp)
+ 812df33:	8b 5d f4             	mov    -0xc(%ebp),%ebx
+ 812df36:	8b 75 f8             	mov    -0x8(%ebp),%esi
+ 812df39:	8b 7d fc             	mov    -0x4(%ebp),%edi
+ 812df3c:	89 45 0c             	mov    %eax,0xc(%ebp)
+ 812df3f:	89 ec                	mov    %ebp,%esp
+ 812df41:	5d                   	pop    %ebp
+ 812df42:	e9 59 01 00 00       	jmp    812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812df47:	a1 34 b4 23 08       	mov    0x823b434,%eax
+ 812df4c:	85 c0                	test   %eax,%eax
+ 812df4e:	0f 84 1b 01 00 00    	je     812e06f <_ZN9CHARACTER17GetPolymorphPointEh+0x16f>
+ 812df54:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812df58:	89 04 24             	mov    %eax,(%esp)
+ 812df5b:	e8 d0 85 fc ff       	call   80f6530 <_ZN11CMobManager3GetEm>
+ 812df60:	89 34 24             	mov    %esi,(%esp)
+ 812df63:	89 c3                	mov    %eax,%ebx
+ 812df65:	e8 b6 7a 00 00       	call   8135a20 <_ZN9CHARACTER17GetPolymorphPowerEv>
+ 812df6a:	85 db                	test   %ebx,%ebx
+ 812df6c:	89 c7                	mov    %eax,%edi
+ 812df6e:	74 bc                	je     812df2c <_ZN9CHARACTER17GetPolymorphPointEh+0x2c>
+ 812df70:	0f b6 45 f3          	movzbl -0xd(%ebp),%eax
+ 812df74:	83 f8 0d             	cmp    $0xd,%eax
+ 812df77:	0f 84 ca 00 00 00    	je     812e047 <_ZN9CHARACTER17GetPolymorphPointEh+0x147>
+ 812df7d:	83 f8 0d             	cmp    $0xd,%eax
+ 812df80:	0f 8f 8a 00 00 00    	jg     812e010 <_ZN9CHARACTER17GetPolymorphPointEh+0x110>
+ 812df86:	83 f8 0c             	cmp    $0xc,%eax
+ 812df89:	75 a1                	jne    812df2c <_ZN9CHARACTER17GetPolymorphPointEh+0x2c>
+ 812df8b:	89 34 24             	mov    %esi,(%esp)
+ 812df8e:	e8 ed c5 ff ff       	call   812a580 <_ZN9CHARACTER6GetJobEv>
+ 812df93:	3c 03                	cmp    $0x3,%al
+ 812df95:	74 52                	je     812dfe9 <_ZN9CHARACTER17GetPolymorphPointEh+0xe9>
+ 812df97:	89 34 24             	mov    %esi,(%esp)
+ 812df9a:	e8 e1 c5 ff ff       	call   812a580 <_ZN9CHARACTER6GetJobEv>
+ 812df9f:	3c 02                	cmp    $0x2,%al
+ 812dfa1:	74 3d                	je     812dfe0 <_ZN9CHARACTER17GetPolymorphPointEh+0xe0>
+ 812dfa3:	0f b6 4b 5b          	movzbl 0x5b(%ebx),%ecx
+ 812dfa7:	bb 1f 85 eb 51       	mov    $0x51eb851f,%ebx
+ 812dfac:	0f af cf             	imul   %edi,%ecx
+ 812dfaf:	89 c8                	mov    %ecx,%eax
+ 812dfb1:	f7 eb                	imul   %ebx
+ 812dfb3:	89 c8                	mov    %ecx,%eax
+ 812dfb5:	c1 f8 1f             	sar    $0x1f,%eax
+ 812dfb8:	b9 0c 00 00 00       	mov    $0xc,%ecx
+ 812dfbd:	89 d3                	mov    %edx,%ebx
+ 812dfbf:	c1 fb 05             	sar    $0x5,%ebx
+ 812dfc2:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812dfc6:	29 c3                	sub    %eax,%ebx
+ 812dfc8:	89 34 24             	mov    %esi,(%esp)
+ 812dfcb:	e8 d0 00 00 00       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812dfd0:	8d 04 18             	lea    (%eax,%ebx,1),%eax
+ 812dfd3:	8b 75 f8             	mov    -0x8(%ebp),%esi
+ 812dfd6:	8b 5d f4             	mov    -0xc(%ebp),%ebx
+ 812dfd9:	8b 7d fc             	mov    -0x4(%ebp),%edi
+ 812dfdc:	89 ec                	mov    %ebp,%esp
+ 812dfde:	5d                   	pop    %ebp
+ 812dfdf:	c3                   	ret
+ 812dfe0:	80 be 20 05 00 00 02 	cmpb   $0x2,0x520(%esi)
+ 812dfe7:	75 ba                	jne    812dfa3 <_ZN9CHARACTER17GetPolymorphPointEh+0xa3>
+ 812dfe9:	0f b6 4b 5b          	movzbl 0x5b(%ebx),%ecx
+ 812dfed:	0f af cf             	imul   %edi,%ecx
+ 812dff0:	bb 1f 85 eb 51       	mov    $0x51eb851f,%ebx
+ 812dff5:	89 c8                	mov    %ecx,%eax
+ 812dff7:	f7 eb                	imul   %ebx
+ 812dff9:	89 c8                	mov    %ecx,%eax
+ 812dffb:	c1 f8 1f             	sar    $0x1f,%eax
+ 812dffe:	89 d3                	mov    %edx,%ebx
+ 812e000:	c1 fb 05             	sar    $0x5,%ebx
+ 812e003:	29 c3                	sub    %eax,%ebx
+ 812e005:	b8 0f 00 00 00       	mov    $0xf,%eax
+ 812e00a:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e00e:	eb b8                	jmp    812dfc8 <_ZN9CHARACTER17GetPolymorphPointEh+0xc8>
+ 812e010:	83 f8 0e             	cmp    $0xe,%eax
+ 812e013:	74 0f                	je     812e024 <_ZN9CHARACTER17GetPolymorphPointEh+0x124>
+ 812e015:	83 f8 0f             	cmp    $0xf,%eax
+ 812e018:	0f 85 0e ff ff ff    	jne    812df2c <_ZN9CHARACTER17GetPolymorphPointEh+0x2c>
+ 812e01e:	0f b6 4b 5e          	movzbl 0x5e(%ebx),%ecx
+ 812e022:	eb c9                	jmp    812dfed <_ZN9CHARACTER17GetPolymorphPointEh+0xed>
+ 812e024:	0f b6 4b 5c          	movzbl 0x5c(%ebx),%ecx
+ 812e028:	bb 1f 85 eb 51       	mov    $0x51eb851f,%ebx
+ 812e02d:	0f af cf             	imul   %edi,%ecx
+ 812e030:	89 c8                	mov    %ecx,%eax
+ 812e032:	f7 eb                	imul   %ebx
+ 812e034:	89 c8                	mov    %ecx,%eax
+ 812e036:	c1 f8 1f             	sar    $0x1f,%eax
+ 812e039:	89 d3                	mov    %edx,%ebx
+ 812e03b:	c1 fb 05             	sar    $0x5,%ebx
+ 812e03e:	29 c3                	sub    %eax,%ebx
+ 812e040:	b8 0e 00 00 00       	mov    $0xe,%eax
+ 812e045:	eb c3                	jmp    812e00a <_ZN9CHARACTER17GetPolymorphPointEh+0x10a>
+ 812e047:	0f b6 4b 5d          	movzbl 0x5d(%ebx),%ecx
+ 812e04b:	bb 1f 85 eb 51       	mov    $0x51eb851f,%ebx
+ 812e050:	0f af cf             	imul   %edi,%ecx
+ 812e053:	89 c8                	mov    %ecx,%eax
+ 812e055:	f7 eb                	imul   %ebx
+ 812e057:	89 c8                	mov    %ecx,%eax
+ 812e059:	c1 f8 1f             	sar    $0x1f,%eax
+ 812e05c:	89 d3                	mov    %edx,%ebx
+ 812e05e:	c1 fb 05             	sar    $0x5,%ebx
+ 812e061:	ba 0d 00 00 00       	mov    $0xd,%edx
+ 812e066:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812e06a:	e9 57 ff ff ff       	jmp    812dfc6 <_ZN9CHARACTER17GetPolymorphPointEh+0xc6>
+ 812e06f:	c7 04 24 be 44 22 08 	movl   $0x82244be,(%esp)
+ 812e076:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 812e07b:	bf fa 62 1f 08       	mov    $0x81f62fa,%edi
+ 812e080:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e084:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 812e089:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e08d:	89 7c 24 04          	mov    %edi,0x4(%esp)
+ 812e091:	e8 16 e9 f1 ff       	call   804c9ac <__assert@plt>
+ 812e096:	a1 34 b4 23 08       	mov    0x823b434,%eax
+ 812e09b:	e9 b4 fe ff ff       	jmp    812df54 <_ZN9CHARACTER17GetPolymorphPointEh+0x54>

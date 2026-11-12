@@ -1,0 +1,11 @@
+    typedef std::map<std::string,int> TFlagMap;
+    typedef std::map<std::string,LPEVENT> TTimerMap;
+    void AddQuestStateChange(const std::string&,int,int);
+    void DoQuestStateChange();
+    void SetSendFlag(int);
+    void ClearSendFlag();
+    void SaveFlag(const std::string&,int);
+    void ClearCurrentQuestBeginFlag();
+    void SetCurrentQuestBeginFlag();
+    int GetCurrentQuestBeginFlag();
+    void SendQuestInfoPakcet();

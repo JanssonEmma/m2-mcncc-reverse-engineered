@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08073350",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::GetSkillPower",
+      "address": "08073350"
+    },
+    "code": "\r\n/* DWARF original prototype: int GetSkillPower(CHARACTER * this, DWORD dwVnum, BYTE bLevel) */\r\n\r\nint __thiscall CHARACTER::GetSkillPower(CHARACTER *this,DWORD dwVnum,BYTE bLevel)\r\n\r\n{\r\n  byte bVar1;\r\n  byte bVar2;\r\n  bool bVar3;\r\n  char *pcVar4;\r\n  int iVar5;\r\n  BYTE bLevel_local;\r\n  \r\n  if ((dwVnum - 0x7e < 3) && (bVar3 = IsEquipUniqueGroup(this,0x2729), bVar3)) {\r\n    return 100;\r\n  }\r\n  if (dwVnum - 0x97 < 0xc) {\r\n    iVar5 = 0;\r\n    if (this->m_pGuild != (CGuild *)0x0) {\r\n      iVar5 = CGuild::GetSkillLevel(this->m_pGuild,dwVnum);\r\n      iVar5 = (iVar5 * 100) / 0x31;\r\n    }\r\n  }\r\n  else {\r\n    if (bLevel == '\\0') {\r\n      if (0xfe < dwVnum) {\r\n        pcVar4 = GetName(this);\r\n        _sys_err(\"GetSkillPower\",0xa28,\"%s skill vnum overflow %lu\",pcVar4,dwVnum);\r\n        return 0;\r\n      }\r\n      iVar5 = GetSkillLevel(this,dwVnum);\r\n      iVar5 = MINMAX(0,iVar5,0x28);\r\n      bVar1 = (this->m_points).skill_group;\r\n      bVar2 = GetJob(this);\r\n      if (singleton<CTableBySkill>::ms_singleton == (CTableBySkill *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      bVar3 = false;\r\n    }\r\n    else {\r\n      iVar5 = MINMAX(0,(uint)bLevel,0x28);\r\n      bVar1 = (this->m_points).skill_group;\r\n      bVar2 = GetJob(this);\r\n      if (singleton<CTableBySkill>::ms_singleton == (CTableBySkill *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      bVar3 = true;\r\n    }\r\n    iVar5 = CTableBySkill::GetSkillPowerByLevelFromType\r\n                      (singleton<CTableBySkill>::ms_singleton,(uint)bVar2,(uint)bVar1,iVar5,bVar3);\r\n  }\r\n  return iVar5;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

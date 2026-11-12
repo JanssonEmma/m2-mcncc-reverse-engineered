@@ -1,0 +1,44 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+081930c0 <_ZN12ITEM_MANAGER10RealNumberEm>:
+ 81930c0:	55                   	push   %ebp
+ 81930c1:	89 e5                	mov    %esp,%ebp
+ 81930c3:	8b 45 08             	mov    0x8(%ebp),%eax
+ 81930c6:	57                   	push   %edi
+ 81930c7:	56                   	push   %esi
+ 81930c8:	31 f6                	xor    %esi,%esi
+ 81930ca:	53                   	push   %ebx
+ 81930cb:	8b 58 08             	mov    0x8(%eax),%ebx
+ 81930ce:	8b 78 04             	mov    0x4(%eax),%edi
+ 81930d1:	29 fb                	sub    %edi,%ebx
+ 81930d3:	d1 fb                	sar    $1,%ebx
+ 81930d5:	69 db 85 38 2b 3f    	imul   $0x3f2b3885,%ebx,%ebx
+ 81930db:	90                   	nop
+ 81930dc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 81930e0:	8d 14 33             	lea    (%ebx,%esi,1),%edx
+ 81930e3:	d1 fa                	sar    $1,%edx
+ 81930e5:	89 d0                	mov    %edx,%eax
+ 81930e7:	69 c0 9a 00 00 00    	imul   $0x9a,%eax,%eax
+ 81930ed:	8b 0c 07             	mov    (%edi,%eax,1),%ecx
+ 81930f0:	89 d0                	mov    %edx,%eax
+ 81930f2:	3b 4d 0c             	cmp    0xc(%ebp),%ecx
+ 81930f5:	74 1e                	je     8193115 <_ZN12ITEM_MANAGER10RealNumberEm+0x55>
+ 81930f7:	39 de                	cmp    %ebx,%esi
+ 81930f9:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+ 81930fe:	7d 15                	jge    8193115 <_ZN12ITEM_MANAGER10RealNumberEm+0x55>
+ 8193100:	3b 4d 0c             	cmp    0xc(%ebp),%ecx
+ 8193103:	76 0b                	jbe    8193110 <_ZN12ITEM_MANAGER10RealNumberEm+0x50>
+ 8193105:	8d 5a ff             	lea    -0x1(%edx),%ebx
+ 8193108:	eb d6                	jmp    81930e0 <_ZN12ITEM_MANAGER10RealNumberEm+0x20>
+ 819310a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 8193110:	8d 72 01             	lea    0x1(%edx),%esi
+ 8193113:	eb cb                	jmp    81930e0 <_ZN12ITEM_MANAGER10RealNumberEm+0x20>
+ 8193115:	5b                   	pop    %ebx
+ 8193116:	5e                   	pop    %esi
+ 8193117:	5f                   	pop    %edi
+ 8193118:	5d                   	pop    %ebp
+ 8193119:	c3                   	ret

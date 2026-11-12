@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08112e00",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8112e00",
+    "function": {
+      "name": "FN_get_old_motion_file",
+      "address": "08112e00"
+    },
+    "signature": "char * FN_get_old_motion_file(EPublicMotion motion_num)",
+    "code": "\r\n/* WARNING: Enum \"EPublicMotion\": Some values do not have unique names */\r\n\r\nchar * FN_get_old_motion_file(EPublicMotion motion_num)\r\n\r\n{\r\n  char *pcVar1;\r\n  \r\n  switch(motion_num) {\r\n  default:\r\n    pcVar1 = \"\";\r\n    break;\r\n  case MOTION_WALK:\r\n    pcVar1 = \"02.msa\";\r\n    break;\r\n  case MOTION_RUN:\r\n    pcVar1 = \"03.msa\";\r\n    break;\r\n  case MOTION_NORMAL_ATTACK:\r\n    pcVar1 = \"20.msa\";\r\n    break;\r\n  case MOTION_SPECIAL_1:\r\n    pcVar1 = \"24.msa\";\r\n    break;\r\n  case MOTION_SPECIAL_2:\r\n    pcVar1 = \"25.msa\";\r\n  }\r\n  return pcVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

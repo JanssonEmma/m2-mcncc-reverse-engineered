@@ -1,0 +1,116 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08167a70 <_ZN5CItem7UnequipEv>:
+ 8167a70:	55                   	push   %ebp
+ 8167a71:	89 e5                	mov    %esp,%ebp
+ 8167a73:	57                   	push   %edi
+ 8167a74:	56                   	push   %esi
+ 8167a75:	53                   	push   %ebx
+ 8167a76:	83 ec 2c             	sub    $0x2c,%esp
+ 8167a79:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 8167a7c:	8b 77 3c             	mov    0x3c(%edi),%esi
+ 8167a7f:	85 f6                	test   %esi,%esi
+ 8167a81:	0f 84 49 01 00 00    	je     8167bd0 <_ZN5CItem7UnequipEv+0x160>
+ 8167a87:	0f b6 57 50          	movzbl 0x50(%edi),%edx
+ 8167a8b:	0f b6 c2             	movzbl %dl,%eax
+ 8167a8e:	3c 59                	cmp    $0x59,%al
+ 8167a90:	77 4f                	ja     8167ae1 <_ZN5CItem7UnequipEv+0x71>
+ 8167a92:	8b 47 38             	mov    0x38(%edi),%eax
+ 8167a95:	0f b6 ca             	movzbl %dl,%ecx
+ 8167a98:	8b 5f 44             	mov    0x44(%edi),%ebx
+ 8167a9b:	89 4c 24 18          	mov    %ecx,0x18(%esp)
+ 8167a9f:	bf fa 02 00 00       	mov    $0x2fa,%edi
+ 8167aa4:	85 c0                	test   %eax,%eax
+ 8167aa6:	89 74 24 14          	mov    %esi,0x14(%esp)
+ 8167aaa:	8d 50 1d             	lea    0x1d(%eax),%edx
+ 8167aad:	0f 94 c0             	sete   %al
+ 8167ab0:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+ 8167ab4:	89 7c 24 04          	mov    %edi,0x4(%esp)
+ 8167ab8:	c7 04 24 c9 b8 22 08 	movl   $0x822b8c9,(%esp)
+ 8167abf:	0f b6 c0             	movzbl %al,%eax
+ 8167ac2:	48                   	dec    %eax
+ 8167ac3:	21 c2                	and    %eax,%edx
+ 8167ac5:	b8 00 bc 22 08       	mov    $0x822bc00,%eax
+ 8167aca:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 8167ace:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8167ad2:	e8 79 06 05 00       	call   81b8150 <_sys_err>
+ 8167ad7:	31 c0                	xor    %eax,%eax
+ 8167ad9:	83 c4 2c             	add    $0x2c,%esp
+ 8167adc:	5b                   	pop    %ebx
+ 8167add:	5e                   	pop    %esi
+ 8167ade:	5f                   	pop    %edi
+ 8167adf:	5d                   	pop    %ebp
+ 8167ae0:	c3                   	ret
+ 8167ae1:	89 34 24             	mov    %esi,(%esp)
+ 8167ae4:	2c 5a                	sub    $0x5a,%al
+ 8167ae6:	0f b6 c0             	movzbl %al,%eax
+ 8167ae9:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8167aed:	e8 be 97 00 00       	call   81712b0 <_ZN9CHARACTER7GetWearEh>
+ 8167af2:	39 c7                	cmp    %eax,%edi
+ 8167af4:	74 20                	je     8167b16 <_ZN5CItem7UnequipEv+0xa6>
+ 8167af6:	c7 04 24 c9 b8 22 08 	movl   $0x822b8c9,(%esp)
+ 8167afd:	be 0c be 22 08       	mov    $0x822be0c,%esi
+ 8167b02:	bb 01 03 00 00       	mov    $0x301,%ebx
+ 8167b07:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 8167b0b:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8167b0f:	e8 3c 06 05 00       	call   81b8150 <_sys_err>
+ 8167b14:	eb c1                	jmp    8167ad7 <_ZN5CItem7UnequipEv+0x67>
+ 8167b16:	89 3c 24             	mov    %edi,(%esp)
+ 8167b19:	31 f6                	xor    %esi,%esi
+ 8167b1b:	e8 60 0b 00 00       	call   8168680 <_ZN5CItem21StopUniqueExpireEventEv>
+ 8167b20:	89 3c 24             	mov    %edi,(%esp)
+ 8167b23:	e8 48 10 00 00       	call   8168b70 <_ZN5CItem30StopAccessorySocketExpireEventEv>
+ 8167b28:	89 3c 24             	mov    %edi,(%esp)
+ 8167b2b:	31 c9                	xor    %ecx,%ecx
+ 8167b2d:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 8167b31:	e8 ea f8 ff ff       	call   8167420 <_ZN5CItem12ModifyPointsEb>
+ 8167b36:	0f b6 47 50          	movzbl 0x50(%edi),%eax
+ 8167b3a:	31 d2                	xor    %edx,%edx
+ 8167b3c:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 8167b40:	2c 5a                	sub    $0x5a,%al
+ 8167b42:	0f b6 c0             	movzbl %al,%eax
+ 8167b45:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8167b49:	8b 47 3c             	mov    0x3c(%edi),%eax
+ 8167b4c:	89 04 24             	mov    %eax,(%esp)
+ 8167b4f:	e8 ac 97 00 00       	call   8171300 <_ZN9CHARACTER7SetWearEhP5CItem>
+ 8167b54:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%ebp)
+ 8167b5b:	90                   	nop
+ 8167b5c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 8167b60:	89 f0                	mov    %esi,%eax
+ 8167b62:	0f b6 d8             	movzbl %al,%ebx
+ 8167b65:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8167b69:	8b 47 3c             	mov    0x3c(%edi),%eax
+ 8167b6c:	89 04 24             	mov    %eax,(%esp)
+ 8167b6f:	e8 3c 97 00 00       	call   81712b0 <_ZN9CHARACTER7GetWearEh>
+ 8167b74:	85 c0                	test   %eax,%eax
+ 8167b76:	75 3e                	jne    8167bb6 <_ZN5CItem7UnequipEv+0x146>
+ 8167b78:	46                   	inc    %esi
+ 8167b79:	83 fe 12             	cmp    $0x12,%esi
+ 8167b7c:	7e e2                	jle    8167b60 <_ZN5CItem7UnequipEv+0xf0>
+ 8167b7e:	8b 47 3c             	mov    0x3c(%edi),%eax
+ 8167b81:	8b 55 f0             	mov    -0x10(%ebp),%edx
+ 8167b84:	89 90 38 09 00 00    	mov    %edx,0x938(%eax)
+ 8167b8a:	89 04 24             	mov    %eax,(%esp)
+ 8167b8d:	e8 0e 42 fc ff       	call   812bda0 <_ZN9CHARACTER19ComputeBattlePointsEv>
+ 8167b92:	8b 47 3c             	mov    0x3c(%edi),%eax
+ 8167b95:	89 04 24             	mov    %eax,(%esp)
+ 8167b98:	e8 03 0d fc ff       	call   81288a0 <_ZN9CHARACTER12UpdatePacketEv>
+ 8167b9d:	c7 47 3c 00 00 00 00 	movl   $0x0,0x3c(%edi)
+ 8167ba4:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8167ba9:	c6 47 50 00          	movb   $0x0,0x50(%edi)
+ 8167bad:	c6 47 48 00          	movb   $0x0,0x48(%edi)
+ 8167bb1:	e9 23 ff ff ff       	jmp    8167ad9 <_ZN5CItem7UnequipEv+0x69>
+ 8167bb6:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8167bba:	8b 47 3c             	mov    0x3c(%edi),%eax
+ 8167bbd:	89 04 24             	mov    %eax,(%esp)
+ 8167bc0:	e8 eb 96 00 00       	call   81712b0 <_ZN9CHARACTER7GetWearEh>
+ 8167bc5:	8b 40 38             	mov    0x38(%eax),%eax
+ 8167bc8:	8b 50 46             	mov    0x46(%eax),%edx
+ 8167bcb:	09 55 f0             	or     %edx,-0x10(%ebp)
+ 8167bce:	eb a8                	jmp    8167b78 <_ZN5CItem7UnequipEv+0x108>
+ 8167bd0:	0f b6 57 50          	movzbl 0x50(%edi),%edx
+ 8167bd4:	e9 b9 fe ff ff       	jmp    8167a92 <_ZN5CItem7UnequipEv+0x22>

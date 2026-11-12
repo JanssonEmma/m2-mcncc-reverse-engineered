@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08054130",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_mob_vnum",
+      "address": "08054130"
+    },
+    "code": "\r\nint _mob_vnum(lua_State *L)\r\n\r\n{\r\n  lua_Number n;\r\n  int iVar1;\r\n  char *c_pszName;\r\n  CMob *pCVar2;\r\n  \r\n  iVar1 = lua_isstring(L,1);\r\n  if (iVar1 != 0) {\r\n                    /* Unresolved local var: char * str@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: CMob * pkMob@[DW_OP_reg0(EAX)] */\r\n    c_pszName = lua_tostring(L,1);\r\n    if (singleton<CMobManager>::ms_singleton == (CMobManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    pCVar2 = CMobManager::Get(singleton<CMobManager>::ms_singleton,c_pszName,false);\r\n    if (pCVar2 != (CMob *)0x0) {\r\n      n = (lua_Number)(pCVar2->m_table).dwVnum;\r\n      goto LAB_08054192;\r\n    }\r\n  }\r\n  n = 0.0;\r\nLAB_08054192:\r\n  lua_pushnumber(L,n);\r\n  return 1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

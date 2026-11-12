@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "quest::CQuestManager::GotoEndState",
+    "address": "0805cd10"
+  },
+  "code": "\r\n/* DWARF original prototype: void GotoEndState(CQuestManager * this, QuestState * qs) */\r\n\r\nvoid __thiscall quest::CQuestManager::GotoEndState(CQuestManager *this,QuestState *qs)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  allocator local_2c [16];\r\n  int local_1c [4];\r\n  \r\n  std::string::string((string *)local_1c,\"[DONE]\",local_2c);\r\n  ::CQuestManager::AddScript((CQuestManager *)this,(string *)local_1c);\r\n  LOCK();\r\n  piVar1 = (int *)(local_1c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_1c[0] + -0xc));\r\n  }\r\n  ::CQuestManager::SendScript((CQuestManager *)this);\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

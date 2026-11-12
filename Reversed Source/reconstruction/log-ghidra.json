@@ -1,0 +1,122 @@
+{
+  "081b8010": {
+    "function": {
+      "name": "log_set_level",
+      "address": "081b8010"
+    },
+    "code": "\r\nvoid log_set_level(int l)\r\n\r\n{\r\n  log_level = l;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8020": {
+    "function": {
+      "name": "log_get_level",
+      "address": "081b8020"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint log_get_level(void)\r\n\r\n{\r\n  return log_level;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8030": {
+    "function": {
+      "name": "log_init",
+      "address": "081b8030"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint log_init(void)\r\n\r\n{\r\n  LPLOGFILE logfile;\r\n  \r\n  log_file_set_dir(\"./log\");\r\n  log_file_sys = log_file_init(\"syslog\",\"a+\");\r\n  if (log_file_sys != (LPLOGFILE)0x0) {\r\n    log_file_err = log_file_init(\"syserr\",\"a+\");\r\n    logfile = log_file_sys;\r\n    if (log_file_err != (LPLOGFILE)0x0) {\r\n      log_file_pt = log_file_init(\"PTS\",\"w\");\r\n      if (log_file_pt != (LPLOGFILE)0x0) {\r\n        return 1;\r\n      }\r\n      log_file_destroy(log_file_sys);\r\n      logfile = log_file_err;\r\n    }\r\n    log_file_destroy(logfile);\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b80d0": {
+    "function": {
+      "name": "log_destroy",
+      "address": "081b80d0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid log_destroy(void)\r\n\r\n{\r\n  log_file_destroy(log_file_sys);\r\n  log_file_destroy(log_file_err);\r\n  log_file_destroy(log_file_pt);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8110": {
+    "function": {
+      "name": "log_rotate",
+      "address": "081b8110"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid log_rotate(void)\r\n\r\n{\r\n  log_file_check(log_file_sys);\r\n  log_file_check(log_file_err);\r\n  log_file_check(log_file_pt);\r\n  log_file_rotate(log_file_sys);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8150": {
+    "function": {
+      "name": "_sys_err",
+      "address": "081b8150"
+    },
+    "code": "\r\nvoid _sys_err(char *func,int line,char *format,...)\r\n\r\n{\r\n  tm *__tp;\r\n  char *__s;\r\n  size_t sVar1;\r\n  int iVar2;\r\n  time_t ct;\r\n  char buf [1026];\r\n  \r\n                    /* Unresolved local var: va_list args@[???]\r\n                       Unresolved local var: char * time_s@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int len@[DW_OP_reg2(EDX)] */\r\n  ct = time((time_t *)0x0);\r\n  __tp = localtime(&ct);\r\n  __s = asctime(__tp);\r\n  if (log_file_err != (LPLOGFILE)0x0) {\r\n    sVar1 = strlen(__s);\r\n    __s[sVar1 - 1] = '\\0';\r\n    iVar2 = snprintf(buf,0x400,\"SYSERR: %-15.15s :: %s: \",__s + 4,func);\r\n    buf[0x401] = '\\0';\r\n    if (iVar2 < 0x400) {\r\n      vsnprintf(buf + iVar2,0x400 - iVar2,format,&stack0x00000010);\r\n    }\r\n    strcat(buf,\"\\n\");\r\n    fputs(buf,(FILE *)log_file_err->fp);\r\n    fflush((FILE *)log_file_err->fp);\r\n    fputs(buf,(FILE *)log_file_sys->fp);\r\n    fflush((FILE *)log_file_sys->fp);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8270": {
+    "function": {
+      "name": "sys_log_header",
+      "address": "081b8270"
+    },
+    "code": "\r\nvoid sys_log_header(char *header)\r\n\r\n{\r\n  strncpy(sys_log_header_string,header,0x20);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b82a0": {
+    "function": {
+      "name": "sys_log",
+      "address": "081b82a0"
+    },
+    "code": "\r\nvoid sys_log(int lv,char *format,...)\r\n\r\n{\r\n  tm *__tp;\r\n  char *__s;\r\n  size_t sVar1;\r\n  time_t ct;\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  if ((lv <= log_level) && (log_file_sys != (LPLOGFILE)0x0)) {\r\n                    /* Unresolved local var: char * time_s@[DW_OP_reg3(EBX)] */\r\n    ct = time((time_t *)0x0);\r\n    __tp = localtime(&ct);\r\n    __s = asctime(__tp);\r\n    fprintf((FILE *)log_file_sys->fp,sys_log_header_string);\r\n    sVar1 = strlen(__s);\r\n    __s[sVar1 - 1] = '\\0';\r\n    fprintf((FILE *)log_file_sys->fp,\"%-15.15s :: \",__s + 4);\r\n    vfprintf((FILE *)log_file_sys->fp,format,&stack0x0000000c);\r\n    fputc(10,(FILE *)log_file_sys->fp);\r\n    fflush((FILE *)log_file_sys->fp);\r\n    if (0 < log_level) {\r\n      fprintf(__stdoutp,sys_log_header_string);\r\n      vfprintf(__stdoutp,format,&stack0x0000000c);\r\n      fputc(10,__stdoutp);\r\n      fflush(__stdoutp);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b83e0": {
+    "function": {
+      "name": "pt_log",
+      "address": "081b83e0"
+    },
+    "code": "\r\nvoid pt_log(char *format,...)\r\n\r\n{\r\n                    /* Unresolved local var: va_list args@[???] */\r\n  if (log_file_pt != (LPLOGFILE)0x0) {\r\n    vfprintf((FILE *)log_file_pt->fp,format,&stack0x00000008);\r\n    fputc(10,(FILE *)log_file_pt->fp);\r\n    fflush((FILE *)log_file_pt->fp);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8440": {
+    "function": {
+      "name": "log_file_init",
+      "address": "081b8440"
+    },
+    "code": "\r\nLPLOGFILE log_file_init(char *filename,char *openmode)\r\n\r\n{\r\n  tm *ptVar1;\r\n  FILE *pFVar2;\r\n  LPLOGFILE plVar3;\r\n  char *pcVar4;\r\n  int iVar5;\r\n  tm *ptVar6;\r\n  time_t time_s;\r\n  tm curr_tm;\r\n  \r\n                    /* Unresolved local var: LPLOGFILE logfile@[???]\r\n                       Unresolved local var: FILE.conflict * fp@[DW_OP_reg6(ESI)] */\r\n  time_s = time((time_t *)0x0);\r\n  ptVar1 = localtime(&time_s);\r\n  ptVar6 = &curr_tm;\r\n  for (iVar5 = 0xb; iVar5 != 0; iVar5 = iVar5 + -1) {\r\n    ptVar6->tm_sec = ptVar1->tm_sec;\r\n    ptVar1 = (tm *)&ptVar1->tm_min;\r\n    ptVar6 = (tm *)&ptVar6->tm_min;\r\n  }\r\n  pFVar2 = fopen(filename,openmode);\r\n  plVar3 = (LPLOGFILE)0x0;\r\n  if (pFVar2 != (FILE *)0x0) {\r\n    plVar3 = malloc(0x10);\r\n    pcVar4 = strdup(filename);\r\n    plVar3->filename = pcVar4;\r\n    plVar3->fp = (FILE_conflict *)pFVar2;\r\n    plVar3->last_hour = curr_tm.tm_hour;\r\n    plVar3->last_day = curr_tm.tm_mday;\r\n  }\r\n  return plVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b84c0": {
+    "function": {
+      "name": "log_file_destroy",
+      "address": "081b84c0"
+    },
+    "code": "\r\nvoid log_file_destroy(LPLOGFILE logfile)\r\n\r\n{\r\n  if (logfile->filename != (char *)0x0) {\r\n    free(logfile->filename);\r\n    logfile->filename = (char *)0x0;\r\n  }\r\n  if ((FILE *)logfile->fp != (FILE *)0x0) {\r\n    fclose((FILE *)logfile->fp);\r\n    logfile->fp = (FILE_conflict *)0x0;\r\n  }\r\n  free(logfile);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8510": {
+    "function": {
+      "name": "log_file_check",
+      "address": "081b8510"
+    },
+    "code": "\r\nvoid log_file_check(LPLOGFILE logfile)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  FILE *pFVar3;\r\n  stat sb;\r\n  \r\n  iVar1 = stat(logfile->filename,(stat *)&sb);\r\n  if (iVar1 != 0) {\r\n    piVar2 = (int *)__error();\r\n    if (*piVar2 == 2) {\r\n      fclose((FILE *)logfile->fp);\r\n      pFVar3 = fopen(logfile->filename,\"a+\");\r\n      logfile->fp = (FILE_conflict *)pFVar3;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8570": {
+    "function": {
+      "name": "log_file_delete_old",
+      "address": "081b8570"
+    },
+    "code": "\r\nvoid log_file_delete_old(char *filename)\r\n\r\n{\r\n  int iVar1;\r\n  tm *ptVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  tm *ptVar5;\r\n  int num2;\r\n  int num1;\r\n  dirent **namelist;\r\n  char name [256];\r\n  tm new_tm;\r\n  char system_cmd [64];\r\n  char buf [32];\r\n  stat sb;\r\n  \r\n  iVar1 = stat(filename,(stat *)&sb);\r\n  if (iVar1 == -1) {\r\n    perror(\"log_file_delete_old: stat\");\r\n  }\r\n  else if ((sb.st_mode & 0xf000) == 0x4000) {\r\n    ptVar2 = tm_calc((tm *)0x0,-log_keep_days);\r\n    ptVar5 = &new_tm;\r\n    for (iVar1 = 0xb; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n      ptVar5->tm_sec = ptVar2->tm_sec;\r\n      ptVar2 = (tm *)&ptVar2->tm_min;\r\n      ptVar5 = (tm *)&ptVar5->tm_min;\r\n    }\r\n    sprintf(buf,\"%04d%02d%02d\",new_tm.tm_year + 0x76c,new_tm.tm_mon + 1,new_tm.tm_mday);\r\n    iVar3 = atoi(buf);\r\n                    /* Unresolved local var: int n@[DW_OP_reg6(ESI)] */\r\n    iVar1 = scandir(filename,(dirent ***)&namelist,(__selector *)0x0,alphasort);\r\n    if (iVar1 < 0) {\r\n      perror(\"scandir\");\r\n    }\r\n    else if (0 < iVar1) {\r\n      do {\r\n        iVar1 = iVar1 + -1;\r\n        strncpy(name,namelist[iVar1]->d_name,0xff);\r\n        name[0xff] = '\\0';\r\n        free(namelist[iVar1]);\r\n        if ((((name[0] != '.') && ((uint)(int)name[0] < 0x100)) &&\r\n            ((_DefaultRuneLocale[name[0] * 4 + 0x35] & 4) != 0)) &&\r\n           (iVar4 = atoi(name), iVar4 <= iVar3)) {\r\n          sprintf(system_cmd,\"rm -rf %s/%s\",filename,name);\r\n          system(system_cmd);\r\n          sys_log(0,\"%s: SYSTEM_CMD: %s\",\"log_file_delete_old\",system_cmd);\r\n          fprintf(__stderrp,\"%s: SYSTEM_CMD: %s %s:%d %s:%d\\n\",\"log_file_delete_old\",system_cmd,buf,\r\n                  iVar3,name,iVar4);\r\n        }\r\n      } while (0 < iVar1);\r\n    }\r\n    free(namelist);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b87d0": {
+    "function": {
+      "name": "log_file_rotate",
+      "address": "081b87d0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid log_file_rotate(LPLOGFILE logfile)\r\n\r\n{\r\n  tm *ptVar1;\r\n  tm *ptVar2;\r\n  FILE *pFVar3;\r\n  int iVar4;\r\n  tm *ptVar5;\r\n  time_t time_s;\r\n  stat stat_buf;\r\n  tm new_tm;\r\n  char system_cmd [128];\r\n  char dir [128];\r\n  tm curr_tm;\r\n  \r\n  time_s = time((time_t *)0x0);\r\n  ptVar1 = localtime(&time_s);\r\n  ptVar2 = &curr_tm;\r\n  for (iVar4 = 0xb; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n    ptVar2->tm_sec = ptVar1->tm_sec;\r\n    ptVar1 = (tm *)&ptVar1->tm_min;\r\n    ptVar2 = (tm *)&ptVar2->tm_min;\r\n  }\r\n  if (curr_tm.tm_mday != logfile->last_day) {\r\n    ptVar2 = tm_calc(&curr_tm,-3);\r\n    ptVar5 = &new_tm;\r\n    for (iVar4 = 0xb; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n      ptVar5->tm_sec = ptVar2->tm_sec;\r\n      ptVar2 = (tm *)&ptVar2->tm_min;\r\n      ptVar5 = (tm *)&ptVar5->tm_min;\r\n    }\r\n    sprintf(system_cmd,\"rm -rf %s/%04d%02d%02d\",log_dir,new_tm.tm_year + 0x76c,new_tm.tm_mon + 1,\r\n            new_tm.tm_mday);\r\n    system(system_cmd);\r\n    sys_log(0,\"SYSTEM_CMD: %s\",system_cmd);\r\n    logfile->last_day = curr_tm.tm_mday;\r\n  }\r\n  if (curr_tm.tm_hour != logfile->last_hour) {\r\n    snprintf(dir,0x80,\"%s/%04d%02d%02d\",log_dir,curr_tm.tm_year + 0x76c,curr_tm.tm_mon + 1,\r\n             curr_tm.tm_mday);\r\n    iVar4 = stat(dir,(stat *)&stat_buf);\r\n    if ((iVar4 != 0) || ((stat_buf.st_mode & 0xf000) == 0x4000)) {\r\n      mkdir(dir,0x1c0);\r\n    }\r\n    sys_log(0,\"SYSTEM: LOG ROTATE (%04d-%02d-%02d %d)\",curr_tm.tm_year + 0x76c,curr_tm.tm_mon + 1,\r\n            curr_tm.tm_mday,logfile->last_hour);\r\n    fclose((FILE *)logfile->fp);\r\n    snprintf(system_cmd,0x80,\"mv %s %s/%s.%02d\",logfile->filename,dir,logfile->filename,\r\n             logfile->last_hour);\r\n    system(system_cmd);\r\n    logfile->last_hour = curr_tm.tm_hour;\r\n    pFVar3 = fopen(logfile->filename,\"a+\");\r\n    logfile->fp = (FILE_conflict *)pFVar3;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b8a00": {
+    "function": {
+      "name": "log_file_set_dir",
+      "address": "081b8a00"
+    },
+    "code": "\r\nvoid log_file_set_dir(char *dir)\r\n\r\n{\r\n  strcpy(log_dir,dir);\r\n  log_file_delete_old(log_dir);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

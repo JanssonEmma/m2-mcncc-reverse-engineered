@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813fe90",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CPacketInfoUDP::~CPacketInfoUDP",
+      "address": "0813fe90"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CPacketInfoUDP(CPacketInfoUDP * this, int __in_chrg) */\r\n\r\nvoid __thiscall CPacketInfoUDP::~CPacketInfoUDP(CPacketInfoUDP *this,int __in_chrg)\r\n\r\n{\r\n  char *__in_chrg_00;\r\n  \r\n  (this->super_CPacketInfo)._vptr_CPacketInfo = (_func_int_varargs **)&PTR__CPacketInfoUDP_08228068;\r\n  __in_chrg_00 = \"udp_packet_info.txt\";\r\n  CPacketInfo::Log(&this->super_CPacketInfo,\"udp_packet_info.txt\");\r\n  CPacketInfo::~CPacketInfo(&this->super_CPacketInfo,(int)__in_chrg_00);\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

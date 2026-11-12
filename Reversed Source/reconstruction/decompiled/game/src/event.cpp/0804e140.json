@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804e140",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Rb_tree_base_iterator::_M_decrement",
+      "address": "0804e140"
+    },
+    "code": "\r\n/* DWARF original prototype: void _M_decrement(_Rb_tree_base_iterator * this) */\r\n\r\nvoid __thiscall _Rb_tree_base_iterator::_M_decrement(_Rb_tree_base_iterator *this)\r\n\r\n{\r\n  _Rb_tree_node_base *p_Var1;\r\n  _Rb_tree_node_base *p_Var2;\r\n  \r\n  p_Var1 = this->_M_node;\r\n  if ((p_Var1->_M_color == _M_red) && (p_Var1->_M_parent->_M_parent == p_Var1)) {\r\n    this->_M_node = p_Var1->_M_right;\r\n  }\r\n  else {\r\n    p_Var2 = p_Var1->_M_left;\r\n    if (p_Var2 == (_Rb_tree_node_base *)0x0) {\r\n      p_Var2 = p_Var1->_M_parent;\r\n      if (p_Var1 == p_Var2->_M_left) {\r\n        do {\r\n          this->_M_node = p_Var2;\r\n          p_Var2 = p_Var2->_M_parent;\r\n        } while (this->_M_node == p_Var2->_M_left);\r\n      }\r\n    }\r\n    else {\r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[DW_OP_reg2(EDX)] */\r\n      for (p_Var1 = p_Var2->_M_right; p_Var1 != (_Rb_tree_node_base *)0x0; p_Var1 = p_Var1->_M_right\r\n          ) {\r\n        p_Var2 = p_Var1;\r\n      }\r\n    }\r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[DW_OP_reg2(EDX)] */\r\n    this->_M_node = p_Var2;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

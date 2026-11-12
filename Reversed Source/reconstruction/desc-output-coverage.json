@@ -1,0 +1,55 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "scope": "Partial DESC recovery, tracked jointly with desc-helpers-coverage.json and desc-packet-coverage.json; complete descriptor recovery remains unfinished.",
+  "method": {
+    "name": "DESC::ProcessOutput",
+    "address": "0x08139bb0",
+    "complete_decompilation": true,
+    "source_definition_present": true
+  },
+  "evidence": [
+    "descriptor-callers-ghidra.json",
+    "descriptor-output-assembly.json",
+    "desc-layout.json",
+    "desc-output-types.json",
+    "desc-lifecycle-ghidra.json",
+    "desc-lifecycle-assembly.json"
+  ],
+  "layout_validation": {
+    "desc_size": 580,
+    "source_member_offsets": 51,
+    "packed_member_offsets": 25,
+    "account_size": 333,
+    "player_size": 63,
+    "string_size": 4,
+    "compatible_compiler_flags": [
+      "-m32",
+      "-D_GLIBCXX_USE_CXX11_ABI=0",
+      "-D_USE_32BIT_TIME_T"
+    ]
+  },
+  "remaining_production_methods": [
+    "Destroy",
+    "SetPhase",
+    "Input/Setup and other nonvirtual API"
+  ],
+  "test_only_lifecycle_definitions": "Only Destroy and SetPhase in reconstruction/tests/desc_fixture.cpp",
+  "recovered_lifecycle": [
+    {
+      "name": "DESC::DESC",
+      "address": "0x08138c70 / 0x08138d20"
+    },
+    {
+      "name": "DESC::~DESC",
+      "address": "0x08138dd0"
+    },
+    {
+      "name": "DESC::Initialize",
+      "address": "0x08139200"
+    },
+    {
+      "name": "DESC::GetType",
+      "address": "0x0813b300"
+    }
+  ]
+}

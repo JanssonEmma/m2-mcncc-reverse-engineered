@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08198c30",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8198c30",
+    "function": {
+      "name": "ITEM_MANAGER::GetRefineFromVnum",
+      "address": "08198c30"
+    },
+    "signature": "DWORD GetRefineFromVnum(ITEM_MANAGER * this, DWORD dwVnum)",
+    "code": "\r\n/* DWARF original prototype: DWORD GetRefineFromVnum(ITEM_MANAGER * this, DWORD dwVnum) */\r\n\r\nDWORD __thiscall ITEM_MANAGER::GetRefineFromVnum(ITEM_MANAGER *this,DWORD dwVnum)\r\n\r\n{\r\n  DWORD DVar1;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_long_unsigned_int>,std::pair<const_long_unsigned_int,_long_unsigned_int>&,std::pair<const_long_unsigned_int,_long_unsigned_int>*>\r\n  it;\r\n  \r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_long_unsigned_int>,std::_Select1st<std::pair<const_long_unsigned_int,_long_unsigned_int>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_long_unsigned_int>_>_>\r\n  ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_long_unsigned_int>,std::_Select1st<std::pair<const_long_unsigned_int,_long_unsigned_int>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_long_unsigned_int>_>_>\r\n          *)&it,(ID *)&this->m_map_ItemRefineFrom);\r\n  DVar1 = 0;\r\n  if (it.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_map_ItemRefineFrom)._M_t.\r\n        super__Rb_tree_base<std::pair<const_long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_long_unsigned_int>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_long_unsigned_int>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    DVar1 = *(DWORD *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return DVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

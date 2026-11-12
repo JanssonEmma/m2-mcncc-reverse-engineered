@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804ef20",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "make_heap<__gnu_cxx::__normal_iterator<TQueueElement**,_std::vector<TQueueElement*,_std::allocator<TQueueElement*>_>_>,_CEventQueue::FuncQueueComp>",
+      "address": "0804ef20"
+    },
+    "code": "\r\n/* DWARF original name: make_heap<__gnu_cxx::__normal_iterator<TQueueElement**,\r\n   std::vector<TQueueElement*, std::allocator<TQueueElement*> > >, CEventQueue::FuncQueueComp> */\r\n\r\nvoid make_heap<__gnu_cxx::__normal_iterator<TQueueElement**,_std::vector<TQueueElement*,_std::allocator<TQueueElement*>_>_>,_CEventQueue::FuncQueueComp>\r\n               (__normal_iterator<SQueueElement**,std::vector<SQueueElement*,_std::allocator<SQueueElement*>_>_>\r\n                __first,__normal_iterator<SQueueElement**,std::vector<SQueueElement*,_std::allocator<SQueueElement*>_>_>\r\n                        __last,FuncQueueComp __comp)\r\n\r\n{\r\n  int __holeIndex;\r\n  TQueueElement **ppTVar1;\r\n  int __len;\r\n  \r\n                    /* Unresolved local var: ptrdiff_t __len@[???]\r\n                       Unresolved local var: ptrdiff_t __parent@[DW_OP_reg3(EBX)] */\r\n  __len = (int)__last._M_current - (int)__first._M_current >> 2;\r\n  if (1 < __len) {\r\n    __holeIndex = (__len + -2) / 2;\r\n    ppTVar1 = __first._M_current + __holeIndex;\r\n    while( true ) {\r\n      __adjust_heap<__gnu_cxx::__normal_iterator<TQueueElement**,_std::vector<TQueueElement*,_std::allocator<TQueueElement*>_>_>,_int,_TQueueElement*,_CEventQueue::FuncQueueComp>\r\n                (__first,__holeIndex,__len,*ppTVar1,(FuncQueueComp)0x0);\r\n      if (__holeIndex == 0) break;\r\n      __holeIndex = __holeIndex + -1;\r\n      ppTVar1 = ppTVar1 + -1;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

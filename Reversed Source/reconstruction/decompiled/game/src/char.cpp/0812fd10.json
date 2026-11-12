@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812fd10",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER::MonsterLog",
+      "address": "0812fd10"
+    },
+    "code": "\r\n/* DWARF original prototype: void MonsterLog(CHARACTER * this, char * format, ...) */\r\n\r\nvoid __thiscall CHARACTER::MonsterLog(CHARACTER *this,char *format,...)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  void *buf_00;\r\n  TEMP_BUFFER buf;\r\n  packet_chat pack_chat;\r\n  char chatbuf [86];\r\n  \r\n                    /* Unresolved local var: int len2@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: va_list args@[???]\r\n                       Unresolved local var: int len@[DW_OP_reg3(EBX)] */\r\n  if ((test_server != 0) && ((this->super_CEntity).m_lpDesc == (LPDESC)0x0)) {\r\n    iVar1 = sprintf(chatbuf,\"%lu)\",(this->m_vid).m_id);\r\n    iVar2 = vsnprintf(chatbuf + iVar1,0x55,format,&stack0x0000000c);\r\n    pack_chat.header = '\\x04';\r\n    pack_chat.type = '\\0';\r\n    pack_chat.size = (short)(iVar2 + iVar1) + 10;\r\n    pack_chat.id = (this->m_vid).m_id;\r\n    pack_chat.bEmpire = '\\0';\r\n    TEMP_BUFFER::TEMP_BUFFER(&buf);\r\n    TEMP_BUFFER::write(&buf,&pack_chat,9);\r\n    TEMP_BUFFER::write(&buf,chatbuf,iVar2 + iVar1 + 1);\r\n    iVar1 = TEMP_BUFFER::size(&buf);\r\n    buf_00 = TEMP_BUFFER::read_peek(&buf);\r\n    if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    CHARACTER_MANAGER::PacketMonsterLog\r\n              (singleton<CHARACTER_MANAGER>::ms_singleton,this,buf_00,iVar1);\r\n    TEMP_BUFFER::~TEMP_BUFFER(&buf,(int)this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

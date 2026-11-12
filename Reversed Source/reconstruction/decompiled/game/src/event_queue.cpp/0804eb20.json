@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804eb20",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CEventQueue::Destroy",
+      "address": "0804eb20"
+    },
+    "code": "\r\n/* DWARF original prototype: void Destroy(CEventQueue * this) */\r\n\r\nvoid __thiscall CEventQueue::Destroy(CEventQueue *this)\r\n\r\n{\r\n  TQueueElement ***pppTVar1;\r\n  __normal_iterator<SQueueElement**,std::vector<SQueueElement*,_std::allocator<SQueueElement*>_>_>\r\n  __first;\r\n  TQueueElement **ppTVar2;\r\n  TQueueElement *pElem;\r\n  TQueueElement *__value;\r\n  \r\n  while( true ) {\r\n    __first._M_current =\r\n         (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n         super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_start;\r\n    ppTVar2 = (this->m_pq_queue).c.\r\n              super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n              super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_finish\r\n    ;\r\n    if (__first._M_current == ppTVar2) break;\r\n                    /* Unresolved local var: TQueueElement * pElem@[DW_OP_reg3(EBX)] */\r\n    pElem = *__first._M_current;\r\n    __value = ppTVar2[-1];\r\n    ppTVar2[-1] = pElem;\r\n    __adjust_heap<__gnu_cxx::__normal_iterator<TQueueElement**,_std::vector<TQueueElement*,_std::allocator<TQueueElement*>_>_>,_int,_TQueueElement*,_CEventQueue::FuncQueueComp>\r\n              (__first,0,(int)ppTVar2 + (-4 - (int)__first._M_current) >> 2,__value,\r\n               (FuncQueueComp)0x0);\r\n    pppTVar1 = &(this->m_pq_queue).c.\r\n                super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n                super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>.\r\n                _M_finish;\r\n    *pppTVar1 = *pppTVar1 + -1;\r\n    Delete(this,pElem);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063390",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "__uninitialized_copy_aux<__gnu_cxx::__normal_iterator<quest::RewardData*,_std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>,___gnu_cxx::__normal_iterator<quest::RewardData*,_std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>_>",
+      "address": "08063390"
+    },
+    "code": "\r\n/* DWARF original name: __uninitialized_copy_aux<__gnu_cxx::__normal_iterator<quest::RewardData*,\r\n   std::vector<quest::RewardData, std::allocator<quest::RewardData> > >,\r\n   __gnu_cxx::__normal_iterator<quest::RewardData*, std::vector<quest::RewardData,\r\n   std::allocator<quest::RewardData> > > > */\r\n\r\n__normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n* __uninitialized_copy_aux<__gnu_cxx::__normal_iterator<quest::RewardData*,_std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>,___gnu_cxx::__normal_iterator<quest::RewardData*,_std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>_>\r\n            (__normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n             *__return_storage_ptr__,\r\n            __normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n            __first,__normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n                    __last,\r\n            __normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n            __result,__false_type param_4)\r\n\r\n{\r\n  for (; (RewardData *)__return_storage_ptr__ != __first._M_current;\r\n      __return_storage_ptr__ =\r\n           (__normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n            *)((int)__return_storage_ptr__ + 0xc)) {\r\n    if (__last._M_current != (RewardData *)0x0) {\r\n      (__last._M_current)->type = (RewardType)((RewardData *)__return_storage_ptr__)->type;\r\n      (__last._M_current)->value1 = ((RewardData *)__return_storage_ptr__)->value1;\r\n      (__last._M_current)->value2 = ((RewardData *)__return_storage_ptr__)->value2;\r\n    }\r\n    __last._M_current = __last._M_current + 1;\r\n  }\r\n  return (__normal_iterator<quest::RewardData*,std::vector<quest::RewardData,_std::allocator<quest::RewardData>_>_>\r\n          *)__last._M_current;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

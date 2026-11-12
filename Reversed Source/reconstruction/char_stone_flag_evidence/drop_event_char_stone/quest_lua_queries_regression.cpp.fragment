@@ -1,0 +1,48 @@
+// Add to quest_lua_queries_regression.cpp and call TestCharStoneFlag() from main.
+bool DropEvent_CharStone_SetValue(const std::string&, int);
+static std::vector<std::string> stoneFormats;
+static std::vector<double> stoneValues;
+extern "C" void quest_lua_char_stone_log(const char* format, double value) {
+    stoneFormats.push_back(format);
+    stoneValues.push_back(value);
+}
+
+static void CheckCharStoneLogs(const char* toggle, int alive, double low, double middle,
+                               double high, int range) {
+    unsigned int offset = 0;
+    assert(stoneValues.size() == stoneFormats.size());
+    if (toggle) {
+        assert(stoneFormats.size() == 6 && stoneFormats[0] == toggle);
+        offset = 1;
+    }
+    assert(stoneFormats.size() == offset + 5);
+    const char* formats[] = {
+        "dropevent.drop_char_stone: %d", "dropevent.drop_char_stone.percent_lv01_10: %f",
+        "dropevent.drop_char_stone.percent_lv11_30: %f", "dropevent.drop_char_stone.percent_lv31_MX: %f",
+        "dropevent.drop_char_stone.level_range: %d"
+    };
+    const double values[] = {static_cast<double>(alive), low, middle, high, static_cast<double>(range)};
+    for (unsigned int i = 0; i < 5; ++i) {
+        assert(stoneFormats[offset + i] == formats[i]);
+        assert(stoneValues[offset + i] == values[i]);
+    }
+    stoneFormats.clear();
+    stoneValues.clear();
+}
+
+static void TestCharStoneFlag() {
+    assert(!DropEvent_CharStone_SetValue("drop_char_stone.unknown", 5) && stoneFormats.empty());
+    assert(DropEvent_CharStone_SetValue("drop_char_stone", 0));
+    CheckCharStoneLogs("dropevent.drop_char_stone = off", 0, 1, 2, 3, 10);
+    assert(DropEvent_CharStone_SetValue("drop_char_stone", -9));
+    CheckCharStoneLogs("dropevent.drop_char_stone = on", 1, 1, 2, 3, 10);
+    assert(DropEvent_CharStone_SetValue("drop_char_stone.percent_lv01_10", 16777217));
+    CheckCharStoneLogs(0, 1, 167772.17, 2, 3, 10);
+    assert(DropEvent_CharStone_SetValue("drop_char_stone.percent_lv11_30", -25));
+    CheckCharStoneLogs(0, 1, 167772.17, -0.25, 3, 10);
+    assert(DropEvent_CharStone_SetValue("drop_char_stone.percent_lv31_MX", 125));
+    CheckCharStoneLogs(0, 1, 167772.17, -0.25, 1.25, 10);
+    assert(DropEvent_CharStone_SetValue("drop_char_stone.level_range", -4));
+    CheckCharStoneLogs(0, 1, 167772.17, -0.25, 1.25, -4);
+    assert(!DropEvent_CharStone_SetValue("DROP_CHAR_STONE", 0) && stoneFormats.empty());
+}

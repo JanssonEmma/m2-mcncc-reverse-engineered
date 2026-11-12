@@ -1,0 +1,606 @@
+{
+  "audit_date": "2026-10-25",
+  "scope": "Current production bodies versus separately linked test definitions; no equivalence/build claim",
+  "rows": [
+    {
+      "name": "CHARACTER::SetPolymorph",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::MountVnum",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::ComputePoints",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::ComputeBattlePoints",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::PointChange",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::StopRiding",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\character_fixture.cpp",
+          "line": 19,
+          "definition": "CHARACTER::StopRiding() {",
+          "sha256": "3065480d6304cb4da2a389e793e33918e545b5bcd878188d58f57fea79464631"
+        }
+      ],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::HorseSummon",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::RefreshAffect",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::ComputeAffect",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::StartMuyeongEvent",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::StopMuyeongEvent",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_skill.cpp",
+          "line": 20,
+          "definition": "CHARACTER::StopMuyeongEvent() {",
+          "sha256": "aafe148bb9e3eb537facdc21bd49a77339c76d4fc7419f3ab74102de20315aa7"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::ComputeSkillPoints",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_skill.cpp",
+          "line": 24,
+          "definition": "CHARACTER::ComputeSkillPoints() {",
+          "sha256": "aafe148bb9e3eb537facdc21bd49a77339c76d4fc7419f3ab74102de20315aa7"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHorseRider::StopRiding",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 102,
+          "definition": "CHorseRider::StopRiding() {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHorseRider::StartStaminaRegenEvent",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 128,
+          "definition": "CHorseRider::StartStaminaRegenEvent() {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHorseRider::StartStaminaConsumeEvent",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 116,
+          "definition": "CHorseRider::StartStaminaConsumeEvent() {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHorseRider::UpdateHorseStamina",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 59,
+          "definition": "CHorseRider::UpdateHorseStamina(int amount,bool send) {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHorseRider::CheckHorseHealthDropTime",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 73,
+          "definition": "CHorseRider::CheckHorseHealthDropTime(bool send) {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "horse_stamina_regen_event",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 148,
+          "definition": "horse_stamina_regen_event(LPEVENT event) {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "horse_stamina_consume_event",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\horse_rider.cpp",
+          "line": 140,
+          "definition": "horse_stamina_consume_event(LPEVENT event) {",
+          "sha256": "4adc430f244cc836e25e27fc7f20b78e6dc140ab683c68a5f4d0c8caa028df07"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "skill_muyoung_event",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CItem::ModifyPoints",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::ApplyPoint",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CItem::IsAccessoryForSocket",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\item.cpp",
+          "line": 172,
+          "definition": "CItem::IsAccessoryForSocket() {",
+          "sha256": "60b347b195e5104f64aa9389a7f9051c13553f7f396b1830c08eff64852a1979"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "ITEM_MANAGER::GetTable",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::GetWear",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char_item.cpp",
+          "line": 15,
+          "definition": "CHARACTER::GetWear(BYTE cell) {",
+          "sha256": "00211f1b5b8701c5ae2377db602d3479b2a26bb88bc238a59c999f810f33c802"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CEntity::ViewReencode",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\entity_view.cpp",
+          "line": 33,
+          "definition": "CEntity::ViewReencode() {",
+          "sha256": "48d4ad2e9b6906e9bfc78b14561b4b7c50ba34900e1a73db616ed4893612e09e"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::UpdatePacket",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 305,
+          "definition": "CHARACTER::UpdatePacket() {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::GetPoint",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 226,
+          "definition": "CHARACTER::GetPoint(BYTE type) {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::SetPoint",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 299,
+          "definition": "CHARACTER::SetPoint(BYTE type,long value) {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::GetRealPoint",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 224,
+          "definition": "CHARACTER::GetRealPoint(BYTE type) {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::SetRealPoint",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 225,
+          "definition": "CHARACTER::SetRealPoint(BYTE type,long value) {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::GetOriginalPart",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 249,
+          "definition": "CHARACTER::GetOriginalPart(BYTE part) {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::SetPart",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 247,
+          "definition": "CHARACTER::SetPart(BYTE part,WORD value) {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::GetJob",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 364,
+          "definition": "CHARACTER::GetJob() {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::GetName",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 29,
+          "definition": "CHARACTER::GetName()\n{",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CGuild::UnderAnyWar",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\guild.cpp",
+          "line": 53,
+          "definition": "CGuild::UnderAnyWar(BYTE type) {",
+          "sha256": "973c4d7baf18ea4f28625a9108ce1b0e2443206e3d878446ca69a4bf429492e0"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CQuestManager::Unmount",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CQuestManager::GetPC",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CQuestManager::GetPCForce",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "NPC::OnUnmount",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "NPC::HandleReceiveAllEvent",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CQuestManager::CanStartQuest",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CQuestManager::ExecuteQuestScript",
+      "production_status": "missing_actual_production_body",
+      "production": [],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    },
+    {
+      "name": "CHARACTER::Save",
+      "production_status": "actual_body_present",
+      "production": [
+        {
+          "file": "PROJECT_ROOT\\Reversed Source\\game\\src\\char.cpp",
+          "line": 475,
+          "definition": "CHARACTER::Save() {",
+          "sha256": "5e1982f9f532bdde2d2bcac8828dcda1f274ffb3eeb2854b391819e0053ca2ea"
+        }
+      ],
+      "test_definitions": [],
+      "staged_evidence": "mount_polymorph and/or quest_level saved exports; staging is not production"
+    }
+  ],
+  "current_test_graph": [
+    {
+      "line": 158,
+      "text": "DESC_PACKET_SOURCES = ../../game/src/constants.cpp ../../game/src/char_skill.cpp ../../game/src/char_battle.cpp ../../game/src/party.cpp party_lifecycle_fixture.cpp character_fixture.cpp quest_flag_fixture.cpp ../../game/src/horse_rider.cpp ../../game/src/entity.cpp ../../game/src/entity_view.cpp ../../game/src/FSM.cpp ../../game/src/char_manager.cpp ../../game/src/desc_client.cpp ../../game/src/desc_manager.cpp ../../game/src/input.cpp ../../game/src/input_login.cpp ../../game/src/input_main.cpp ../../game/src/input_auth.cpp ../../game/src/packet_info.cpp ../../game/src/main.cpp ../../game/src/char.cpp ../../game/src/crc32.cpp ../../game/src/questmanager.cpp ../../game/src/TrafficProfiler.cpp ../../game/src/sequence.cpp ../../game/src/buffer_manager.cpp ../../game/src/locale.cpp ../../game/src/locale_service.cpp ../../game/src/motion.cpp ../../game/src/char_item.cpp ../../game/src/text_file_loader.cpp ../../game/src/file_loader.cpp ../../game/src/mob_manager.cpp"
+    },
+    {
+      "line": 394,
+      "text": "TARGET_WALKING_SOURCES = ../../game/src/item.cpp ../../game/src/item_manager.cpp ../../game/src/sectree.cpp ../../libgame/src/attribute.cc desc_fixture.cpp ../../game/src/desc.cpp $(DESC_PACKET_SOURCES) $(ITEM_SOCKET_SOURCES)"
+    },
+    {
+      "line": 404,
+      "text": "POLY_HELPER_SOURCES = $(filter-out desc_fixture.cpp ../../game/src/char_skill.cpp,$(TARGET_WALKING_SOURCES)) helper_desc_fixture.cpp ../../game/src/char_skill.cpp"
+    },
+    {
+      "line": 414,
+      "text": "GUILD_LEVEL_SOURCES = under_any_war_regression.cpp sguildwar_lifecycle_fixture.cpp $(filter-out ../../game/src/guild.cpp guild_lifecycle_fixture.cpp,$(TARGET_WALKING_SOURCES)) ../../game/src/guild.cpp guild_lifecycle_fixture.cpp"
+    },
+    {
+      "line": 431,
+      "text": "stop_muyeong_regression$(EXEEXT): stop_muyeong_regression.cpp ../../game/src/event.cpp ../../game/src/event_queue.cpp $(TARGET_WALKING_SOURCES) $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) desc_output_syscalls.o $(DESC_TEST_HEADERS) ../../game/src/char.h"
+    },
+    {
+      "line": 432,
+      "text": "\t$(CXX) -DMCNCC_TEST_REAL_EVENTS -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long stop_muyeong_regression.cpp ../../game/src/event.cpp ../../game/src/event_queue.cpp $(TARGET_WALKING_SOURCES) $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) desc_output_syscalls.o $(LDFLAGS) -o $@"
+    }
+  ],
+  "fixtures": [
+    {
+      "file": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\character_fixture.cpp",
+      "sha256": "3065480d6304cb4da2a389e793e33918e545b5bcd878188d58f57fea79464631",
+      "relevant_lines": [
+        {
+          "line": 19,
+          "text": "bool CHARACTER::StopRiding() { std::abort(); }"
+        }
+      ]
+    },
+    {
+      "file": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\desc_fixture.cpp",
+      "sha256": "94fa1c2f61ec43a34802159c846ba1ff5948c86a3921a5045744adb9738df303",
+      "relevant_lines": [
+        {
+          "line": 38,
+          "text": "#ifndef MCNCC_TEST_REAL_EVENTS"
+        },
+        {
+          "line": 39,
+          "text": "extern \"C\" void event_cancel(LPEVENT* event) {"
+        },
+        {
+          "line": 48,
+          "text": "#ifndef MCNCC_TEST_REAL_EVENTS"
+        },
+        {
+          "line": 50,
+          "text": "extern \"C\" LPEVENT event_create_ex(TEVENTFUNC,DWORD,long,char*,int) { std::abort(); }"
+        }
+      ]
+    },
+    {
+      "file": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\entity_packet_fixture.cpp",
+      "sha256": "0c4069b541ac1da462d7e29aa5466b525c48bd75d08f61a16766a856d4bfe6e2",
+      "relevant_lines": [
+        {
+          "line": 19,
+          "text": "extern \"C\" void event_cancel(LPEVENT* handle) { if(isolated_cancel_hook) isolated_cancel_hook(handle); else if(*handle) std::abort(); }"
+        },
+        {
+          "line": 21,
+          "text": "extern \"C\" LPEVENT event_create_ex(TEVENTFUNC,DWORD,long,char*,int) { std::abort(); }"
+        }
+      ]
+    },
+    {
+      "file": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\quest_flag_fixture.cpp",
+      "sha256": "bf1caa63d26a8892162c528a40379275502f33a04cdba779dd15495fde99a80b",
+      "relevant_lines": [
+        {
+          "line": 5,
+          "text": "CQuestManager::CQuestManager() {}"
+        },
+        {
+          "line": 6,
+          "text": "CQuestManager::~CQuestManager() {}"
+        }
+      ]
+    },
+    {
+      "file": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\horse_regression.cpp",
+      "sha256": "2c03fd9225c083ae758ab5efa22d29b0339d2e36fd6ed8cdfebbf74006fec5e6",
+      "relevant_lines": [
+        {
+          "line": 28,
+          "text": "    using CHorseRider::GetHorseData;"
+        },
+        {
+          "line": 29,
+          "text": "    using CHorseRider::SetHorseData;"
+        },
+        {
+          "line": 30,
+          "text": "    using CHorseRider::UpdateHorseDataByLogoff;"
+        },
+        {
+          "line": 34,
+          "text": "    virtual bool StartRiding() { ++starts; return CHorseRider::StartRiding(); }"
+        },
+        {
+          "line": 35,
+          "text": "    virtual bool StopRiding() { ++stops; return CHorseRider::StopRiding(); }"
+        },
+        {
+          "line": 36,
+          "text": "    virtual void HorseDie() { ++deaths; CHorseRider::HorseDie(); }"
+        },
+        {
+          "line": 53,
+          "text": "        assert(!rider.StartRiding() && !rider.StopRiding() && !rider.ReviveHorse());"
+        }
+      ]
+    }
+  ],
+  "corrected_conclusion": "CHorseRider::StopRiding, stamina regen/consume setup and callbacks already actual horse_rider.cpp production bodies; CHARACTER virtual StopRiding is separate and remains test-boundary-only. Default DESC event fixture differs from actual event.cpp unless MCNCC_TEST_REAL_EVENTS and real event sources are selected.",
+  "makefile_sha256": "826e87caa6414b7885d167bd4b6ba4857a76b7b64581665e93a780b43b68aaca"
+}

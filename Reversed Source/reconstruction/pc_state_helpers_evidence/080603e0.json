@@ -1,0 +1,113 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::SetSendFlag\",\n    \"address\": \"080603e0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void SetSendFlag(PC * this, int idx) */\\r\\n\\r\\nvoid __thiscall PC::SetSendFlag(PC *this,int idx)\\r\\n\\r\\n{\\r\\n  this->m_iSendToClient = this->m_iSendToClient | idx;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::SetSendFlag",
+        "address": "080603e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetSendFlag(PC * this, int idx) */\r\n\r\nvoid __thiscall PC::SetSendFlag(PC *this,int idx)\r\n\r\n{\r\n  this->m_iSendToClient = this->m_iSendToClient | idx;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::SetSendFlag\",\n    \"address\": \"080603e0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 0,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::SetSendFlag",
+        "address": "080603e0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 100,
+        "total": 0,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"080603e0\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603e1\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603e3\",\n      \"bytes\": \"8b5508\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603e6\",\n      \"bytes\": \"8b4d0c\",\n      \"instruction\": \"MOV ECX,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603e9\",\n      \"bytes\": \"8b4258\",\n      \"instruction\": \"MOV EAX,dword ptr [EDX + 0x58]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603ec\",\n      \"bytes\": \"09c8\",\n      \"instruction\": \"OR EAX,ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603ee\",\n      \"bytes\": \"894258\",\n      \"instruction\": \"MOV dword ptr [EDX + 0x58],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603f1\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080603f2\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 9,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "080603e0",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "080603e1",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "080603e3",
+          "bytes": "8b5508",
+          "instruction": "MOV EDX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "080603e6",
+          "bytes": "8b4d0c",
+          "instruction": "MOV ECX,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "080603e9",
+          "bytes": "8b4258",
+          "instruction": "MOV EAX,dword ptr [EDX + 0x58]",
+          "comment": null
+        },
+        {
+          "address": "080603ec",
+          "bytes": "09c8",
+          "instruction": "OR EAX,ECX",
+          "comment": null
+        },
+        {
+          "address": "080603ee",
+          "bytes": "894258",
+          "instruction": "MOV dword ptr [EDX + 0x58],EAX",
+          "comment": null
+        },
+        {
+          "address": "080603f1",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "080603f2",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 100,
+      "total": 9,
+      "has_more": false
+    },
+    "isError": false
+  }
+]

@@ -1,0 +1,1 @@
+Focused build failed at packet duplicate declarations: original integration replace() expanded at every pack(pop). Stage fix retains FIRST exact block only, preserving every pragma/island and all other records. Apply apply_packet_fix_parent.py with root F grant; child no Fwrite. Then rerun focused suite+ABI only. No runtime was executed on failed build.

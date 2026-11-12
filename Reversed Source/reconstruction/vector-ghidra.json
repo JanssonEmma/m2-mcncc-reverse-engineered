@@ -1,0 +1,50 @@
+{
+  "08164be0": {
+    "function": {
+      "name": "Normalize",
+      "address": "08164be0"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid Normalize(VECTOR *pV1,VECTOR *pV2)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  \r\n                    /* Unresolved local var: float l@[???] */\r\n  fVar2 = sqrtf((float)_DAT_0822b490 + pV1->z * pV1->z + pV1->y * pV1->y + pV1->x * pV1->x);\r\n  pV2->x = pV1->x / fVar2;\r\n  fVar1 = pV1->z;\r\n  pV2->y = pV1->y / fVar2;\r\n  pV2->z = fVar1 / fVar2;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "08164c40": {
+    "function": {
+      "name": "DotProduct",
+      "address": "08164c40"
+    },
+    "code": "\r\nfloat DotProduct(VECTOR *pV1,VECTOR *pV2)\r\n\r\n{\r\n  return pV2->z * pV1->z + pV2->x * pV1->x + pV2->y * pV1->y;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "08164c70": {
+    "function": {
+      "name": "GetDegreeFromPosition",
+      "address": "08164c70"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat GetDegreeFromPosition(float x,float y)\r\n\r\n{\r\n  float fVar1;\r\n  VECTOR vtStan;\r\n  VECTOR vtDir;\r\n  \r\n                    /* Unresolved local var: float ret@[DW_OP_reg12(ST1)] */\r\n  vtDir.x = x;\r\n  vtDir.z = 0.0;\r\n  vtDir.y = y;\r\n  Normalize(&vtDir,&vtDir);\r\n  vtStan.x = 0.0;\r\n  vtStan.y = 1.0;\r\n  vtStan.z = 0.0;\r\n  fVar1 = DotProduct(&vtDir,&vtStan);\r\n  fVar1 = acosf(fVar1);\r\n  fVar1 = fVar1 * _DAT_0822b498;\r\n  if (vtDir.x < 0.0) {\r\n    fVar1 = _DAT_08221590 - fVar1;\r\n  }\r\n  return fVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "08164cf0": {
+    "function": {
+      "name": "GetDegreeFromPositionXY",
+      "address": "08164cf0"
+    },
+    "code": "\r\nfloat GetDegreeFromPositionXY(long sx,long sy,long ex,long ey)\r\n\r\n{\r\n  float fVar1;\r\n  \r\n  fVar1 = GetDegreeFromPosition((float)(ex - sx),(float)(ey - sy));\r\n  return fVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "08164d20": {
+    "function": {
+      "name": "GetDeltaByDegree",
+      "address": "08164d20"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid GetDeltaByDegree(float fDegree,float fDistance,float *x,float *y)\r\n\r\n{\r\n  float fVar1;\r\n  double dVar2;\r\n  \r\n                    /* Unresolved local var: float fRadian@[DW_OP_reg12(ST1)] */\r\n  fVar1 = _DAT_0822b49c * fDegree;\r\n  dVar2 = sin((double)fVar1);\r\n  *x = (float)dVar2 * fDistance;\r\n  dVar2 = cos((double)fVar1);\r\n  *y = (float)dVar2 * fDistance;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "08164d70": {
+    "function": {
+      "name": "GetDegreeDelta",
+      "address": "08164d70"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat GetDegreeDelta(float iDegree,float iDegree2)\r\n\r\n{\r\n  if (_DAT_081f9f70 < iDegree) {\r\n    iDegree = iDegree - _DAT_08221590;\r\n  }\r\n  if (_DAT_081f9f70 < iDegree2) {\r\n    iDegree2 = iDegree2 - _DAT_08221590;\r\n  }\r\n  return ABS(iDegree - iDegree2);\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

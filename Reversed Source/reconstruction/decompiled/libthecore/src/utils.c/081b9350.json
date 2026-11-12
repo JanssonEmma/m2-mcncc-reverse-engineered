@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b9350",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "thecore_sleep",
+      "address": "081b9350"
+    },
+    "code": "\r\nvoid thecore_sleep(timeval *timeout)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  char *pcVar3;\r\n  \r\n  iVar1 = select(0,(fd_set *)0x0,(fd_set *)0x0,(fd_set *)0x0,(timeval *)timeout);\r\n  if (iVar1 < 0) {\r\n    piVar2 = (int *)__error();\r\n    if (*piVar2 != 4) {\r\n      piVar2 = (int *)__error();\r\n      pcVar3 = strerror(*piVar2);\r\n      _sys_err(\"thecore_sleep\",0x163,\"select sleep %s\",pcVar3);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

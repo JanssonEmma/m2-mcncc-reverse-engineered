@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08166560",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8166560",
+    "function": {
+      "name": "CItem::StartDestroyEvent",
+      "address": "08166560"
+    },
+    "signature": "void StartDestroyEvent(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void StartDestroyEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StartDestroyEvent(CItem *this)\r\n\r\n{\r\n  DWORD dwInfoID;\r\n  LPEVENT pkEvent;\r\n  item_event_info *info;\r\n  \r\n                    /* Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  if (this->m_pkDestroyEvent == (LPEVENT)0x0) {\r\n    dwInfoID = __AllocEventInfo(4,&info);\r\n    info->item = this;\r\n    pkEvent = event_create_ex(item_destroy_event,dwInfoID,passes_per_sec * 300,\"item.cpp\",100);\r\n    SetDestroyEvent(this,pkEvent);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

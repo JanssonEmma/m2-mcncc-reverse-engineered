@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081668a0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x081668a0",
+    "function": {
+      "name": "CItem::SetCount",
+      "address": "081668a0"
+    },
+    "signature": "bool SetCount(CItem * this, DWORD count)",
+    "code": "\r\n/* DWARF original prototype: bool SetCount(CItem * this, DWORD count) */\r\n\r\nbool __thiscall CItem::SetCount(CItem *this,DWORD count)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  TItemTable *pTVar1;\r\n  LPITEM pItem;\r\n  BYTE BVar2;\r\n  DWORD vnum;\r\n  ITEM_MANAGER *this_01;\r\n  BYTE bCell;\r\n  \r\n  this->m_dwCount = count;\r\n  if ((count != 0) || (this_00 = this->m_pOwner, this_00 == (CHARACTER *)0x0)) {\r\n    UpdatePacket(this);\r\n    Save(this);\r\n    return true;\r\n  }\r\n  pTVar1 = this->m_pProto;\r\n  BVar2 = '\\0';\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar2 = pTVar1->bSubType;\r\n  }\r\n  if (BVar2 != '\\a') {\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bSubType;\r\n    }\r\n    if (BVar2 != '\\0') {\r\n      CHARACTER::SyncQuickslot(this_00,'\\x01',this->m_bCell,0xff);\r\n      if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      this_01 = singleton<ITEM_MANAGER>::ms_singleton;\r\n      this = RemoveFromCharacter(this);\r\n      goto LAB_08166943;\r\n    }\r\n  }\r\n                    /* Unresolved local var: LPCHARACTER pOwner@[???]\r\n                       Unresolved local var: LPITEM pItem@[DW_OP_reg2(EDX)] */\r\n  BVar2 = this->m_bCell;\r\n  RemoveFromCharacter(this);\r\n  vnum = 0;\r\n  if (this->m_pProto != (TItemTable *)0x0) {\r\n    vnum = this->m_pProto->dwVnum;\r\n  }\r\n  pItem = CHARACTER::FindSpecifyItem(this_00,vnum);\r\n  if (pItem == (LPITEM)0x0) {\r\n    CHARACTER::SyncQuickslot(this_00,'\\x01',BVar2,0xff);\r\n  }\r\n  else {\r\n    CHARACTER::ChainQuickslotItem(this_00,pItem,'\\x01',BVar2);\r\n  }\r\n  this_01 = singleton<ITEM_MANAGER>::ms_singleton;\r\n  if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    this_01 = singleton<ITEM_MANAGER>::ms_singleton;\r\n  }\r\nLAB_08166943:\r\n  ITEM_MANAGER::DestroyItem(this_01,this);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

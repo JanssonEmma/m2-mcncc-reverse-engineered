@@ -1,0 +1,142 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "origin": "Complete saved target/walking dependency exports; final handoff and metadata retained in target_walking_evidence",
+  "functions": [
+    {
+      "function": {
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "address": "080514e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void _M_increment(_Rb_tree_base_iterator * this) */\r\n\r\nvoid __thiscall _Rb_tree_base_iterator::_M_increment(_Rb_tree_base_iterator *this)\r\n\r\n{\r\n  _Rb_tree_node_base *p_Var1;\r\n  _Rb_tree_node_base *p_Var2;\r\n  \r\n  p_Var2 = this->_M_node;\r\n  p_Var1 = p_Var2->_M_right;\r\n  if (p_Var1 == (_Rb_tree_node_base *)0x0) {\r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[DW_OP_reg0(EAX)] */\r\n    p_Var1 = p_Var2->_M_parent;\r\n    if (p_Var2 == p_Var1->_M_right) {\r\n      do {\r\n        this->_M_node = p_Var1;\r\n        p_Var1 = p_Var1->_M_parent;\r\n        p_Var2 = this->_M_node;\r\n      } while (p_Var2 == p_Var1->_M_right);\r\n    }\r\n    if (p_Var2->_M_right != p_Var1) {\r\n      this->_M_node = p_Var1;\r\n    }\r\n  }\r\n  else {\r\n    this->_M_node = p_Var1;\r\n    for (p_Var2 = p_Var1->_M_left; p_Var2 != (_Rb_tree_node_base *)0x0; p_Var2 = p_Var2->_M_left) {\r\n      p_Var2 = this->_M_node->_M_left;\r\n      this->_M_node = p_Var2;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "DISTANCE_APPROX",
+        "address": "08051610"
+      },
+      "code": "\r\nint DISTANCE_APPROX(int dx,int dy)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n                    /* Unresolved local var: int min@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int max@[DW_OP_reg1(ECX)] */\r\n  if (dx < 0) {\r\n    dx = -dx;\r\n  }\r\n  if (dy < 0) {\r\n    dy = -dy;\r\n  }\r\n  iVar1 = dx;\r\n  if (dx < dy) {\r\n    iVar1 = dy;\r\n    dy = dx;\r\n  }\r\n  return iVar1 * 0xf6 + dy * 0x66 >> 8;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "TEMP_BUFFER::TEMP_BUFFER",
+        "address": "080fb6d0"
+      },
+      "code": "\r\n/* DWARF original prototype: void TEMP_BUFFER(TEMP_BUFFER * this) */\r\n\r\nvoid __thiscall TEMP_BUFFER::TEMP_BUFFER(TEMP_BUFFER *this)\r\n\r\n{\r\n  LPBUFFER pbVar1;\r\n  \r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pbVar1 = BUFFER_MANAGER::get(singleton<BUFFER_MANAGER>::ms_singleton);\r\n  this->buf = pbVar1;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "TEMP_BUFFER::~TEMP_BUFFER",
+        "address": "080fb780"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~TEMP_BUFFER(TEMP_BUFFER * this, int __in_chrg) */\r\n\r\nvoid __thiscall TEMP_BUFFER::~TEMP_BUFFER(TEMP_BUFFER *this,int __in_chrg)\r\n\r\n{\r\n  if (singleton<BUFFER_MANAGER>::ms_singleton == (BUFFER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  BUFFER_MANAGER::release(singleton<BUFFER_MANAGER>::ms_singleton,this->buf);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "TEMP_BUFFER::read_peek",
+        "address": "080fb7e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void * read_peek(TEMP_BUFFER * this) */\r\n\r\nvoid * __thiscall TEMP_BUFFER::read_peek(TEMP_BUFFER *this)\r\n\r\n{\r\n  void *pvVar1;\r\n  \r\n  pvVar1 = buffer_read_peek(this->buf);\r\n  return pvVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "TEMP_BUFFER::write",
+        "address": "080fb800"
+      },
+      "code": "\r\n/* DWARF original prototype: void write(TEMP_BUFFER * this, void * data, int size) */\r\n\r\nvoid __thiscall TEMP_BUFFER::write(TEMP_BUFFER *this,void *data,int size)\r\n\r\n{\r\n  buffer_write(this->buf,data,size);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "TEMP_BUFFER::size",
+        "address": "080fb820"
+      },
+      "code": "\r\n/* DWARF original prototype: int size(TEMP_BUFFER * this) */\r\n\r\nint __thiscall TEMP_BUFFER::size(TEMP_BUFFER *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = buffer_size(this->buf);\r\n  return DVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::GetName",
+        "address": "08127930"
+      },
+      "code": "\r\n/* DWARF original prototype: char * GetName(CHARACTER * this) */\r\n\r\nchar * __thiscall CHARACTER::GetName(CHARACTER *this)\r\n\r\n{\r\n  int iVar1;\r\n  char *pcVar2;\r\n  \r\n  pcVar2 = (this->m_stName)._M_dataplus._M_p;\r\n  iVar1 = *(int *)(pcVar2 + -0xc);\r\n  if (iVar1 == 0) {\r\n    pcVar2 = \"\";\r\n    if (this->m_pkMobData != (CMob *)0x0) {\r\n      pcVar2 = (this->m_pkMobData->m_table).szLocaleName;\r\n    }\r\n  }\r\n  else {\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    pcVar2[iVar1] = std::string::_Rep::_S_terminal;\r\n    pcVar2 = (this->m_stName)._M_dataplus._M_p;\r\n  }\r\n  return pcVar2;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::MonsterLog",
+        "address": "0812fd10"
+      },
+      "code": "\r\n/* DWARF original prototype: void MonsterLog(CHARACTER * this, char * format, ...) */\r\n\r\nvoid __thiscall CHARACTER::MonsterLog(CHARACTER *this,char *format,...)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  void *buf_00;\r\n  TEMP_BUFFER buf;\r\n  packet_chat pack_chat;\r\n  char chatbuf [86];\r\n  \r\n                    /* Unresolved local var: int len2@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: va_list args@[???]\r\n                       Unresolved local var: int len@[DW_OP_reg3(EBX)] */\r\n  if ((test_server != 0) && ((this->super_CEntity).m_lpDesc == (LPDESC)0x0)) {\r\n    iVar1 = sprintf(chatbuf,\"%lu)\",(this->m_vid).m_id);\r\n    iVar2 = vsnprintf(chatbuf + iVar1,0x55,format,&stack0x0000000c);\r\n    pack_chat.header = '\\x04';\r\n    pack_chat.type = '\\0';\r\n    pack_chat.size = (short)(iVar2 + iVar1) + 10;\r\n    pack_chat.id = (this->m_vid).m_id;\r\n    pack_chat.bEmpire = '\\0';\r\n    TEMP_BUFFER::TEMP_BUFFER(&buf);\r\n    TEMP_BUFFER::write(&buf,&pack_chat,9);\r\n    TEMP_BUFFER::write(&buf,chatbuf,iVar2 + iVar1 + 1);\r\n    iVar1 = TEMP_BUFFER::size(&buf);\r\n    buf_00 = TEMP_BUFFER::read_peek(&buf);\r\n    if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    CHARACTER_MANAGER::PacketMonsterLog\r\n              (singleton<CHARACTER_MANAGER>::ms_singleton,this,buf_00,iVar1);\r\n    TEMP_BUFFER::~TEMP_BUFFER(&buf,(int)this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::BroadcastTargetPacket",
+        "address": "08132670"
+      },
+      "code": "\r\n/* DWARF original prototype: void BroadcastTargetPacket(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::BroadcastTargetPacket(CHARACTER *this)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  DESC *this_01;\r\n  _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> _Var1;\r\n  int iVar2;\r\n  char *pcVar3;\r\n  _Rb_tree_base_iterator _Var4;\r\n  _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> it;\r\n  TPacketGCTarget p;\r\n  \r\n  if ((this->m_set_pkChrTargetedBy)._M_t._M_node_count != 0) {\r\n    p.header = '?';\r\n    p.dwVID = (this->m_vid).m_id;\r\n    if ((this->super_CEntity).m_lpDesc == (LPDESC)0x0) {\r\n      iVar2 = MINMAX(0,((this->m_points).hp * 100) / (this->m_pointsInstant).iMaxHP,100);\r\n      p.bHPPercent = (BYTE)iVar2;\r\n    }\r\n    else {\r\n      p.bHPPercent = '\\0';\r\n    }\r\n    _Var4._M_node =\r\n         &((this->m_set_pkChrTargetedBy)._M_t.\r\n           super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n           super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n          super__Rb_tree_node_base;\r\n    it.super__Rb_tree_base_iterator._M_node =\r\n         (_Rb_tree_base_iterator)((_Rb_tree_node_base *)&(_Var4._M_node)->_M_color)->_M_left;\r\n    while (_Var1.super__Rb_tree_base_iterator._M_node = it.super__Rb_tree_base_iterator._M_node,\r\n          it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)_Var4._M_node) {\r\n                    /* Unresolved local var: LPCHARACTER pkChr@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var:\r\n                       _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> __tmp@[???]\r\n                        */\r\n      _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n      this_00 = *(CHARACTER **)((int)_Var1.super__Rb_tree_base_iterator._M_node + 0x10);\r\n      this_01 = (this_00->super_CEntity).m_lpDesc;\r\n      if (this_01 == (DESC *)0x0) {\r\n        pcVar3 = GetName(this_00);\r\n        _sys_err(\"BroadcastTargetPacket\",0x12c1,\"%s %p does not have desc\",pcVar3,this_00);\r\n                    /* WARNING: Subroutine does not return */\r\n        abort();\r\n      }\r\n      DESC::Packet(this_01,&p,6);\r\n      _Var4._M_node =\r\n           &((this->m_set_pkChrTargetedBy)._M_t.\r\n             super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n             super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n            super__Rb_tree_node_base;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SetNowWalking",
+        "address": "081341a0"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetNowWalking(CHARACTER * this, bool bWalkFlag) */\r\n\r\nvoid __thiscall CHARACTER::SetNowWalking(CHARACTER *this,bool bWalkFlag)\r\n\r\n{\r\n  char *format;\r\n  DWORD DVar1;\r\n  TPacketGCWalkMode p;\r\n  \r\n  if ((this->m_bNowWalking != bWalkFlag) || (this->m_bCharType != '\\x06')) {\r\n    if (bWalkFlag) {\r\n      this->m_bNowWalking = true;\r\n      DVar1 = get_dword_time();\r\n      this->m_dwWalkStartTime = DVar1;\r\n    }\r\n    else {\r\n      this->m_bNowWalking = false;\r\n    }\r\n    p.vid = (this->m_vid).m_id;\r\n    p.header = 'o';\r\n    p.mode = this->m_bNowWalking != false;\r\n    CEntity::PacketView(&this->super_CEntity,&p,6,(LPENTITY)0x0);\r\n    if (this->m_bCharType != '\\x06') {\r\n      if (this->m_bNowWalking == false) {\r\n        format = &DAT_08226bcc;\r\n      }\r\n      else {\r\n        format = &DAT_08226bc5;\r\n      }\r\n      MonsterLog(this,format);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "DESC::Packet",
+        "address": "08139d10"
+      },
+      "code": "\r\n/* DWARF original prototype: void Packet(DESC * this, void * c_pvData, int iSize) */\r\n\r\nvoid __thiscall DESC::Packet(DESC *this,void *c_pvData,int iSize)\r\n\r\n{\r\n  byte bVar1;\r\n  char *pcVar2;\r\n  LPBUFFER pbVar3;\r\n  TrafficProfiler *this_00;\r\n  pair<long_unsigned_int,long_unsigned_int>_conflict *ppVar4;\r\n  time_t tVar5;\r\n  int iVar6;\r\n  DWORD *dest;\r\n  DWORD DVar7;\r\n  DWORD *pdwWritePoint;\r\n  TPacketGGRelay p;\r\n  \r\n  if (iSize < 1) {\r\n    __assert(\"Packet\",\"desc.cpp\",0x155);\r\n  }\r\n  if (this->m_iPhase == 0) {\r\n    return;\r\n  }\r\n  pcVar2 = (this->m_stRelayName)._M_dataplus._M_p;\r\n  if (*(int *)(pcVar2 + -0xc) == 0) {\r\n    if (this->m_lpBufferedOutputBuffer != (LPBUFFER)0x0) {\r\n      buffer_write(this->m_lpBufferedOutputBuffer,c_pvData,iSize);\r\n      c_pvData = buffer_read_peek(this->m_lpBufferedOutputBuffer);\r\n      iSize = buffer_size(this->m_lpBufferedOutputBuffer);\r\n    }\r\n    if (g_bTrafficProfileOn != '\\0') {\r\n      if (singleton<TrafficProfiler>::ms_singleton == (TrafficProfiler *)0x0) {\r\n        __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n      }\r\n      this_00 = singleton<TrafficProfiler>::ms_singleton;\r\n                    /* Unresolved local var: pair<long_unsigned_int,long_unsigned_int>.conflict *\r\n                       rTrafficInfo@[???] */\r\n      bVar1 = *(byte *)c_pvData;\r\n      ppVar4 = singleton<TrafficProfiler>::ms_singleton->m_aTrafficVec[1].\r\n               super__Vector_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>_>\r\n               .\r\n               super__Vector_alloc_base<std::pair<long_unsigned_int,_long_unsigned_int>,std::allocator<std::pair<long_unsigned_int,_long_unsigned_int>_>,true>\r\n               ._M_start;\r\n      singleton<TrafficProfiler>::ms_singleton->m_dwTotalTraffic =\r\n           singleton<TrafficProfiler>::ms_singleton->m_dwTotalTraffic + iSize;\r\n      ppVar4 = ppVar4 + bVar1;\r\n      DVar7 = this_00->m_dwTotalPacket;\r\n      if (ppVar4->second == 0) {\r\n        DVar7 = DVar7 + 1;\r\n      }\r\n      this_00->m_dwTotalPacket = DVar7;\r\n      ppVar4->first = ppVar4->first + iSize;\r\n      ppVar4->second = ppVar4->second + 1;\r\n      tVar5 = time((time_t *)0x0);\r\n      if (this_00->m_dwFlushCycle <= (uint)(tVar5 - this_00->m_tmProfileStartTime)) {\r\n        TrafficProfiler::Flush(this_00);\r\n      }\r\n    }\r\n    if (this->m_bEncrypted == false) {\r\n      pbVar3 = this->m_lpOutputBuffer;\r\n      if (pbVar3 == (LPBUFFER)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n      }\r\n      if (c_pvData == (void *)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x30);\r\n      }\r\n      iVar6 = buffer_has_space(pbVar3);\r\n      if (iVar6 < iSize) {\r\nLAB_08139dd4:\r\n        this->m_iPhase = 0;\r\n      }\r\n      else {\r\n        buffer_write(pbVar3,c_pvData,iSize);\r\n      }\r\n    }\r\n    else {\r\n      iVar6 = buffer_has_space(this->m_lpOutputBuffer);\r\n      if (iVar6 < (int)(iSize + 8U)) {\r\n        sys_log(0,\"buffer mem_size  = %d\",this->m_lpOutputBuffer->mem_size);\r\n        sys_log(0,\"buffer write_pos = %d\",this->m_lpOutputBuffer->write_point_pos);\r\n        sys_log(0,\"iSize = %d\",iSize);\r\n        goto LAB_08139dd4;\r\n      }\r\n      dest = buffer_write_peek(this->m_lpOutputBuffer);\r\n      pbVar3 = this->m_lpOutputBuffer;\r\n      if (pbVar3 == (LPBUFFER)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n      }\r\n      if (c_pvData == (void *)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x30);\r\n      }\r\n      iVar6 = buffer_has_space(pbVar3);\r\n      if (iSize <= iVar6) {\r\n        buffer_write(pbVar3,c_pvData,iSize);\r\n                    /* Unresolved local var: int iSize2@[DW_OP_reg0(EAX)] */\r\n        iVar6 = TEA_Encrypt(dest,dest,this->m_adwEncryptionKey,iSize);\r\n        if (iSize < iVar6) {\r\n          buffer_write_proceed(this->m_lpOutputBuffer,iVar6 - iSize);\r\n        }\r\n      }\r\n    }\r\n    if (this->m_lpBufferedOutputBuffer != (LPBUFFER)0x0) {\r\n      buffer_delete(this->m_lpBufferedOutputBuffer);\r\n      this->m_lpBufferedOutputBuffer = (LPBUFFER)0x0;\r\n    }\r\nLAB_08139de2:\r\n    fdwatch_add_fd(this->m_lpFdw,this->m_sock,this,2,1);\r\n  }\r\n  else {\r\n    p.bHeader = '\\x03';\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    pcVar2[*(int *)(pcVar2 + -0xc)] = std::string::_Rep::_S_terminal;\r\n    strncpy(p.szName,(this->m_stRelayName)._M_dataplus._M_p,0x18);\r\n    p.szName[0x18] = '\\0';\r\n    pbVar3 = this->m_lpOutputBuffer;\r\n    p.lSize = iSize;\r\n    if (pbVar3 == (LPBUFFER)0x0) {\r\n      __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n    }\r\n    iVar6 = buffer_has_space(pbVar3);\r\n    if (0x1d < iVar6) {\r\n      buffer_write(pbVar3,&p,0x1e);\r\n      strlen(\"\");\r\n      std::string::assign((char *)&this->m_stRelayName,0x81f5c80);\r\n      pbVar3 = this->m_lpOutputBuffer;\r\n      if (pbVar3 == (LPBUFFER)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x2f);\r\n      }\r\n      if (c_pvData == (void *)0x0) {\r\n        __assert(\"__packet_encode\",\"protocol.h\",0x30);\r\n      }\r\n      iVar6 = buffer_has_space(pbVar3);\r\n      if (iSize <= iVar6) {\r\n        buffer_write(pbVar3,c_pvData,iSize);\r\n        goto LAB_08139de2;\r\n      }\r\n    }\r\n    this->m_iPhase = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CHARACTER_MANAGER::PacketMonsterLog",
+        "address": "0818e360"
+      },
+      "code": "\r\n/* DWARF original prototype: void PacketMonsterLog(CHARACTER_MANAGER * this, LPCHARACTER ch, void *\r\n   buf, int size) */\r\n\r\nvoid __thiscall\r\nCHARACTER_MANAGER::PacketMonsterLog(CHARACTER_MANAGER *this,LPCHARACTER ch,void *buf,int size)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  _Rb_tree_base_iterator _Var3;\r\n  _Rb_tree_iterator<CHARACTER*,CHARACTER*_const&,CHARACTER*_const*> it;\r\n  \r\n  _Var3._M_node =\r\n       &((this->m_set_pkChrMonsterLog)._M_t.\r\n         super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n         super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n        super__Rb_tree_node_base;\r\n  it.super__Rb_tree_base_iterator._M_node =\r\n       (_Rb_tree_base_iterator)((_Rb_tree_node_base *)&(_Var3._M_node)->_M_color)->_M_left;\r\n  do {\r\n    if (it.super__Rb_tree_base_iterator._M_node == (_Rb_tree_base_iterator)_Var3._M_node) {\r\n      return;\r\n    }\r\n                    /* Unresolved local var: LPCHARACTER c@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: LPDESC d@[???] */\r\n    iVar1 = *(int *)((int)it.super__Rb_tree_base_iterator._M_node + 0x10);\r\n    if (ch == (LPCHARACTER)0x0) {\r\nLAB_0818e3c1:\r\n      if (*(DESC **)(iVar1 + 0x18) != (DESC *)0x0) {\r\n        DESC::Packet(*(DESC **)(iVar1 + 0x18),buf,size);\r\n      }\r\n    }\r\n    else {\r\n      iVar2 = DISTANCE_APPROX(*(int *)(iVar1 + 0x24) - (ch->super_CEntity).m_pos.x,\r\n                              *(int *)(iVar1 + 0x28) - (ch->super_CEntity).m_pos.y);\r\n      if (iVar2 < 0x1771) goto LAB_0818e3c1;\r\n    }\r\n    _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n    _Var3._M_node =\r\n         &((this->m_set_pkChrMonsterLog)._M_t.\r\n           super__Rb_tree_base<CHARACTER*,std::allocator<CHARACTER*>_>.\r\n           super__Rb_tree_alloc_base<CHARACTER*,std::allocator<CHARACTER*>,true>._M_header)->\r\n          super__Rb_tree_node_base;\r\n  } while( true );\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CEntity::PacketView",
+        "address": "081acbc0"
+      },
+      "code": "\r\n/* DWARF original prototype: void PacketView(CEntity * this, void * data, int bytes, LPENTITY\r\n   except) */\r\n\r\nvoid __thiscall CEntity::PacketView(CEntity *this,void *data,int bytes,LPENTITY except)\r\n\r\n{\r\n  FuncPacketView __f;\r\n  _Rb_tree_node_base *local_5c [4];\r\n  _Rb_tree_node<std::pair<CEntity*_const,_int>_> *local_4c [4];\r\n  FuncPacketView local_3c;\r\n  FuncPacketView f;\r\n  \r\n  if (this->m_pSectree != (SECTREE *)0x0) {\r\n    f.super_FuncPacketAround.m_data = data;\r\n    f.super_FuncPacketAround.m_bytes = bytes;\r\n    f.super_FuncPacketAround.m_except = except;\r\n    if (this->m_bIsObserver == false) {\r\n      local_4c[0] = (this->m_map_view)._M_t.\r\n                    super__Rb_tree_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>_>\r\n                    .\r\n                    super__Rb_tree_alloc_base<std::pair<CEntity*_const,_int>,std::allocator<std::pair<CEntity*_const,_int>_>,true>\r\n                    ._M_header;\r\n      local_5c[0] = (local_4c[0]->super__Rb_tree_node_base)._M_left;\r\n      __f.super_FuncPacketAround.m_bytes = bytes;\r\n      __f.super_FuncPacketAround.m_data = data;\r\n      __f.super_FuncPacketAround.m_except = except;\r\n      for_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>\r\n                (&local_3c,\r\n                 (_Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n                  )local_5c,\r\n                 (_Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n                  )local_4c,__f);\r\n    }\r\n    if ((this != f.super_FuncPacketAround.m_except) && (this->m_lpDesc != (DESC *)0x0)) {\r\n      DESC::Packet(this->m_lpDesc,f.super_FuncPacketAround.m_data,f.super_FuncPacketAround.m_bytes);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "for_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>",
+        "address": "081acd80"
+      },
+      "code": "\r\n/* DWARF original name: for_each<std::_Rb_tree_iterator<std::pair<CEntity* const, int>,\r\n   std::pair<CEntity* const, int>&, std::pair<CEntity* const, int>*>, FuncPacketView> */\r\n\r\nFuncPacketView *\r\nfor_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>\r\n          (FuncPacketView *__return_storage_ptr__,\r\n          _Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n          __first,_Rb_tree_iterator<std::pair<CEntity*_const,_int>,std::pair<CEntity*_const,_int>&,std::pair<CEntity*_const,_int>*>\r\n                  __last,FuncPacketView __f)\r\n\r\n{\r\n  DESC *this;\r\n  int iVar1;\r\n  \r\n  iVar1 = *(int *)__first.super__Rb_tree_base_iterator._M_node;\r\n  if (iVar1 != *(int *)__last.super__Rb_tree_base_iterator._M_node) {\r\n    do {\r\n      if ((*(LPENTITY *)(iVar1 + 0x10) != __f.super_FuncPacketAround.m_except) &&\r\n         (this = (*(LPENTITY *)(iVar1 + 0x10))->m_lpDesc, this != (DESC *)0x0)) {\r\n        DESC::Packet(this,__f.super_FuncPacketAround.m_data,__f.super_FuncPacketAround.m_bytes);\r\n      }\r\n      _Rb_tree_base_iterator::_M_increment\r\n                ((_Rb_tree_base_iterator *)__first.super__Rb_tree_base_iterator._M_node);\r\n      iVar1 = *(int *)__first.super__Rb_tree_base_iterator._M_node;\r\n    } while (iVar1 != *(int *)__last.super__Rb_tree_base_iterator._M_node);\r\n  }\r\n  (__return_storage_ptr__->super_FuncPacketAround).m_data = __f.super_FuncPacketAround.m_data;\r\n  (__return_storage_ptr__->super_FuncPacketAround).m_bytes = __f.super_FuncPacketAround.m_bytes;\r\n  (__return_storage_ptr__->super_FuncPacketAround).m_except = __f.super_FuncPacketAround.m_except;\r\n  return __return_storage_ptr__;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "MINMAX",
+        "address": "081b92a0"
+      },
+      "code": "\r\nint MINMAX(int min,int value,int max)\r\n\r\n{\r\n                    /* Unresolved local var: int tv@[DW_OP_reg0(EAX)] */\r\n  if (value < min) {\r\n    value = min;\r\n  }\r\n  if (max < value) {\r\n    value = max;\r\n  }\r\n  return value;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "get_dword_time",
+        "address": "081b94b0"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nDWORD get_dword_time(void)\r\n\r\n{\r\n  timeval tv;\r\n  \r\n  gettimeofday((timeval *)&tv,(__timezone_ptr_t)0x0);\r\n  return tv.tv_usec / 1000 + -0x43d4db10 + tv.tv_sec * 1000;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

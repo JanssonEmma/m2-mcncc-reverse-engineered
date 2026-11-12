@@ -1,0 +1,23 @@
+// Complete original08192da0. Full actual CItem virtual destructor retained.
+void ITEM_MANAGER::DestroyItem(LPITEM item)
+{
+    if(item->GetSectree()) item->RemoveFromGround();
+    if(item->GetOwner()) {
+        const char* ownerName=item->GetOwner()->GetName();
+        _sys_err("DestroyItem",501,"DestroyItem: GetOwner %s %s!!",item->GetName(),ownerName);
+        item->RemoveFromCharacter();
+    }
+    std::set<CItem*>::iterator delayed=m_set_pkItemForDelayedSave.find(item);
+    if(delayed!=m_set_pkItemForDelayedSave.end()) m_set_pkItemForDelayedSave.erase(delayed);
+    const DWORD id=item->GetID();
+    sys_log(0,"ITEM_DESTROY %s:%lu",item->GetName(),id);
+    if(!item->GetSkipSave() && id!=0) {
+        const DWORD ownerID=item->GetLastOwnerPID();
+        db_clientdesc->DBPacketHeader(31,0,8);
+        db_clientdesc->Packet(&id,4);
+        db_clientdesc->Packet(&ownerID,4);
+    } else sys_log(0,"ITEM_DESTROY_SKIP %s:%lu (skip=%d)",item->GetName(),id,(unsigned int)item->GetSkipSave());
+    if(id!=0) m_map_pkItemByID.erase(id);
+    m_VIDMap.erase(item->GetVID());
+    delete item;
+}

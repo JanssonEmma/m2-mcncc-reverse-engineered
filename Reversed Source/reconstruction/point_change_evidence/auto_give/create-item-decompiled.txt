@@ -1,0 +1,225 @@
+/* DWARF original prototype: LPITEM CreateItem(ITEM_MANAGER * this, DWORD vnum, DWORD count, DWORD
+   id, bool bTryMagic, int iRarePct) */
+LPITEM __thiscall
+ITEM_MANAGER::CreateItem
+          (ITEM_MANAGER *this,DWORD vnum,DWORD count,DWORD id,bool bTryMagic,int iRarePct)
+{
+  map<long_unsigned_int,CItem*,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+  *__position;
+  bool bVar1;
+  BYTE BVar2;
+  TItemTable *table_00;
+  CItem *this_00;
+  int iVar3;
+  DWORD DVar4;
+  CSkillProto *pCVar5;
+  long lVar6;
+  time_t tVar7;
+  TItemTable *pTVar8;
+  CItem *pCVar9;
+  TItemTable *table;
+  bool bTryMagic_local;
+  pair<const_long_unsigned_int,CItem*> local_b4;
+  pair<const_long_unsigned_int,CItem*> local_ac;
+  DWORD local_a4;
+  undefined4 local_a0;
+  pair<const_long_unsigned_int,CItem*> local_8c [2];
+  _Rb_tree_base_iterator local_7c;
+  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+  local_6c;
+  _Rb_tree_node<std::pair<const_long_unsigned_int,_CItem*>_> *local_5c;
+  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_CItem*>,std::pair<const_long_unsigned_int,_CItem*>&,std::pair<const_long_unsigned_int,_CItem*>*>
+  __i;
+  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+  local_2c [2];
+                    /* Unresolved local var: LPITEM item@[???] */
+  if (vnum == 0) {
+    return (LPITEM)0x0;
+  }
+  bVar1 = LC_IsKorea();
+  if ((((bVar1) || (bVar1 = LC_IsYMIR(), bVar1)) && (vnum == 0xc47c)) && (bTryMagic)) {
+    do {
+                    /* Unresolved local var: DWORD dwSkillVnum@[DW_OP_reg3(EBX)]
+                       Unresolved local var: CSkillProto * pkSk@[DW_OP_reg0(EAX)] */
+      DVar4 = number_ex(1,0x78,"item_manager.cpp",0xf5);
+      if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {
+        __assert("instance","../../common/singleton.h",0x1a);
+      }
+      pCVar5 = CSkillManager::Get(singleton<CSkillManager>::ms_singleton,DVar4);
+    } while (pCVar5 == (CSkillProto *)0x0);
+    vnum = DVar4 + 0xc4e0;
+  }
+  table_00 = GetTable(this,vnum);
+  if (table_00 == (TItemTable *)0x0) {
+    return (LPITEM)0x0;
+  }
+  __position = &this->m_map_pkItemByID;
+  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+  ::find(local_2c,(DWORD *)__position);
+  if (local_2c[0].
+      super__Rb_tree_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+      .
+      super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>,true>
+      ._M_header !=
+      (_Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>,true>
+       )(this->m_map_pkItemByID)._M_t.
+        super__Rb_tree_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+        .
+        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>,true>
+        ._M_header) {
+    _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+    ::lower_bound((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+                   *)&__i,(DWORD *)__position);
+    local_5c = (this->m_map_pkItemByID)._M_t.
+               super__Rb_tree_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+               .
+               super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>,true>
+               ._M_header;
+    if ((__i.super__Rb_tree_base_iterator._M_node == (_Rb_tree_base_iterator)local_5c) ||
+       (id < *(uint *)((int)__i.super__Rb_tree_base_iterator._M_node + 0x10))) {
+      local_7c = __i.super__Rb_tree_base_iterator._M_node;
+      local_8c[0].first = (DWORD)__i.super__Rb_tree_base_iterator._M_node;
+      local_a4 = id;
+      local_a0 = 0;
+      _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+      ::insert_unique(&local_6c,
+                      (_Rb_tree_iterator<std::pair<const_long_unsigned_int,_CItem*>,std::pair<const_long_unsigned_int,_CItem*>&,std::pair<const_long_unsigned_int,_CItem*>*>
+                       )__position,local_8c);
+      __i.super__Rb_tree_base_iterator._M_node =
+           (_Rb_tree_base_iterator)
+           (_Rb_tree_base_iterator)
+           local_6c.
+           super__Rb_tree_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+           .
+           super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CItem*>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>,true>
+           ._M_header;
+    }
+    iVar3 = *(int *)(*(int *)((int)__i.super__Rb_tree_base_iterator._M_node + 0x14) + 0x38);
+    _sys_err("CreateItem",0x110,"ITEM_ID_DUP: %lu %s owner %p",id,iVar3 + 0x1dU & (iVar3 == 0) - 1,
+             *(undefined4 *)(*(int *)((int)__i.super__Rb_tree_base_iterator._M_node + 0x14) + 0x3c))
+    ;
+    return (LPITEM)0x0;
+  }
+  this_00 = operator_new(0xa0);
+  CItem::CItem(this_00);
+  CItem::Initialize(this_00);
+  CItem::SetProto(this_00,table_00);
+  pTVar8 = this_00->m_pProto;
+  BVar2 = '\0';
+  if (pTVar8 != (TItemTable *)0x0) {
+    BVar2 = pTVar8->bType;
+  }
+  if (BVar2 != '\t') {
+    if (id == 0) {
+      DVar4 = GetNewID(this);
+      this_00->m_dwID = DVar4;
+      pTVar8 = this_00->m_pProto;
+      BVar2 = '\0';
+      if (pTVar8 != (TItemTable *)0x0) {
+        BVar2 = pTVar8->bType;
+      }
+      if (BVar2 == '\x10') {
+        lVar6 = CItem::GetValue(this_00,2);
+        if (lVar6 == 0) {
+          lVar6 = CItem::GetValue(this_00,0);
+        }
+        else {
+          tVar7 = get_global_time();
+          lVar6 = CItem::GetValue(this_00,0);
+          lVar6 = lVar6 + tVar7;
+        }
+        CItem::SetSocket(this_00,2,lVar6);
+        pTVar8 = this_00->m_pProto;
+      }
+      goto LAB_081923c2;
+    }
+    this_00->m_dwID = id;
+  }
+  this_00->m_bSkipSave = true;
+LAB_081923c2:
+  BVar2 = '\0';
+  if (pTVar8 != (TItemTable *)0x0) {
+    BVar2 = pTVar8->bType;
+  }
+  if (BVar2 != '\t') {
+    if (((uint)this_00->m_lFlag >> 2 & 1) == 0) {
+      count = 1;
+    }
+    else {
+      count = MINMAX(1,count,200);
+      if (((bTryMagic) && (count < 2)) && ((char)this_00->m_lFlag < '\0')) {
+        count = CItem::GetValue(this_00,1);
+      }
+    }
+  }
+  local_ac.first = this->m_dwVIDCount + 1;
+  this->m_dwVIDCount = local_ac.first;
+  this_00->m_dwVID = local_ac.first;
+  local_ac.second = this_00;
+  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+  ::insert_unique(&(this->m_VIDMap)._M_t,&local_ac);
+  if (this_00->m_dwID != 0) {
+    local_b4.first = this_00->m_dwID;
+    local_b4.second = this_00;
+    _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CItem*>,std::_Select1st<std::pair<const_long_unsigned_int,_CItem*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CItem*>_>_>
+    ::insert_unique(&__position->_M_t,&local_b4);
+  }
+  bVar1 = CItem::SetCount(this_00,count);
+  pCVar9 = (CItem *)0x0;
+  if (bVar1) {
+    this_00->m_bSkipSave = false;
+    if (this_00->m_pProto != (TItemTable *)0x0) {
+      pCVar9 = (CItem *)(uint)this_00->m_pProto->bType;
+    }
+    if (((char)pCVar9 == '\x10') && (lVar6 = CItem::GetValue(this_00,2), lVar6 != 0)) {
+      CItem::StartUniqueExpireEvent(this_00);
+    }
+    pCVar9 = this_00;
+    if (id == 0) {
+      pTVar8 = this_00->m_pProto;
+      BVar2 = '\0';
+      if (pTVar8 != (TItemTable *)0x0) {
+        BVar2 = pTVar8->bType;
+      }
+      if (BVar2 == '\x1b') {
+        DVar4 = 0;
+        if (pTVar8 != (TItemTable *)0x0) {
+          DVar4 = pTVar8->dwVnum;
+        }
+        bVar1 = Blend_Item_find(DVar4);
+        if (bVar1) {
+          Blend_Item_set_value(this_00);
+          return this_00;
+        }
+      }
+      if (table_00->sAddonType != 0) {
+        CItem::ApplyAddon(this_00,(int)table_00->sAddonType);
+      }
+      if (bTryMagic) {
+        if (iRarePct == -1) {
+          iRarePct = (int)table_00->bAlterToMagicItemPct;
+        }
+        iVar3 = number_ex(1,100,"item_manager.cpp",0x169);
+        if (iVar3 <= iRarePct) {
+          CItem::AlterToMagicItem(this_00);
+        }
+      }
+      if (table_00->bGainSocketPct != 0) {
+        CItem::AlterToSocketItem(this_00,(uint)table_00->bGainSocketPct);
+      }
+      if ((vnum == 0xc47c) || (vnum == 0x11195)) {
+        do {
+                    /* Unresolved local var: DWORD dwSkillVnum@[DW_OP_reg6(ESI)]
+                       Unresolved local var: CSkillProto * pkSk@[DW_OP_reg0(EAX)] */
+          DVar4 = number_ex(1,0x78,"item_manager.cpp",0x177);
+          if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {
+            __assert("instance","../../common/singleton.h",0x1a);
+          }
+          pCVar5 = CSkillManager::Get(singleton<CSkillManager>::ms_singleton,DVar4);
+        } while (pCVar5 == (CSkillProto *)0x0);
+        CItem::SetSocket(this_00,0,DVar4);
+      }
+    }
+  }
+  return pCVar9;
+}

@@ -1,0 +1,90 @@
+static int FirstBinding(lua_State* L) {
+    lua_pushnumber(L, 11);
+    return 1;
+}
+
+static int SecondBinding(lua_State* L) {
+    lua_pushnumber(L, 22);
+    return 1;
+}
+
+static int globalWrites;
+static int StoreBindingGlobal(lua_State* L) {
+    assert(lua_gettop(L) == 3 && lua_istable(L, 1) && lua_istable(L, 3));
+    assert(std::strcmp(lua_tostring(L, 2), "bindings") == 0);
+    ++globalWrites;
+    lua_pushvalue(L, 2);
+    lua_pushvalue(L, 3);
+    lua_rawset(L, 1);
+    return 0;
+}
+
+static int reverseErrors;
+extern "C" void quest_lua_reverse_error(const char* message) {
+    assert(std::strcmp(message, "QUEST wrong quest state file for quest missing_reverse") == 0);
+    assert(lua_gettop(primary) == 3 && lua_isnil(primary, -1));
+    ++reverseErrors;
+}
+
+static void TestStartupHelpers(quest::CQuestManager& qm) {
+    Reset();
+    lua_pushvalue(primary, LUA_GLOBALSINDEX);
+    lua_newtable(primary);
+    lua_pushstring(primary, "__newindex");
+    lua_pushcfunction(primary, StoreBindingGlobal);
+    lua_rawset(primary, -3);
+    lua_setmetatable(primary, -2);
+    lua_pop(primary, 1);
+
+    luaL_reg bindings[] = {
+        {"call", FirstBinding}, {"call", SecondBinding}, {0, 0}, {"ignored", FirstBinding}
+    };
+    qm.AddLuaFunctionTable("bindings", bindings);
+    assert(globalWrites == 1);
+    Top(primary);
+    lua_getglobal(primary, "bindings");
+    lua_pushstring(primary, "call");
+    lua_rawget(primary, -2);
+    assert(lua_pcall(primary, 0, 1, 0) == 0 && lua_tonumber(primary, -1) == 22);
+    lua_pop(primary, 1);
+    lua_pushstring(primary, "ignored");
+    lua_rawget(primary, -2);
+    assert(lua_isnil(primary, -1));
+    lua_pop(primary, 2);
+
+    lua_pushvalue(primary, LUA_GLOBALSINDEX);
+    lua_pushnil(primary);
+    lua_setmetatable(primary, -2);
+    lua_pop(primary, 1);
+    qm.AddLuaFunctionTable("bindings", bindings + 2);
+    lua_getglobal(primary, "bindings");
+    assert(lua_istable(primary, -1));
+    lua_pushnil(primary);
+    assert(lua_next(primary, -2) == 0);
+    lua_pop(primary, 1);
+    Top(primary);
+
+    // Existing reverse slots avoid adding a field during Lua's table iteration.
+    lua_newtable(primary);
+    Number(primary, "start", 8);
+    String(primary, 8, "old");
+    lua_pushstring(primary, "decimal");
+    lua_pushstring(primary, "007");
+    lua_rawset(primary, -3);
+    lua_pushstring(primary, "007");
+    lua_pushboolean(primary, 0);
+    lua_rawset(primary, -3);
+    lua_setglobal(primary, "reverse");
+    qm.BuildStateIndexToName("reverse");
+    assert(std::strcmp(qm.GetQuestStateName("reverse", 8), "start") == 0);
+    lua_getglobal(primary, "reverse");
+    lua_pushstring(primary, "007");
+    lua_rawget(primary, -2);
+    assert(std::strcmp(lua_tostring(primary, -1), "decimal") == 0);
+    lua_pop(primary, 2);
+    Top(primary);
+    qm.BuildStateIndexToName("missing_reverse");
+    assert(reverseErrors == 1);
+    Top(primary);
+}
+

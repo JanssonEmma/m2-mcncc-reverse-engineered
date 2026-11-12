@@ -1,0 +1,124 @@
+{
+  "address": "0816e880",
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItemAddonManager::ApplyAddonTo\",\n    \"address\": \"0816e880\"\n  },\n  \"code\": \"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n/* DWARF original prototype: void ApplyAddonTo(CItemAddonManager * this, int iAddonType, LPITEM\\r\\n   pItem) */\\r\\n\\r\\nvoid __thiscall CItemAddonManager::ApplyAddonTo(CItemAddonManager *this,int iAddonType,LPITEM pItem)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  int iVar2;\\r\\n  short sVar3;\\r\\n  short sValue;\\r\\n  float fVar4;\\r\\n  \\r\\n                    /* Unresolved local var: int iSkillBonus@[DW_OP_reg6(ESI)]\\r\\n                       Unresolved local var: int iNormalHitBonus@[DW_OP_reg3(EBX)] */\\r\\n  if (pItem != (LPITEM)0x0) {\\r\\n    fVar4 = gauss_random(0.0,5.0);\\r\\n    iVar1 = MINMAX(-0x1e,(int)ROUND(fVar4 + _DAT_081f9f58),0x1e);\\r\\n    sValue = (short)iVar1;\\r\\n    if (iVar1 + 0x14U < 0x29) {\\r\\n      iVar1 = number_ex(-8,8,\\\"item_addon.cpp\\\",0x1a);\\r\\n      iVar2 = number_ex(-8,8,\\\"item_addon.cpp\\\",0x1a);\\r\\n      iVar2 = iVar2 + iVar1;\\r\\n      if (iVar2 < 0) {\\r\\n        iVar2 = -iVar2;\\r\\n      }\\r\\n      sVar3 = sValue * -2 + (short)iVar2;\\r\\n      iVar2 = 0x1a;\\r\\n      iVar1 = 4;\\r\\n    }\\r\\n    else {\\r\\n      iVar2 = 0x1c;\\r\\n      sVar3 = sValue * -2;\\r\\n      iVar1 = 5;\\r\\n    }\\r\\n    iVar1 = number_ex(1,iVar1,\\\"item_addon.cpp\\\",iVar2);\\r\\n    CItem::RemoveAttributeType(pItem,'G');\\r\\n    CItem::RemoveAttributeType(pItem,'H');\\r\\n    CItem::AddAttribute(pItem,'H',sVar3 + (short)iVar1);\\r\\n    CItem::AddAttribute(pItem,'G',sValue);\\r\\n    return;\\r\\n  }\\r\\n  _sys_err(\\\"ApplyAddonTo\\\",0x11,\\\"ITEM pointer null\\\");\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItemAddonManager::ApplyAddonTo",
+        "address": "0816e880"
+      },
+      "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* DWARF original prototype: void ApplyAddonTo(CItemAddonManager * this, int iAddonType, LPITEM\r\n   pItem) */\r\n\r\nvoid __thiscall CItemAddonManager::ApplyAddonTo(CItemAddonManager *this,int iAddonType,LPITEM pItem)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  short sVar3;\r\n  short sValue;\r\n  float fVar4;\r\n  \r\n                    /* Unresolved local var: int iSkillBonus@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int iNormalHitBonus@[DW_OP_reg3(EBX)] */\r\n  if (pItem != (LPITEM)0x0) {\r\n    fVar4 = gauss_random(0.0,5.0);\r\n    iVar1 = MINMAX(-0x1e,(int)ROUND(fVar4 + _DAT_081f9f58),0x1e);\r\n    sValue = (short)iVar1;\r\n    if (iVar1 + 0x14U < 0x29) {\r\n      iVar1 = number_ex(-8,8,\"item_addon.cpp\",0x1a);\r\n      iVar2 = number_ex(-8,8,\"item_addon.cpp\",0x1a);\r\n      iVar2 = iVar2 + iVar1;\r\n      if (iVar2 < 0) {\r\n        iVar2 = -iVar2;\r\n      }\r\n      sVar3 = sValue * -2 + (short)iVar2;\r\n      iVar2 = 0x1a;\r\n      iVar1 = 4;\r\n    }\r\n    else {\r\n      iVar2 = 0x1c;\r\n      sVar3 = sValue * -2;\r\n      iVar1 = 5;\r\n    }\r\n    iVar1 = number_ex(1,iVar1,\"item_addon.cpp\",iVar2);\r\n    CItem::RemoveAttributeType(pItem,'G');\r\n    CItem::RemoveAttributeType(pItem,'H');\r\n    CItem::AddAttribute(pItem,'H',sVar3 + (short)iVar1);\r\n    CItem::AddAttribute(pItem,'G',sValue);\r\n    return;\r\n  }\r\n  _sys_err(\"ApplyAddonTo\",0x11,\"ITEM pointer null\");\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItemAddonManager::ApplyAddonTo\",\n    \"address\": \"0816e880\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0816e8a5\",\n        \"target\": \"08147480\",\n        \"name\": \"gauss_random\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e8d9\",\n        \"target\": \"081b92a0\",\n        \"name\": \"MINMAX\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e916\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e93f\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e973\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e986\",\n        \"target\": \"08187770\",\n        \"name\": \"CItem::RemoveAttributeType\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e997\",\n        \"target\": \"08187770\",\n        \"name\": \"CItem::RemoveAttributeType\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e9af\",\n        \"target\": \"08186e30\",\n        \"name\": \"CItem::AddAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816e9cb\",\n        \"target\": \"08186e30\",\n        \"name\": \"CItem::AddAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816ea1c\",\n        \"target\": \"081b8150\",\n        \"name\": \"_sys_err\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 10,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItemAddonManager::ApplyAddonTo",
+        "address": "0816e880"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0816e8a5",
+            "target": "08147480",
+            "name": "gauss_random",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e8d9",
+            "target": "081b92a0",
+            "name": "MINMAX",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e916",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e93f",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e973",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e986",
+            "target": "08187770",
+            "name": "CItem::RemoveAttributeType",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e997",
+            "target": "08187770",
+            "name": "CItem::RemoveAttributeType",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e9af",
+            "target": "08186e30",
+            "name": "CItem::AddAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816e9cb",
+            "target": "08186e30",
+            "name": "CItem::AddAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816ea1c",
+            "target": "081b8150",
+            "name": "_sys_err",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 10,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

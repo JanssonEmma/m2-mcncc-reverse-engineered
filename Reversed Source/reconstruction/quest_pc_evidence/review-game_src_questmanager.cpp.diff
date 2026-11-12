@@ -1,0 +1,35 @@
+--- CURRENT/game/src/questmanager.cpp
++++ PC/game/src/questmanager.cpp
+@@ -1,9 +1,32 @@
+ //Partial old quest manager behavior; Lua startup/lifecycle remain pending.
+ #include "questmanager.h"
++#include "char_manager.h"
+ namespace quest {
+ //081a6bb0: missing names return0 without insertion.
+ int CQuestManager::GetEventFlag(const std::string& name) {
+     std::map<std::string,int>::iterator it=m_mapEventFlag.find(name);
+     return it==m_mapEventFlag.end()?0:it->second;
+ }
++// 0819f0f0/C2 and0819f5e0/C1 audited: ONLY L scalar initialized.
++// All other raw scalar/pointer fields stay indeterminate until real setup/API.
++CQuestManager::CQuestManager():L(0) {}
++// 081a4d40. Complete real value insertion/destruction; SetID only for new key.
++PC* CQuestManager::GetPCForce(unsigned int pc) {
++    std::map<unsigned int,PC>::iterator it=m_mapPC.find(pc);
++    if(it!=m_mapPC.end()) return &it->second;
++    PC* result=&m_mapPC[pc];
++    result->SetID(pc);
++    return result;
+ }
++// 081a4e50. Missing/null PID preserves ALL existing current context and map.
++PC* CQuestManager::GetPC(unsigned int pc) {
++    CHARACTER* ch=CHARACTER_MANAGER::instance().FindByPID(pc);
++    if(!ch) return 0;
++    PC* result=GetPCForce(pc);
++    m_pCurrentPC=result;
++    m_pCurrentCharacter=ch;
++    m_pSelectedDungeon=0;
++    return result;
++}
++
++}

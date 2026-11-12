@@ -1,0 +1,4 @@
+// Actual old lifecycle, not a test fixture substitute. All members/base initialize
+// and destruct normally in declaration order; old exports show no custom work.
+DBManager::DBManager() : m_bIsConnect(false) {}
+DBManager::~DBManager() {}

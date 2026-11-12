@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08050740",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::SetQuickslot",
+      "address": "08050740"
+    },
+    "code": "\r\n/* DWARF original prototype: bool SetQuickslot(CHARACTER * this, BYTE pos, TQuickslot * rSlot) */\r\n\r\nbool __thiscall CHARACTER::SetQuickslot(CHARACTER *this,BYTE pos,TQuickslot *rSlot)\r\n\r\n{\r\n  DESC *this_00;\r\n  byte bVar1;\r\n  int iVar2;\r\n  BYTE pos_local;\r\n  packet_quickslot_add pack_quickslot_add;\r\n  \r\n  if (0x23 < pos) {\r\n    return false;\r\n  }\r\n  bVar1 = rSlot->type;\r\n  if (3 < bVar1) {\r\n    return false;\r\n  }\r\n                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */\r\n  iVar2 = 0;\r\n  do {\r\n    if (((bVar1 != 0) && (this->m_quickslot[iVar2].type == bVar1)) &&\r\n       (this->m_quickslot[iVar2].pos == rSlot->pos)) {\r\n      DelQuickslot(this,(BYTE)iVar2);\r\n      bVar1 = rSlot->type;\r\n    }\r\n    iVar2 = iVar2 + 1;\r\n  } while (iVar2 < 0x24);\r\n  if (bVar1 == 2) {\r\n    if (rSlot->pos != 0xff) goto LAB_0805079e;\r\n  }\r\n  else if (bVar1 < 3) {\r\n    if ((bVar1 == 1) && (rSlot->pos < 0x5a)) {\r\nLAB_0805079e:\r\n      this->m_quickslot[pos] = *rSlot;\r\n      this_00 = (this->super_CEntity).m_lpDesc;\r\n      if (this_00 != (DESC *)0x0) {\r\n        pack_quickslot_add.pos = pos;\r\n        pack_quickslot_add.header = '\\x1c';\r\n        pack_quickslot_add.slot = this->m_quickslot[pos];\r\n        DESC::Packet(this_00,&pack_quickslot_add,4);\r\n      }\r\n      return true;\r\n    }\r\n  }\r\n  else if (bVar1 == 3) goto LAB_0805079e;\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

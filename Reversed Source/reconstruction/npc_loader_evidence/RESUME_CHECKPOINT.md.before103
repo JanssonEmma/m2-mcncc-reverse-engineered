@@ -1,0 +1,62 @@
+# Active checkpoint 103 — 2026-11-09
+
+NPC::LoadStateScript at 081ae5a0 is integrated. Its dedicated runtime regression passed directly, and a 32-bit C++03 syntax check passed with the existing long-long extension allowed. The initial focused build failed on duplicate test-fixture MAX definitions. Those four fixture definitions were removed, and the nine affected link recipes now use the recovered MAX projected from the genuine utility object.
+
+The full 117-suite and ABI run was live when this note was written. Poll unified exec session 24788 and inspect work/checkpoint-103-validation.receipt.json before starting any other build. A successful final receipt and terminal exit are required before running work/checkpoint103_npc_loader/finalize.py. If a receipt is stale, check its PID and process identity first. Do not rerun applied edits.
+
+The independent loader review, source hashes, and object-selection proofs are in reconstruction/npc_loader_evidence. The original assembly and callsite exports remain in reconstruction/npc_load_state_script_pending_evidence. The next module under investigation is NPC::Set at 081ae340. The previous checkpoint notes below describe the historical baseline.
+
+NPC::Set source, regression, diagnostics observer and guarded logger-shim relocation are staged in work/npc_set and copied to reconstruction/npc_set_pending_evidence. Apply only after checkpoint 103 reaches a terminal result and its validation has been recorded. The Set candidate and regression passed staged syntax checks. Use the guards in source-before.json and link_stage/guards.json. Verify the native-directory regression, logging regression, prior loader, and ABI after applying. Preserve both original sprintf calls and native entry order.
+
+# Metin2 reconstruction restart — checkpoint102, 2026-10-29
+
+Project: PROJECT_ROOT\Reversed Source
+Reference: REFERENCE_PROJECT\Source\srv\server
+Workspace: USER_HOME\Documents\Codex\2026-10-23\i-h
+Original ELF SHA256:61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c. Never execute/modify it.
+
+## Validation scope — keep these counts separate
+
+Current registry116. Checkpoint102 PASSED FOCUSED4 normal runtime suites plus ABI, constructor strict/O2 helper3, NPC strict/O2 helper8 plus SDKreuse, and2 serial wrapper receipts/combined index. Focused proof work/quest-constructor-context-focused-retry.receipt.json. NO full116 run. Last full validation remains checkpoint101/full114 on its earlier source state, receipt work/checkpoint-101-validation.receipt.json. Legacy runtime_suites/count/full log fields retain that114 result; separate registered116/latest-focused fields describe102. User requested risk-based focused checks and batched full milestones; read reconstruction/VALIDATION_POLICY.md.
+
+Archive reconstruction/quest_constructor_context_evidence/RECORD_MANIFEST.json records scope, hashes and reviewed fix. Ledger:1070 structured evidence/324 bounded mappings/0warnings over7238 entries; no completion-percent or whole-server equivalence inference.
+
+## Integrated102
+
+Four whole methods: CHARACTER SetQuestNPCID08134f30(7instructions), GetQuestNPC08134f50(24), CQM GetCurrentNPCCharacterPtr081a5700(13), GetCurrentNPCRace081a5660(21). Actual DWORD VID store, CHARACTER_MANAGER Find including0, null current context, unsigned race return through existing WORD source. Original singleton assertion and two current-NPC lookups are STATIC evidence; runtime changes context/registries between ordinary calls, no invented Find callback/concurrent mutation. Full original owners/data/API remain.
+
+AArgScript original inline default ctor quest.h99 is empty user body, complete implicit string/vectors initialize. Both scalar indices remain INDETERMINATE. Inline081af25d..081af263 in original LoadStateScript, not a standalone address; compiler destructor/copy helpers are context only. Tests initialize BOTH scalars before copy/assignment/vector insert, then exercise actual populated NPC argument containers. Original LoadStateScript default-resize indeterminate-copy domain remains unsafe/unforced. No zero defaults, replacement copyctor or explicit destructor added. Old target record36 vsmodern native STL layout is evidence, not a size-equality claim.
+
+Combined package work/checkpoint102_quest_constructor_context remains frozen except EXACT2 root-reviewed changes: integration/plan.json and manager-header payload. Standalone header had no LPCHARACTER alias (later reference obtains it via stdafx/typedef); equivalent CHARACTER* declaration fixes include order without behavior/layout/API type change. Authored packages unchanged. Initial failed focused receipt/log and reviewed_fixes header before/after/original plan archived;4 independent reviews hashed. Current source11/support74 guards are final authority; do not rerender stale standalone115 or merged116 payloads.
+
+## Preserved SDK/ownership/static boundaries
+
+Actual SDK5.0.3 public opaque compatibility only, not exact original advertised5.0/internal ABI. MinGW32 state96/TObject16 vsold92/12, Number8/CallInfo24 match. SDK28objects/2archives reused strictly with all59 current source/header/build guards; old query application-source hashes ignored ONLY for SDKreuse. No SDK recompilation claim, packing repair or fake LuaClose.
+
+101 genuine CQM Destroy/dtor and NPC ctor/dtor,8 original variants/4 semantics, full114. Former owning destructor fixture retired, global13 manager/NPC recipe pairings. NPC081ab460 is implicitCOPY context only. Destroy actualclose beforeL0; full automatic member/base teardown; raw server-map events nonowned. AArgScript constructor's earlier unproven status is now superseded only by102's genuine inline proof and initialized-copy tests.
+
+100Confirm/style/full74packet;99yield/predicate/diagnostic and unsafe present-empty &vector[0] excluded, ignored dobuffer status/actualaux_do error consumption retained, QuestError no errorflag writes.98Open STATICONLY original direct sret vsoptional NRVO/default QuestState counters; unsuppressed empty &script[0] excluded.95Build matching STATICONLY even duplicates, source whole/runtimeempty-nonmatching only. ClearQuest live-key UAF, default QuestState counters, raw borrowed Lua lifetimes, invalid contexts and other original unsafe domains remain unrepaired. Full SDK/old STL ABI equality unestablished.
+
+## Remaining and continuation
+
+No checkpoint102 full-suite claim may be inferred from combined116 index names. Do not rerun applied preparation/finalization. Select affected tests from actual dependencies; broaden for failures/global ownership/ABI/recipe changes and batch full runs at milestones/before readiness claims. Preserve last-full provenance separately.
+
+Full NPC/VM dispatch, Confirm/RunState/InitializeLua/coroutines, Reward/EndRunning/LevelUp, broad SetEventFlag, full PointChange/stat/item/removal/affect/combat/Safebox/Boot/liveDB/server/VisualStudio linking pending. Native Windows production support deferred. No partial gameplay methods or fake VM. Preserve file layout, complete owners/API/data and original bugs.
+
+Python USER_HOME\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe; GCC/G++/gmake C:\Strawberry\c\bin. Canonical runner reconstruction/tools/validate.py run --suite NAME --abi (repeat affected suites), explicit toolchain/unique log. --full only when policy warrants. No overlapping builds/source changes. NativeF outputs work/nativeC creation unreliable. First liveGhidra get_program_info; reuse hash-matched originals. Old diagnostic cyberflag was not malware finding; do not repeat blocked low-level diagnostic.
+
+User authorizes autonomous work/subagents; save exact state near allowance limits and ask only real missing input. Primary/weekly windows separate; no reset-credit/account changes authorized. Keep both restart files identical.
+
+## End-of-session handoff — resume tomorrow (2026-10-29)
+
+User requested stopping after current tasks. Checkpoint102 preparation/finalization/docs all completed successfully; no active build, helper or unapplied source changes remain for102. Focused retry terminal4418 exit0; serialized helpers terminal87647 exit0. Earlier101 full114 terminal72183 exit0. Current ledger1070 structured evidence/324 bounded mappings/0warnings. All11 source and74 support guards matched at recording. Do not rerun101/102 finalizers or stale application plans.
+
+Next pending module: WHOLE NPC::LoadStateScript081ae5a0. Prepared source/evidence and global-link assessment archived in reconstruction/npc_load_state_script_pending_evidence/ARCHIVE_STATE.json (19 byte-verified files). Workspace work/npc_load_state_script and work/npc_load_link_closure retained. This work is UNAPPLIED/UNCOMPILED: no new tests/helper/projection/integration plan. Loader independent whole-semantic review NOT begun/completed. Truncated200k decompile is explicitly NOT full proof; use complete11576-byte raw assembly and224 paginated callsites.
+
+Resume steps: independently review full candidate (all parse/error/append/resize branches, initial/second live state query and signed MAX). Then resolve genuine MAX linkage and migrate isolated constructor test to full actual CQM/CHAR/PC/event/SDK graph before adding loader to its original questnpc.cpp owner. Static graph assessment found69 NPC-linked graphs:59 fullutils,9 projectedRNG,1 isolatedconstructor. Simply replacing projectedRNG with fullutils duplicates fixture clock/MINMAX symbols. Candidate approach is exact unchanged wholeMAX COFF selection/archive using existing verifiedRNG projection pattern, not fake/local MAX; projection is NOT implemented or validated. Inspect archived link HANDOFF before deciding. Broader topology changes may justify the next batched full suite under risk-based policy; do not automatically run full after each bounded checkpoint.
+
+Loader unsafe argument-vector growth copies indeterminate AArgScript scalar defaults, even .script before metadata assignment; preserve source and exclude runtime growth. Preseed fully initialized records and use no-growth vectors for defined argument tests. Plain script branch may be tested with real SDK/files. No zero defaults, partial loader, hidden application stubs or invented callbacks. Full dispatch/RunState/Confirm/Reward/EndRunning/stat/item/server/VisualStudio goal remains unfinished.
+
+Ghidra reconnected successfully after user opened binary; target SHA matched and7238functions confirmed. Recheck get_program_info first next live session. No original execution/modification. LPCHARACTER reference location confirmed game/src/typedef.h via stdafx.h; currentpartial reconstruction defines alias in char.h, and equivalent CHARACTER* in standalone questmanager.h is the reviewed minimal fix.
+
+Allowance snapshot at save: primary70% used, weekly56% used; windows reset separately. No account/reset changes. Read current limits on resume. All workers instructed to freeze; no further expansion tonight.

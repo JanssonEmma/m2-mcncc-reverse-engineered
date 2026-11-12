@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08158510",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC_MANAGER::Initialize",
+      "address": "08158510"
+    },
+    "code": "\r\n/* DWARF original prototype: void Initialize(DESC_MANAGER * this) */\r\n\r\nvoid __thiscall DESC_MANAGER::Initialize(DESC_MANAGER *this)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  \r\n  this->m_iSocketsConnected = 0;\r\n  this->m_iHandleCount = 0;\r\n  this->m_iLocalUserCount = 0;\r\n  piVar2 = this->m_aiEmpireUserCount;\r\n  for (iVar1 = 4; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *piVar2 = 0;\r\n    piVar2 = piVar2 + 1;\r\n  }\r\n  this->m_bDisconnectInvalidCRC = false;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

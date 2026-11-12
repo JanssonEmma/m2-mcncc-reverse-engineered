@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08167fd0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8167fd0",
+    "function": {
+      "name": "CItem::SetOwnership",
+      "address": "08167fd0"
+    },
+    "signature": "void SetOwnership(CItem * this, LPCHARACTER ch, int iSec)",
+    "code": "\r\n/* DWARF original prototype: void SetOwnership(CItem * this, LPCHARACTER ch, int iSec) */\r\n\r\nvoid __thiscall CItem::SetOwnership(CItem *this,LPCHARACTER ch,int iSec)\r\n\r\n{\r\n  DWORD dwInfoID;\r\n  LPEVENT pkEvent;\r\n  char *__src;\r\n  item_event_info *info;\r\n  TPacketGCItemOwnership p;\r\n  \r\n                    /* Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  if (ch == (LPCHARACTER)0x0) {\r\n    if (this->m_pkOwnershipEvent == (LPEVENT)0x0) {\r\n      return;\r\n    }\r\n    event_cancel(&this->m_pkOwnershipEvent);\r\n    this->m_dwOwnershipPID = 0;\r\n    p.bHeader = '\\x1f';\r\n    p.dwVID = this->m_dwVID;\r\n    p.szName[0] = '\\0';\r\n  }\r\n  else {\r\n    if (this->m_pkOwnershipEvent != (LPEVENT)0x0) {\r\n      return;\r\n    }\r\n    this->m_dwOwnershipPID = ch->m_dwPlayerID;\r\n    dwInfoID = __AllocEventInfo(4,&info);\r\n    info->item = this;\r\n    pkEvent = event_create_ex(ownership_event,dwInfoID,iSec * passes_per_sec,\"item.cpp\",0x3a6);\r\n    SetOwnershipEvent(this,pkEvent);\r\n    p.bHeader = '\\x1f';\r\n    p.dwVID = this->m_dwVID;\r\n    __src = CHARACTER::GetName(ch);\r\n    strncpy(p.szName,__src,0x18);\r\n    p.szName[0x18] = '\\0';\r\n  }\r\n  CEntity::PacketAround(&this->super_CEntity,&p,0x1e,(LPENTITY)0x0);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

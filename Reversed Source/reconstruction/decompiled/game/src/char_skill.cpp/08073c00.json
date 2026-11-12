@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08073c00",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::CanUseMobSkill",
+      "address": "08073c00"
+    },
+    "code": "\r\n/* DWARF original prototype: bool CanUseMobSkill(CHARACTER * this, int idx) */\r\n\r\nbool __thiscall CHARACTER::CanUseMobSkill(CHARACTER *this,int idx)\r\n\r\n{\r\n  WORD WVar1;\r\n  TMobSkillInfo *pTVar2;\r\n  DWORD DVar3;\r\n  int iVar4;\r\n  char *format;\r\n  \r\n                    /* Unresolved local var: TMobSkillInfo * pInfo@[???] */\r\n  if (this->m_pkMobData == (CMob *)0x0) {\r\n    format = \"NO-MOB use mob skill\";\r\n    iVar4 = 0xace;\r\n  }\r\n  else {\r\n    WVar1 = GetRaceNum(this);\r\n    if ((WVar1 != 0x9bd) && (1 < idx)) {\r\n      return false;\r\n    }\r\n    pTVar2 = GetMobSkill(this,idx);\r\n    if (pTVar2 != (TMobSkillInfo *)0x0) {\r\n      DVar3 = get_dword_time();\r\n      if (DVar3 < this->m_adwMobSkillCooltime[idx]) {\r\n        return false;\r\n      }\r\n      DVar3 = get_dword_time();\r\n      sys_log(0,\"MOB_SKILL now %lu cooltime %lu\",DVar3,this->m_adwMobSkillCooltime[idx]);\r\n      iVar4 = number_ex(0,1,\"char_skill.cpp\",0xae8);\r\n      return iVar4 == 0;\r\n    }\r\n    format = \"no mob skill info\";\r\n    iVar4 = 0xadf;\r\n  }\r\n  _sys_err(\"CanUseMobSkill\",iVar4,format);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,10 @@
+// Original08073890, full scheduling body; callback below remains gameplay/lifetime frontier.
+void CHARACTER::StartMuyeongEvent()
+{
+    if (!m_pkMuyeongEvent) {
+        char_event_info* info;
+        DWORD id=__AllocEventInfo(4,reinterpret_cast<void**>(&info));
+        info->ch=this;
+        m_pkMuyeongEvent=event_create_ex(skill_muyoung_event,id,passes_per_sec,const_cast<char*>("char_skill.cpp"),0xa60);
+    }
+}

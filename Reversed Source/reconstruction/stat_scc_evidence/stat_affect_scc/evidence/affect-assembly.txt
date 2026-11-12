@@ -1,0 +1,42 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+0813d2d0 <_Z22SendAffectRemovePacketP4DESCmmh>:
+ 813d2d0:	55                   	push   %ebp
+ 813d2d1:	89 e5                	mov    %esp,%ebp
+ 813d2d3:	83 ec 48             	sub    $0x48,%esp
+ 813d2d6:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 813d2d9:	8b 75 14             	mov    0x14(%ebp),%esi
+ 813d2dc:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 813d2df:	8b 5d 10             	mov    0x10(%ebp),%ebx
+ 813d2e2:	89 f0                	mov    %esi,%eax
+ 813d2e4:	88 45 ed             	mov    %al,-0x13(%ebp)
+ 813d2e7:	b8 06 00 00 00       	mov    $0x6,%eax
+ 813d2ec:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 813d2f0:	8d 45 e8             	lea    -0x18(%ebp),%eax
+ 813d2f3:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 813d2f7:	8b 45 08             	mov    0x8(%ebp),%eax
+ 813d2fa:	89 5d e9             	mov    %ebx,-0x17(%ebp)
+ 813d2fd:	c6 45 e8 7f          	movb   $0x7f,-0x18(%ebp)
+ 813d301:	89 04 24             	mov    %eax,(%esp)
+ 813d304:	e8 07 ca ff ff       	call   8139d10 <_ZN4DESC6PacketEPKvi>
+ 813d309:	89 5d dc             	mov    %ebx,-0x24(%ebp)
+ 813d30c:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 813d30f:	b9 09 00 00 00       	mov    $0x9,%ecx
+ 813d314:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 813d318:	31 d2                	xor    %edx,%edx
+ 813d31a:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 813d31e:	89 45 d8             	mov    %eax,-0x28(%ebp)
+ 813d321:	89 f0                	mov    %esi,%eax
+ 813d323:	88 45 e0             	mov    %al,-0x20(%ebp)
+ 813d326:	8d 45 d8             	lea    -0x28(%ebp),%eax
+ 813d329:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 813d32d:	b8 21 00 00 00       	mov    $0x21,%eax
+ 813d332:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 813d336:	a1 e4 58 32 08       	mov    0x83258e4,%eax
+ 813d33b:	89 04 24             	mov    %eax,(%esp)
+ 813d33e:	e8                   	.byte 0xe8
+ 813d33f:	8d                   	.byte 0x8d

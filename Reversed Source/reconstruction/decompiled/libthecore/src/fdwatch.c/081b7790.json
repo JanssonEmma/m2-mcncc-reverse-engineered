@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7790",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "fdwatch_get_client_data",
+      "address": "081b7790"
+    },
+    "code": "\r\nvoid * fdwatch_get_client_data(LPFDWATCH fdw,uint event_idx)\r\n\r\n{\r\n  uintptr_t uVar1;\r\n  void *pvVar2;\r\n  int iVar3;\r\n  \r\n                    /* Unresolved local var: int fd@[DW_OP_reg2(EDX)] */\r\n  iVar3 = fdw->nfiles;\r\n  if ((uint)(iVar3 * 2) <= event_idx) {\r\n    __assert(\"fdwatch_get_client_data\",\"fdwatch.c\",0xe1);\r\n    iVar3 = fdw->nfiles;\r\n  }\r\n  uVar1 = fdw->kqrevents[event_idx].ident;\r\n  pvVar2 = (void *)0x0;\r\n  if ((int)uVar1 < iVar3) {\r\n    pvVar2 = fdw->fd_data[uVar1];\r\n  }\r\n  return pvVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

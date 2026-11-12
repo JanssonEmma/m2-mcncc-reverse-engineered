@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168680",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168680",
+    "function": {
+      "name": "CItem::StopUniqueExpireEvent",
+      "address": "08168680"
+    },
+    "signature": "void StopUniqueExpireEvent(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void StopUniqueExpireEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StopUniqueExpireEvent(CItem *this)\r\n\r\n{\r\n  long lVar1;\r\n  DWORD DVar2;\r\n  \r\n  if (this->m_pkUniqueExpireEvent != (LPEVENT)0x0) {\r\n    lVar1 = GetValue(this,2);\r\n    if (lVar1 == 0) {\r\n      DVar2 = 0;\r\n      if (this->m_pProto != (TItemTable *)0x0) {\r\n        DVar2 = this->m_pProto->dwVnum;\r\n      }\r\n      if (DVar2 == 0x111a0) {\r\n        CHARACTER::ShowAlignment(this->m_pOwner,true);\r\n      }\r\n      lVar1 = event_time(this->m_pkUniqueExpireEvent);\r\n      SetSocket(this,1,lVar1 / passes_per_sec);\r\n      event_cancel(&this->m_pkUniqueExpireEvent);\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

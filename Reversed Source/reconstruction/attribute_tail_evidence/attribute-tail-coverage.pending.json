@@ -1,0 +1,245 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "reviews": [
+    {
+      "address": "08187a20",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "bool CItem::AddRareAttribute(",
+          "line": 181,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void RareCases(",
+          "line": 123,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original AddRareAttribute body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08187540",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "void CItem::ChangeAttribute(",
+          "line": 127,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void NormalCases(",
+          "line": 114,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original ChangeAttribute body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08187920",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "int CItem::GetRareAttrCount(",
+          "line": 166,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void RareCases(",
+          "line": 123,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original GetRareAttrCount body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08187670",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "void CItem::ClearAttribute(",
+          "line": 143,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void PlainCases(",
+          "line": 99,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original ClearAttribute body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08187900",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "void CItem::CopyAttributeTo(",
+          "line": 159,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void PlainCases(",
+          "line": 99,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original CopyAttributeTo body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08187610",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "void CItem::AddAttribute()",
+          "line": 138,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void NormalCases(",
+          "line": 114,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original AddAttribute body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "081877c0",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "void CItem::SetAttributes(",
+          "line": 154,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void PlainCases(",
+          "line": 99,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original SetAttributes body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08186e00",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "bool CItem::HasRareAttr(",
+          "line": 161,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void RareCases(",
+          "line": 123,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original HasRareAttr body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "081876f0",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "bool CItem::RemoveAttributeAt(",
+          "line": 147,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void PlainCases(",
+          "line": 99,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original RemoveAttributeAt body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    },
+    {
+      "address": "08187940",
+      "source_refs": [
+        {
+          "path": "game/src/item_attribute.cpp",
+          "anchor": "bool CItem::ChangeRareAttribute(",
+          "line": 172,
+          "staged_file_sha256": "b89ed479d338f1df75c408c5c650605b94e955afc5e306e23e515bde95c64cef",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/attribute_tail_regression.cpp",
+          "anchor": "static void RareCases(",
+          "line": 123,
+          "staged_file_sha256": "a3c7022b58bd3e3d2a2487d41b6b2a708bb27d649fc16d6719f060a67a2f3b7d",
+          "status": "pending_parent_validation"
+        }
+      ],
+      "review_scope": "Complete original ChangeRareAttribute body/API, existing full item records, actual copy/save/packet/audit/SQL/event graph; bounded Plain/Normal/Rare cases described in HANDOFF.",
+      "reviewer": "pending parent source/instruction review + focused/O2/strict32/full runtime receipts",
+      "limitations": "Staged, not compiled or run by child. Original invalid raw pointers/negative remove index/invalid rare set/empty availability/zero cap after RNG remain unsafe and not dynamically forced. Synthetic complete map rows are test inputs only, not shipped DB content or reconstructed Boot. Full server/stat/quest equivalence not claimed."
+    }
+  ]
+}

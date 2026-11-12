@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08164c70",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "GetDegreeFromPosition",
+      "address": "08164c70"
+    },
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat GetDegreeFromPosition(float x,float y)\r\n\r\n{\r\n  float fVar1;\r\n  VECTOR vtStan;\r\n  VECTOR vtDir;\r\n  \r\n                    /* Unresolved local var: float ret@[DW_OP_reg12(ST1)] */\r\n  vtDir.x = x;\r\n  vtDir.z = 0.0;\r\n  vtDir.y = y;\r\n  Normalize(&vtDir,&vtDir);\r\n  vtStan.x = 0.0;\r\n  vtStan.y = 1.0;\r\n  vtStan.z = 0.0;\r\n  fVar1 = DotProduct(&vtDir,&vtStan);\r\n  fVar1 = acosf(fVar1);\r\n  fVar1 = fVar1 * _DAT_0822b498;\r\n  if (vtDir.x < 0.0) {\r\n    fVar1 = _DAT_08221590 - fVar1;\r\n  }\r\n  return fVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

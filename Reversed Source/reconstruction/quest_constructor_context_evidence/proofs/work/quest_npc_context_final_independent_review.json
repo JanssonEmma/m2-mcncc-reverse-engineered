@@ -1,0 +1,11 @@
+{
+ "status":"passed_no_actionable_mismatch",
+ "scope":"NPC context final regression/ABI/helper static independent review",
+ "package":"work/quest_npc_context",
+ "test_findings":"No unsafe callback/data-race proof. Uses actual full singleton/CHAR/CQM/DESC/mob graph. VID0/highbits/unmapped/mappedNULL and distinct PID map correctly exercised; descriptor absence and NPC rawtype preserved. Polymorph and mob DWORD->WORD truncation and unsigned widening checked; current pointers and registry mutation only between complete calls. Mob/context pointer lifetimes valid; maps cleared and descriptor unbound before destruction. CurrentCQM L0 actual ownership safe.",
+ "abi_findings":"Exact nonconst four member signatures, DWORD32 and WORD16, no fixed native STL/object layout promises.",
+ "helper_findings":"Strict actualchar/manager/NPC bodies includesSQL/platform headers. O2 requires actualNPC once/fullappgraph, five actual SQL/observer O2 objects, verified28SDKobjects/twoarchives with SDK59guard and receipt/log/object/archiveSHA. Boundary observer includes existing nativeOS diagnostic shim only. Fullapplication mappings remain actual.",
+ "actionable_findings":[],
+ "runtime_or_compilation_claim":false,
+ "project_or_package_changes":false
+}

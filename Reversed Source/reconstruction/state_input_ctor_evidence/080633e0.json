@@ -1,0 +1,636 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"QuestState::QuestState\",\n    \"address\": \"080633e0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void QuestState(QuestState * this, QuestState * _ctor_arg) */\\r\\n\\r\\nvoid __thiscall QuestState::QuestState(QuestState *this,QuestState *_ctor_arg)\\r\\n\\r\\n{\\r\\n  AArgScript **ppAVar1;\\r\\n  AArgScript **ppAVar2;\\r\\n  int iVar3;\\r\\n  size_t __n;\\r\\n  AArgScript **__ret;\\r\\n  \\r\\n  this->co = _ctor_arg->co;\\r\\n  this->ico = _ctor_arg->ico;\\r\\n  this->args = _ctor_arg->args;\\r\\n  this->suspend_state = _ctor_arg->suspend_state;\\r\\n  this->iIndex = _ctor_arg->iIndex;\\r\\n  this->bStart = _ctor_arg->bStart;\\r\\n  this->st = _ctor_arg->st;\\r\\n  std::string::string((string *)&this->_title,(string *)&_ctor_arg->_title);\\r\\n  std::string::string((string *)&this->_clock_name,(string *)&_ctor_arg->_clock_name);\\r\\n  std::string::string((string *)&this->_counter_name,(string *)&_ctor_arg->_counter_name);\\r\\n  this->_clock_value = _ctor_arg->_clock_value;\\r\\n  this->_counter_value = _ctor_arg->_counter_value;\\r\\n  std::string::string((string *)&this->_icon_file,(string *)&_ctor_arg->_icon_file);\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\\r\\n  _M_end_of_storage = (AArgScript **)0x0;\\r\\n  ppAVar1 = (_ctor_arg->chat_scripts).\\r\\n            super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n            super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\\r\\n            _M_start;\\r\\n  ppAVar2 = (_ctor_arg->chat_scripts).\\r\\n            super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n            super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\\r\\n            _M_finish;\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_start =\\r\\n       (AArgScript **)0x0;\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_finish =\\r\\n       (AArgScript **)0x0;\\r\\n  iVar3 = (int)ppAVar2 - (int)ppAVar1 >> 2;\\r\\n  __ret = (AArgScript **)0x0;\\r\\n  if (iVar3 != 0) {\\r\\n    __ret = (AArgScript **)std::__default_alloc_template<true,0>::allocate(iVar3 << 2);\\r\\n  }\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_start =\\r\\n       __ret;\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_finish =\\r\\n       __ret;\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\\r\\n  _M_end_of_storage = __ret + iVar3;\\r\\n  ppAVar1 = (_ctor_arg->chat_scripts).\\r\\n            super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n            super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\\r\\n            _M_start;\\r\\n  __n = (int)(_ctor_arg->chat_scripts).\\r\\n             super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n             super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\\r\\n             _M_finish - (int)ppAVar1;\\r\\n  memmove(__ret,ppAVar1,__n);\\r\\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\\r\\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_finish =\\r\\n       (AArgScript **)(__n + (int)__ret);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "QuestState::QuestState",
+        "address": "080633e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void QuestState(QuestState * this, QuestState * _ctor_arg) */\r\n\r\nvoid __thiscall QuestState::QuestState(QuestState *this,QuestState *_ctor_arg)\r\n\r\n{\r\n  AArgScript **ppAVar1;\r\n  AArgScript **ppAVar2;\r\n  int iVar3;\r\n  size_t __n;\r\n  AArgScript **__ret;\r\n  \r\n  this->co = _ctor_arg->co;\r\n  this->ico = _ctor_arg->ico;\r\n  this->args = _ctor_arg->args;\r\n  this->suspend_state = _ctor_arg->suspend_state;\r\n  this->iIndex = _ctor_arg->iIndex;\r\n  this->bStart = _ctor_arg->bStart;\r\n  this->st = _ctor_arg->st;\r\n  std::string::string((string *)&this->_title,(string *)&_ctor_arg->_title);\r\n  std::string::string((string *)&this->_clock_name,(string *)&_ctor_arg->_clock_name);\r\n  std::string::string((string *)&this->_counter_name,(string *)&_ctor_arg->_counter_name);\r\n  this->_clock_value = _ctor_arg->_clock_value;\r\n  this->_counter_value = _ctor_arg->_counter_value;\r\n  std::string::string((string *)&this->_icon_file,(string *)&_ctor_arg->_icon_file);\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\r\n  _M_end_of_storage = (AArgScript **)0x0;\r\n  ppAVar1 = (_ctor_arg->chat_scripts).\r\n            super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n            super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\r\n            _M_start;\r\n  ppAVar2 = (_ctor_arg->chat_scripts).\r\n            super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n            super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\r\n            _M_finish;\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_start =\r\n       (AArgScript **)0x0;\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_finish =\r\n       (AArgScript **)0x0;\r\n  iVar3 = (int)ppAVar2 - (int)ppAVar1 >> 2;\r\n  __ret = (AArgScript **)0x0;\r\n  if (iVar3 != 0) {\r\n    __ret = (AArgScript **)std::__default_alloc_template<true,0>::allocate(iVar3 << 2);\r\n  }\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_start =\r\n       __ret;\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_finish =\r\n       __ret;\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\r\n  _M_end_of_storage = __ret + iVar3;\r\n  ppAVar1 = (_ctor_arg->chat_scripts).\r\n            super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n            super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\r\n            _M_start;\r\n  __n = (int)(_ctor_arg->chat_scripts).\r\n             super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n             super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>.\r\n             _M_finish - (int)ppAVar1;\r\n  memmove(__ret,ppAVar1,__n);\r\n  (this->chat_scripts).super__Vector_base<quest::AArgScript*,std::allocator<quest::AArgScript*>_>.\r\n  super__Vector_alloc_base<quest::AArgScript*,std::allocator<quest::AArgScript*>,true>._M_finish =\r\n       (AArgScript **)(__n + (int)__ret);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"QuestState::QuestState\",\n    \"address\": \"080633e0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0806342b\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0806343d\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0806344f\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"0806346d\",\n        \"target\": \"0804bd1c\",\n        \"name\": \"<EXTERNAL>::std::string::string\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080634cf\",\n        \"target\": \"0804bc6c\",\n        \"name\": \"<EXTERNAL>::memmove\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      },\n      {\n        \"call_site\": \"080634ea\",\n        \"target\": \"0804ba6c\",\n        \"name\": \"<EXTERNAL>::std::__default_alloc_template<true,0>::allocate\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 6,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "QuestState::QuestState",
+        "address": "080633e0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0806342b",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0806343d",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0806344f",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0806346d",
+            "target": "0804bd1c",
+            "name": "<EXTERNAL>::std::string::string",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080634cf",
+            "target": "0804bc6c",
+            "name": "<EXTERNAL>::memmove",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "080634ea",
+            "target": "0804ba6c",
+            "name": "<EXTERNAL>::std::__default_alloc_template<true,0>::allocate",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 6,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"080633e0\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633e1\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633e3\",\n      \"bytes\": \"57\",\n      \"instruction\": \"PUSH EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633e4\",\n      \"bytes\": \"56\",\n      \"instruction\": \"PUSH ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633e5\",\n      \"bytes\": \"53\",\n      \"instruction\": \"PUSH EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633e6\",\n      \"bytes\": \"83ec3c\",\n      \"instruction\": \"SUB ESP,0x3c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633e9\",\n      \"bytes\": \"8b750c\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633ec\",\n      \"bytes\": \"8b5d08\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633ef\",\n      \"bytes\": \"8b06\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633f1\",\n      \"bytes\": \"8d7b30\",\n      \"instruction\": \"LEA EDI,[EBX + 0x30]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633f4\",\n      \"bytes\": \"8903\",\n      \"instruction\": \"MOV dword ptr [EBX],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633f6\",\n      \"bytes\": \"8b4604\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633f9\",\n      \"bytes\": \"894304\",\n      \"instruction\": \"MOV dword ptr [EBX + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080633fc\",\n      \"bytes\": \"0fb74608\",\n      \"instruction\": \"MOVZX EAX,word ptr [ESI + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063400\",\n      \"bytes\": \"66894308\",\n      \"instruction\": \"MOV word ptr [EBX + 0x8],AX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063404\",\n      \"bytes\": \"0fb6460a\",\n      \"instruction\": \"MOVZX EAX,byte ptr [ESI + 0xa]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063408\",\n      \"bytes\": \"88430a\",\n      \"instruction\": \"MOV byte ptr [EBX + 0xa],AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806340b\",\n      \"bytes\": \"8b460c\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806340e\",\n      \"bytes\": \"89430c\",\n      \"instruction\": \"MOV dword ptr [EBX + 0xc],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063411\",\n      \"bytes\": \"0fb64610\",\n      \"instruction\": \"MOVZX EAX,byte ptr [ESI + 0x10]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063415\",\n      \"bytes\": \"884310\",\n      \"instruction\": \"MOV byte ptr [EBX + 0x10],AL\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063418\",\n      \"bytes\": \"8b4614\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x14]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806341b\",\n      \"bytes\": \"894314\",\n      \"instruction\": \"MOV dword ptr [EBX + 0x14],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806341e\",\n      \"bytes\": \"8d4618\",\n      \"instruction\": \"LEA EAX,[ESI + 0x18]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063421\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063425\",\n      \"bytes\": \"8d4318\",\n      \"instruction\": \"LEA EAX,[EBX + 0x18]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063428\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806342b\",\n      \"bytes\": \"e8ec88feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063430\",\n      \"bytes\": \"8d461c\",\n      \"instruction\": \"LEA EAX,[ESI + 0x1c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063433\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063437\",\n      \"bytes\": \"8d431c\",\n      \"instruction\": \"LEA EAX,[EBX + 0x1c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806343a\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806343d\",\n      \"bytes\": \"e8da88feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063442\",\n      \"bytes\": \"8d4620\",\n      \"instruction\": \"LEA EAX,[ESI + 0x20]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063445\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063449\",\n      \"bytes\": \"8d4320\",\n      \"instruction\": \"LEA EAX,[EBX + 0x20]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806344c\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806344f\",\n      \"bytes\": \"e8c888feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063454\",\n      \"bytes\": \"8b4624\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x24]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063457\",\n      \"bytes\": \"894324\",\n      \"instruction\": \"MOV dword ptr [EBX + 0x24],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806345a\",\n      \"bytes\": \"8b4628\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806345d\",\n      \"bytes\": \"894328\",\n      \"instruction\": \"MOV dword ptr [EBX + 0x28],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063460\",\n      \"bytes\": \"8d462c\",\n      \"instruction\": \"LEA EAX,[ESI + 0x2c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063463\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063467\",\n      \"bytes\": \"8d432c\",\n      \"instruction\": \"LEA EAX,[EBX + 0x2c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806346a\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806346d\",\n      \"bytes\": \"e8aa88feff\",\n      \"instruction\": \"CALL 0x0804bd1c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063472\",\n      \"bytes\": \"c7470800000000\",\n      \"instruction\": \"MOV dword ptr [EDI + 0x8],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063479\",\n      \"bytes\": \"8d4630\",\n      \"instruction\": \"LEA EAX,[ESI + 0x30]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806347c\",\n      \"bytes\": \"8b5630\",\n      \"instruction\": \"MOV EDX,dword ptr [ESI + 0x30]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806347f\",\n      \"bytes\": \"8945d4\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x2c],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063482\",\n      \"bytes\": \"8b4004\",\n      \"instruction\": \"MOV EAX,dword ptr [EAX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063485\",\n      \"bytes\": \"c7433000000000\",\n      \"instruction\": \"MOV dword ptr [EBX + 0x30],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806348c\",\n      \"bytes\": \"c7470400000000\",\n      \"instruction\": \"MOV dword ptr [EDI + 0x4],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063493\",\n      \"bytes\": \"29d0\",\n      \"instruction\": \"SUB EAX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063495\",\n      \"bytes\": \"c1f802\",\n      \"instruction\": \"SAR EAX,0x2\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"08063498\",\n      \"bytes\": \"c745cc00000000\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x34],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0806349f\",\n      \"bytes\": \"8945d0\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x30],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634a2\",\n      \"bytes\": \"7540\",\n      \"instruction\": \"JNZ 0x080634e4\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634a4\",\n      \"bytes\": \"8b4dcc\",\n      \"instruction\": \"MOV ECX,dword ptr [EBP + -0x34]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634a7\",\n      \"bytes\": \"8b55d0\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + -0x30]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634aa\",\n      \"bytes\": \"894b30\",\n      \"instruction\": \"MOV dword ptr [EBX + 0x30],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634ad\",\n      \"bytes\": \"8d0491\",\n      \"instruction\": \"LEA EAX,[ECX + EDX*0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634b0\",\n      \"bytes\": \"894f04\",\n      \"instruction\": \"MOV dword ptr [EDI + 0x4],ECX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634b3\",\n      \"bytes\": \"8b4dd4\",\n      \"instruction\": \"MOV ECX,dword ptr [EBP + -0x2c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634b6\",\n      \"bytes\": \"894708\",\n      \"instruction\": \"MOV dword ptr [EDI + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634b9\",\n      \"bytes\": \"8b4630\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x30]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634bc\",\n      \"bytes\": \"8b5904\",\n      \"instruction\": \"MOV EBX,dword ptr [ECX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634bf\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634c3\",\n      \"bytes\": \"29c3\",\n      \"instruction\": \"SUB EBX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634c5\",\n      \"bytes\": \"8b45cc\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x34]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634c8\",\n      \"bytes\": \"895c2408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634cc\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634cf\",\n      \"bytes\": \"e89887feff\",\n      \"instruction\": \"CALL 0x0804bc6c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634d4\",\n      \"bytes\": \"8b45cc\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x34]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634d7\",\n      \"bytes\": \"01c3\",\n      \"instruction\": \"ADD EBX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634d9\",\n      \"bytes\": \"895f04\",\n      \"instruction\": \"MOV dword ptr [EDI + 0x4],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634dc\",\n      \"bytes\": \"83c43c\",\n      \"instruction\": \"ADD ESP,0x3c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634df\",\n      \"bytes\": \"5b\",\n      \"instruction\": \"POP EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634e0\",\n      \"bytes\": \"5e\",\n      \"instruction\": \"POP ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634e1\",\n      \"bytes\": \"5f\",\n      \"instruction\": \"POP EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634e2\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634e3\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634e4\",\n      \"bytes\": \"c1e002\",\n      \"instruction\": \"SHL EAX,0x2\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634e7\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634ea\",\n      \"bytes\": \"e87d85feff\",\n      \"instruction\": \"CALL 0x0804ba6c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634ef\",\n      \"bytes\": \"8945cc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x34],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"080634f2\",\n      \"bytes\": \"ebb0\",\n      \"instruction\": \"JMP 0x080634a4\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 88,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "080633e0",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "080633e1",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "080633e3",
+          "bytes": "57",
+          "instruction": "PUSH EDI",
+          "comment": null
+        },
+        {
+          "address": "080633e4",
+          "bytes": "56",
+          "instruction": "PUSH ESI",
+          "comment": null
+        },
+        {
+          "address": "080633e5",
+          "bytes": "53",
+          "instruction": "PUSH EBX",
+          "comment": null
+        },
+        {
+          "address": "080633e6",
+          "bytes": "83ec3c",
+          "instruction": "SUB ESP,0x3c",
+          "comment": null
+        },
+        {
+          "address": "080633e9",
+          "bytes": "8b750c",
+          "instruction": "MOV ESI,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "080633ec",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "080633ef",
+          "bytes": "8b06",
+          "instruction": "MOV EAX,dword ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "080633f1",
+          "bytes": "8d7b30",
+          "instruction": "LEA EDI,[EBX + 0x30]",
+          "comment": null
+        },
+        {
+          "address": "080633f4",
+          "bytes": "8903",
+          "instruction": "MOV dword ptr [EBX],EAX",
+          "comment": null
+        },
+        {
+          "address": "080633f6",
+          "bytes": "8b4604",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "080633f9",
+          "bytes": "894304",
+          "instruction": "MOV dword ptr [EBX + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "080633fc",
+          "bytes": "0fb74608",
+          "instruction": "MOVZX EAX,word ptr [ESI + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "08063400",
+          "bytes": "66894308",
+          "instruction": "MOV word ptr [EBX + 0x8],AX",
+          "comment": null
+        },
+        {
+          "address": "08063404",
+          "bytes": "0fb6460a",
+          "instruction": "MOVZX EAX,byte ptr [ESI + 0xa]",
+          "comment": null
+        },
+        {
+          "address": "08063408",
+          "bytes": "88430a",
+          "instruction": "MOV byte ptr [EBX + 0xa],AL",
+          "comment": null
+        },
+        {
+          "address": "0806340b",
+          "bytes": "8b460c",
+          "instruction": "MOV EAX,dword ptr [ESI + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "0806340e",
+          "bytes": "89430c",
+          "instruction": "MOV dword ptr [EBX + 0xc],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063411",
+          "bytes": "0fb64610",
+          "instruction": "MOVZX EAX,byte ptr [ESI + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "08063415",
+          "bytes": "884310",
+          "instruction": "MOV byte ptr [EBX + 0x10],AL",
+          "comment": null
+        },
+        {
+          "address": "08063418",
+          "bytes": "8b4614",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x14]",
+          "comment": null
+        },
+        {
+          "address": "0806341b",
+          "bytes": "894314",
+          "instruction": "MOV dword ptr [EBX + 0x14],EAX",
+          "comment": null
+        },
+        {
+          "address": "0806341e",
+          "bytes": "8d4618",
+          "instruction": "LEA EAX,[ESI + 0x18]",
+          "comment": null
+        },
+        {
+          "address": "08063421",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063425",
+          "bytes": "8d4318",
+          "instruction": "LEA EAX,[EBX + 0x18]",
+          "comment": null
+        },
+        {
+          "address": "08063428",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0806342b",
+          "bytes": "e8ec88feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "08063430",
+          "bytes": "8d461c",
+          "instruction": "LEA EAX,[ESI + 0x1c]",
+          "comment": null
+        },
+        {
+          "address": "08063433",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063437",
+          "bytes": "8d431c",
+          "instruction": "LEA EAX,[EBX + 0x1c]",
+          "comment": null
+        },
+        {
+          "address": "0806343a",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0806343d",
+          "bytes": "e8da88feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "08063442",
+          "bytes": "8d4620",
+          "instruction": "LEA EAX,[ESI + 0x20]",
+          "comment": null
+        },
+        {
+          "address": "08063445",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063449",
+          "bytes": "8d4320",
+          "instruction": "LEA EAX,[EBX + 0x20]",
+          "comment": null
+        },
+        {
+          "address": "0806344c",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0806344f",
+          "bytes": "e8c888feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "08063454",
+          "bytes": "8b4624",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x24]",
+          "comment": null
+        },
+        {
+          "address": "08063457",
+          "bytes": "894324",
+          "instruction": "MOV dword ptr [EBX + 0x24],EAX",
+          "comment": null
+        },
+        {
+          "address": "0806345a",
+          "bytes": "8b4628",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x28]",
+          "comment": null
+        },
+        {
+          "address": "0806345d",
+          "bytes": "894328",
+          "instruction": "MOV dword ptr [EBX + 0x28],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063460",
+          "bytes": "8d462c",
+          "instruction": "LEA EAX,[ESI + 0x2c]",
+          "comment": null
+        },
+        {
+          "address": "08063463",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063467",
+          "bytes": "8d432c",
+          "instruction": "LEA EAX,[EBX + 0x2c]",
+          "comment": null
+        },
+        {
+          "address": "0806346a",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0806346d",
+          "bytes": "e8aa88feff",
+          "instruction": "CALL 0x0804bd1c",
+          "comment": null
+        },
+        {
+          "address": "08063472",
+          "bytes": "c7470800000000",
+          "instruction": "MOV dword ptr [EDI + 0x8],0x0",
+          "comment": null
+        },
+        {
+          "address": "08063479",
+          "bytes": "8d4630",
+          "instruction": "LEA EAX,[ESI + 0x30]",
+          "comment": null
+        },
+        {
+          "address": "0806347c",
+          "bytes": "8b5630",
+          "instruction": "MOV EDX,dword ptr [ESI + 0x30]",
+          "comment": null
+        },
+        {
+          "address": "0806347f",
+          "bytes": "8945d4",
+          "instruction": "MOV dword ptr [EBP + -0x2c],EAX",
+          "comment": null
+        },
+        {
+          "address": "08063482",
+          "bytes": "8b4004",
+          "instruction": "MOV EAX,dword ptr [EAX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "08063485",
+          "bytes": "c7433000000000",
+          "instruction": "MOV dword ptr [EBX + 0x30],0x0",
+          "comment": null
+        },
+        {
+          "address": "0806348c",
+          "bytes": "c7470400000000",
+          "instruction": "MOV dword ptr [EDI + 0x4],0x0",
+          "comment": null
+        },
+        {
+          "address": "08063493",
+          "bytes": "29d0",
+          "instruction": "SUB EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "08063495",
+          "bytes": "c1f802",
+          "instruction": "SAR EAX,0x2",
+          "comment": null
+        },
+        {
+          "address": "08063498",
+          "bytes": "c745cc00000000",
+          "instruction": "MOV dword ptr [EBP + -0x34],0x0",
+          "comment": null
+        },
+        {
+          "address": "0806349f",
+          "bytes": "8945d0",
+          "instruction": "MOV dword ptr [EBP + -0x30],EAX",
+          "comment": null
+        },
+        {
+          "address": "080634a2",
+          "bytes": "7540",
+          "instruction": "JNZ 0x080634e4",
+          "comment": null
+        },
+        {
+          "address": "080634a4",
+          "bytes": "8b4dcc",
+          "instruction": "MOV ECX,dword ptr [EBP + -0x34]",
+          "comment": null
+        },
+        {
+          "address": "080634a7",
+          "bytes": "8b55d0",
+          "instruction": "MOV EDX,dword ptr [EBP + -0x30]",
+          "comment": null
+        },
+        {
+          "address": "080634aa",
+          "bytes": "894b30",
+          "instruction": "MOV dword ptr [EBX + 0x30],ECX",
+          "comment": null
+        },
+        {
+          "address": "080634ad",
+          "bytes": "8d0491",
+          "instruction": "LEA EAX,[ECX + EDX*0x4]",
+          "comment": null
+        },
+        {
+          "address": "080634b0",
+          "bytes": "894f04",
+          "instruction": "MOV dword ptr [EDI + 0x4],ECX",
+          "comment": null
+        },
+        {
+          "address": "080634b3",
+          "bytes": "8b4dd4",
+          "instruction": "MOV ECX,dword ptr [EBP + -0x2c]",
+          "comment": null
+        },
+        {
+          "address": "080634b6",
+          "bytes": "894708",
+          "instruction": "MOV dword ptr [EDI + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "080634b9",
+          "bytes": "8b4630",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x30]",
+          "comment": null
+        },
+        {
+          "address": "080634bc",
+          "bytes": "8b5904",
+          "instruction": "MOV EBX,dword ptr [ECX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "080634bf",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "080634c3",
+          "bytes": "29c3",
+          "instruction": "SUB EBX,EAX",
+          "comment": null
+        },
+        {
+          "address": "080634c5",
+          "bytes": "8b45cc",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x34]",
+          "comment": null
+        },
+        {
+          "address": "080634c8",
+          "bytes": "895c2408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EBX",
+          "comment": null
+        },
+        {
+          "address": "080634cc",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "080634cf",
+          "bytes": "e89887feff",
+          "instruction": "CALL 0x0804bc6c",
+          "comment": null
+        },
+        {
+          "address": "080634d4",
+          "bytes": "8b45cc",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x34]",
+          "comment": null
+        },
+        {
+          "address": "080634d7",
+          "bytes": "01c3",
+          "instruction": "ADD EBX,EAX",
+          "comment": null
+        },
+        {
+          "address": "080634d9",
+          "bytes": "895f04",
+          "instruction": "MOV dword ptr [EDI + 0x4],EBX",
+          "comment": null
+        },
+        {
+          "address": "080634dc",
+          "bytes": "83c43c",
+          "instruction": "ADD ESP,0x3c",
+          "comment": null
+        },
+        {
+          "address": "080634df",
+          "bytes": "5b",
+          "instruction": "POP EBX",
+          "comment": null
+        },
+        {
+          "address": "080634e0",
+          "bytes": "5e",
+          "instruction": "POP ESI",
+          "comment": null
+        },
+        {
+          "address": "080634e1",
+          "bytes": "5f",
+          "instruction": "POP EDI",
+          "comment": null
+        },
+        {
+          "address": "080634e2",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "080634e3",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "080634e4",
+          "bytes": "c1e002",
+          "instruction": "SHL EAX,0x2",
+          "comment": null
+        },
+        {
+          "address": "080634e7",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "080634ea",
+          "bytes": "e87d85feff",
+          "instruction": "CALL 0x0804ba6c",
+          "comment": null
+        },
+        {
+          "address": "080634ef",
+          "bytes": "8945cc",
+          "instruction": "MOV dword ptr [EBP + -0x34],EAX",
+          "comment": null
+        },
+        {
+          "address": "080634f2",
+          "bytes": "ebb0",
+          "instruction": "JMP 0x080634a4",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 88,
+      "has_more": false
+    },
+    "isError": false
+  }
+]

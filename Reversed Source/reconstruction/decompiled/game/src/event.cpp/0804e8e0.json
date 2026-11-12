@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804e8e0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Rb_tree_rotate_right",
+      "address": "0804e8e0"
+    },
+    "code": "\r\nvoid _Rb_tree_rotate_right(_Rb_tree_node_base *__x,_Rb_tree_node_base **__root)\r\n\r\n{\r\n  _Rb_tree_node_base *p_Var1;\r\n  _Rb_tree_node_base *p_Var2;\r\n  \r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[DW_OP_reg2(EDX)] */\r\n  p_Var1 = __x->_M_left;\r\n  p_Var2 = p_Var1->_M_right;\r\n  __x->_M_left = p_Var2;\r\n  if (p_Var2 != (_Rb_tree_node_base *)0x0) {\r\n    p_Var2->_M_parent = __x;\r\n  }\r\n  p_Var1->_M_parent = __x->_M_parent;\r\n  if (__x == *__root) {\r\n    *__root = p_Var1;\r\n  }\r\n  else {\r\n    p_Var2 = __x->_M_parent;\r\n    if (__x == p_Var2->_M_right) {\r\n      p_Var2->_M_right = p_Var1;\r\n    }\r\n    else {\r\n      p_Var2->_M_left = p_Var1;\r\n    }\r\n  }\r\n  p_Var1->_M_right = __x;\r\n  __x->_M_parent = p_Var1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

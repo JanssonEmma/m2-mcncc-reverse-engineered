@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7600",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "fdwatch_check_event",
+      "address": "081b7600"
+    },
+    "code": "\r\nint fdwatch_check_event(LPFDWATCH fdw,socket_t fd,uint event_idx)\r\n\r\n{\r\n  LPKEVENT pkVar1;\r\n  uint uVar2;\r\n  \r\n  if ((uint)(fdw->nfiles * 2) <= event_idx) {\r\n    __assert(\"fdwatch_check_event\",\"fdwatch.c\",0xad);\r\n  }\r\n  pkVar1 = fdw->kqrevents;\r\n  if (pkVar1[event_idx].ident == fd) {\r\n    if ((pkVar1[event_idx].flags & 0x4000) != 0) {\r\n      return 8;\r\n    }\r\n    if ((short)pkVar1[event_idx].flags < 0) {\r\n      return 8;\r\n    }\r\n    if (pkVar1[event_idx].filter == -1) {\r\n      if ((*(byte *)(fdw->fd_rw + fd) & 1) != 0) {\r\n        return 1;\r\n      }\r\n    }\r\n    else if (pkVar1[event_idx].filter == -2) {\r\n      uVar2 = fdw->fd_rw[fd];\r\n      if ((uVar2 & 2) != 0) {\r\n        if ((uVar2 & 4) != 0) {\r\n          fdw->fd_rw[fd] = uVar2 & 0xfffffffd;\r\n        }\r\n        return 2;\r\n      }\r\n    }\r\n    else {\r\n      _sys_err(\"fdwatch_check_event\",200,\"fdwatch_check_event: Unknown filter %d (descriptor %d)\",\r\n               (int)pkVar1[event_idx].filter,fd);\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

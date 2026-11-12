@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08121940",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8121940",
+    "function": {
+      "name": "CTextFileLoader::GetFileName",
+      "address": "08121940"
+    },
+    "signature": "char * GetFileName(CTextFileLoader * this)",
+    "code": "\r\n/* DWARF original prototype: char * GetFileName(CTextFileLoader * this) */\r\n\r\nchar * __thiscall CTextFileLoader::GetFileName(CTextFileLoader *this)\r\n\r\n{\r\n  char *pcVar1;\r\n  \r\n                    /* Unresolved local var: size_t __n@[???] */\r\n  pcVar1 = (this->m_strFileName)._M_dataplus._M_p;\r\n  pcVar1[*(int *)(pcVar1 + -0xc)] = std::string::_Rep::_S_terminal;\r\n  return (this->m_strFileName)._M_dataplus._M_p;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

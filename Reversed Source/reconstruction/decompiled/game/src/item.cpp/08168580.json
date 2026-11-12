@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168580",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168580",
+    "function": {
+      "name": "CItem::StartUniqueExpireEvent",
+      "address": "08168580"
+    },
+    "signature": "void StartUniqueExpireEvent(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void StartUniqueExpireEvent(CItem * this) */\r\n\r\nvoid __thiscall CItem::StartUniqueExpireEvent(CItem *this)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  LPEVENT pkEvent;\r\n  BYTE BVar2;\r\n  DWORD DVar3;\r\n  int iVar4;\r\n  item_event_info *info;\r\n  \r\n                    /* Unresolved local var: int iSec@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  BVar2 = '\\0';\r\n  pTVar1 = this->m_pProto;\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar2 = pTVar1->bType;\r\n  }\r\n  if ((BVar2 == '\\x10') && (this->m_pkUniqueExpireEvent == (LPEVENT)0x0)) {\r\n    DVar3 = 0;\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      DVar3 = pTVar1->dwVnum;\r\n    }\r\n    if (DVar3 == 0x111a0) {\r\n      CHARACTER::ShowAlignment(this->m_pOwner,false);\r\n    }\r\n    if (this->m_alSockets[1] == 0) {\r\n      iVar4 = 0x3c;\r\n    }\r\n    else {\r\n      iVar4 = MIN(this->m_alSockets[1],0x3c);\r\n    }\r\n    SetSocket(this,1,0);\r\n    DVar3 = __AllocEventInfo(4,&info);\r\n    info->item = this;\r\n    pkEvent = event_create_ex(unique_expire_event,DVar3,iVar4 * passes_per_sec,\"item.cpp\",0x473);\r\n    SetUniqueExpireEvent(this,pkEvent);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

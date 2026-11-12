@@ -1,0 +1,7 @@
+{
+  "review": "TEST ONLY rename counter gets -> getLogCount to avoid C stdio gets declaration collision. No production body/API/assertion changes. TEST ONLY registration fixture uses native stat/is-directory when mkdir fails, because BSD socket errno shim is not native filesystem errno. No socket shim or production loader changes. Supersedes stat attempt (also shim-shadowed): existing mkdir then actualofstream/close/remove probe verifies writable fixture directory without native errno/stat or sharedshim edits.",
+  "guards": {
+    "reconstruction/tests/pc_quest_storage_regression.cpp": "59875cf5871c299be4ee4aaf8326b0f426a0927d48f9e27993b1c511af07c12b",
+    "reconstruction/tests/quest_registration_regression.cpp": "3b79811eb18f9c48419b11e20b816ba7731446cc1b99cd37dd2ecf0c15f8f26e"
+  }
+}

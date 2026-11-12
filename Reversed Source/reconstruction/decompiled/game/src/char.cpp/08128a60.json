@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08128a60",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER::SetPosition",
+      "address": "08128a60"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetPosition(CHARACTER * this, int pos) */\r\n\r\nvoid __thiscall CHARACTER::SetPosition(CHARACTER *this,int pos)\r\n\r\n{\r\n  long *plVar1;\r\n  bool bVar2;\r\n  CStateTemplate<CHARACTER> *State;\r\n  \r\n  if (pos == 7) {\r\n    this->m_bAddChrState = this->m_bAddChrState & 0xfe;\r\n    plVar1 = &(this->m_pointsInstant).instant_flag;\r\n    *plVar1 = *plVar1 & 0xfffffff7;\r\n    event_cancel(&this->m_pkDeadEvent);\r\n    event_cancel(&this->m_pkStunEvent);\r\n  }\r\n  else if (pos == 0) {\r\n    this->m_bAddChrState = this->m_bAddChrState | 1;\r\n  }\r\n  if (this->m_bCharType != '\\x02') {\r\n    if (pos == 5) {\r\n      State = &this->m_stateBattle;\r\n      bVar2 = CFSM::IsState(&this->super_CFSM,&State->super_CState);\r\n      if (!bVar2) {\r\n        MonsterLog(this,&DAT_0822668b);\r\n      }\r\n    }\r\n    else {\r\n      State = &this->m_stateIdle;\r\n      bVar2 = CFSM::IsState(&this->super_CFSM,&State->super_CState);\r\n      if (!bVar2) {\r\n        MonsterLog(this,&DAT_0822667a);\r\n      }\r\n    }\r\n    CFSM::GotoState(&this->super_CFSM,&State->super_CState);\r\n  }\r\n  (this->m_pointsInstant).position = pos;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

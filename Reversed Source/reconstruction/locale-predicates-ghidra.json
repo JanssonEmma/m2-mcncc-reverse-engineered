@@ -1,0 +1,114 @@
+{
+  "0x08068960": {
+    "function": {
+      "name": "LC_GetLocalType",
+      "address": "08068960"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\neLocalization LC_GetLocalType(void)\r\n\r\n{\r\n  return g_eLocalType;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068970": {
+    "function": {
+      "name": "LC_IsLocale",
+      "address": "08068970"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nbool LC_IsLocale(eLocalization t)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == t;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068990": {
+    "function": {
+      "name": "LC_IsYMIR",
+      "address": "08068990"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsYMIR(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_YMIR;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080689b0": {
+    "function": {
+      "name": "LC_IsLetsGame",
+      "address": "080689b0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsLetsGame(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_LETSGAME;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080689d0": {
+    "function": {
+      "name": "LC_IsCIBN",
+      "address": "080689d0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsCIBN(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_CIBN;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080689f0": {
+    "function": {
+      "name": "LC_IsJapan",
+      "address": "080689f0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsJapan(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_JAPAN;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068a10": {
+    "function": {
+      "name": "LC_IsEnglish",
+      "address": "08068a10"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsEnglish(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_ENGLISH;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068a30": {
+    "function": {
+      "name": "LC_IsHongKong",
+      "address": "08068a30"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsHongKong(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_HONGKONG;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068a50": {
+    "function": {
+      "name": "LC_IsNewCIBN",
+      "address": "08068a50"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsNewCIBN(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_NEWCIBN;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068a70": {
+    "function": {
+      "name": "LC_IsGermany",
+      "address": "08068a70"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsGermany(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_GERMANY;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068a90": {
+    "function": {
+      "name": "LC_IsKorea",
+      "address": "08068a90"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsKorea(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_KOREA;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068ab0": {
+    "function": {
+      "name": "LC_IsEurope",
+      "address": "08068ab0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsEurope(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  bool bVar2;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  bVar2 = true;\r\n  if ((((eVar1 != LC_FRANCE) && (eVar1 != LC_ITALY)) && (eVar1 != LC_TURKEY)) &&\r\n     (((eVar1 != LC_POLAND && (eVar1 != LC_UK)) && (eVar1 != LC_SPAIN)))) {\r\n    bVar2 = eVar1 == LC_PORTUGAL;\r\n  }\r\n  return bVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068b00": {
+    "function": {
+      "name": "LC_IsCanada",
+      "address": "08068b00"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsCanada(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_CANADA;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08068b20": {
+    "function": {
+      "name": "LC_IsBrazil",
+      "address": "08068b20"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nbool LC_IsBrazil(void)\r\n\r\n{\r\n  eLocalization eVar1;\r\n  \r\n  eVar1 = LC_GetLocalType();\r\n  return eVar1 == LC_BRAZIL;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

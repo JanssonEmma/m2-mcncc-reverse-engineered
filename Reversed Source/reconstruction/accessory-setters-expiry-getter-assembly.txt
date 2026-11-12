@@ -1,0 +1,84 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08168990 <_ZN5CItem31SetAccessorySocketDownGradeTimeEm+0x80>:
+ 8168990:	8b 75 f8             	mov    -0x8(%ebp),%esi
+ 8168993:	8b 7d fc             	mov    -0x4(%ebp),%edi
+ 8168996:	89 ec                	mov    %ebp,%esp
+ 8168998:	5d                   	pop    %ebp
+ 8168999:	c3                   	ret
+ 816899a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+
+081689a0 <_Z29accessory_socket_expire_eventP5event>:
+ 81689a0:	55                   	push   %ebp
+ 81689a1:	89 e5                	mov    %esp,%ebp
+ 81689a3:	83 ec 18             	sub    $0x18,%esp
+ 81689a6:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 81689a9:	8b 15 30 b4 23 08    	mov    0x823b430,%edx
+ 81689af:	8b 45 08             	mov    0x8(%ebp),%eax
+ 81689b2:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 81689b5:	85 d2                	test   %edx,%edx
+ 81689b7:	8b 58 08             	mov    0x8(%eax),%ebx
+ 81689ba:	0f 84 90 00 00 00    	je     8168a50 <_Z29accessory_socket_expire_eventP5event+0xb0>
+ 81689c0:	8b 03                	mov    (%ebx),%eax
+ 81689c2:	89 14 24             	mov    %edx,(%esp)
+ 81689c5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81689c9:	e8 62 a6 02 00       	call   8193030 <_ZN12ITEM_MANAGER9FindByVIDEm>
+ 81689ce:	89 c6                	mov    %eax,%esi
+ 81689d0:	8b 40 6c             	mov    0x6c(%eax),%eax
+ 81689d3:	83 f8 01             	cmp    $0x1,%eax
+ 81689d6:	7e 58                	jle    8168a30 <_Z29accessory_socket_expire_eventP5event+0x90>
+ 81689d8:	8d 58 c4             	lea    -0x3c(%eax),%ebx
+ 81689db:	83 fb 01             	cmp    $0x1,%ebx
+ 81689de:	7e 50                	jle    8168a30 <_Z29accessory_socket_expire_eventP5event+0x90>
+ 81689e0:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 81689e4:	89 34 24             	mov    %esi,(%esp)
+ 81689e7:	e8 24 ff ff ff       	call   8168910 <_ZN5CItem31SetAccessorySocketDownGradeTimeEm>
+ 81689ec:	83 fb 3c             	cmp    $0x3c,%ebx
+ 81689ef:	7e 2f                	jle    8168a20 <_Z29accessory_socket_expire_eventP5event+0x80>
+ 81689f1:	8b 15 1c f2 23 08    	mov    0x823f21c,%edx
+ 81689f7:	89 d0                	mov    %edx,%eax
+ 81689f9:	c1 e0 04             	shl    $0x4,%eax
+ 81689fc:	29 d0                	sub    %edx,%eax
+ 81689fe:	c1 e0 02             	shl    $0x2,%eax
+ 8168a01:	eb 0d                	jmp    8168a10 <_Z29accessory_socket_expire_eventP5event+0x70>
+ 8168a03:	90                   	nop
+ 8168a04:	90                   	nop
+ 8168a05:	90                   	nop
+ 8168a06:	90                   	nop
+ 8168a07:	90                   	nop
+ 8168a08:	90                   	nop
+ 8168a09:	90                   	nop
+ 8168a0a:	90                   	nop
+ 8168a0b:	90                   	nop
+ 8168a0c:	90                   	nop
+ 8168a0d:	90                   	nop
+ 8168a0e:	90                   	nop
+ 8168a0f:	90                   	nop
+ 8168a10:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8168a13:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8168a16:	89 ec                	mov    %ebp,%esp
+ 8168a18:	5d                   	pop    %ebp
+ 8168a19:	c3                   	ret
+ 8168a1a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 8168a20:	8b 0d 1c f2 23 08    	mov    0x823f21c,%ecx
+ 8168a26:	89 d8                	mov    %ebx,%eax
+ 8168a28:	0f af c1             	imul   %ecx,%eax
+ 8168a2b:	eb e3                	jmp    8168a10 <_Z29accessory_socket_expire_eventP5event+0x70>
+ 8168a2d:	8d 76 00             	lea    0x0(%esi),%esi
+ 8168a30:	89 34 24             	mov    %esi,(%esp)
+ 8168a33:	31 db                	xor    %ebx,%ebx
+ 8168a35:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8168a39:	e8 b2 01 00 00       	call   8168bf0 <_ZN5CItem29SetAccessorySocketExpireEventEP5event>
+ 8168a3e:	89 34 24             	mov    %esi,(%esp)
+ 8168a41:	e8 ca 01 00 00       	call   8168c10 <_ZN5CItem22AccessorySocketDegradeEv>
+ 8168a46:	31 c0                	xor    %eax,%eax
+ 8168a48:	eb c6                	jmp    8168a10 <_Z29accessory_socket_expire_eventP5event+0x70>
+ 8168a4a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 8168a50:	c7 04 24 47 b8 22 08 	movl   $0x822b847,(%esp)
+ 8168a57:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 8168a5c:	be fa 62 1f 08       	mov    $0x81f62fa,%esi
+ 8168a61:	89 44 24 0c          	mov    %eax,0xc(%esp)

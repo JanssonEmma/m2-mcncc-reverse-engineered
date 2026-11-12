@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08158af0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC_MANAGER::ConnectAccount",
+      "address": "08158af0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ConnectAccount(DESC_MANAGER * this, string * login, LPDESC d) */\r\n\r\nvoid __thiscall DESC_MANAGER::ConnectAccount(DESC_MANAGER *this,string *login,LPDESC d)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,DESC*>\r\n  local_2c [4];\r\n  \r\n  std::string::string((string *)local_2c,(string *)login);\r\n  local_2c[0].second = d;\r\n  hashtable<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_DESC*>,std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,stringhash,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_DESC*>_>,std::equal_to<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<DESC*>_>\r\n  ::resize(&(this->m_map_loginName)._M_ht,(this->m_map_loginName)._M_ht._M_num_elements + 1);\r\n  hashtable<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_DESC*>,std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,stringhash,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_DESC*>_>,std::equal_to<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<DESC*>_>\r\n  ::insert_unique_noresize(&(this->m_map_loginName)._M_ht,local_2c);\r\n  LOCK();\r\n  piVar1 = (int *)((int)local_2c[0].first._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)local_2c[0].first._M_dataplus._M_p + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

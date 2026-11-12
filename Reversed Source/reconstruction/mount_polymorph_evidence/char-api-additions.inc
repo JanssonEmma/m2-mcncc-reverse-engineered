@@ -1,0 +1,11 @@
+void SetPolymorph(DWORD race,bool maintain);
+void MountVnum(DWORD vnum);
+void ComputePoints();
+void ComputeSkillPoints();
+void ComputeBattlePoints();
+void PointChange(BYTE type,int amount,bool includeAmount,bool broadcast);
+void RefreshAffect();
+void ComputeAffect(CAffect* affect,bool add);
+void StartMuyeongEvent();
+void StopMuyeongEvent();
+void HorseSummon(bool summon,bool fromFar);

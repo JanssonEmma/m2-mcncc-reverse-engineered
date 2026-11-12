@@ -1,0 +1,54 @@
+{
+  "checkpoint": 84,
+  "production_writes": false,
+  "source_guards": {
+    "game/src/skill.cpp": "7e638f477132376a3e52d99b12610639bdfd26d04cca9757b19a9625aa338c7f",
+    "game/src/skill.h": "bd3b2a699df806ebbe4d2b5126baa02e701052d3d481bb43d22c888f41946dd8",
+    "common/tables.h": "076827c2b70a122b8dabeafe8e00dc6957f8628065c96802b62e4258b6146e36"
+  },
+  "source_guard_review": {
+    "review": "Root-requested POINT_NONE actualowner char.h include; full oldenum values unchanged, final commas removed for pedantic-errors. Source-only reviewed fix, no body/data changes.",
+    "guards": {
+      "game/src/skill.cpp": "7e638f477132376a3e52d99b12610639bdfd26d04cca9757b19a9625aa338c7f",
+      "game/src/skill.h": "bd3b2a699df806ebbe4d2b5126baa02e701052d3d481bb43d22c888f41946dd8",
+      "common/tables.h": "076827c2b70a122b8dabeafe8e00dc6957f8628065c96802b62e4258b6146e36"
+    }
+  },
+  "receipts": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-84-validation.receipt.json": "c28689504660c74b8d43e28c8521fcba6528616ba9930b596c56bc2b5490ca05",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\skill-factory-focused-retry4.receipt.json": "65476777468e9a115bf9d977fdb7b5a653ed3d550e966abebabab229ce0a0283",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\skill-factory-strict32.receipt.json": "67b2268df109da44c0fe9923a9499141a131e43010acb09b4dcf640b764a3ca8",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\item_sql_runtime-o2.receipt.json": "add6536b0d9252b6e302deea0c77ac9f7e39fee7ef5d11e6dfd26b55d6c04210",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\item_sql_semaphore-o2.receipt.json": "14789bedfdbcad4f2ba29607185f80999639d3b5cb69b4dd4b7c297493f2629f",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\item_sql_api-o2.receipt.json": "2eb59654b9ced5d2024a2fd1ff8a93e169519e402a9b4e9f6fface42d5f39853",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\item_socket_config-o2.receipt.json": "d39041b4fd905d10236111993103a677cc8c0dafbc80b68aead28cbcdc228916",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\skill_factory_desc_output_syscalls-o2.receipt.json": "0480a2de13704ddcb489abd1a2b8a7be2995d754d8d449b3ad457eaad09f5f59",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\skill-factory-o2-build.receipt.json": "0825f4a8f95ee0c940d4351050ac4efce36c9bd1d44110f4b6d9e5d2c6606d6b",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\skill-factory-o2-runtime.receipt.json": "def93db9e0a547cbc959fedb92bd5df340e155e2cdacd2f3e36f24cbb75ab614",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\skill_lookup_regression-scoped-rebuild.receipt.json": "f93b05c696db965b16627d6873a99fde5afbbeb796cb1d2ac362af09a1f961ef",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\skill_lookup_regression-scoped-runtime.receipt.json": "4bce79503fde31ff06a66330b6240df28722ad3bda14abf43e95d56e798cdb32",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\poly_owning_lifecycle_regression-scoped-rebuild.receipt.json": "ad160d000b6001a95c53ef3d8d3cdd7c27bf6fc0a8c4a237aca808cf2899f187",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\factory\\validation\\poly_owning_lifecycle_regression-scoped-runtime.receipt.json": "342e6aab6278ab343a86bd250f2334ede5f0ec861920165a62bd016998671fe7"
+  },
+  "function_mapping_addresses": [
+    "080e40e0",
+    "080e4160",
+    "080e41d0",
+    "080e4670",
+    "080e46d0",
+    "080e59e0"
+  ],
+  "inline_enum_scope": {
+    "flags": 27,
+    "indexes": 71,
+    "original_inline": "CSkillProto::IsChargeSkill nonconst bool() at old skill.h217",
+    "charge_vnums": [
+      5,
+      138
+    ],
+    "new_function_address_mapping": null,
+    "policy": "Compiler inline ranges/equivalence and constant scope only; no synthetic inventory address or function-count increase."
+  },
+  "baseline_overrides_sha256": "2739fb9b59e416e35b04d5b736e95eebf7878b9a1c73ee812e69079a69ea6f98",
+  "note": "Checkpoint84: full original CSkillManager Initialize/Getname, FindPointType plus mutable32-row table, three prototype variable fanouts and packed1475-byte TSkillTable are integrated. Real parser/prototype ownership/SendLog/GM packets retain all15 failure sites, transactional reload, duplicate/mixed-error leaks and callback ordering. Focused4+ABI, real factory optimized graph/SQL objects, strict32 and full92 commands+ABI pass. Old standalone lookup/owning tests use explicit O2+LTO link scope; no fake app parser/logger/points. Exact27flag/71index enums and original inline charge predicate5/138 included as header/inline scope only, no invented standalone address. Full CreateItem/equipment/stat/service/server completion remains unfinished."
+}

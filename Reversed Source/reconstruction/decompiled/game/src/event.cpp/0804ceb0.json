@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804ceb0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "event_create_ex",
+      "address": "0804ceb0"
+    },
+    "code": "\r\nLPEVENT event_create_ex(TEVENTFUNC func,DWORD dwInfoID,long when,char *file,int line)\r\n\r\n{\r\n  TQueueElement *pTVar1;\r\n  LPEVENT pvData;\r\n  _Deque_iterator<event*,event*&,event**> __tmp;\r\n  \r\n                    /* Unresolved local var: LPEVENT new_event@[DW_OP_reg3(EBX)] */\r\n  sys_log(1,\"EVENT CREATE id %lu [%s:%d]\",dwInfoID,file,line);\r\n  if (when < 1) {\r\n    when = 1;\r\n  }\r\n  if (s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_cur ==\r\n      s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_start._M_cur) {\r\n    pvData = malloc(0x58);\r\n  }\r\n  else {\r\n    __tmp._M_cur = s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_cur\r\n    ;\r\n    if (s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_cur ==\r\n        s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_first) {\r\n      __tmp._M_cur = s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish.\r\n                     _M_node[-1] + 0x80;\r\n    }\r\n    pvData = __tmp._M_cur[-1];\r\n    if (s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_cur ==\r\n        s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_first) {\r\n      deque<event*,std::allocator<event*>_>::_M_pop_back_aux(&s_pool_event.c);\r\n    }\r\n    else {\r\n      s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_cur =\r\n           s_pool_event.c.super__Deque_base<event*,std::allocator<event*>_>._M_finish._M_cur + -1;\r\n    }\r\n  }\r\n  pvData->info = (void *)0x0;\r\n  pvData->func = func;\r\n  pvData->dwInfoID = dwInfoID;\r\n  pTVar1 = CEventQueue::Enqueue(&cxx_q,pvData,when + thecore_heart->pulse);\r\n  pvData->is_processing = '\\0';\r\n  pvData->is_force_to_end = '\\0';\r\n  pvData->q_el = pTVar1;\r\n  strncpy(pvData->file,file,0x3f);\r\n  pvData->file[0x3f] = '\\0';\r\n  pvData->line = line;\r\n  return pvData;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

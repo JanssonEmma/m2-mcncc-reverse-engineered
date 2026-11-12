@@ -1,0 +1,106 @@
+[
+  {
+    "function": {
+      "name": "CInputHandshake::CInputHandshake",
+      "address": "080cd6b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void CInputHandshake(CInputHandshake * this) */\r\n\r\nvoid __thiscall CInputHandshake::CInputHandshake(CInputHandshake *this)\r\n\r\n{\r\n  CPacketInfo *this_00;\r\n  TPacketElement *pTVar1;\r\n  \r\n                    /* Unresolved local var: CPacketInfoCG * pkPacketInfo@[???]\r\n                       Unresolved local var: TPacketElement * pkElem@[DW_OP_reg0(EAX)] */\r\n  CInputProcessor::CInputProcessor(&this->super_CInputProcessor);\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputHandshake_08216748;\r\n  this_00 = operator_new(0x18);\r\n  CPacketInfoCG::CPacketInfoCG((CPacketInfoCG *)this_00);\r\n  pTVar1 = CPacketInfo::GetElement(this_00,0xfe);\r\n  pTVar1->bSequencePacket = false;\r\n  pTVar1->iSize = pTVar1->iSize + -1;\r\n  this->m_pMainPacketInfo = (this->super_CInputProcessor).m_pPacketInfo;\r\n  CInputProcessor::BindPacketInfo(&this->super_CInputProcessor,this_00);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputAuth::CInputAuth",
+      "address": "080dc7f0"
+    },
+    "code": "\r\n/* DWARF original prototype: void CInputAuth(CInputAuth * this) */\r\n\r\nvoid __thiscall CInputAuth::CInputAuth(CInputAuth *this)\r\n\r\n{\r\n  CInputProcessor::CInputProcessor(&this->super_CInputProcessor);\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputAuth_08218f78;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "DESC::SetPhase",
+      "address": "0813a240"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetPhase(DESC * this, int _phase) */\r\n\r\nvoid __thiscall DESC::SetPhase(DESC *this,int _phase)\r\n\r\n{\r\n  TPacketGCPhase pack;\r\n  \r\n  if ((char)SetPhase(int)::s_inputClose == '\\0') {\r\n    CInputProcessor::CInputProcessor(&SetPhase::s_inputClose.super_CInputProcessor);\r\n    SetPhase(int)::s_inputClose._0_1_ = '\\x01';\r\n    SetPhase::s_inputClose.super_CInputProcessor._vptr_CInputProcessor =\r\n         (_func_int_varargs **)&PTR__CInputClose_082273b0;\r\n    atexit(__tcf_0);\r\n  }\r\n  if ((char)SetPhase(int)::s_inputHandshake == '\\0') {\r\n    CInputHandshake::CInputHandshake(&SetPhase::s_inputHandshake);\r\n    SetPhase(int)::s_inputHandshake._0_1_ = '\\x01';\r\n    atexit(__tcf_1);\r\n  }\r\n  if ((char)SetPhase(int)::s_inputLogin == '\\0') {\r\n    CInputProcessor::CInputProcessor(&SetPhase::s_inputLogin.super_CInputProcessor);\r\n    SetPhase(int)::s_inputLogin._0_1_ = '\\x01';\r\n    SetPhase::s_inputLogin.super_CInputProcessor._vptr_CInputProcessor =\r\n         (_func_int_varargs **)&PTR__CInputLogin_0821e478;\r\n    atexit(__tcf_2);\r\n  }\r\n  if ((char)SetPhase(int)::s_inputMain == '\\0') {\r\n    CInputProcessor::CInputProcessor(&SetPhase::s_inputMain.super_CInputProcessor);\r\n    SetPhase(int)::s_inputMain._0_1_ = '\\x01';\r\n    SetPhase::s_inputMain.super_CInputProcessor._vptr_CInputProcessor =\r\n         (_func_int_varargs **)&PTR__CInputMain_08220ab0;\r\n    atexit(__tcf_3);\r\n  }\r\n  if ((char)SetPhase(int)::s_inputDead == '\\0') {\r\n    CInputProcessor::CInputProcessor((CInputProcessor *)&SetPhase::s_inputDead);\r\n    SetPhase(int)::s_inputDead._0_1_ = '\\x01';\r\n    SetPhase::s_inputDead.super_CInputMain.super_CInputProcessor._vptr_CInputProcessor =\r\n         (_func_int_varargs **)&PTR__CInputDead_08220a90;\r\n    atexit(__tcf_4);\r\n  }\r\n  if ((char)SetPhase(int)::s_inputAuth == '\\0') {\r\n    CInputAuth::CInputAuth(&SetPhase::s_inputAuth);\r\n    SetPhase(int)::s_inputAuth._0_1_ = '\\x01';\r\n    atexit(__tcf_5);\r\n  }\r\n  this->m_iPhase = _phase;\r\n  pack.phase = (BYTE)_phase;\r\n  pack.header = 0xfd;\r\n  Packet(this,&pack,2);\r\n  switch(this->m_iPhase) {\r\n  case 0:\r\n    this->m_pInputProcessor = &SetPhase::s_inputClose.super_CInputProcessor;\r\n    break;\r\n  case 1:\r\n    this->m_pInputProcessor = &SetPhase::s_inputHandshake.super_CInputProcessor;\r\n    break;\r\n  case 2:\r\n  case 3:\r\n  case 4:\r\n    this->m_bEncrypted = true;\r\n    this->m_pInputProcessor = &SetPhase::s_inputLogin.super_CInputProcessor;\r\n    break;\r\n  case 5:\r\n  case 6:\r\n    this->m_bEncrypted = true;\r\n    this->m_pInputProcessor = &SetPhase::s_inputMain.super_CInputProcessor;\r\n    break;\r\n  case 10:\r\n    this->m_bEncrypted = true;\r\n    this->m_pInputProcessor = &SetPhase::s_inputAuth.super_CInputProcessor;\r\n    sys_log(0,\"AUTH_PHASE %p\",this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputHandshake::~CInputHandshake",
+      "address": "080cf850"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputHandshake(CInputHandshake * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputHandshake::~CInputHandshake(CInputHandshake *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputHandshake::GetType",
+      "address": "080cf880"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CInputHandshake * this) */\r\n\r\nBYTE __thiscall CInputHandshake::GetType(CInputHandshake *this)\r\n\r\n{\r\n  return '\\x01';\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputLogin::~CInputLogin",
+      "address": "080f4fd0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputLogin(CInputLogin * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputLogin::~CInputLogin(CInputLogin *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputLogin::GetType",
+      "address": "080f5000"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CInputLogin * this) */\r\n\r\nBYTE __thiscall CInputLogin::GetType(CInputLogin *this)\r\n\r\n{\r\n  return '\\x02';\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputMain::~CInputMain",
+      "address": "081034f0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputMain(CInputMain * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputMain::~CInputMain(CInputMain *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputMain::GetType",
+      "address": "08103520"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CInputMain * this) */\r\n\r\nBYTE __thiscall CInputMain::GetType(CInputMain *this)\r\n\r\n{\r\n  return '\\x03';\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputDead::~CInputDead",
+      "address": "08103530"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputDead(CInputDead * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputDead::~CInputDead(CInputDead *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputMain).super_CInputProcessor._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputDead::GetType",
+      "address": "08103560"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CInputDead * this) */\r\n\r\nBYTE __thiscall CInputDead::GetType(CInputDead *this)\r\n\r\n{\r\n  return '\\x04';\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputAuth::~CInputAuth",
+      "address": "080dd5b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CInputAuth(CInputAuth * this, int __in_chrg) */\r\n\r\nvoid __thiscall CInputAuth::~CInputAuth(CInputAuth *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_CInputProcessor)._vptr_CInputProcessor =\r\n       (_func_int_varargs **)&PTR__CInputProcessor_08216768;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CInputAuth::GetType",
+      "address": "080dd5e0"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CInputAuth * this) */\r\n\r\nBYTE __thiscall CInputAuth::GetType(CInputAuth *this)\r\n\r\n{\r\n  return '\\b';\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

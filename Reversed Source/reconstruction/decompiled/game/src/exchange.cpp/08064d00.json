@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08064d00",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CExchange::CheckSpace",
+      "address": "08064d00"
+    },
+    "code": "\r\n/* DWARF original prototype: bool CheckSpace(CExchange * this) */\r\n\r\nbool __thiscall CExchange::CheckSpace(CExchange *this)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  LPITEM pCVar1;\r\n  int iVar2;\r\n  byte bVar3;\r\n  int iVar4;\r\n  \r\n                    /* Unresolved local var: LPCHARACTER victim@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: LPITEM item@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int i@[DW_OP_reg6(ESI)] */\r\n  if ((char)CheckSpace()::s_grid == '\\0') {\r\n    CGrid::CGrid(&CheckSpace::s_grid,5,0x12);\r\n    CheckSpace()::s_grid._0_1_ = '\\x01';\r\n    atexit(__tcf_0);\r\n  }\r\n  CGrid::Clear(&CheckSpace::s_grid);\r\n  this_00 = this->m_pCompany->m_pOwner;\r\n  iVar4 = 0;\r\n  do {\r\n    pCVar1 = CHARACTER::GetItem(this_00,(BYTE)iVar4);\r\n    if (pCVar1 != (LPITEM)0x0) {\r\n      bVar3 = 0;\r\n      if (pCVar1->m_pProto != (TItemTable *)0x0) {\r\n        bVar3 = pCVar1->m_pProto->bSize;\r\n      }\r\n      CGrid::Put(&CheckSpace::s_grid,iVar4,1,(uint)bVar3);\r\n    }\r\n    iVar4 = iVar4 + 1;\r\n  } while (iVar4 < 0x5a);\r\n  iVar4 = 0;\r\n  do {\r\n                    /* Unresolved local var: int iPos@[DW_OP_reg2(EDX)] */\r\n    pCVar1 = this->m_apItems[iVar4];\r\n    if (pCVar1 != (LPITEM)0x0) {\r\n      bVar3 = 0;\r\n      if (pCVar1->m_pProto != (TItemTable *)0x0) {\r\n        bVar3 = pCVar1->m_pProto->bSize;\r\n      }\r\n      iVar2 = CGrid::FindBlank(&CheckSpace::s_grid,1,(uint)bVar3);\r\n      if (iVar2 < 0) {\r\n        return false;\r\n      }\r\n      bVar3 = 0;\r\n      if (pCVar1->m_pProto != (TItemTable *)0x0) {\r\n        bVar3 = pCVar1->m_pProto->bSize;\r\n      }\r\n      CGrid::Put(&CheckSpace::s_grid,iVar2,1,(uint)bVar3);\r\n    }\r\n    iVar4 = iVar4 + 1;\r\n    if (0xb < iVar4) {\r\n      return true;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

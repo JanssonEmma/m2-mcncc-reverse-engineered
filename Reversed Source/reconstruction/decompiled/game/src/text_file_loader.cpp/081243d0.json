@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081243d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81243d0",
+    "function": {
+      "name": "__uninitialized_copy_aux<__gnu_cxx::__normal_iterator<const_std::string*,_std::vector<std::string,_std::allocator<std::string>_>_>,_std::string*>",
+      "address": "081243d0"
+    },
+    "signature": "string * __uninitialized_copy_aux<__gnu_cxx::__normal_iterator<const_std::string*,_std::vector<std::string,_std::allocator<std::string>_>_>,_std::string*>(__normal_iterator<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>*,std::vector<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>_> __first, __normal_iterator<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>*,std::vector<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>_> __last, string * __result, __false_type param_4)",
+    "code": "\r\n/* DWARF original name: __uninitialized_copy_aux<__gnu_cxx::__normal_iterator<const std::string*,\r\n   std::vector<std::string, std::allocator<std::string> > >, std::string*> */\r\n\r\nstring * __uninitialized_copy_aux<__gnu_cxx::__normal_iterator<const_std::string*,_std::vector<std::string,_std::allocator<std::string>_>_>,_std::string*>\r\n                   (__normal_iterator<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>*,std::vector<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>_>\r\n                    __first,__normal_iterator<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>*,std::vector<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>_>\r\n                            __last,string *__result,__false_type param_4)\r\n\r\n{\r\n  for (; __first._M_current != __last._M_current;\r\n      __first._M_current = (string *)((int)__first._M_current + 4)) {\r\n    if ((string *)__result != (string *)0x0) {\r\n      std::string::string((string *)__result,(string *)__first._M_current);\r\n    }\r\n    __result = (string *)((int)__result + 4);\r\n  }\r\n  return (string *)(string *)__result;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

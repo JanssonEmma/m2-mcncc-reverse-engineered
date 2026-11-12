@@ -1,0 +1,250 @@
+{
+  "0x080c8280": {
+    "function": {
+      "name": "CHorseRider::CHorseRider",
+      "address": "080c8280"
+    },
+    "code": "\r\n/* DWARF original prototype: void CHorseRider(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::CHorseRider(CHorseRider *this)\r\n\r\n{\r\n  this->_vptr_CHorseRider = (_func_int_varargs **)&PTR__CHorseRider_08205668;\r\n  Initialize(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c82c0": {
+    "function": {
+      "name": "CHorseRider::~CHorseRider",
+      "address": "080c82c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CHorseRider(CHorseRider * this, int __in_chrg) */\r\n\r\nvoid __thiscall CHorseRider::~CHorseRider(CHorseRider *this,int __in_chrg)\r\n\r\n{\r\n  this->_vptr_CHorseRider = (_func_int_varargs **)&PTR__CHorseRider_08205668;\r\n  Destroy(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8390": {
+    "function": {
+      "name": "CHorseRider::EnterHorse",
+      "address": "080c8390"
+    },
+    "code": "\r\n/* DWARF original prototype: void EnterHorse(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::EnterHorse(CHorseRider *this)\r\n\r\n{\r\n  if (((this->m_Horse).bLevel != '\\0') && (0 < (this->m_Horse).sHealth)) {\r\n    if ((this->m_Horse).bRiding == '\\0') {\r\n      StartStaminaRegenEvent(this);\r\n    }\r\n    else {\r\n      (this->m_Horse).bRiding = '\\0';\r\n      (*this->_vptr_CHorseRider[8])(this);\r\n    }\r\n    CheckHorseHealthDropTime(this,false);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c83e0": {
+    "function": {
+      "name": "CHorseRider::ReviveHorse",
+      "address": "080c83e0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool ReviveHorse(CHorseRider * this) */\r\n\r\nbool __thiscall CHorseRider::ReviveHorse(CHorseRider *this)\r\n\r\n{\r\n  short sVar1;\r\n  int iVar2;\r\n  bool bVar3;\r\n  uint uVar4;\r\n  \r\n                    /* Unresolved local var: int level@[???] */\r\n  bVar3 = false;\r\n  uVar4 = (uint)(this->m_Horse).bLevel;\r\n  if ((uVar4 != 0) && ((this->m_Horse).sHealth < 1)) {\r\n    iVar2 = uVar4 * 0x30;\r\n    sVar1 = *(short *)(c_aHorseStat + iVar2 + 0xc);\r\n    (this->m_Horse).sHealth = *(short *)(c_aHorseStat + iVar2 + 8);\r\n    (this->m_Horse).sStamina = sVar1;\r\n    ResetHorseHealthDropTime(this);\r\n    StartStaminaRegenEvent(this);\r\n    bVar3 = true;\r\n  }\r\n  return bVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8480": {
+    "function": {
+      "name": "CHorseRider::FeedHorse",
+      "address": "080c8480"
+    },
+    "code": "\r\n/* DWARF original prototype: void FeedHorse(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::FeedHorse(CHorseRider *this)\r\n\r\n{\r\n  if (((this->m_Horse).bLevel != '\\0') && (0 < (this->m_Horse).sHealth)) {\r\n    UpdateHorseHealth(this,1,true);\r\n    ResetHorseHealthDropTime(this);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c84d0": {
+    "function": {
+      "name": "CHorseRider::SetHorseData",
+      "address": "080c84d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetHorseData(CHorseRider * this, THorseInfo * crInfo) */\r\n\r\nvoid __thiscall CHorseRider::SetHorseData(CHorseRider *this,THorseInfo *crInfo)\r\n\r\n{\r\n  BYTE BVar1;\r\n  short sVar2;\r\n  \r\n  BVar1 = crInfo->bRiding;\r\n  sVar2 = crInfo->sStamina;\r\n  (this->m_Horse).bLevel = crInfo->bLevel;\r\n  (this->m_Horse).bRiding = BVar1;\r\n  (this->m_Horse).sStamina = sVar2;\r\n  *(undefined4 *)&(this->m_Horse).sHealth = *(undefined4 *)&crInfo->sHealth;\r\n  *(undefined2 *)((int)&(this->m_Horse).dwHorseHealthDropTime + 2) =\r\n       *(undefined2 *)((int)&crInfo->dwHorseHealthDropTime + 2);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c84f0": {
+    "function": {
+      "name": "CHorseRider::UpdateHorseDataByLogoff",
+      "address": "080c84f0"
+    },
+    "code": "\r\n/* DWARF original prototype: void UpdateHorseDataByLogoff(CHorseRider * this, DWORD dwLogoffTime) */\r\n\r\nvoid __thiscall CHorseRider::UpdateHorseDataByLogoff(CHorseRider *this,DWORD dwLogoffTime)\r\n\r\n{\r\n  if (((this->m_Horse).bLevel != '\\0') && (0x2cf < dwLogoffTime)) {\r\n    UpdateHorseStamina(this,dwLogoffTime / 0x2d0,false);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8530": {
+    "function": {
+      "name": "CHorseRider::UpdateHorseStamina",
+      "address": "080c8530"
+    },
+    "code": "\r\n/* DWARF original prototype: void UpdateHorseStamina(CHorseRider * this, int iStamina, bool bSend)\r\n    */\r\n\r\nvoid __thiscall CHorseRider::UpdateHorseStamina(CHorseRider *this,int iStamina,bool bSend)\r\n\r\n{\r\n  int iVar1;\r\n  bool bSend_local;\r\n  \r\n                    /* Unresolved local var: int level@[DW_OP_reg0(EAX)] */\r\n  iVar1 = MINMAX(0,(this->m_Horse).sStamina + iStamina,\r\n                 *(int *)(c_aHorseStat + (uint)(this->m_Horse).bLevel * 0x30 + 0xc));\r\n  (this->m_Horse).sStamina = (short)iVar1;\r\n  if (((short)iVar1 == 0) && ((this->m_Horse).bRiding != '\\0')) {\r\n    (*this->_vptr_CHorseRider[9])(this);\r\n  }\r\n  if (bSend) {\r\n    (*this->_vptr_CHorseRider[5])(this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c85b0": {
+    "function": {
+      "name": "CHorseRider::StartRiding",
+      "address": "080c85b0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool StartRiding(CHorseRider * this) */\r\n\r\nbool __thiscall CHorseRider::StartRiding(CHorseRider *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  if (((this->m_Horse).bRiding == '\\0') && ((this->m_Horse).bLevel != '\\0')) {\r\n    bVar1 = false;\r\n    if ((0 < (this->m_Horse).sHealth) && (0 < (this->m_Horse).sStamina)) {\r\n      (this->m_Horse).bRiding = '\\x01';\r\n      StartStaminaConsumeEvent(this);\r\n      (*this->_vptr_CHorseRider[5])(this);\r\n      bVar1 = true;\r\n    }\r\n  }\r\n  else {\r\n    bVar1 = false;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8610": {
+    "function": {
+      "name": "CHorseRider::StopRiding",
+      "address": "080c8610"
+    },
+    "code": "\r\n/* DWARF original prototype: bool StopRiding(CHorseRider * this) */\r\n\r\nbool __thiscall CHorseRider::StopRiding(CHorseRider *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = (this->m_Horse).bRiding != '\\0';\r\n  if (bVar1) {\r\n    (this->m_Horse).bRiding = '\\0';\r\n    StartStaminaRegenEvent(this);\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8640": {
+    "function": {
+      "name": "horse_stamina_consume_event",
+      "address": "080c8640"
+    },
+    "code": "\r\nlong horse_stamina_consume_event(EVENT *event)\r\n\r\n{\r\n  CHorseRider *this;\r\n  long lVar1;\r\n  \r\n                    /* Unresolved local var: CHorseRider * hr@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int delta@[DW_OP_reg6(ESI)] */\r\n  this = *(CHorseRider **)event->info;\r\n  if ((this->m_Horse).sHealth < 1) {\r\n    this->m_eventStaminaConsume = (LPEVENT)0x0;\r\n    lVar1 = 0;\r\n  }\r\n  else {\r\n    CHorseRider::UpdateHorseStamina(this,-1,true);\r\n    (*this->_vptr_CHorseRider[7])(this,0x168);\r\n    lVar1 = passes_per_sec * 0x168;\r\n    if ((this->m_Horse).sStamina == 0) {\r\n      this->m_eventStaminaConsume = (LPEVENT)0x0;\r\n      lVar1 = 0;\r\n    }\r\n    CHorseRider::CheckHorseHealthDropTime(this,true);\r\n    sys_log(0,\"HORSE STAMINA - %p\",event);\r\n  }\r\n  return lVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8700": {
+    "function": {
+      "name": "horse_stamina_regen_event",
+      "address": "080c8700"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nlong horse_stamina_regen_event(EVENT *event)\r\n\r\n{\r\n  short sVar1;\r\n  CHorseRider *this;\r\n  int iVar2;\r\n  short sVar3;\r\n  long lVar4;\r\n  \r\n                    /* Unresolved local var: CHorseRider * hr@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int delta@[DW_OP_reg7(EDI)] */\r\n  this = *(CHorseRider **)event->info;\r\n  if ((this->m_Horse).sHealth < 1) {\r\n    this->m_eventStaminaRegen = (LPEVENT)0x0;\r\n    lVar4 = 0;\r\n  }\r\n  else {\r\n    CHorseRider::UpdateHorseStamina(this,1,true);\r\n    iVar2 = passes_per_sec;\r\n    sVar1 = (this->m_Horse).sStamina;\r\n    sVar3 = CHorseRider::GetHorseMaxStamina(this);\r\n    lVar4 = iVar2 * 0x2d0;\r\n    if (sVar3 == sVar1) {\r\n      this->m_eventStaminaRegen = (LPEVENT)0x0;\r\n      lVar4 = 0;\r\n    }\r\n    CHorseRider::CheckHorseHealthDropTime(this,true);\r\n    sys_log(0,\"HORSE STAMINA + %p\",event);\r\n  }\r\n  return lVar4;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c87b0": {
+    "function": {
+      "name": "CHorseRider::StartStaminaConsumeEvent",
+      "address": "080c87b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void StartStaminaConsumeEvent(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::StartStaminaConsumeEvent(CHorseRider *this)\r\n\r\n{\r\n  DWORD dwInfoID;\r\n  LPEVENT pEVar1;\r\n  horserider_info *info;\r\n  \r\n                    /* Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  if (((this->m_Horse).bLevel != '\\0') && (0 < (this->m_Horse).sHealth)) {\r\n    sys_log(0,\"HORSE STAMINA REGEN EVENT CANCEL %p\",this->m_eventStaminaRegen);\r\n    event_cancel(&this->m_eventStaminaRegen);\r\n    if (this->m_eventStaminaConsume == (LPEVENT)0x0) {\r\n      dwInfoID = __AllocEventInfo(4,&info);\r\n      info->hr = this;\r\n      pEVar1 = event_create_ex(horse_stamina_consume_event,dwInfoID,passes_per_sec * 0x168,\r\n                               \"horse_rider.cpp\",0x11b);\r\n      this->m_eventStaminaConsume = pEVar1;\r\n      sys_log(0,\"HORSE STAMINA CONSUME EVENT CREATE %p\",pEVar1);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8870": {
+    "function": {
+      "name": "CHorseRider::StartStaminaRegenEvent",
+      "address": "080c8870"
+    },
+    "code": "\r\n/* DWARF original prototype: void StartStaminaRegenEvent(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::StartStaminaRegenEvent(CHorseRider *this)\r\n\r\n{\r\n  DWORD dwInfoID;\r\n  LPEVENT pEVar1;\r\n  horserider_info *info;\r\n  \r\n                    /* Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  if (((this->m_Horse).bLevel != '\\0') && (0 < (this->m_Horse).sHealth)) {\r\n    sys_log(0,\"HORSE STAMINA CONSUME EVENT CANCEL %p\",this->m_eventStaminaConsume);\r\n    event_cancel(&this->m_eventStaminaConsume);\r\n    if (this->m_eventStaminaRegen == (LPEVENT)0x0) {\r\n      dwInfoID = __AllocEventInfo(4,&info);\r\n      info->hr = this;\r\n      pEVar1 = event_create_ex(horse_stamina_regen_event,dwInfoID,passes_per_sec * 0x2d0,\r\n                               \"horse_rider.cpp\",0x130);\r\n      this->m_eventStaminaRegen = pEVar1;\r\n      sys_log(0,\"HORSE STAMINA REGEN EVENT CREATE %p\",pEVar1);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8930": {
+    "function": {
+      "name": "CHorseRider::ResetHorseHealthDropTime",
+      "address": "080c8930"
+    },
+    "code": "\r\n/* DWARF original prototype: void ResetHorseHealthDropTime(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::ResetHorseHealthDropTime(CHorseRider *this)\r\n\r\n{\r\n  time_t tVar1;\r\n  \r\n  tVar1 = get_global_time();\r\n  (this->m_Horse).dwHorseHealthDropTime = tVar1 + 0x3f480;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8950": {
+    "function": {
+      "name": "CHorseRider::CheckHorseHealthDropTime",
+      "address": "080c8950"
+    },
+    "code": "\r\n/* DWARF original prototype: void CheckHorseHealthDropTime(CHorseRider * this, bool bSend) */\r\n\r\nvoid __thiscall CHorseRider::CheckHorseHealthDropTime(CHorseRider *this,bool bSend)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  bool bSend_local;\r\n  \r\n                    /* Unresolved local var: DWORD now@[DW_OP_reg7(EDI)] */\r\n  uVar2 = get_global_time();\r\n  uVar1 = (this->m_Horse).dwHorseHealthDropTime;\r\n  while (uVar1 < uVar2) {\r\n    (this->m_Horse).dwHorseHealthDropTime = uVar1 + 0x3f480;\r\n    UpdateHorseHealth(this,-1,bSend);\r\n    uVar1 = (this->m_Horse).dwHorseHealthDropTime;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c89b0": {
+    "function": {
+      "name": "CHorseRider::UpdateHorseHealth",
+      "address": "080c89b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void UpdateHorseHealth(CHorseRider * this, int iHealth, bool bSend) */\r\n\r\nvoid __thiscall CHorseRider::UpdateHorseHealth(CHorseRider *this,int iHealth,bool bSend)\r\n\r\n{\r\n  int iVar1;\r\n  uint uVar2;\r\n  bool bSend_local;\r\n  \r\n                    /* Unresolved local var: int level@[DW_OP_reg3(EBX)] */\r\n  uVar2 = (uint)(this->m_Horse).bLevel;\r\n  iVar1 = MINMAX(0,(this->m_Horse).sHealth + iHealth,*(int *)(c_aHorseStat + uVar2 * 0x30 + 8));\r\n  (this->m_Horse).sHealth = (short)iVar1;\r\n  if ((uVar2 != 0) && ((short)iVar1 == 0)) {\r\n    (*this->_vptr_CHorseRider[3])(this);\r\n  }\r\n  if (bSend) {\r\n    (*this->_vptr_CHorseRider[5])(this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8a30": {
+    "function": {
+      "name": "CHorseRider::HorseDie",
+      "address": "080c8a30"
+    },
+    "code": "\r\n/* DWARF original prototype: void HorseDie(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::HorseDie(CHorseRider *this)\r\n\r\n{\r\n  sys_log(0,\"HORSE DIE %p %p\",this->m_eventStaminaRegen,this->m_eventStaminaConsume);\r\n  UpdateHorseStamina(this,-(int)(this->m_Horse).sStamina,true);\r\n  event_cancel(&this->m_eventStaminaRegen);\r\n  event_cancel(&this->m_eventStaminaConsume);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8aa0": {
+    "function": {
+      "name": "CHorseRider::SetHorseLevel",
+      "address": "080c8aa0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetHorseLevel(CHorseRider * this, int iLevel) */\r\n\r\nvoid __thiscall CHorseRider::SetHorseLevel(CHorseRider *this,int iLevel)\r\n\r\n{\r\n  short sVar1;\r\n  short sVar2;\r\n  int iVar3;\r\n  \r\n  iVar3 = MINMAX(0,iLevel,0x1e);\r\n  (this->m_Horse).bLevel = (BYTE)iVar3;\r\n  sVar1 = *(short *)(c_aHorseStat + iVar3 * 0x30 + 0xc);\r\n  sVar2 = *(short *)(c_aHorseStat + iVar3 * 0x30 + 8);\r\n  (this->m_Horse).dwHorseHealthDropTime = 0;\r\n  (this->m_Horse).sStamina = sVar1;\r\n  (this->m_Horse).sHealth = sVar2;\r\n  ResetHorseHealthDropTime(this);\r\n  (*this->_vptr_CHorseRider[5])(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::SendHorseInfo": {
+    "function": {
+      "name": "CHorseRider::SendHorseInfo",
+      "address": "080c8bd0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SendHorseInfo(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::SendHorseInfo(CHorseRider *this)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::ClearHorseInfo": {
+    "function": {
+      "name": "CHorseRider::ClearHorseInfo",
+      "address": "080c8be0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ClearHorseInfo(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::ClearHorseInfo(CHorseRider *this)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::UpdateRideTime": {
+    "function": {
+      "name": "CHorseRider::UpdateRideTime",
+      "address": "080c8bf0"
+    },
+    "code": "\r\n/* DWARF original prototype: void UpdateRideTime(CHorseRider * this, int interval) */\r\n\r\nvoid __thiscall CHorseRider::UpdateRideTime(CHorseRider *this,int interval)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::GetMyHorseVnum": {
+    "function": {
+      "name": "CHorseRider::GetMyHorseVnum",
+      "address": "080c8c00"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetMyHorseVnum(CHorseRider * this) */\r\n\r\nDWORD __thiscall CHorseRider::GetMyHorseVnum(CHorseRider *this)\r\n\r\n{\r\n  return 0x4e3e;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c82a0": {
+    "function": {
+      "name": "CHorseRider::CHorseRider",
+      "address": "080c82a0"
+    },
+    "code": "\r\n/* DWARF original prototype: void CHorseRider(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::CHorseRider(CHorseRider *this)\r\n\r\n{\r\n  this->_vptr_CHorseRider = (_func_int_varargs **)&PTR__CHorseRider_08205668;\r\n  Initialize(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c82e0": {
+    "function": {
+      "name": "CHorseRider::~CHorseRider",
+      "address": "080c82e0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CHorseRider(CHorseRider * this, int __in_chrg) */\r\n\r\nvoid __thiscall CHorseRider::~CHorseRider(CHorseRider *this,int __in_chrg)\r\n\r\n{\r\n  this->_vptr_CHorseRider = (_func_int_varargs **)&PTR__CHorseRider_08205668;\r\n  Destroy(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x080c8300": {
+    "function": {
+      "name": "CHorseRider::~CHorseRider",
+      "address": "080c8300"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CHorseRider(CHorseRider * this, int __in_chrg) */\r\n\r\nvoid __thiscall CHorseRider::~CHorseRider(CHorseRider *this,int __in_chrg)\r\n\r\n{\r\n  this->_vptr_CHorseRider = (_func_int_varargs **)&PTR__CHorseRider_08205668;\r\n  Destroy(this);\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::Initialize": {
+    "function": {
+      "name": "CHorseRider::Initialize",
+      "address": "080c8330"
+    },
+    "code": "\r\n/* DWARF original prototype: void Initialize(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::Initialize(CHorseRider *this)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  this->m_eventStaminaRegen = (LPEVENT)0x0;\r\n  this->m_eventStaminaConsume = (LPEVENT)0x0;\r\n  for (iVar1 = 2; this = (CHorseRider *)&this->m_Horse, iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    ((THorseInfo *)this)->bLevel = '\\0';\r\n    ((THorseInfo *)this)->bRiding = '\\0';\r\n    ((THorseInfo *)this)->sStamina = 0;\r\n  }\r\n  ((THorseInfo *)this)->bLevel = '\\0';\r\n  ((THorseInfo *)this)->bRiding = '\\0';\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::Destroy": {
+    "function": {
+      "name": "CHorseRider::Destroy",
+      "address": "080c8360"
+    },
+    "code": "\r\n/* DWARF original prototype: void Destroy(CHorseRider * this) */\r\n\r\nvoid __thiscall CHorseRider::Destroy(CHorseRider *this)\r\n\r\n{\r\n  event_cancel(&this->m_eventStaminaRegen);\r\n  event_cancel(&this->m_eventStaminaConsume);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::GetHorseGrade": {
+    "function": {
+      "name": "CHorseRider::GetHorseGrade",
+      "address": "080c8b10"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetHorseGrade(CHorseRider * this) */\r\n\r\nBYTE __thiscall CHorseRider::GetHorseGrade(CHorseRider *this)\r\n\r\n{\r\n  byte bVar1;\r\n  BYTE BVar2;\r\n  \r\n                    /* Unresolved local var: BYTE grade@[DW_OP_reg2(EDX)] */\r\n  BVar2 = '\\0';\r\n  bVar1 = (this->m_Horse).bLevel;\r\n  if (bVar1 != 0) {\r\n    BVar2 = (char)((int)(bVar1 - 1) / 10) + '\\x01';\r\n  }\r\n  return BVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::GetHorseMaxHealth": {
+    "function": {
+      "name": "CHorseRider::GetHorseMaxHealth",
+      "address": "080c8440"
+    },
+    "code": "\r\n/* DWARF original prototype: short GetHorseMaxHealth(CHorseRider * this) */\r\n\r\nshort __thiscall CHorseRider::GetHorseMaxHealth(CHorseRider *this)\r\n\r\n{\r\n                    /* Unresolved local var: int level@[DW_OP_reg0(EAX)] */\r\n  return *(short *)(c_aHorseStat + (uint)(this->m_Horse).bLevel * 0x30 + 8);\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHorseRider::GetHorseMaxStamina": {
+    "function": {
+      "name": "CHorseRider::GetHorseMaxStamina",
+      "address": "080c8460"
+    },
+    "code": "\r\n/* DWARF original prototype: short GetHorseMaxStamina(CHorseRider * this) */\r\n\r\nshort __thiscall CHorseRider::GetHorseMaxStamina(CHorseRider *this)\r\n\r\n{\r\n                    /* Unresolved local var: int level@[DW_OP_reg0(EAX)] */\r\n  return *(short *)(c_aHorseStat + (uint)(this->m_Horse).bLevel * 0x30 + 0xc);\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

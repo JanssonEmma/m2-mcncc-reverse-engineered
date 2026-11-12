@@ -1,0 +1,1769 @@
+{
+  "saved_definitions": {
+    "0806cd70": "CHARACTER::ComputeSkillPoints",
+    "08073890": "CHARACTER::StartMuyeongEvent",
+    "08073900": "CHARACTER::StopMuyeongEvent",
+    "080add20": "CGuild::UnderAnyWar",
+    "080ae5a0": "CGuild::DeclareWar",
+    "080c8610": "CHorseRider::StopRiding",
+    "080c8870": "CHorseRider::StartStaminaRegenEvent",
+    "0812c520": "CHARACTER::ComputePoints",
+    "08135b10": "CHARACTER::SetPolymorph",
+    "08136010": "CHARACTER::MountVnum",
+    "0813e780": "CHARACTER::RefreshAffect",
+    "0813e880": "CHARACTER::ComputeAffect",
+    "08167420": "CItem::ModifyPoints",
+    "0816d720": "CHARACTER::StopRiding",
+    "0816d940": "CHARACTER::HorseSummon",
+    "081a4540": "CQuestManager::Unmount",
+    "081b1a00": "NPC::OnUnmount"
+  },
+  "edges": [
+    {
+      "source": "08073890",
+      "call_site": "080738be",
+      "target": "0804cc60",
+      "name": "__AllocEventInfo",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08073890",
+      "call_site": "080738ef",
+      "target": "0804ceb0",
+      "name": "event_create_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08073900",
+      "call_site": "0807390b",
+      "target": "0804cff0",
+      "name": "event_cancel",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080add20",
+      "call_site": "080add60",
+      "target": "080514e0",
+      "name": "_Rb_tree_base_iterator::_M_increment",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080c8610",
+      "call_site": "080c862c",
+      "target": "080c8870",
+      "name": "CHorseRider::StartStaminaRegenEvent",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080c8870",
+      "call_site": "080c88a2",
+      "target": "081b82a0",
+      "name": "sys_log",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080c8870",
+      "call_site": "080c88ad",
+      "target": "0804cff0",
+      "name": "event_cancel",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080c8870",
+      "call_site": "080c88d5",
+      "target": "0804cc60",
+      "name": "__AllocEventInfo",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080c8870",
+      "call_site": "080c890c",
+      "target": "0804ceb0",
+      "name": "event_create_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "080c8870",
+      "call_site": "080c8928",
+      "target": "081b82a0",
+      "name": "sys_log",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c53b",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c552",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c569",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c57f",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c592",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c5a6",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c5ba",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c5ce",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c5e2",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c5f6",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c60a",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c61e",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c632",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c646",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c69c",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c6b9",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c6d1",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c6e9",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c6fe",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c716",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c727",
+      "target": "0812dec0",
+      "name": "CHARACTER::GetRealPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c73c",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c74d",
+      "target": "0812dec0",
+      "name": "CHARACTER::GetRealPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c762",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c773",
+      "target": "0812dec0",
+      "name": "CHARACTER::GetRealPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c788",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c799",
+      "target": "0812dec0",
+      "name": "CHARACTER::GetRealPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c7ae",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c7bf",
+      "target": "081305d0",
+      "name": "CHARACTER::GetOriginalPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c7d4",
+      "target": "08130520",
+      "name": "CHARACTER::SetPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c7e5",
+      "target": "081305d0",
+      "name": "CHARACTER::GetOriginalPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c7fd",
+      "target": "08130520",
+      "name": "CHARACTER::SetPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c80e",
+      "target": "081305d0",
+      "name": "CHARACTER::GetOriginalPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c826",
+      "target": "08130520",
+      "name": "CHARACTER::SetPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c837",
+      "target": "081305d0",
+      "name": "CHARACTER::GetOriginalPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c84f",
+      "target": "08130520",
+      "name": "CHARACTER::SetPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c86f",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c885",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c89b",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c8b1",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c8cc",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c8e7",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c902",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c91d",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c937",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c94e",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c961",
+      "target": "0812a580",
+      "name": "CHARACTER::GetJob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c984",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c990",
+      "target": "0812a580",
+      "name": "CHARACTER::GetJob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c9ac",
+      "target": "0812a580",
+      "name": "CHARACTER::GetJob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c9cf",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c9db",
+      "target": "0812a580",
+      "name": "CHARACTER::GetJob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812c9f7",
+      "target": "0812a580",
+      "name": "CHARACTER::GetJob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ca14",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ca1e",
+      "target": "0812a580",
+      "name": "CHARACTER::GetJob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ca51",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ca6b",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ca77",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ca98",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cab2",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cad5",
+      "target": "0812bda0",
+      "name": "CHARACTER::ComputeBattlePoints",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812caf8",
+      "target": "0812dee0",
+      "name": "CHARACTER::SetRealPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cb1e",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cb41",
+      "target": "0812dee0",
+      "name": "CHARACTER::SetRealPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cb67",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cb8f",
+      "target": "081712b0",
+      "name": "CHARACTER::GetWear",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cbce",
+      "target": "081288a0",
+      "name": "CHARACTER::UpdatePacket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cbd9",
+      "target": "0806cd70",
+      "name": "CHARACTER::ComputeSkillPoints",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cbeb",
+      "target": "0813e780",
+      "name": "CHARACTER::RefreshAffect",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cc0e",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cc33",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cc47",
+      "target": "081712b0",
+      "name": "CHARACTER::GetWear",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cc58",
+      "target": "08167420",
+      "name": "CItem::ModifyPoints",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cc64",
+      "target": "081712b0",
+      "name": "CHARACTER::GetWear",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cca8",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ccd7",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cd06",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cd31",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cd5d",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cd80",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cda9",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cdcc",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cdf8",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ce1e",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ce4a",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812ce6d",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cea3",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0812c520",
+      "call_site": "0812cec5",
+      "target": "0812e230",
+      "name": "CHARACTER::SetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135b53",
+      "target": "08127930",
+      "name": "CHARACTER::GetName",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135b70",
+      "target": "081b82a0",
+      "name": "sys_log",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135b8e",
+      "target": "08050ad0",
+      "name": "CEntity::ViewReencode",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135bac",
+      "target": "0812bda0",
+      "name": "CHARACTER::ComputeBattlePoints",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135bd4",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135bf7",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135c15",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135c38",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08135b10",
+      "call_site": "08135c47",
+      "target": null,
+      "name": null,
+      "ref_type": "COMPUTED_CALL",
+      "direct": false,
+      "external": false
+    },
+    {
+      "source": "08136010",
+      "call_site": "08136030",
+      "target": "08050ad0",
+      "name": "CEntity::ViewReencode",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08136010",
+      "call_site": "0813603e",
+      "target": "0812c520",
+      "name": "CHARACTER::ComputePoints",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e780",
+      "call_site": "0813e7b5",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e780",
+      "call_site": "0813e7c8",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e780",
+      "call_site": "0813e805",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e780",
+      "call_site": "0813e811",
+      "target": "081288a0",
+      "name": "CHARACTER::UpdatePacket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e780",
+      "call_site": "0813e82a",
+      "target": "0812e0a0",
+      "name": "CHARACTER::GetPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e780",
+      "call_site": "0813e85f",
+      "target": "0813e880",
+      "name": "CHARACTER::ComputeAffect",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e880",
+      "call_site": "0813e8c3",
+      "target": "080add20",
+      "name": "CGuild::UnderAnyWar",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e880",
+      "call_site": "0813e924",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e880",
+      "call_site": "0813e94a",
+      "target": "08073890",
+      "name": "CHARACTER::StartMuyeongEvent",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0813e880",
+      "call_site": "0813e95c",
+      "target": "08073900",
+      "name": "CHARACTER::StopMuyeongEvent",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "08167436",
+      "target": "08168810",
+      "name": "CItem::IsAccessoryForSocket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "081674e3",
+      "target": "0812f7d0",
+      "name": "CHARACTER::ApplyPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "08167541",
+      "target": "08130520",
+      "name": "CHARACTER::SetPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "08167560",
+      "target": "081305d0",
+      "name": "CHARACTER::GetOriginalPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "081675fd",
+      "target": "081305d0",
+      "name": "CHARACTER::GetOriginalPart",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "0816767a",
+      "target": "081b82a0",
+      "name": "sys_log",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "08167699",
+      "target": "08168810",
+      "name": "CItem::IsAccessoryForSocket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "081676cc",
+      "target": "0812f7d0",
+      "name": "CHARACTER::ApplyPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "081676fa",
+      "target": "081b92a0",
+      "name": "MINMAX",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "08167747",
+      "target": "081b9280",
+      "name": "MAX",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "0816778a",
+      "target": "08193080",
+      "name": "ITEM_MANAGER::GetTable",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "081677db",
+      "target": "0812f7d0",
+      "name": "CHARACTER::ApplyPoint",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "08167821",
+      "target": "081b8150",
+      "name": "_sys_err",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "08167420",
+      "call_site": "0816784d",
+      "target": "0804c9ac",
+      "name": "<EXTERNAL>::__assert",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d731",
+      "target": "080c8610",
+      "name": "CHorseRider::StopRiding",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d75a",
+      "target": "081a4540",
+      "name": "CQuestManager::Unmount",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d762",
+      "target": "081485e0",
+      "name": "CHARACTER::IsDead",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d76e",
+      "target": "08148080",
+      "name": "CHARACTER::IsStun",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d786",
+      "target": "0812c520",
+      "name": "CHARACTER::ComputePoints",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d78e",
+      "target": "081288a0",
+      "name": "CHARACTER::UpdatePacket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d7b3",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d7d6",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d7f7",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d81a",
+      "target": "0812e340",
+      "name": "CHARACTER::PointChange",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d836",
+      "target": "08136010",
+      "name": "CHARACTER::MountVnum",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d84d",
+      "target": "0816d940",
+      "name": "CHARACTER::HorseSummon",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d720",
+      "call_site": "0816d879",
+      "target": "0804c9ac",
+      "name": "<EXTERNAL>::__assert",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816d9d6",
+      "target": "081b92d0",
+      "name": "number_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816d9fc",
+      "target": "081b92d0",
+      "name": "number_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816da29",
+      "target": "081b92d0",
+      "name": "number_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816da54",
+      "target": "081b92d0",
+      "name": "number_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816da97",
+      "target": null,
+      "name": null,
+      "ref_type": "COMPUTED_CALL",
+      "direct": false,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dadd",
+      "target": "0818d010",
+      "name": "CHARACTER_MANAGER::SpawnMob",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db14",
+      "target": "0812a5f0",
+      "name": "CHARACTER::SetLevel",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db22",
+      "target": "08127930",
+      "name": "CHARACTER::GetName",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db32",
+      "target": "0804c97c",
+      "name": "<EXTERNAL>::strlen",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db42",
+      "target": "0804bafc",
+      "name": "<EXTERNAL>::std::string::assign",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db63",
+      "target": "08051890",
+      "name": "locale_find",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db6d",
+      "target": "0804c97c",
+      "name": "<EXTERNAL>::strlen",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816db7d",
+      "target": "0804caec",
+      "name": "<EXTERNAL>::std::string::append",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dbad",
+      "target": "08129ae0",
+      "name": "CHARACTER::Show",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dbd1",
+      "target": "0818c490",
+      "name": "CHARACTER_MANAGER::DestroyCharacter",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dbef",
+      "target": "081b8150",
+      "name": "_sys_err",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dc2f",
+      "target": "0804c9ac",
+      "name": "<EXTERNAL>::__assert",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dc55",
+      "target": "0816d8c0",
+      "name": "CHARACTER::SetRider",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dc88",
+      "target": "081acbb0",
+      "name": "CEntity::PacketAround",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dca3",
+      "target": "08128a60",
+      "name": "CHARACTER::SetPosition",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dcb6",
+      "target": "0804cc60",
+      "name": "__AllocEventInfo",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dcf2",
+      "target": "0804ceb0",
+      "name": "event_create_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dd17",
+      "target": "08051890",
+      "name": "locale_find",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dd27",
+      "target": "0812fe70",
+      "name": "CHARACTER::ChatPacket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dd53",
+      "target": "0804c9ac",
+      "name": "<EXTERNAL>::__assert",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816dd85",
+      "target": "081b92d0",
+      "name": "number_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816ddaf",
+      "target": "081b92d0",
+      "name": "number_ex",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816ddda",
+      "target": "0816d8c0",
+      "name": "CHARACTER::SetRider",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816ddf4",
+      "target": "0818c490",
+      "name": "CHARACTER_MANAGER::DestroyCharacter",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816de20",
+      "target": "0804c9ac",
+      "name": "<EXTERNAL>::__assert",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": true
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816de36",
+      "target": "081341a0",
+      "name": "CHARACTER::SetNowWalking",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816de56",
+      "target": "08164cf0",
+      "name": "GetDegreeFromPositionXY",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816de68",
+      "target": "0812d390",
+      "name": "CHARACTER::SetRotation",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816de8d",
+      "target": "08164d20",
+      "name": "GetDeltaByDegree",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816deca",
+      "target": "0812d810",
+      "name": "CHARACTER::Goto",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "0816d940",
+      "call_site": "0816deff",
+      "target": "0812dde0",
+      "name": "CHARACTER::SendMovePacket",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a455f",
+      "target": "081a4e50",
+      "name": "CQuestManager::GetPC",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a45ac",
+      "target": "081a8b40",
+      "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::NPC>,std::_Select1st<std::pair<const_unsigned_int,_quest::NPC>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::NPC>_>_>::lower_bound",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a45de",
+      "target": "081ae0c0",
+      "name": "NPC::NPC",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a45f6",
+      "target": "081ab460",
+      "name": "NPC::NPC",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a4628",
+      "target": "081a8b80",
+      "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::NPC>,std::_Select1st<std::pair<const_unsigned_int,_quest::NPC>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::NPC>_>_>::insert_unique",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a4639",
+      "target": "081ae260",
+      "name": "NPC::~NPC",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a4641",
+      "target": "081ae260",
+      "name": "NPC::~NPC",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a4653",
+      "target": "081b1a00",
+      "name": "NPC::OnUnmount",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081a4540",
+      "call_site": "081a467a",
+      "target": "081b8150",
+      "name": "_sys_err",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    },
+    {
+      "source": "081b1a00",
+      "call_site": "081b1a1c",
+      "target": "081b1e00",
+      "name": "NPC::HandleReceiveAllEvent",
+      "ref_type": "UNCONDITIONAL_CALL",
+      "direct": true,
+      "external": false
+    }
+  ],
+  "indirect_resolution": {
+    "call_site": "08135c47",
+    "instruction": "CALL dword ptr [EAX+0x34]",
+    "vtable_symbol": "_ZTV9CHARACTER",
+    "vtable_address": "0x8226d00",
+    "address_point": "08226d08",
+    "slot_index": 13,
+    "entry": {
+      "index": 15,
+      "address": "0x8226d3c",
+      "value": "0x816d720",
+      "symbols": [
+        "_ZN9CHARACTER10StopRidingEv"
+      ]
+    },
+    "resolved_method": "virtual bool CHARACTER::StopRiding()",
+    "resolution": "raw ELF words + symbol identity + DWARF original virtual API"
+  }
+}

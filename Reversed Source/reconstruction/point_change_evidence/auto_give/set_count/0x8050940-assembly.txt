@@ -1,0 +1,44 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08050940 <_ZN9CHARACTER18ChainQuickslotItemEP5CItemhh>:
+ 8050940:	55                   	push   %ebp
+ 8050941:	31 d2                	xor    %edx,%edx
+ 8050943:	89 e5                	mov    %esp,%ebp
+ 8050945:	56                   	push   %esi
+ 8050946:	53                   	push   %ebx
+ 8050947:	83 ec 10             	sub    $0x10,%esp
+ 805094a:	8b 4d 08             	mov    0x8(%ebp),%ecx
+ 805094d:	0f b6 45 10          	movzbl 0x10(%ebp),%eax
+ 8050951:	0f b6 5d 14          	movzbl 0x14(%ebp),%ebx
+ 8050955:	66 0f b6 f0          	movzbw %al,%si
+ 8050959:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 8050960:	38 84 51 33 0c 00 00 	cmp    %al,0xc33(%ecx,%edx,2)
+ 8050967:	74 0d                	je     8050976 <_ZN9CHARACTER18ChainQuickslotItemEP5CItemhh+0x36>
+ 8050969:	42                   	inc    %edx
+ 805096a:	83 fa 23             	cmp    $0x23,%edx
+ 805096d:	7e f1                	jle    8050960 <_ZN9CHARACTER18ChainQuickslotItemEP5CItemhh+0x20>
+ 805096f:	83 c4 10             	add    $0x10,%esp
+ 8050972:	5b                   	pop    %ebx
+ 8050973:	5e                   	pop    %esi
+ 8050974:	5d                   	pop    %ebp
+ 8050975:	c3                   	ret
+ 8050976:	38 9c 51 34 0c 00 00 	cmp    %bl,0xc34(%ecx,%edx,2)
+ 805097d:	75 ea                	jne    8050969 <_ZN9CHARACTER18ChainQuickslotItemEP5CItemhh+0x29>
+ 805097f:	0f b7 45 f6          	movzwl -0xa(%ebp),%eax
+ 8050983:	25 00 ff ff ff       	and    $0xffffff00,%eax
+ 8050988:	09 f0                	or     %esi,%eax
+ 805098a:	66 89 45 f6          	mov    %ax,-0xa(%ebp)
+ 805098e:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8050991:	0f b6 40 50          	movzbl 0x50(%eax),%eax
+ 8050995:	89 0c 24             	mov    %ecx,(%esp)
+ 8050998:	88 45 f7             	mov    %al,-0x9(%ebp)
+ 805099b:	8d 45 f6             	lea    -0xa(%ebp),%eax
+ 805099e:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 80509a2:	0f b6 c2             	movzbl %dl,%eax
+ 80509a5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80509a9:	e8 92 fd ff ff       	call   8050740 <_ZN9CHARACTER12SetQuickslotEhR10SQuickslot>
+ 80509ae:	eb bf                	jmp    805096f <_ZN9CHARACTER18ChainQuickslotItemEP5CItemhh+0x2f>

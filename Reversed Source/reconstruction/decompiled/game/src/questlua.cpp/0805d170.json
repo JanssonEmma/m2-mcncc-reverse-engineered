@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0805d170",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "basic_string<char,std::char_traits<char>,std::allocator<char>_>::basic_string<char*>",
+      "address": "0805d170"
+    },
+    "code": "\r\n/* DWARF original prototype: void\r\n   basic_string<char*>(basic_string<char,std::char_traits<char>,std::allocator<char>_> * this, char\r\n   * __beg, char * __end, allocator<char> * __a) */\r\n\r\nvoid __thiscall\r\nbasic_string<char,std::char_traits<char>,std::allocator<char>_>::basic_string<char*>\r\n          (basic_string<char,std::char_traits<char>,std::allocator<char>_> *this,char *__beg,\r\n          char *__end,allocator<char> *__a)\r\n\r\n{\r\n  char *pcVar1;\r\n  \r\n  pcVar1 = _S_construct<char*>(__beg,__end,__a,(forward_iterator_tag)0x0);\r\n  (this->_M_dataplus)._M_p = pcVar1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

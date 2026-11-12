@@ -1,0 +1,32 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08142480 <_ZN6CParty21RequestSetMemberLevelEmh>:
+ 8142480:	55                   	push   %ebp
+ 8142481:	89 e5                	mov    %esp,%ebp
+ 8142483:	83 ec 38             	sub    $0x38,%esp
+ 8142486:	8b 45 08             	mov    0x8(%ebp),%eax
+ 8142489:	89 04 24             	mov    %eax,(%esp)
+ 814248c:	e8 bf f5 ff ff       	call   8141a50 <_ZN6CParty12GetLeaderPIDEv>
+ 8142491:	89 45 e8             	mov    %eax,-0x18(%ebp)
+ 8142494:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8142497:	89 45 ec             	mov    %eax,-0x14(%ebp)
+ 814249a:	8b 45 10             	mov    0x10(%ebp),%eax
+ 814249d:	88 45 f0             	mov    %al,-0x10(%ebp)
+ 81424a0:	b8 09 00 00 00       	mov    $0x9,%eax
+ 81424a5:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 81424a9:	8d 45 e8             	lea    -0x18(%ebp),%eax
+ 81424ac:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 81424b0:	31 c0                	xor    %eax,%eax
+ 81424b2:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 81424b6:	b8 38 00 00 00       	mov    $0x38,%eax
+ 81424bb:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81424bf:	a1 e4 58 32 08       	mov    0x83258e4,%eax
+ 81424c4:	89 04 24             	mov    %eax,(%esp)
+ 81424c7:	e8 04 d7 ff ff       	call   813fbd0 <_ZN11CLIENT_DESC8DBPacketEhmPKvm>
+ 81424cc:	89 ec                	mov    %ebp,%esp
+ 81424ce:	5d                   	pop    %ebp
+ 81424cf:	c3                   	ret

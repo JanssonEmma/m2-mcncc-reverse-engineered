@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080504b0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CStateTemplate<CFSM>::ExecuteBeginState",
+      "address": "080504b0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ExecuteBeginState(CStateTemplate<CFSM> * this) */\r\n\r\nvoid __thiscall CStateTemplate<CFSM>::ExecuteBeginState(CStateTemplate<CFSM> *this)\r\n\r\n{\r\n  _func___thiscall_void_CFSM_ptr *p_Var1;\r\n  int iVar2;\r\n  CFSM *pCVar3;\r\n  \r\n  pCVar3 = this->m_pInstance;\r\n  if ((pCVar3 == (CFSM *)0x0) ||\r\n     (p_Var1 = (this->m_pfnBeginState).__pfn, p_Var1 == (_func___thiscall_void_CFSM_ptr *)0x0)) {\r\n    __assert(\"ExecuteBeginState\",\"state.h\",0x44);\r\n    pCVar3 = this->m_pInstance;\r\n    p_Var1 = (this->m_pfnBeginState).__pfn;\r\n  }\r\n  if (((*(byte *)&(this->m_pfnBeginState).__pfn ^ 1) & 1) == 0) {\r\n    iVar2 = (this->m_pfnBeginState).__delta;\r\n    p_Var1 = *(_func___thiscall_void_CFSM_ptr **)\r\n              (p_Var1 + *(int *)((int)&pCVar3->_vptr_CFSM + iVar2) + -1);\r\n  }\r\n  else {\r\n    iVar2 = (this->m_pfnBeginState).__delta;\r\n  }\r\n  (*p_Var1)((CFSM *)((int)&pCVar3->_vptr_CFSM + iVar2));\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

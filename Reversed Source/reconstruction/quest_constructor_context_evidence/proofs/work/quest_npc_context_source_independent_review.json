@@ -1,0 +1,14 @@
+{
+ "status":"passed_no_actionable_mismatch",
+ "scope":"Independent read-only source/evidence review four whole NPC context methods work/quest_next_dependency",
+ "methods":[
+  {"address":"08134f30","symbol":"_ZN9CHARACTER13SetQuestNPCIDEm","instructions":7,"review":"DWORD unsignedlong32 input, sole m_dwQuestNPCVID assignment; no implicit registration/PC guard/VID filtering."},
+  {"address":"08134f50","symbol":"_ZN9CHARACTER11GetQuestNPCEv","instructions":24,"review":"Nonconst method calls genuine CHARACTER_MANAGER singleton assertion and actual Find(DWORD), including VID0/highbits; no PID/VID-CRC substitute or missing singleton guard."},
+  {"address":"081a5700","symbol":"_ZN5quest13CQuestManager25GetCurrentNPCCharacterPtrEv","instructions":13,"review":"Uses current CHARACTER member; null current returnsNULL else actual GetQuestNPC. Does not read cached m_pCurrentNPCCharacter."},
+  {"address":"081a5660","symbol":"_ZN5quest13CQuestManager17GetCurrentNPCRaceEv","instructions":21,"review":"First getter nullguard then SECOND getter call, existing WORD GetRaceNum and unsigned zero extension MOVZX EDX,AX081a5693; no pointer cache/extra second-null repair."}
+ ],
+ "evidence":"All four full decompiles, assembly and calls pages complete; source/declaration snippets inspected. Raw offline ELF symbol names independently verified nonconst ownership/types. Existing full CHAR/CQM fields, actual Find(DWORD) and WORD GetRaceNum bodies inspected and integrated; no unresolved direct application callee.",
+ "runtime_limits":"Double lookup/requery remains static proof; no real callback within current map lookup and no invented interposition/data-race test should claim it. Test pointer/registry lifetimes must remain valid, actual GetRaceNum truncation contexts initialized.",
+ "actionable_findings":[],
+ "reviewer_project_writes_builds_package_changes":false
+}

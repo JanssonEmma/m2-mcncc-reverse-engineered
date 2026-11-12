@@ -1,0 +1,28 @@
+--- CURRENT/game/src/item.cpp
++++ WEIGHTED/game/src/item.cpp
+@@ -209,3 +209,25 @@
+ void CItem::ApplyAddon(int iAddonType) {
+     CItemAddonManager::instance().ApplyAddonTo(iAddonType,this);
+ }
++
++// 081681e0. Exact old locale/type thresholds; independent second/third draws.
++void CItem::AlterToMagicItem() {
++    if(GetAttributeSetIndex()<0) return;
++    int second,third;
++    if(g_iUseLocale==0) {
++        if(GetType()==1) {second=30;third=15;}
++        else if(GetType()!=2) return;
++        else if(GetSubType()==0) {second=20;third=10;}
++        else {second=10;third=5;}
++    } else {
++        if(GetType()==1) {second=20;third=5;}
++        else if(GetType()!=2) return;
++        else if(GetSubType()==0) {second=10;third=2;}
++        else {second=10;third=1;}
++    }
++    PutAttribute(const_cast<int*>(aiItemMagicAttributePercentHigh));
++    if(number_ex(1,100,const_cast<char*>("item.cpp"),1047)<=second)
++        PutAttribute(const_cast<int*>(aiItemMagicAttributePercentLow));
++    if(number_ex(1,100,const_cast<char*>("item.cpp"),1050)<=third)
++        PutAttribute(const_cast<int*>(aiItemMagicAttributePercentLow));
++}

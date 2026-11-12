@@ -1,0 +1,1550 @@
+{
+  "function": {
+    "name": "CHARACTER::ComputeSkill",
+    "address": "0806f710"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0806d3f1",
+        "caller": {
+          "name": "ChainLightningEvent",
+          "address": "0806d1f0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "080724d4",
+        "caller": {
+          "name": "CHARACTER::UseSkill",
+          "address": "08071d80"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "08072fa5",
+        "caller": {
+          "name": "CHARACTER::UseSkill",
+          "address": "08071d80"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "080737a0",
+        "caller": {
+          "name": "skill_muyoung_event",
+          "address": "08073610"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "08147bbe",
+        "caller": {
+          "name": "CHARACTER::Attack",
+          "address": "08147ac0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0808ed1b",
+        "caller": {
+          "name": "CGuild::UseSkill",
+          "address": "0808e900"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "08156832",
+        "caller": {
+          "name": "CFuncShoot::operator()",
+          "address": "08156310"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "08156aca",
+        "caller": {
+          "name": "CFuncShoot::operator()",
+          "address": "08156310"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 8,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0806f77e",
+        "target": "080e5990",
+        "name": "CSkillManager::Get",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f7ed",
+        "target": "08073560",
+        "name": "CHARACTER::GetSkillLevel",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f811",
+        "target": "0813eb60",
+        "name": "CHARACTER::IsAffectFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f828",
+        "target": "0813ed10",
+        "name": "CHARACTER::IsGoodAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f855",
+        "target": "08073350",
+        "name": "CHARACTER::GetSkillPower",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f88f",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806f8aa",
+        "target": "08073350",
+        "name": "CHARACTER::GetSkillPower",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f8dc",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f90c",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806f92d",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806f9b9",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806f9d8",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fa0b",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fa1f",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fa3f",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fa75",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fa89",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806faab",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fadb",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806faef",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fb0f",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fb3f",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fb53",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fb73",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fbba",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fbd9",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fc18",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fc37",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fc67",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fc82",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fcb2",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fcca",
+        "target": "080d5ff0",
+        "name": "CalcAttackRating",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fce3",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fd16",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fd2a",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fd47",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fd77",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fd8b",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fda1",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fdc3",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fe06",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fe25",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fe5d",
+        "target": "08131c70",
+        "name": "CHARACTER::OnMove",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fe71",
+        "target": "081712b0",
+        "name": "CHARACTER::GetWear",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fe98",
+        "target": "0806d530",
+        "name": "SetPolyVarForAttack",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806feb3",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806fecc",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806fefc",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806ff24",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806ff4a",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806ff87",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806ffc4",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070006",
+        "target": "08073170",
+        "name": "CHARACTER::GetUsedSkillMasterType",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080700a7",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080700bd",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080700dd",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807014d",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807027d",
+        "target": "080514e0",
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070292",
+        "target": "08077180",
+        "name": "FuncSplashAffect::operator()",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080702fc",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807031b",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070341",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080703a2",
+        "target": "081b82a0",
+        "name": "sys_log",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080703c4",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080704f2",
+        "target": "080514e0",
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070507",
+        "target": "08077180",
+        "name": "FuncSplashAffect::operator()",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070559",
+        "target": "08073170",
+        "name": "CHARACTER::GetUsedSkillMasterType",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070581",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080705a6",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080705c6",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070631",
+        "target": "081b82a0",
+        "name": "sys_log",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807064d",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070769",
+        "target": "080514e0",
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807077e",
+        "target": "08077180",
+        "name": "FuncSplashAffect::operator()",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080707f0",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070827",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807083b",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08070899",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080708d0",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080708e4",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08070936",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070968",
+        "target": "08074bd0",
+        "name": "_Rb_tree<int,std::pair<const_int,_TSkillUseInfo>,std::_Select1st<std::pair<const_int,_TSkillUseInfo>_>,std::less<int>,std::allocator<std::pair<const_int,_TSkillUseInfo>_>_>::lower_bound",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070a39",
+        "target": "08074c10",
+        "name": "_Rb_tree<int,std::pair<const_int,_TSkillUseInfo>,std::_Select1st<std::pair<const_int,_TSkillUseInfo>_>,std::less<int>,std::allocator<std::pair<const_int,_TSkillUseInfo>_>_>::insert_unique",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070a5c",
+        "target": "0806acd0",
+        "name": "TSkillUseInfo::HitOnce",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070a84",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08070afe",
+        "target": "08073350",
+        "name": "CHARACTER::GetSkillPower",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070bce",
+        "target": "080514e0",
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070bdd",
+        "target": "08075540",
+        "name": "FuncSplashDamage::operator()",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070c0f",
+        "target": "08075540",
+        "name": "FuncSplashDamage::operator()",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070c41",
+        "target": "08074bd0",
+        "name": "_Rb_tree<int,std::pair<const_int,_TSkillUseInfo>,std::_Select1st<std::pair<const_int,_TSkillUseInfo>_>,std::less<int>,std::allocator<std::pair<const_int,_TSkillUseInfo>_>_>::lower_bound",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070d12",
+        "target": "08074c10",
+        "name": "_Rb_tree<int,std::pair<const_int,_TSkillUseInfo>,std::_Select1st<std::pair<const_int,_TSkillUseInfo>_>,std::less<int>,std::allocator<std::pair<const_int,_TSkillUseInfo>_>_>::insert_unique",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070d63",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08070d7e",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070d9b",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070de7",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070e04",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08070e29",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070e63",
+        "target": "0813eaa0",
+        "name": "CHARACTER::RemoveAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070e71",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070ebd",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070f0c",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070f1d",
+        "target": "08068990",
+        "name": "LC_IsYMIR",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070f3f",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070fa3",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08070fe3",
+        "target": "08073170",
+        "name": "CHARACTER::GetUsedSkillMasterType",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071005",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807102a",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807104a",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080710b5",
+        "target": "081b82a0",
+        "name": "sys_log",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080710d1",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080711ed",
+        "target": "080514e0",
+        "name": "_Rb_tree_base_iterator::_M_increment",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071202",
+        "target": "08077180",
+        "name": "FuncSplashAffect::operator()",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071274",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080712ab",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080712bf",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080712df",
+        "target": "08073170",
+        "name": "CHARACTER::GetUsedSkillMasterType",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071314",
+        "target": "08073170",
+        "name": "CHARACTER::GetUsedSkillMasterType",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071350",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807135f",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080713d7",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807141a",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807143f",
+        "target": "0813eaa0",
+        "name": "CHARACTER::RemoveAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807144d",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071499",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080714fd",
+        "target": "0813e380",
+        "name": "CHARACTER::AddAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071579",
+        "target": "0812e340",
+        "name": "CHARACTER::PointChange",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807158d",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080715b2",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080715c8",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080715f8",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807161a",
+        "target": "081bda10",
+        "name": "CPoly::SetVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071637",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807167b",
+        "target": "0812e0a0",
+        "name": "CHARACTER::GetPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071698",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080716fa",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807170e",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071752",
+        "target": "081b92d0",
+        "name": "number_ex",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071776",
+        "target": "0813eda0",
+        "name": "CHARACTER::RemoveBadAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807179e",
+        "target": "0812fe70",
+        "name": "CHARACTER::ChatPacket",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080717b2",
+        "target": "081bc790",
+        "name": "CPoly::Eval",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080717f0",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071804",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071818",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807182c",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071840",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071854",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071868",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807187c",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071890",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080718a4",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080718b8",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080718cc",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080718e0",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080718f4",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071917",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0807192b",
+        "target": "0812e120",
+        "name": "CHARACTER::GetLimitPoint",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071942",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071969",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071996",
+        "target": "08153960",
+        "name": "CHARACTER::GetArrowAndBow",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080719b4",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080719cc",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080719f0",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071a10",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071a3f",
+        "target": "080d6f40",
+        "name": "CalcArrowDamage",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071a5c",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071a98",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071aaa",
+        "target": "080d5f80",
+        "name": "CalcMagicDamage",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071ae5",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071b06",
+        "target": "080d66b0",
+        "name": "CalcMeleeDamage",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071b23",
+        "target": "080e40e0",
+        "name": "CSkillProto::SetPointVar",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071b6c",
+        "target": "08153960",
+        "name": "CHARACTER::GetArrowAndBow",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071b8e",
+        "target": "0804c65c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071bbb",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071bcf",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071c01",
+        "target": "0804bb1c",
+        "name": "<EXTERNAL>::sqrt",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071c57",
+        "target": "0804bb1c",
+        "name": "<EXTERNAL>::sqrt",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071c95",
+        "target": "08127930",
+        "name": "CHARACTER::GetName",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071ca2",
+        "target": "08127930",
+        "name": "CHARACTER::GetName",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071ce3",
+        "target": "081b8150",
+        "name": "_sys_err",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071d0d",
+        "target": "081b8150",
+        "name": "_sys_err",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08071d4e",
+        "target": "0804c9ac",
+        "name": "<EXTERNAL>::__assert",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08071d65",
+        "target": "080c8b10",
+        "name": "CHorseRider::GetHorseGrade",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 182,
+    "has_more": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812d9c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x812d9c0",
+    "function": {
+      "name": "CHARACTER::GetMoveMotionSpeed",
+      "address": "0812d9c0"
+    },
+    "signature": "float GetMoveMotionSpeed(CHARACTER * this)",
+    "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* DWARF original prototype: float GetMoveMotionSpeed(CHARACTER * this) */\r\n\r\nfloat __thiscall CHARACTER::GetMoveMotionSpeed(CHARACTER *this)\r\n\r\n{\r\n  ushort uVar1;\r\n  WORD WVar2;\r\n  DWORD DVar3;\r\n  CMotion *this_00;\r\n  D3DVECTOR *pDVar4;\r\n  char *pcVar5;\r\n  DWORD DVar6;\r\n  DWORD dwKey;\r\n  float fVar7;\r\n  float local_18;\r\n  DWORD dwMode;\r\n  \r\n                    /* Unresolved local var: CMotion * pkMotion@[DW_OP_reg3(EBX)] */\r\n  DVar3 = GetMotionMode(this);\r\n  DVar6 = this->m_dwMountVnum;\r\n  if (DVar6 == 0) {\r\n    if (((this->m_bNowWalking == false) && (0 < (this->m_points).stamina)) ||\r\n       ((this->super_CEntity).m_lpDesc == (LPDESC)0x0)) {\r\n      DVar6 = DVar3 << 0x18 | 0x300;\r\n    }\r\n    else {\r\n      DVar6 = DVar3 << 0x18 | 0x200;\r\n    }\r\n    uVar1 = GetRaceNum(this);\r\n  }\r\n  else {\r\n    if (((this->m_bNowWalking == false) && (0 < (this->m_points).stamina)) ||\r\n       ((this->super_CEntity).m_lpDesc == (LPDESC)0x0)) {\r\n      dwKey = 0x300;\r\n    }\r\n    else {\r\n      dwKey = 0x200;\r\n    }\r\n    if (singleton<CMotionManager>::ms_singleton == (CMotionManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    this_00 = CMotionManager::GetMotion(singleton<CMotionManager>::ms_singleton,DVar6,dwKey);\r\n    if (this_00 != (CMotion *)0x0) goto LAB_0812da39;\r\n    if (((this->m_bNowWalking == false) && (0 < (this->m_points).stamina)) ||\r\n       ((this->super_CEntity).m_lpDesc == (LPDESC)0x0)) {\r\n      DVar6 = 0x7000300;\r\n    }\r\n    else {\r\n      DVar6 = 0x7000200;\r\n    }\r\n    uVar1 = GetRaceNum(this);\r\n  }\r\n  if (singleton<CMotionManager>::ms_singleton == (CMotionManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  this_00 = CMotionManager::GetMotion(singleton<CMotionManager>::ms_singleton,(uint)uVar1,DVar6);\r\n  if (this_00 == (CMotion *)0x0) {\r\n    WVar2 = GetRaceNum(this);\r\n    pcVar5 = GetName(this);\r\n    _sys_err(\"GetMoveMotionSpeed\",0xa29,\"cannot find motion (name %s race %d mode %d)\",pcVar5,\r\n             (uint)WVar2,DVar3);\r\n    return _DAT_082176ac;\r\n  }\r\nLAB_0812da39:\r\n  pDVar4 = CMotion::GetAccumVector(this_00);\r\n  local_18 = -pDVar4->y;\r\n  fVar7 = CMotion::GetDuration(this_00);\r\n  return local_18 / fVar7;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

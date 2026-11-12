@@ -1,0 +1,9 @@
+# NPC loader staged link changes
+
+The seven source artifacts under stage are Makefile, project_rng.py, arg_script_constructor_regression.cpp, desc_output_unit.cpp, desc_flush_regression.cpp, input_regression.cpp and entity_packet_fixture.cpp. The other staged files are local smoke and projection evidence. The generator stage_links.py captured the checkpoint 102 input layout and is superseded by the staged artifacts once the integration is applied.
+
+The nine NPC test link commands using projected RNG now use a projected MAX object as an ordinary input and prerequisite. The four previous fixture MAX definitions are removed so that these graphs resolve the genuine libthecore implementation exactly once. The 59 existing full-utils graphs need no additional object. Both the migrated constructor test and the new loader test use the full TARGET_WALKING graph with real event sources and the existing Lua SDK link policy. The constructor uses desc_output_syscalls.o, while the loader has its own syscalls observer object.
+
+The projection extends the existing RNG script's interface with a MAX selection. It requires x64 COFF, selects the three original code and unwind sections, and requires no external symbols and only the one defined global MAX symbol. The RNG projection remains byte-identical for the checkpoint input object. Both normal and optimized fresh full utils.c compilation, projection and signed MAX smoke execution passed in workspace staging. The smoke tested INT_MIN, INT_MAX, negative equal values and ordinary ordering. No original executable or application test graph was built or run by this staging task. Full graph validation is owned by the parent integration.
+
+The standalone checkpoint 102 constructor helper is historical evidence. Its old two-file graph is not the current constructor graph after the loader changes. The shared normal Makefile target carries the new graph and is the authoritative link recipe.

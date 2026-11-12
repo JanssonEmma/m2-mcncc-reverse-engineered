@@ -1,0 +1,1 @@
+Bounded foundation staged. See RECOVERY_HANDOFF.md for exact complete candidates, current-production hashes, tests/gates and ordered missing dependencies. No builds/production edits. Full service initialization and TransferDefaultSetting remain pending; do not introduce partial setter.

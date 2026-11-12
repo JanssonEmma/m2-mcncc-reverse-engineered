@@ -1,0 +1,146 @@
+{
+  "0x0813a5c0": {
+    "function": {
+      "name": "DESC::Log",
+      "address": "0813a5c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void Log(DESC * this, char * format, ...) */\r\n\r\nvoid __thiscall DESC::Log(DESC *this,char *format,...)\r\n\r\n{\r\n  tm *ptVar1;\r\n  int iVar2;\r\n  tm *ptVar3;\r\n  time_t ct;\r\n  tm tm;\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  if (this->m_pLogFile != (FILE *)0x0) {\r\n    ct = get_global_time();\r\n    ptVar1 = localtime(&ct);\r\n    ptVar3 = &tm;\r\n    for (iVar2 = 0xb; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n      ptVar3->tm_sec = ptVar1->tm_sec;\r\n      ptVar1 = (tm *)&ptVar1->tm_min;\r\n      ptVar3 = (tm *)&ptVar3->tm_min;\r\n    }\r\n    fprintf((FILE *)this->m_pLogFile,\"%02d %02d %02d:%02d:%02d | \",tm.tm_mon + 1,tm.tm_mday,\r\n            tm.tm_hour,tm.tm_min,tm.tm_sec);\r\n    vfprintf((FILE *)this->m_pLogFile,format,&stack0x0000000c);\r\n    fputc(10,(FILE *)this->m_pLogFile);\r\n    fflush((FILE *)this->m_pLogFile);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a920": {
+    "function": {
+      "name": "DESC::GetClientTime",
+      "address": "0813a920"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetClientTime(DESC * this) */\r\n\r\nDWORD __thiscall DESC::GetClientTime(DESC *this)\r\n\r\n{\r\n  return this->m_dwClientTime;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a930": {
+    "function": {
+      "name": "DESC::GetEmpire",
+      "address": "0813a930"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetEmpire(DESC * this) */\r\n\r\nBYTE __thiscall DESC::GetEmpire(DESC *this)\r\n\r\n{\r\n  return (this->m_accountTable).bEmpire;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a940": {
+    "function": {
+      "name": "DESC::SetRelay",
+      "address": "0813a940"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetRelay(DESC * this, char * c_pszName) */\r\n\r\nvoid __thiscall DESC::SetRelay(DESC *this,char *c_pszName)\r\n\r\n{\r\n  strlen(c_pszName);\r\n  std::string::assign((char *)&this->m_stRelayName,(uint)c_pszName);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813a980": {
+    "function": {
+      "name": "DESC::BindCharacter",
+      "address": "0813a980"
+    },
+    "code": "\r\n/* DWARF original prototype: void BindCharacter(DESC * this, LPCHARACTER ch) */\r\n\r\nvoid __thiscall DESC::BindCharacter(DESC *this,LPCHARACTER ch)\r\n\r\n{\r\n  this->m_lpCharacter = ch;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813aca0": {
+    "function": {
+      "name": "DESC::SetAdminMode",
+      "address": "0813aca0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetAdminMode(DESC * this) */\r\n\r\nvoid __thiscall DESC::SetAdminMode(DESC *this)\r\n\r\n{\r\n  this->m_bAdminMode = true;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813acb0": {
+    "function": {
+      "name": "DESC::IsAdminMode",
+      "address": "0813acb0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsAdminMode(DESC * this) */\r\n\r\nbool __thiscall DESC::IsAdminMode(DESC *this)\r\n\r\n{\r\n  return this->m_bAdminMode;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08139630": {
+    "function": {
+      "name": "DESC::IsPong",
+      "address": "08139630"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsPong(DESC * this) */\r\n\r\nbool __thiscall DESC::IsPong(DESC *this)\r\n\r\n{\r\n  return this->m_bPong;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x08139640": {
+    "function": {
+      "name": "DESC::SetPong",
+      "address": "08139640"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetPong(DESC * this, bool b) */\r\n\r\nvoid __thiscall DESC::SetPong(DESC *this,bool b)\r\n\r\n{\r\n  this->m_bPong = b;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813ae90": {
+    "function": {
+      "name": "DESC::SetMatrixCardRowsAndColumns",
+      "address": "0813ae90"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetMatrixCardRowsAndColumns(DESC * this, ulong rows, ulong cols)\r\n    */\r\n\r\nvoid __thiscall DESC::SetMatrixCardRowsAndColumns(DESC *this,ulong rows,ulong cols)\r\n\r\n{\r\n  this->m_dwMatrixRows = rows;\r\n  this->m_dwMatrixCols = cols;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813aeb0": {
+    "function": {
+      "name": "DESC::GetMatrixRows",
+      "address": "0813aeb0"
+    },
+    "code": "\r\n/* DWARF original prototype: ulong GetMatrixRows(DESC * this) */\r\n\r\nulong __thiscall DESC::GetMatrixRows(DESC *this)\r\n\r\n{\r\n  return this->m_dwMatrixRows;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813aec0": {
+    "function": {
+      "name": "DESC::GetMatrixCols",
+      "address": "0813aec0"
+    },
+    "code": "\r\n/* DWARF original prototype: ulong GetMatrixCols(DESC * this) */\r\n\r\nulong __thiscall DESC::GetMatrixCols(DESC *this)\r\n\r\n{\r\n  return this->m_dwMatrixCols;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813aed0": {
+    "function": {
+      "name": "DESC::CheckMatrixTryCount",
+      "address": "0813aed0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool CheckMatrixTryCount(DESC * this) */\r\n\r\nbool __thiscall DESC::CheckMatrixTryCount(DESC *this)\r\n\r\n{\r\n  byte bVar1;\r\n  \r\n  bVar1 = this->m_bMatrixTryCount + 1;\r\n  this->m_bMatrixTryCount = bVar1;\r\n  return bVar1 < 3;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813aef0": {
+    "function": {
+      "name": "DESC::SetLoginKey",
+      "address": "0813aef0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetLoginKey(DESC * this, DWORD dwKey) */\r\n\r\nvoid __thiscall DESC::SetLoginKey(DESC *this,DWORD dwKey)\r\n\r\n{\r\n  this->m_dwLoginKey = dwKey;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813af10": {
+    "function": {
+      "name": "DESC::SetLoginKey",
+      "address": "0813af10"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetLoginKey(DESC * this, CLoginKey * pkKey) */\r\n\r\nvoid __thiscall DESC::SetLoginKey(DESC *this,CLoginKey *pkKey)\r\n\r\n{\r\n  this->m_pkLoginKey = pkKey;\r\n  sys_log(0,\"SetLoginKey %lu\",pkKey->m_dwKey);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813af50": {
+    "function": {
+      "name": "DESC::GetLoginKey",
+      "address": "0813af50"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetLoginKey(DESC * this) */\r\n\r\nDWORD __thiscall DESC::GetLoginKey(DESC *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  if (this->m_pkLoginKey == (CLoginKey *)0x0) {\r\n    DVar1 = this->m_dwLoginKey;\r\n  }\r\n  else {\r\n    DVar1 = this->m_pkLoginKey->m_dwKey;\r\n  }\r\n  return DVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b130": {
+    "function": {
+      "name": "DESC::SetBillingExpireSecond",
+      "address": "0813b130"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetBillingExpireSecond(DESC * this, DWORD dwSec) */\r\n\r\nvoid __thiscall DESC::SetBillingExpireSecond(DESC *this,DWORD dwSec)\r\n\r\n{\r\n  this->m_dwBillingExpireSecond = dwSec;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "0x0813b150": {
+    "function": {
+      "name": "DESC::GetBillingExpireSecond",
+      "address": "0813b150"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetBillingExpireSecond(DESC * this) */\r\n\r\nDWORD __thiscall DESC::GetBillingExpireSecond(DESC *this)\r\n\r\n{\r\n  return this->m_dwBillingExpireSecond;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

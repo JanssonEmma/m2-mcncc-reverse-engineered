@@ -1,0 +1,278 @@
+[
+  {
+    "name": "CMobInstance",
+    "size": 24,
+    "fields": [
+      {
+        "name": "m_posLastAttacked",
+        "type": {
+          "die": "0x17e5dcc",
+          "tag": "DW_TAG_typedef",
+          "name": "PIXEL_POSITION",
+          "size": null,
+          "type": {
+            "die": "0x17e5d3d",
+            "tag": "DW_TAG_structure_type",
+            "name": "pixel_position_s",
+            "size": 12
+          }
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "m_dwLastAttackedTime",
+        "type": {
+          "die": "0x17c9dd7",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x17c66c6",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          12
+        ]
+      },
+      {
+        "name": "m_dwLastWarpTime",
+        "type": {
+          "die": "0x17c9dd7",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x17c66c6",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          16
+        ]
+      },
+      {
+        "name": "m_IsBerserk",
+        "type": {
+          "die": "0x17d021a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          20
+        ]
+      },
+      {
+        "name": "m_IsGodSpeed",
+        "type": {
+          "die": "0x17d021a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          21
+        ]
+      },
+      {
+        "name": "m_IsRevive",
+        "type": {
+          "die": "0x17d021a",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMobGroupGroup",
+    "size": 28,
+    "fields": [
+      {
+        "name": "m_dwVnum",
+        "type": {
+          "die": "0x17c9dd7",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x17c66c6",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "m_vec_dwMemberVnum",
+        "type": {
+          "die": "0x17f780b",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<long unsigned int,std::allocator<long unsigned int> >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ]
+      },
+      {
+        "name": "m_vec_iProbs",
+        "type": {
+          "die": "0x17d842e",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<int,std::allocator<int> >",
+          "size": 12
+        },
+        "offset": [
+          16
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMobGroup",
+    "size": 20,
+    "fields": [
+      {
+        "name": "m_dwVnum",
+        "type": {
+          "die": "0x17c9dd7",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x17c66c6",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "m_stName",
+        "type": {
+          "die": "0x17d74b9",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x17d44bf",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ]
+      },
+      {
+        "name": "m_vec_dwMemberVnum",
+        "type": {
+          "die": "0x17f780b",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<long unsigned int,std::allocator<long unsigned int> >",
+          "size": 12
+        },
+        "offset": [
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CMobManager",
+    "size": 64,
+    "fields": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x1832de8",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<CMobManager>",
+          "size": 4
+        },
+        "offset": [
+          0
+        ]
+      },
+      {
+        "name": "m_map_pkMobByVnum",
+        "type": {
+          "die": "0x180f8e3",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMob*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMob*> > >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ]
+      },
+      {
+        "name": "m_map_pkMobByName",
+        "type": {
+          "die": "0x181111b",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,CMob*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, CMob*> > >",
+          "size": 12
+        },
+        "offset": [
+          16
+        ]
+      },
+      {
+        "name": "m_map_pkMobGroup",
+        "type": {
+          "die": "0x181286c",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMobGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMobGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          28
+        ]
+      },
+      {
+        "name": "m_map_pkMobGroupGroup",
+        "type": {
+          "die": "0x1813fc3",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,CMobGroupGroup*,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, CMobGroupGroup*> > >",
+          "size": 12
+        },
+        "offset": [
+          40
+        ]
+      },
+      {
+        "name": "m_mapRegenCount",
+        "type": {
+          "die": "0x181571a",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<long unsigned int,double,std::less<long unsigned int>,std::allocator<std::pair<const long unsigned int, double> > >",
+          "size": 12
+        },
+        "offset": [
+          52
+        ]
+      }
+    ]
+  }
+]

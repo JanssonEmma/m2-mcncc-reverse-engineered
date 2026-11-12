@@ -1,0 +1,22 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "source_ref": {
+    "path": "game/src/questpc.h",
+    "anchor": "RewardData(RewardType kind,DWORD first,int second=0)",
+    "line": 15,
+    "file_sha256": "fe10da2b205160fcebd9aec7a9ce3b9c51308841d2f2844bd0f4bf4117204207"
+  },
+  "test_ref": {
+    "path": "reconstruction/tests/pc_state_helpers_regression.cpp",
+    "anchor": "static void CheckConstructedInputs(",
+    "line": 52,
+    "file_sha256": "d9a1c1b995daed3a6de4d3ec1c7c52b133e7b793122076ce0b6131c24db15258"
+  },
+  "evidence_files": [
+    "08060f34-parent-asm.json",
+    "0806109d-parent-asm.json",
+    "ctor-dwarf.json"
+  ],
+  "standalone_address": null,
+  "policy": "One inline semantic constructor supported by original parameters and two specialized instruction instances; no invented export. Copy ctor evidence080633e0 separate."
+}

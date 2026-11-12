@@ -1,0 +1,41 @@
+{
+  "project": "PROJECT_ROOT\\Reversed Source",
+  "checkpoint": 110,
+  "archive": "char_stone_flag_evidence",
+  "receipt": "work/checkpoint-110-focused.receipt.json",
+  "source_guards": "work\\drop_event_char_stone\\applied.json",
+  "status_key": "checkpoint110_char_stone_flag",
+  "baseline_key": "checkpoint109_quest_output_empire",
+  "suites": [
+    "quest_lua_queries_regression",
+    "item_ownership_regression"
+  ],
+  "abi": false,
+  "reviews": [
+    {
+      "address": "08194a40",
+      "export": "work\\drop_event_char_stone\\08194a40-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/item_manager.cpp",
+          "anchor": "bool DropEvent_CharStone_SetValue("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+          "anchor": "static void TestCharStoneFlag("
+        }
+      ],
+      "review_scope": "Complete flag setter, original field widths and data defaults, exact live log order.",
+      "reviewer": "Checkpoint 110 ELF and focused regression",
+      "limitations": "Flag setter only. Item generation and the broader SetEventFlag dispatcher remain pending."
+    }
+  ],
+  "evidence_packages": [
+    "work\\drop_event_char_stone"
+  ],
+  "workspace_resume": "outputs/METIN2_RESUME.md",
+  "summary": "restored the original character-stone event flag setter.",
+  "next": "The completed flag setter closes one real SetEventFlag dependency. Continue the staged Metin drop selection and its genuine utility link closure in work/metin_drop. SpawnMob still requires SetProto, Show and character ownership/affect dependencies. Full quest startup, dispatch and server linking remain in scope."
+}

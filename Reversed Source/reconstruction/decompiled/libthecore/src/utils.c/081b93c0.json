@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b93c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "thecore_msleep",
+      "address": "081b93c0"
+    },
+    "code": "\r\nvoid thecore_msleep(DWORD dwMillisecond)\r\n\r\n{\r\n  thecore_msleep::tv_sleep.tv_usec = dwMillisecond * 1000;\r\n  thecore_msleep::tv_sleep.tv_sec = dwMillisecond / 1000;\r\n  thecore_sleep(&thecore_msleep::tv_sleep);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "checkpoint": 94,
+  "status": "passed",
+  "full_runtime_commands": 104,
+  "focused_runtime_commands": 3,
+  "abi": true,
+  "standalone_function_mappings": 1,
+  "inline_semantic_bodies": 0,
+  "typed_record_size": 106,
+  "source_guards": {
+    "game/src/questpc.cpp": "53fcb087c0480794d0f41406695e8c0cd8e3c408d8fe600ab73ed6fd2a1e2778",
+    "common/tables.h": "4f124da7d970c7db82b6d4de93f6d793858a0b251a6087c5a21d3bd627e45e3f",
+    "reconstruction/tests/pc_quest_save_regression.cpp": "97ccae3dc4b4355551d68a4cf5a24129931c05b3efa1428cf12acf04fb4802d0",
+    "reconstruction/tests/pc_quest_save_abi.cpp": "8c5ea339bf4084fcbecfb6d540eee6daecf1d92ff3e009eadc7ed1a93848af62",
+    "reconstruction/tests/pc_quest_save_desc_output_syscalls.c": "1dcd2d623a662ec10f1ebfcc8aee52e82e5acc741c1bf34b7d19e70d837eb684",
+    "reconstruction/tests/Makefile": "751b2e53a047fbca9b435784d7f3c3c60db1ff98a9e814ef5215ae98674f30fb"
+  },
+  "support_read_guards": {
+    "game/src/questpc.h": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a",
+    "game/src/desc_client.h": "035463e5284d7be9226311aa6d9d9127500db044b15e02609bfbf279e50fc50a",
+    "game/src/desc_client.cpp": "49bdc10eb9380490f5b1625db5886564906581e3465395cd098dd28412afc049",
+    "libthecore/include/log.h": "c255a0cc2281f0496c5eec7fa80b040cf65d20ea456d7e0913ae952a2edfea06",
+    "libthecore/include/typedef.h": "5f12e1f68446151c94356b6221568bcf54f78c0fba0c33fc2a8060fa7ee5348e"
+  },
+  "source_guard_review": {
+    "guards": {
+      "game/src/questpc.cpp": "53fcb087c0480794d0f41406695e8c0cd8e3c408d8fe600ab73ed6fd2a1e2778",
+      "common/tables.h": "4f124da7d970c7db82b6d4de93f6d793858a0b251a6087c5a21d3bd627e45e3f",
+      "reconstruction/tests/pc_quest_save_regression.cpp": "97ccae3dc4b4355551d68a4cf5a24129931c05b3efa1428cf12acf04fb4802d0",
+      "reconstruction/tests/pc_quest_save_abi.cpp": "8c5ea339bf4084fcbecfb6d540eee6daecf1d92ff3e009eadc7ed1a93848af62",
+      "reconstruction/tests/pc_quest_save_desc_output_syscalls.c": "1dcd2d623a662ec10f1ebfcc8aee52e82e5acc741c1bf34b7d19e70d837eb684",
+      "reconstruction/tests/Makefile": "751b2e53a047fbca9b435784d7f3c3c60db1ff98a9e814ef5215ae98674f30fb"
+    },
+    "support_read_guards": {
+      "game/src/questpc.h": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a",
+      "game/src/desc_client.h": "035463e5284d7be9226311aa6d9d9127500db044b15e02609bfbf279e50fc50a",
+      "game/src/desc_client.cpp": "49bdc10eb9380490f5b1625db5886564906581e3465395cd098dd28412afc049",
+      "libthecore/include/log.h": "c255a0cc2281f0496c5eec7fa80b040cf65d20ea456d7e0913ae952a2edfea06",
+      "libthecore/include/typedef.h": "5f12e1f68446151c94356b6221568bcf54f78c0fba0c33fc2a8060fa7ee5348e"
+    },
+    "review": "Root+independent complete assembly/DWARF/source review; TEST callback now also changes current a.q to1234 while output remains cached-17. Helper optional skip-normal avoids re-executing passed normalfocused3+ABI. No production fixes; original static vector/strcpy/currentPID/dbreload/liveclear preserved. Root message explicitly reviewed regenerated integration plan after test-only callback strengthening; stale original preparation-plan hash retained in original MANIFEST.",
+    "reviewed_preparation_overrides": {
+      "work/pc_quest_save/pc_quest_save_regression.cpp": "97ccae3dc4b4355551d68a4cf5a24129931c05b3efa1428cf12acf04fb4802d0",
+      "work/pc_quest_save/validate.py": "2a406edf7b95298251a36508488add2b674d7fa48f8920515177d00af455f708",
+      "work/pc_quest_save/integration/plan.json": "b3a7f1db5bc1ecb25e8e4e2351e640d89ae5ab16d74e8cc281bac71ceac18a06"
+    }
+  },
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-93-validation.receipt.json": "4e365f88eb1bbc2470679fd0a56df373ec687bcb759516f7b61f80a159b514c8",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-93-validation.log": "416d4771fd69c87e191aba62f5cba7502cbc83b7103e740e827c0c5a2a11ede0",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-94-validation.receipt.json": "7a8fd5ffe4740d6aa94512e168d1ab9adf8d034a69141c6e759e86c59204cd1b",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-94-validation.log": "6608848a9ccc317570180ac78b0295d214f4325a0837caced31958ddb9ffca89",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-save-focused.receipt.json": "2cec0a2f455574c7e0aebf8d64db2893414f6bc1889b429eaa5357e088639c64",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest-save-focused.log": "bd24f61a2f05eab50ce180547196134295b879a04fe65509aa0036175315352f",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-strict32.receipt.json": "853a746aecf4586a0107689c181961d63de77586d2d2c7b1f493c57a3f07cd3d",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-strict32.log": "b215e7e9490281f9a32beb4163e03686ef421a98b1617ece7d2c7c3bac98de14",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_sql_runtime-o2.receipt.json": "a7df1749124cc871bf899a7cef6fcff328e00df8c9641e8fccdcc6fb80f3c2e5",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_sql_runtime-o2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_sql_semaphore-o2.receipt.json": "359853f59bd94a4152958cee90b69aac153a56a24a280d327db5ebf357d75725",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_sql_semaphore-o2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_sql_api-o2.receipt.json": "0cb922d4828dbdd5ade2632cac43127d967621c3821e5af1ceccffdb624628bd",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_sql_api-o2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_socket_config-o2.receipt.json": "7890cb4a3352eefcc09cd67fc91caa7d00ed20d172ccb63d72b09aa36648d01b",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-item_socket_config-o2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-pc_quest_save_desc_output_syscalls-o2.receipt.json": "a09e12022a4d56682d502dceea26ac06a3fd4b630d6b6fb2de605cf5578e0a91",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-pc_quest_save_desc_output_syscalls-o2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-o2-build.receipt.json": "1de7093076496b3874d371068059b45b6b2aecf6c5bfd15822a5d5fe6077f6e0",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-o2-build.log": "25bc24f0520db579d7b755d9b2ff26bccee3b7bf3404bffc31033fc4c576b036",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-o2-runtime.receipt.json": "dd50732defd17b0f3f841be2d1cf817ea8ff5234ea2c882c81ce2c0b96035b15",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\pc_quest_save_validation\\pc-quest-save-o2-runtime.log": "4c56dacaae5e1b7a9b44e2bc92c3d4e2a8a24c33823160a3b0764438f0d48fc7",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest_level\\08060770-decompile.json": "3c531a9e33445bc78f147af79bf0d5311d724a117cbb3d37518902520353efea",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc_quest_save\\08060770-decompile.json": "3c531a9e33445bc78f147af79bf0d5311d724a117cbb3d37518902520353efea",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc_quest_save\\save-assembly.json": "c8eab5cdc2d99e0dc871dacc057a4af2586fbae3fdb6d5297d46e3f5082e098c",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc_quest_save\\save-record-dwarf.json": "736af58444d67dc38ad4c33f57ae375f822a679cda90973f5a1e055b58c23b52"
+  },
+  "original_evidence_sha256": {
+    "work/pc_quest_save/08060770-calls.json": "454d3c9db9c62f3f7728b3d38fc21d02df2eabe38eaf8def4e1970c4c41ba44b",
+    "work/pc_quest_save/08060770-decompile.c": "f10967302ea25f78559cf240321c34b79887615184467ca67aa9d9cea0290000",
+    "work/pc_quest_save/08060770-decompile.json": "3c531a9e33445bc78f147af79bf0d5311d724a117cbb3d37518902520353efea",
+    "work/pc_quest_save/apply.py": "7b2cfaa5d55a9b2515d3dc704bf482d5031965b915b52492d4ea4c3c66b69b44",
+    "work/pc_quest_save/check_static.py": "1eb03a6c722e2e8cc05d09452d25fdac2508e8813195b0a22cdf4e4a63edc4da",
+    "work/pc_quest_save/extract.py": "9a4f642908b2fc094ebe932bfa590af0a87506b4f19ca76bfea5ed1fc399886b",
+    "work/pc_quest_save/finalize_manifest.py": "dd40256395033355286031e3aa9558469aeebeee2de32ce9ca54c7b96d71ad91",
+    "work/pc_quest_save/HANDOFF.md": "ca840bc87235b23a8a77991c9279bbf647fcae9f804e4d5756eacb589729d8d2",
+    "work/pc_quest_save/Makefile.addition": "167d0172eda8c210bf6038a8c15745455403402c8a3dc891bd9fe7eab523193a",
+    "work/pc_quest_save/pc_quest_save_abi.cpp": "8c5ea339bf4084fcbecfb6d540eee6daecf1d92ff3e009eadc7ed1a93848af62",
+    "work/pc_quest_save/pc_quest_save_desc_output_syscalls.c": "1dcd2d623a662ec10f1ebfcc8aee52e82e5acc741c1bf34b7d19e70d837eb684",
+    "work/pc_quest_save/pc_quest_save_regression.cpp": "97ccae3dc4b4355551d68a4cf5a24129931c05b3efa1428cf12acf04fb4802d0",
+    "work/pc_quest_save/prepare.py": "11c2003ed4a50cfdd6aea347c5b61620a9453fb3bdd89eefd494bd8d1a98f077",
+    "work/pc_quest_save/prepare_integration.py": "441dd71196185791920642c57159256300718bc7d8f9237e783aed5bb585f4f6",
+    "work/pc_quest_save/questpc.cpp.candidate": "53fcb087c0480794d0f41406695e8c0cd8e3c408d8fe600ab73ed6fd2a1e2778",
+    "work/pc_quest_save/questpc.cpp.fragment": "b0d99e4bf63932a03d8b30bb70521d127589cff721267f8c521ba32bda17ff52",
+    "work/pc_quest_save/save-assembly.json": "c8eab5cdc2d99e0dc871dacc057a4af2586fbae3fdb6d5297d46e3f5082e098c",
+    "work/pc_quest_save/save-record-dwarf.json": "736af58444d67dc38ad4c33f57ae375f822a679cda90973f5a1e055b58c23b52",
+    "work/pc_quest_save/tables.h.candidate": "4f124da7d970c7db82b6d4de93f6d793858a0b251a6087c5a21d3bd627e45e3f",
+    "work/pc_quest_save/tables.h.fragment": "5e9bd005f36fe86b2d60ccefe8c60eaf7765cc1c7d779e4bc9d62eaf1ac57675",
+    "work/pc_quest_save/validate.py": "2a406edf7b95298251a36508488add2b674d7fa48f8920515177d00af455f708"
+  },
+  "input_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc_quest_save\\MANIFEST.json": "2d354cf8fb2c88472591f09db2c3039ceae5f68ecd1f8300a21a69a82e624791",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc_quest_save\\integration\\plan.json": "b3a7f1db5bc1ecb25e8e4e2351e640d89ae5ab16d74e8cc281bac71ceac18a06",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint94_quest_save\\source-guards.json": "e0413304b8cb0b8c94a7f2e37b36166c5c5c6bf69d78c50563762418ed8c4b15",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint94_quest_save\\prepare_record.py": "64081765bcab26fc969cb9f4885c9509038a0a5033bd199c46309bb662df444d"
+  },
+  "baseline_metadata_sha256": {
+    "function-coverage-overrides.json": "d47e376e2e41fc61a85a184412384e081361f92bce1a067388a254b4028a0ec9",
+    "validation-status.json": "8d371e205646654eec58d6542acb26dd839ecfe05eea6e6f7fc3fd83e0cab147",
+    "CURRENT_STATUS.md": "eed61e55926c343f3b20e65429b28622f97dd0fb144d8e88e4297997982a9775",
+    "RESUME_CHECKPOINT.md": "37d8ca24ee668b42df50f5955cfe2a862a1a6ace0ca73943d44ee08682d65fe6"
+  },
+  "baseline_overrides_sha256": "d47e376e2e41fc61a85a184412384e081361f92bce1a067388a254b4028a0ec9",
+  "baseline_validation_status_sha256": "8d371e205646654eec58d6542acb26dd839ecfe05eea6e6f7fc3fd83e0cab147",
+  "note": "Checkpoint94 reconstructs the complete original PC::Save08060770 and full packed106-byte SQuestTable/TQuestTable with original DWORD/long32 and char[33]/char[65] fields at0/4/37/102. Focused3+ABI, strict C++03/m32 syntax, actual optimized PC/event/manager/CLIENT_DESC/buffer graph with5 distinct SQL/observer objects and full104 exact ordered runtimes+ABI pass. Static-vector resize, reused stale tails/zero-grown rows, cached pre-log values/current PID reload, actual separate DB header/body(global pointer reloaded), and late live pending-map clear retained. No invented named packet/quest enum or production repair. Map-growing/erase/clear callbacks and reentrant Save can invalidate iterators, borrowed keys or static-vector storage and overrun initially sized rows; original unsafe domains are preserved and not forced. Huge size/find/count conversion, null/dangling DB and original COW SDK domains remain unproven. Test lifecycle and external OS/MySQL/log observers are explicit; actual DB header/body, PC, event and buffer methods remain complete. No Lua/VM/full-server linking or VisualStudio production-build claim."
+}

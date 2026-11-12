@@ -1,0 +1,1354 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+0812e340 <_ZN9CHARACTER11PointChangeEhibb>:
+ 812e340:	55                   	push   %ebp
+ 812e341:	89 e5                	mov    %esp,%ebp
+ 812e343:	57                   	push   %edi
+ 812e344:	56                   	push   %esi
+ 812e345:	31 f6                	xor    %esi,%esi
+ 812e347:	53                   	push   %ebx
+ 812e348:	83 ec 7c             	sub    $0x7c,%esp
+ 812e34b:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 812e34e:	0f b6 45 0c          	movzbl 0xc(%ebp),%eax
+ 812e352:	0f b6 55 14          	movzbl 0x14(%ebp),%edx
+ 812e356:	0f b6 4d 18          	movzbl 0x18(%ebp),%ecx
+ 812e35a:	88 45 c7             	mov    %al,-0x39(%ebp)
+ 812e35d:	0f b6 c0             	movzbl %al,%eax
+ 812e360:	83 f8 7e             	cmp    $0x7e,%eax
+ 812e363:	88 55 c6             	mov    %dl,-0x3a(%ebp)
+ 812e366:	88 4d c5             	mov    %cl,-0x3b(%ebp)
+ 812e369:	0f 87 61 12 00 00    	ja     812f5d0 <_ZN9CHARACTER11PointChangeEhibb+0x1290>
+ 812e36f:	ff 24 85 24 45 22 08 	jmp    *0x8224524(,%eax,4)
+ 812e376:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812e37d:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812e380:	8d 04 11             	lea    (%ecx,%edx,1),%eax
+ 812e383:	83 f8 63             	cmp    $0x63,%eax
+ 812e386:	7e 10                	jle    812e398 <_ZN9CHARACTER11PointChangeEhibb+0x58>
+ 812e388:	90                   	nop
+ 812e389:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 812e390:	83 c4 7c             	add    $0x7c,%esp
+ 812e393:	5b                   	pop    %ebx
+ 812e394:	5e                   	pop    %esi
+ 812e395:	5f                   	pop    %edi
+ 812e396:	5d                   	pop    %ebp
+ 812e397:	c3                   	ret
+ 812e398:	0f b6 45 10          	movzbl 0x10(%ebp),%eax
+ 812e39c:	89 3c 24             	mov    %edi,(%esp)
+ 812e39f:	00 d0                	add    %dl,%al
+ 812e3a1:	0f b6 c0             	movzbl %al,%eax
+ 812e3a4:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e3a8:	e8 43 c2 ff ff       	call   812a5f0 <_ZN9CHARACTER8SetLevelEh>
+ 812e3ad:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812e3b4:	c7 45 bc 00 94 35 77 	movl   $0x77359400,-0x44(%ebp)
+ 812e3bb:	0f b6 c2             	movzbl %dl,%eax
+ 812e3be:	83 f8 62             	cmp    $0x62,%eax
+ 812e3c1:	89 45 c0             	mov    %eax,-0x40(%ebp)
+ 812e3c4:	89 c6                	mov    %eax,%esi
+ 812e3c6:	7f 0b                	jg     812e3d3 <_ZN9CHARACTER11PointChangeEhibb+0x93>
+ 812e3c8:	a1 8c 32 32 08       	mov    0x832328c,%eax
+ 812e3cd:	8b 04 b0             	mov    (%eax,%esi,4),%eax
+ 812e3d0:	89 45 bc             	mov    %eax,-0x44(%ebp)
+ 812e3d3:	89 3c 24             	mov    %edi,(%esp)
+ 812e3d6:	0f b6 da             	movzbl %dl,%ebx
+ 812e3d9:	e8 52 95 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e3de:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 812e3e2:	8b 55 bc             	mov    -0x44(%ebp),%edx
+ 812e3e5:	bb 22 68 22 08       	mov    $0x8226822,%ebx
+ 812e3ea:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e3ee:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812e3f2:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812e3f6:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 812e3fd:	e8 9e 9e 08 00       	call   81b82a0 <sys_log>
+ 812e402:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812e409:	b8 00 94 35 77       	mov    $0x77359400,%eax
+ 812e40e:	83 fa 62             	cmp    $0x62,%edx
+ 812e411:	7f 08                	jg     812e41b <_ZN9CHARACTER11PointChangeEhibb+0xdb>
+ 812e413:	a1 8c 32 32 08       	mov    0x832328c,%eax
+ 812e418:	8b 04 90             	mov    (%eax,%edx,4),%eax
+ 812e41b:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e41f:	31 c9                	xor    %ecx,%ecx
+ 812e421:	31 d2                	xor    %edx,%edx
+ 812e423:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812e427:	b8 04 00 00 00       	mov    $0x4,%eax
+ 812e42c:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e430:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812e434:	89 3c 24             	mov    %edi,(%esp)
+ 812e437:	e8 04 ff ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812e43c:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812e43f:	85 c0                	test   %eax,%eax
+ 812e441:	0f 84 e9 00 00 00    	je     812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812e447:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 812e44c:	8b 9f f0 00 00 00    	mov    0xf0(%edi),%ebx
+ 812e452:	85 c0                	test   %eax,%eax
+ 812e454:	0f 84 ba 01 00 00    	je     812e614 <_ZN9CHARACTER11PointChangeEhibb+0x2d4>
+ 812e45a:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812e45e:	89 04 24             	mov    %eax,(%esp)
+ 812e461:	e8 aa 4e 07 00       	call   81a3310 <_ZN5quest13CQuestManager7LevelUpEj>
+ 812e466:	89 3c 24             	mov    %edi,(%esp)
+ 812e469:	b9 1f 00 00 00       	mov    $0x1f,%ecx
+ 812e46e:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812e472:	e8 49 fa ff ff       	call   812dec0 <_ZN9CHARACTER12GetRealPointEh>
+ 812e477:	89 c3                	mov    %eax,%ebx
+ 812e479:	e8 32 b0 08 00       	call   81b94b0 <get_dword_time>
+ 812e47e:	8b 97 c0 0b 00 00    	mov    0xbc0(%edi),%edx
+ 812e484:	89 3c 24             	mov    %edi,(%esp)
+ 812e487:	29 d0                	sub    %edx,%eax
+ 812e489:	ba 73 b2 e7 45       	mov    $0x45e7b273,%edx
+ 812e48e:	f7 e2                	mul    %edx
+ 812e490:	c1 ea 0e             	shr    $0xe,%edx
+ 812e493:	01 d3                	add    %edx,%ebx
+ 812e495:	89 5d b8             	mov    %ebx,-0x48(%ebp)
+ 812e498:	e8 93 94 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e49d:	89 c3                	mov    %eax,%ebx
+ 812e49f:	e8 6c c7 fa ff       	call   80dac10 <_Z17get_table_postfixv>
+ 812e4a4:	89 45 b4             	mov    %eax,-0x4c(%ebp)
+ 812e4a7:	a1 84 b4 23 08       	mov    0x823b484,%eax
+ 812e4ac:	85 c0                	test   %eax,%eax
+ 812e4ae:	0f 84 2f 01 00 00    	je     812e5e3 <_ZN9CHARACTER11PointChangeEhibb+0x2a3>
+ 812e4b4:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 812e4b8:	8b 4d b8             	mov    -0x48(%ebp),%ecx
+ 812e4bb:	8b 55 c0             	mov    -0x40(%ebp),%edx
+ 812e4be:	89 04 24             	mov    %eax,(%esp)
+ 812e4c1:	89 4c 24 14          	mov    %ecx,0x14(%esp)
+ 812e4c5:	8b 4d b4             	mov    -0x4c(%ebp),%ecx
+ 812e4c8:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812e4cc:	ba 60 52 22 08       	mov    $0x8225260,%edx
+ 812e4d1:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812e4d5:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812e4d9:	e8 82 9f f4 ff       	call   8078460 <_ZN10LogManager5QueryEPKcz>
+ 812e4de:	8b 8f a8 0c 00 00    	mov    0xca8(%edi),%ecx
+ 812e4e4:	85 c9                	test   %ecx,%ecx
+ 812e4e6:	74 1d                	je     812e505 <_ZN9CHARACTER11PointChangeEhibb+0x1c5>
+ 812e4e8:	0f b6 87 02 05 00 00 	movzbl 0x502(%edi),%eax
+ 812e4ef:	8b 97 f0 00 00 00    	mov    0xf0(%edi),%edx
+ 812e4f5:	89 0c 24             	mov    %ecx,(%esp)
+ 812e4f8:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e4fc:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812e500:	e8 cb 10 f6 ff       	call   808f5d0 <_ZN6CGuild11LevelChangeEmh>
+ 812e505:	8b 8f 88 0c 00 00    	mov    0xc88(%edi),%ecx
+ 812e50b:	85 c9                	test   %ecx,%ecx
+ 812e50d:	74 21                	je     812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812e50f:	0f b6 87 02 05 00 00 	movzbl 0x502(%edi),%eax
+ 812e516:	8b 97 f0 00 00 00    	mov    0xf0(%edi),%edx
+ 812e51c:	89 0c 24             	mov    %ecx,(%esp)
+ 812e51f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e523:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812e527:	e8 54 3f 01 00       	call   8142480 <_ZN6CParty21RequestSetMemberLevelEmh>
+ 812e52c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 812e530:	0f b6 45 c7          	movzbl -0x39(%ebp),%eax
+ 812e534:	83 f8 0f             	cmp    $0xf,%eax
+ 812e537:	77 17                	ja     812e550 <_ZN9CHARACTER11PointChangeEhibb+0x210>
+ 812e539:	ff 24 85 20 47 22 08 	jmp    *0x8224720(,%eax,4)
+ 812e540:	89 3c 24             	mov    %edi,(%esp)
+ 812e543:	e8 58 d8 ff ff       	call   812bda0 <_ZN9CHARACTER19ComputeBattlePointsEv>
+ 812e548:	90                   	nop
+ 812e549:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 812e550:	80 7d c7 05          	cmpb   $0x5,-0x39(%ebp)
+ 812e554:	74 7d                	je     812e5d3 <_ZN9CHARACTER11PointChangeEhibb+0x293>
+ 812e556:	8b 57 18             	mov    0x18(%edi),%edx
+ 812e559:	85 d2                	test   %edx,%edx
+ 812e55b:	0f 84 2f fe ff ff    	je     812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812e561:	c7 45 c8 11 00 00 00 	movl   $0x11,-0x38(%ebp)
+ 812e568:	8b 87 f4 00 00 00    	mov    0xf4(%edi),%eax
+ 812e56e:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812e571:	89 75 d5             	mov    %esi,-0x2b(%ebp)
+ 812e574:	89 45 cc             	mov    %eax,-0x34(%ebp)
+ 812e577:	0f b6 45 c7          	movzbl -0x39(%ebp),%eax
+ 812e57b:	88 45 d0             	mov    %al,-0x30(%ebp)
+ 812e57e:	31 c0                	xor    %eax,%eax
+ 812e580:	80 7d c6 00          	cmpb   $0x0,-0x3a(%ebp)
+ 812e584:	0f 94 c0             	sete   %al
+ 812e587:	48                   	dec    %eax
+ 812e588:	21 c8                	and    %ecx,%eax
+ 812e58a:	80 7d c5 00          	cmpb   $0x0,-0x3b(%ebp)
+ 812e58e:	89 45 d1             	mov    %eax,-0x2f(%ebp)
+ 812e591:	75 1d                	jne    812e5b0 <_ZN9CHARACTER11PointChangeEhibb+0x270>
+ 812e593:	89 14 24             	mov    %edx,(%esp)
+ 812e596:	bf 11 00 00 00       	mov    $0x11,%edi
+ 812e59b:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 812e59e:	89 7c 24 08          	mov    %edi,0x8(%esp)
+ 812e5a2:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e5a6:	e8 65 b7 00 00       	call   8139d10 <_ZN4DESC6PacketEPKvi>
+ 812e5ab:	e9 e0 fd ff ff       	jmp    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812e5b0:	89 3c 24             	mov    %edi,(%esp)
+ 812e5b3:	31 f6                	xor    %esi,%esi
+ 812e5b5:	bb 11 00 00 00       	mov    $0x11,%ebx
+ 812e5ba:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 812e5be:	8d 45 c8             	lea    -0x38(%ebp),%eax
+ 812e5c1:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 812e5c5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e5c9:	e8 e2 e5 07 00       	call   81acbb0 <_ZN7CEntity12PacketAroundEPKviPS_>
+ 812e5ce:	e9 bd fd ff ff       	jmp    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812e5d3:	8b 5d 10             	mov    0x10(%ebp),%ebx
+ 812e5d6:	85 db                	test   %ebx,%ebx
+ 812e5d8:	0f 84 b2 fd ff ff    	je     812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812e5de:	e9 73 ff ff ff       	jmp    812e556 <_ZN9CHARACTER11PointChangeEhibb+0x216>
+ 812e5e3:	c7 04 24 32 44 22 08 	movl   $0x8224432,(%esp)
+ 812e5ea:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 812e5ef:	b9 fa 62 1f 08       	mov    $0x81f62fa,%ecx
+ 812e5f4:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e5f8:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 812e5fd:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e601:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812e605:	e8 a2 e3 f1 ff       	call   804c9ac <__assert@plt>
+ 812e60a:	a1 84 b4 23 08       	mov    0x823b484,%eax
+ 812e60f:	e9 a0 fe ff ff       	jmp    812e4b4 <_ZN9CHARACTER11PointChangeEhibb+0x174>
+ 812e614:	c7 04 24 d4 43 22 08 	movl   $0x82243d4,(%esp)
+ 812e61b:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 812e620:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e624:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 812e629:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e62d:	b8 fa 62 1f 08       	mov    $0x81f62fa,%eax
+ 812e632:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e636:	e8 71 e3 f1 ff       	call   804c9ac <__assert@plt>
+ 812e63b:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 812e640:	e9 15 fe ff ff       	jmp    812e45a <_ZN9CHARACTER11PointChangeEhibb+0x11a>
+ 812e645:	8b 87 04 05 00 00    	mov    0x504(%edi),%eax
+ 812e64b:	89 45 b0             	mov    %eax,-0x50(%ebp)
+ 812e64e:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812e655:	c7 45 ac 00 94 35 77 	movl   $0x77359400,-0x54(%ebp)
+ 812e65c:	83 fa 62             	cmp    $0x62,%edx
+ 812e65f:	7f 0b                	jg     812e66c <_ZN9CHARACTER11PointChangeEhibb+0x32c>
+ 812e661:	a1 8c 32 32 08       	mov    0x832328c,%eax
+ 812e666:	8b 14 90             	mov    (%eax,%edx,4),%edx
+ 812e669:	89 55 ac             	mov    %edx,-0x54(%ebp)
+ 812e66c:	e8 df a3 f3 ff       	call   8068a50 <_Z12LC_IsNewCIBNv>
+ 812e671:	84 c0                	test   %al,%al
+ 812e673:	74 20                	je     812e695 <_ZN9CHARACTER11PointChangeEhibb+0x355>
+ 812e675:	8b 87 c4 0e 00 00    	mov    0xec4(%edi),%eax
+ 812e67b:	85 c0                	test   %eax,%eax
+ 812e67d:	0f 84 da 03 00 00    	je     812ea5d <_ZN9CHARACTER11PointChangeEhibb+0x71d>
+ 812e683:	83 f8 01             	cmp    $0x1,%eax
+ 812e686:	0f 84 93 03 00 00    	je     812ea1f <_ZN9CHARACTER11PointChangeEhibb+0x6df>
+ 812e68c:	83 f8 02             	cmp    $0x2,%eax
+ 812e68f:	0f 84 42 03 00 00    	je     812e9d7 <_ZN9CHARACTER11PointChangeEhibb+0x697>
+ 812e695:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812e698:	85 c9                	test   %ecx,%ecx
+ 812e69a:	0f 88 d9 02 00 00    	js     812e979 <_ZN9CHARACTER11PointChangeEhibb+0x639>
+ 812e6a0:	0f b6 87 02 05 00 00 	movzbl 0x502(%edi),%eax
+ 812e6a7:	83 f8 62             	cmp    $0x62,%eax
+ 812e6aa:	0f 8f e0 fc ff ff    	jg     812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812e6b0:	a1 9c 31 32 08       	mov    0x832319c,%eax
+ 812e6b5:	85 c0                	test   %eax,%eax
+ 812e6b7:	0f 85 96 02 00 00    	jne    812e953 <_ZN9CHARACTER11PointChangeEhibb+0x613>
+ 812e6bd:	c7 45 a8 00 00 00 00 	movl   $0x0,-0x58(%ebp)
+ 812e6c4:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812e6c7:	8b 5d b0             	mov    -0x50(%ebp),%ebx
+ 812e6ca:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 812e6d1:	8b 55 ac             	mov    -0x54(%ebp),%edx
+ 812e6d4:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812e6d7:	01 c3                	add    %eax,%ebx
+ 812e6d9:	8b 45 ac             	mov    -0x54(%ebp),%eax
+ 812e6dc:	89 de                	mov    %ebx,%esi
+ 812e6de:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812e6e2:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 812e6e6:	29 c6                	sub    %eax,%esi
+ 812e6e8:	8b 45 b0             	mov    -0x50(%ebp),%eax
+ 812e6eb:	89 74 24 14          	mov    %esi,0x14(%esp)
+ 812e6ef:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e6f3:	b8 3d 68 22 08       	mov    $0x822683d,%eax
+ 812e6f8:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e6fc:	e8 9f 9b 08 00       	call   81b82a0 <sys_log>
+ 812e701:	3b 5d ac             	cmp    -0x54(%ebp),%ebx
+ 812e704:	0f 8c 3b 02 00 00    	jl     812e945 <_ZN9CHARACTER11PointChangeEhibb+0x605>
+ 812e70a:	89 75 a8             	mov    %esi,-0x58(%ebp)
+ 812e70d:	8b 4d b0             	mov    -0x50(%ebp),%ecx
+ 812e710:	8b 55 ac             	mov    -0x54(%ebp),%edx
+ 812e713:	29 ca                	sub    %ecx,%edx
+ 812e715:	8b 4d ac             	mov    -0x54(%ebp),%ecx
+ 812e718:	89 55 10             	mov    %edx,0x10(%ebp)
+ 812e71b:	31 d2                	xor    %edx,%edx
+ 812e71d:	89 97 04 05 00 00    	mov    %edx,0x504(%edi)
+ 812e723:	89 4d b0             	mov    %ecx,-0x50(%ebp)
+ 812e726:	89 3c 24             	mov    %edi,(%esp)
+ 812e729:	e8 02 92 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e72e:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e732:	8b 55 ac             	mov    -0x54(%ebp),%edx
+ 812e735:	b8 59 68 22 08       	mov    $0x8226859,%eax
+ 812e73a:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e73e:	8b 4d b0             	mov    -0x50(%ebp),%ecx
+ 812e741:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 812e748:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812e74c:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 812e750:	e8 4b 9b 08 00       	call   81b82a0 <sys_log>
+ 812e755:	8b 45 ac             	mov    -0x54(%ebp),%eax
+ 812e758:	85 c0                	test   %eax,%eax
+ 812e75a:	0f 88 dd 01 00 00    	js     812e93d <_ZN9CHARACTER11PointChangeEhibb+0x5fd>
+ 812e760:	89 3c 24             	mov    %edi,(%esp)
+ 812e763:	89 c6                	mov    %eax,%esi
+ 812e765:	b8 19 00 00 00       	mov    $0x19,%eax
+ 812e76a:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e76e:	c1 fe 02             	sar    $0x2,%esi
+ 812e771:	e8 4a f7 ff ff       	call   812dec0 <_ZN9CHARACTER12GetRealPointEh>
+ 812e776:	83 f8 03             	cmp    $0x3,%eax
+ 812e779:	89 c3                	mov    %eax,%ebx
+ 812e77b:	0f 8f 84 01 00 00    	jg     812e905 <_ZN9CHARACTER11PointChangeEhibb+0x5c5>
+ 812e781:	8b 45 ac             	mov    -0x54(%ebp),%eax
+ 812e784:	39 45 b0             	cmp    %eax,-0x50(%ebp)
+ 812e787:	0f 8c a2 00 00 00    	jl     812e82f <_ZN9CHARACTER11PointChangeEhibb+0x4ef>
+ 812e78d:	83 fb 03             	cmp    $0x3,%ebx
+ 812e790:	0f 8f 99 00 00 00    	jg     812e82f <_ZN9CHARACTER11PointChangeEhibb+0x4ef>
+ 812e796:	b8 04 00 00 00       	mov    $0x4,%eax
+ 812e79b:	29 d8                	sub    %ebx,%eax
+ 812e79d:	85 c0                	test   %eax,%eax
+ 812e79f:	7e 2e                	jle    812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e7a1:	89 c3                	mov    %eax,%ebx
+ 812e7a3:	89 3c 24             	mov    %edi,(%esp)
+ 812e7a6:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812e7ab:	b9 19 00 00 00       	mov    $0x19,%ecx
+ 812e7b0:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812e7b4:	be 01 00 00 00       	mov    $0x1,%esi
+ 812e7b9:	31 c0                	xor    %eax,%eax
+ 812e7bb:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e7bf:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812e7c3:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812e7c7:	e8 74 fb ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812e7cc:	4b                   	dec    %ebx
+ 812e7cd:	75 d4                	jne    812e7a3 <_ZN9CHARACTER11PointChangeEhibb+0x463>
+ 812e7cf:	8b 45 a8             	mov    -0x58(%ebp),%eax
+ 812e7d2:	85 c0                	test   %eax,%eax
+ 812e7d4:	75 0b                	jne    812e7e1 <_ZN9CHARACTER11PointChangeEhibb+0x4a1>
+ 812e7d6:	8b b7 04 05 00 00    	mov    0x504(%edi),%esi
+ 812e7dc:	e9 4f fd ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812e7e1:	89 3c 24             	mov    %edi,(%esp)
+ 812e7e4:	e8 47 91 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e7e9:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e7ed:	8b 55 a8             	mov    -0x58(%ebp),%edx
+ 812e7f0:	b8 69 68 22 08       	mov    $0x8226869,%eax
+ 812e7f5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e7f9:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812e7fd:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 812e804:	e8 97 9a 08 00       	call   81b82a0 <sys_log>
+ 812e809:	89 3c 24             	mov    %edi,(%esp)
+ 812e80c:	31 c0                	xor    %eax,%eax
+ 812e80e:	8b 4d a8             	mov    -0x58(%ebp),%ecx
+ 812e811:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812e815:	31 c0                	xor    %eax,%eax
+ 812e817:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e81b:	b8 03 00 00 00       	mov    $0x3,%eax
+ 812e820:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812e824:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e828:	e8 13 fb ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812e82d:	eb a7                	jmp    812e7d6 <_ZN9CHARACTER11PointChangeEhibb+0x496>
+ 812e82f:	8d 04 76             	lea    (%esi,%esi,2),%eax
+ 812e832:	39 45 b0             	cmp    %eax,-0x50(%ebp)
+ 812e835:	7c 43                	jl     812e87a <_ZN9CHARACTER11PointChangeEhibb+0x53a>
+ 812e837:	83 fb 02             	cmp    $0x2,%ebx
+ 812e83a:	7f 3e                	jg     812e87a <_ZN9CHARACTER11PointChangeEhibb+0x53a>
+ 812e83c:	b8 03 00 00 00       	mov    $0x3,%eax
+ 812e841:	29 d8                	sub    %ebx,%eax
+ 812e843:	85 c0                	test   %eax,%eax
+ 812e845:	7e 88                	jle    812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e847:	89 c3                	mov    %eax,%ebx
+ 812e849:	89 3c 24             	mov    %edi,(%esp)
+ 812e84c:	31 c0                	xor    %eax,%eax
+ 812e84e:	ba 01 00 00 00       	mov    $0x1,%edx
+ 812e853:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e857:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812e85c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e860:	b8 19 00 00 00       	mov    $0x19,%eax
+ 812e865:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812e869:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e86d:	e8 ce fa ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812e872:	4b                   	dec    %ebx
+ 812e873:	75 d4                	jne    812e849 <_ZN9CHARACTER11PointChangeEhibb+0x509>
+ 812e875:	e9 55 ff ff ff       	jmp    812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e87a:	8d 04 36             	lea    (%esi,%esi,1),%eax
+ 812e87d:	39 45 b0             	cmp    %eax,-0x50(%ebp)
+ 812e880:	7c 05                	jl     812e887 <_ZN9CHARACTER11PointChangeEhibb+0x547>
+ 812e882:	83 fb 01             	cmp    $0x1,%ebx
+ 812e885:	7e 3c                	jle    812e8c3 <_ZN9CHARACTER11PointChangeEhibb+0x583>
+ 812e887:	39 75 b0             	cmp    %esi,-0x50(%ebp)
+ 812e88a:	0f 8c 3f ff ff ff    	jl     812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e890:	85 db                	test   %ebx,%ebx
+ 812e892:	0f 8f 37 ff ff ff    	jg     812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e898:	89 3c 24             	mov    %edi,(%esp)
+ 812e89b:	31 db                	xor    %ebx,%ebx
+ 812e89d:	31 c9                	xor    %ecx,%ecx
+ 812e89f:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+ 812e8a3:	ba 01 00 00 00       	mov    $0x1,%edx
+ 812e8a8:	b8 19 00 00 00       	mov    $0x19,%eax
+ 812e8ad:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 812e8b1:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 812e8b5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e8b9:	e8 82 fa ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812e8be:	e9 0c ff ff ff       	jmp    812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e8c3:	b8 02 00 00 00       	mov    $0x2,%eax
+ 812e8c8:	29 d8                	sub    %ebx,%eax
+ 812e8ca:	85 c0                	test   %eax,%eax
+ 812e8cc:	0f 8e fd fe ff ff    	jle    812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e8d2:	89 c3                	mov    %eax,%ebx
+ 812e8d4:	89 3c 24             	mov    %edi,(%esp)
+ 812e8d7:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812e8dc:	be 19 00 00 00       	mov    $0x19,%esi
+ 812e8e1:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812e8e5:	31 c0                	xor    %eax,%eax
+ 812e8e7:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e8eb:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812e8f0:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e8f4:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 812e8f8:	e8 43 fa ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812e8fd:	4b                   	dec    %ebx
+ 812e8fe:	75 d4                	jne    812e8d4 <_ZN9CHARACTER11PointChangeEhibb+0x594>
+ 812e900:	e9 ca fe ff ff       	jmp    812e7cf <_ZN9CHARACTER11PointChangeEhibb+0x48f>
+ 812e905:	89 3c 24             	mov    %edi,(%esp)
+ 812e908:	e8 23 90 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e90d:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e911:	b8 c0 52 22 08       	mov    $0x82252c0,%eax
+ 812e916:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e91a:	b8 9f 0b 00 00       	mov    $0xb9f,%eax
+ 812e91f:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+ 812e923:	bb 04 00 00 00       	mov    $0x4,%ebx
+ 812e928:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e92c:	c7 04 24 17 45 22 08 	movl   $0x8224517,(%esp)
+ 812e933:	e8 18 98 08 00       	call   81b8150 <_sys_err>
+ 812e938:	e9 44 fe ff ff       	jmp    812e781 <_ZN9CHARACTER11PointChangeEhibb+0x441>
+ 812e93d:	83 c0 03             	add    $0x3,%eax
+ 812e940:	e9 1b fe ff ff       	jmp    812e760 <_ZN9CHARACTER11PointChangeEhibb+0x420>
+ 812e945:	89 9f 04 05 00 00    	mov    %ebx,0x504(%edi)
+ 812e94b:	89 5d b0             	mov    %ebx,-0x50(%ebp)
+ 812e94e:	e9 d3 fd ff ff       	jmp    812e726 <_ZN9CHARACTER11PointChangeEhibb+0x3e6>
+ 812e953:	89 3c 24             	mov    %edi,(%esp)
+ 812e956:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812e959:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812e95d:	b8 7b 68 22 08       	mov    $0x822687b,%eax
+ 812e962:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e966:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812e96b:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812e96f:	e8 fc 14 00 00       	call   812fe70 <_ZN9CHARACTER10ChatPacketEhPKcz>
+ 812e974:	e9 44 fd ff ff       	jmp    812e6bd <_ZN9CHARACTER11PointChangeEhibb+0x37d>
+ 812e979:	8b 5d 10             	mov    0x10(%ebp),%ebx
+ 812e97c:	f7 db                	neg    %ebx
+ 812e97e:	39 5d b0             	cmp    %ebx,-0x50(%ebp)
+ 812e981:	0f 8d 19 fd ff ff    	jge    812e6a0 <_ZN9CHARACTER11PointChangeEhibb+0x360>
+ 812e987:	89 3c 24             	mov    %edi,(%esp)
+ 812e98a:	e8 a1 8f ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e98f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812e993:	8b 55 b0             	mov    -0x50(%ebp),%edx
+ 812e996:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 812e99a:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 812e9a1:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812e9a5:	ba 00 53 22 08       	mov    $0x8225300,%edx
+ 812e9aa:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812e9ae:	e8 ed 98 08 00       	call   81b82a0 <sys_log>
+ 812e9b3:	8b 4d b0             	mov    -0x50(%ebp),%ecx
+ 812e9b6:	8b 45 b0             	mov    -0x50(%ebp),%eax
+ 812e9b9:	f7 d9                	neg    %ecx
+ 812e9bb:	89 4d 10             	mov    %ecx,0x10(%ebp)
+ 812e9be:	01 c8                	add    %ecx,%eax
+ 812e9c0:	89 87 04 05 00 00    	mov    %eax,0x504(%edi)
+ 812e9c6:	8d 76 00             	lea    0x0(%esi),%esi
+ 812e9c9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+ 812e9d0:	89 c6                	mov    %eax,%esi
+ 812e9d2:	e9 59 fb ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812e9d7:	c7 45 10 00 00 00 00 	movl   $0x0,0x10(%ebp)
+ 812e9de:	be 17 45 22 08       	mov    $0x8224517,%esi
+ 812e9e3:	bb 72 0b 00 00       	mov    $0xb72,%ebx
+ 812e9e8:	89 3c 24             	mov    %edi,(%esp)
+ 812e9eb:	e8 40 8f ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812e9f0:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 812e9f4:	b8 93 68 22 08       	mov    $0x8226893,%eax
+ 812e9f9:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812e9fd:	b8 00 08 00 00       	mov    $0x800,%eax
+ 812ea02:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812ea06:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812ea0a:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812ea0e:	c7 04 24 d7 66 22 08 	movl   $0x82266d7,(%esp)
+ 812ea15:	e8 36 f9 03 00       	call   816e350 <_Z7dev_logPKciS0_iPcz>
+ 812ea1a:	e9 76 fc ff ff       	jmp    812e695 <_ZN9CHARACTER11PointChangeEhibb+0x355>
+ 812ea1f:	89 3c 24             	mov    %edi,(%esp)
+ 812ea22:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812ea25:	c1 e8 1f             	shr    $0x1f,%eax
+ 812ea28:	01 45 10             	add    %eax,0x10(%ebp)
+ 812ea2b:	d1 7d 10             	sarl   $1,0x10(%ebp)
+ 812ea2e:	e8 fd 8e ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812ea33:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 812ea37:	b8 a8 68 22 08       	mov    $0x82268a8,%eax
+ 812ea3c:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812ea40:	b8 00 08 00 00       	mov    $0x800,%eax
+ 812ea45:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812ea49:	b8 17 45 22 08       	mov    $0x8224517,%eax
+ 812ea4e:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812ea52:	b8 6d 0b 00 00       	mov    $0xb6d,%eax
+ 812ea57:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ea5b:	eb b1                	jmp    812ea0e <_ZN9CHARACTER11PointChangeEhibb+0x6ce>
+ 812ea5d:	89 3c 24             	mov    %edi,(%esp)
+ 812ea60:	be bd 68 22 08       	mov    $0x82268bd,%esi
+ 812ea65:	bb 00 08 00 00       	mov    $0x800,%ebx
+ 812ea6a:	e8 c1 8e ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812ea6f:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 812ea73:	b9 17 45 22 08       	mov    $0x8224517,%ecx
+ 812ea78:	ba 68 0b 00 00       	mov    $0xb68,%edx
+ 812ea7d:	89 74 24 10          	mov    %esi,0x10(%esp)
+ 812ea81:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 812ea85:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812ea89:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812ea8d:	e9 7c ff ff ff       	jmp    812ea0e <_ZN9CHARACTER11PointChangeEhibb+0x6ce>
+ 812ea92:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812ea99:	b8 00 94 35 77       	mov    $0x77359400,%eax
+ 812ea9e:	83 fa 62             	cmp    $0x62,%edx
+ 812eaa1:	7f 08                	jg     812eaab <_ZN9CHARACTER11PointChangeEhibb+0x76b>
+ 812eaa3:	a1 8c 32 32 08       	mov    0x832328c,%eax
+ 812eaa8:	8b 04 90             	mov    (%eax,%edx,4),%eax
+ 812eaab:	c6 45 c6 00          	movb   $0x0,-0x3a(%ebp)
+ 812eaaf:	e9 1c ff ff ff       	jmp    812e9d0 <_ZN9CHARACTER11PointChangeEhibb+0x690>
+ 812eab4:	89 3c 24             	mov    %edi,(%esp)
+ 812eab7:	e8 24 9b 01 00       	call   81485e0 <_ZN9CHARACTER6IsDeadEv>
+ 812eabc:	84 c0                	test   %al,%al
+ 812eabe:	0f 85 cc f8 ff ff    	jne    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812eac4:	89 3c 24             	mov    %edi,(%esp)
+ 812eac7:	e8 b4 95 01 00       	call   8148080 <_ZN9CHARACTER6IsStunEv>
+ 812eacc:	84 c0                	test   %al,%al
+ 812eace:	0f 85 bc f8 ff ff    	jne    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812ead4:	8b 9f 0c 05 00 00    	mov    0x50c(%edi),%ebx
+ 812eada:	8b 87 24 09 00 00    	mov    0x924(%edi),%eax
+ 812eae0:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812eae3:	29 d8                	sub    %ebx,%eax
+ 812eae5:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812eae9:	89 04 24             	mov    %eax,(%esp)
+ 812eaec:	e8 6f a7 08 00       	call   81b9260 <MIN>
+ 812eaf1:	89 45 10             	mov    %eax,0x10(%ebp)
+ 812eaf4:	8b 8f 0c 05 00 00    	mov    0x50c(%edi),%ecx
+ 812eafa:	01 c8                	add    %ecx,%eax
+ 812eafc:	89 87 0c 05 00 00    	mov    %eax,0x50c(%edi)
+ 812eb02:	89 c6                	mov    %eax,%esi
+ 812eb04:	89 3c 24             	mov    %edi,(%esp)
+ 812eb07:	e8 64 3b 00 00       	call   8132670 <_ZN9CHARACTER21BroadcastTargetPacketEv>
+ 812eb0c:	8b 87 88 0c 00 00    	mov    0xc88(%edi),%eax
+ 812eb12:	85 c0                	test   %eax,%eax
+ 812eb14:	0f 84 16 fa ff ff    	je     812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812eb1a:	8b 57 18             	mov    0x18(%edi),%edx
+ 812eb1d:	85 d2                	test   %edx,%edx
+ 812eb1f:	0f 84 0b fa ff ff    	je     812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812eb25:	39 de                	cmp    %ebx,%esi
+ 812eb27:	0f 84 03 fa ff ff    	je     812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812eb2d:	89 7c 24 04          	mov    %edi,0x4(%esp)
+ 812eb31:	89 04 24             	mov    %eax,(%esp)
+ 812eb34:	e8 d7 40 01 00       	call   8142c10 <_ZN6CParty21SendPartyInfoOneToAllEP9CHARACTER>
+ 812eb39:	e9 f2 f9 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812eb3e:	89 f6                	mov    %esi,%esi
+ 812eb40:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812eb44:	89 3c 24             	mov    %edi,(%esp)
+ 812eb47:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812eb4b:	e8 50 f5 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812eb50:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812eb54:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812eb57:	89 3c 24             	mov    %edi,(%esp)
+ 812eb5a:	01 d0                	add    %edx,%eax
+ 812eb5c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812eb60:	e8 cb f6 ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812eb65:	89 3c 24             	mov    %edi,(%esp)
+ 812eb68:	b8 06 00 00 00       	mov    $0x6,%eax
+ 812eb6d:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812eb71:	e8 4a f3 ff ff       	call   812dec0 <_ZN9CHARACTER12GetRealPointEh>
+ 812eb76:	89 3c 24             	mov    %edi,(%esp)
+ 812eb79:	89 c6                	mov    %eax,%esi
+ 812eb7b:	b8 77 00 00 00       	mov    $0x77,%eax
+ 812eb80:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812eb84:	e8 17 f5 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812eb89:	c7 04 24 dc 05 00 00 	movl   $0x5dc,(%esp)
+ 812eb90:	89 c1                	mov    %eax,%ecx
+ 812eb92:	ba 1f 85 eb 51       	mov    $0x51eb851f,%edx
+ 812eb97:	0f af ce             	imul   %esi,%ecx
+ 812eb9a:	89 c8                	mov    %ecx,%eax
+ 812eb9c:	f7 ea                	imul   %edx
+ 812eb9e:	89 c8                	mov    %ecx,%eax
+ 812eba0:	c1 f8 1f             	sar    $0x1f,%eax
+ 812eba3:	c1 fa 05             	sar    $0x5,%edx
+ 812eba6:	29 c2                	sub    %eax,%edx
+ 812eba8:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812ebac:	e8 af a6 08 00       	call   81b9260 <MIN>
+ 812ebb1:	89 3c 24             	mov    %edi,(%esp)
+ 812ebb4:	89 c3                	mov    %eax,%ebx
+ 812ebb6:	b8 06 00 00 00       	mov    $0x6,%eax
+ 812ebbb:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ebbf:	e8 dc f4 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ebc4:	89 3c 24             	mov    %edi,(%esp)
+ 812ebc7:	b9 5c 00 00 00       	mov    $0x5c,%ecx
+ 812ebcc:	01 c3                	add    %eax,%ebx
+ 812ebce:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812ebd2:	e8 c9 f4 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ebd7:	01 c3                	add    %eax,%ebx
+ 812ebd9:	01 de                	add    %ebx,%esi
+ 812ebdb:	89 b7 24 09 00 00    	mov    %esi,0x924(%edi)
+ 812ebe1:	e9 4a f9 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812ebe6:	89 3c 24             	mov    %edi,(%esp)
+ 812ebe9:	e8 f2 99 01 00       	call   81485e0 <_ZN9CHARACTER6IsDeadEv>
+ 812ebee:	84 c0                	test   %al,%al
+ 812ebf0:	0f 85 9a f7 ff ff    	jne    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812ebf6:	89 3c 24             	mov    %edi,(%esp)
+ 812ebf9:	e8 82 94 01 00       	call   8148080 <_ZN9CHARACTER6IsStunEv>
+ 812ebfe:	84 c0                	test   %al,%al
+ 812ec00:	0f 85 8a f7 ff ff    	jne    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812ec06:	8b 87 28 09 00 00    	mov    0x928(%edi),%eax
+ 812ec0c:	8b 8f 10 05 00 00    	mov    0x510(%edi),%ecx
+ 812ec12:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812ec15:	29 c8                	sub    %ecx,%eax
+ 812ec17:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812ec1b:	89 04 24             	mov    %eax,(%esp)
+ 812ec1e:	e8 3d a6 08 00       	call   81b9260 <MIN>
+ 812ec23:	89 45 10             	mov    %eax,0x10(%ebp)
+ 812ec26:	8b 97 10 05 00 00    	mov    0x510(%edi),%edx
+ 812ec2c:	01 d0                	add    %edx,%eax
+ 812ec2e:	89 87 10 05 00 00    	mov    %eax,0x510(%edi)
+ 812ec34:	e9 97 fd ff ff       	jmp    812e9d0 <_ZN9CHARACTER11PointChangeEhibb+0x690>
+ 812ec39:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+ 812ec40:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812ec44:	89 3c 24             	mov    %edi,(%esp)
+ 812ec47:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812ec4b:	e8 50 f4 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ec50:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812ec54:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812ec57:	89 3c 24             	mov    %edi,(%esp)
+ 812ec5a:	01 d0                	add    %edx,%eax
+ 812ec5c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812ec60:	e8 cb f5 ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812ec65:	89 3c 24             	mov    %edi,(%esp)
+ 812ec68:	b8 08 00 00 00       	mov    $0x8,%eax
+ 812ec6d:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ec71:	e8 4a f2 ff ff       	call   812dec0 <_ZN9CHARACTER12GetRealPointEh>
+ 812ec76:	89 3c 24             	mov    %edi,(%esp)
+ 812ec79:	89 c6                	mov    %eax,%esi
+ 812ec7b:	b8 78 00 00 00       	mov    $0x78,%eax
+ 812ec80:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ec84:	e8 17 f4 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ec89:	c7 04 24 20 03 00 00 	movl   $0x320,(%esp)
+ 812ec90:	89 c1                	mov    %eax,%ecx
+ 812ec92:	ba 1f 85 eb 51       	mov    $0x51eb851f,%edx
+ 812ec97:	0f af ce             	imul   %esi,%ecx
+ 812ec9a:	89 c8                	mov    %ecx,%eax
+ 812ec9c:	f7 ea                	imul   %edx
+ 812ec9e:	89 c8                	mov    %ecx,%eax
+ 812eca0:	c1 f8 1f             	sar    $0x1f,%eax
+ 812eca3:	c1 fa 05             	sar    $0x5,%edx
+ 812eca6:	29 c2                	sub    %eax,%edx
+ 812eca8:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812ecac:	e8 af a5 08 00       	call   81b9260 <MIN>
+ 812ecb1:	89 3c 24             	mov    %edi,(%esp)
+ 812ecb4:	89 c3                	mov    %eax,%ebx
+ 812ecb6:	b8 08 00 00 00       	mov    $0x8,%eax
+ 812ecbb:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ecbf:	e8 dc f3 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ecc4:	89 3c 24             	mov    %edi,(%esp)
+ 812ecc7:	b9 68 00 00 00       	mov    $0x68,%ecx
+ 812eccc:	01 c3                	add    %eax,%ebx
+ 812ecce:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812ecd2:	e8 c9 f3 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ecd7:	01 c3                	add    %eax,%ebx
+ 812ecd9:	01 de                	add    %ebx,%esi
+ 812ecdb:	89 b7 28 09 00 00    	mov    %esi,0x928(%edi)
+ 812ece1:	e9 4a f8 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812ece6:	89 3c 24             	mov    %edi,(%esp)
+ 812ece9:	e8 f2 98 01 00       	call   81485e0 <_ZN9CHARACTER6IsDeadEv>
+ 812ecee:	84 c0                	test   %al,%al
+ 812ecf0:	0f 85 9a f6 ff ff    	jne    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812ecf6:	89 3c 24             	mov    %edi,(%esp)
+ 812ecf9:	e8 82 93 01 00       	call   8148080 <_ZN9CHARACTER6IsStunEv>
+ 812ecfe:	84 c0                	test   %al,%al
+ 812ed00:	0f 85 8a f6 ff ff    	jne    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812ed06:	8b 8f 1c 05 00 00    	mov    0x51c(%edi),%ecx
+ 812ed0c:	8b 87 b4 0b 00 00    	mov    0xbb4(%edi),%eax
+ 812ed12:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812ed15:	89 4d a4             	mov    %ecx,-0x5c(%ebp)
+ 812ed18:	29 c8                	sub    %ecx,%eax
+ 812ed1a:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 812ed1e:	89 04 24             	mov    %eax,(%esp)
+ 812ed21:	e8 3a a5 08 00       	call   81b9260 <MIN>
+ 812ed26:	89 45 10             	mov    %eax,0x10(%ebp)
+ 812ed29:	89 c3                	mov    %eax,%ebx
+ 812ed2b:	8b 87 1c 05 00 00    	mov    0x51c(%edi),%eax
+ 812ed31:	01 c3                	add    %eax,%ebx
+ 812ed33:	85 db                	test   %ebx,%ebx
+ 812ed35:	89 de                	mov    %ebx,%esi
+ 812ed37:	89 9f 1c 05 00 00    	mov    %ebx,0x51c(%edi)
+ 812ed3d:	74 34                	je     812ed73 <_ZN9CHARACTER11PointChangeEhibb+0xa33>
+ 812ed3f:	8b 45 a4             	mov    -0x5c(%ebp),%eax
+ 812ed42:	85 c0                	test   %eax,%eax
+ 812ed44:	74 18                	je     812ed5e <_ZN9CHARACTER11PointChangeEhibb+0xa1e>
+ 812ed46:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812ed49:	85 c9                	test   %ecx,%ecx
+ 812ed4b:	0f 89 df f7 ff ff    	jns    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812ed51:	85 db                	test   %ebx,%ebx
+ 812ed53:	0f 84 d7 f7 ff ff    	je     812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812ed59:	e9 32 f6 ff ff       	jmp    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812ed5e:	0f b6 87 30 0c 00 00 	movzbl 0xc30(%edi),%eax
+ 812ed65:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ed69:	89 3c 24             	mov    %edi,(%esp)
+ 812ed6c:	e8 2f 54 00 00       	call   81341a0 <_ZN9CHARACTER13SetNowWalkingEb>
+ 812ed71:	eb d3                	jmp    812ed46 <_ZN9CHARACTER11PointChangeEhibb+0xa06>
+ 812ed73:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812ed78:	eb eb                	jmp    812ed65 <_ZN9CHARACTER11PointChangeEhibb+0xa25>
+ 812ed7a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 812ed80:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812ed83:	8b 8f b4 0b 00 00    	mov    0xbb4(%edi),%ecx
+ 812ed89:	01 c8                	add    %ecx,%eax
+ 812ed8b:	89 87 b4 0b 00 00    	mov    %eax,0xbb4(%edi)
+ 812ed91:	e9 3a fc ff ff       	jmp    812e9d0 <_ZN9CHARACTER11PointChangeEhibb+0x690>
+ 812ed96:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812ed99:	8b 97 08 05 00 00    	mov    0x508(%edi),%edx
+ 812ed9f:	01 d0                	add    %edx,%eax
+ 812eda1:	3d ff 93 35 77       	cmp    $0x773593ff,%eax
+ 812eda6:	0f 8e d4 00 00 00    	jle    812ee80 <_ZN9CHARACTER11PointChangeEhibb+0xb40>
+ 812edac:	89 3c 24             	mov    %edi,(%esp)
+ 812edaf:	e8 7c 8b ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812edb4:	8b 97 f0 00 00 00    	mov    0xf0(%edi),%edx
+ 812edba:	8b 8f 08 05 00 00    	mov    0x508(%edi),%ecx
+ 812edc0:	89 44 24 18          	mov    %eax,0x18(%esp)
+ 812edc4:	b8 20 53 22 08       	mov    $0x8225320,%eax
+ 812edc9:	89 54 24 14          	mov    %edx,0x14(%esp)
+ 812edcd:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812edd0:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812edd4:	b8 6d 0c 00 00       	mov    $0xc6d,%eax
+ 812edd9:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812eddd:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 812ede1:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ede5:	c7 04 24 17 45 22 08 	movl   $0x8224517,(%esp)
+ 812edec:	e8 5f 93 08 00       	call   81b8150 <_sys_err>
+ 812edf1:	8b 87 08 05 00 00    	mov    0x508(%edi),%eax
+ 812edf7:	8b 5d 10             	mov    0x10(%ebp),%ebx
+ 812edfa:	8b 4f 28             	mov    0x28(%edi),%ecx
+ 812edfd:	8b 97 f0 00 00 00    	mov    0xf0(%edi),%edx
+ 812ee03:	01 c3                	add    %eax,%ebx
+ 812ee05:	8b 47 24             	mov    0x24(%edi),%eax
+ 812ee08:	89 4d a0             	mov    %ecx,-0x60(%ebp)
+ 812ee0b:	89 55 98             	mov    %edx,-0x68(%ebp)
+ 812ee0e:	89 45 9c             	mov    %eax,-0x64(%ebp)
+ 812ee11:	a1 84 b4 23 08       	mov    0x823b484,%eax
+ 812ee16:	85 c0                	test   %eax,%eax
+ 812ee18:	74 38                	je     812ee52 <_ZN9CHARACTER11PointChangeEhibb+0xb12>
+ 812ee1a:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+ 812ee1e:	b9 80 5c 1f 08       	mov    $0x81f5c80,%ecx
+ 812ee23:	ba d1 68 22 08       	mov    $0x82268d1,%edx
+ 812ee28:	89 4c 24 18          	mov    %ecx,0x18(%esp)
+ 812ee2c:	8b 4d a0             	mov    -0x60(%ebp),%ecx
+ 812ee2f:	89 54 24 14          	mov    %edx,0x14(%esp)
+ 812ee33:	8b 55 9c             	mov    -0x64(%ebp),%edx
+ 812ee36:	89 4c 24 0c          	mov    %ecx,0xc(%esp)
+ 812ee3a:	8b 4d 98             	mov    -0x68(%ebp),%ecx
+ 812ee3d:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 812ee41:	89 04 24             	mov    %eax,(%esp)
+ 812ee44:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812ee48:	e8 53 97 f4 ff       	call   80785a0 <_ZN10LogManager7CharLogEmmmmPKcS1_>
+ 812ee4d:	e9 de f6 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812ee52:	c7 04 24 32 44 22 08 	movl   $0x8224432,(%esp)
+ 812ee59:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 812ee5e:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812ee62:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 812ee67:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812ee6b:	b8 fa 62 1f 08       	mov    $0x81f62fa,%eax
+ 812ee70:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ee74:	e8 33 db f1 ff       	call   804c9ac <__assert@plt>
+ 812ee79:	a1 84 b4 23 08       	mov    0x823b484,%eax
+ 812ee7e:	eb 9a                	jmp    812ee1a <_ZN9CHARACTER11PointChangeEhibb+0xada>
+ 812ee80:	e8 cb 9b f3 ff       	call   8068a50 <_Z12LC_IsNewCIBNv>
+ 812ee85:	84 c0                	test   %al,%al
+ 812ee87:	74 1f                	je     812eea8 <_ZN9CHARACTER11PointChangeEhibb+0xb68>
+ 812ee89:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812ee8c:	85 c0                	test   %eax,%eax
+ 812ee8e:	7e 18                	jle    812eea8 <_ZN9CHARACTER11PointChangeEhibb+0xb68>
+ 812ee90:	8b 87 c4 0e 00 00    	mov    0xec4(%edi),%eax
+ 812ee96:	85 c0                	test   %eax,%eax
+ 812ee98:	0f 84 a3 00 00 00    	je     812ef41 <_ZN9CHARACTER11PointChangeEhibb+0xc01>
+ 812ee9e:	83 f8 01             	cmp    $0x1,%eax
+ 812eea1:	74 60                	je     812ef03 <_ZN9CHARACTER11PointChangeEhibb+0xbc3>
+ 812eea3:	83 f8 02             	cmp    $0x2,%eax
+ 812eea6:	74 16                	je     812eebe <_ZN9CHARACTER11PointChangeEhibb+0xb7e>
+ 812eea8:	8b 9f 08 05 00 00    	mov    0x508(%edi),%ebx
+ 812eeae:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812eeb1:	01 d8                	add    %ebx,%eax
+ 812eeb3:	89 87 08 05 00 00    	mov    %eax,0x508(%edi)
+ 812eeb9:	e9 12 fb ff ff       	jmp    812e9d0 <_ZN9CHARACTER11PointChangeEhibb+0x690>
+ 812eebe:	c7 45 10 00 00 00 00 	movl   $0x0,0x10(%ebp)
+ 812eec5:	be 82 0c 00 00       	mov    $0xc82,%esi
+ 812eeca:	89 3c 24             	mov    %edi,(%esp)
+ 812eecd:	e8 5e 8a ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812eed2:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 812eed6:	b8 df 68 22 08       	mov    $0x82268df,%eax
+ 812eedb:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812eedf:	b8 00 08 00 00       	mov    $0x800,%eax
+ 812eee4:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812eee8:	b8 17 45 22 08       	mov    $0x8224517,%eax
+ 812eeed:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812eef1:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 812eef5:	c7 04 24 d7 66 22 08 	movl   $0x82266d7,(%esp)
+ 812eefc:	e8 4f f4 03 00       	call   816e350 <_Z7dev_logPKciS0_iPcz>
+ 812ef01:	eb a5                	jmp    812eea8 <_ZN9CHARACTER11PointChangeEhibb+0xb68>
+ 812ef03:	89 3c 24             	mov    %edi,(%esp)
+ 812ef06:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812ef09:	c1 e8 1f             	shr    $0x1f,%eax
+ 812ef0c:	01 45 10             	add    %eax,0x10(%ebp)
+ 812ef0f:	d1 7d 10             	sarl   $1,0x10(%ebp)
+ 812ef12:	e8 19 8a ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812ef17:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 812ef1b:	ba f5 68 22 08       	mov    $0x82268f5,%edx
+ 812ef20:	b8 00 08 00 00       	mov    $0x800,%eax
+ 812ef25:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812ef29:	b8 17 45 22 08       	mov    $0x8224517,%eax
+ 812ef2e:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812ef32:	b8 7d 0c 00 00       	mov    $0xc7d,%eax
+ 812ef37:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812ef3b:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812ef3f:	eb b4                	jmp    812eef5 <_ZN9CHARACTER11PointChangeEhibb+0xbb5>
+ 812ef41:	89 3c 24             	mov    %edi,(%esp)
+ 812ef44:	be 00 08 00 00       	mov    $0x800,%esi
+ 812ef49:	bb 17 45 22 08       	mov    $0x8224517,%ebx
+ 812ef4e:	e8 dd 89 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812ef53:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 812ef57:	b9 78 0c 00 00       	mov    $0xc78,%ecx
+ 812ef5c:	b8 0b 69 22 08       	mov    $0x822690b,%eax
+ 812ef61:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812ef65:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 812ef69:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 812ef6d:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812ef71:	eb 82                	jmp    812eef5 <_ZN9CHARACTER11PointChangeEhibb+0xbb5>
+ 812ef73:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812ef77:	89 3c 24             	mov    %edi,(%esp)
+ 812ef7a:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812ef7e:	e8 1d f1 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812ef83:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812ef87:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812ef8a:	89 3c 24             	mov    %edi,(%esp)
+ 812ef8d:	01 d0                	add    %edx,%eax
+ 812ef8f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812ef93:	e8 98 f2 ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812ef98:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812ef9c:	bb 14 00 00 00       	mov    $0x14,%ebx
+ 812efa1:	89 3c 24             	mov    %edi,(%esp)
+ 812efa4:	e8 f7 f0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812efa9:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812efad:	89 c6                	mov    %eax,%esi
+ 812efaf:	31 c0                	xor    %eax,%eax
+ 812efb1:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812efb5:	31 c0                	xor    %eax,%eax
+ 812efb7:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812efbb:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812efbe:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812efc2:	89 3c 24             	mov    %edi,(%esp)
+ 812efc5:	e8 76 f3 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812efca:	e9 61 f5 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812efcf:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812efd3:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812efd7:	89 3c 24             	mov    %edi,(%esp)
+ 812efda:	e8 c1 f0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812efdf:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812efe2:	01 c8                	add    %ecx,%eax
+ 812efe4:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812efe8:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812efec:	89 3c 24             	mov    %edi,(%esp)
+ 812efef:	e8 3c f2 ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812eff4:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812eff8:	89 3c 24             	mov    %edi,(%esp)
+ 812effb:	e8 a0 f0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f000:	e9 cb f9 ff ff       	jmp    812e9d0 <_ZN9CHARACTER11PointChangeEhibb+0x690>
+ 812f005:	0f b6 45 c7          	movzbl -0x39(%ebp),%eax
+ 812f009:	89 3c 24             	mov    %edi,(%esp)
+ 812f00c:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f010:	e8 ab ee ff ff       	call   812dec0 <_ZN9CHARACTER12GetRealPointEh>
+ 812f015:	e9 b6 f9 ff ff       	jmp    812e9d0 <_ZN9CHARACTER11PointChangeEhibb+0x690>
+ 812f01a:	8b 75 10             	mov    0x10(%ebp),%esi
+ 812f01d:	85 f6                	test   %esi,%esi
+ 812f01f:	0f 8e 24 03 00 00    	jle    812f349 <_ZN9CHARACTER11PointChangeEhibb+0x1009>
+ 812f025:	89 3c 24             	mov    %edi,(%esp)
+ 812f028:	bb 19 00 00 00       	mov    $0x19,%ebx
+ 812f02d:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f031:	e8 6a f0 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f036:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f039:	8d 34 02             	lea    (%edx,%eax,1),%esi
+ 812f03c:	83 fe 01             	cmp    $0x1,%esi
+ 812f03f:	7c 12                	jl     812f053 <_ZN9CHARACTER11PointChangeEhibb+0xd13>
+ 812f041:	83 fe 03             	cmp    $0x3,%esi
+ 812f044:	0f 8e c6 02 00 00    	jle    812f310 <_ZN9CHARACTER11PointChangeEhibb+0xfd0>
+ 812f04a:	83 fe 04             	cmp    $0x4,%esi
+ 812f04d:	0f 84 28 01 00 00    	je     812f17b <_ZN9CHARACTER11PointChangeEhibb+0xe3b>
+ 812f053:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812f05a:	0f b6 c2             	movzbl %dl,%eax
+ 812f05d:	83 f8 0a             	cmp    $0xa,%eax
+ 812f060:	0f 8e f0 00 00 00    	jle    812f156 <_ZN9CHARACTER11PointChangeEhibb+0xe16>
+ 812f066:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812f06b:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f06f:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+ 812f074:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f078:	b8 02 00 00 00       	mov    $0x2,%eax
+ 812f07d:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f081:	b8 7a 69 00 00       	mov    $0x697a,%eax
+ 812f086:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f08a:	89 3c 24             	mov    %edi,(%esp)
+ 812f08d:	e8 8e 0a 05 00       	call   817fb20 <_ZN9CHARACTER12AutoGiveItemEmhib>
+ 812f092:	8b 9f 0c 05 00 00    	mov    0x50c(%edi),%ebx
+ 812f098:	31 c9                	xor    %ecx,%ecx
+ 812f09a:	31 d2                	xor    %edx,%edx
+ 812f09c:	8b 87 24 09 00 00    	mov    0x924(%edi),%eax
+ 812f0a2:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f0a6:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f0aa:	29 d8                	sub    %ebx,%eax
+ 812f0ac:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f0b0:	b8 05 00 00 00       	mov    $0x5,%eax
+ 812f0b5:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f0b9:	89 3c 24             	mov    %edi,(%esp)
+ 812f0bc:	e8 7f f2 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f0c1:	8b 9f 10 05 00 00    	mov    0x510(%edi),%ebx
+ 812f0c7:	31 c9                	xor    %ecx,%ecx
+ 812f0c9:	31 d2                	xor    %edx,%edx
+ 812f0cb:	8b 87 28 09 00 00    	mov    0x928(%edi),%eax
+ 812f0d1:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f0d5:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f0d9:	29 d8                	sub    %ebx,%eax
+ 812f0db:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f0df:	b8 07 00 00 00       	mov    $0x7,%eax
+ 812f0e4:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f0e8:	89 3c 24             	mov    %edi,(%esp)
+ 812f0eb:	e8 50 f2 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f0f0:	8b 87 b4 0b 00 00    	mov    0xbb4(%edi),%eax
+ 812f0f6:	31 c9                	xor    %ecx,%ecx
+ 812f0f8:	31 d2                	xor    %edx,%edx
+ 812f0fa:	8b 9f 1c 05 00 00    	mov    0x51c(%edi),%ebx
+ 812f100:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f104:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f108:	29 d8                	sub    %ebx,%eax
+ 812f10a:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f10e:	b8 09 00 00 00       	mov    $0x9,%eax
+ 812f113:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f117:	89 3c 24             	mov    %edi,(%esp)
+ 812f11a:	e8 21 f2 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f11f:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812f123:	b8 19 00 00 00       	mov    $0x19,%eax
+ 812f128:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f12c:	89 3c 24             	mov    %edi,(%esp)
+ 812f12f:	e8 fc f0 ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f134:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812f138:	b8 19 00 00 00       	mov    $0x19,%eax
+ 812f13d:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f141:	89 3c 24             	mov    %edi,(%esp)
+ 812f144:	e8 97 ed ff ff       	call   812dee0 <_ZN9CHARACTER12SetRealPointEhl>
+ 812f149:	89 3c 24             	mov    %edi,(%esp)
+ 812f14c:	e8 ff 99 ff ff       	call   8128b50 <_ZN9CHARACTER4SaveEv>
+ 812f151:	e9 da f3 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f156:	b8 02 00 00 00       	mov    $0x2,%eax
+ 812f15b:	b9 01 00 00 00       	mov    $0x1,%ecx
+ 812f160:	ba ff ff ff ff       	mov    $0xffffffff,%edx
+ 812f165:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f169:	b8 79 69 00 00       	mov    $0x6979,%eax
+ 812f16e:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f172:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f176:	e9 0b ff ff ff       	jmp    812f086 <_ZN9CHARACTER11PointChangeEhibb+0xd46>
+ 812f17b:	89 3c 24             	mov    %edi,(%esp)
+ 812f17e:	e8 fd b3 ff ff       	call   812a580 <_ZN9CHARACTER6GetJobEv>
+ 812f183:	89 3c 24             	mov    %edi,(%esp)
+ 812f186:	0f b6 d8             	movzbl %al,%ebx
+ 812f189:	c1 e3 06             	shl    $0x6,%ebx
+ 812f18c:	e8 ef b3 ff ff       	call   812a580 <_ZN9CHARACTER6GetJobEv>
+ 812f191:	0f b6 d0             	movzbl %al,%edx
+ 812f194:	81 c3 e4 f5 23 08    	add    $0x823f5e4,%ebx
+ 812f19a:	b8 cf 0b 00 00       	mov    $0xbcf,%eax
+ 812f19f:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f1a3:	c1 e2 06             	shl    $0x6,%edx
+ 812f1a6:	b8 d7 66 22 08       	mov    $0x82266d7,%eax
+ 812f1ab:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f1af:	8b 43 20             	mov    0x20(%ebx),%eax
+ 812f1b2:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f1b6:	8b 82 00 f6 23 08    	mov    0x823f600(%edx),%eax
+ 812f1bc:	89 04 24             	mov    %eax,(%esp)
+ 812f1bf:	e8 0c a1 08 00       	call   81b92d0 <number_ex>
+ 812f1c4:	89 3c 24             	mov    %edi,(%esp)
+ 812f1c7:	89 c6                	mov    %eax,%esi
+ 812f1c9:	e8 b2 b3 ff ff       	call   812a580 <_ZN9CHARACTER6GetJobEv>
+ 812f1ce:	89 3c 24             	mov    %edi,(%esp)
+ 812f1d1:	0f b6 d8             	movzbl %al,%ebx
+ 812f1d4:	c1 e3 06             	shl    $0x6,%ebx
+ 812f1d7:	e8 a4 b3 ff ff       	call   812a580 <_ZN9CHARACTER6GetJobEv>
+ 812f1dc:	0f b6 d0             	movzbl %al,%edx
+ 812f1df:	81 c3 ec f5 23 08    	add    $0x823f5ec,%ebx
+ 812f1e5:	b8 d0 0b 00 00       	mov    $0xbd0,%eax
+ 812f1ea:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f1ee:	c1 e2 06             	shl    $0x6,%edx
+ 812f1f1:	b8 d7 66 22 08       	mov    $0x82266d7,%eax
+ 812f1f6:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f1fa:	8b 43 20             	mov    0x20(%ebx),%eax
+ 812f1fd:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f201:	8b 82 08 f6 23 08    	mov    0x823f608(%edx),%eax
+ 812f207:	89 04 24             	mov    %eax,(%esp)
+ 812f20a:	e8 c1 a0 08 00       	call   81b92d0 <number_ex>
+ 812f20f:	01 87 18 05 00 00    	add    %eax,0x518(%edi)
+ 812f215:	89 c3                	mov    %eax,%ebx
+ 812f217:	01 b7 14 05 00 00    	add    %esi,0x514(%edi)
+ 812f21d:	80 bf 20 05 00 00 00 	cmpb   $0x0,0x520(%edi)
+ 812f224:	74 1b                	je     812f241 <_ZN9CHARACTER11PointChangeEhibb+0xf01>
+ 812f226:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812f22d:	0f b6 c2             	movzbl %dl,%eax
+ 812f230:	83 f8 04             	cmp    $0x4,%eax
+ 812f233:	0f 8f a5 00 00 00    	jg     812f2de <_ZN9CHARACTER11PointChangeEhibb+0xf9e>
+ 812f239:	0f b6 c2             	movzbl %dl,%eax
+ 812f23c:	83 f8 08             	cmp    $0x8,%eax
+ 812f23f:	7f 72                	jg     812f2b3 <_ZN9CHARACTER11PointChangeEhibb+0xf73>
+ 812f241:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812f245:	31 c9                	xor    %ecx,%ecx
+ 812f247:	31 d2                	xor    %edx,%edx
+ 812f249:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f24d:	b8 06 00 00 00       	mov    $0x6,%eax
+ 812f252:	be 01 00 00 00       	mov    $0x1,%esi
+ 812f257:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f25b:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f25f:	89 3c 24             	mov    %edi,(%esp)
+ 812f262:	e8 d9 f0 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f267:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 812f26b:	31 c0                	xor    %eax,%eax
+ 812f26d:	bb 01 00 00 00       	mov    $0x1,%ebx
+ 812f272:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f276:	31 c0                	xor    %eax,%eax
+ 812f278:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f27c:	b8 08 00 00 00       	mov    $0x8,%eax
+ 812f281:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f285:	89 3c 24             	mov    %edi,(%esp)
+ 812f288:	e8 b3 f0 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f28d:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812f291:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812f296:	31 f6                	xor    %esi,%esi
+ 812f298:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f29c:	31 c0                	xor    %eax,%eax
+ 812f29e:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f2a2:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f2a6:	89 3c 24             	mov    %edi,(%esp)
+ 812f2a9:	e8 92 f0 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f2ae:	e9 a0 fd ff ff       	jmp    812f053 <_ZN9CHARACTER11PointChangeEhibb+0xd13>
+ 812f2b3:	89 3c 24             	mov    %edi,(%esp)
+ 812f2b6:	31 c0                	xor    %eax,%eax
+ 812f2b8:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f2bc:	31 c0                	xor    %eax,%eax
+ 812f2be:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f2c2:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812f2c7:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f2cb:	b8 1b 00 00 00       	mov    $0x1b,%eax
+ 812f2d0:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f2d4:	e8 67 f0 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f2d9:	e9 63 ff ff ff       	jmp    812f241 <_ZN9CHARACTER11PointChangeEhibb+0xf01>
+ 812f2de:	89 3c 24             	mov    %edi,(%esp)
+ 812f2e1:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812f2e6:	31 d2                	xor    %edx,%edx
+ 812f2e8:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f2ec:	31 c9                	xor    %ecx,%ecx
+ 812f2ee:	b8 1c 00 00 00       	mov    $0x1c,%eax
+ 812f2f3:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f2f7:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f2fb:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f2ff:	e8 3c f0 ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f304:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812f30b:	e9 29 ff ff ff       	jmp    812f239 <_ZN9CHARACTER11PointChangeEhibb+0xef9>
+ 812f310:	0f b6 97 02 05 00 00 	movzbl 0x502(%edi),%edx
+ 812f317:	0f b6 c2             	movzbl %dl,%eax
+ 812f31a:	83 f8 5a             	cmp    $0x5a,%eax
+ 812f31d:	0f 8f 37 fd ff ff    	jg     812f05a <_ZN9CHARACTER11PointChangeEhibb+0xd1a>
+ 812f323:	89 3c 24             	mov    %edi,(%esp)
+ 812f326:	b8 01 00 00 00       	mov    $0x1,%eax
+ 812f32b:	31 c9                	xor    %ecx,%ecx
+ 812f32d:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f331:	31 d2                	xor    %edx,%edx
+ 812f333:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 812f338:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 812f33c:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 812f340:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f344:	e9 60 ff ff ff       	jmp    812f2a9 <_ZN9CHARACTER11PointChangeEhibb+0xf69>
+ 812f349:	bb 19 00 00 00       	mov    $0x19,%ebx
+ 812f34e:	e9 a1 fc ff ff       	jmp    812eff4 <_ZN9CHARACTER11PointChangeEhibb+0xcb4>
+ 812f353:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f357:	89 3c 24             	mov    %edi,(%esp)
+ 812f35a:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f35e:	e8 3d ed ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f363:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f366:	01 d0                	add    %edx,%eax
+ 812f368:	83 f8 64             	cmp    $0x64,%eax
+ 812f36b:	0f 8e 62 fc ff ff    	jle    812efd3 <_ZN9CHARACTER11PointChangeEhibb+0xc93>
+ 812f371:	89 3c 24             	mov    %edi,(%esp)
+ 812f374:	be 60 53 22 08       	mov    $0x8225360,%esi
+ 812f379:	e8 b2 85 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812f37e:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f382:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f385:	b9 1b 0d 00 00       	mov    $0xd1b,%ecx
+ 812f38a:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 812f38e:	89 74 24 08          	mov    %esi,0x8(%esp)
+ 812f392:	89 54 24 14          	mov    %edx,0x14(%esp)
+ 812f396:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812f39a:	c7 04 24 17 45 22 08 	movl   $0x8224517,(%esp)
+ 812f3a1:	e8 aa 8d 08 00       	call   81b8150 <_sys_err>
+ 812f3a6:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f3aa:	89 3c 24             	mov    %edi,(%esp)
+ 812f3ad:	e8 ee ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f3b2:	c7 45 10 64 00 00 00 	movl   $0x64,0x10(%ebp)
+ 812f3b9:	29 45 10             	sub    %eax,0x10(%ebp)
+ 812f3bc:	e9 12 fc ff ff       	jmp    812efd3 <_ZN9CHARACTER11PointChangeEhibb+0xc93>
+ 812f3c1:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f3c5:	89 3c 24             	mov    %edi,(%esp)
+ 812f3c8:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f3cc:	e8 cf ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f3d1:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f3d5:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f3d8:	89 3c 24             	mov    %edi,(%esp)
+ 812f3db:	01 d0                	add    %edx,%eax
+ 812f3dd:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f3e1:	e8 4a ee ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f3e6:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f3ea:	89 3c 24             	mov    %edi,(%esp)
+ 812f3ed:	e8 ae ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f3f2:	85 c0                	test   %eax,%eax
+ 812f3f4:	89 c6                	mov    %eax,%esi
+ 812f3f6:	74 0c                	je     812f404 <_ZN9CHARACTER11PointChangeEhibb+0x10c4>
+ 812f3f8:	83 8f 38 09 00 00 01 	orl    $0x1,0x938(%edi)
+ 812f3ff:	e9 2c f1 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f404:	83 a7 38 09 00 00 fe 	andl   $0xfffffffe,0x938(%edi)
+ 812f40b:	e9 20 f1 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f410:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f414:	89 3c 24             	mov    %edi,(%esp)
+ 812f417:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f41b:	e8 80 ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f420:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f424:	8b 75 10             	mov    0x10(%ebp),%esi
+ 812f427:	89 3c 24             	mov    %edi,(%esp)
+ 812f42a:	01 f0                	add    %esi,%eax
+ 812f42c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f430:	e8 fb ed ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f435:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f439:	89 3c 24             	mov    %edi,(%esp)
+ 812f43c:	e8 5f ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f441:	85 c0                	test   %eax,%eax
+ 812f443:	89 c6                	mov    %eax,%esi
+ 812f445:	74 0c                	je     812f453 <_ZN9CHARACTER11PointChangeEhibb+0x1113>
+ 812f447:	83 8f 38 09 00 00 02 	orl    $0x2,0x938(%edi)
+ 812f44e:	e9 dd f0 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f453:	83 a7 38 09 00 00 fd 	andl   $0xfffffffd,0x938(%edi)
+ 812f45a:	e9 d1 f0 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f45f:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f463:	89 3c 24             	mov    %edi,(%esp)
+ 812f466:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f46a:	e8 31 ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f46f:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f473:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812f476:	89 3c 24             	mov    %edi,(%esp)
+ 812f479:	01 c8                	add    %ecx,%eax
+ 812f47b:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f47f:	e8 ac ed ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f484:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f488:	89 3c 24             	mov    %edi,(%esp)
+ 812f48b:	e8 10 ec ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f490:	85 c0                	test   %eax,%eax
+ 812f492:	89 c6                	mov    %eax,%esi
+ 812f494:	74 0c                	je     812f4a2 <_ZN9CHARACTER11PointChangeEhibb+0x1162>
+ 812f496:	83 8f 38 09 00 00 04 	orl    $0x4,0x938(%edi)
+ 812f49d:	e9 8e f0 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f4a2:	83 a7 38 09 00 00 fb 	andl   $0xfffffffb,0x938(%edi)
+ 812f4a9:	e9 82 f0 ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f4ae:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f4b2:	31 f6                	xor    %esi,%esi
+ 812f4b4:	89 3c 24             	mov    %edi,(%esp)
+ 812f4b7:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f4bb:	e8 e0 eb ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f4c0:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f4c4:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f4c7:	89 3c 24             	mov    %edi,(%esp)
+ 812f4ca:	01 d0                	add    %edx,%eax
+ 812f4cc:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f4d0:	e8 5b ed ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f4d5:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 812f4d9:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812f4dc:	31 c0                	xor    %eax,%eax
+ 812f4de:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f4e2:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812f4e6:	b9 12 00 00 00       	mov    $0x12,%ecx
+ 812f4eb:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812f4ef:	89 3c 24             	mov    %edi,(%esp)
+ 812f4f2:	e8 49 ee ff ff       	call   812e340 <_ZN9CHARACTER11PointChangeEhibb>
+ 812f4f7:	e9 f8 fa ff ff       	jmp    812eff4 <_ZN9CHARACTER11PointChangeEhibb+0xcb4>
+ 812f4fc:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f500:	31 f6                	xor    %esi,%esi
+ 812f502:	89 3c 24             	mov    %edi,(%esp)
+ 812f505:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f509:	e8 92 eb ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f50e:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f512:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f515:	89 3c 24             	mov    %edi,(%esp)
+ 812f518:	01 d0                	add    %edx,%eax
+ 812f51a:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f51e:	e8 0d ed ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f523:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 812f527:	31 c0                	xor    %eax,%eax
+ 812f529:	b9 10 00 00 00       	mov    $0x10,%ecx
+ 812f52e:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f532:	8b 45 10             	mov    0x10(%ebp),%eax
+ 812f535:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812f539:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f53d:	eb b0                	jmp    812f4ef <_ZN9CHARACTER11PointChangeEhibb+0x11af>
+ 812f53f:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f543:	31 f6                	xor    %esi,%esi
+ 812f545:	89 3c 24             	mov    %edi,(%esp)
+ 812f548:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f54c:	e8 4f eb ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f551:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f555:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f558:	89 3c 24             	mov    %edi,(%esp)
+ 812f55b:	01 d0                	add    %edx,%eax
+ 812f55d:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f561:	e8 ca ec ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f566:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 812f56a:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f56d:	31 c0                	xor    %eax,%eax
+ 812f56f:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f573:	b9 16 00 00 00       	mov    $0x16,%ecx
+ 812f578:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812f57c:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 812f580:	e9 6a ff ff ff       	jmp    812f4ef <_ZN9CHARACTER11PointChangeEhibb+0x11af>
+ 812f585:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f589:	89 3c 24             	mov    %edi,(%esp)
+ 812f58c:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f590:	e8 0b eb ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f595:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f599:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f59c:	89 3c 24             	mov    %edi,(%esp)
+ 812f59f:	01 d0                	add    %edx,%eax
+ 812f5a1:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f5a5:	e8 86 ec ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f5aa:	31 c0                	xor    %eax,%eax
+ 812f5ac:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812f5af:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f5b3:	31 c0                	xor    %eax,%eax
+ 812f5b5:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f5b9:	b8 17 00 00 00       	mov    $0x17,%eax
+ 812f5be:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812f5c2:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f5c6:	e9 24 ff ff ff       	jmp    812f4ef <_ZN9CHARACTER11PointChangeEhibb+0x11af>
+ 812f5cb:	90                   	nop
+ 812f5cc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 812f5d0:	89 3c 24             	mov    %edi,(%esp)
+ 812f5d3:	be 75 0d 00 00       	mov    $0xd75,%esi
+ 812f5d8:	bf a0 53 22 08       	mov    $0x82253a0,%edi
+ 812f5dd:	e8 4e 83 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812f5e2:	0f b6 55 c7          	movzbl -0x39(%ebp),%edx
+ 812f5e6:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f5ea:	89 7c 24 08          	mov    %edi,0x8(%esp)
+ 812f5ee:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 812f5f2:	89 54 24 10          	mov    %edx,0x10(%esp)
+ 812f5f6:	c7 04 24 17 45 22 08 	movl   $0x8224517,(%esp)
+ 812f5fd:	e8 4e 8b 08 00       	call   81b8150 <_sys_err>
+ 812f602:	e9 89 ed ff ff       	jmp    812e390 <_ZN9CHARACTER11PointChangeEhibb+0x50>
+ 812f607:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f60b:	89 3c 24             	mov    %edi,(%esp)
+ 812f60e:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f612:	e8 89 ea ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f617:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f61b:	8b 75 10             	mov    0x10(%ebp),%esi
+ 812f61e:	89 3c 24             	mov    %edi,(%esp)
+ 812f621:	01 f0                	add    %esi,%eax
+ 812f623:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f627:	e8 04 ec ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f62c:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f630:	89 3c 24             	mov    %edi,(%esp)
+ 812f633:	e8 68 ea ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f638:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f63c:	31 c9                	xor    %ecx,%ecx
+ 812f63e:	89 c6                	mov    %eax,%esi
+ 812f640:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812f644:	89 3c 24             	mov    %edi,(%esp)
+ 812f647:	e8 c4 64 00 00       	call   8135b10 <_ZN9CHARACTER12SetPolymorphEmb>
+ 812f64c:	e9 df ee ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f651:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f655:	89 3c 24             	mov    %edi,(%esp)
+ 812f658:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f65c:	e8 3f ea ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f661:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f665:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f668:	89 3c 24             	mov    %edi,(%esp)
+ 812f66b:	01 d0                	add    %edx,%eax
+ 812f66d:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f671:	e8 ba eb ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f676:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f67a:	89 3c 24             	mov    %edi,(%esp)
+ 812f67d:	e8 1e ea ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f682:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 812f686:	89 c6                	mov    %eax,%esi
+ 812f688:	89 3c 24             	mov    %edi,(%esp)
+ 812f68b:	e8 80 69 00 00       	call   8136010 <_ZN9CHARACTER9MountVnumEm>
+ 812f690:	e9 9b ee ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f695:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f699:	89 3c 24             	mov    %edi,(%esp)
+ 812f69c:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f6a0:	e8 fb e9 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f6a5:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f6a9:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812f6ac:	89 3c 24             	mov    %edi,(%esp)
+ 812f6af:	01 c8                	add    %ecx,%eax
+ 812f6b1:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f6b5:	e8 76 eb ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f6ba:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f6be:	89 3c 24             	mov    %edi,(%esp)
+ 812f6c1:	e8 da e9 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f6c6:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f6ca:	89 c6                	mov    %eax,%esi
+ 812f6cc:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f6d0:	89 3c 24             	mov    %edi,(%esp)
+ 812f6d3:	e8 08 e8 ff ff       	call   812dee0 <_ZN9CHARACTER12SetRealPointEhl>
+ 812f6d8:	e9 53 ee ff ff       	jmp    812e530 <_ZN9CHARACTER11PointChangeEhibb+0x1f0>
+ 812f6dd:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f6e1:	89 3c 24             	mov    %edi,(%esp)
+ 812f6e4:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f6e8:	e8 b3 e9 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f6ed:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f6f0:	01 d0                	add    %edx,%eax
+ 812f6f2:	83 f8 64             	cmp    $0x64,%eax
+ 812f6f5:	0f 8e d8 f8 ff ff    	jle    812efd3 <_ZN9CHARACTER11PointChangeEhibb+0xc93>
+ 812f6fb:	89 3c 24             	mov    %edi,(%esp)
+ 812f6fe:	be e0 53 22 08       	mov    $0x82253e0,%esi
+ 812f703:	e8 28 82 ff ff       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 812f708:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f70c:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f70f:	b9 05 0d 00 00       	mov    $0xd05,%ecx
+ 812f714:	e9 71 fc ff ff       	jmp    812f38a <_ZN9CHARACTER11PointChangeEhibb+0x104a>
+ 812f719:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f71d:	89 3c 24             	mov    %edi,(%esp)
+ 812f720:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f724:	e8 77 e9 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f729:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f72d:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f730:	89 3c 24             	mov    %edi,(%esp)
+ 812f733:	01 d0                	add    %edx,%eax
+ 812f735:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f739:	e8 f2 ea ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f73e:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f742:	31 db                	xor    %ebx,%ebx
+ 812f744:	89 3c 24             	mov    %edi,(%esp)
+ 812f747:	e8 54 e9 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f74c:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 812f750:	89 c6                	mov    %eax,%esi
+ 812f752:	b9 06 00 00 00       	mov    $0x6,%ecx
+ 812f757:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 812f75b:	31 c0                	xor    %eax,%eax
+ 812f75d:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f761:	31 c0                	xor    %eax,%eax
+ 812f763:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f767:	e9 56 f8 ff ff       	jmp    812efc2 <_ZN9CHARACTER11PointChangeEhibb+0xc82>
+ 812f76c:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f770:	89 3c 24             	mov    %edi,(%esp)
+ 812f773:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f777:	e8 24 e9 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f77c:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f780:	8b 55 10             	mov    0x10(%ebp),%edx
+ 812f783:	89 3c 24             	mov    %edi,(%esp)
+ 812f786:	01 d0                	add    %edx,%eax
+ 812f788:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 812f78c:	e8 9f ea ff ff       	call   812e230 <_ZN9CHARACTER8SetPointEhl>
+ 812f791:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f795:	bb 08 00 00 00       	mov    $0x8,%ebx
+ 812f79a:	89 3c 24             	mov    %edi,(%esp)
+ 812f79d:	e8 fe e8 ff ff       	call   812e0a0 <_ZN9CHARACTER8GetPointEh>
+ 812f7a2:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 812f7a6:	89 c6                	mov    %eax,%esi
+ 812f7a8:	31 c0                	xor    %eax,%eax
+ 812f7aa:	89 44 24 10          	mov    %eax,0x10(%esp)
+ 812f7ae:	31 c0                	xor    %eax,%eax
+ 812f7b0:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 812f7b4:	31 c0                	xor    %eax,%eax
+ 812f7b6:	e9 03 f8 ff ff       	jmp    812efbe <_ZN9CHARACTER11PointChangeEhibb+0xc7e>
+ 812f7bb:	0f b6 5d c7          	movzbl -0x39(%ebp),%ebx
+ 812f7bf:	8b 4d 10             	mov    0x10(%ebp),%ecx
+ 812f7c2:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 812f7c6:	e9 1d f8 ff ff       	jmp    812efe8 <_ZN9CHARACTER11PointChangeEhibb+0xca8>

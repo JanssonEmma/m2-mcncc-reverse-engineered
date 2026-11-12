@@ -1,0 +1,77 @@
+// Full original declaration API from db.cpp DWARF; no method bodies.
+// Original DBManager sizeof=2372, CAsyncSQL sizeof=1152 (old toolchain).
+class DBManager : public singleton<DBManager> {
+public:
+public:
+    // Implicit copy constructor recorded in DWARF.
+public:
+    DBManager();
+public:
+    virtual ~DBManager(); // DWARF hidden deleting-destructor int is ABI-only.
+public:
+    bool IsConnected();
+public:
+    bool Connect(const char*, const char*, const char*, const char*);
+public:
+    void Query(const char*, ...);
+public:
+    SQLMsg* DirectQuery(const char*, ...);
+public:
+    void ReturnQuery(int, long unsigned int, void*, const char*, ...);
+public:
+    long unsigned int EscapeString(void*, const void*, long unsigned int);
+public:
+    void Process();
+public:
+    void AnalyzeReturnQuery(SQLMsg*);
+public:
+    void SendMoneyLog(unsigned char, long unsigned int, int);
+public:
+    void LoginPrepare(unsigned char, long unsigned int, long int, DESC*, DWORD*, int*);
+public:
+    void SendAuthLogin(DESC*);
+public:
+    void SendLoginPing(const char*);
+public:
+    void InsertLoginData(CLoginData*);
+public:
+    void DeleteLoginData(CLoginData*);
+public:
+    CLoginData* GetLoginData(long unsigned int);
+public:
+    void SetBilling(long unsigned int, bool, bool);
+public:
+    void PushBilling(CLoginData*);
+public:
+    void FlushBilling(bool);
+public:
+    void CheckBilling();
+public:
+    void StopAllBilling();
+public:
+    DWORD CountQuery();
+public:
+    DWORD CountQueryResult();
+public:
+    void ResetQueryResult();
+public:
+    void RequestBlockException(const char*, int);
+public:
+    void LoadDBString();
+public:
+    const std::string& GetDBString(const std::string&);
+public:
+    const std::vector<std::string>& GetGreetMessage();
+private:
+    SQLMsg* PopResult();
+private:
+    CAsyncSQL m_sql;
+    CAsyncSQL m_sql_direct;
+    bool m_bIsConnect;
+    std::map<std::string,std::string> m_map_dbstring;
+    std::vector<std::string> m_vec_GreetMessage;
+    std::map<DWORD,CLoginData*> m_map_pkLoginData;
+    std::map<std::string,CLoginData*> mapLDBilling;
+    std::vector<TUseTime> m_vec_kUseTime;
+};
+

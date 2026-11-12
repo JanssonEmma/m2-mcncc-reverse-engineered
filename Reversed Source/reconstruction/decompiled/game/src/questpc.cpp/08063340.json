@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063340",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "__uninitialized_fill_n_aux<__gnu_cxx::__normal_iterator<TQuestTable*,_std::vector<TQuestTable,_std::allocator<TQuestTable>_>_>,_unsigned_int,_SQuestTable>",
+      "address": "08063340"
+    },
+    "code": "\r\n/* DWARF original name: __uninitialized_fill_n_aux<__gnu_cxx::__normal_iterator<TQuestTable*,\r\n   std::vector<TQuestTable, std::allocator<TQuestTable> > >, unsigned int, SQuestTable> */\r\n\r\n__normal_iterator<SQuestTable*,std::vector<SQuestTable,_std::allocator<SQuestTable>_>_> *\r\n__uninitialized_fill_n_aux<__gnu_cxx::__normal_iterator<TQuestTable*,_std::vector<TQuestTable,_std::allocator<TQuestTable>_>_>,_unsigned_int,_SQuestTable>\r\n          (__normal_iterator<SQuestTable*,std::vector<SQuestTable,_std::allocator<SQuestTable>_>_>\r\n           *__return_storage_ptr__,\r\n          __normal_iterator<SQuestTable*,std::vector<SQuestTable,_std::allocator<SQuestTable>_>_>\r\n          __first,uint __n,SQuestTable *__x,__false_type param_4)\r\n\r\n{\r\n  for (; __first._M_current != (TQuestTable *)0x0;\r\n      __first._M_current = (TQuestTable *)((int)&__first._M_current[-1].lValue + 3)) {\r\n    if (__return_storage_ptr__ !=\r\n        (__normal_iterator<SQuestTable*,std::vector<SQuestTable,_std::allocator<SQuestTable>_>_> *)\r\n        0x0) {\r\n      memcpy(__return_storage_ptr__,(void *)__n,0x6a);\r\n    }\r\n    __return_storage_ptr__ =\r\n         (__normal_iterator<SQuestTable*,std::vector<SQuestTable,_std::allocator<SQuestTable>_>_> *)\r\n         ((int)&__return_storage_ptr__[0x1a]._M_current + 2);\r\n  }\r\n  return __return_storage_ptr__;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

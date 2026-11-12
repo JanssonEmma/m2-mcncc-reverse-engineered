@@ -1,0 +1,68 @@
+{
+  "status": "passed_no_actionable_mismatch",
+  "actionable_findings": [],
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "scope": "Independent read-only archived-evidence/source/test review; no compilation, runtime, live Ghidra, project or frozen-package edits.",
+  "conclusions": [
+    "DWARF default declaration/abstract/concrete inline chain is distinct from compiler copy; six-byte inline range alone is not the complete initialization or a standalone callable constructor.",
+    "Whole loader constructs string and both vector subobjects without scalar-slot stores; whole fill-insert reads source scalar fields, supporting original untouched defaults rather than newer zero initialization.",
+    "Candidate empty user body retains complete implicit STL construction and indeterminate scalar fields.",
+    "Regression reads only STL members before seeding both scalar fields; every copy/assignment/insertion source is seeded, including all twenty populated NPC argument slots.",
+    "Existing implicit destructor matches complete member teardown; no explicit destructor or independent callable constructor mapping is warranted."
+  ],
+  "recommendation": "Ready for guarded integration preparation; compile/runtime validation remains pending.",
+  "reviewed_files": [
+    {
+      "path": "work/arg_script_constructor/HANDOFF.md",
+      "sha256": "b40f0711acc8ef7d7a433f1b35cbf0dcaa812e3b520ae076af6d5fb0d75cc4ac"
+    },
+    {
+      "path": "work/arg_script_constructor/ELF_AUDIT.json",
+      "sha256": "37dab0f769d68ef3e9545ededb7cbd75b268e7c60626953ddd9cf00a18b1c22b"
+    },
+    {
+      "path": "work/arg_script_constructor/DEFAULT_CTOR_RAW_DIES.json",
+      "sha256": "adfb725dbed727d39cc234cef6110cbfe2f6fc16638fe9fa10a4bc654c7199b1"
+    },
+    {
+      "path": "work/arg_script_constructor/INLINE_OWNER_METADATA.json",
+      "sha256": "bf4cad0d148fb1e4040f4bae12ecc1d8d90457dc2a7d9a936a24303dfb4615d7"
+    },
+    {
+      "path": "work/arg_script_constructor/LoadStateScript-full-assembly.txt",
+      "sha256": "e9a219c31a0abe58ffb347f18564bd95b415d2aec9b535d0a1623390aea602a3"
+    },
+    {
+      "path": "work/arg_script_constructor/81b34b0-full-assembly.txt",
+      "sha256": "fce92838f05259f872e595b025f1073afd0717e33a08fa4a5c36e3a83b9a1e1b"
+    },
+    {
+      "path": "work/arg_script_constructor/81b5700-full-assembly.txt",
+      "sha256": "f745c38e098d10389955caab973496aac08cb891d2d7d90bcd53d22d232ecd3a"
+    },
+    {
+      "path": "work/arg_script_constructor/081b5700-decompile.json",
+      "sha256": "a67af2606dd2c75bfc82a135b883b8ce0194b31dda92882cad4559127e9f2869"
+    },
+    {
+      "path": "work/arg_script_constructor/quest.h.candidate",
+      "sha256": "103d747521904c0f25928132e2f43d3a244f2ccc0c742f16c02a6e79a78d572c"
+    },
+    {
+      "path": "work/arg_script_constructor/arg_script_constructor_regression.cpp",
+      "sha256": "6db609afa21db9196f5abc2c76a164c64caadf507bb8cc5a38d0e9a235cbc3c3"
+    },
+    {
+      "path": "work/arg_script_constructor/arg_script_constructor_abi.cpp",
+      "sha256": "f4f262b33fa9fbfc739813fdbac7f69a2c4a92ddde6be075e09c604ff9bf1ab1"
+    },
+    {
+      "path": "work/arg_script_constructor/SOURCE_GUARD.json",
+      "sha256": "43913881919311f78e9418ac85b7f0125ced0bb81d522935684d411e2ec9b92c"
+    },
+    {
+      "path": "work/arg_script_constructor/MANIFEST.json",
+      "sha256": "302f149f81cf6853954552bdf28a9ef0d09ee5fca82123fc02a291938322d14e"
+    }
+  ]
+}

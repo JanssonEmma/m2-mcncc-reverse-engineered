@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="Current">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{F8B3B625-713F-52C4-B9DB-703D206BCCF5}</ProjectGuid>
+    <ProjectName>db</ProjectName>
+    <RootNamespace>db</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(MSBuildThisFileDirectory)..\..\ReversedSource.VS.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>__WIN32__;NOMINMAX;_USE_32BIT_TIME_T;_DEBUG;MCNCC_DB_MYSQL8=1</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir);$(ReversedExternalInclude);$(ReversedExternalInclude)\mysql</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++latest</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>__WIN32__;NOMINMAX;_USE_32BIT_TIME_T;NDEBUG;MCNCC_DB_MYSQL8=1</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(ProjectDir);$(ReversedExternalInclude);$(ReversedExternalInclude)\mysql</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++latest</AdditionalOptions>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="BlockCountry.cpp" />
+    <ClCompile Include="Cache.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
+    <ClCompile Include="ClientManagerBoot.cpp" />
+    <ClCompile Include="ClientManagerEventFlag.cpp" />
+    <ClCompile Include="ClientManagerGuild.cpp" />
+    <ClCompile Include="ClientManagerLogin.cpp" />
+    <ClCompile Include="ClientManagerParty.cpp" />
+    <ClCompile Include="ClientManagerPlayer.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="DBManager.cpp" />
+    <ClCompile Include="GuildManager.cpp" />
+    <ClCompile Include="HB.cpp" />
+    <ClCompile Include="ItemAwardManager.cpp" />
+    <ClCompile Include="Lock.cpp" />
+    <ClCompile Include="LoginData.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Marriage.cpp" />
+    <ClCompile Include="MoneyLog.cpp" />
+    <ClCompile Include="NetBase.cpp" />
+    <ClCompile Include="Peer.cpp" />
+    <ClCompile Include="PeerBase.cpp" />
+    <ClCompile Include="PrivManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BlockCountry.h" />
+    <ClInclude Include="Cache.h" />
+    <ClInclude Include="CacheBase.h" />
+    <ClInclude Include="ClientManager.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="DBManager.h" />
+    <ClInclude Include="DBProtocol.h" />
+    <ClInclude Include="GuildManager.h" />
+    <ClInclude Include="HB.h" />
+    <ClInclude Include="ItemAwardManager.h" />
+    <ClInclude Include="Lock.h" />
+    <ClInclude Include="LoginData.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Marriage.h" />
+    <ClInclude Include="MoneyLog.h" />
+    <ClInclude Include="NetBase.h" />
+    <ClInclude Include="Peer.h" />
+    <ClInclude Include="PeerBase.h" />
+    <ClInclude Include="PrivManager.h" />
+    <ClInclude Include="QID.h" />
+    <ClInclude Include="SqlFormat.h" />
+    <ClInclude Include="SqlInput.h" />
+    <ClInclude Include="NumericInput.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CMakeLists.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

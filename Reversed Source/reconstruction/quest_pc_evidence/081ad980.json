@@ -1,0 +1,240 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CancelTimerEvent\",\n    \"address\": \"081ad980\"\n  },\n  \"code\": \"\\r\\nvoid CancelTimerEvent(LPEVENT *ppEvent)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  \\r\\n                    /* Unresolved local var: quest_event_info * info@[DW_OP_reg3(EBX)] */\\r\\n  pvVar1 = FindEventInfo((*ppEvent)->dwInfoID);\\r\\n  if (pvVar1 != (void *)0x0) {\\r\\n    if (*(void **)((int)pvVar1 + 0xc) != (void *)0x0) {\\r\\n      operator_delete__(*(void **)((int)pvVar1 + 0xc));\\r\\n    }\\r\\n    *(undefined4 *)((int)pvVar1 + 0xc) = 0;\\r\\n  }\\r\\n  event_cancel(ppEvent);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CancelTimerEvent",
+        "address": "081ad980"
+      },
+      "code": "\r\nvoid CancelTimerEvent(LPEVENT *ppEvent)\r\n\r\n{\r\n  void *pvVar1;\r\n  \r\n                    /* Unresolved local var: quest_event_info * info@[DW_OP_reg3(EBX)] */\r\n  pvVar1 = FindEventInfo((*ppEvent)->dwInfoID);\r\n  if (pvVar1 != (void *)0x0) {\r\n    if (*(void **)((int)pvVar1 + 0xc) != (void *)0x0) {\r\n      operator_delete__(*(void **)((int)pvVar1 + 0xc));\r\n    }\r\n    *(undefined4 *)((int)pvVar1 + 0xc) = 0;\r\n  }\r\n  event_cancel(ppEvent);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CancelTimerEvent\",\n    \"address\": \"081ad980\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"081ad997\",\n        \"target\": \"0804cd30\",\n        \"name\": \"FindEventInfo\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081ad9bc\",\n        \"target\": \"0804cff0\",\n        \"name\": \"event_cancel\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081ad9c4\",\n        \"target\": \"0804c58c\",\n        \"name\": \"<EXTERNAL>::operator.delete[]\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 3,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CancelTimerEvent",
+        "address": "081ad980"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "081ad997",
+            "target": "0804cd30",
+            "name": "FindEventInfo",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081ad9bc",
+            "target": "0804cff0",
+            "name": "event_cancel",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081ad9c4",
+            "target": "0804c58c",
+            "name": "<EXTERNAL>::operator.delete[]",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 3,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"081ad980\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad981\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad983\",\n      \"bytes\": \"83ec18\",\n      \"instruction\": \"SUB ESP,0x18\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad986\",\n      \"bytes\": \"8975fc\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x4],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad989\",\n      \"bytes\": \"8b7508\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad98c\",\n      \"bytes\": \"895df8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x8],EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad98f\",\n      \"bytes\": \"8b06\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad991\",\n      \"bytes\": \"8b4004\",\n      \"instruction\": \"MOV EAX,dword ptr [EAX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad994\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad997\",\n      \"bytes\": \"e894f3e9ff\",\n      \"instruction\": \"CALL 0x0804cd30\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad99c\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad99e\",\n      \"bytes\": \"89c3\",\n      \"instruction\": \"MOV EBX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9a0\",\n      \"bytes\": \"740e\",\n      \"instruction\": \"JZ 0x081ad9b0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9a2\",\n      \"bytes\": \"8b400c\",\n      \"instruction\": \"MOV EAX,dword ptr [EAX + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9a5\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9a7\",\n      \"bytes\": \"7518\",\n      \"instruction\": \"JNZ 0x081ad9c1\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9a9\",\n      \"bytes\": \"c7430c00000000\",\n      \"instruction\": \"MOV dword ptr [EBX + 0xc],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9b0\",\n      \"bytes\": \"897508\",\n      \"instruction\": \"MOV dword ptr [EBP + 0x8],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9b3\",\n      \"bytes\": \"8b5df8\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + -0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9b6\",\n      \"bytes\": \"8b75fc\",\n      \"instruction\": \"MOV ESI,dword ptr [EBP + -0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9b9\",\n      \"bytes\": \"89ec\",\n      \"instruction\": \"MOV ESP,EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9bb\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9bc\",\n      \"bytes\": \"e92ff6e9ff\",\n      \"instruction\": \"JMP 0x0804cff0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9c1\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9c4\",\n      \"bytes\": \"e8c3ebe9ff\",\n      \"instruction\": \"CALL 0x0804c58c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"081ad9c9\",\n      \"bytes\": \"ebde\",\n      \"instruction\": \"JMP 0x081ad9a9\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 26,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "081ad980",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081ad981",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081ad983",
+          "bytes": "83ec18",
+          "instruction": "SUB ESP,0x18",
+          "comment": null
+        },
+        {
+          "address": "081ad986",
+          "bytes": "8975fc",
+          "instruction": "MOV dword ptr [EBP + -0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "081ad989",
+          "bytes": "8b7508",
+          "instruction": "MOV ESI,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ad98c",
+          "bytes": "895df8",
+          "instruction": "MOV dword ptr [EBP + -0x8],EBX",
+          "comment": null
+        },
+        {
+          "address": "081ad98f",
+          "bytes": "8b06",
+          "instruction": "MOV EAX,dword ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ad991",
+          "bytes": "8b4004",
+          "instruction": "MOV EAX,dword ptr [EAX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "081ad994",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "081ad997",
+          "bytes": "e894f3e9ff",
+          "instruction": "CALL 0x0804cd30",
+          "comment": null
+        },
+        {
+          "address": "081ad99c",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ad99e",
+          "bytes": "89c3",
+          "instruction": "MOV EBX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ad9a0",
+          "bytes": "740e",
+          "instruction": "JZ 0x081ad9b0",
+          "comment": null
+        },
+        {
+          "address": "081ad9a2",
+          "bytes": "8b400c",
+          "instruction": "MOV EAX,dword ptr [EAX + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "081ad9a5",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ad9a7",
+          "bytes": "7518",
+          "instruction": "JNZ 0x081ad9c1",
+          "comment": null
+        },
+        {
+          "address": "081ad9a9",
+          "bytes": "c7430c00000000",
+          "instruction": "MOV dword ptr [EBX + 0xc],0x0",
+          "comment": null
+        },
+        {
+          "address": "081ad9b0",
+          "bytes": "897508",
+          "instruction": "MOV dword ptr [EBP + 0x8],ESI",
+          "comment": null
+        },
+        {
+          "address": "081ad9b3",
+          "bytes": "8b5df8",
+          "instruction": "MOV EBX,dword ptr [EBP + -0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ad9b6",
+          "bytes": "8b75fc",
+          "instruction": "MOV ESI,dword ptr [EBP + -0x4]",
+          "comment": null
+        },
+        {
+          "address": "081ad9b9",
+          "bytes": "89ec",
+          "instruction": "MOV ESP,EBP",
+          "comment": null
+        },
+        {
+          "address": "081ad9bb",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081ad9bc",
+          "bytes": "e92ff6e9ff",
+          "instruction": "JMP 0x0804cff0",
+          "comment": null
+        },
+        {
+          "address": "081ad9c1",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "081ad9c4",
+          "bytes": "e8c3ebe9ff",
+          "instruction": "CALL 0x0804c58c",
+          "comment": null
+        },
+        {
+          "address": "081ad9c9",
+          "bytes": "ebde",
+          "instruction": "JMP 0x081ad9a9",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 26,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

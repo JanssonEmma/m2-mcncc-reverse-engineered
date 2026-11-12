@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "PC::SetQuestState",
+    "address": "0805e380"
+  },
+  "code": "\r\n/* DWARF original prototype: void SetQuestState(PC * this, string * quest_name, string * state_name)\r\n    */\r\n\r\nvoid __thiscall PC::SetQuestState(PC *this,string *quest_name,string *state_name)\r\n\r\n{\r\n  int new_state_index;\r\n  \r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"Instance\",\"../../common/singleton.h\",0x20);\r\n  }\r\n  new_state_index =\r\n       CQuestManager::GetQuestStateIndex\r\n                 ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,quest_name,\r\n                  state_name);\r\n  SetQuestState(this,quest_name,new_state_index);\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

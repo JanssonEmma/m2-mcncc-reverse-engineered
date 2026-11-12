@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08060c10",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "PC::HasQuest",
+      "address": "08060c10"
+    },
+    "code": "\r\n/* DWARF original prototype: bool HasQuest(PC * this, string * quest_name) */\r\n\r\nbool __thiscall PC::HasQuest(PC *this,string *quest_name)\r\n\r\n{\r\n  uint qi;\r\n  _Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>\r\n  local_1c;\r\n  \r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  CQuestManager::GetQuestIndexByName\r\n            ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,quest_name);\r\n  _Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>\r\n  ::find(&local_1c,(uint *)&this->m_QuestInfo);\r\n  return local_1c.\r\n         super__Rb_tree_base<std::pair<const_unsigned_int,_quest::QuestState>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>\r\n         .\r\n         super__Rb_tree_alloc_base<std::pair<const_unsigned_int,_quest::QuestState>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>,true>\r\n         ._M_header !=\r\n         (_Rb_tree_alloc_base<std::pair<const_unsigned_int,_quest::QuestState>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>,true>\r\n          )(this->m_QuestInfo)._M_t.\r\n           super__Rb_tree_base<std::pair<const_unsigned_int,_quest::QuestState>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>\r\n           .\r\n           super__Rb_tree_alloc_base<std::pair<const_unsigned_int,_quest::QuestState>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>,true>\r\n           ._M_header;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

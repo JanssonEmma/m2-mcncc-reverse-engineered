@@ -1,0 +1,25 @@
+# Parser recovery evidence
+
+Target confirmed through Ghidra get_program_info: game, x86 32-bit ELF, SHA256 61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c. No original executable was run.
+
+DWARF in ../locale-translation-dwarf.json validates names, const char* parameters, and entries: fread_string 134552032 / 080519e0; quote_find_end 134552192 / 08051a80; locale_convert 134552304 / 08051af0; locale_init 134552800 / 08051ce0. candidate.cpp uses these const-correct signatures rather than decompiler guesses.
+
+ghidra-evidence.json retains full untruncated decompile and disassembly for all four functions. The fread_string call at 08051a3e targets malloc PLT 0804beac; there is no fclose call before return. It ignores fseek/ftell/fread failures, allocates ftell+1, zeroes all bytes, and fread uses size=length,count=1. Open failure returns NULL; no length/error/allocator guards are present.
+
+locale_convert allocation 08051b17 calls imported operator.new[] thunk 0804badc. Empty conversion at 08051b6d calls free thunk 0804cadc. locale_init 08051de6 also calls free for each converted string; 08051d4d frees fread_string malloc buffer. Therefore do not silently replace free with delete[] or malloc with new[]. These are distinct imports, not aliases proved by the ELF; exact allocation/free runtime interoperability depends on the old linked C++ runtime.
+
+quote_find_end returns the first semicolon OUTSIDE quotes, not a closing quote. Only quote-in-quote preceded by immediate backslash is skipped, advancing 2. Other backslash sequences are not consumed as units, including consecutive backslashes. Unterminated field or missing semicolon returns NULL. No input NULL guard.
+
+locale_convert drops unescaped quote delimiters and bytes outside quoted regions. It copies escaped double quotes WITH their backslash. Only backslash+n becomes LF. Crucially tmp advances an extra byte for that escape but loop i does not, so len is not a strict byte-consumption bound. It uses the last emitted byte for escape state, not last input byte; closing quote after an emitted backslash can remain escaped even across dropped bytes. It does not stop at NUL. Negative len allocates then frees without output (new[] size semantics depend on compiler); do not exercise unsafe malformed bounds.
+
+locale_init prints raw file via fprintf(stderr,"%s",buf) when test_server before checking NULL. Missing/open failure then prints literal SYSERR: locale_read: no file <filename>\n and exit(1). This differs from newer reference's silent missing-file return. Empty existing file just returns after freeing buffer. Open FILE remains leaked even on success.
+
+At each outer iteration both strings slots reset. A field pair is recognized only if current byte is quote; other text skips to next LF. Thus leading whitespace at a line start discards that line. Between semicolon-terminated fields (and after pairs) only LF/CR/space are skipped; tab is not whitespace. Missing quote after first field prints invalid-format diagnostic and stops entire parse. Missing terminator is silent. Empty converted fields return NULL and stop entire parse. Previously inserted complete records survive; map is not cleared. Any already-converted nonempty strings in an incomplete/empty-field pair leak, since the path goes directly to freeing file buffer; completed pairs call locale_add, then free both temporaries. Map key/value ownership is locale_add's separate concern. No rollback or continuation after malformed pair.
+
+# External API test plan
+
+Test reconstructed source only, never original ELF. Use locale_init followed by locale_find as acceptance boundary, with real temporary files. Replace sys_err/test_server/LC_IsKorea as harness integration requires. Missing-file exit requires a child process or intercepted exit; test_server=0 avoids platform-dependent NULL %s behavior.
+
+Cases: two ordinary records; LF and CRLF; same-line fields; comment/nonquote lines; first-line indentation skipped; valid record followed by malformed pair leaves first record; missing second opening quote diagnostic; missing first/second semicolon silent stop; empty first/second field aborts with later valid record not added; tab between fields invalid; escaped quote retained as backslash+quote; backslash+n maps LF; semicolon inside quotes copied; duplicate key behavior inherited from locale_add.
+
+Direct helper tests complement but do not substitute external boundary tests: quote_find_end("\"a;b\";") points to final semicolon; unmatched quote returns NULL; empty file fread_string returns one zero byte; successful fread_string retains descriptor (wrap fopen/fclose to count rather than exhaust process descriptors). Allocation wrappers/interposed operators can count partial-record leaks and exact free/new[] calls. Such wrappers establish reconstructed source behavior, not original runtime allocator compatibility. ASan alloc-dealloc mismatch must be explicitly disabled for intentionally preserved new[]/free paths; leaks should be observed, not patched.

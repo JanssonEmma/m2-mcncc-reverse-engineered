@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168d90",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168d90",
+    "function": {
+      "name": "CItem::IsPCBangItem",
+      "address": "08168d90"
+    },
+    "signature": "bool IsPCBangItem(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: bool IsPCBangItem(CItem * this) */\r\n\r\nbool __thiscall CItem::IsPCBangItem(CItem *this)\r\n\r\n{\r\n  TItemLimit *pTVar1;\r\n  int iVar2;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg2(EDX)] */\r\n  iVar2 = 0;\r\n  pTVar1 = this->m_pProto->aLimits;\r\n  do {\r\n    if (pTVar1->bType == '\\x06') {\r\n      return true;\r\n    }\r\n    iVar2 = iVar2 + 1;\r\n    pTVar1 = pTVar1 + 1;\r\n  } while (iVar2 < 2);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

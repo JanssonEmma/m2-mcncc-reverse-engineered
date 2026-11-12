@@ -1,0 +1,110 @@
+// Original char.cpp, CHARACTER::ApplyPoint 0812f7d0. Full body; NOT independently link closed.
+void CHARACTER::ApplyPoint(BYTE bApplyType,long lVal)
+{
+    switch (bApplyType) {
+    case APPLY_NONE: break;
+    case APPLY_CON:
+        PointChange(POINT_HT,lVal,false,false);
+        PointChange(POINT_MAX_HP,apply_item_detail::mul(lVal,JobInitialPoints[GetJob()].hp_per_ht),false,false);
+        PointChange(POINT_MAX_STAMINA,apply_item_detail::mul(lVal,JobInitialPoints[GetJob()].stamina_per_con),false,false);
+        break;
+    case APPLY_INT:
+        PointChange(POINT_IQ,lVal,false,false);
+        PointChange(POINT_MAX_SP,apply_item_detail::mul(lVal,JobInitialPoints[GetJob()].sp_per_iq),false,false);
+        break;
+    case APPLY_SKILL:
+        if (m_pSkillLevels) {
+            BYTE bSkillVnum=static_cast<BYTE>(static_cast<unsigned long>(lVal)>>24);
+            int iAdd=(static_cast<unsigned long>(lVal)&0x00800000u)!=0;
+            int iChange=static_cast<unsigned long>(lVal)&0x007fffffu;
+            sys_log(1,"APPLY_SKILL skill %d add? %d change %d",static_cast<unsigned int>(bSkillVnum),iAdd,iChange);
+            int& bonus=m_SkillDamageBonus[bSkillVnum];
+            if (iAdd) bonus=apply_item_detail::add(bonus,iChange);
+            else bonus=apply_item_detail::sub(bonus,iChange);
+            if (m_SkillDamageBonus[bSkillVnum]==0) m_SkillDamageBonus.erase(bSkillVnum);
+        }
+        break;
+    case APPLY_MAX_HP: // 1
+    case APPLY_MAX_SP: // 2
+    case APPLY_STR: // 5
+    case APPLY_DEX: // 6
+    case APPLY_ATT_SPEED: // 7
+    case APPLY_MOV_SPEED: // 8
+    case APPLY_CAST_SPEED: // 9
+    case APPLY_HP_REGEN: // 10
+    case APPLY_SP_REGEN: // 11
+    case APPLY_POISON_PCT: // 12
+    case APPLY_STUN_PCT: // 13
+    case APPLY_SLOW_PCT: // 14
+    case APPLY_CRITICAL_PCT: // 15
+    case APPLY_PENETRATE_PCT: // 16
+    case APPLY_ATTBONUS_HUMAN: // 17
+    case APPLY_ATTBONUS_ANIMAL: // 18
+    case APPLY_ATTBONUS_ORC: // 19
+    case APPLY_ATTBONUS_MILGYO: // 20
+    case APPLY_ATTBONUS_UNDEAD: // 21
+    case APPLY_ATTBONUS_DEVIL: // 22
+    case APPLY_STEAL_HP: // 23
+    case APPLY_STEAL_SP: // 24
+    case APPLY_MANA_BURN_PCT: // 25
+    case APPLY_DAMAGE_SP_RECOVER: // 26
+    case APPLY_BLOCK: // 27
+    case APPLY_DODGE: // 28
+    case APPLY_RESIST_SWORD: // 29
+    case APPLY_RESIST_TWOHAND: // 30
+    case APPLY_RESIST_DAGGER: // 31
+    case APPLY_RESIST_BELL: // 32
+    case APPLY_RESIST_FAN: // 33
+    case APPLY_RESIST_BOW: // 34
+    case APPLY_RESIST_FIRE: // 35
+    case APPLY_RESIST_ELEC: // 36
+    case APPLY_RESIST_MAGIC: // 37
+    case APPLY_RESIST_WIND: // 38
+    case APPLY_REFLECT_MELEE: // 39
+    case APPLY_REFLECT_CURSE: // 40
+    case APPLY_POISON_REDUCE: // 41
+    case APPLY_KILL_SP_RECOVER: // 42
+    case APPLY_EXP_DOUBLE_BONUS: // 43
+    case APPLY_GOLD_DOUBLE_BONUS: // 44
+    case APPLY_ITEM_DROP_BONUS: // 45
+    case APPLY_POTION_BONUS: // 46
+    case APPLY_KILL_HP_RECOVER: // 47
+    case APPLY_IMMUNE_STUN: // 48
+    case APPLY_IMMUNE_SLOW: // 49
+    case APPLY_IMMUNE_FALL: // 50
+    case APPLY_BOW_DISTANCE: // 52
+    case APPLY_ATT_GRADE_BONUS: // 53
+    case APPLY_DEF_GRADE_BONUS: // 54
+    case APPLY_MAGIC_ATT_GRADE: // 55
+    case APPLY_MAGIC_DEF_GRADE: // 56
+    case APPLY_CURSE_PCT: // 57
+    case APPLY_MAX_STAMINA: // 58
+    case APPLY_ATTBONUS_WARRIOR: // 59
+    case APPLY_ATTBONUS_ASSASSIN: // 60
+    case APPLY_ATTBONUS_SURA: // 61
+    case APPLY_ATTBONUS_SHAMAN: // 62
+    case APPLY_ATTBONUS_MONSTER: // 63
+    case APPLY_MALL_ATTBONUS: // 64
+    case APPLY_MALL_DEFBONUS: // 65
+    case APPLY_MALL_EXPBONUS: // 66
+    case APPLY_MALL_ITEMBONUS: // 67
+    case APPLY_MALL_GOLDBONUS: // 68
+    case APPLY_MAX_HP_PCT: // 69
+    case APPLY_MAX_SP_PCT: // 70
+    case APPLY_SKILL_DAMAGE_BONUS: // 71
+    case APPLY_NORMAL_HIT_DAMAGE_BONUS: // 72
+    case APPLY_SKILL_DEFEND_BONUS: // 73
+    case APPLY_NORMAL_HIT_DEFEND_BONUS: // 74
+    case APPLY_PC_BANG_EXP_BONUS: // 75
+    case APPLY_PC_BANG_DROP_BONUS: // 76
+    case APPLY_RESIST_WARRIOR: // 78
+    case APPLY_RESIST_ASSASSIN: // 79
+    case APPLY_RESIST_SURA: // 80
+    case APPLY_RESIST_SHAMAN: // 81
+        PointChange(aApplyInfo[bApplyType].bPointType,lVal,false,false);
+        break;
+    default:
+        _sys_err("ApplyPoint",0xe2c,"Unknown apply type %d name %s",static_cast<unsigned int>(bApplyType),GetName());
+        break;
+    }
+}

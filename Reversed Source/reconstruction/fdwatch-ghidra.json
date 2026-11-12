@@ -1,0 +1,98 @@
+{
+  "081b7070": {
+    "function": {
+      "name": "fdwatch_new",
+      "address": "081b7070"
+    },
+    "code": "\r\nLPFDWATCH fdwatch_new(int nfiles)\r\n\r\n{\r\n  int iVar1;\r\n  LPFDWATCH pfVar2;\r\n  LPKEVENT pkVar3;\r\n  int *piVar4;\r\n  void **ppvVar5;\r\n  char *pcVar6;\r\n  \r\n                    /* Unresolved local var: LPFDWATCH fdw@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int kq@[DW_OP_reg6(ESI)] */\r\n  iVar1 = kqueue();\r\n  if (iVar1 == -1) {\r\n    piVar4 = (int *)__error();\r\n    pcVar6 = strerror(*piVar4);\r\n    _sys_err(\"fdwatch_new\",0xf,\"%s\",pcVar6);\r\n    return (LPFDWATCH)0x0;\r\n  }\r\n  pfVar2 = calloc(1,0x20);\r\n  if (pfVar2 != (LPFDWATCH)0x0) {\r\n    pfVar2->kq = iVar1;\r\n    pfVar2->nfiles = nfiles;\r\n    pfVar2->nkqevents = 0;\r\n    pkVar3 = calloc(nfiles * 2,0x14);\r\n    pfVar2->kqevents = pkVar3;\r\n    if (pkVar3 != (LPKEVENT)0x0) {\r\n      pkVar3 = calloc(nfiles * 2,0x14);\r\n      pfVar2->kqrevents = pkVar3;\r\n      if (pkVar3 != (LPKEVENT)0x0) {\r\n        piVar4 = calloc(nfiles,4);\r\n        pfVar2->fd_event_idx = piVar4;\r\n        if (piVar4 != (int *)0x0) {\r\n          piVar4 = calloc(nfiles,4);\r\n          pfVar2->fd_rw = piVar4;\r\n          if (piVar4 != (int *)0x0) {\r\n            ppvVar5 = calloc(nfiles,4);\r\n            pfVar2->fd_data = ppvVar5;\r\n            if (ppvVar5 != (void **)0x0) {\r\n              return pfVar2;\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n  perror(\"malloc failure\");\r\n                    /* WARNING: Subroutine does not return */\r\n  abort();\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7190": {
+    "function": {
+      "name": "fdwatch_delete",
+      "address": "081b7190"
+    },
+    "code": "\r\nvoid fdwatch_delete(LPFDWATCH fdw)\r\n\r\n{\r\n  free(fdw->fd_data);\r\n  free(fdw->fd_rw);\r\n  free(fdw->kqevents);\r\n  free(fdw->kqrevents);\r\n  free(fdw->fd_event_idx);\r\n  free(fdw);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b71f0": {
+    "function": {
+      "name": "fdwatch",
+      "address": "081b71f0"
+    },
+    "code": "\r\nint fdwatch(LPFDWATCH fdw,timeval *timeout)\r\n\r\n{\r\n  LPKEVENT pkVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  int *piVar7;\r\n  int iVar8;\r\n  int r;\r\n  timespec ts;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */\r\n  iVar5 = 0;\r\n  if (fdw->nkqevents != 0) {\r\n    sys_log(2,\"fdwatch: nkqevents %d\",fdw->nkqevents);\r\n    iVar5 = fdw->nkqevents;\r\n  }\r\n  if (timeout == (timeval *)0x0) {\r\n    ts.tv_sec = 0;\r\n    ts.tv_nsec = 0;\r\n  }\r\n  else {\r\n    ts.tv_sec = timeout->tv_sec;\r\n    ts.tv_nsec = timeout->tv_usec;\r\n  }\r\n  iVar3 = kevent(fdw->kq,fdw->kqevents,iVar5,fdw->kqrevents,fdw->nfiles,&ts);\r\n  fdw->nkqevents = 0;\r\n  iVar5 = -1;\r\n  if (iVar3 != -1) {\r\n    piVar7 = fdw->fd_event_idx;\r\n    uVar4 = fdw->nfiles * 4;\r\n    if ((7 < uVar4) && (((uint)piVar7 & 4) != 0)) {\r\n      *piVar7 = 0;\r\n      uVar4 = uVar4 - 4;\r\n      piVar7 = piVar7 + 1;\r\n    }\r\n    iVar6 = 0;\r\n    for (uVar4 = uVar4 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n      *piVar7 = 0;\r\n      piVar7 = piVar7 + 1;\r\n    }\r\n    iVar5 = iVar3;\r\n    if (0 < iVar3) {\r\n      iVar8 = 0;\r\n      do {\r\n                    /* Unresolved local var: int fd@[DW_OP_reg1(ECX)] */\r\n        pkVar1 = fdw->kqrevents;\r\n        iVar2 = *(int *)((int)&pkVar1->ident + iVar8);\r\n        if (iVar2 < fdw->nfiles) {\r\n          if (*(short *)((int)&pkVar1->filter + iVar8) == -2) {\r\n            fdw->fd_event_idx[iVar2] = iVar6;\r\n          }\r\n        }\r\n        else {\r\n          _sys_err(\"fdwatch\",0x4f,\"ident overflow %d nfiles: %d\",\r\n                   *(undefined4 *)((int)&pkVar1->ident + iVar8),fdw->nfiles);\r\n        }\r\n        iVar6 = iVar6 + 1;\r\n        iVar8 = iVar8 + 0x14;\r\n      } while (iVar6 < iVar3);\r\n    }\r\n  }\r\n  return iVar5;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7340": {
+    "function": {
+      "name": "fdwatch_register",
+      "address": "081b7340"
+    },
+    "code": "\r\nvoid fdwatch_register(LPFDWATCH fdw,int flag,int fd,int rw)\r\n\r\n{\r\n  LPKEVENT pkVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  \r\n  if (flag == 2) {\r\n    piVar3 = fdw->fd_rw;\r\n    if ((*(byte *)(piVar3 + fd) & 1) != 0) {\r\n      pkVar1 = fdw->kqevents;\r\n      pkVar1[fdw->nkqevents].ident = fd;\r\n      iVar2 = fdw->nkqevents;\r\n      pkVar1[iVar2].flags = 2;\r\n      pkVar1[iVar2].filter = -1;\r\n      fdw->nkqevents = iVar2 + 1;\r\n    }\r\n    if ((*(byte *)(piVar3 + fd) & 2) != 0) {\r\n      pkVar1 = fdw->kqevents;\r\n      pkVar1[fdw->nkqevents].ident = fd;\r\n      iVar2 = fdw->nkqevents;\r\n      pkVar1[iVar2].flags = 2;\r\n      pkVar1[iVar2].filter = -2;\r\n      fdw->nkqevents = iVar2 + 1;\r\n    }\r\n  }\r\n  else {\r\n    pkVar1 = fdw->kqevents;\r\n    pkVar1[fdw->nkqevents].ident = fd;\r\n    iVar2 = fdw->nkqevents;\r\n    pkVar1[iVar2].flags = (u_short)flag;\r\n    fdw->nkqevents = iVar2 + 1;\r\n    pkVar1[iVar2].filter = ~(ushort)(rw != 1);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7410": {
+    "function": {
+      "name": "fdwatch_clear_fd",
+      "address": "081b7410"
+    },
+    "code": "\r\nvoid fdwatch_clear_fd(LPFDWATCH fdw,socket_t fd)\r\n\r\n{\r\n  fdw->fd_data[fd] = (void *)0x0;\r\n  fdw->fd_rw[fd] = 0;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7430": {
+    "function": {
+      "name": "fdwatch_add_fd",
+      "address": "081b7430"
+    },
+    "code": "\r\nvoid fdwatch_add_fd(LPFDWATCH fdw,socket_t fd,void *client_data,int rw,int oneshot)\r\n\r\n{\r\n  uint uVar1;\r\n  int flag;\r\n  socket_t sVar2;\r\n  int iVar3;\r\n  void *pvVar4;\r\n  int oneshot_local;\r\n  void *client_data_local;\r\n  \r\n                    /* Unresolved local var: int flag@[DW_OP_reg2(EDX)] */\r\n  if (fdw->nfiles <= fd) {\r\n    _sys_err(\"fdwatch_add_fd\",0x84,\"fd overflow %d\");\r\n    return;\r\n  }\r\n  uVar1 = fdw->fd_rw[fd];\r\n  if ((rw & uVar1) != 0) {\r\n    return;\r\n  }\r\n  fdw->fd_rw[fd] = uVar1 | rw;\r\n  sVar2 = fd;\r\n  iVar3 = rw;\r\n  pvVar4 = client_data;\r\n  sys_log(2,\"FDWATCH_REGISTER fdw %p fd %d rw %d data %p\",fdw,fd,rw,client_data);\r\n  flag = 1;\r\n  if (oneshot != 0) {\r\n    sys_log(2,\"ADD ONESHOT fd_rw %d\",fdw->fd_rw[fd],sVar2,iVar3,pvVar4);\r\n    flag = 0x11;\r\n    fdw->fd_rw[fd] = fdw->fd_rw[fd] | 4;\r\n  }\r\n  fdw->fd_data[fd] = client_data;\r\n  fdwatch_register(fdw,flag,fd,rw);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7530": {
+    "function": {
+      "name": "fdwatch_del_fd",
+      "address": "081b7530"
+    },
+    "code": "\r\nvoid fdwatch_del_fd(LPFDWATCH fdw,socket_t fd)\r\n\r\n{\r\n  fdwatch_register(fdw,2,fd,0);\r\n  fdwatch_clear_fd(fdw,fd);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7580": {
+    "function": {
+      "name": "fdwatch_clear_event",
+      "address": "081b7580"
+    },
+    "code": "\r\nvoid fdwatch_clear_event(LPFDWATCH fdw,socket_t fd,uint event_idx)\r\n\r\n{\r\n  if ((uint)(fdw->nfiles * 2) <= event_idx) {\r\n    __assert(\"fdwatch_clear_event\",\"fdwatch.c\",0xa3);\r\n  }\r\n  if (fdw->kqrevents[event_idx].ident == fd) {\r\n    fdw->kqrevents[event_idx].ident = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7600": {
+    "function": {
+      "name": "fdwatch_check_event",
+      "address": "081b7600"
+    },
+    "code": "\r\nint fdwatch_check_event(LPFDWATCH fdw,socket_t fd,uint event_idx)\r\n\r\n{\r\n  LPKEVENT pkVar1;\r\n  uint uVar2;\r\n  \r\n  if ((uint)(fdw->nfiles * 2) <= event_idx) {\r\n    __assert(\"fdwatch_check_event\",\"fdwatch.c\",0xad);\r\n  }\r\n  pkVar1 = fdw->kqrevents;\r\n  if (pkVar1[event_idx].ident == fd) {\r\n    if ((pkVar1[event_idx].flags & 0x4000) != 0) {\r\n      return 8;\r\n    }\r\n    if ((short)pkVar1[event_idx].flags < 0) {\r\n      return 8;\r\n    }\r\n    if (pkVar1[event_idx].filter == -1) {\r\n      if ((*(byte *)(fdw->fd_rw + fd) & 1) != 0) {\r\n        return 1;\r\n      }\r\n    }\r\n    else if (pkVar1[event_idx].filter == -2) {\r\n      uVar2 = fdw->fd_rw[fd];\r\n      if ((uVar2 & 2) != 0) {\r\n        if ((uVar2 & 4) != 0) {\r\n          fdw->fd_rw[fd] = uVar2 & 0xfffffffd;\r\n        }\r\n        return 2;\r\n      }\r\n    }\r\n    else {\r\n      _sys_err(\"fdwatch_check_event\",200,\"fdwatch_check_event: Unknown filter %d (descriptor %d)\",\r\n               (int)pkVar1[event_idx].filter,fd);\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7700": {
+    "function": {
+      "name": "fdwatch_get_ident",
+      "address": "081b7700"
+    },
+    "code": "\r\nint fdwatch_get_ident(LPFDWATCH fdw,uint event_idx)\r\n\r\n{\r\n  if ((uint)(fdw->nfiles * 2) <= event_idx) {\r\n    __assert(\"fdwatch_get_ident\",\"fdwatch.c\",0xcf);\r\n  }\r\n  return fdw->kqrevents[event_idx].ident;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7760": {
+    "function": {
+      "name": "fdwatch_get_buffer_size",
+      "address": "081b7760"
+    },
+    "code": "\r\nint fdwatch_get_buffer_size(LPFDWATCH fdw,socket_t fd)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n                    /* Unresolved local var: int event_idx@[DW_OP_reg0(EAX)] */\r\n  if (fdw->kqrevents[fdw->fd_event_idx[fd]].filter == -2) {\r\n    iVar1 = fdw->kqrevents[fdw->fd_event_idx[fd]].data;\r\n  }\r\n  else {\r\n    iVar1 = 0;\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081b7790": {
+    "function": {
+      "name": "fdwatch_get_client_data",
+      "address": "081b7790"
+    },
+    "code": "\r\nvoid * fdwatch_get_client_data(LPFDWATCH fdw,uint event_idx)\r\n\r\n{\r\n  uintptr_t uVar1;\r\n  void *pvVar2;\r\n  int iVar3;\r\n  \r\n                    /* Unresolved local var: int fd@[DW_OP_reg2(EDX)] */\r\n  iVar3 = fdw->nfiles;\r\n  if ((uint)(iVar3 * 2) <= event_idx) {\r\n    __assert(\"fdwatch_get_client_data\",\"fdwatch.c\",0xe1);\r\n    iVar3 = fdw->nfiles;\r\n  }\r\n  uVar1 = fdw->kqrevents[event_idx].ident;\r\n  pvVar2 = (void *)0x0;\r\n  if ((int)uVar1 < iVar3) {\r\n    pvVar2 = fdw->fd_data[uVar1];\r\n  }\r\n  return pvVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

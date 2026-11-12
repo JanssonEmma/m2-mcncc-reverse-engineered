@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080a7830",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "SECTREE::GetAttribute",
+      "address": "080a7830"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetAttribute(SECTREE * this, long x, long y) */\r\n\r\nDWORD __thiscall SECTREE::GetAttribute(SECTREE *this,long x,long y)\r\n\r\n{\r\n  DWORD DVar1;\r\n  CAttribute *this_00;\r\n  undefined8 local_24;\r\n  int iStack_20;\r\n  SECTREE *this_local;\r\n  \r\n  this_00 = this->m_pkAttribute;\r\n  if (this_00 == (CAttribute *)0x0) {\r\n    __assert(\"GetAttribute\",\"sectree.cpp\",0xca);\r\n    this_00 = this->m_pkAttribute;\r\n  }\r\n  DVar1 = CAttribute::Get(this_00,(x + ((iStack_20 >> 0xb) - (x >> 0x1f)) * -0x1900) / 0x32,\r\n                          (y % 0x1900) / 0x32);\r\n  return DVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

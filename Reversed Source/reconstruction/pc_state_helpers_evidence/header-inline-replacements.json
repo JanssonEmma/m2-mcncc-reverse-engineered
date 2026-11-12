@@ -1,0 +1,10 @@
+{
+  "bool IsRunning();": "bool IsRunning() { return m_RunningQuestState!=0; }",
+  "QuestState* GetRunningQuestState();": "QuestState* GetRunningQuestState() { return m_RunningQuestState; }",
+  "bool HasReward();": "bool HasReward() { return !m_vRewardData.empty() || m_bIsGivenReward; }",
+  "void SetSendDoneFlag();": "void SetSendDoneFlag() { m_bShouldSendDone=true; }",
+  "bool GetAndResetDoneFlag();": "bool GetAndResetDoneFlag() { bool previous=m_bShouldSendDone; m_bShouldSendDone=false; return previous; }",
+  "void SetConfirmWait(DWORD);": "void SetConfirmWait(DWORD id) { m_dwWaitConfirmFromPID=id; m_bConfirmWait=true; }",
+  "void ClearConfirmWait();": "void ClearConfirmWait() { m_bConfirmWait=false; }",
+  "bool IsConfirmWait(DWORD);": "bool IsConfirmWait(DWORD id) { return m_bConfirmWait && id==m_dwWaitConfirmFromPID; }"
+}

@@ -1,0 +1,64 @@
+// Original item.cpp, CItem::ModifyPoints 08167420. Full body; requires REAL ApplyPoint.
+void CItem::ModifyPoints(bool bAdd)
+{
+    if (!IsAccessoryForSocket() && static_cast<BYTE>(m_pProto->bType-1)<2) {
+        for (int i=0;i<3;++i) {
+            DWORD dwVnum=m_alSockets[i];
+            if (dwVnum>2) {
+                TItemTable* p=ITEM_MANAGER::instance().GetTable(dwVnum);
+                if (!p) _sys_err("ModifyPoints",0x247,"cannot find table by vnum %u",dwVnum);
+                else if (p->bType==10) {
+                    for (int j=0;j<3;++j) {
+                        if (p->aApplies[j].bType) {
+                            int value=p->aApplies[j].lValue;
+                            value=p->aApplies[j].bType==APPLY_SKILL?apply_item_detail::skill(value,bAdd):apply_item_detail::removal(value,bAdd);
+                            m_pOwner->ApplyPoint(p->aApplies[j].bType,value);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (int i=0;i<3;++i) {
+        TItemTable* p=m_pProto;
+        if (p->aApplies[i].bType) {
+            sys_log(2,"%s %d %d",p?p->szLocaleName:static_cast<const char*>(0),static_cast<unsigned int>(m_pProto->aApplies[i].bType),p->aApplies[i].lValue);
+            p=m_pProto;
+            int value;
+            if (p->aApplies[i].bType==APPLY_SKILL) value=apply_item_detail::skill(p->aApplies[i].lValue,bAdd);
+            else {
+                if (IsAccessoryForSocket()) {
+                    value=m_pProto->aApplies[i].lValue;
+                    int grade=MINMAX(0,m_alSockets[0],3);
+                    if (grade) value=apply_item_detail::add(value,MAX(grade,apply_item_detail::mul(value,aiAccessorySocketEffectivePct[grade])/100));
+                } else value=m_pProto->aApplies[i].lValue;
+                value=apply_item_detail::removal(value,bAdd);
+            }
+            m_pOwner->ApplyPoint(m_pProto->aApplies[i].bType,value);
+        }
+    }
+    for (int i=0;i<7;++i) {
+        if (m_aAttr[i].bType) {
+            int value=m_aAttr[i].sValue;
+            value=m_aAttr[i].bType==APPLY_SKILL?apply_item_detail::skill(value,bAdd):apply_item_detail::removal(value,bAdd);
+            m_pOwner->ApplyPoint(m_aAttr[i].bType,value);
+        }
+    }
+    TItemTable* p=m_pProto;
+    BYTE type=p->bType;
+    if (type==2) {
+        BYTE subtype=p?p->bSubType:0;
+        if (subtype!=0 && (p?p->bSubType:0)!=1 && (p?p->bSubType:0)!=4 && (p?p->bSubType:0)!=2) return;
+        if (bAdd) {
+            if (p->bSubType!=0) return;
+            m_pOwner->SetPart(0,static_cast<WORD>(p->dwVnum));
+        } else {
+            if (p->bSubType!=0) return;
+            m_pOwner->SetPart(0,m_pOwner->GetOriginalPart(0));
+        }
+    } else if (type==1 || type==13 || type==24) {
+        if (m_bCell!=94) return;
+        WORD value=bAdd?(p?static_cast<WORD>(p->dwVnum):0):m_pOwner->GetOriginalPart(1);
+        m_pOwner->SetPart(1,value);
+    }
+}

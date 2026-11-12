@@ -1,0 +1,74 @@
+{
+  "CHARACTER::Create": {
+    "function": {
+      "name": "CHARACTER::Create",
+      "address": "08127400"
+    },
+    "code": "\r\n/* DWARF original prototype: void Create(CHARACTER * this, char * c_pszName, DWORD vid, bool isPC)\r\n    */\r\n\r\nvoid __thiscall CHARACTER::Create(CHARACTER *this,char *c_pszName,DWORD vid,bool isPC)\r\n\r\n{\r\n  crc_t cVar1;\r\n  uint *puVar2;\r\n  uint *puVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  bool isPC_local;\r\n  char crc_string [129];\r\n  \r\n  Create::s_crc = Create::s_crc + 1;\r\n  snprintf(crc_string,0x80,\"%s%p%d\",c_pszName,this,Create::s_crc);\r\n  puVar3 = (uint *)crc_string;\r\n  do {\r\n    puVar2 = puVar3;\r\n    puVar3 = puVar2 + 1;\r\n    uVar4 = *puVar2 + 0xfefefeff & ~*puVar2;\r\n    uVar5 = uVar4 & 0x80808080;\r\n  } while (uVar5 == 0);\r\n  if ((uVar4 & 0x8080) == 0) {\r\n    uVar5 = uVar5 >> 0x10;\r\n    puVar3 = (uint *)((int)puVar2 + 6);\r\n  }\r\n  cVar1 = get_crc32(crc_string,\r\n                    (size_t)((int)puVar3 +\r\n                            ((-3 - (uint)CARRY1((byte)uVar5,(byte)uVar5)) - (int)crc_string)));\r\n  (this->m_vid).m_crc = cVar1;\r\n  (this->m_vid).m_id = vid;\r\n  if (isPC) {\r\n    strlen(c_pszName);\r\n    std::string::assign((char *)&this->m_stName,(uint)c_pszName);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHARACTER::ResetStopTime": {
+    "function": {
+      "name": "CHARACTER::ResetStopTime",
+      "address": "081343c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ResetStopTime(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::ResetStopTime(CHARACTER *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = get_dword_time();\r\n  this->m_dwStopTime = DVar1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHARACTER::InitMC": {
+    "function": {
+      "name": "CHARACTER::InitMC",
+      "address": "08136be0"
+    },
+    "code": "\r\n/* DWARF original prototype: void InitMC(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::InitMC(CHARACTER *this)\r\n\r\n{\r\n  int iVar1;\r\n  DWORD DVar2;\r\n  int iVar3;\r\n  \r\n                    /* Unresolved local var: int n@[DW_OP_reg3(EBX)] */\r\n  iVar3 = 0;\r\n  do {\r\n    DVar2 = thecore_pulse();\r\n    this->m_dwMonarchCooltime[iVar3] = DVar2;\r\n    iVar1 = passes_per_sec;\r\n    iVar3 = iVar3 + 1;\r\n  } while (iVar3 < 5);\r\n  this->m_dwMonarchCooltimelimit[0] = passes_per_sec * 10;\r\n  this->m_dwMonarchCooltimelimit[1] = iVar1 * 0x3c;\r\n  this->m_dwMonarchCooltimelimit[2] = iVar1 * 0x3c;\r\n  this->m_dwMonarchCooltimelimit[3] = iVar1 * 0x93a80;\r\n  this->m_dwMonarchCooltimelimit[4] = iVar1 * 0xe10;\r\n  DVar2 = GetMCL(this,MI_HEAL);\r\n  this->m_dwMonarchCooltime[0] = this->m_dwMonarchCooltime[0] - DVar2 * passes_per_sec;\r\n  DVar2 = GetMCL(this,MI_WARP);\r\n  this->m_dwMonarchCooltime[1] = this->m_dwMonarchCooltime[1] - DVar2 * passes_per_sec;\r\n  DVar2 = GetMCL(this,MI_TRANSFER);\r\n  this->m_dwMonarchCooltime[2] = this->m_dwMonarchCooltime[2] - DVar2 * passes_per_sec;\r\n  DVar2 = GetMCL(this,MI_TAX);\r\n  this->m_dwMonarchCooltime[3] = this->m_dwMonarchCooltime[3] - DVar2 * passes_per_sec;\r\n  DVar2 = GetMCL(this,MI_SUMMON);\r\n  this->m_dwMonarchCooltime[4] = this->m_dwMonarchCooltime[4] - DVar2 * passes_per_sec;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHARACTER::GetMC": {
+    "function": {
+      "name": "CHARACTER::GetMC",
+      "address": "08136cf0"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetMC(CHARACTER * this, MONARCH_INDEX e) */\r\n\r\nDWORD __thiscall CHARACTER::GetMC(CHARACTER *this,MONARCH_INDEX e)\r\n\r\n{\r\n  return this->m_dwMonarchCooltime[e];\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHARACTER::GetMCL": {
+    "function": {
+      "name": "CHARACTER::GetMCL",
+      "address": "08136e30"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetMCL(CHARACTER * this, MONARCH_INDEX e) */\r\n\r\nDWORD __thiscall CHARACTER::GetMCL(CHARACTER *this,MONARCH_INDEX e)\r\n\r\n{\r\n  return this->m_dwMonarchCooltimelimit[e];\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHARACTER::SetMC": {
+    "function": {
+      "name": "CHARACTER::SetMC",
+      "address": "08136d10"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetMC(CHARACTER * this, MONARCH_INDEX e) */\r\n\r\nvoid __thiscall CHARACTER::SetMC(CHARACTER *this,MONARCH_INDEX e)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = thecore_pulse();\r\n  this->m_dwMonarchCooltime[e] = DVar1;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "CHARACTER::IsMCOK": {
+    "function": {
+      "name": "CHARACTER::IsMCOK",
+      "address": "08136d30"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsMCOK(CHARACTER * this, MONARCH_INDEX e) */\r\n\r\nbool __thiscall CHARACTER::IsMCOK(CHARACTER *this,MONARCH_INDEX e)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  DWORD DVar3;\r\n  DWORD DVar4;\r\n  \r\n                    /* Unresolved local var: int iPulse@[DW_OP_reg7(EDI)] */\r\n  iVar2 = thecore_pulse();\r\n  DVar3 = GetMC(this,e);\r\n  DVar4 = GetMCL(this,e);\r\n  if (iVar2 - DVar3 < DVar4) {\r\n    if (test_server != 0) {\r\n      DVar3 = GetMCL(this,e);\r\n      DVar4 = GetMC(this,e);\r\n      sys_log(0,\" Pulse %d cooltime %d , limit %d\",iVar2,DVar4,DVar3);\r\n    }\r\n    bVar1 = false;\r\n  }\r\n  else {\r\n    if (test_server != 0) {\r\n      DVar3 = GetMCL(this,e);\r\n      DVar4 = GetMC(this,e);\r\n      sys_log(0,\" Pulse %d cooltime %d , limit %d\",iVar2,DVar4,DVar3);\r\n    }\r\n    bVar1 = true;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "081343e0": {
+    "function": {
+      "name": "CHARACTER::GetStopTime",
+      "address": "081343e0"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetStopTime(CHARACTER * this) */\r\n\r\nDWORD __thiscall CHARACTER::GetStopTime(CHARACTER *this)\r\n\r\n{\r\n  return this->m_dwStopTime;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "08136e50": {
+    "function": {
+      "name": "CHARACTER::GetMCLTime",
+      "address": "08136e50"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetMCLTime(CHARACTER * this, MONARCH_INDEX e) */\r\n\r\nDWORD __thiscall CHARACTER::GetMCLTime(CHARACTER *this,MONARCH_INDEX e)\r\n\r\n{\r\n  uint uVar1;\r\n  int iVar2;\r\n  DWORD DVar3;\r\n  uint uVar4;\r\n  DWORD DVar5;\r\n  \r\n                    /* Unresolved local var: int iPulse@[DW_OP_reg7(EDI)] */\r\n  iVar2 = thecore_pulse();\r\n  if (test_server != 0) {\r\n    DVar3 = GetMCL(this,e);\r\n    DVar5 = GetMC(this,e);\r\n    sys_log(0,\" Pulse %d cooltime %d , limit %d\",iVar2,DVar5,DVar3);\r\n  }\r\n  DVar3 = GetMCL(this,e);\r\n  uVar1 = passes_per_sec;\r\n  uVar4 = DVar3 / passes_per_sec;\r\n  DVar3 = GetMC(this,e);\r\n  return uVar4 - (iVar2 - DVar3) / uVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

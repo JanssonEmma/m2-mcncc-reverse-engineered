@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08064150",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::IsImmune",
+      "address": "08064150"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsImmune(CHARACTER * this, DWORD dwImmuneFlag) */\r\n\r\nbool __thiscall CHARACTER::IsImmune(CHARACTER *this,DWORD dwImmuneFlag)\r\n\r\n{\r\n  bool bVar1;\r\n  char *pcVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  char *format;\r\n  \r\n  if (((this->m_pointsInstant).dwImmuneFlag & dwImmuneFlag) == 0) {\r\n    if (test_server == 0) {\r\n      return false;\r\n    }\r\n    if ((this->super_CEntity).m_lpDesc == (LPDESC)0x0) {\r\n      return false;\r\n    }\r\n    pcVar2 = GetName(this);\r\n    format = \"<IMMUNE_FAIL> (%s) NO_IMMUNE_FLAG\";\r\n  }\r\n  else {\r\n                    /* Unresolved local var: int immune_pct@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int percent@[DW_OP_reg3(EBX)] */\r\n    iVar4 = 0x5a;\r\n    iVar3 = number_ex(1,100,\"char_resist.cpp\",0xdd);\r\n    bVar1 = LC_IsJapan();\r\n    if (bVar1) {\r\n      iVar4 = 100;\r\n    }\r\n    if (iVar3 <= iVar4) {\r\n      if ((test_server != 0) && ((this->super_CEntity).m_lpDesc != (LPDESC)0x0)) {\r\n        pcVar2 = GetName(this);\r\n        ChatPacket(this,'\\x03',\"<IMMUNE_SUCCESS> (%s)\",pcVar2);\r\n      }\r\n      return true;\r\n    }\r\n    if (test_server == 0) {\r\n      return false;\r\n    }\r\n    if ((this->super_CEntity).m_lpDesc == (LPDESC)0x0) {\r\n      return false;\r\n    }\r\n    pcVar2 = GetName(this);\r\n    format = \"<IMMUNE_FAIL> (%s)\";\r\n  }\r\n  ChatPacket(this,'\\x03',format,pcVar2);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

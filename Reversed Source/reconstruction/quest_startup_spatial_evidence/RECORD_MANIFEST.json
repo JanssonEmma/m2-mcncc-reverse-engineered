@@ -1,0 +1,83 @@
+{
+  "checkpoint": 108,
+  "status": "passed_focused",
+  "validation_scope": "focused_only",
+  "registered_runtime_commands": 120,
+  "focused_runtime_commands": [
+    "quest_lua_global_registration_regression",
+    "quest_lua_queries_regression",
+    "sectree_manager_regression",
+    "quest_state_lifecycle_regression",
+    "quest_npc_set_regression"
+  ],
+  "abi": true,
+  "source_hashes": [
+    {
+      "path": "game/src/questmanager.h",
+      "before": "f39587ee0305e4f559564cc0087c615b34d6c40708fc691880b02b5243b260bf",
+      "after": "a4c9fc456a53196f854ad0df68e567e57006f84ac04399f4e6c31355593878ce"
+    },
+    {
+      "path": "game/src/questmanager.cpp",
+      "before": "752231802a834152c091f1c34fc4bf732dcfdbce5f981f20724515f871aefeb1",
+      "after": "a69b247279c91e1252f70ec3f663b63023575d8bb4da4494900683093afca49a"
+    },
+    {
+      "path": "game/src/questlua.cpp",
+      "before": "9e1ba5a24c522fcd1c10f93ea8fe345eb5d8a208c272d80489e99ec2ae6d90fb",
+      "after": "78191194551ea69a94f67f0f83a34eb3e042c4d3f47eff0b233fbaba6df6da26"
+    },
+    {
+      "path": "reconstruction/tests/quest_lua_queries_regression.cpp",
+      "before": "23106f99f522f350fd4109a4533fbbcd32f703e16299068a4e682228300c271f",
+      "after": "c9c83111e18dbc4c215b87df69ccf10321653989836c84afb750ede7dfcaff01"
+    },
+    {
+      "path": "reconstruction/tests/quest_lua_queries_desc_output_syscalls.c",
+      "before": "48b93ae79d7cd0eef27005f2cba7bc8b7320d537674d3ec5a9e0efa5100b1bcd",
+      "after": "b8d7df63d93b3ff7dedd432d834b92c59e200fc982cf6711784ba99b062e3265"
+    },
+    {
+      "path": "game/src/sectree_manager.h",
+      "before": null,
+      "after": "d0fb7b9f82fa19c5ce4c42d430b49a2b4632ea2bd9210b773aa8c5d676b541e1"
+    },
+    {
+      "path": "game/src/sectree_manager.cpp",
+      "before": null,
+      "after": "bb2f2fad0c28d9b697e0a3e8adf29418afc70d06c914d404e638c676abfcaf90"
+    },
+    {
+      "path": "reconstruction/tests/sectree_manager_regression.cpp",
+      "before": null,
+      "after": "5ee08f878a0d736f012f7b003454e926a63d7af6ac9df8054d0d68f3e218a780"
+    },
+    {
+      "path": "reconstruction/tests/Makefile",
+      "before": "5764982271b9bb86445637059c0a0b857e045e0b6b405eadc2fa5999480d5497",
+      "after": "06f9dc6c3a38aaaf63e54fa3650c663310ed214c583810db1b7efb945a09b58f"
+    },
+    {
+      "path": "game/src/questlua_global.cpp",
+      "before": null,
+      "after": "3dec5c237ef7dee4e9cc8b75752672bbed65ab58b5f0bbba91000563457a622c"
+    },
+    {
+      "path": "reconstruction/tests/quest_lua_global_registration_regression.cpp",
+      "before": null,
+      "after": "83822a2dc412781762f40c31cbace7d031ebcf4d64ea1b5f936501c2429364df"
+    },
+    {
+      "path": "reconstruction/tests/quest_lua_global_registration_desc_output_syscalls.c",
+      "before": null,
+      "after": "979ce73e4c28b77e9fc0f07b3b44c037fc5504a1023de6e83b9ee2a0ad73fc4d"
+    }
+  ],
+  "receipt_sha256": "3771778a84598738f52a3a532d3de3710bd3c865cf70dddc0f0e7db0f2e38d69",
+  "last_full_validation": {
+    "checkpoint": 103,
+    "runtime_commands": 117,
+    "receipt": "PROJECT_ROOT\\Reversed Source\\reconstruction\\npc_loader_evidence\\checkpoint-103-validation.receipt.json",
+    "receipt_sha256": "bb438c9cc6fbf6ac03f372555e2188241310c9fa7a45c34cf17089ffe1d5886c"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "TEST ONLY unchanged actual utils.c COFF function projection",
+  "full_object_sha256": "37fa127817b6c593bb01cebb5bf50b729d75ecaf024d774604af464a572999bb",
+  "projected_object_sha256": "ff5d858766f7a2f66a57518593a5a5100bdc35bf80a2d8d7d1d78deae05bd98a",
+  "sections": [
+    {
+      "name": ".text$MAX",
+      "bytes_sha256": "22ae5c3e9205ab7e53546c831ffdca0b2f527b79503b579f8775919940b1e7da",
+      "bytes": 32,
+      "relocations": []
+    },
+    {
+      "name": ".xdata$MAX",
+      "bytes_sha256": "0b0c6523743fefaf1b95f09d579c2dc39deac022c45cfb0fce3b8c2a12c790ac",
+      "bytes": 8,
+      "relocations": []
+    },
+    {
+      "name": ".pdata$MAX",
+      "bytes_sha256": "20574a761ce82e8781383e143f7f58a362720ac51db2c7d73de544f51a0853cf",
+      "bytes": 12,
+      "relocations": [
+        {
+          "offset": 0,
+          "type": 3,
+          "symbol": ".text$MAX"
+        },
+        {
+          "offset": 4,
+          "type": 3,
+          "symbol": ".text$MAX"
+        },
+        {
+          "offset": 8,
+          "type": 3,
+          "symbol": ".xdata$MAX"
+        }
+      ]
+    }
+  ],
+  "undefined_symbols": [],
+  "code_and_unwind_bytes_equal": true,
+  "relocation_names_types_offsets_equal": true,
+  "source_sha256": null
+}

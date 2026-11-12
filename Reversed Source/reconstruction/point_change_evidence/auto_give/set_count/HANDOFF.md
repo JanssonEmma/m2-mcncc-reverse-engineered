@@ -1,0 +1,8 @@
+# Closed Sync/Chain integration
+Original hash61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c. Metadata first api-dwarf.json, complete raw symbols/instructions and ghidra.json. No new datarecords: FULL existing CHARACTER.m_quickslot[36], CItem.GetCell/rawBYTE and actual2byteTQuickslot alreadyproduction. Allfunctionsnonconst.
+
+Parent guardedapply adds void SyncQuickslot(BYTE,BYTE,BYTE) and void ChainQuickslotItem(LPITEM,BYTE,BYTE) only. Complete existing FindSpecifyItem0817f870 currentchar_item74 unchanged. Sync skips equal old/new, scans all36 LIVE; uses Del whennew255elseactualSet ignoringbool. Unknown types stillpassedtoSet/Del. Chain scans untilFIRSTmatch, readsitemcellonlythen, usesactualSet ignoresboolandreturns. NoNULLitemguard added because nomatch naturallydoesn'treaditem; matchedNULL isoriginalunsafe and mustnotbeexecutedintest. Chain equalpositions STILLcallsSet (unlikeSync).
+
+Regression uses existing externalmemcpyboundary to assert each actualpacket'slivefields/order; deliberate callbackinsertion laterinarray proves live scan. Actual CQuestManager fixture included for CHAR ctor flags. Borrowed itempointers cleared before teardown. Direct fullitem fixturecell/proto fields are testdata, not replacementappmethods. No SQL/network app methodsstubbed. Existing syscall/SQL fixtures remain fail-fast as currentparentgraph. Parent runnormal/O2/strict32/fullrequired; notrunhere.
+
+SetCount.cpp.candidate is COMPLETE staged source but NOTreadyintegrate until fullRemoval/Unequip/Destroy closes. It intentionally keeps allsubtype0/7 and otherzeroowner branches plus update/save ordering; no200cap. Do not link it only for nonzero tests while providing fakezero-owner dependencies.

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08192980",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8192980",
+    "function": {
+      "name": "ITEM_MANAGER::SaveSingleItem",
+      "address": "08192980"
+    },
+    "signature": "void SaveSingleItem(ITEM_MANAGER * this, LPITEM item)",
+    "code": "\r\n/* DWARF original prototype: void SaveSingleItem(ITEM_MANAGER * this, LPITEM item) */\r\n\r\nvoid __thiscall ITEM_MANAGER::SaveSingleItem(ITEM_MANAGER *this,LPITEM item)\r\n\r\n{\r\n  byte bVar1;\r\n  char *pcVar2;\r\n  DWORD dwOwnerID;\r\n  DWORD dwID;\r\n  TPlayerItem t;\r\n  \r\n  if (item->m_pOwner == (CHARACTER *)0x0) {\r\n    dwID = item->m_dwID;\r\n    dwOwnerID = item->m_dwLastOwnerPID;\r\n    CLIENT_DESC::DBPacketHeader(db_clientdesc,'\\x1f',0,8);\r\n    CLIENT_DESC::Packet(db_clientdesc,&dwID,4);\r\n    CLIENT_DESC::Packet(db_clientdesc,&dwOwnerID,4);\r\n    sys_log(0,\"ITEM_DELETE %s:%lu\",\r\n            (uint)item->m_pProto->szLocaleName & (item->m_pProto == (TItemTable *)0x0) - 1,dwID);\r\n  }\r\n  else {\r\n    bVar1 = item->m_bWindow;\r\n    pcVar2 = CHARACTER::GetName(item->m_pOwner);\r\n    sys_log(0,\"ITEM_SAVE %s:%d in %s window %d\",\r\n            (uint)item->m_pProto->szLocaleName & (item->m_pProto == (TItemTable *)0x0) - 1,\r\n            item->m_dwID,pcVar2,(uint)bVar1);\r\n    t.id = item->m_dwID;\r\n    t.window = item->m_bWindow;\r\n    if (t.window == '\\x02') {\r\n      t.pos = item->m_bCell - 0x5a;\r\n    }\r\n    else {\r\n      t.pos = (WORD)item->m_bCell;\r\n    }\r\n    t.vnum = 0;\r\n    t.count = item->m_dwCount;\r\n    if (item->m_pProto != (TItemTable *)0x0) {\r\n      t.vnum = item->m_pProto->dwVnum;\r\n    }\r\n    if ((byte)(t.window - 3) < 2) {\r\n      t.owner = (((item->m_pOwner->super_CEntity).m_lpDesc)->m_accountTable).id;\r\n    }\r\n    else {\r\n      t.owner = item->m_pOwner->m_dwPlayerID;\r\n    }\r\n    (*thecore_memcpy)(t.alSockets,item->m_alSockets,0xc);\r\n    (*thecore_memcpy)(t.aAttr,item->m_aAttr,0x15);\r\n    CLIENT_DESC::DBPacketHeader(db_clientdesc,'\\x1e',0,0x34);\r\n    CLIENT_DESC::Packet(db_clientdesc,&t,0x34);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

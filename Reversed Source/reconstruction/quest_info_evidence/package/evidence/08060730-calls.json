@@ -1,0 +1,47 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestIconFile",
+    "address": "08060730"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "081695db",
+        "caller": {
+          "name": "quest_set_icon_file",
+          "address": "08169560"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0806074e",
+        "target": "080603e0",
+        "name": "PC::SetSendFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08060768",
+        "target": "0804bfcc",
+        "name": "<EXTERNAL>::std::string::assign",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  }
+}

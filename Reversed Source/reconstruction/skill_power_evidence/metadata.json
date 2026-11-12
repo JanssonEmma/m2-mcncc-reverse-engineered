@@ -1,0 +1,1172 @@
+[
+  {
+    "unit": "main.cpp",
+    "node": {
+      "die": "0xaf0f7b",
+      "tag": "DW_TAG_inlined_subroutine",
+      "name": "CTableBySkill",
+      "size": null
+    },
+    "attrs": {
+      "DW_AT_decl_file": 117,
+      "DW_AT_decl_line": 196,
+      "DW_AT_low_pc": 134870852,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_virtuality": null
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0xaf2c9f",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0xaf2c73",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xaf22cb",
+              "tag": "DW_TAG_structure_type",
+              "name": "CTableBySkill",
+              "size": 40
+            }
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      }
+    ]
+  },
+  {
+    "unit": "main.cpp",
+    "node": {
+      "die": "0xaf22cb",
+      "tag": "DW_TAG_structure_type",
+      "name": "CTableBySkill",
+      "size": 40
+    },
+    "attrs": {
+      "DW_AT_decl_file": 117,
+      "DW_AT_decl_line": 193,
+      "DW_AT_low_pc": null,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_virtuality": null
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_inheritance",
+        "name": null,
+        "type": {
+          "die": "0xaf2ca4",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<CTableBySkill>",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": 1,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_aiSkillPowerByLevelFromType",
+        "type": {
+          "die": "0xafac99",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0xa31158",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          "bounds": [
+            7
+          ]
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "line": 221,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": 3,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_aiSkillDamageByLevel",
+        "type": {
+          "die": "0xa31158",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xa2d77b",
+            "tag": "DW_TAG_base_type",
+            "name": "int",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              36
+            ]
+          }
+        ],
+        "line": 222,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": 3,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xafaca9",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": "_ZN13CTableBySkillaSERKS_",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xafacaf",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xafacb5",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaf22cb",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CTableBySkill",
+                  "size": 40
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CTableBySkill",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xafacaf",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xafacb5",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaf22cb",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "CTableBySkill",
+                  "size": 40
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CTableBySkill",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 196,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~CTableBySkill",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 203,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": 1,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Check",
+        "type": {
+          "die": "0xa37317",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "line": 208,
+        "linkage": "_ZN13CTableBySkill5CheckEv",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DeleteAll",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 211,
+        "linkage": "_ZN13CTableBySkill9DeleteAllEv",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetSkillPowerByLevelFromType",
+        "type": {
+          "die": "0xa2d77b",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "line": 213,
+        "linkage": "_ZN13CTableBySkill28GetSkillPowerByLevelFromTypeEiiib",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa37317",
+              "tag": "DW_TAG_base_type",
+              "name": "bool",
+              "size": 1
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetSkillPowerByLevelFromType",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 214,
+        "linkage": "_ZN13CTableBySkill28SetSkillPowerByLevelFromTypeEiPi",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa31158",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xa2d77b",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DeleteSkillPowerByLevelFromType",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 215,
+        "linkage": "_ZN13CTableBySkill31DeleteSkillPowerByLevelFromTypeEi",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetSkillDamageByLevel",
+        "type": {
+          "die": "0xa2d77b",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "line": 217,
+        "linkage": "_ZN13CTableBySkill21GetSkillDamageByLevelEi",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetSkillDamageByLevelTable",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 218,
+        "linkage": "_ZN13CTableBySkill26SetSkillDamageByLevelTableEPi",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa31158",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xa2d77b",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DeleteSkillDamageByLevelTable",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 219,
+        "linkage": "_ZN13CTableBySkill29DeleteSkillDamageByLevelTableEv",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2c73",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf22cb",
+                "tag": "DW_TAG_structure_type",
+                "name": "CTableBySkill",
+                "size": 40
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "unit": "main.cpp",
+    "node": {
+      "die": "0xaf2323",
+      "tag": "DW_TAG_subprogram",
+      "name": "CTableBySkill",
+      "size": null
+    },
+    "attrs": {
+      "DW_AT_decl_file": null,
+      "DW_AT_decl_line": null,
+      "DW_AT_low_pc": null,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_virtuality": null
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0xaf2c73",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0xafacaf",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xafacb5",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0xaf22cb",
+              "tag": "DW_TAG_structure_type",
+              "name": "CTableBySkill",
+              "size": 40
+            }
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      }
+    ]
+  },
+  {
+    "unit": "main.cpp",
+    "node": {
+      "die": "0xaf233b",
+      "tag": "DW_TAG_subprogram",
+      "name": "CTableBySkill",
+      "size": null
+    },
+    "attrs": {
+      "DW_AT_decl_file": 117,
+      "DW_AT_decl_line": 196,
+      "DW_AT_low_pc": null,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_virtuality": null
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0xaf2c73",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      }
+    ]
+  },
+  {
+    "unit": "main.cpp",
+    "node": {
+      "die": "0xaf2c79",
+      "tag": "DW_TAG_subprogram",
+      "name": "CTableBySkill",
+      "size": null
+    },
+    "attrs": {
+      "DW_AT_decl_file": 117,
+      "DW_AT_decl_line": 196,
+      "DW_AT_low_pc": null,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_virtuality": null
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0xaf2c9f",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0xaf2c73",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xaf22cb",
+              "tag": "DW_TAG_structure_type",
+              "name": "CTableBySkill",
+              "size": 40
+            }
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      }
+    ]
+  },
+  {
+    "unit": "main.cpp",
+    "node": {
+      "die": "0xaf2ca4",
+      "tag": "DW_TAG_structure_type",
+      "name": "singleton<CTableBySkill>",
+      "size": 4
+    },
+    "attrs": {
+      "DW_AT_decl_file": 167,
+      "DW_AT_decl_line": 7,
+      "DW_AT_low_pc": null,
+      "DW_AT_MIPS_linkage_name": null,
+      "DW_AT_virtuality": null
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "_vptr$singleton",
+        "type": {
+          "die": "0xafabce",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xafabd4",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0xafabc3",
+              "tag": "DW_TAG_subroutine_type",
+              "name": null,
+              "size": null,
+              "type": {
+                "die": "0xa2d77b",
+                "tag": "DW_TAG_base_type",
+                "name": "int",
+                "size": 4
+              }
+            }
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_variable",
+        "name": "ms_singleton",
+        "type": {
+          "die": "0xaf2c73",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": 42,
+        "linkage": "_ZN9singletonI13CTableBySkillE12ms_singletonE",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xafacba",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf2ca4",
+            "tag": "DW_TAG_structure_type",
+            "name": "singleton<CTableBySkill>",
+            "size": 4
+          }
+        },
+        "location": null,
+        "line": null,
+        "linkage": "_ZN9singletonI13CTableBySkillEaSERKS1_",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2d7d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf2ca4",
+                "tag": "DW_TAG_structure_type",
+                "name": "singleton<CTableBySkill>",
+                "size": 4
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xafacc0",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xafacc6",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaf2ca4",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "singleton<CTableBySkill>",
+                  "size": 4
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "singleton",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": null,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2d7d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf2ca4",
+                "tag": "DW_TAG_structure_type",
+                "name": "singleton<CTableBySkill>",
+                "size": 4
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xafacc0",
+              "tag": "DW_TAG_reference_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xafacc6",
+                "tag": "DW_TAG_const_type",
+                "name": null,
+                "size": null,
+                "type": {
+                  "die": "0xaf2ca4",
+                  "tag": "DW_TAG_structure_type",
+                  "name": "singleton<CTableBySkill>",
+                  "size": 4
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "singleton",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 12,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2d7d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf2ca4",
+                "tag": "DW_TAG_structure_type",
+                "name": "singleton<CTableBySkill>",
+                "size": 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~singleton",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "line": 19,
+        "linkage": null,
+        "low_pc": null,
+        "virtuality": 1,
+        "access": null,
+        "params": [
+          {
+            "name": null,
+            "type": {
+              "die": "0xaf2d7d",
+              "tag": "DW_TAG_pointer_type",
+              "name": null,
+              "size": 4,
+              "type": {
+                "die": "0xaf2ca4",
+                "tag": "DW_TAG_structure_type",
+                "name": "singleton<CTableBySkill>",
+                "size": 4
+              }
+            }
+          },
+          {
+            "name": null,
+            "type": {
+              "die": "0xa2d77b",
+              "tag": "DW_TAG_base_type",
+              "name": "int",
+              "size": 4
+            }
+          }
+        ]
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "instance",
+        "type": {
+          "die": "0xafaca9",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": 25,
+        "linkage": "_ZN9singletonI13CTableBySkillE8instanceEv",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Instance",
+        "type": {
+          "die": "0xafaca9",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": 31,
+        "linkage": "_ZN9singletonI13CTableBySkillE8InstanceEv",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "instance_ptr",
+        "type": {
+          "die": "0xaf2c73",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xaf22cb",
+            "tag": "DW_TAG_structure_type",
+            "name": "CTableBySkill",
+            "size": 40
+          }
+        },
+        "location": null,
+        "line": 37,
+        "linkage": "_ZN9singletonI13CTableBySkillE12instance_ptrEv",
+        "low_pc": null,
+        "virtuality": null,
+        "access": null,
+        "params": []
+      }
+    ]
+  }
+]

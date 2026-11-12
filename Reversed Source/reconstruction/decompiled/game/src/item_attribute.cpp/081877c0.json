@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081877c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81877c0",
+    "function": {
+      "name": "CItem::SetAttributes",
+      "address": "081877c0"
+    },
+    "signature": "void SetAttributes(CItem * this, TPlayerItemAttribute * c_pAttribute)",
+    "code": "\r\n/* DWARF original prototype: void SetAttributes(CItem * this, TPlayerItemAttribute * c_pAttribute)\r\n    */\r\n\r\nvoid __thiscall CItem::SetAttributes(CItem *this,TPlayerItemAttribute *c_pAttribute)\r\n\r\n{\r\n  (*thecore_memcpy)(this->m_aAttr,c_pAttribute,0x15);\r\n  Save(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

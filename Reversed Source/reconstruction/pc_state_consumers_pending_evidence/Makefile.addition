@@ -1,0 +1,14 @@
+PC_STATE_CONSUMERS_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) pc_state_consumers_desc_output_syscalls.o
+pc_state_consumers_regression$(EXEEXT): pc_state_consumers_regression.cpp $(TARGET_WALKING_SOURCES) $(PC_STATE_CONSUMERS_OBJECTS) ../../game/src/event.cpp ../../game/src/event_queue.cpp $(LUA_SDK_LIBRARIES)
+	$(CXX) -DMCNCC_TEST_REAL_EVENTS -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long pc_state_consumers_regression.cpp $(TARGET_WALKING_SOURCES) $(PC_STATE_CONSUMERS_OBJECTS) ../../game/src/event.cpp ../../game/src/event_queue.cpp $(LDFLAGS) -o $@
+pc_state_consumers_desc_output_syscalls.o: pc_state_consumers_desc_output_syscalls.c desc_output_syscalls.c
+	$(CC) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CFLAGS) -UNDEBUG -c pc_state_consumers_desc_output_syscalls.c -o $@
+.PHONY: check-pc-state-consumers check-pc-state-consumers-abi clean-pc-state-consumers
+check-pc-state-consumers: pc_state_consumers_regression$(EXEEXT)
+	./pc_state_consumers_regression$(EXEEXT)
+check-abi: check-pc-state-consumers-abi
+check-pc-state-consumers-abi: pc_state_consumers_abi.cpp ../../game/src/questpc.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -m32 -fsyntax-only pc_state_consumers_abi.cpp
+clean: clean-pc-state-consumers
+clean-pc-state-consumers:
+	$(RM) pc_state_consumers_regression$(EXEEXT) pc_state_consumers_desc_output_syscalls.o

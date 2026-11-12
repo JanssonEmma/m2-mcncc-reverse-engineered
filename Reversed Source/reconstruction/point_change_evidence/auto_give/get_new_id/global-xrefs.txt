@@ -1,0 +1,71 @@
+ 80d9769:	74 4b                	je     80d97b6 <_Z11config_initRKSs+0x14b6>
+ 80d976b:	89 1c 24             	mov    %ebx,(%esp)
+ 80d976e:	e8 89 31 f7 ff       	call   804c8fc <atoi@plt>
+ 80d9773:	a3 a4 31 32 08       	mov    %eax,0x83231a4
+ 80d9778:	89 34 24             	mov    %esi,(%esp)
+ 80d977b:	e8 7c 31 f7 ff       	call   804c8fc <atoi@plt>
+ 80d9780:	a3 a8 31 32 08       	mov    %eax,0x83231a8
+
+ 80d9773:	a3 a4 31 32 08       	mov    %eax,0x83231a4
+ 80d9778:	89 34 24             	mov    %esi,(%esp)
+ 80d977b:	e8 7c 31 f7 ff       	call   804c8fc <atoi@plt>
+ 80d9780:	a3 a8 31 32 08       	mov    %eax,0x83231a8
+ 80d9785:	8b 15 a4 31 32 08    	mov    0x83231a4,%edx
+ 80d978b:	39 d0                	cmp    %edx,%eax
+ 80d978d:	0f 83 5d fa ff ff    	jae    80d91f0 <_Z11config_initRKSs+0xef0>
+
+ 80d9778:	89 34 24             	mov    %esi,(%esp)
+ 80d977b:	e8 7c 31 f7 ff       	call   804c8fc <atoi@plt>
+ 80d9780:	a3 a8 31 32 08       	mov    %eax,0x83231a8
+ 80d9785:	8b 15 a4 31 32 08    	mov    0x83231a4,%edx
+ 80d978b:	39 d0                	cmp    %edx,%eax
+ 80d978d:	0f 83 5d fa ff ff    	jae    80d91f0 <_Z11config_initRKSs+0xef0>
+ 80d9793:	89 44 24 0c          	mov    %eax,0xc(%esp)
+
+ 813f94a:	e8 b1 be fb ff       	call   80fb800 <_ZN11TEMP_BUFFER5writeEPKvi>
+ 813f94f:	e9 2f ff ff ff       	jmp    813f883 <_ZN11CLIENT_DESC8SetPhaseEi+0x323>
+ 813f954:	c6 05 54 59 32 08 01 	movb   $0x1,0x8325954
+ 813f95b:	a1 a4 31 32 08       	mov    0x83231a4,%eax
+ 813f960:	89 34 24             	mov    %esi,(%esp)
+ 813f963:	89 45 c8             	mov    %eax,-0x38(%ebp)
+ 813f966:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+
+ 813f95b:	a1 a4 31 32 08       	mov    0x83231a4,%eax
+ 813f960:	89 34 24             	mov    %esi,(%esp)
+ 813f963:	89 45 c8             	mov    %eax,-0x38(%ebp)
+ 813f966:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+ 813f96b:	89 45 cc             	mov    %eax,-0x34(%ebp)
+ 813f96e:	a1 ac 31 32 08       	mov    0x83231ac,%eax
+ 813f973:	89 45 d0             	mov    %eax,-0x30(%ebp)
+
+ 81921cc:	8b 53 30             	mov    0x30(%ebx),%edx
+ 81921cf:	85 d2                	test   %edx,%edx
+ 81921d1:	74 44                	je     8192217 <_ZN12ITEM_MANAGER8GetNewIDEv+0x57>
+ 81921d3:	3b 15 a8 31 32 08    	cmp    0x83231a8,%edx
+ 81921d9:	73 15                	jae    81921f0 <_ZN12ITEM_MANAGER8GetNewIDEv+0x30>
+ 81921db:	8d 42 01             	lea    0x1(%edx),%eax
+ 81921de:	89 43 30             	mov    %eax,0x30(%ebx)
+
+ 8192258:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 819225b:	85 d2                	test   %edx,%edx
+ 819225d:	74 44                	je     81922a3 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x53>
+ 819225f:	8b 0d a4 31 32 08    	mov    0x83231a4,%ecx
+ 8192265:	39 ca                	cmp    %ecx,%edx
+ 8192267:	76 67                	jbe    81922d0 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x80>
+ 8192269:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+
+ 819225f:	8b 0d a4 31 32 08    	mov    0x83231a4,%ecx
+ 8192265:	39 ca                	cmp    %ecx,%edx
+ 8192267:	76 67                	jbe    81922d0 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x80>
+ 8192269:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+ 819226e:	39 c2                	cmp    %eax,%edx
+ 8192270:	72 35                	jb     81922a7 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x57>
+ 8192272:	89 44 24 14          	mov    %eax,0x14(%esp)
+
+ 81922c6:	b8 01 00 00 00       	mov    $0x1,%eax
+ 81922cb:	eb d6                	jmp    81922a3 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x53>
+ 81922cd:	8d 76 00             	lea    0x0(%esi),%esi
+ 81922d0:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+ 81922d5:	eb 9b                	jmp    8192272 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x22>
+ 81922d7:	90                   	nop
+ 81922d8:	90                   	nop

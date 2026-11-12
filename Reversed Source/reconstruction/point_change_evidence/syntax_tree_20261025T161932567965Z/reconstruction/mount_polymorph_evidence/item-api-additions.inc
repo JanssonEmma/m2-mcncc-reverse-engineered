@@ -1,0 +1,1 @@
+void ModifyPoints(bool add);

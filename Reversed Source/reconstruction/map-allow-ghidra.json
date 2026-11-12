@@ -1,0 +1,37 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "function": {
+        "name": "map_allow_find",
+        "address": "080d8030"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nbool map_allow_find(int index)\r\n\r\n{\r\n  bool bVar1;\r\n  _Rb_tree<int,int,std::_Identity<int>,std::less<int>,std::allocator<int>_> local_1c [2];\r\n  \r\n  if (g_bAuthServer == '\\0') {\r\n    _Rb_tree<int,int,std::_Identity<int>,std::less<int>,std::allocator<int>_>::find\r\n              (local_1c,(int *)&s_set_map_allows);\r\n    bVar1 = local_1c[0].super__Rb_tree_base<int,std::allocator<int>_>.\r\n            super__Rb_tree_alloc_base<int,std::allocator<int>,true>._M_header !=\r\n            s_set_map_allows._M_t.super__Rb_tree_base<int,std::allocator<int>_>.\r\n            super__Rb_tree_alloc_base<int,std::allocator<int>,true>._M_header;\r\n  }\r\n  else {\r\n    bVar1 = false;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "map_allow_log",
+        "address": "080d8080"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid map_allow_log(void)\r\n\r\n{\r\n  _Rb_tree_iterator<int,const_int&,const_int*> i;\r\n  \r\n  i.super__Rb_tree_base_iterator._M_node =\r\n       *(_Rb_tree_base_iterator *)\r\n        ((int)s_set_map_allows._M_t.super__Rb_tree_base<int,std::allocator<int>_>.\r\n              super__Rb_tree_alloc_base<int,std::allocator<int>,true>._M_header + 8);\r\n  while ((_Rb_tree_alloc_base<int,std::allocator<int>,true>)i.super__Rb_tree_base_iterator._M_node\r\n         != s_set_map_allows._M_t.super__Rb_tree_base<int,std::allocator<int>_>.\r\n            super__Rb_tree_alloc_base<int,std::allocator<int>,true>._M_header) {\r\n    sys_log(0,\"MAP_ALLOW: %d\",*(undefined4 *)((int)i.super__Rb_tree_base_iterator._M_node + 0x10));\r\n    _Rb_tree_base_iterator::_M_increment(&i.super__Rb_tree_base_iterator);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "map_allow_add",
+        "address": "080d80e0"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid map_allow_add(int index)\r\n\r\n{\r\n  bool bVar1;\r\n  pair<std::_Rb_tree_iterator<int,_int&,_int*>,bool> __p;\r\n  \r\n  bVar1 = map_allow_find(index);\r\n  if (!bVar1) {\r\n    fprintf(__stdoutp,\"MAP ALLOW %d\\n\",index);\r\n    _Rb_tree<int,int,std::_Identity<int>,std::less<int>,std::allocator<int>_>::insert_unique\r\n              (&s_set_map_allows._M_t,&index);\r\n    return;\r\n  }\r\n  fprintf(__stdoutp,\"MAP Setting is repeted.\\n\");\r\n  fprintf(__stdoutp,\"MAP Setting is repeted.\\n\");\r\n  fprintf(__stdoutp,\"MAP Setting is repeted.\\n\");\r\n  fprintf(__stdoutp,\"Program Exit\\n\");\r\n                    /* WARNING: Subroutine does not return */\r\n  exit(1);\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "map_allow_copy",
+        "address": "080d81a0"
+      },
+      "code": "\r\nvoid map_allow_copy(BYTE *pb,int size)\r\n\r\n{\r\n  _Rb_tree_iterator<int,const_int&,const_int*> _Var1;\r\n  int iVar2;\r\n  _Rb_tree_iterator<int,const_int&,const_int*> it;\r\n  \r\n                    /* Unresolved local var: int iCount@[DW_OP_reg7(EDI)] */\r\n  iVar2 = 0;\r\n  it.super__Rb_tree_base_iterator._M_node =\r\n       *(_Rb_tree_base_iterator *)\r\n        ((int)s_set_map_allows._M_t.super__Rb_tree_base<int,std::allocator<int>_>.\r\n              super__Rb_tree_alloc_base<int,std::allocator<int>,true>._M_header + 8);\r\n  do {\r\n    _Var1.super__Rb_tree_base_iterator._M_node = it.super__Rb_tree_base_iterator._M_node;\r\n    if ((_Rb_tree_alloc_base<int,std::allocator<int>,true>)it.super__Rb_tree_base_iterator._M_node\r\n        == s_set_map_allows._M_t.super__Rb_tree_base<int,std::allocator<int>_>.\r\n           super__Rb_tree_alloc_base<int,std::allocator<int>,true>._M_header) {\r\n      return;\r\n    }\r\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\r\n    iVar2 = iVar2 + 1;\r\n                    /* Unresolved local var: _Rb_tree_iterator<int,const_int&,const_int*>\r\n                       __tmp@[???] */\r\n    _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n    *pb = (BYTE)*(undefined4 *)((int)_Var1.super__Rb_tree_base_iterator._M_node + 0x10);\r\n    pb = pb + 1;\r\n  } while (iVar2 <= size);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

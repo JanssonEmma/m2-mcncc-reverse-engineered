@@ -1,0 +1,117 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+081668a0 <_ZN5CItem8SetCountEm>:
+ 81668a0:	55                   	push   %ebp
+ 81668a1:	89 e5                	mov    %esp,%ebp
+ 81668a3:	83 ec 28             	sub    $0x28,%esp
+ 81668a6:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 81668a9:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 81668ac:	8b 75 08             	mov    0x8(%ebp),%esi
+ 81668af:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 81668b2:	85 c0                	test   %eax,%eax
+ 81668b4:	89 46 54             	mov    %eax,0x54(%esi)
+ 81668b7:	0f 85 59 01 00 00    	jne    8166a16 <_ZN5CItem8SetCountEm+0x176>
+ 81668bd:	8b 5e 3c             	mov    0x3c(%esi),%ebx
+ 81668c0:	85 db                	test   %ebx,%ebx
+ 81668c2:	0f 84 4e 01 00 00    	je     8166a16 <_ZN5CItem8SetCountEm+0x176>
+ 81668c8:	8b 46 38             	mov    0x38(%esi),%eax
+ 81668cb:	31 d2                	xor    %edx,%edx
+ 81668cd:	85 c0                	test   %eax,%eax
+ 81668cf:	74 04                	je     81668d5 <_ZN5CItem8SetCountEm+0x35>
+ 81668d1:	0f b6 50 37          	movzbl 0x37(%eax),%edx
+ 81668d5:	80 fa 07             	cmp    $0x7,%dl
+ 81668d8:	74 12                	je     81668ec <_ZN5CItem8SetCountEm+0x4c>
+ 81668da:	31 d2                	xor    %edx,%edx
+ 81668dc:	85 c0                	test   %eax,%eax
+ 81668de:	74 04                	je     81668e4 <_ZN5CItem8SetCountEm+0x44>
+ 81668e0:	0f b6 50 37          	movzbl 0x37(%eax),%edx
+ 81668e4:	84 d2                	test   %dl,%dl
+ 81668e6:	0f 85 be 00 00 00    	jne    81669aa <_ZN5CItem8SetCountEm+0x10a>
+ 81668ec:	0f b6 46 50          	movzbl 0x50(%esi),%eax
+ 81668f0:	89 34 24             	mov    %esi,(%esp)
+ 81668f3:	88 45 f7             	mov    %al,-0x9(%ebp)
+ 81668f6:	e8 35 01 00 00       	call   8166a30 <_ZN5CItem19RemoveFromCharacterEv>
+ 81668fb:	8b 46 38             	mov    0x38(%esi),%eax
+ 81668fe:	31 d2                	xor    %edx,%edx
+ 8166900:	85 c0                	test   %eax,%eax
+ 8166902:	74 02                	je     8166906 <_ZN5CItem8SetCountEm+0x66>
+ 8166904:	8b 10                	mov    (%eax),%edx
+ 8166906:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 816690a:	89 1c 24             	mov    %ebx,(%esp)
+ 816690d:	e8 5e 8f 01 00       	call   817f870 <_ZN9CHARACTER15FindSpecifyItemEm>
+ 8166912:	85 c0                	test   %eax,%eax
+ 8166914:	89 c2                	mov    %eax,%edx
+ 8166916:	74 6e                	je     8166986 <_ZN5CItem8SetCountEm+0xe6>
+ 8166918:	0f b6 45 f7          	movzbl -0x9(%ebp),%eax
+ 816691c:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8166920:	89 1c 24             	mov    %ebx,(%esp)
+ 8166923:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8166927:	b8 01 00 00 00       	mov    $0x1,%eax
+ 816692c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8166930:	e8 0b a0 ee ff       	call   8050940 <_ZN9CHARACTER18ChainQuickslotItemEP5CItemhh>
+ 8166935:	8b 1d 30 b4 23 08    	mov    0x823b430,%ebx
+ 816693b:	85 db                	test   %ebx,%ebx
+ 816693d:	74 18                	je     8166957 <_ZN5CItem8SetCountEm+0xb7>
+ 816693f:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 8166943:	89 1c 24             	mov    %ebx,(%esp)
+ 8166946:	e8 55 c4 02 00       	call   8192da0 <_ZN12ITEM_MANAGER11DestroyItemEP5CItem>
+ 816694b:	31 c0                	xor    %eax,%eax
+ 816694d:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8166950:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8166953:	89 ec                	mov    %ebp,%esp
+ 8166955:	5d                   	pop    %ebp
+ 8166956:	c3                   	ret
+ 8166957:	c7 04 24 47 b8 22 08 	movl   $0x822b847,(%esp)
+ 816695e:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 8166963:	ba 43 89 1f 08       	mov    $0x81f8943,%edx
+ 8166968:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 816696c:	b8 fa 62 1f 08       	mov    $0x81f62fa,%eax
+ 8166971:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 8166975:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8166979:	e8 2e 60 ee ff       	call   804c9ac <__assert@plt>
+ 816697e:	8b 1d 30 b4 23 08    	mov    0x823b430,%ebx
+ 8166984:	eb b9                	jmp    816693f <_ZN5CItem8SetCountEm+0x9f>
+ 8166986:	89 1c 24             	mov    %ebx,(%esp)
+ 8166989:	b8 ff 00 00 00       	mov    $0xff,%eax
+ 816698e:	b9 01 00 00 00       	mov    $0x1,%ecx
+ 8166993:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8166997:	0f b6 45 f7          	movzbl -0x9(%ebp),%eax
+ 816699b:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 816699f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 81669a3:	e8 b8 9c ee ff       	call   8050660 <_ZN9CHARACTER13SyncQuickslotEhhh>
+ 81669a8:	eb 8b                	jmp    8166935 <_ZN5CItem8SetCountEm+0x95>
+ 81669aa:	b8 ff 00 00 00       	mov    $0xff,%eax
+ 81669af:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 81669b3:	0f b6 46 50          	movzbl 0x50(%esi),%eax
+ 81669b7:	89 1c 24             	mov    %ebx,(%esp)
+ 81669ba:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 81669be:	b8 01 00 00 00       	mov    $0x1,%eax
+ 81669c3:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81669c7:	e8 94 9c ee ff       	call   8050660 <_ZN9CHARACTER13SyncQuickslotEhhh>
+ 81669cc:	8b 1d 30 b4 23 08    	mov    0x823b430,%ebx
+ 81669d2:	85 db                	test   %ebx,%ebx
+ 81669d4:	74 11                	je     81669e7 <_ZN5CItem8SetCountEm+0x147>
+ 81669d6:	89 34 24             	mov    %esi,(%esp)
+ 81669d9:	e8 52 00 00 00       	call   8166a30 <_ZN5CItem19RemoveFromCharacterEv>
+ 81669de:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81669e2:	e9 5c ff ff ff       	jmp    8166943 <_ZN5CItem8SetCountEm+0xa3>
+ 81669e7:	c7 04 24 47 b8 22 08 	movl   $0x822b847,(%esp)
+ 81669ee:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 81669f3:	bb fa 62 1f 08       	mov    $0x81f62fa,%ebx
+ 81669f8:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 81669fc:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 8166a01:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8166a05:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8166a09:	e8 9e 5f ee ff       	call   804c9ac <__assert@plt>
+ 8166a0e:	8b 1d 30 b4 23 08    	mov    0x823b430,%ebx
+ 8166a14:	eb c0                	jmp    81669d6 <_ZN5CItem8SetCountEm+0x136>
+ 8166a16:	89 34 24             	mov    %esi,(%esp)
+ 8166a19:	e8 b2 fd ff ff       	call   81667d0 <_ZN5CItem12UpdatePacketEv>
+ 8166a1e:	89 34 24             	mov    %esi,(%esp)
+ 8166a21:	e8 1a 12 00 00       	call   8167c40 <_ZN5CItem4SaveEv>
+ 8166a26:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8166a2b:	e9 1d ff ff ff       	jmp    816694d <_ZN5CItem8SetCountEm+0xad>

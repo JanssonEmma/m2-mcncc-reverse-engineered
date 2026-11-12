@@ -1,0 +1,429 @@
+[
+  {
+    "declaration": "PC();",
+    "access": "public",
+    "linkage": null,
+    "source": "questpc.h",
+    "line": 48
+  },
+  {
+    "declaration": "~PC();",
+    "access": "public",
+    "linkage": null,
+    "source": "questpc.h",
+    "line": 49
+  },
+  {
+    "declaration": "void Destroy();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC7DestroyEv",
+    "source": "questpc.h",
+    "line": 51
+  },
+  {
+    "declaration": "void SetID(long unsigned int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC5SetIDEm",
+    "source": "questpc.h",
+    "line": 52
+  },
+  {
+    "declaration": "bool HasQuest(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC8HasQuestERKSs",
+    "source": "questpc.h",
+    "line": 54
+  },
+  {
+    "declaration": "QuestState& GetQuest(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC8GetQuestERKSs",
+    "source": "questpc.h",
+    "line": 55
+  },
+  {
+    "declaration": "QuestInfoIterator quest_begin();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC11quest_beginEv",
+    "source": "questpc.h",
+    "line": 57
+  },
+  {
+    "declaration": "QuestInfoIterator quest_end();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC9quest_endEv",
+    "source": "questpc.h",
+    "line": 58
+  },
+  {
+    "declaration": "QuestInfoIterator quest_find(long unsigned int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC10quest_findEm",
+    "source": "questpc.h",
+    "line": 59
+  },
+  {
+    "declaration": "bool IsRunning();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC9IsRunningEv",
+    "source": "questpc.h",
+    "line": 61
+  },
+  {
+    "declaration": "void EndRunning();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC10EndRunningEv",
+    "source": "questpc.h",
+    "line": 63
+  },
+  {
+    "declaration": "void CancelRunning();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13CancelRunningEv",
+    "source": "questpc.h",
+    "line": 64
+  },
+  {
+    "declaration": "QuestState* GetRunningQuestState();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC20GetRunningQuestStateEv",
+    "source": "questpc.h",
+    "line": 66
+  },
+  {
+    "declaration": "void SetQuest(const std::string&,QuestState&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC8SetQuestERKSsRNS_10QuestStateE",
+    "source": "questpc.h",
+    "line": 68
+  },
+  {
+    "declaration": "void SetCurrentQuestStateName(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC24SetCurrentQuestStateNameERKSs",
+    "source": "questpc.h",
+    "line": 69
+  },
+  {
+    "declaration": "void SetQuestState(const std::string&,const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13SetQuestStateERKSsS2_",
+    "source": "questpc.h",
+    "line": 70
+  },
+  {
+    "declaration": "void SetQuestState(const std::string&,int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13SetQuestStateERKSsi",
+    "source": "questpc.h",
+    "line": 71
+  },
+  {
+    "declaration": "void ClearQuest(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC10ClearQuestERKSs",
+    "source": "questpc.h",
+    "line": 73
+  },
+  {
+    "declaration": "void AddQuestStateChange(const std::string&,int,int);",
+    "access": "private",
+    "linkage": "_ZN5quest2PC19AddQuestStateChangeERKSsii",
+    "source": "questpc.h",
+    "line": 76
+  },
+  {
+    "declaration": "void DoQuestStateChange();",
+    "access": "private",
+    "linkage": "_ZN5quest2PC18DoQuestStateChangeEv",
+    "source": "questpc.h",
+    "line": 77
+  },
+  {
+    "declaration": "void SetFlag(const std::string&,int,bool);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC7SetFlagERKSsib",
+    "source": "questpc.h",
+    "line": 91
+  },
+  {
+    "declaration": "int GetFlag(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC7GetFlagERKSs",
+    "source": "questpc.h",
+    "line": 92
+  },
+  {
+    "declaration": "bool DeleteFlag(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC10DeleteFlagERKSs",
+    "source": "questpc.h",
+    "line": 93
+  },
+  {
+    "declaration": "const std::string& GetCurrentQuestName();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC19GetCurrentQuestNameEv",
+    "source": "questpc.h",
+    "line": 95
+  },
+  {
+    "declaration": "int GetCurrentQuestIndex();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC20GetCurrentQuestIndexEv",
+    "source": "questpc.h",
+    "line": 96
+  },
+  {
+    "declaration": "void RemoveTimer(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC11RemoveTimerERKSs",
+    "source": "questpc.h",
+    "line": 98
+  },
+  {
+    "declaration": "void RemoveTimerNotCancel(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC20RemoveTimerNotCancelERKSs",
+    "source": "questpc.h",
+    "line": 99
+  },
+  {
+    "declaration": "void AddTimer(const std::string&,EVENT*);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC8AddTimerERKSsP5event",
+    "source": "questpc.h",
+    "line": 100
+  },
+  {
+    "declaration": "void ClearTimer();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC10ClearTimerEv",
+    "source": "questpc.h",
+    "line": 101
+  },
+  {
+    "declaration": "void SetCurrentQuestStartFlag();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC24SetCurrentQuestStartFlagEv",
+    "source": "questpc.h",
+    "line": 103
+  },
+  {
+    "declaration": "void SetCurrentQuestDoneFlag();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC23SetCurrentQuestDoneFlagEv",
+    "source": "questpc.h",
+    "line": 104
+  },
+  {
+    "declaration": "void SetQuestTitle(const std::string&,const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13SetQuestTitleERKSsS2_",
+    "source": "questpc.h",
+    "line": 106
+  },
+  {
+    "declaration": "void SetCurrentQuestTitle(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC20SetCurrentQuestTitleERKSs",
+    "source": "questpc.h",
+    "line": 108
+  },
+  {
+    "declaration": "void SetCurrentQuestClockName(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC24SetCurrentQuestClockNameERKSs",
+    "source": "questpc.h",
+    "line": 109
+  },
+  {
+    "declaration": "void SetCurrentQuestClockValue(int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC25SetCurrentQuestClockValueEi",
+    "source": "questpc.h",
+    "line": 110
+  },
+  {
+    "declaration": "void SetCurrentQuestCounterName(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC26SetCurrentQuestCounterNameERKSs",
+    "source": "questpc.h",
+    "line": 111
+  },
+  {
+    "declaration": "void SetCurrentQuestCounterValue(int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC27SetCurrentQuestCounterValueEi",
+    "source": "questpc.h",
+    "line": 112
+  },
+  {
+    "declaration": "void SetCurrentQuestIconFile(const std::string&);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC23SetCurrentQuestIconFileERKSs",
+    "source": "questpc.h",
+    "line": 113
+  },
+  {
+    "declaration": "bool IsLoaded();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC8IsLoadedEv",
+    "source": "questpc.h",
+    "line": 115
+  },
+  {
+    "declaration": "void SetLoaded();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC9SetLoadedEv",
+    "source": "questpc.h",
+    "line": 116
+  },
+  {
+    "declaration": "void Build();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC5BuildEv",
+    "source": "questpc.h",
+    "line": 117
+  },
+  {
+    "declaration": "void Save();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC4SaveEv",
+    "source": "questpc.h",
+    "line": 119
+  },
+  {
+    "declaration": "bool HasReward();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC9HasRewardEv",
+    "source": "questpc.h",
+    "line": 121
+  },
+  {
+    "declaration": "void Reward(CHARACTER*);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC6RewardEP9CHARACTER",
+    "source": "questpc.h",
+    "line": 122
+  },
+  {
+    "declaration": "void GiveItem(const std::string&,long unsigned int,int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC8GiveItemERKSsmi",
+    "source": "questpc.h",
+    "line": 124
+  },
+  {
+    "declaration": "void GiveExp(const std::string&,long unsigned int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC7GiveExpERKSsm",
+    "source": "questpc.h",
+    "line": 125
+  },
+  {
+    "declaration": "void SetSendDoneFlag();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC15SetSendDoneFlagEv",
+    "source": "questpc.h",
+    "line": 127
+  },
+  {
+    "declaration": "bool GetAndResetDoneFlag();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC19GetAndResetDoneFlagEv",
+    "source": "questpc.h",
+    "line": 128
+  },
+  {
+    "declaration": "void SendFlagList(CHARACTER*);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC12SendFlagListEP9CHARACTER",
+    "source": "questpc.h",
+    "line": 130
+  },
+  {
+    "declaration": "void SetQuestState(const char*,const char*);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13SetQuestStateEPKcS2_",
+    "source": "questpc.h",
+    "line": 132
+  },
+  {
+    "declaration": "void SetConfirmWait(long unsigned int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC14SetConfirmWaitEm",
+    "source": "questpc.h",
+    "line": 134
+  },
+  {
+    "declaration": "void ClearConfirmWait();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC16ClearConfirmWaitEv",
+    "source": "questpc.h",
+    "line": 135
+  },
+  {
+    "declaration": "bool IsConfirmWait();",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13IsConfirmWaitEv",
+    "source": "questpc.h",
+    "line": 136
+  },
+  {
+    "declaration": "bool IsConfirmWait(long unsigned int);",
+    "access": "public",
+    "linkage": "_ZN5quest2PC13IsConfirmWaitEm",
+    "source": "questpc.h",
+    "line": 137
+  },
+  {
+    "declaration": "void SetSendFlag(int);",
+    "access": "private",
+    "linkage": "_ZN5quest2PC11SetSendFlagEi",
+    "source": "questpc.h",
+    "line": 140
+  },
+  {
+    "declaration": "void ClearSendFlag();",
+    "access": "private",
+    "linkage": "_ZN5quest2PC13ClearSendFlagEv",
+    "source": "questpc.h",
+    "line": 141
+  },
+  {
+    "declaration": "void SaveFlag(const std::string&,int);",
+    "access": "private",
+    "linkage": "_ZN5quest2PC8SaveFlagERKSsi",
+    "source": "questpc.h",
+    "line": 142
+  },
+  {
+    "declaration": "void ClearCurrentQuestBeginFlag();",
+    "access": "private",
+    "linkage": "_ZN5quest2PC26ClearCurrentQuestBeginFlagEv",
+    "source": "questpc.h",
+    "line": 144
+  },
+  {
+    "declaration": "void SetCurrentQuestBeginFlag();",
+    "access": "private",
+    "linkage": "_ZN5quest2PC24SetCurrentQuestBeginFlagEv",
+    "source": "questpc.h",
+    "line": 145
+  },
+  {
+    "declaration": "int GetCurrentQuestBeginFlag();",
+    "access": "private",
+    "linkage": "_ZN5quest2PC24GetCurrentQuestBeginFlagEv",
+    "source": "questpc.h",
+    "line": 146
+  },
+  {
+    "declaration": "void SendQuestInfoPakcet();",
+    "access": "private",
+    "linkage": "_ZN5quest2PC19SendQuestInfoPakcetEv",
+    "source": "questpc.h",
+    "line": 148
+  }
+]

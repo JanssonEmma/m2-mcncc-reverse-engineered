@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080f1a90",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "get_crc32",
+      "address": "080f1a90"
+    },
+    "code": "\r\ncrc_t get_crc32(char *buf,size_t len)\r\n\r\n{\r\n  byte *pbVar1;\r\n  byte bVar2;\r\n  uint uVar3;\r\n  \r\n                    /* Unresolved local var: crc_t crc@[DW_OP_reg2(EDX)] */\r\n  uVar3 = 0xffffffff;\r\n  for (; 0xf < len; len = len - 0x10) {\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(*buf ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[1] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[2] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[3] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[4] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[5] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[6] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[7] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[8] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[9] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[10] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[0xb] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[0xc] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[0xd] ^ (byte)uVar3)];\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(buf[0xe] ^ (byte)uVar3)];\r\n    pbVar1 = (byte *)(buf + 0xf);\r\n    buf = buf + 0x10;\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(*pbVar1 ^ (byte)uVar3)];\r\n  }\r\n  for (; len != 0; len = len - 1) {\r\n    bVar2 = *buf;\r\n    buf = buf + 1;\r\n    uVar3 = uVar3 >> 8 ^ CRCTable[(byte)(bVar2 ^ (byte)uVar3)];\r\n  }\r\n  return ~uVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

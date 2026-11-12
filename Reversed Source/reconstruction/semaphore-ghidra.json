@@ -1,0 +1,68 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "function": {
+        "name": "CSemaphore::CSemaphore",
+        "address": "081d6390"
+      },
+      "code": "\r\n/* CSemaphore::CSemaphore() */\r\n\r\nvoid __thiscall CSemaphore::CSemaphore(CSemaphore *this)\r\n\r\n{\r\n  this->m_hSem = (sem_t *)0x0;\r\n  Initialize(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d6390"
+    },
+    {
+      "function": {
+        "name": "CSemaphore::~CSemaphore",
+        "address": "081d63c0"
+      },
+      "code": "\r\n/* CSemaphore::~CSemaphore() */\r\n\r\nvoid __thiscall CSemaphore::~CSemaphore(CSemaphore *this)\r\n\r\n{\r\n  Destroy(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d63c0"
+    },
+    {
+      "function": {
+        "name": "CSemaphore::Initialize",
+        "address": "081d63d0"
+      },
+      "code": "\r\n/* CSemaphore::Initialize() */\r\n\r\nbool __thiscall CSemaphore::Initialize(CSemaphore *this)\r\n\r\n{\r\n  sem_t *__sem;\r\n  int iVar1;\r\n  \r\n  Clear(this);\r\n  __sem = operator_new(4);\r\n  this->m_hSem = (sem_t *)__sem;\r\n  iVar1 = sem_init(__sem,0,0);\r\n  if (iVar1 == -1) {\r\n    perror(\"sem_init\");\r\n  }\r\n  return iVar1 != -1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d63d0"
+    },
+    {
+      "function": {
+        "name": "CSemaphore::Destroy",
+        "address": "081d6430"
+      },
+      "code": "\r\n/* CSemaphore::Destroy() */\r\n\r\nvoid __thiscall CSemaphore::Destroy(CSemaphore *this)\r\n\r\n{\r\n  Clear(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d6430"
+    },
+    {
+      "function": {
+        "name": "CSemaphore::Clear",
+        "address": "081d6440"
+      },
+      "code": "\r\n/* CSemaphore::Clear() */\r\n\r\nvoid __thiscall CSemaphore::Clear(CSemaphore *this)\r\n\r\n{\r\n  if ((sem_t *)this->m_hSem != (sem_t *)0x0) {\r\n    sem_destroy((sem_t *)this->m_hSem);\r\n    operator_delete(this->m_hSem);\r\n  }\r\n  this->m_hSem = (sem_t *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d6440"
+    },
+    {
+      "function": {
+        "name": "CSemaphore::Wait",
+        "address": "081d6480"
+      },
+      "code": "\r\n/* CSemaphore::Wait() */\r\n\r\nundefined4 __thiscall CSemaphore::Wait(CSemaphore *this)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  \r\n  uVar2 = 1;\r\n  if ((sem_t *)this->m_hSem != (sem_t *)0x0) {\r\n    iVar1 = sem_wait((sem_t *)this->m_hSem);\r\n    uVar2 = 1;\r\n    if (iVar1 == -1) {\r\n      perror(\"sem_wait\");\r\n      uVar2 = 0;\r\n    }\r\n  }\r\n  return uVar2;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d6480"
+    },
+    {
+      "function": {
+        "name": "CSemaphore::Release",
+        "address": "081d64c0"
+      },
+      "code": "\r\n/* CSemaphore::Release(int) */\r\n\r\nundefined4 __thiscall CSemaphore::Release(CSemaphore *this,int param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  sem_t *__sem;\r\n  \r\n  uVar1 = 0;\r\n  __sem = (sem_t *)this->m_hSem;\r\n  if (__sem != (sem_t *)0x0) {\r\n    if (0 < param_1) {\r\n      while( true ) {\r\n        sem_post(__sem);\r\n        param_1 = param_1 + -1;\r\n        if (param_1 == 0) break;\r\n        __sem = (sem_t *)this->m_hSem;\r\n      }\r\n    }\r\n    uVar1 = 1;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0x081d64c0"
+    }
+  ]
+}

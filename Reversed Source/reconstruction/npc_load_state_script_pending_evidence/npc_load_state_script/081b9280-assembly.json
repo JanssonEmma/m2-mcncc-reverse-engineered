@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "address": "081b9280",
+      "bytes": "55",
+      "instruction": "PUSH EBP",
+      "comment": null
+    },
+    {
+      "address": "081b9281",
+      "bytes": "89e5",
+      "instruction": "MOV EBP,ESP",
+      "comment": null
+    },
+    {
+      "address": "081b9283",
+      "bytes": "8b5508",
+      "instruction": "MOV EDX,dword ptr [EBP + 0x8]",
+      "comment": null
+    },
+    {
+      "address": "081b9286",
+      "bytes": "8b450c",
+      "instruction": "MOV EAX,dword ptr [EBP + 0xc]",
+      "comment": null
+    },
+    {
+      "address": "081b9289",
+      "bytes": "39d0",
+      "instruction": "CMP EAX,EDX",
+      "comment": null
+    },
+    {
+      "address": "081b928b",
+      "bytes": "7d02",
+      "instruction": "JGE 0x081b928f",
+      "comment": null
+    },
+    {
+      "address": "081b928d",
+      "bytes": "89d0",
+      "instruction": "MOV EAX,EDX",
+      "comment": null
+    },
+    {
+      "address": "081b928f",
+      "bytes": "5d",
+      "instruction": "POP EBP",
+      "comment": null
+    },
+    {
+      "address": "081b9290",
+      "bytes": "c3",
+      "instruction": "RET",
+      "comment": null
+    }
+  ],
+  "offset": 0,
+  "limit": 100,
+  "total": 9,
+  "has_more": false
+}

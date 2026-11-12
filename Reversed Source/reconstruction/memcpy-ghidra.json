@@ -1,0 +1,1146 @@
+{
+  "081ba770": {
+    "decompilation": {
+      "function": {
+        "name": "mmx_memcpy",
+        "address": "081ba770"
+      },
+      "code": "\r\nvoid * mmx_memcpy(void *to,void *from,size_t len)\r\n\r\n{\r\n  undefined8 uVar1;\r\n  undefined8 uVar2;\r\n  undefined8 uVar3;\r\n  undefined8 uVar4;\r\n  undefined8 uVar5;\r\n  undefined8 uVar6;\r\n  undefined8 uVar7;\r\n  int iVar8;\r\n  uint uVar9;\r\n  size_t sVar10;\r\n  undefined8 *puVar11;\r\n  undefined8 *puVar12;\r\n  undefined8 *puVar13;\r\n  \r\n                    /* Unresolved local var: void * retval@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: size_t i@[DW_OP_reg0(EAX)] */\r\n  puVar12 = to;\r\n  if (0x7ff < len) {\r\n                    /* Unresolved local var: ulong delta@[DW_OP_reg1(ECX)] */\r\n    sVar10 = len;\r\n    if (((uint)to & 7) != 0) {\r\n      iVar8 = 8 - ((uint)to & 7);\r\n      sVar10 = len - iVar8;\r\n                    /* Unresolved local var: ulong dummy@[DW_OP_reg1(ECX)] */\r\n      for (; iVar8 != 0; iVar8 = iVar8 + -1) {\r\n        *(undefined1 *)puVar12 = *(undefined1 *)from;\r\n        from = (undefined8 *)((int)from + 1);\r\n        puVar12 = (undefined8 *)((int)puVar12 + 1);\r\n      }\r\n    }\r\n    len = sVar10 & 0x3f;\r\n    for (uVar9 = sVar10 >> 6; uVar9 != 0; uVar9 = uVar9 - 1) {\r\n      uVar1 = *(undefined8 *)((int)from + 8);\r\n      uVar2 = *(undefined8 *)((int)from + 0x10);\r\n      uVar3 = *(undefined8 *)((int)from + 0x18);\r\n      uVar4 = *(undefined8 *)((int)from + 0x20);\r\n      uVar5 = *(undefined8 *)((int)from + 0x28);\r\n      uVar6 = *(undefined8 *)((int)from + 0x30);\r\n      uVar7 = *(undefined8 *)((int)from + 0x38);\r\n      *puVar12 = *(undefined8 *)from;\r\n      puVar12[1] = uVar1;\r\n      puVar12[2] = uVar2;\r\n      puVar12[3] = uVar3;\r\n      puVar12[4] = uVar4;\r\n      puVar12[5] = uVar5;\r\n      puVar12[6] = uVar6;\r\n      puVar12[7] = uVar7;\r\n      from = (void *)((int)from + 0x40);\r\n      puVar12 = puVar12 + 8;\r\n    }\r\n  }\r\n  if (len != 0) {\r\n                    /* Unresolved local var: int d0@[DW_OP_reg1(ECX)]\r\n                       Unresolved local var: int d1@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int d2@[DW_OP_reg6(ESI)] */\r\n    if (len < 4) {\r\n                    /* Unresolved local var: ulong dummy@[DW_OP_reg1(ECX)] */\r\n      for (; len != 0; len = len - 1) {\r\n        *(undefined1 *)puVar12 = *(undefined1 *)from;\r\n        from = (undefined8 *)((int)from + 1);\r\n        puVar12 = (undefined8 *)((int)puVar12 + 1);\r\n      }\r\n    }\r\n    else {\r\n      for (uVar9 = len >> 2; uVar9 != 0; uVar9 = uVar9 - 1) {\r\n        *(undefined4 *)puVar12 = *(undefined4 *)from;\r\n        from = (undefined8 *)((int)from + 4);\r\n        puVar12 = (undefined8 *)((int)puVar12 + 4);\r\n      }\r\n      puVar11 = from;\r\n      puVar13 = puVar12;\r\n      if ((len & 2) != 0) {\r\n        puVar13 = (undefined8 *)((int)puVar12 + 2);\r\n        puVar11 = (undefined8 *)((int)from + 2);\r\n        *(undefined2 *)puVar12 = *(undefined2 *)from;\r\n      }\r\n      if ((len & 1) != 0) {\r\n        *(undefined1 *)puVar13 = *(undefined1 *)puVar11;\r\n      }\r\n    }\r\n  }\r\n  return to;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "assembly": {
+      "items": [
+        {
+          "address": "081ba770",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba771",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081ba773",
+          "bytes": "8b5510",
+          "instruction": "MOV EDX,dword ptr [EBP + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "081ba776",
+          "bytes": "57",
+          "instruction": "PUSH EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba777",
+          "bytes": "8b7d08",
+          "instruction": "MOV EDI,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ba77a",
+          "bytes": "81faff070000",
+          "instruction": "CMP EDX,0x7ff",
+          "comment": null
+        },
+        {
+          "address": "081ba780",
+          "bytes": "56",
+          "instruction": "PUSH ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba781",
+          "bytes": "8b750c",
+          "instruction": "MOV ESI,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "081ba784",
+          "bytes": "53",
+          "instruction": "PUSH EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba785",
+          "bytes": "89fb",
+          "instruction": "MOV EBX,EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba787",
+          "bytes": "7670",
+          "instruction": "JBE 0x081ba7f9",
+          "comment": null
+        },
+        {
+          "address": "081ba789",
+          "bytes": "89f9",
+          "instruction": "MOV ECX,EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba78b",
+          "bytes": "83e107",
+          "instruction": "AND ECX,0x7",
+          "comment": null
+        },
+        {
+          "address": "081ba78e",
+          "bytes": "740d",
+          "instruction": "JZ 0x081ba79d",
+          "comment": null
+        },
+        {
+          "address": "081ba790",
+          "bytes": "b808000000",
+          "instruction": "MOV EAX,0x8",
+          "comment": null
+        },
+        {
+          "address": "081ba795",
+          "bytes": "29c8",
+          "instruction": "SUB EAX,ECX",
+          "comment": null
+        },
+        {
+          "address": "081ba797",
+          "bytes": "89c1",
+          "instruction": "MOV ECX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba799",
+          "bytes": "29c2",
+          "instruction": "SUB EDX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba79b",
+          "bytes": "f3a4",
+          "instruction": "MOVSB.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba79d",
+          "bytes": "89d0",
+          "instruction": "MOV EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba79f",
+          "bytes": "c1e806",
+          "instruction": "SHR EAX,0x6",
+          "comment": null
+        },
+        {
+          "address": "081ba7a2",
+          "bytes": "83e23f",
+          "instruction": "AND EDX,0x3f",
+          "comment": null
+        },
+        {
+          "address": "081ba7a5",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba7a7",
+          "bytes": "744e",
+          "instruction": "JZ 0x081ba7f7",
+          "comment": null
+        },
+        {
+          "address": "081ba7a9",
+          "bytes": "8db42600000000",
+          "instruction": "LEA ESI,[ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ba7b0",
+          "bytes": "0f6f06",
+          "instruction": "MOVQ MM0,qword ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ba7b3",
+          "bytes": "0f6f4e08",
+          "instruction": "MOVQ MM1,qword ptr [ESI + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ba7b7",
+          "bytes": "0f6f5610",
+          "instruction": "MOVQ MM2,qword ptr [ESI + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "081ba7bb",
+          "bytes": "0f6f5e18",
+          "instruction": "MOVQ MM3,qword ptr [ESI + 0x18]",
+          "comment": null
+        },
+        {
+          "address": "081ba7bf",
+          "bytes": "0f6f6620",
+          "instruction": "MOVQ MM4,qword ptr [ESI + 0x20]",
+          "comment": null
+        },
+        {
+          "address": "081ba7c3",
+          "bytes": "0f6f6e28",
+          "instruction": "MOVQ MM5,qword ptr [ESI + 0x28]",
+          "comment": null
+        },
+        {
+          "address": "081ba7c7",
+          "bytes": "0f6f7630",
+          "instruction": "MOVQ MM6,qword ptr [ESI + 0x30]",
+          "comment": null
+        },
+        {
+          "address": "081ba7cb",
+          "bytes": "0f6f7e38",
+          "instruction": "MOVQ MM7,qword ptr [ESI + 0x38]",
+          "comment": null
+        },
+        {
+          "address": "081ba7cf",
+          "bytes": "0f7f07",
+          "instruction": "MOVQ qword ptr [EDI],MM0",
+          "comment": null
+        },
+        {
+          "address": "081ba7d2",
+          "bytes": "0f7f4f08",
+          "instruction": "MOVQ qword ptr [EDI + 0x8],MM1",
+          "comment": null
+        },
+        {
+          "address": "081ba7d6",
+          "bytes": "0f7f5710",
+          "instruction": "MOVQ qword ptr [EDI + 0x10],MM2",
+          "comment": null
+        },
+        {
+          "address": "081ba7da",
+          "bytes": "0f7f5f18",
+          "instruction": "MOVQ qword ptr [EDI + 0x18],MM3",
+          "comment": null
+        },
+        {
+          "address": "081ba7de",
+          "bytes": "0f7f6720",
+          "instruction": "MOVQ qword ptr [EDI + 0x20],MM4",
+          "comment": null
+        },
+        {
+          "address": "081ba7e2",
+          "bytes": "0f7f6f28",
+          "instruction": "MOVQ qword ptr [EDI + 0x28],MM5",
+          "comment": null
+        },
+        {
+          "address": "081ba7e6",
+          "bytes": "0f7f7730",
+          "instruction": "MOVQ qword ptr [EDI + 0x30],MM6",
+          "comment": null
+        },
+        {
+          "address": "081ba7ea",
+          "bytes": "0f7f7f38",
+          "instruction": "MOVQ qword ptr [EDI + 0x38],MM7",
+          "comment": null
+        },
+        {
+          "address": "081ba7ee",
+          "bytes": "83c640",
+          "instruction": "ADD ESI,0x40",
+          "comment": null
+        },
+        {
+          "address": "081ba7f1",
+          "bytes": "83c740",
+          "instruction": "ADD EDI,0x40",
+          "comment": null
+        },
+        {
+          "address": "081ba7f4",
+          "bytes": "48",
+          "instruction": "DEC EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba7f5",
+          "bytes": "75b9",
+          "instruction": "JNZ 0x081ba7b0",
+          "comment": null
+        },
+        {
+          "address": "081ba7f7",
+          "bytes": "0f77",
+          "instruction": "EMMS",
+          "comment": null
+        },
+        {
+          "address": "081ba7f9",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba7fb",
+          "bytes": "7413",
+          "instruction": "JZ 0x081ba810",
+          "comment": null
+        },
+        {
+          "address": "081ba7fd",
+          "bytes": "83fa03",
+          "instruction": "CMP EDX,0x3",
+          "comment": null
+        },
+        {
+          "address": "081ba800",
+          "bytes": "7715",
+          "instruction": "JA 0x081ba817",
+          "comment": null
+        },
+        {
+          "address": "081ba802",
+          "bytes": "89d1",
+          "instruction": "MOV ECX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba804",
+          "bytes": "f3a4",
+          "instruction": "MOVSB.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba806",
+          "bytes": "8d7600",
+          "instruction": "LEA ESI,[ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ba809",
+          "bytes": "8dbc2700000000",
+          "instruction": "LEA EDI,[EDI]",
+          "comment": null
+        },
+        {
+          "address": "081ba810",
+          "bytes": "89d8",
+          "instruction": "MOV EAX,EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba812",
+          "bytes": "5b",
+          "instruction": "POP EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba813",
+          "bytes": "5e",
+          "instruction": "POP ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba814",
+          "bytes": "5f",
+          "instruction": "POP EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba815",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba816",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "081ba817",
+          "bytes": "89d1",
+          "instruction": "MOV ECX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba819",
+          "bytes": "c1e902",
+          "instruction": "SHR ECX,0x2",
+          "comment": null
+        },
+        {
+          "address": "081ba81c",
+          "bytes": "f3a5",
+          "instruction": "MOVSD.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba81e",
+          "bytes": "f6c202",
+          "instruction": "TEST DL,0x2",
+          "comment": null
+        },
+        {
+          "address": "081ba821",
+          "bytes": "7402",
+          "instruction": "JZ 0x081ba825",
+          "comment": null
+        },
+        {
+          "address": "081ba823",
+          "bytes": "66a5",
+          "instruction": "MOVSW ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba825",
+          "bytes": "f6c201",
+          "instruction": "TEST DL,0x1",
+          "comment": null
+        },
+        {
+          "address": "081ba828",
+          "bytes": "7401",
+          "instruction": "JZ 0x081ba82b",
+          "comment": null
+        },
+        {
+          "address": "081ba82a",
+          "bytes": "a4",
+          "instruction": "MOVSB ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba82b",
+          "bytes": "ebe3",
+          "instruction": "JMP 0x081ba810",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 400,
+      "total": 70,
+      "has_more": false
+    }
+  },
+  "081ba830": {
+    "decompilation": {
+      "function": {
+        "name": "mmx2_memcpy",
+        "address": "081ba830"
+      },
+      "code": "\r\nvoid * mmx2_memcpy(void *to,void *from,size_t len)\r\n\r\n{\r\n  undefined8 uVar1;\r\n  undefined8 uVar2;\r\n  undefined8 uVar3;\r\n  undefined8 uVar4;\r\n  undefined8 uVar5;\r\n  undefined8 uVar6;\r\n  undefined8 uVar7;\r\n  int iVar8;\r\n  uint uVar9;\r\n  size_t sVar10;\r\n  undefined8 *puVar11;\r\n  undefined8 *puVar12;\r\n  undefined8 *puVar13;\r\n  \r\n                    /* Unresolved local var: void * retval@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: size_t i@[DW_OP_reg0(EAX)] */\r\n  puVar12 = to;\r\n  if (0x3f < len) {\r\n                    /* Unresolved local var: ulong delta@[DW_OP_reg1(ECX)] */\r\n    sVar10 = len;\r\n    if (((uint)to & 7) != 0) {\r\n      iVar8 = 8 - ((uint)to & 7);\r\n      sVar10 = len - iVar8;\r\n                    /* Unresolved local var: ulong dummy@[DW_OP_reg1(ECX)] */\r\n      for (; iVar8 != 0; iVar8 = iVar8 + -1) {\r\n        *(undefined1 *)puVar12 = *(undefined1 *)from;\r\n        from = (undefined8 *)((int)from + 1);\r\n        puVar12 = (undefined8 *)((int)puVar12 + 1);\r\n      }\r\n    }\r\n    len = sVar10 & 0x3f;\r\n    for (uVar9 = sVar10 >> 6; uVar9 != 0; uVar9 = uVar9 - 1) {\r\n      uVar1 = *(undefined8 *)((int)from + 8);\r\n      uVar2 = *(undefined8 *)((int)from + 0x10);\r\n      uVar3 = *(undefined8 *)((int)from + 0x18);\r\n      uVar4 = *(undefined8 *)((int)from + 0x20);\r\n      uVar5 = *(undefined8 *)((int)from + 0x28);\r\n      uVar6 = *(undefined8 *)((int)from + 0x30);\r\n      uVar7 = *(undefined8 *)((int)from + 0x38);\r\n      *puVar12 = *(undefined8 *)from;\r\n      puVar12[1] = uVar1;\r\n      puVar12[2] = uVar2;\r\n      puVar12[3] = uVar3;\r\n      puVar12[4] = uVar4;\r\n      puVar12[5] = uVar5;\r\n      puVar12[6] = uVar6;\r\n      puVar12[7] = uVar7;\r\n      from = (void *)((int)from + 0x40);\r\n      puVar12 = puVar12 + 8;\r\n    }\r\n  }\r\n  if (len != 0) {\r\n                    /* Unresolved local var: int d0@[DW_OP_reg1(ECX)]\r\n                       Unresolved local var: int d1@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int d2@[DW_OP_reg6(ESI)] */\r\n    if (len < 4) {\r\n                    /* Unresolved local var: ulong dummy@[DW_OP_reg1(ECX)] */\r\n      for (; len != 0; len = len - 1) {\r\n        *(undefined1 *)puVar12 = *(undefined1 *)from;\r\n        from = (undefined8 *)((int)from + 1);\r\n        puVar12 = (undefined8 *)((int)puVar12 + 1);\r\n      }\r\n    }\r\n    else {\r\n      for (uVar9 = len >> 2; uVar9 != 0; uVar9 = uVar9 - 1) {\r\n        *(undefined4 *)puVar12 = *(undefined4 *)from;\r\n        from = (undefined8 *)((int)from + 4);\r\n        puVar12 = (undefined8 *)((int)puVar12 + 4);\r\n      }\r\n      puVar11 = from;\r\n      puVar13 = puVar12;\r\n      if ((len & 2) != 0) {\r\n        puVar13 = (undefined8 *)((int)puVar12 + 2);\r\n        puVar11 = (undefined8 *)((int)from + 2);\r\n        *(undefined2 *)puVar12 = *(undefined2 *)from;\r\n      }\r\n      if ((len & 1) != 0) {\r\n        *(undefined1 *)puVar13 = *(undefined1 *)puVar11;\r\n      }\r\n    }\r\n  }\r\n  return to;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "assembly": {
+      "items": [
+        {
+          "address": "081ba830",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba831",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081ba833",
+          "bytes": "8b5510",
+          "instruction": "MOV EDX,dword ptr [EBP + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "081ba836",
+          "bytes": "57",
+          "instruction": "PUSH EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba837",
+          "bytes": "8b7d08",
+          "instruction": "MOV EDI,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ba83a",
+          "bytes": "56",
+          "instruction": "PUSH ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba83b",
+          "bytes": "8b750c",
+          "instruction": "MOV ESI,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "081ba83e",
+          "bytes": "53",
+          "instruction": "PUSH EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba83f",
+          "bytes": "89fb",
+          "instruction": "MOV EBX,EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba841",
+          "bytes": "0f1806",
+          "instruction": "NOP dword ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ba844",
+          "bytes": "0f184640",
+          "instruction": "NOP dword ptr [ESI + 0x40]",
+          "comment": null
+        },
+        {
+          "address": "081ba848",
+          "bytes": "0f188680000000",
+          "instruction": "NOP dword ptr [ESI + 0x80]",
+          "comment": null
+        },
+        {
+          "address": "081ba84f",
+          "bytes": "0f1886c0000000",
+          "instruction": "NOP dword ptr [ESI + 0xc0]",
+          "comment": null
+        },
+        {
+          "address": "081ba856",
+          "bytes": "0f188600010000",
+          "instruction": "NOP dword ptr [ESI + 0x100]",
+          "comment": null
+        },
+        {
+          "address": "081ba85d",
+          "bytes": "83fa3f",
+          "instruction": "CMP EDX,0x3f",
+          "comment": null
+        },
+        {
+          "address": "081ba860",
+          "bytes": "0f867d000000",
+          "instruction": "JBE 0x081ba8e3",
+          "comment": null
+        },
+        {
+          "address": "081ba866",
+          "bytes": "89f9",
+          "instruction": "MOV ECX,EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba868",
+          "bytes": "83e107",
+          "instruction": "AND ECX,0x7",
+          "comment": null
+        },
+        {
+          "address": "081ba86b",
+          "bytes": "740d",
+          "instruction": "JZ 0x081ba87a",
+          "comment": null
+        },
+        {
+          "address": "081ba86d",
+          "bytes": "b808000000",
+          "instruction": "MOV EAX,0x8",
+          "comment": null
+        },
+        {
+          "address": "081ba872",
+          "bytes": "29c8",
+          "instruction": "SUB EAX,ECX",
+          "comment": null
+        },
+        {
+          "address": "081ba874",
+          "bytes": "89c1",
+          "instruction": "MOV ECX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba876",
+          "bytes": "29c2",
+          "instruction": "SUB EDX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba878",
+          "bytes": "f3a4",
+          "instruction": "MOVSB.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba87a",
+          "bytes": "89d0",
+          "instruction": "MOV EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba87c",
+          "bytes": "c1e806",
+          "instruction": "SHR EAX,0x6",
+          "comment": null
+        },
+        {
+          "address": "081ba87f",
+          "bytes": "83e23f",
+          "instruction": "AND EDX,0x3f",
+          "comment": null
+        },
+        {
+          "address": "081ba882",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba884",
+          "bytes": "7458",
+          "instruction": "JZ 0x081ba8de",
+          "comment": null
+        },
+        {
+          "address": "081ba886",
+          "bytes": "8d7600",
+          "instruction": "LEA ESI,[ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ba889",
+          "bytes": "8dbc2700000000",
+          "instruction": "LEA EDI,[EDI]",
+          "comment": null
+        },
+        {
+          "address": "081ba890",
+          "bytes": "0f188640010000",
+          "instruction": "NOP dword ptr [ESI + 0x140]",
+          "comment": null
+        },
+        {
+          "address": "081ba897",
+          "bytes": "0f6f06",
+          "instruction": "MOVQ MM0,qword ptr [ESI]",
+          "comment": null
+        },
+        {
+          "address": "081ba89a",
+          "bytes": "0f6f4e08",
+          "instruction": "MOVQ MM1,qword ptr [ESI + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ba89e",
+          "bytes": "0f6f5610",
+          "instruction": "MOVQ MM2,qword ptr [ESI + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "081ba8a2",
+          "bytes": "0f6f5e18",
+          "instruction": "MOVQ MM3,qword ptr [ESI + 0x18]",
+          "comment": null
+        },
+        {
+          "address": "081ba8a6",
+          "bytes": "0f6f6620",
+          "instruction": "MOVQ MM4,qword ptr [ESI + 0x20]",
+          "comment": null
+        },
+        {
+          "address": "081ba8aa",
+          "bytes": "0f6f6e28",
+          "instruction": "MOVQ MM5,qword ptr [ESI + 0x28]",
+          "comment": null
+        },
+        {
+          "address": "081ba8ae",
+          "bytes": "0f6f7630",
+          "instruction": "MOVQ MM6,qword ptr [ESI + 0x30]",
+          "comment": null
+        },
+        {
+          "address": "081ba8b2",
+          "bytes": "0f6f7e38",
+          "instruction": "MOVQ MM7,qword ptr [ESI + 0x38]",
+          "comment": null
+        },
+        {
+          "address": "081ba8b6",
+          "bytes": "0fe707",
+          "instruction": "MOVNTQ qword ptr [EDI],MM0",
+          "comment": null
+        },
+        {
+          "address": "081ba8b9",
+          "bytes": "0fe74f08",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x8],MM1",
+          "comment": null
+        },
+        {
+          "address": "081ba8bd",
+          "bytes": "0fe75710",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x10],MM2",
+          "comment": null
+        },
+        {
+          "address": "081ba8c1",
+          "bytes": "0fe75f18",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x18],MM3",
+          "comment": null
+        },
+        {
+          "address": "081ba8c5",
+          "bytes": "0fe76720",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x20],MM4",
+          "comment": null
+        },
+        {
+          "address": "081ba8c9",
+          "bytes": "0fe76f28",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x28],MM5",
+          "comment": null
+        },
+        {
+          "address": "081ba8cd",
+          "bytes": "0fe77730",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x30],MM6",
+          "comment": null
+        },
+        {
+          "address": "081ba8d1",
+          "bytes": "0fe77f38",
+          "instruction": "MOVNTQ qword ptr [EDI + 0x38],MM7",
+          "comment": null
+        },
+        {
+          "address": "081ba8d5",
+          "bytes": "83c640",
+          "instruction": "ADD ESI,0x40",
+          "comment": null
+        },
+        {
+          "address": "081ba8d8",
+          "bytes": "83c740",
+          "instruction": "ADD EDI,0x40",
+          "comment": null
+        },
+        {
+          "address": "081ba8db",
+          "bytes": "48",
+          "instruction": "DEC EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba8dc",
+          "bytes": "75b2",
+          "instruction": "JNZ 0x081ba890",
+          "comment": null
+        },
+        {
+          "address": "081ba8de",
+          "bytes": "0faef8",
+          "instruction": "SFENCE",
+          "comment": null
+        },
+        {
+          "address": "081ba8e1",
+          "bytes": "0f77",
+          "instruction": "EMMS",
+          "comment": null
+        },
+        {
+          "address": "081ba8e3",
+          "bytes": "85d2",
+          "instruction": "TEST EDX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba8e5",
+          "bytes": "7409",
+          "instruction": "JZ 0x081ba8f0",
+          "comment": null
+        },
+        {
+          "address": "081ba8e7",
+          "bytes": "83fa03",
+          "instruction": "CMP EDX,0x3",
+          "comment": null
+        },
+        {
+          "address": "081ba8ea",
+          "bytes": "770b",
+          "instruction": "JA 0x081ba8f7",
+          "comment": null
+        },
+        {
+          "address": "081ba8ec",
+          "bytes": "89d1",
+          "instruction": "MOV ECX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba8ee",
+          "bytes": "f3a4",
+          "instruction": "MOVSB.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba8f0",
+          "bytes": "89d8",
+          "instruction": "MOV EAX,EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba8f2",
+          "bytes": "5b",
+          "instruction": "POP EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba8f3",
+          "bytes": "5e",
+          "instruction": "POP ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba8f4",
+          "bytes": "5f",
+          "instruction": "POP EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba8f5",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba8f6",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "081ba8f7",
+          "bytes": "89d1",
+          "instruction": "MOV ECX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba8f9",
+          "bytes": "c1e902",
+          "instruction": "SHR ECX,0x2",
+          "comment": null
+        },
+        {
+          "address": "081ba8fc",
+          "bytes": "f3a5",
+          "instruction": "MOVSD.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba8fe",
+          "bytes": "f6c202",
+          "instruction": "TEST DL,0x2",
+          "comment": null
+        },
+        {
+          "address": "081ba901",
+          "bytes": "7402",
+          "instruction": "JZ 0x081ba905",
+          "comment": null
+        },
+        {
+          "address": "081ba903",
+          "bytes": "66a5",
+          "instruction": "MOVSW ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba905",
+          "bytes": "f6c201",
+          "instruction": "TEST DL,0x1",
+          "comment": null
+        },
+        {
+          "address": "081ba908",
+          "bytes": "7401",
+          "instruction": "JZ 0x081ba90b",
+          "comment": null
+        },
+        {
+          "address": "081ba90a",
+          "bytes": "a4",
+          "instruction": "MOVSB ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba90b",
+          "bytes": "ebe3",
+          "instruction": "JMP 0x081ba8f0",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 400,
+      "total": 76,
+      "has_more": false
+    }
+  },
+  "081ba910": {
+    "decompilation": {
+      "function": {
+        "name": "linux_kernel_memcpy",
+        "address": "081ba910"
+      },
+      "code": "\r\nvoid * linux_kernel_memcpy(void *to,void *from,size_t len)\r\n\r\n{\r\n  uint uVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  undefined4 *puVar4;\r\n  \r\n                    /* Unresolved local var: int d0@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: int d1@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: int d2@[DW_OP_reg6(ESI)] */\r\n  if (len < 4) {\r\n                    /* Unresolved local var: ulong dummy@[DW_OP_reg0(EAX)] */\r\n    for (; len != 0; len = len - 1) {\r\n      *(undefined1 *)to = *(undefined1 *)from;\r\n      from = (undefined1 *)((int)from + 1);\r\n      to = (undefined1 *)((int)to + 1);\r\n    }\r\n  }\r\n  else {\r\n    puVar3 = to;\r\n    for (uVar1 = len >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n      *puVar3 = *(undefined4 *)from;\r\n      from = (undefined4 *)((int)from + 4);\r\n      puVar3 = puVar3 + 1;\r\n    }\r\n    puVar2 = from;\r\n    puVar4 = puVar3;\r\n    if ((len & 2) != 0) {\r\n      puVar4 = (undefined4 *)((int)puVar3 + 2);\r\n      puVar2 = (undefined4 *)((int)from + 2);\r\n      *(undefined2 *)puVar3 = *(undefined2 *)from;\r\n    }\r\n    if ((len & 1) != 0) {\r\n      *(undefined1 *)puVar4 = *(undefined1 *)puVar2;\r\n    }\r\n  }\r\n  return to;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "assembly": {
+      "items": [
+        {
+          "address": "081ba910",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba911",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "081ba913",
+          "bytes": "83ec0c",
+          "instruction": "SUB ESP,0xc",
+          "comment": null
+        },
+        {
+          "address": "081ba916",
+          "bytes": "891c24",
+          "instruction": "MOV dword ptr [ESP],EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba919",
+          "bytes": "8b5510",
+          "instruction": "MOV EDX,dword ptr [EBP + 0x10]",
+          "comment": null
+        },
+        {
+          "address": "081ba91c",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ba91f",
+          "bytes": "89742404",
+          "instruction": "MOV dword ptr [ESP + 0x4],ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba923",
+          "bytes": "83fa03",
+          "instruction": "CMP EDX,0x3",
+          "comment": null
+        },
+        {
+          "address": "081ba926",
+          "bytes": "8b750c",
+          "instruction": "MOV ESI,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "081ba929",
+          "bytes": "897c2408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba92d",
+          "bytes": "7719",
+          "instruction": "JA 0x081ba948",
+          "comment": null
+        },
+        {
+          "address": "081ba92f",
+          "bytes": "89df",
+          "instruction": "MOV EDI,EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba931",
+          "bytes": "89d1",
+          "instruction": "MOV ECX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba933",
+          "bytes": "f3a4",
+          "instruction": "MOVSB.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba935",
+          "bytes": "89fb",
+          "instruction": "MOV EBX,EDI",
+          "comment": null
+        },
+        {
+          "address": "081ba937",
+          "bytes": "89d8",
+          "instruction": "MOV EAX,EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba939",
+          "bytes": "8b742404",
+          "instruction": "MOV ESI,dword ptr [ESP + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "081ba93d",
+          "bytes": "8b1c24",
+          "instruction": "MOV EBX,dword ptr [ESP]",
+          "comment": null
+        },
+        {
+          "address": "081ba940",
+          "bytes": "8b7c2408",
+          "instruction": "MOV EDI,dword ptr [ESP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "081ba944",
+          "bytes": "89ec",
+          "instruction": "MOV ESP,EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba946",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "081ba947",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "081ba948",
+          "bytes": "89d0",
+          "instruction": "MOV EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "081ba94a",
+          "bytes": "89df",
+          "instruction": "MOV EDI,EBX",
+          "comment": null
+        },
+        {
+          "address": "081ba94c",
+          "bytes": "c1e802",
+          "instruction": "SHR EAX,0x2",
+          "comment": null
+        },
+        {
+          "address": "081ba94f",
+          "bytes": "89c1",
+          "instruction": "MOV ECX,EAX",
+          "comment": null
+        },
+        {
+          "address": "081ba951",
+          "bytes": "f3a5",
+          "instruction": "MOVSD.REP ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba953",
+          "bytes": "f6c202",
+          "instruction": "TEST DL,0x2",
+          "comment": null
+        },
+        {
+          "address": "081ba956",
+          "bytes": "7402",
+          "instruction": "JZ 0x081ba95a",
+          "comment": null
+        },
+        {
+          "address": "081ba958",
+          "bytes": "66a5",
+          "instruction": "MOVSW ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba95a",
+          "bytes": "f6c201",
+          "instruction": "TEST DL,0x1",
+          "comment": null
+        },
+        {
+          "address": "081ba95d",
+          "bytes": "7401",
+          "instruction": "JZ 0x081ba960",
+          "comment": null
+        },
+        {
+          "address": "081ba95f",
+          "bytes": "a4",
+          "instruction": "MOVSB ES:EDI,ESI",
+          "comment": null
+        },
+        {
+          "address": "081ba960",
+          "bytes": "ebd5",
+          "instruction": "JMP 0x081ba937",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 400,
+      "total": 34,
+      "has_more": false
+    }
+  },
+  "081ba970": {
+    "decompilation": {
+      "function": {
+        "name": "thecore_find_best_memcpy",
+        "address": "081ba970"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid thecore_find_best_memcpy(void)\r\n\r\n{\r\n  int *piVar1;\r\n  uint uVar2;\r\n  uint uVar3;\r\n  undefined4 uVar4;\r\n  uint uVar5;\r\n  undefined8 uVar6;\r\n  undefined8 uVar7;\r\n  void *__dest;\r\n  void *__src;\r\n  int iVar8;\r\n  int iVar9;\r\n  uint uVar10;\r\n  uint uVar11;\r\n  int local_30;\r\n  ulonglong x;\r\n  int best;\r\n  int i;\r\n  ulonglong t;\r\n  \r\n                    /* Unresolved local var: char * buf1@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: char * buf2@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int j@[DW_OP_reg3(EBX)] */\r\n  best = 0;\r\n  __dest = calloc(1,0xfa0000);\r\n  if (__dest != (void *)0x0) {\r\n    __src = calloc(1,0xfa0000);\r\n    if (__src != (void *)0x0) {\r\n      sys_log(1,\"memcpy: Benchmarking memcpy methods (smaller is better):\");\r\n      memcpy(__dest,__src,0xfa0000);\r\n      memcpy(__src,__dest,0xfa0000);\r\n      i = 1;\r\n      if (memcpy_method[1].name != (char *)0x0) {\r\n        local_30 = 0x14;\r\n        do {\r\n          uVar6 = rdtsc();\r\n          iVar9 = 0;\r\n          do {\r\n            iVar8 = iVar9 * 0x2000;\r\n            iVar9 = iVar9 + 1;\r\n            (**(code **)((int)&memcpy_method[0].function + local_30))\r\n                      ((void *)(iVar8 + (int)__dest),(void *)(iVar8 + (int)__src),0x2000);\r\n          } while (iVar9 < 2000);\r\n                    /* Unresolved local var: ulonglong x@[???] */\r\n          uVar7 = rdtsc();\r\n          uVar2 = (uint)uVar7 - (uint)uVar6;\r\n          uVar3 = ((int)((ulonglong)uVar7 >> 0x20) - (int)((ulonglong)uVar6 >> 0x20)) -\r\n                  (uint)((uint)uVar7 < (uint)uVar6);\r\n          *(uint *)((int)&memcpy_method[0].time + local_30) = uVar2;\r\n          uVar4 = *(undefined4 *)((int)&memcpy_method[0].name + local_30);\r\n          *(uint *)((int)&memcpy_method[0].time + local_30 + 4) = uVar3;\r\n          uVar10 = uVar2;\r\n          uVar11 = uVar3;\r\n          sys_log(1,\"memcpy: \\t%s : %lld\",uVar4,uVar2,uVar3);\r\n          if (best == 0) {\r\nLAB_081baad4:\r\n            best = i;\r\n          }\r\n          else {\r\n            uVar5 = *(uint *)((int)&memcpy_method[best].time + 4);\r\n            if ((uVar3 < uVar5) || ((uVar3 == uVar5 && (uVar2 < (uint)memcpy_method[best].time))))\r\n            goto LAB_081baad4;\r\n          }\r\n          i = i + 1;\r\n          piVar1 = (int *)((int)&memcpy_method[1].name + local_30);\r\n          local_30 = local_30 + 0x14;\r\n        } while (*piVar1 != 0);\r\n        if (best != 0) {\r\n          sys_log(1,\"memcpy: using %s\",memcpy_method[best].name,uVar10,uVar11);\r\n          thecore_memcpy = memcpy_method[best].function;\r\n        }\r\n      }\r\n      free(__dest);\r\n      __dest = __src;\r\n    }\r\n    free(__dest);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  }
+}

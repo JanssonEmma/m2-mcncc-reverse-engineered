@@ -1,0 +1,191 @@
+{
+  "TrafficProfiler.cpp": [
+    {
+      "class": {
+        "die": "0x95b7f8",
+        "tag": "DW_TAG_structure_type",
+        "name": "TrafficProfiler",
+        "size": 48
+      },
+      "children": [
+        {
+          "name": null,
+          "tag": "DW_TAG_inheritance",
+          "type": {
+            "die": "0x95d20e",
+            "tag": "DW_TAG_structure_type",
+            "name": "singleton<TrafficProfiler>",
+            "size": 4
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_pfProfileLogFile",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x955a3b",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "underlying": {
+              "die": "0x93d1cc",
+              "tag": "DW_TAG_typedef",
+              "name": "FILE",
+              "size": null,
+              "underlying": {
+                "die": "0x93cf9b",
+                "tag": "DW_TAG_structure_type",
+                "name": "__sFILE",
+                "size": 88
+              }
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_dwFlushCycle",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x94026c",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "underlying": {
+              "die": "0x93cb5b",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_tmProfileStartTime",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x93d5d5",
+            "tag": "DW_TAG_typedef",
+            "name": "time_t",
+            "size": null,
+            "underlying": {
+              "die": "0x93cc3a",
+              "tag": "DW_TAG_typedef",
+              "name": "__time_t",
+              "size": null,
+              "underlying": {
+                "die": "0x93cb08",
+                "tag": "DW_TAG_typedef",
+                "name": "__int32_t",
+                "size": null,
+                "underlying": {
+                  "die": "0x93cb13",
+                  "tag": "DW_TAG_base_type",
+                  "name": "int",
+                  "size": 4
+                }
+              }
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_dwTotalTraffic",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x94026c",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "underlying": {
+              "die": "0x93cb5b",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_dwTotalPacket",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x94026c",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "size": null,
+            "underlying": {
+              "die": "0x93cb5b",
+              "tag": "DW_TAG_base_type",
+              "name": "long unsigned int",
+              "size": 4
+            }
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "name": "m_aTrafficVec",
+          "tag": "DW_TAG_member",
+          "type": {
+            "die": "0x95f7d8",
+            "tag": "DW_TAG_array_type",
+            "name": null,
+            "size": null
+          },
+          "location": [
+            {
+              "op": "DW_OP_plus_uconst",
+              "args": [
+                24
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "main.cpp": [],
+  "config.cpp": [],
+  "desc.cpp": []
+}

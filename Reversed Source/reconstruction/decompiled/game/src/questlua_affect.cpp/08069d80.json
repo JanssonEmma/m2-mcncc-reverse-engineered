@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08069d80",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "RegisterAffectFunctionTable",
+      "address": "08069d80"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid RegisterAffectFunctionTable(void)\r\n\r\n{\r\n  int iVar1;\r\n  undefined **ppuVar2;\r\n  luaL_reg *plVar3;\r\n  luaL_reg affect_functions [10];\r\n  \r\n  ppuVar2 = &PTR_s_add_0823504b_2_081f87e4;\r\n  plVar3 = affect_functions;\r\n  for (iVar1 = 0x14; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    plVar3->name = *ppuVar2;\r\n    ppuVar2 = ppuVar2 + 1;\r\n    plVar3 = (luaL_reg *)&plVar3->func;\r\n  }\r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  quest::CQuestManager::AddLuaFunctionTable\r\n            (singleton<quest::CQuestManager>::ms_singleton,\"affect\",affect_functions);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

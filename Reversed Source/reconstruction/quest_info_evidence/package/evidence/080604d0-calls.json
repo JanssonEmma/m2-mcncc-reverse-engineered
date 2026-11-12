@@ -1,0 +1,56 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestTitle",
+    "address": "080604d0"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "080605c5",
+        "caller": {
+          "name": "PC::SetQuestTitle",
+          "address": "08060510"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0816906b",
+        "caller": {
+          "name": "quest_set_title",
+          "address": "08168ff0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "080604ee",
+        "target": "080603e0",
+        "name": "PC::SetSendFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08060508",
+        "target": "0804bfcc",
+        "name": "<EXTERNAL>::std::string::assign",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08187920",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8187920",
+    "function": {
+      "name": "CItem::GetRareAttrCount",
+      "address": "08187920"
+    },
+    "signature": "int GetRareAttrCount(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: int GetRareAttrCount(CItem * this) */\r\n\r\nint __thiscall CItem::GetRareAttrCount(CItem *this)\r\n\r\n{\r\n  uint uVar1;\r\n  \r\n                    /* Unresolved local var: int ret@[DW_OP_reg0(EAX)] */\r\n  uVar1 = (uint)(this->m_aAttr[5].bType != '\\0');\r\n  if (this->m_aAttr[6].bType != '\\0') {\r\n    uVar1 = uVar1 + 1;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

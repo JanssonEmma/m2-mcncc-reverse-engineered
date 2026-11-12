@@ -1,0 +1,46 @@
+// Complete original08166a30. Unequip result intentionally ignored.
+LPITEM CItem::RemoveFromCharacter()
+{
+    if(!m_pOwner) _sys_err("RemoveFromCharacter",235,"Item::RemoveFromCharacter owner null");
+    else {
+        if(!m_bEquipped) {
+            if(m_bWindow!=3 && m_bWindow!=4) {
+                if(m_bCell<90) m_pOwner->SetItem(m_bCell,0);
+                else _sys_err("RemoveFromCharacter",255,"CItem::RemoveFromCharacter: pos >= INVENTORY_MAX_NUM");
+            }
+            m_pOwner=0;
+            m_bCell=0;
+        } else Unequip();
+        m_bWindow=0;
+        Save();
+    }
+    return this;
+}
+// Complete original08167a70. No m_bEquipped guard, no added null/proto guards.
+bool CItem::Unequip()
+{
+    CHARACTER* owner=m_pOwner;
+    BYTE cell=m_bCell;
+    if(!owner || cell<90) {
+        _sys_err("Unequip",762,"%s %lu m_pOwner %p, GetCell %d",GetName(),m_dwID,owner,(unsigned int)cell);
+        return false;
+    }
+    if(owner->GetWear((BYTE)(cell-90))!=this) {
+        _sys_err("Unequip",769,"m_pOwner->GetWear() != this");
+        return false;
+    }
+    StopUniqueExpireEvent();
+    StopAccessorySocketExpireEvent();
+    ModifyPoints(false);
+    m_pOwner->SetWear((BYTE)(m_bCell-90),0);
+    DWORD immune=0;
+    for(int i=0;i<19;++i) {
+        if(m_pOwner->GetWear((BYTE)i)) immune|=m_pOwner->GetWear((BYTE)i)->m_pProto->dwImmuneFlag;
+    }
+    owner=m_pOwner;
+    owner->SetImmuneFlag(immune);
+    owner->ComputeBattlePoints();
+    m_pOwner->UpdatePacket();
+    m_pOwner=0;m_bCell=0;m_bEquipped=false;
+    return true;
+}

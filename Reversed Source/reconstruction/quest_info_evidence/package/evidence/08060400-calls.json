@@ -1,0 +1,39 @@
+{
+  "function": {
+    "name": "PC::ClearCurrentQuestBeginFlag",
+    "address": "08060400"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0805f019",
+        "caller": {
+          "name": "PC::SetCurrentQuestDoneFlag",
+          "address": "0805eff0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "08060418",
+        "target": "080603e0",
+        "name": "PC::SetSendFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  }
+}

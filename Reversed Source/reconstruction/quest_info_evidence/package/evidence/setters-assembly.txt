@@ -1,0 +1,319 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+080603e0 <_ZN5quest2PC11SetSendFlagEi>:
+ 80603e0:	55                   	push   %ebp
+ 80603e1:	89 e5                	mov    %esp,%ebp
+ 80603e3:	8b 55 08             	mov    0x8(%ebp),%edx
+ 80603e6:	8b 4d 0c             	mov    0xc(%ebp),%ecx
+ 80603e9:	8b 42 58             	mov    0x58(%edx),%eax
+ 80603ec:	09 c8                	or     %ecx,%eax
+ 80603ee:	89 42 58             	mov    %eax,0x58(%edx)
+ 80603f1:	5d                   	pop    %ebp
+ 80603f2:	c3                   	ret
+ 80603f3:	90                   	nop
+ 80603f4:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 80603fa:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+
+08060400 <_ZN5quest2PC26ClearCurrentQuestBeginFlagEv>:
+ 8060400:	55                   	push   %ebp
+ 8060401:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8060406:	89 e5                	mov    %esp,%ebp
+ 8060408:	83 ec 18             	sub    $0x18,%esp
+ 806040b:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 806040e:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8060411:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8060415:	89 1c 24             	mov    %ebx,(%esp)
+ 8060418:	e8 c3 ff ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 806041d:	8b 43 2c             	mov    0x2c(%ebx),%eax
+ 8060420:	c6 40 10 00          	movb   $0x0,0x10(%eax)
+ 8060424:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 8060427:	89 ec                	mov    %ebp,%esp
+ 8060429:	5d                   	pop    %ebp
+ 806042a:	c3                   	ret
+ 806042b:	90                   	nop
+ 806042c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+
+08060430 <_ZN5quest2PC24SetCurrentQuestBeginFlagEv>:
+ 8060430:	55                   	push   %ebp
+ 8060431:	89 e5                	mov    %esp,%ebp
+ 8060433:	83 ec 18             	sub    $0x18,%esp
+ 8060436:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 8060439:	8b 15 24 b4 23 08    	mov    0x823b424,%edx
+ 806043f:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8060442:	85 d2                	test   %edx,%edx
+ 8060444:	74 31                	je     8060477 <_ZN5quest2PC24SetCurrentQuestBeginFlagEv+0x47>
+ 8060446:	89 14 24             	mov    %edx,(%esp)
+ 8060449:	8d 43 30             	lea    0x30(%ebx),%eax
+ 806044c:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8060450:	e8 3b 56 14 00       	call   81a5a90 <_ZN5quest13CQuestManager19GetQuestIndexByNameERKSs>
+ 8060455:	8b 53 2c             	mov    0x2c(%ebx),%edx
+ 8060458:	89 42 0c             	mov    %eax,0xc(%edx)
+ 806045b:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8060460:	c6 42 10 01          	movb   $0x1,0x10(%edx)
+ 8060464:	89 1c 24             	mov    %ebx,(%esp)
+ 8060467:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 806046b:	e8 70 ff ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 8060470:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 8060473:	89 ec                	mov    %ebp,%esp
+ 8060475:	5d                   	pop    %ebp
+ 8060476:	c3                   	ret
+ 8060477:	c7 04 24 5c 72 1f 08 	movl   $0x81f725c,(%esp)
+ 806047e:	b8 43 89 1f 08       	mov    $0x81f8943,%eax
+ 8060483:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8060487:	b8 1a 00 00 00       	mov    $0x1a,%eax
+ 806048c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8060490:	b8 fa 62 1f 08       	mov    $0x81f62fa,%eax
+ 8060495:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8060499:	e8 0e c5 fe ff       	call   804c9ac <__assert@plt>
+ 806049e:	8b 15 24 b4 23 08    	mov    0x823b424,%edx
+ 80604a4:	eb a0                	jmp    8060446 <_ZN5quest2PC24SetCurrentQuestBeginFlagEv+0x16>
+ 80604a6:	8d 76 00             	lea    0x0(%esi),%esi
+ 80604a9:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+
+080604b0 <_ZN5quest2PC24GetCurrentQuestBeginFlagEv>:
+ 80604b0:	55                   	push   %ebp
+ 80604b1:	89 e5                	mov    %esp,%ebp
+ 80604b3:	8b 45 08             	mov    0x8(%ebp),%eax
+ 80604b6:	8b 50 2c             	mov    0x2c(%eax),%edx
+ 80604b9:	31 c0                	xor    %eax,%eax
+ 80604bb:	85 d2                	test   %edx,%edx
+ 80604bd:	74 03                	je     80604c2 <_ZN5quest2PC24GetCurrentQuestBeginFlagEv+0x12>
+ 80604bf:	8b 42 0c             	mov    0xc(%edx),%eax
+ 80604c2:	5d                   	pop    %ebp
+ 80604c3:	c3                   	ret
+ 80604c4:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 80604ca:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+
+080604d0 <_ZN5quest2PC20SetCurrentQuestTitleERKSs>:
+ 80604d0:	55                   	push   %ebp
+ 80604d1:	b8 02 00 00 00       	mov    $0x2,%eax
+ 80604d6:	89 e5                	mov    %esp,%ebp
+ 80604d8:	83 ec 18             	sub    $0x18,%esp
+ 80604db:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 80604de:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 80604e1:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 80604e4:	8b 75 0c             	mov    0xc(%ebp),%esi
+ 80604e7:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80604eb:	89 1c 24             	mov    %ebx,(%esp)
+ 80604ee:	e8 ed fe ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 80604f3:	8b 43 2c             	mov    0x2c(%ebx),%eax
+ 80604f6:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 80604f9:	89 75 0c             	mov    %esi,0xc(%ebp)
+ 80604fc:	83 c0 18             	add    $0x18,%eax
+ 80604ff:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8060502:	89 45 08             	mov    %eax,0x8(%ebp)
+ 8060505:	89 ec                	mov    %ebp,%esp
+ 8060507:	5d                   	pop    %ebp
+ 8060508:	e9 bf ba fe ff       	jmp    804bfcc <_ZNSs6assignERKSs@plt>
+ 806050d:	90                   	nop
+ 806050e:	89 f6                	mov    %esi,%esi
+
+08060510 <_ZN5quest2PC13SetQuestTitleERKSsS2_>:
+ 8060510:	55                   	push   %ebp
+ 8060511:	89 e5                	mov    %esp,%ebp
+ 8060513:	57                   	push   %edi
+ 8060514:	56                   	push   %esi
+ 8060515:	53                   	push   %ebx
+ 8060516:	83 ec 6c             	sub    $0x6c,%esp
+ 8060519:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 806051e:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 8060521:	85 c0                	test   %eax,%eax
+ 8060523:	8d 5f 20             	lea    0x20(%edi),%ebx
+ 8060526:	0f 84 ea 00 00 00    	je     8060616 <_ZN5quest2PC13SetQuestTitleERKSsS2_+0x106>
+ 806052c:	89 04 24             	mov    %eax,(%esp)
+ 806052f:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 8060532:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8060536:	e8 55 55 14 00       	call   81a5a90 <_ZN5quest13CQuestManager19GetQuestIndexByNameERKSs>
+ 806053b:	89 45 a4             	mov    %eax,-0x5c(%ebp)
+ 806053e:	8d 55 d8             	lea    -0x28(%ebp),%edx
+ 8060541:	8d 45 a4             	lea    -0x5c(%ebp),%eax
+ 8060544:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8060548:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 806054c:	89 14 24             	mov    %edx,(%esp)
+ 806054f:	e8 fc 1d 00 00       	call   8062350 <_ZNSt8_Rb_treeIjSt4pairIKjN5quest10QuestStateEESt10_Select1stIS4_ESt4lessIjESaIS4_EE4findERS1_>
+ 8060554:	8b 47 20             	mov    0x20(%edi),%eax
+ 8060557:	83 ec 04             	sub    $0x4,%esp
+ 806055a:	39 45 d8             	cmp    %eax,-0x28(%ebp)
+ 806055d:	89 45 c8             	mov    %eax,-0x38(%ebp)
+ 8060560:	75 0e                	jne    8060570 <_ZN5quest2PC13SetQuestTitleERKSsS2_+0x60>
+ 8060562:	8d 65 f4             	lea    -0xc(%ebp),%esp
+ 8060565:	5b                   	pop    %ebx
+ 8060566:	5e                   	pop    %esi
+ 8060567:	5f                   	pop    %edi
+ 8060568:	5d                   	pop    %ebp
+ 8060569:	c3                   	ret
+ 806056a:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 8060570:	8b 47 2c             	mov    0x2c(%edi),%eax
+ 8060573:	8d 77 30             	lea    0x30(%edi),%esi
+ 8060576:	8b 57 58             	mov    0x58(%edi),%edx
+ 8060579:	89 74 24 04          	mov    %esi,0x4(%esp)
+ 806057d:	89 45 a0             	mov    %eax,-0x60(%ebp)
+ 8060580:	8d 45 b8             	lea    -0x48(%ebp),%eax
+ 8060583:	89 55 9c             	mov    %edx,-0x64(%ebp)
+ 8060586:	89 04 24             	mov    %eax,(%esp)
+ 8060589:	e8 8e b7 fe ff       	call   804bd1c <_ZNSsC1ERKSs@plt>
+ 806058e:	89 34 24             	mov    %esi,(%esp)
+ 8060591:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 8060594:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8060598:	e8 2f ba fe ff       	call   804bfcc <_ZNSs6assignERKSs@plt>
+ 806059d:	c7 47 58 02 00 00 00 	movl   $0x2,0x58(%edi)
+ 80605a4:	8b 5d d8             	mov    -0x28(%ebp),%ebx
+ 80605a7:	83 c3 14             	add    $0x14,%ebx
+ 80605aa:	89 5f 2c             	mov    %ebx,0x2c(%edi)
+ 80605ad:	89 3c 24             	mov    %edi,(%esp)
+ 80605b0:	e8 fb fe ff ff       	call   80604b0 <_ZN5quest2PC24GetCurrentQuestBeginFlagEv>
+ 80605b5:	89 43 0c             	mov    %eax,0xc(%ebx)
+ 80605b8:	8b 45 10             	mov    0x10(%ebp),%eax
+ 80605bb:	8d 5d a8             	lea    -0x58(%ebp),%ebx
+ 80605be:	89 3c 24             	mov    %edi,(%esp)
+ 80605c1:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80605c5:	e8 06 ff ff ff       	call   80604d0 <_ZN5quest2PC20SetCurrentQuestTitleERKSs>
+ 80605ca:	89 3c 24             	mov    %edi,(%esp)
+ 80605cd:	e8 4e ea ff ff       	call   805f020 <_ZN5quest2PC19SendQuestInfoPakcetEv>
+ 80605d2:	89 34 24             	mov    %esi,(%esp)
+ 80605d5:	8d 45 b8             	lea    -0x48(%ebp),%eax
+ 80605d8:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80605dc:	e8 eb b9 fe ff       	call   804bfcc <_ZNSs6assignERKSs@plt>
+ 80605e1:	8b 55 a0             	mov    -0x60(%ebp),%edx
+ 80605e4:	8b 45 9c             	mov    -0x64(%ebp),%eax
+ 80605e7:	89 57 2c             	mov    %edx,0x2c(%edi)
+ 80605ea:	8b 55 b8             	mov    -0x48(%ebp),%edx
+ 80605ed:	89 47 58             	mov    %eax,0x58(%edi)
+ 80605f0:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+ 80605f5:	8d 4a f4             	lea    -0xc(%edx),%ecx
+ 80605f8:	f0 0f c1 42 fc       	lock xadd %eax,-0x4(%edx)
+ 80605fd:	85 c0                	test   %eax,%eax
+ 80605ff:	0f 8f 5d ff ff ff    	jg     8060562 <_ZN5quest2PC13SetQuestTitleERKSsS2_+0x52>
+ 8060605:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8060609:	89 0c 24             	mov    %ecx,(%esp)
+ 806060c:	e8 1b c4 fe ff       	call   804ca2c <_ZNSs4_Rep10_M_destroyERKSaIcE@plt>
+ 8060611:	e9 4c ff ff ff       	jmp    8060562 <_ZN5quest2PC13SetQuestTitleERKSsS2_+0x52>
+ 8060616:	c7 04 24 5c 72 1f 08 	movl   $0x81f725c,(%esp)
+ 806061d:	b9 1a 00 00 00       	mov    $0x1a,%ecx
+ 8060622:	ba fa 62 1f 08       	mov    $0x81f62fa,%edx
+ 8060627:	89 4c 24 08          	mov    %ecx,0x8(%esp)
+ 806062b:	be 43 89 1f 08       	mov    $0x81f8943,%esi
+ 8060630:	89 74 24 0c          	mov    %esi,0xc(%esp)
+ 8060634:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8060638:	e8 6f c3 fe ff       	call   804c9ac <__assert@plt>
+ 806063d:	a1 24 b4 23 08       	mov    0x823b424,%eax
+ 8060642:	e9 e5 fe ff ff       	jmp    806052c <_ZN5quest2PC13SetQuestTitleERKSsS2_+0x1c>
+ 8060647:	90                   	nop
+ 8060648:	90                   	nop
+ 8060649:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+
+08060650 <_ZN5quest2PC24SetCurrentQuestClockNameERKSs>:
+ 8060650:	55                   	push   %ebp
+ 8060651:	b8 04 00 00 00       	mov    $0x4,%eax
+ 8060656:	89 e5                	mov    %esp,%ebp
+ 8060658:	83 ec 18             	sub    $0x18,%esp
+ 806065b:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 806065e:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8060661:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 8060664:	8b 75 0c             	mov    0xc(%ebp),%esi
+ 8060667:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 806066b:	89 1c 24             	mov    %ebx,(%esp)
+ 806066e:	e8 6d fd ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 8060673:	8b 43 2c             	mov    0x2c(%ebx),%eax
+ 8060676:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8060679:	89 75 0c             	mov    %esi,0xc(%ebp)
+ 806067c:	83 c0 1c             	add    $0x1c,%eax
+ 806067f:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8060682:	89 45 08             	mov    %eax,0x8(%ebp)
+ 8060685:	89 ec                	mov    %ebp,%esp
+ 8060687:	5d                   	pop    %ebp
+ 8060688:	e9 3f b9 fe ff       	jmp    804bfcc <_ZNSs6assignERKSs@plt>
+ 806068d:	90                   	nop
+ 806068e:	89 f6                	mov    %esi,%esi
+
+08060690 <_ZN5quest2PC25SetCurrentQuestClockValueEi>:
+ 8060690:	55                   	push   %ebp
+ 8060691:	b8 08 00 00 00       	mov    $0x8,%eax
+ 8060696:	89 e5                	mov    %esp,%ebp
+ 8060698:	83 ec 18             	sub    $0x18,%esp
+ 806069b:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 806069e:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 80606a1:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80606a5:	89 1c 24             	mov    %ebx,(%esp)
+ 80606a8:	e8 33 fd ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 80606ad:	8b 53 2c             	mov    0x2c(%ebx),%edx
+ 80606b0:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 80606b3:	89 42 24             	mov    %eax,0x24(%edx)
+ 80606b6:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 80606b9:	89 ec                	mov    %ebp,%esp
+ 80606bb:	5d                   	pop    %ebp
+ 80606bc:	c3                   	ret
+ 80606bd:	90                   	nop
+ 80606be:	89 f6                	mov    %esi,%esi
+
+080606c0 <_ZN5quest2PC26SetCurrentQuestCounterNameERKSs>:
+ 80606c0:	55                   	push   %ebp
+ 80606c1:	b8 10 00 00 00       	mov    $0x10,%eax
+ 80606c6:	89 e5                	mov    %esp,%ebp
+ 80606c8:	83 ec 18             	sub    $0x18,%esp
+ 80606cb:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 80606ce:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 80606d1:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 80606d4:	8b 75 0c             	mov    0xc(%ebp),%esi
+ 80606d7:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80606db:	89 1c 24             	mov    %ebx,(%esp)
+ 80606de:	e8 fd fc ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 80606e3:	8b 43 2c             	mov    0x2c(%ebx),%eax
+ 80606e6:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 80606e9:	89 75 0c             	mov    %esi,0xc(%ebp)
+ 80606ec:	83 c0 20             	add    $0x20,%eax
+ 80606ef:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 80606f2:	89 45 08             	mov    %eax,0x8(%ebp)
+ 80606f5:	89 ec                	mov    %ebp,%esp
+ 80606f7:	5d                   	pop    %ebp
+ 80606f8:	e9 cf b8 fe ff       	jmp    804bfcc <_ZNSs6assignERKSs@plt>
+ 80606fd:	90                   	nop
+ 80606fe:	89 f6                	mov    %esi,%esi
+
+08060700 <_ZN5quest2PC27SetCurrentQuestCounterValueEi>:
+ 8060700:	55                   	push   %ebp
+ 8060701:	b8 20 00 00 00       	mov    $0x20,%eax
+ 8060706:	89 e5                	mov    %esp,%ebp
+ 8060708:	83 ec 18             	sub    $0x18,%esp
+ 806070b:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 806070e:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8060711:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8060715:	89 1c 24             	mov    %ebx,(%esp)
+ 8060718:	e8 c3 fc ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 806071d:	8b 53 2c             	mov    0x2c(%ebx),%edx
+ 8060720:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8060723:	89 42 28             	mov    %eax,0x28(%edx)
+ 8060726:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 8060729:	89 ec                	mov    %ebp,%esp
+ 806072b:	5d                   	pop    %ebp
+ 806072c:	c3                   	ret
+ 806072d:	90                   	nop
+ 806072e:	89 f6                	mov    %esi,%esi
+
+08060730 <_ZN5quest2PC23SetCurrentQuestIconFileERKSs>:
+ 8060730:	55                   	push   %ebp
+ 8060731:	b8 40 00 00 00       	mov    $0x40,%eax
+ 8060736:	89 e5                	mov    %esp,%ebp
+ 8060738:	83 ec 18             	sub    $0x18,%esp
+ 806073b:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 806073e:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 8060741:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 8060744:	8b 75 0c             	mov    0xc(%ebp),%esi
+ 8060747:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 806074b:	89 1c 24             	mov    %ebx,(%esp)
+ 806074e:	e8 8d fc ff ff       	call   80603e0 <_ZN5quest2PC11SetSendFlagEi>
+ 8060753:	8b 43 2c             	mov    0x2c(%ebx),%eax
+ 8060756:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8060759:	89 75 0c             	mov    %esi,0xc(%ebp)
+ 806075c:	83 c0 2c             	add    $0x2c,%eax
+ 806075f:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8060762:	89 45 08             	mov    %eax,0x8(%ebp)
+ 8060765:	89 ec                	mov    %ebp,%esp
+ 8060767:	5d                   	pop    %ebp
+ 8060768:	e9 5f b8 fe ff       	jmp    804bfcc <_ZNSs6assignERKSs@plt>
+ 806076d:	90                   	nop
+ 806076e:	89 f6                	mov    %esi,%esi

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813fb40",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CLIENT_DESC::DBPacketHeader",
+      "address": "0813fb40"
+    },
+    "code": "\r\n/* DWARF original prototype: void DBPacketHeader(CLIENT_DESC * this, BYTE bHeader, DWORD dwHandle,\r\n   DWORD dwSize) */\r\n\r\nvoid __thiscall\r\nCLIENT_DESC::DBPacketHeader(CLIENT_DESC *this,BYTE bHeader,DWORD dwHandle,DWORD dwSize)\r\n\r\n{\r\n  encode_byte(char)::a._0_1_ = bHeader;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_byte(char)::a,1);\r\n  encode_4bytes(int)::a._0_4_ = dwHandle;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_4bytes(int)::a,4);\r\n  encode_4bytes(int)::a._0_4_ = dwSize;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_4bytes(int)::a,4);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

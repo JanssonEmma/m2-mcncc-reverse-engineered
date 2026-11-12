@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0805d1a0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "basic_string<char,std::char_traits<char>,std::allocator<char>_>::_S_construct<char*>",
+      "address": "0805d1a0"
+    },
+    "code": "\r\nchar * basic_string<char,std::char_traits<char>,std::allocator<char>_>::_S_construct<char*>\r\n                 (char *__beg,char *__end,allocator<char> *__a,forward_iterator_tag param_4)\r\n\r\n{\r\n  char cVar1;\r\n  uint *puVar2;\r\n  uint *__dest;\r\n  uint __n;\r\n  \r\n                    /* Unresolved local var: size_t __dnew@[???]\r\n                       Unresolved local var: _Rep * __r@[DW_OP_reg7(EDI)] */\r\n  if (__beg == __end) {\r\n    LOCK();\r\n    DAT_083223c8 = DAT_083223c8 + 1;\r\n    UNLOCK();\r\n    __dest = (uint *)&DAT_083223cc;\r\n  }\r\n  else {\r\n    if (__beg == (char *)0x0) {\r\n      std::__throw_logic_error(\"attempt to create string with null pointer\");\r\n    }\r\n    __n = (int)__end - (int)__beg;\r\n    puVar2 = (uint *)std::string::_Rep::_S_create(__n,(allocator *)__a);\r\n    __dest = puVar2 + 3;\r\n    memcpy(__dest,__beg,__n);\r\n    cVar1 = std::string::_Rep::_S_terminal;\r\n    *puVar2 = __n;\r\n    *(char *)(__n + (int)__dest) = cVar1;\r\n  }\r\n  return (char *)__dest;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

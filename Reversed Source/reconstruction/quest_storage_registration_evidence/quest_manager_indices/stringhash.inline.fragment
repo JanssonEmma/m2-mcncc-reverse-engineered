@@ -1,0 +1,10 @@
+// Original questmanager.h inline operator. Target size_t was uint32.
+struct stringhash {
+    std::size_t operator()(const std::string& value) const {
+        const unsigned char* current=reinterpret_cast<const unsigned char*>(value.c_str());
+        const unsigned char* end=current+value.size();
+        unsigned int hash=0;
+        while(current<end) { hash*=16777619U;hash^=*current++; }
+        return hash;
+    }
+};

@@ -1,0 +1,15 @@
+# Derived packet registries — 2026-10-24
+
+Recovered CPacketInfoCG, CPacketInfoGG and CPacketInfoUDP constructors/destructors from15 addressed records: two constructor variants and three destructor variants per class. Complete returned decompilation is retained in packet-tables-ghidra.json; target identity matches validation-status.json. The98 ordered registrations consist of73 CG,24 GG and1 UDP entries. Both constructor variants agree for every class, and a separate read-only audit found no mismatches against production code and packet-registration-manifest.json.
+
+Manifest size is the base size passed to Set; wire_minimum includes the extra byte when sequence=true. The source uses literal target header IDs and sizes, rather than sizeof values from newer payload types. This recovers the original dispatch prefixes without claiming full payload structure definitions. CG registers both Version headers241/253, sequence-bearing TimeSync252, unsequenced Handshake255 and the older authentication/mark sizes. GG and UDP are entirely unsequenced. Overlapping header1 maps independently to Login50 (CG), Login33 (GG), and ServerStateRequest9 (UDP).
+
+All derived destructors call Log before base cleanup: packet_info.txt, p2p_packet_info.txt and udp_packet_info.txt respectively. These original report side effects are preserved and tested, including virtual deletion through CPacketInfo*. Actual input-processing handlers are still unrecovered; input_udp.cpp currently contains only its real packet registry.
+
+Source placement follows the requested newer reference organization: CG/GG declarations in packet_info.h and definitions in packet_info.cpp; UDP definitions in input_udp.cpp. Target debug provenance differs: old classes were declared inline in input.cpp/input_p2p.cpp/input_udp.cpp. packet-tables-layout.md and packet-tables-types.json preserve this distinction. Packet structure sizes visible in selected CUs are recorded in packet-type-sizes.csv; presence in that inventory does not prove registration or recover field definitions.
+
+All three target derived classes are24 bytes, base at0 with no new fields. Modern std::map produces a different containing-class layout, as documented in packet-info-recovery.md. Relative32-bit derived/base size checks confirm no extra state; they do not establish target class ABI equality.
+
+Validation covers simultaneous independent tables, legacy minimum sizes/sequence padding, both Version entries, missing headers, duplicate rejection, actual timing statistics in destructor reports and virtual deletion. Default and O2 tests pass; strict32-bit source syntax compilation passes. No original executable was run, and no complete server link/runtime or binary equivalence is claimed. Full-suite result is recorded in validation-status.json after completion.
+
+Completed validation: all26 suites and check-abi exit0; default/O2 derived tests, strict32 source syntax and all98-entry source audit pass. Generated executables, objects and test reports are removed afterward.

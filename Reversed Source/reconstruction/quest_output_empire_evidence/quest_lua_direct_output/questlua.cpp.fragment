@@ -1,0 +1,65 @@
+// Add <ctime> at file scope. Insert the methods into questlua.cpp namespace quest,
+// after LuaTruncateInt and combine_lua_string.
+
+// 08055fb0
+int _left_image(lua_State* state) {
+    if (lua_isstring(state, -1)) {
+        const std::string image(lua_tostring(state, -1));
+        const std::string script = "[LEFTIMAGE src;" + image + "]";
+        CQuestManager::Instance().AddScript(script);
+    }
+    return 0;
+}
+
+// 08056110
+int _top_image(lua_State* state) {
+    if (lua_isstring(state, -1)) {
+        const std::string image(lua_tostring(state, -1));
+        const std::string script = "[TOPIMAGE src;" + image + "]";
+        CQuestManager::Instance().AddScript(script);
+    }
+    return 0;
+}
+
+// 08057120
+int _time_to_str(lua_State* state) {
+    const std::time_t instant = static_cast<std::time_t>(LuaTruncateInt(lua_tonumber(state, -1)));
+    lua_pushstring(state, std::asctime(std::gmtime(&instant)));
+    return 1;
+}
+
+// 08057180
+int _chat(lua_State* state) {
+    std::ostringstream output;
+    combine_lua_string(state, output);
+    const std::string message = output.str();
+    CQuestManager::Instance().GetCurrentCharacterPtr()->ChatPacket(0, "%s", message.c_str());
+    return 0;
+}
+
+// 080573d0
+int _cmdchat(lua_State* state) {
+    std::ostringstream output;
+    combine_lua_string(state, output);
+    const std::string message = output.str();
+    CQuestManager::Instance().GetCurrentCharacterPtr()->ChatPacket(5, "%s", message.c_str());
+    return 0;
+}
+
+// 08057620
+int _syschat(lua_State* state) {
+    std::ostringstream output;
+    combine_lua_string(state, output);
+    const std::string message = output.str();
+    CQuestManager::Instance().GetCurrentCharacterPtr()->ChatPacket(1, "%s", message.c_str());
+    return 0;
+}
+
+// 08057870
+int _notice(lua_State* state) {
+    std::ostringstream output;
+    combine_lua_string(state, output);
+    const std::string message = output.str();
+    CQuestManager::Instance().GetCurrentCharacterPtr()->ChatPacket(2, "%s", message.c_str());
+    return 0;
+}

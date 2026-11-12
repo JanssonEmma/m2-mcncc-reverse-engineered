@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081a6bb0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CQuestManager::GetEventFlag",
+      "address": "081a6bb0"
+    },
+    "code": "\r\n/* DWARF original prototype: int GetEventFlag(CQuestManager * this, string * name) */\r\n\r\nint __thiscall CQuestManager::GetEventFlag(CQuestManager *this,string *name)\r\n\r\n{\r\n  int iVar1;\r\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>*>\r\n  it;\r\n  \r\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>_>_>\r\n  ::find((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>_>_>\r\n          *)&it,(string *)&this->m_mapEventFlag);\r\n  iVar1 = 0;\r\n  if (it.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_mapEventFlag)._M_t.\r\n        super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_int>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    iVar1 = *(int *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

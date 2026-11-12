@@ -1,0 +1,115 @@
+{
+  "kind": "TEST ONLY unchanged actual utils.c COFF function projection",
+  "full_object_sha256": "37fa127817b6c593bb01cebb5bf50b729d75ecaf024d774604af464a572999bb",
+  "projected_object_sha256": "58f93c63c25fda61192a29f137e109606f3868c4b45bcc6d53c6274447773959",
+  "sections": [
+    {
+      "name": ".rdata",
+      "bytes_sha256": "e8e2f34ce3d52a9552ee8b950ef7740d7a1b2a887e640cf65afe4b8c22538cce",
+      "bytes": 272,
+      "relocations": []
+    },
+    {
+      "name": ".text$thecore_random",
+      "bytes_sha256": "2d37dde526acf2f0270a02659d2713b9f3cdc24cf9778df4963531a48c80ec2a",
+      "bytes": 32,
+      "relocations": [
+        {
+          "offset": 9,
+          "type": 4,
+          "symbol": "random"
+        }
+      ]
+    },
+    {
+      "name": ".xdata$thecore_random",
+      "bytes_sha256": "5193f4a266c6d5edaa7340d96fdd917f9f309ba80ab2415d53984760913941d6",
+      "bytes": 12,
+      "relocations": []
+    },
+    {
+      "name": ".pdata$thecore_random",
+      "bytes_sha256": "36d4b7ec80a5fa3c04992dffbbdbb9aa9190be7bda3847955ee739af89326d80",
+      "bytes": 12,
+      "relocations": [
+        {
+          "offset": 0,
+          "type": 3,
+          "symbol": ".text$thecore_random"
+        },
+        {
+          "offset": 4,
+          "type": 3,
+          "symbol": ".text$thecore_random"
+        },
+        {
+          "offset": 8,
+          "type": 3,
+          "symbol": ".xdata$thecore_random"
+        }
+      ]
+    },
+    {
+      "name": ".text$number_ex",
+      "bytes_sha256": "1907bbdd03d050a8aaaae7357252ed79f06d713d01a04c84fd1bcae2eb81ec28",
+      "bytes": 144,
+      "relocations": [
+        {
+          "offset": 68,
+          "type": 4,
+          "symbol": ".rdata"
+        },
+        {
+          "offset": 80,
+          "type": 4,
+          "symbol": ".rdata"
+        },
+        {
+          "offset": 88,
+          "type": 4,
+          "symbol": "_sys_err"
+        },
+        {
+          "offset": 119,
+          "type": 4,
+          "symbol": ".text$thecore_random"
+        }
+      ]
+    },
+    {
+      "name": ".xdata$number_ex",
+      "bytes_sha256": "a47719ac31d850a92f2f75116488cf64f8598c81e92b61023e635b751f669f1d",
+      "bytes": 12,
+      "relocations": []
+    },
+    {
+      "name": ".pdata$number_ex",
+      "bytes_sha256": "402d3bb1264565b94716e48b9d7200bbc1ceaec1f8dc98b2c1bf63356fdf9f47",
+      "bytes": 12,
+      "relocations": [
+        {
+          "offset": 0,
+          "type": 3,
+          "symbol": ".text$number_ex"
+        },
+        {
+          "offset": 4,
+          "type": 3,
+          "symbol": ".text$number_ex"
+        },
+        {
+          "offset": 8,
+          "type": 3,
+          "symbol": ".xdata$number_ex"
+        }
+      ]
+    }
+  ],
+  "undefined_symbols": [
+    "_sys_err",
+    "random"
+  ],
+  "code_and_unwind_bytes_equal": true,
+  "relocation_names_types_offsets_equal": true,
+  "source_sha256": "5f1b0c4bd4766ae9524ecf96137a3dbea53f3b3846d687f7d64b5f8645f5fff4"
+}

@@ -1,0 +1,10 @@
+// COMPLETE old packed item attribute row, common/tables.h metadata69 bytes.
+#pragma pack(push,1)
+typedef struct SItemAttrTable {
+    char szApply[33];
+    DWORD dwApplyIndex;
+    DWORD dwProb;
+    long lValues[5];
+    BYTE bMaxLevelBySet[8];
+} TItemAttrTable;
+#pragma pack(pop)

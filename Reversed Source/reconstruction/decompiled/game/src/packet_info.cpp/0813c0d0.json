@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813c0d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CPacketInfo::Get",
+      "address": "0813c0d0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool Get(CPacketInfo * this, int header, int * size, char * *\r\n   c_ppszName) */\r\n\r\nbool __thiscall CPacketInfo::Get(CPacketInfo *this,int header,int *size,char **c_ppszName)\r\n\r\n{\r\n  int *piVar1;\r\n  bool bVar2;\r\n  _Rb_tree_iterator<std::pair<const_int,_SPacketElement*>,std::pair<const_int,_SPacketElement*>&,std::pair<const_int,_SPacketElement*>*>\r\n  it;\r\n  \r\n  _Rb_tree<int,std::pair<const_int,_SPacketElement*>,std::_Select1st<std::pair<const_int,_SPacketElement*>_>,std::less<int>,std::allocator<std::pair<const_int,_SPacketElement*>_>_>\r\n  ::find((_Rb_tree<int,std::pair<const_int,_SPacketElement*>,std::_Select1st<std::pair<const_int,_SPacketElement*>_>,std::less<int>,std::allocator<std::pair<const_int,_SPacketElement*>_>_>\r\n          *)&it,(int *)&this->m_pPacketMap);\r\n  bVar2 = it.super__Rb_tree_base_iterator._M_node !=\r\n          (_Rb_tree_base_iterator)\r\n          &((this->m_pPacketMap)._M_t.\r\n            super__Rb_tree_base<std::pair<const_int,_SPacketElement*>,std::allocator<std::pair<const_int,_SPacketElement*>_>_>\r\n            .\r\n            super__Rb_tree_alloc_base<std::pair<const_int,_SPacketElement*>,std::allocator<std::pair<const_int,_SPacketElement*>_>,true>\r\n           ._M_header)->super__Rb_tree_node_base;\r\n  if (bVar2) {\r\n    piVar1 = *(int **)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n    *size = *piVar1;\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    *(undefined1 *)(piVar1[1] + *(int *)(piVar1[1] + -0xc)) = std::string::_Rep::_S_terminal;\r\n    *c_ppszName = (char *)piVar1[1];\r\n    this->m_pCurrentPacket =\r\n         *(TPacketElement **)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return bVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

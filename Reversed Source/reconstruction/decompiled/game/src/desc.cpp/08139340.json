@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08139340",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC::Destroy",
+      "address": "08139340"
+    },
+    "code": "\r\n/* DWARF original prototype: void Destroy(DESC * this) */\r\n\r\nvoid __thiscall DESC::Destroy(DESC *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  CLoginKey *pCVar3;\r\n  DWORD DVar4;\r\n  TLogoutPacket pack;\r\n  allocator local_2c [16];\r\n  int local_1c [4];\r\n  \r\n  pCVar3 = this->m_pkLoginKey;\r\n  if (pCVar3 != (CLoginKey *)0x0) {\r\n    DVar4 = get_dword_time();\r\n    pCVar3->m_dwExpireTime = DVar4;\r\n    pCVar3->m_pkDesc = (LPDESC)0x0;\r\n  }\r\n  if ((this->m_accountTable).id != 0) {\r\n    std::string::string((string *)local_1c,(this->m_accountTable).login,local_2c);\r\n    if (singleton<DESC_MANAGER>::ms_singleton == (DESC_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    DESC_MANAGER::DisconnectAccount(singleton<DESC_MANAGER>::ms_singleton,(string *)local_1c);\r\n    LOCK();\r\n    piVar1 = (int *)(local_1c[0] + -4);\r\n    iVar2 = *piVar1;\r\n    *piVar1 = *piVar1 + -1;\r\n    UNLOCK();\r\n    if (iVar2 < 1) {\r\n      std::string::_Rep::_M_destroy((allocator *)(local_1c[0] + -0xc));\r\n    }\r\n  }\r\n  if ((FILE *)this->m_pLogFile != (FILE *)0x0) {\r\n    fclose((FILE *)this->m_pLogFile);\r\n    this->m_pLogFile = (FILE *)0x0;\r\n  }\r\n  if (this->m_lpCharacter != (CHARACTER *)0x0) {\r\n    CHARACTER::Disconnect(this->m_lpCharacter);\r\n    this->m_lpCharacter = (LPCHARACTER)0x0;\r\n  }\r\n  buffer_delete(this->m_lpOutputBuffer);\r\n  buffer_delete(this->m_lpInputBuffer);\r\n  event_cancel(&this->m_pkPingEvent);\r\n  event_cancel(&this->m_pkDisconnectEvent);\r\n  if (((g_bAuthServer == '\\0') && ((this->m_accountTable).login[0] != '\\0')) &&\r\n     ((this->m_accountTable).passwd[0] != '\\0')) {\r\n    strncpy(pack.login,(this->m_accountTable).login,0x1e);\r\n    pack.login[0x1e] = '\\0';\r\n    strncpy(pack.passwd,(this->m_accountTable).passwd,0x10);\r\n    pack.passwd[0x10] = '\\0';\r\n    CLIENT_DESC::DBPacket(db_clientdesc,'\\x02',this->m_dwHandle,&pack,0x30);\r\n  }\r\n  if (this->m_sock != -1) {\r\n    sys_log(0,\"SYSTEM: closing socket. DESC #%d\",this->m_sock);\r\n    Log(this,\"SYSTEM: closing socket. DESC #%d\",this->m_sock);\r\n    fdwatch_del_fd(this->m_lpFdw,this->m_sock);\r\n    socket_close(this->m_sock);\r\n    this->m_sock = -1;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,103 @@
+//Complete old PC data declaration (target108 bytes); quest execution is pending.
+#ifndef MCNCC_GAME_QUESTPC_H
+#define MCNCC_GAME_QUESTPC_H
+#include "quest.h"
+#include "event.h"
+#include <map>
+class CHARACTER;
+namespace quest {
+struct RewardData {
+    enum RewardType { REWARD_TYPE_NONE=0, REWARD_TYPE_EXP=1, REWARD_TYPE_ITEM=2 } type;
+    DWORD value1;
+    int value2;
+    RewardData(RewardType type,DWORD value1,int value2=0);
+};
+class PC {
+public:
+    typedef std::map<unsigned int,QuestState> QuestInfo;
+    typedef QuestInfo::iterator QuestInfoIterator;
+    PC();
+    ~PC();
+    void Destroy();
+    void SetID(DWORD);
+    bool HasQuest(const std::string&);
+    QuestState& GetQuest(const std::string&);
+    QuestInfoIterator quest_begin();
+    QuestInfoIterator quest_end();
+    QuestInfoIterator quest_find(DWORD);
+    bool IsRunning();
+    void EndRunning();
+    void CancelRunning();
+    QuestState* GetRunningQuestState();
+    void SetQuest(const std::string&,QuestState&);
+    void SetCurrentQuestStateName(const std::string&);
+    void SetQuestState(const std::string&,const std::string&);
+    void SetQuestState(const std::string&,int);
+    void ClearQuest(const std::string&);
+    void SetFlag(const std::string&,int,bool);
+    int GetFlag(const std::string&);
+    bool DeleteFlag(const std::string&);
+    const std::string& GetCurrentQuestName();
+    int GetCurrentQuestIndex();
+    void RemoveTimer(const std::string&);
+    void RemoveTimerNotCancel(const std::string&);
+    void AddTimer(const std::string&,LPEVENT);
+    void ClearTimer();
+    void SetCurrentQuestStartFlag();
+    void SetCurrentQuestDoneFlag();
+    void SetQuestTitle(const std::string&,const std::string&);
+    void SetCurrentQuestTitle(const std::string&);
+    void SetCurrentQuestClockName(const std::string&);
+    void SetCurrentQuestClockValue(int);
+    void SetCurrentQuestCounterName(const std::string&);
+    void SetCurrentQuestCounterValue(int);
+    void SetCurrentQuestIconFile(const std::string&);
+    // Inline read witnessed by original LevelUp gate; old method is nonconst.
+    bool IsLoaded() { return m_bLoaded; }
+    void SetLoaded();
+    void Build();
+    void Save();
+    bool HasReward();
+    void Reward(CHARACTER*);
+    void GiveItem(const std::string&,DWORD,int);
+    void GiveExp(const std::string&,DWORD);
+    void SetSendDoneFlag();
+    bool GetAndResetDoneFlag();
+    void SendFlagList(CHARACTER*);
+    void SetQuestState(const char*,const char*);
+    void SetConfirmWait(DWORD);
+    void ClearConfirmWait();
+    bool IsConfirmWait();
+    bool IsConfirmWait(DWORD);
+private:
+    typedef std::map<std::string,int> TFlagMap;
+    typedef std::map<std::string,LPEVENT> TTimerMap;
+    void AddQuestStateChange(const std::string&,int,int);
+    void DoQuestStateChange();
+    void SetSendFlag(int);
+    void ClearSendFlag();
+    void SaveFlag(const std::string&,int);
+    void ClearCurrentQuestBeginFlag();
+    void SetCurrentQuestBeginFlag();
+    int GetCurrentQuestBeginFlag();
+    void SendQuestInfoPakcet();
+    struct TQuestStateChangeInfo { DWORD quest_idx; int prev_state; int next_state; TQuestStateChangeInfo(DWORD,int,int); };
+    std::vector<TQuestStateChangeInfo> m_QuestStateChange;
+    std::vector<RewardData> m_vRewardData;
+    bool m_bIsGivenReward;
+    bool m_bShouldSendDone;
+    DWORD m_dwID;
+    std::map<unsigned int,QuestState> m_QuestInfo;
+    QuestState* m_RunningQuestState;
+    std::string m_stCurQuest;
+    std::map<std::string,int> m_FlagMap;
+    std::map<std::string,int> m_FlagSaveMap;
+    std::map<std::string,LPEVENT> m_TimerMap;
+    int m_iSendToClient;
+    bool m_bLoaded;
+    int m_iLastState;
+    DWORD m_dwWaitConfirmFromPID;
+    bool m_bConfirmWait;
+};
+}
+#endif

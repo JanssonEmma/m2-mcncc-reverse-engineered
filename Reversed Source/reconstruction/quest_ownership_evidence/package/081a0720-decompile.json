@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "CQuestManager::Destroy",
+    "address": "081a0720"
+  },
+  "code": "\r\n/* DWARF original prototype: void Destroy(CQuestManager * this) */\r\n\r\nvoid __thiscall CQuestManager::Destroy(CQuestManager *this)\r\n\r\n{\r\n  if (this->L != (lua_State *)0x0) {\r\n    lua_close(this->L);\r\n    this->L = (lua_State *)0x0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

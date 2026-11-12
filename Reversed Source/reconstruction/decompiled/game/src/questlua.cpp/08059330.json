@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08059330",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_warp_all_in_map",
+      "address": "08059330"
+    },
+    "code": "\r\nint _warp_all_in_map(lua_State *L)\r\n\r\n{\r\n  DWORD dwInfoID;\r\n  lua_Number lVar1;\r\n  lua_Number lVar2;\r\n  lua_Number lVar3;\r\n  lua_Number lVar4;\r\n  lua_Number lVar5;\r\n  int iMapIndexTo;\r\n  int iMapIndexFrom;\r\n  warp_all_to_map_event_info *info;\r\n  \r\n                    /* Unresolved local var: int ix@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int iy@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int iTime@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: DWORD dwEI@[DW_OP_reg0(EAX)] */\r\n  lVar1 = lua_tonumber(L,1);\r\n  lVar2 = lua_tonumber(L,2);\r\n  lVar3 = lua_tonumber(L,3);\r\n  lVar4 = lua_tonumber(L,4);\r\n  lVar5 = lua_tonumber(L,5);\r\n  dwInfoID = __AllocEventInfo(0x10,&info);\r\n  info->m_x = (int)ROUND(lVar3);\r\n  info->m_iMapIndexFrom = (int)ROUND(lVar1);\r\n  info->m_y = (int)ROUND(lVar4);\r\n  info->m_iMapIndexTo = (int)ROUND(lVar2);\r\n  event_create_ex(warp_all_to_map_event,dwInfoID,(int)ROUND(lVar5) * passes_per_sec,\"questlua.cpp\",\r\n                  0x564);\r\n  if (test_server != 0) {\r\n    sys_log(0,\"_warp_all_in_map From %d To %d x %d y %d Sec %d \",(int)ROUND(lVar1),(int)ROUND(lVar2)\r\n            ,(int)ROUND(lVar3),(int)ROUND(lVar4),(int)ROUND(lVar5));\r\n  }\r\n  return 1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

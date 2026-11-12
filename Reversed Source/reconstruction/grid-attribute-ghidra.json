@@ -1,0 +1,222 @@
+{
+  "targetSha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "method": "read-only Ghidra decompile_function_by_address",
+  "functions": [
+    {
+      "function": {
+        "name": "CGrid::CGrid",
+        "address": "081f4cb0"
+      },
+      "code": "\r\n/* CGrid::CGrid(int, int) */\r\n\r\nvoid __thiscall CGrid::CGrid(CGrid *this,int param_1,int param_2)\r\n\r\n{\r\n  char *__s;\r\n  \r\n  this->m_iHeight = param_2;\r\n  this->m_iWidth = param_1;\r\n  __s = operator_new__(param_1 * param_2);\r\n  this->m_pGrid = __s;\r\n  memset(__s,0,this->m_iHeight * this->m_iWidth);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::CGrid",
+        "address": "081f4d00"
+      },
+      "code": "\r\n/* CGrid::CGrid(int, int) */\r\n\r\nvoid __thiscall CGrid::CGrid(CGrid *this,int param_1,int param_2)\r\n\r\n{\r\n  char *__s;\r\n  \r\n  this->m_iHeight = param_2;\r\n  this->m_iWidth = param_1;\r\n  __s = operator_new__(param_1 * param_2);\r\n  this->m_pGrid = __s;\r\n  memset(__s,0,this->m_iHeight * this->m_iWidth);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::CGrid",
+        "address": "081f4d50"
+      },
+      "code": "\r\n/* CGrid::CGrid(CGrid*, int, int) */\r\n\r\nvoid __thiscall CGrid::CGrid(CGrid *this,CGrid *param_1,int param_2,int param_3)\r\n\r\n{\r\n  char *pcVar1;\r\n  size_t sVar2;\r\n  \r\n  this->m_iWidth = param_2;\r\n  this->m_iHeight = param_3;\r\n  pcVar1 = operator_new__(param_2 * param_3);\r\n  this->m_pGrid = pcVar1;\r\n  sVar2 = std::MIN<int>(param_2 * param_3,param_1->m_iHeight * param_1->m_iWidth);\r\n  (*thecore_memcpy)(this->m_pGrid,param_1->m_pGrid,sVar2);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::CGrid",
+        "address": "081f4dc0"
+      },
+      "code": "\r\n/* CGrid::CGrid(CGrid*, int, int) */\r\n\r\nvoid __thiscall CGrid::CGrid(CGrid *this,CGrid *param_1,int param_2,int param_3)\r\n\r\n{\r\n  char *pcVar1;\r\n  size_t sVar2;\r\n  \r\n  this->m_iWidth = param_2;\r\n  this->m_iHeight = param_3;\r\n  pcVar1 = operator_new__(param_2 * param_3);\r\n  this->m_pGrid = pcVar1;\r\n  sVar2 = std::MIN<int>(param_2 * param_3,param_1->m_iHeight * param_1->m_iWidth);\r\n  (*thecore_memcpy)(this->m_pGrid,param_1->m_pGrid,sVar2);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::~CGrid",
+        "address": "081f4e30"
+      },
+      "code": "\r\n/* CGrid::~CGrid() */\r\n\r\nvoid __thiscall CGrid::~CGrid(CGrid *this)\r\n\r\n{\r\n  if (this->m_pGrid == (char *)0x0) {\r\n    return;\r\n  }\r\n  operator_delete__(this->m_pGrid);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::~CGrid",
+        "address": "081f4e50"
+      },
+      "code": "\r\n/* CGrid::~CGrid() */\r\n\r\nvoid __thiscall CGrid::~CGrid(CGrid *this)\r\n\r\n{\r\n  if (this->m_pGrid == (char *)0x0) {\r\n    return;\r\n  }\r\n  operator_delete__(this->m_pGrid);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::Clear",
+        "address": "081f4e70"
+      },
+      "code": "\r\n/* CGrid::Clear() */\r\n\r\nvoid __thiscall CGrid::Clear(CGrid *this)\r\n\r\n{\r\n  memset(this->m_pGrid,0,this->m_iHeight * this->m_iWidth);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::FindBlank",
+        "address": "081f4ea0"
+      },
+      "code": "\r\n/* CGrid::FindBlank(int, int) */\r\n\r\nint __thiscall CGrid::FindBlank(CGrid *this,int param_1,int param_2)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  \r\n  iVar2 = this->m_iWidth;\r\n  if (((param_1 <= iVar2) && (iVar3 = this->m_iHeight, param_2 <= iVar3)) && (iVar5 = 0, 0 < iVar3))\r\n  {\r\n    do {\r\n      iVar4 = 0;\r\n      if (0 < iVar2) {\r\n        do {\r\n          iVar2 = iVar4 + iVar2 * iVar5;\r\n          cVar1 = IsEmpty(this,iVar2,param_1,param_2);\r\n          if (cVar1 != '\\0') {\r\n            return iVar2;\r\n          }\r\n          iVar4 = iVar4 + 1;\r\n          iVar2 = this->m_iWidth;\r\n        } while (iVar4 < iVar2);\r\n        iVar3 = this->m_iHeight;\r\n      }\r\n      iVar5 = iVar5 + 1;\r\n    } while (iVar5 < iVar3);\r\n  }\r\n  return -1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::Put",
+        "address": "081f4f30"
+      },
+      "code": "\r\n/* CGrid::Put(int, int, int) */\r\n\r\nundefined4 __thiscall CGrid::Put(CGrid *this,int param_1,int param_2,int param_3)\r\n\r\n{\r\n  int iVar1;\r\n  char cVar2;\r\n  int iVar3;\r\n  undefined4 uVar4;\r\n  int iVar5;\r\n  int local_14;\r\n  \r\n  cVar2 = IsEmpty(this,param_1,param_2,param_3);\r\n  uVar4 = 0;\r\n  if (cVar2 != '\\0') {\r\n    local_14 = 0;\r\n    if (0 < param_3) {\r\n      do {\r\n        iVar3 = 1;\r\n        iVar5 = param_1 + local_14 * this->m_iWidth;\r\n        this->m_pGrid[iVar5] = '\\x01';\r\n        if (1 < param_2) {\r\n          do {\r\n            iVar1 = iVar3 + iVar5;\r\n            iVar3 = iVar3 + 1;\r\n            this->m_pGrid[iVar1] = '\\x01';\r\n          } while (iVar3 < param_2);\r\n        }\r\n        local_14 = local_14 + 1;\r\n      } while (local_14 < param_3);\r\n    }\r\n    uVar4 = 1;\r\n  }\r\n  return uVar4;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::Get",
+        "address": "081f4fc0"
+      },
+      "code": "\r\n/* CGrid::Get(int, int, int) */\r\n\r\nvoid __thiscall CGrid::Get(CGrid *this,int param_1,int param_2,int param_3)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  if (((-1 < param_1) && (iVar3 = this->m_iWidth, param_1 < iVar3 * this->m_iHeight)) &&\r\n     (0 < param_3)) {\r\n    iVar4 = 0;\r\n    while( true ) {\r\n      iVar2 = 1;\r\n      iVar3 = param_1 + iVar4 * iVar3;\r\n      this->m_pGrid[iVar3] = '\\0';\r\n      if (1 < param_2) {\r\n        do {\r\n          iVar1 = iVar2 + iVar3;\r\n          iVar2 = iVar2 + 1;\r\n          this->m_pGrid[iVar1] = '\\0';\r\n        } while (iVar2 < param_2);\r\n      }\r\n      iVar4 = iVar4 + 1;\r\n      if (param_3 <= iVar4) break;\r\n      iVar3 = this->m_iWidth;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::IsEmpty",
+        "address": "081f5030"
+      },
+      "code": "\r\n/* CGrid::IsEmpty(int, int, int) */\r\n\r\nundefined8 __thiscall CGrid::IsEmpty(CGrid *this,int param_1,int param_2,int param_3)\r\n\r\n{\r\n  int iVar1;\r\n  char *pcVar2;\r\n  undefined4 uVar3;\r\n  int iVar4;\r\n  int local_14;\r\n  \r\n  uVar3 = 0;\r\n  if (-1 < param_1) {\r\n    iVar1 = this->m_iWidth;\r\n    if (this->m_iHeight < param_3 + param_1 / iVar1) {\r\nLAB_081f50c8:\r\n      uVar3 = 0;\r\n    }\r\n    else {\r\n      uVar3 = 0;\r\n      if (param_2 + param_1 <= iVar1 + (param_1 / iVar1) * iVar1) {\r\n        local_14 = 0;\r\n        if (0 < param_3) {\r\n          do {\r\n            if (this->m_pGrid[param_1] != '\\0') goto LAB_081f50c8;\r\n            iVar4 = 1;\r\n            if (1 < param_2) {\r\n              pcVar2 = this->m_pGrid + param_1;\r\n              do {\r\n                pcVar2 = pcVar2 + 1;\r\n                iVar4 = iVar4 + 1;\r\n                if (*pcVar2 != '\\0') goto LAB_081f50c8;\r\n              } while (iVar4 < param_2);\r\n            }\r\n            local_14 = local_14 + 1;\r\n            param_1 = param_1 + iVar1;\r\n          } while (local_14 < param_3);\r\n        }\r\n        uVar3 = 1;\r\n      }\r\n    }\r\n  }\r\n  return CONCAT44(local_14,uVar3);\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::Print",
+        "address": "081f50d0"
+      },
+      "code": "\r\n/* CGrid::Print() */\r\n\r\nvoid __thiscall CGrid::Print(CGrid *this)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  printf(\"Grid %p\\n\",this);\r\n  if (0 < this->m_iHeight) {\r\n    iVar3 = 0;\r\n    do {\r\n      iVar1 = this->m_iWidth;\r\n      iVar2 = 0;\r\n      if (0 < iVar1) {\r\n        do {\r\n          iVar1 = iVar1 * iVar3 + iVar2;\r\n          iVar2 = iVar2 + 1;\r\n          printf(\"%d\",(int)this->m_pGrid[iVar1]);\r\n          iVar1 = this->m_iWidth;\r\n        } while (iVar2 < iVar1);\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n      putchar(10);\r\n    } while (iVar3 < this->m_iHeight);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CGrid::GetSize",
+        "address": "081f5150"
+      },
+      "code": "\r\n/* CGrid::GetSize() */\r\n\r\nint __thiscall CGrid::GetSize(CGrid *this)\r\n\r\n{\r\n  return this->m_iHeight * this->m_iWidth;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::Initialize",
+        "address": "081f5180"
+      },
+      "code": "\r\n/* CAttribute::Initialize(int, int) */\r\n\r\nvoid __thiscall CAttribute::Initialize(CAttribute *this,int param_1,int param_2)\r\n\r\n{\r\n  this->dataType = 0;\r\n  this->width = param_1;\r\n  this->defaultAttr = 0;\r\n  this->data = (void *)0x0;\r\n  this->height = param_2;\r\n  this->bytePtr = (BYTE **)0x0;\r\n  this->wordPtr = (WORD **)0x0;\r\n  this->dwordPtr = (DWORD **)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::Alloc",
+        "address": "081f51c0"
+      },
+      "code": "\r\n/* CAttribute::Alloc() */\r\n\r\nvoid __thiscall CAttribute::Alloc(CAttribute *this)\r\n\r\n{\r\n  DWORD *pDVar1;\r\n  WORD *pWVar2;\r\n  DWORD DVar3;\r\n  size_t __size;\r\n  void *pvVar4;\r\n  BYTE **ppBVar5;\r\n  DWORD **ppDVar6;\r\n  WORD **ppWVar7;\r\n  int iVar8;\r\n  int iVar9;\r\n  int iVar10;\r\n  int iVar11;\r\n  int local_24;\r\n  int local_14;\r\n  \r\n  iVar8 = this->dataType;\r\n  if (iVar8 == 1) {\r\n    __size = this->height * this->width * 2;\r\nLAB_081f5240:\r\n    pvVar4 = malloc(__size);\r\n    this->data = pvVar4;\r\n    iVar8 = this->dataType;\r\n    if (iVar8 == 1) {\r\n      ppWVar7 = operator_new__(this->height << 2);\r\n      this->wordPtr = ppWVar7;\r\n      iVar8 = this->height;\r\n      iVar11 = 1;\r\n      *ppWVar7 = this->data;\r\n      if (1 < iVar8) {\r\n        iVar10 = this->width;\r\n        do {\r\n          ppWVar7[iVar11] = ppWVar7[iVar11 + -1] + iVar10;\r\n          iVar11 = iVar11 + 1;\r\n        } while (iVar11 < iVar8);\r\n      }\r\n      local_14 = 0;\r\n      if (0 < iVar8) {\r\n        iVar11 = this->width;\r\n        do {\r\n          iVar10 = 0;\r\n          if (0 < iVar11) {\r\n            DVar3 = this->defaultAttr;\r\n            pWVar2 = this->wordPtr[local_14];\r\n            do {\r\n              pWVar2[iVar10] = (WORD)DVar3;\r\n              iVar10 = iVar10 + 1;\r\n            } while (iVar10 < iVar11);\r\n          }\r\n          local_14 = local_14 + 1;\r\n        } while (local_14 < iVar8);\r\n      }\r\n    }\r\n    else if (iVar8 < 2) {\r\n      if (iVar8 == 0) {\r\n        ppDVar6 = operator_new__(this->height << 2);\r\n        this->dwordPtr = ppDVar6;\r\n        iVar11 = 1;\r\n        *ppDVar6 = this->data;\r\n        iVar8 = this->height;\r\n        if (1 < iVar8) {\r\n          iVar10 = this->width;\r\n          do {\r\n            ppDVar6[iVar11] = ppDVar6[iVar11 + -1] + iVar10;\r\n            iVar11 = iVar11 + 1;\r\n          } while (iVar11 < iVar8);\r\n        }\r\n        iVar11 = 0;\r\n        if (0 < iVar8) {\r\n          iVar10 = this->width;\r\n          do {\r\n            iVar9 = 0;\r\n            if (0 < iVar10) {\r\n              pDVar1 = this->dwordPtr[iVar11];\r\n              do {\r\n                pDVar1[iVar9] = this->defaultAttr;\r\n                iVar9 = iVar9 + 1;\r\n              } while (iVar9 < iVar10);\r\n            }\r\n            iVar11 = iVar11 + 1;\r\n          } while (iVar11 < iVar8);\r\n        }\r\n      }\r\n    }\r\n    else if (iVar8 == 2) {\r\n      ppBVar5 = operator_new__(this->height << 2);\r\n      this->bytePtr = ppBVar5;\r\n      local_24 = this->height;\r\n      iVar8 = 1;\r\n      *ppBVar5 = this->data;\r\n      if (1 < local_24) {\r\n        iVar11 = this->width;\r\n        do {\r\n          ppBVar5[iVar8] = ppBVar5[iVar8 + -1] + iVar11;\r\n          iVar8 = iVar8 + 1;\r\n        } while (iVar8 < local_24);\r\n      }\r\n      if (0 < local_24) {\r\n        iVar8 = this->width;\r\n        iVar11 = 0;\r\n        do {\r\n          iVar10 = 0;\r\n          if (0 < iVar8) {\r\n            do {\r\n              this->bytePtr[iVar11][iVar10] = (BYTE)this->defaultAttr;\r\n              iVar8 = this->width;\r\n              iVar10 = iVar10 + 1;\r\n            } while (iVar10 < iVar8);\r\n            local_24 = this->height;\r\n          }\r\n          iVar11 = iVar11 + 1;\r\n        } while (iVar11 < local_24);\r\n      }\r\n    }\r\n  }\r\n  else {\r\n    if (iVar8 < 2) {\r\n      if (iVar8 == 0) {\r\n        __size = this->height * this->width * 4;\r\n        goto LAB_081f5240;\r\n      }\r\n    }\r\n    else if (iVar8 == 2) {\r\n      __size = this->height * this->width;\r\n      goto LAB_081f5240;\r\n    }\r\n    __assert(\"Alloc\",\"attribute.cpp\",0x26);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::CAttribute",
+        "address": "081f5450"
+      },
+      "code": "\r\n/* CAttribute::CAttribute(int, int) */\r\n\r\nvoid __thiscall CAttribute::CAttribute(CAttribute *this,int param_1,int param_2)\r\n\r\n{\r\n  Initialize(this,param_1,param_2);\r\n  Alloc(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::CAttribute",
+        "address": "081f5480"
+      },
+      "code": "\r\n/* CAttribute::CAttribute(int, int) */\r\n\r\nvoid __thiscall CAttribute::CAttribute(CAttribute *this,int param_1,int param_2)\r\n\r\n{\r\n  Initialize(this,param_1,param_2);\r\n  Alloc(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::CAttribute",
+        "address": "081f54b0"
+      },
+      "code": "\r\n/* CAttribute::CAttribute(unsigned long*, int, int) */\r\n\r\nvoid __thiscall CAttribute::CAttribute(CAttribute *this,ulong *param_1,int param_2,int param_3)\r\n\r\n{\r\n  uint *puVar1;\r\n  WORD *pWVar2;\r\n  ulong uVar3;\r\n  int iVar4;\r\n  uint uVar5;\r\n  int iVar6;\r\n  \r\n  Initialize(this,param_2,param_3);\r\n  iVar4 = 0;\r\n  iVar6 = param_3 * param_2;\r\n  if (0 < iVar6) {\r\n    do {\r\n      if (*param_1 != param_1[iVar4]) break;\r\n      iVar4 = iVar4 + 1;\r\n    } while (iVar4 < iVar6);\r\n  }\r\n  if (iVar4 == iVar6) {\r\n    this->defaultAttr = *param_1;\r\n  }\r\n  else {\r\n    uVar5 = 0;\r\n    iVar4 = 0;\r\n    if (0 < iVar6) {\r\n      do {\r\n        puVar1 = param_1 + iVar4;\r\n        iVar4 = iVar4 + 1;\r\n        uVar5 = uVar5 | *puVar1;\r\n      } while (iVar4 < iVar6);\r\n    }\r\n    if ((uVar5 & 0xffffff00) == 0) {\r\n      this->dataType = 2;\r\n    }\r\n    else {\r\n      this->dataType = (uint)((uVar5 & 0xffff0000) == 0);\r\n    }\r\n    Alloc(this);\r\n    iVar4 = this->dataType;\r\n    if (iVar4 == 0) {\r\n      (*thecore_memcpy)(this->data,param_1,param_2 * param_3 * 4);\r\n    }\r\n    else if (iVar4 == 2) {\r\n      iVar4 = 0;\r\n      if (0 < param_3) {\r\n        do {\r\n          iVar6 = 0;\r\n          if (0 < param_2) {\r\n            do {\r\n              uVar3 = *param_1;\r\n              param_1 = param_1 + 1;\r\n              this->bytePtr[iVar4][iVar6] = (BYTE)uVar3;\r\n              iVar6 = iVar6 + 1;\r\n            } while (iVar6 < param_2);\r\n          }\r\n          iVar4 = iVar4 + 1;\r\n        } while (iVar4 < param_3);\r\n      }\r\n    }\r\n    else if ((iVar4 == 1) && (iVar4 = 0, 0 < param_3)) {\r\n      do {\r\n        iVar6 = 0;\r\n        if (0 < param_2) {\r\n          pWVar2 = this->wordPtr[iVar4];\r\n          do {\r\n            uVar3 = *param_1;\r\n            param_1 = param_1 + 1;\r\n            pWVar2[iVar6] = (WORD)uVar3;\r\n            iVar6 = iVar6 + 1;\r\n          } while (iVar6 < param_2);\r\n        }\r\n        iVar4 = iVar4 + 1;\r\n      } while (iVar4 < param_3);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::CAttribute",
+        "address": "081f5610"
+      },
+      "code": "\r\n/* CAttribute::CAttribute(unsigned long*, int, int) */\r\n\r\nvoid __thiscall CAttribute::CAttribute(CAttribute *this,ulong *param_1,int param_2,int param_3)\r\n\r\n{\r\n  uint *puVar1;\r\n  WORD *pWVar2;\r\n  ulong uVar3;\r\n  int iVar4;\r\n  uint uVar5;\r\n  int iVar6;\r\n  \r\n  Initialize(this,param_2,param_3);\r\n  iVar4 = 0;\r\n  iVar6 = param_3 * param_2;\r\n  if (0 < iVar6) {\r\n    do {\r\n      if (*param_1 != param_1[iVar4]) break;\r\n      iVar4 = iVar4 + 1;\r\n    } while (iVar4 < iVar6);\r\n  }\r\n  if (iVar4 == iVar6) {\r\n    this->defaultAttr = *param_1;\r\n  }\r\n  else {\r\n    uVar5 = 0;\r\n    iVar4 = 0;\r\n    if (0 < iVar6) {\r\n      do {\r\n        puVar1 = param_1 + iVar4;\r\n        iVar4 = iVar4 + 1;\r\n        uVar5 = uVar5 | *puVar1;\r\n      } while (iVar4 < iVar6);\r\n    }\r\n    if ((uVar5 & 0xffffff00) == 0) {\r\n      this->dataType = 2;\r\n    }\r\n    else {\r\n      this->dataType = (uint)((uVar5 & 0xffff0000) == 0);\r\n    }\r\n    Alloc(this);\r\n    iVar4 = this->dataType;\r\n    if (iVar4 == 0) {\r\n      (*thecore_memcpy)(this->data,param_1,param_2 * param_3 * 4);\r\n    }\r\n    else if (iVar4 == 2) {\r\n      iVar4 = 0;\r\n      if (0 < param_3) {\r\n        do {\r\n          iVar6 = 0;\r\n          if (0 < param_2) {\r\n            do {\r\n              uVar3 = *param_1;\r\n              param_1 = param_1 + 1;\r\n              this->bytePtr[iVar4][iVar6] = (BYTE)uVar3;\r\n              iVar6 = iVar6 + 1;\r\n            } while (iVar6 < param_2);\r\n          }\r\n          iVar4 = iVar4 + 1;\r\n        } while (iVar4 < param_3);\r\n      }\r\n    }\r\n    else if ((iVar4 == 1) && (iVar4 = 0, 0 < param_3)) {\r\n      do {\r\n        iVar6 = 0;\r\n        if (0 < param_2) {\r\n          pWVar2 = this->wordPtr[iVar4];\r\n          do {\r\n            uVar3 = *param_1;\r\n            param_1 = param_1 + 1;\r\n            pWVar2[iVar6] = (WORD)uVar3;\r\n            iVar6 = iVar6 + 1;\r\n          } while (iVar6 < param_2);\r\n        }\r\n        iVar4 = iVar4 + 1;\r\n      } while (iVar4 < param_3);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::~CAttribute",
+        "address": "081f5770"
+      },
+      "code": "\r\n/* CAttribute::~CAttribute() */\r\n\r\nvoid __thiscall CAttribute::~CAttribute(CAttribute *this)\r\n\r\n{\r\n  if (this->data != (void *)0x0) {\r\n    free(this->data);\r\n  }\r\n  if (this->bytePtr != (BYTE **)0x0) {\r\n    operator_delete__(this->bytePtr);\r\n  }\r\n  if (this->wordPtr != (WORD **)0x0) {\r\n    operator_delete__(this->wordPtr);\r\n  }\r\n  if (this->dwordPtr == (DWORD **)0x0) {\r\n    return;\r\n  }\r\n  operator_delete__(this->dwordPtr);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::~CAttribute",
+        "address": "081f57e0"
+      },
+      "code": "\r\n/* CAttribute::~CAttribute() */\r\n\r\nvoid __thiscall CAttribute::~CAttribute(CAttribute *this)\r\n\r\n{\r\n  if (this->data != (void *)0x0) {\r\n    free(this->data);\r\n  }\r\n  if (this->bytePtr != (BYTE **)0x0) {\r\n    operator_delete__(this->bytePtr);\r\n  }\r\n  if (this->wordPtr != (WORD **)0x0) {\r\n    operator_delete__(this->wordPtr);\r\n  }\r\n  if (this->dwordPtr == (DWORD **)0x0) {\r\n    return;\r\n  }\r\n  operator_delete__(this->dwordPtr);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::GetDataType",
+        "address": "081f5850"
+      },
+      "code": "\r\n/* CAttribute::GetDataType() */\r\n\r\nint __thiscall CAttribute::GetDataType(CAttribute *this)\r\n\r\n{\r\n  return this->dataType;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::GetDataPtr",
+        "address": "081f5860"
+      },
+      "code": "\r\n/* CAttribute::GetDataPtr() */\r\n\r\nvoid * __thiscall CAttribute::GetDataPtr(CAttribute *this)\r\n\r\n{\r\n  return this->data;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::Set",
+        "address": "081f5870"
+      },
+      "code": "\r\n/* CAttribute::Set(int, int, unsigned long) */\r\n\r\nvoid __thiscall CAttribute::Set(CAttribute *this,int param_1,int param_2,ulong param_3)\r\n\r\n{\r\n  byte *pbVar1;\r\n  WORD *pWVar2;\r\n  \r\n  if ((param_1 <= this->width) && (param_2 <= this->height)) {\r\n    if (this->data == (void *)0x0) {\r\n      Alloc(this);\r\n    }\r\n    if (this->bytePtr == (BYTE **)0x0) {\r\n      if (this->wordPtr == (WORD **)0x0) {\r\n        this->dwordPtr[param_2][param_1] = this->dwordPtr[param_2][param_1] | param_3;\r\n      }\r\n      else {\r\n        pWVar2 = this->wordPtr[param_2];\r\n        pWVar2[param_1] = (ushort)param_3 | pWVar2[param_1];\r\n      }\r\n    }\r\n    else {\r\n      pbVar1 = this->bytePtr[param_2] + param_1;\r\n      *pbVar1 = *pbVar1 | (byte)param_3;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::Remove",
+        "address": "081f5900"
+      },
+      "code": "\r\n/* CAttribute::Remove(int, int, unsigned long) */\r\n\r\nvoid __thiscall CAttribute::Remove(CAttribute *this,int param_1,int param_2,ulong param_3)\r\n\r\n{\r\n  byte *pbVar1;\r\n  WORD *pWVar2;\r\n  \r\n  if (((param_1 <= this->width) && (param_2 <= this->height)) && (this->data != (void *)0x0)) {\r\n    if (this->bytePtr == (BYTE **)0x0) {\r\n      if (this->wordPtr == (WORD **)0x0) {\r\n        this->dwordPtr[param_2][param_1] = this->dwordPtr[param_2][param_1] & ~param_3;\r\n      }\r\n      else {\r\n        pWVar2 = this->wordPtr[param_2];\r\n        pWVar2[param_1] = ~(ushort)param_3 & pWVar2[param_1];\r\n      }\r\n    }\r\n    else {\r\n      pbVar1 = this->bytePtr[param_2] + param_1;\r\n      *pbVar1 = *pbVar1 & ~(byte)param_3;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::Get",
+        "address": "081f5970"
+      },
+      "code": "\r\n/* CAttribute::Get(int, int) */\r\n\r\nuint __thiscall CAttribute::Get(CAttribute *this,int param_1,int param_2)\r\n\r\n{\r\n  uint uVar1;\r\n  \r\n  if ((this->width < param_1) || (this->height < param_2)) {\r\n    uVar1 = 0;\r\n  }\r\n  else if (this->data == (void *)0x0) {\r\n    uVar1 = this->defaultAttr;\r\n  }\r\n  else if (this->bytePtr == (BYTE **)0x0) {\r\n    if (this->wordPtr == (WORD **)0x0) {\r\n      uVar1 = this->dwordPtr[param_2][param_1];\r\n    }\r\n    else {\r\n      uVar1 = (uint)this->wordPtr[param_2][param_1];\r\n    }\r\n  }\r\n  else {\r\n    uVar1 = (uint)this->bytePtr[param_2][param_1];\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    {
+      "function": {
+        "name": "CAttribute::CopyRow",
+        "address": "081f59d0"
+      },
+      "code": "\r\n/* CAttribute::CopyRow(int, unsigned long*) */\r\n\r\nvoid __thiscall CAttribute::CopyRow(CAttribute *this,int param_1,ulong *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  BYTE *pBVar2;\r\n  WORD *pWVar3;\r\n  int iVar4;\r\n  \r\n  if (this->data == (void *)0x0) {\r\n    iVar1 = this->width;\r\n    iVar4 = 0;\r\n    if (0 < iVar1) {\r\n      do {\r\n        param_2[iVar4] = this->defaultAttr;\r\n        iVar4 = iVar4 + 1;\r\n      } while (iVar4 < iVar1);\r\n    }\r\n  }\r\n  else if (this->dwordPtr == (DWORD **)0x0) {\r\n    if (this->bytePtr == (BYTE **)0x0) {\r\n      if (this->wordPtr != (WORD **)0x0) {\r\n        iVar1 = this->width;\r\n        iVar4 = 0;\r\n        if (0 < iVar1) {\r\n          pWVar3 = this->wordPtr[param_1];\r\n          do {\r\n            param_2[iVar4] = (uint)pWVar3[iVar4];\r\n            iVar4 = iVar4 + 1;\r\n          } while (iVar4 < iVar1);\r\n        }\r\n      }\r\n    }\r\n    else {\r\n      iVar1 = this->width;\r\n      iVar4 = 0;\r\n      if (0 < iVar1) {\r\n        pBVar2 = this->bytePtr[param_1];\r\n        do {\r\n          param_2[iVar4] = (uint)pBVar2[iVar4];\r\n          iVar4 = iVar4 + 1;\r\n        } while (iVar4 < iVar1);\r\n      }\r\n    }\r\n  }\r\n  else {\r\n    (*thecore_memcpy)(param_2,this->dwordPtr[param_1],this->width << 2);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    }
+  ]
+}

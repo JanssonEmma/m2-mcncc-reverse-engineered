@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081930c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81930c0",
+    "function": {
+      "name": "ITEM_MANAGER::RealNumber",
+      "address": "081930c0"
+    },
+    "signature": "int RealNumber(ITEM_MANAGER * this, DWORD vnum)",
+    "code": "\r\n/* DWARF original prototype: int RealNumber(ITEM_MANAGER * this, DWORD vnum) */\r\n\r\nint __thiscall ITEM_MANAGER::RealNumber(ITEM_MANAGER *this,DWORD vnum)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  \r\n                    /* Unresolved local var: int bot@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int top@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int mid@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: TItemTable * pTable@[???] */\r\n  pTVar1 = (this->m_vec_prototype).super__Vector_base<SItemTable,std::allocator<SItemTable>_>.\r\n           super__Vector_alloc_base<SItemTable,std::allocator<SItemTable>,true>._M_start;\r\n  iVar5 = ((int)(this->m_vec_prototype).super__Vector_base<SItemTable,std::allocator<SItemTable>_>.\r\n                super__Vector_alloc_base<SItemTable,std::allocator<SItemTable>,true>._M_finish -\r\n           (int)pTVar1 >> 1) * 0x3f2b3885;\r\n  iVar6 = 0;\r\n  while( true ) {\r\n    iVar4 = iVar5 + iVar6 >> 1;\r\n    uVar2 = pTVar1[iVar4].dwVnum;\r\n    iVar3 = iVar4;\r\n    if ((uVar2 == vnum) || (iVar3 = -1, iVar5 <= iVar6)) break;\r\n    if (vnum < uVar2) {\r\n      iVar5 = iVar4 + -1;\r\n    }\r\n    else {\r\n      iVar6 = iVar4 + 1;\r\n    }\r\n  }\r\n  return iVar3;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

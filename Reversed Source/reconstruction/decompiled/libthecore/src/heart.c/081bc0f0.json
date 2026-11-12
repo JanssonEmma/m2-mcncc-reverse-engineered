@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081bc0f0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "heart_idle",
+      "address": "081bc0f0"
+    },
+    "code": "\r\nint heart_idle(heart *ht)\r\n\r\n{\r\n  long lVar1;\r\n  timeval *ptVar2;\r\n  timeval *ptVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  timeval timeout;\r\n  timeval now;\r\n  timeval temp_time;\r\n  timeval process_time;\r\n  \r\n                    /* Unresolved local var: int missed_pulse@[DW_OP_reg6(ESI)] */\r\n  ptVar3 = &ht->before_sleep;\r\n  gettimeofday((timeval *)ptVar3,(__timezone_ptr_t)0x0);\r\n  ptVar2 = timediff(ptVar3,&ht->last_time);\r\n  process_time.tv_usec = ptVar2->tv_usec;\r\n  if (ptVar2->tv_sec == 0) {\r\n    iVar5 = (ht->opt_time).tv_usec;\r\n    if (process_time.tv_usec < iVar5) {\r\n      iVar4 = 0;\r\n      goto LAB_081bc150;\r\n    }\r\n  }\r\n  else {\r\n    iVar5 = (ht->opt_time).tv_usec;\r\n  }\r\n  iVar4 = process_time.tv_usec / iVar5;\r\n  process_time.tv_usec = process_time.tv_usec % iVar5;\r\n  iVar4 = ptVar2->tv_sec * ht->passes_per_sec + iVar4;\r\nLAB_081bc150:\r\n  process_time.tv_sec = 0;\r\n  iVar4 = iVar4 + 1;\r\n  ptVar2 = timediff(&ht->opt_time,&process_time);\r\n  temp_time.tv_usec = ptVar2->tv_usec;\r\n  temp_time.tv_sec = ptVar2->tv_sec;\r\n  ptVar3 = timeadd(ptVar3,&temp_time);\r\n  lVar1 = ptVar3->tv_sec;\r\n  (ht->last_time).tv_usec = ptVar3->tv_usec;\r\n  (ht->last_time).tv_sec = lVar1;\r\n  gettimeofday((timeval *)&now,(__timezone_ptr_t)0x0);\r\n  ptVar3 = timediff(&ht->last_time,&now);\r\n  timeout.tv_usec = ptVar3->tv_usec;\r\n  timeout.tv_sec = ptVar3->tv_sec;\r\n  thecore_sleep(&timeout);\r\n  iVar5 = iVar4;\r\n  if (iVar4 < 1) {\r\n    iVar5 = 1;\r\n    _sys_err(\"heart_idle\",0x4d,\"missed_pulse is not positive! (%d)\",iVar4);\r\n  }\r\n  if (ht->passes_per_sec * 0x1e < iVar5) {\r\n    _sys_err(\"heart_idle\",0x53,\"losing %d seconds. (lag occured)\",iVar5 / ht->passes_per_sec);\r\n    iVar5 = ht->passes_per_sec * 0x1e;\r\n  }\r\n  return iVar5;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

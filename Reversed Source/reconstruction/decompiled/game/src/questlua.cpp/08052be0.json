@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08052be0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "highscore_show",
+      "address": "08052be0"
+    },
+    "code": "\r\nint highscore_show(lua_State *L)\r\n\r\n{\r\n  DWORD dwIdent;\r\n  CQuestManager *pCVar1;\r\n  char *pcVar2;\r\n  char *pcVar3;\r\n  char *pcVar4;\r\n  undefined1 *puVar5;\r\n  lua_Number lVar6;\r\n  DWORD mypid;\r\n  char *pszBoardName;\r\n  \r\n                    /* Unresolved local var: CQuestManager * q@[???]\r\n                       Unresolved local var: bool bOrder@[DW_OP_reg3(EBX)] */\r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar1 = singleton<quest::CQuestManager>::ms_singleton;\r\n  pcVar2 = lua_tostring(L,1);\r\n  dwIdent = *(DWORD *)(*(int *)(pCVar1 + 0x7c) + 0xf0);\r\n  lVar6 = lua_tonumber(L,2);\r\n  pcVar3 = get_table_postfix();\r\n  pcVar4 = get_table_postfix();\r\n  if (singleton<DBManager>::ms_singleton == (DBManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  puVar5 = &DAT_081f6327;\r\n  if ((int)ROUND(lVar6) == 0) {\r\n    puVar5 = &DAT_081f5c80;\r\n  }\r\n  DBManager::ReturnQuery\r\n            (singleton<DBManager>::ms_singleton,5,dwIdent,(void *)0x0,\r\n             \"SELECT h.pid, p.name, h.value FROM highscore%s as h, player%s as p WHERE h.board = \\'%s\\' AND h.pid = p.id ORDER BY h.value %s LIMIT 10\"\r\n             ,pcVar4,pcVar3,pcVar2,puVar5);\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

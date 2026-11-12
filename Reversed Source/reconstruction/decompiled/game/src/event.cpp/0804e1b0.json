@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804e1b0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Rb_tree_rebalance",
+      "address": "0804e1b0"
+    },
+    "code": "\r\nvoid _Rb_tree_rebalance(_Rb_tree_node_base *__x,_Rb_tree_node_base **__root)\r\n\r\n{\r\n  _Rb_tree_node_base *__x_00;\r\n  _Rb_tree_color _Var1;\r\n  _Rb_tree_node_base *p_Var2;\r\n  _Rb_tree_node_base *p_Var3;\r\n  _Rb_tree_node_base *p_Var4;\r\n  \r\n  p_Var3 = *__root;\r\n  __x->_M_color = _M_red;\r\n  if (__x != p_Var3) {\r\n    __x_00 = __x->_M_parent;\r\n    _Var1 = __x_00->_M_color;\r\n    while (_Var1 == _M_red) {\r\n      p_Var4 = __x_00->_M_parent;\r\n      p_Var2 = p_Var4->_M_left;\r\n      if (__x_00 == p_Var2) {\r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[DW_OP_reg2(EDX)] */\r\n        p_Var2 = p_Var4->_M_right;\r\n        if ((p_Var2 == (_Rb_tree_node_base *)0x0) || (p_Var2->_M_color != _M_red)) {\r\n          p_Var3 = __x_00;\r\n          p_Var4 = __x;\r\n          if (__x == __x_00->_M_right) {\r\n            _Rb_tree_rotate_left(__x_00,__root);\r\n            p_Var3 = __x_00->_M_parent;\r\n            p_Var4 = __x_00;\r\n          }\r\n          p_Var3->_M_color = _M_black;\r\n          p_Var3->_M_parent->_M_color = _M_red;\r\n          _Rb_tree_rotate_right(p_Var4->_M_parent->_M_parent,__root);\r\n          goto LAB_0804e259;\r\n        }\r\nLAB_0804e1f7:\r\n        __x_00->_M_color = _M_black;\r\n        p_Var2->_M_color = _M_black;\r\n        p_Var4->_M_color = _M_red;\r\n      }\r\n      else {\r\n                    /* Unresolved local var: _Rb_tree_node_base * __y@[???] */\r\n        if ((p_Var2 != (_Rb_tree_node_base *)0x0) && (p_Var2->_M_color == _M_red))\r\n        goto LAB_0804e1f7;\r\n        p_Var3 = __x_00;\r\n        p_Var4 = __x;\r\n        if (__x == __x_00->_M_left) {\r\n          _Rb_tree_rotate_right(__x_00,__root);\r\n          p_Var3 = __x_00->_M_parent;\r\n          p_Var4 = __x_00;\r\n        }\r\n        p_Var3->_M_color = _M_black;\r\n        p_Var3->_M_parent->_M_color = _M_red;\r\n        _Rb_tree_rotate_left(p_Var4->_M_parent->_M_parent,__root);\r\nLAB_0804e259:\r\n        p_Var3 = *__root;\r\n      }\r\n      if (p_Var4 == p_Var3) break;\r\n      __x_00 = p_Var4->_M_parent;\r\n      __x = p_Var4;\r\n      _Var1 = __x_00->_M_color;\r\n    }\r\n  }\r\n  p_Var3->_M_color = _M_black;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

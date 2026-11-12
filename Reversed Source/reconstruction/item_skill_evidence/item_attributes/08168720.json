@@ -1,0 +1,59 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::ApplyAddon\",\n    \"address\": \"08168720\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void ApplyAddon(CItem * this, int iAddonType) */\\r\\n\\r\\nvoid __thiscall CItem::ApplyAddon(CItem *this,int iAddonType)\\r\\n\\r\\n{\\r\\n  if (singleton<CItemAddonManager>::ms_singleton == (CItemAddonManager *)0x0) {\\r\\n    __assert(\\\"instance\\\",\\\"../../common/singleton.h\\\",0x1a);\\r\\n  }\\r\\n  CItemAddonManager::ApplyAddonTo(singleton<CItemAddonManager>::ms_singleton,iAddonType,this);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::ApplyAddon",
+        "address": "08168720"
+      },
+      "code": "\r\n/* DWARF original prototype: void ApplyAddon(CItem * this, int iAddonType) */\r\n\r\nvoid __thiscall CItem::ApplyAddon(CItem *this,int iAddonType)\r\n\r\n{\r\n  if (singleton<CItemAddonManager>::ms_singleton == (CItemAddonManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  CItemAddonManager::ApplyAddonTo(singleton<CItemAddonManager>::ms_singleton,iAddonType,this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::ApplyAddon\",\n    \"address\": \"08168720\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"08168741\",\n        \"target\": \"0816e880\",\n        \"name\": \"CItemAddonManager::ApplyAddonTo\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08168772\",\n        \"target\": \"0804c9ac\",\n        \"name\": \"<EXTERNAL>::__assert\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": true\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 2,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::ApplyAddon",
+        "address": "08168720"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "08168741",
+            "target": "0816e880",
+            "name": "CItemAddonManager::ApplyAddonTo",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08168772",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 2,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

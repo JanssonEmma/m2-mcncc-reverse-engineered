@@ -1,0 +1,189 @@
+
+/* DWARF original prototype: LPITEM AutoGiveItem(CHARACTER * this, DWORD dwItemVnum, BYTE bCount,
+   int iRarePct, bool bMsg) */
+
+LPITEM __thiscall
+CHARACTER::AutoGiveItem(CHARACTER *this,DWORD dwItemVnum,BYTE bCount,int iRarePct,bool bMsg)
+
+{
+  DWORD DVar1;
+  DWORD DVar2;
+  BYTE BVar3;
+  bool bVar4;
+  TItemTable *pTVar5;
+  LPITEM pCVar6;
+  char *pcVar7;
+  LPITEM this_00;
+  DWORD DVar8;
+  uint uVar9;
+  DWORD DVar10;
+  int iVar11;
+  char *local_30;
+  int iEmptyCell;
+  LPITEM item;
+  bool bMsg_local;
+  BYTE bCount_local;
+  TQuickslot slot;
+  TQuickslot *pSlot;
+  
+                    /* Unresolved local var: TItemTable * p@[DW_OP_reg3(EBX)] */
+  bCount_local = bCount;
+  if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {
+    __assert("instance","../../common/singleton.h",0x1a);
+  }
+  pTVar5 = ITEM_MANAGER::GetTable(singleton<ITEM_MANAGER>::ms_singleton,dwItemVnum);
+  pCVar6 = (LPITEM)0x0;
+  if (pTVar5 != (TItemTable *)0x0) {
+    if (singleton<DBManager>::ms_singleton == (DBManager *)0x0) {
+      __assert("instance","../../common/singleton.h",0x1a);
+    }
+    DBManager::SendMoneyLog(singleton<DBManager>::ms_singleton,'\b',dwItemVnum,(uint)bCount);
+    if (((pTVar5->dwFlags & 4) != 0) && (pTVar5->bType != '\x1b')) {
+                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */
+      iVar11 = 0;
+      do {
+                    /* Unresolved local var: LPITEM item@[DW_OP_reg6(ESI)] */
+        pCVar6 = GetItem(this,(BYTE)iVar11);
+        if (pCVar6 != (LPITEM)0x0) {
+          DVar10 = 0;
+          if (pCVar6->m_pProto != (TItemTable *)0x0) {
+            DVar10 = pCVar6->m_pProto->dwVnum;
+          }
+          if ((DVar10 == dwItemVnum) && (bVar4 = FN_check_item_socket(pCVar6), bVar4)) {
+                    /* Unresolved local var: BYTE bCount2@[DW_OP_reg0(EAX)] */
+            uVar9 = MIN(200 - pCVar6->m_dwCount,(uint)bCount_local);
+            bCount_local = bCount_local - (char)uVar9;
+            CItem::SetCount(pCVar6,(uVar9 & 0xff) + pCVar6->m_dwCount);
+            if (bCount_local == '\0') {
+              if (!bMsg) {
+                return pCVar6;
+              }
+              pTVar5 = pCVar6->m_pProto;
+              pcVar7 = locale_find(&DAT_0822ddf9,g_iUseLocale);
+              ChatPacket(this,'\x01',pcVar7,
+                         (uint)pTVar5->szLocaleName & (pTVar5 == (TItemTable *)0x0) - 1);
+              return pCVar6;
+            }
+          }
+        }
+        iVar11 = iVar11 + 1;
+      } while (iVar11 < 0x5a);
+    }
+    if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {
+      __assert("instance","../../common/singleton.h",0x1a);
+    }
+    pCVar6 = ITEM_MANAGER::CreateItem
+                       (singleton<ITEM_MANAGER>::ms_singleton,dwItemVnum,(uint)bCount_local,0,true,
+                        -1);
+    if (pCVar6 == (LPITEM)0x0) {
+      pcVar7 = GetName(this);
+      _sys_err("AutoGiveItem",0x15a0,"cannot create item by vnum %lu (name: %s)",dwItemVnum,pcVar7);
+      pCVar6 = (LPITEM)0x0;
+    }
+    else {
+      pTVar5 = pCVar6->m_pProto;
+      BVar3 = '\0';
+      if (pTVar5 != (TItemTable *)0x0) {
+        BVar3 = pTVar5->bType;
+      }
+      if (BVar3 == '\x1b') {
+                    /* Unresolved local var: int i@[DW_OP_reg6(ESI)] */
+        iVar11 = 0;
+        do {
+                    /* Unresolved local var: LPITEM inv_item@[DW_OP_reg3(EBX)] */
+          this_00 = GetItem(this,(BYTE)iVar11);
+          if (this_00 != (LPITEM)0x0) {
+            pTVar5 = this_00->m_pProto;
+            BVar3 = '\0';
+            if (pTVar5 != (TItemTable *)0x0) {
+              BVar3 = pTVar5->bType;
+            }
+            if (BVar3 == '\x1b') {
+              DVar10 = 0;
+              if (pTVar5 != (TItemTable *)0x0) {
+                DVar10 = pTVar5->dwVnum;
+              }
+              DVar8 = 0;
+              if (pCVar6->m_pProto != (TItemTable *)0x0) {
+                DVar8 = pCVar6->m_pProto->dwVnum;
+              }
+              if ((((DVar10 == DVar8) && (this_00->m_alSockets[0] == pCVar6->m_alSockets[0])) &&
+                  (this_00->m_alSockets[1] == pCVar6->m_alSockets[1])) &&
+                 ((this_00->m_alSockets[2] == pCVar6->m_alSockets[2] && (this_00->m_dwCount < 200)))
+                 ) {
+                CItem::SetCount(this_00,this_00->m_dwCount + pCVar6->m_dwCount);
+                return this_00;
+              }
+            }
+          }
+          iVar11 = iVar11 + 1;
+        } while (iVar11 < 0x5a);
+        pTVar5 = pCVar6->m_pProto;
+      }
+      BVar3 = '\0';
+      if (pTVar5 != (TItemTable *)0x0) {
+        BVar3 = pTVar5->bSize;
+      }
+      iVar11 = GetEmptyInventory(this,BVar3);
+      if (iVar11 == -1) {
+        CItem::AddToGround(pCVar6,(this->super_CEntity).m_lMapIndex,&(this->super_CEntity).m_pos);
+        CItem::StartDestroyEvent(pCVar6);
+        CItem::SetOwnership(pCVar6,this,0x3c);
+        local_30 = (char *)0x0;
+        if (pCVar6->m_pProto != (TItemTable *)0x0) {
+          local_30 = pCVar6->m_pProto->szLocaleName;
+        }
+        DVar10 = (this->super_CEntity).m_pos.x;
+        DVar8 = (this->super_CEntity).m_pos.y;
+        DVar1 = pCVar6->m_dwID;
+        DVar2 = this->m_dwPlayerID;
+        if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {
+          __assert("instance","../../common/singleton.h",0x1a);
+        }
+        LogManager::ItemLog(singleton<LogManager>::ms_singleton,DVar2,DVar10,DVar8,DVar1,
+                            "SYSTEM_DROP",local_30);
+      }
+      else {
+        if (bMsg) {
+          pTVar5 = pCVar6->m_pProto;
+          pcVar7 = locale_find(&DAT_0822ddf9,g_iUseLocale);
+          ChatPacket(this,'\x01',pcVar7,
+                     (uint)pTVar5->szLocaleName & (pTVar5 == (TItemTable *)0x0) - 1);
+        }
+        CItem::AddToCharacter(pCVar6,this,(BYTE)iVar11);
+        pTVar5 = pCVar6->m_pProto;
+        DVar10 = pCVar6->m_dwID;
+        DVar8 = (this->super_CEntity).m_pos.x;
+        DVar1 = (this->super_CEntity).m_pos.y;
+        DVar2 = this->m_dwPlayerID;
+        if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {
+          __assert("instance","../../common/singleton.h",0x1a);
+        }
+        LogManager::ItemLog(singleton<LogManager>::ms_singleton,DVar2,DVar8,DVar1,DVar10,"SYSTEM",
+                            (char *)((uint)pTVar5->szLocaleName & (pTVar5 == (TItemTable *)0x0) - 1)
+                           );
+        pTVar5 = pCVar6->m_pProto;
+        BVar3 = '\0';
+        if (pTVar5 != (TItemTable *)0x0) {
+          BVar3 = pTVar5->bType;
+        }
+        if (BVar3 == '\x03') {
+          BVar3 = '\0';
+          if (pTVar5 != (TItemTable *)0x0) {
+            BVar3 = pTVar5->bSubType;
+          }
+          if (((BVar3 == '\0') && (bVar4 = GetQuickslot(this,'\0',&pSlot), bVar4)) &&
+             (pSlot->type == '\0')) {
+            slot.pos = (BYTE)iVar11;
+            slot.type = '\x01';
+            SetQuickslot(this,'\0',&slot);
+          }
+        }
+      }
+      sys_log(0,"7: %d %d",dwItemVnum,(uint)bCount_local);
+    }
+  }
+  return pCVar6;
+}
+
+

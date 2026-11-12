@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08077970",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CMemoryTextFileLoader::GetLineString",
+      "address": "08077970"
+    },
+    "code": "\r\n/* DWARF original prototype: string * GetLineString(CMemoryTextFileLoader * this, DWORD dwLine) */\r\n\r\nstring * __thiscall CMemoryTextFileLoader::GetLineString(CMemoryTextFileLoader *this,DWORD dwLine)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = CheckLineIndex(this,dwLine);\r\n  if (!bVar1) {\r\n    __assert(\"GetLineString\",\"file_loader.cpp\",0x46);\r\n  }\r\n  return (this->m_stLineVector).\r\n         super__Vector_base<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>\r\n         .\r\n         super__Vector_alloc_base<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,true>\r\n         ._M_start + dwLine;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

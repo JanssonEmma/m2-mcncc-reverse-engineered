@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b87d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "log_file_rotate",
+      "address": "081b87d0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid log_file_rotate(LPLOGFILE logfile)\r\n\r\n{\r\n  tm *ptVar1;\r\n  tm *ptVar2;\r\n  FILE *pFVar3;\r\n  int iVar4;\r\n  tm *ptVar5;\r\n  time_t time_s;\r\n  stat stat_buf;\r\n  tm new_tm;\r\n  char system_cmd [128];\r\n  char dir [128];\r\n  tm curr_tm;\r\n  \r\n  time_s = time((time_t *)0x0);\r\n  ptVar1 = localtime(&time_s);\r\n  ptVar2 = &curr_tm;\r\n  for (iVar4 = 0xb; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n    ptVar2->tm_sec = ptVar1->tm_sec;\r\n    ptVar1 = (tm *)&ptVar1->tm_min;\r\n    ptVar2 = (tm *)&ptVar2->tm_min;\r\n  }\r\n  if (curr_tm.tm_mday != logfile->last_day) {\r\n    ptVar2 = tm_calc(&curr_tm,-3);\r\n    ptVar5 = &new_tm;\r\n    for (iVar4 = 0xb; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n      ptVar5->tm_sec = ptVar2->tm_sec;\r\n      ptVar2 = (tm *)&ptVar2->tm_min;\r\n      ptVar5 = (tm *)&ptVar5->tm_min;\r\n    }\r\n    sprintf(system_cmd,\"rm -rf %s/%04d%02d%02d\",log_dir,new_tm.tm_year + 0x76c,new_tm.tm_mon + 1,\r\n            new_tm.tm_mday);\r\n    system(system_cmd);\r\n    sys_log(0,\"SYSTEM_CMD: %s\",system_cmd);\r\n    logfile->last_day = curr_tm.tm_mday;\r\n  }\r\n  if (curr_tm.tm_hour != logfile->last_hour) {\r\n    snprintf(dir,0x80,\"%s/%04d%02d%02d\",log_dir,curr_tm.tm_year + 0x76c,curr_tm.tm_mon + 1,\r\n             curr_tm.tm_mday);\r\n    iVar4 = stat(dir,(stat *)&stat_buf);\r\n    if ((iVar4 != 0) || ((stat_buf.st_mode & 0xf000) == 0x4000)) {\r\n      mkdir(dir,0x1c0);\r\n    }\r\n    sys_log(0,\"SYSTEM: LOG ROTATE (%04d-%02d-%02d %d)\",curr_tm.tm_year + 0x76c,curr_tm.tm_mon + 1,\r\n            curr_tm.tm_mday,logfile->last_hour);\r\n    fclose((FILE *)logfile->fp);\r\n    snprintf(system_cmd,0x80,\"mv %s %s/%s.%02d\",logfile->filename,dir,logfile->filename,\r\n             logfile->last_hour);\r\n    system(system_cmd);\r\n    logfile->last_hour = curr_tm.tm_hour;\r\n    pFVar3 = fopen(logfile->filename,\"a+\");\r\n    logfile->fp = (FILE_conflict *)pFVar3;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

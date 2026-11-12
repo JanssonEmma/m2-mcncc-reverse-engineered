@@ -1,0 +1,15 @@
+# Complete PC storage methods with actual manager queries, flags and real event registry/scheduler.
+PC_QUEST_STORAGE_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) pc_quest_storage_desc_output_syscalls.o
+pc_quest_storage_regression$(EXEEXT): pc_quest_storage_regression.cpp $(TARGET_WALKING_SOURCES) $(PC_QUEST_STORAGE_OBJECTS) ../../game/src/event.cpp ../../game/src/event_queue.cpp ../../game/src/questpc.h
+	$(CXX) -DMCNCC_TEST_REAL_EVENTS -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long pc_quest_storage_regression.cpp $(TARGET_WALKING_SOURCES) $(PC_QUEST_STORAGE_OBJECTS) ../../game/src/event.cpp ../../game/src/event_queue.cpp $(LDFLAGS) -o $@
+pc_quest_storage_desc_output_syscalls.o: pc_quest_storage_desc_output_syscalls.c desc_output_syscalls.c socket_hooks.h fdwatch_shim/assert.h fdwatch_shim/sys/event.h socket_shim/sys/socket.h socket_shim/errno.h
+	$(CC) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CFLAGS) -UNDEBUG -c pc_quest_storage_desc_output_syscalls.c -o $@
+.PHONY: check-pc-quest-storage check-pc-quest-storage-abi clean-pc-quest-storage
+check-pc-quest-storage: pc_quest_storage_regression$(EXEEXT)
+	./pc_quest_storage_regression$(EXEEXT)
+check-abi: check-pc-quest-storage-abi
+check-pc-quest-storage-abi: pc_quest_storage_abi.cpp ../../game/src/questpc.h ../../game/src/questmanager.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -m32 -Wno-invalid-offsetof -fsyntax-only pc_quest_storage_abi.cpp
+clean: clean-pc-quest-storage
+clean-pc-quest-storage:
+	$(RM) pc_quest_storage_regression$(EXEEXT) pc_quest_storage_desc_output_syscalls.o

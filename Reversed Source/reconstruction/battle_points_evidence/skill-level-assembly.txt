@@ -1,0 +1,53 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08073560 <_ZN9CHARACTER13GetSkillLevelEm>:
+ 8073560:	55                   	push   %ebp
+ 8073561:	89 e5                	mov    %esp,%ebp
+ 8073563:	83 ec 28             	sub    $0x28,%esp
+ 8073566:	89 5d f8             	mov    %ebx,-0x8(%ebp)
+ 8073569:	8b 5d 0c             	mov    0xc(%ebp),%ebx
+ 807356c:	89 75 fc             	mov    %esi,-0x4(%ebp)
+ 807356f:	8b 75 08             	mov    0x8(%ebp),%esi
+ 8073572:	81 fb fe 00 00 00    	cmp    $0xfe,%ebx
+ 8073578:	77 2c                	ja     80735a6 <_ZN9CHARACTER13GetSkillLevelEm+0x46>
+ 807357a:	8b 96 5c 0d 00 00    	mov    0xd5c(%esi),%edx
+ 8073580:	31 c0                	xor    %eax,%eax
+ 8073582:	85 d2                	test   %edx,%edx
+ 8073584:	74 08                	je     807358e <_ZN9CHARACTER13GetSkillLevelEm+0x2e>
+ 8073586:	8d 04 5b             	lea    (%ebx,%ebx,2),%eax
+ 8073589:	0f b6 44 42 01       	movzbl 0x1(%edx,%eax,2),%eax
+ 807358e:	89 45 0c             	mov    %eax,0xc(%ebp)
+ 8073591:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 8073594:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8073597:	c7 45 08 28 00 00 00 	movl   $0x28,0x8(%ebp)
+ 807359e:	89 ec                	mov    %ebp,%esp
+ 80735a0:	5d                   	pop    %ebp
+ 80735a1:	e9 ba 5c 14 00       	jmp    81b9260 <MIN>
+ 80735a6:	89 34 24             	mov    %esi,(%esp)
+ 80735a9:	e8 82 43 0b 00       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 80735ae:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 80735b2:	b8 c2 9c 1f 08       	mov    $0x81f9cc2,%eax
+ 80735b7:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 80735bb:	b8 36 0a 00 00       	mov    $0xa36,%eax
+ 80735c0:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+ 80735c4:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80735c8:	c7 04 24 c9 9e 1f 08 	movl   $0x81f9ec9,(%esp)
+ 80735cf:	e8 7c 4b 14 00       	call   81b8150 <_sys_err>
+ 80735d4:	89 34 24             	mov    %esi,(%esp)
+ 80735d7:	e8 54 43 0b 00       	call   8127930 <_ZN9CHARACTER7GetNameEv>
+ 80735dc:	89 5c 24 0c          	mov    %ebx,0xc(%esp)
+ 80735e0:	bb c2 9c 1f 08       	mov    $0x81f9cc2,%ebx
+ 80735e5:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 80735e9:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 80735ed:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 80735f4:	e8 a7 4c 14 00       	call   81b82a0 <sys_log>
+ 80735f9:	8b 5d f8             	mov    -0x8(%ebp),%ebx
+ 80735fc:	31 c0                	xor    %eax,%eax
+ 80735fe:	8b 75 fc             	mov    -0x4(%ebp),%esi
+ 8073601:	89 ec                	mov    %ebp,%esp
+ 8073603:	5d                   	pop    %ebp
+ 8073604:	c3                   	ret

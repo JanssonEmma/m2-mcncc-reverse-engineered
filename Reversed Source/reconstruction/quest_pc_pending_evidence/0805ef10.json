@@ -1,0 +1,410 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::ClearTimer\",\n    \"address\": \"0805ef10\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void ClearTimer(PC * this) */\\r\\n\\r\\nvoid __thiscall PC::ClearTimer(PC *this)\\r\\n\\r\\n{\\r\\n  _Rb_tree_node<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>\\r\\n  *p_Var1;\\r\\n  _Rb_tree_base_iterator _Var2;\\r\\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>*>\\r\\n  it;\\r\\n  \\r\\n  sys_log(0,\\\"QUEST clear timer %d\\\",(this->m_TimerMap)._M_t._M_node_count);\\r\\n  _Var2._M_node =\\r\\n       &((this->m_TimerMap)._M_t.\\r\\n         super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n         .\\r\\n         super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n        ._M_header)->super__Rb_tree_node_base;\\r\\n  it.super__Rb_tree_base_iterator._M_node =\\r\\n       (_Rb_tree_base_iterator)((_Rb_tree_node_base *)&(_Var2._M_node)->_M_color)->_M_left;\\r\\n  if (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)_Var2._M_node) {\\r\\n    do {\\r\\n      CancelTimerEvent((LPEVENT *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14));\\r\\n      _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\\r\\n      _Var2._M_node =\\r\\n           &((this->m_TimerMap)._M_t.\\r\\n             super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n             .\\r\\n             super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n            ._M_header)->super__Rb_tree_node_base;\\r\\n    } while (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)_Var2._M_node);\\r\\n  }\\r\\n  if ((this->m_TimerMap)._M_t._M_node_count != 0) {\\r\\n    _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n    ::_M_erase(&(this->m_TimerMap)._M_t,\\r\\n               (_Rb_tree_node<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>\\r\\n                *)((_Rb_tree_node_base *)&(_Var2._M_node)->_M_color)->_M_parent);\\r\\n    (this->m_TimerMap)._M_t._M_node_count = 0;\\r\\n    p_Var1 = (this->m_TimerMap)._M_t.\\r\\n             super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n             .\\r\\n             super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n             ._M_header;\\r\\n    (p_Var1->super__Rb_tree_node_base)._M_left = &p_Var1->super__Rb_tree_node_base;\\r\\n    (((this->m_TimerMap)._M_t.\\r\\n      super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n      .\\r\\n      super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n     ._M_header)->super__Rb_tree_node_base)._M_parent = (_Rb_tree_node_base *)0x0;\\r\\n    p_Var1 = (this->m_TimerMap)._M_t.\\r\\n             super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\\r\\n             .\\r\\n             super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\\r\\n             ._M_header;\\r\\n    (p_Var1->super__Rb_tree_node_base)._M_right = &p_Var1->super__Rb_tree_node_base;\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::ClearTimer",
+        "address": "0805ef10"
+      },
+      "code": "\r\n/* DWARF original prototype: void ClearTimer(PC * this) */\r\n\r\nvoid __thiscall PC::ClearTimer(PC *this)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>\r\n  *p_Var1;\r\n  _Rb_tree_base_iterator _Var2;\r\n  _Rb_tree_iterator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>&,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>*>\r\n  it;\r\n  \r\n  sys_log(0,\"QUEST clear timer %d\",(this->m_TimerMap)._M_t._M_node_count);\r\n  _Var2._M_node =\r\n       &((this->m_TimerMap)._M_t.\r\n         super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n         .\r\n         super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n        ._M_header)->super__Rb_tree_node_base;\r\n  it.super__Rb_tree_base_iterator._M_node =\r\n       (_Rb_tree_base_iterator)((_Rb_tree_node_base *)&(_Var2._M_node)->_M_color)->_M_left;\r\n  if (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)_Var2._M_node) {\r\n    do {\r\n      CancelTimerEvent((LPEVENT *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14));\r\n      _Rb_tree_base_iterator::_M_increment(&it.super__Rb_tree_base_iterator);\r\n      _Var2._M_node =\r\n           &((this->m_TimerMap)._M_t.\r\n             super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n            ._M_header)->super__Rb_tree_node_base;\r\n    } while (it.super__Rb_tree_base_iterator._M_node != (_Rb_tree_base_iterator)_Var2._M_node);\r\n  }\r\n  if ((this->m_TimerMap)._M_t._M_node_count != 0) {\r\n    _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n    ::_M_erase(&(this->m_TimerMap)._M_t,\r\n               (_Rb_tree_node<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>\r\n                *)((_Rb_tree_node_base *)&(_Var2._M_node)->_M_color)->_M_parent);\r\n    (this->m_TimerMap)._M_t._M_node_count = 0;\r\n    p_Var1 = (this->m_TimerMap)._M_t.\r\n             super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_left = &p_Var1->super__Rb_tree_node_base;\r\n    (((this->m_TimerMap)._M_t.\r\n      super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n      .\r\n      super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n     ._M_header)->super__Rb_tree_node_base)._M_parent = (_Rb_tree_node_base *)0x0;\r\n    p_Var1 = (this->m_TimerMap)._M_t.\r\n             super__Rb_tree_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_right = &p_Var1->super__Rb_tree_node_base;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::ClearTimer\",\n    \"address\": \"0805ef10\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"0805ef39\",\n        \"target\": \"081b82a0\",\n        \"name\": \"sys_log\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ef67\",\n        \"target\": \"08061da0\",\n        \"name\": \"_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>::_M_erase\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ef96\",\n        \"target\": \"081ad980\",\n        \"name\": \"CancelTimerEvent\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0805ef9e\",\n        \"target\": \"080514e0\",\n        \"name\": \"_Rb_tree_base_iterator::_M_increment\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 4,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::ClearTimer",
+        "address": "0805ef10"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "0805ef39",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ef67",
+            "target": "08061da0",
+            "name": "_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>,std::_Select1st<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::pair<const_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_event*>_>_>::_M_erase",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ef96",
+            "target": "081ad980",
+            "name": "CancelTimerEvent",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0805ef9e",
+            "target": "080514e0",
+            "name": "_Rb_tree_base_iterator::_M_increment",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 4,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"0805ef10\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef11\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef13\",\n      \"bytes\": \"57\",\n      \"instruction\": \"PUSH EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef14\",\n      \"bytes\": \"8d7dd8\",\n      \"instruction\": \"LEA EDI,[EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef17\",\n      \"bytes\": \"56\",\n      \"instruction\": \"PUSH ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef18\",\n      \"bytes\": \"53\",\n      \"instruction\": \"PUSH EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef19\",\n      \"bytes\": \"83ec3c\",\n      \"instruction\": \"SUB ESP,0x3c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef1c\",\n      \"bytes\": \"8b5d08\",\n      \"instruction\": \"MOV EBX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef1f\",\n      \"bytes\": \"8d734c\",\n      \"instruction\": \"LEA ESI,[EBX + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef22\",\n      \"bytes\": \"8b4604\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef25\",\n      \"bytes\": \"c7042400000000\",\n      \"instruction\": \"MOV dword ptr [ESP],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef2c\",\n      \"bytes\": \"89442408\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef30\",\n      \"bytes\": \"b8ff721f08\",\n      \"instruction\": \"MOV EAX,0x81f72ff\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef35\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef39\",\n      \"bytes\": \"e862931500\",\n      \"instruction\": \"CALL 0x081b82a0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef3e\",\n      \"bytes\": \"8b534c\",\n      \"instruction\": \"MOV EDX,dword ptr [EBX + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef41\",\n      \"bytes\": \"8b4208\",\n      \"instruction\": \"MOV EAX,dword ptr [EDX + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef44\",\n      \"bytes\": \"8955c8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x38],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef47\",\n      \"bytes\": \"39d0\",\n      \"instruction\": \"CMP EAX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef49\",\n      \"bytes\": \"8945d8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x28],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef4c\",\n      \"bytes\": \"7542\",\n      \"instruction\": \"JNZ 0x0805ef90\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef4e\",\n      \"bytes\": \"8b4604\",\n      \"instruction\": \"MOV EAX,dword ptr [ESI + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef51\",\n      \"bytes\": \"85c0\",\n      \"instruction\": \"TEST EAX,EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef53\",\n      \"bytes\": \"7508\",\n      \"instruction\": \"JNZ 0x0805ef5d\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef55\",\n      \"bytes\": \"83c43c\",\n      \"instruction\": \"ADD ESP,0x3c\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef58\",\n      \"bytes\": \"5b\",\n      \"instruction\": \"POP EBX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef59\",\n      \"bytes\": \"5e\",\n      \"instruction\": \"POP ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef5a\",\n      \"bytes\": \"5f\",\n      \"instruction\": \"POP EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef5b\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef5c\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef5d\",\n      \"bytes\": \"8b4204\",\n      \"instruction\": \"MOV EAX,dword ptr [EDX + 0x4]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef60\",\n      \"bytes\": \"893424\",\n      \"instruction\": \"MOV dword ptr [ESP],ESI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef63\",\n      \"bytes\": \"89442404\",\n      \"instruction\": \"MOV dword ptr [ESP + 0x4],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef67\",\n      \"bytes\": \"e8342e0000\",\n      \"instruction\": \"CALL 0x08061da0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef6c\",\n      \"bytes\": \"c7460400000000\",\n      \"instruction\": \"MOV dword ptr [ESI + 0x4],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef73\",\n      \"bytes\": \"8b434c\",\n      \"instruction\": \"MOV EAX,dword ptr [EBX + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef76\",\n      \"bytes\": \"894008\",\n      \"instruction\": \"MOV dword ptr [EAX + 0x8],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef79\",\n      \"bytes\": \"8b434c\",\n      \"instruction\": \"MOV EAX,dword ptr [EBX + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef7c\",\n      \"bytes\": \"c7400400000000\",\n      \"instruction\": \"MOV dword ptr [EAX + 0x4],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef83\",\n      \"bytes\": \"8b434c\",\n      \"instruction\": \"MOV EAX,dword ptr [EBX + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef86\",\n      \"bytes\": \"89400c\",\n      \"instruction\": \"MOV dword ptr [EAX + 0xc],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef89\",\n      \"bytes\": \"ebca\",\n      \"instruction\": \"JMP 0x0805ef55\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef90\",\n      \"bytes\": \"83c014\",\n      \"instruction\": \"ADD EAX,0x14\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef93\",\n      \"bytes\": \"890424\",\n      \"instruction\": \"MOV dword ptr [ESP],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef96\",\n      \"bytes\": \"e8e5e91400\",\n      \"instruction\": \"CALL 0x081ad980\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef9b\",\n      \"bytes\": \"893c24\",\n      \"instruction\": \"MOV dword ptr [ESP],EDI\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805ef9e\",\n      \"bytes\": \"e83d25ffff\",\n      \"instruction\": \"CALL 0x080514e0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805efa3\",\n      \"bytes\": \"8b534c\",\n      \"instruction\": \"MOV EDX,dword ptr [EBX + 0x4c]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805efa6\",\n      \"bytes\": \"8b45d8\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + -0x28]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805efa9\",\n      \"bytes\": \"8955c8\",\n      \"instruction\": \"MOV dword ptr [EBP + -0x38],EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805efac\",\n      \"bytes\": \"39d0\",\n      \"instruction\": \"CMP EAX,EDX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805efae\",\n      \"bytes\": \"75e0\",\n      \"instruction\": \"JNZ 0x0805ef90\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805efb0\",\n      \"bytes\": \"eb9c\",\n      \"instruction\": \"JMP 0x0805ef4e\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 53,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "0805ef10",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ef11",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "0805ef13",
+          "bytes": "57",
+          "instruction": "PUSH EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ef14",
+          "bytes": "8d7dd8",
+          "instruction": "LEA EDI,[EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805ef17",
+          "bytes": "56",
+          "instruction": "PUSH ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ef18",
+          "bytes": "53",
+          "instruction": "PUSH EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ef19",
+          "bytes": "83ec3c",
+          "instruction": "SUB ESP,0x3c",
+          "comment": null
+        },
+        {
+          "address": "0805ef1c",
+          "bytes": "8b5d08",
+          "instruction": "MOV EBX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805ef1f",
+          "bytes": "8d734c",
+          "instruction": "LEA ESI,[EBX + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ef22",
+          "bytes": "8b4604",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805ef25",
+          "bytes": "c7042400000000",
+          "instruction": "MOV dword ptr [ESP],0x0",
+          "comment": null
+        },
+        {
+          "address": "0805ef2c",
+          "bytes": "89442408",
+          "instruction": "MOV dword ptr [ESP + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef30",
+          "bytes": "b8ff721f08",
+          "instruction": "MOV EAX,0x81f72ff",
+          "comment": null
+        },
+        {
+          "address": "0805ef35",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef39",
+          "bytes": "e862931500",
+          "instruction": "CALL 0x081b82a0",
+          "comment": null
+        },
+        {
+          "address": "0805ef3e",
+          "bytes": "8b534c",
+          "instruction": "MOV EDX,dword ptr [EBX + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ef41",
+          "bytes": "8b4208",
+          "instruction": "MOV EAX,dword ptr [EDX + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805ef44",
+          "bytes": "8955c8",
+          "instruction": "MOV dword ptr [EBP + -0x38],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ef47",
+          "bytes": "39d0",
+          "instruction": "CMP EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "0805ef49",
+          "bytes": "8945d8",
+          "instruction": "MOV dword ptr [EBP + -0x28],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef4c",
+          "bytes": "7542",
+          "instruction": "JNZ 0x0805ef90",
+          "comment": null
+        },
+        {
+          "address": "0805ef4e",
+          "bytes": "8b4604",
+          "instruction": "MOV EAX,dword ptr [ESI + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805ef51",
+          "bytes": "85c0",
+          "instruction": "TEST EAX,EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef53",
+          "bytes": "7508",
+          "instruction": "JNZ 0x0805ef5d",
+          "comment": null
+        },
+        {
+          "address": "0805ef55",
+          "bytes": "83c43c",
+          "instruction": "ADD ESP,0x3c",
+          "comment": null
+        },
+        {
+          "address": "0805ef58",
+          "bytes": "5b",
+          "instruction": "POP EBX",
+          "comment": null
+        },
+        {
+          "address": "0805ef59",
+          "bytes": "5e",
+          "instruction": "POP ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ef5a",
+          "bytes": "5f",
+          "instruction": "POP EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ef5b",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0805ef5c",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        },
+        {
+          "address": "0805ef5d",
+          "bytes": "8b4204",
+          "instruction": "MOV EAX,dword ptr [EDX + 0x4]",
+          "comment": null
+        },
+        {
+          "address": "0805ef60",
+          "bytes": "893424",
+          "instruction": "MOV dword ptr [ESP],ESI",
+          "comment": null
+        },
+        {
+          "address": "0805ef63",
+          "bytes": "89442404",
+          "instruction": "MOV dword ptr [ESP + 0x4],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef67",
+          "bytes": "e8342e0000",
+          "instruction": "CALL 0x08061da0",
+          "comment": null
+        },
+        {
+          "address": "0805ef6c",
+          "bytes": "c7460400000000",
+          "instruction": "MOV dword ptr [ESI + 0x4],0x0",
+          "comment": null
+        },
+        {
+          "address": "0805ef73",
+          "bytes": "8b434c",
+          "instruction": "MOV EAX,dword ptr [EBX + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ef76",
+          "bytes": "894008",
+          "instruction": "MOV dword ptr [EAX + 0x8],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef79",
+          "bytes": "8b434c",
+          "instruction": "MOV EAX,dword ptr [EBX + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ef7c",
+          "bytes": "c7400400000000",
+          "instruction": "MOV dword ptr [EAX + 0x4],0x0",
+          "comment": null
+        },
+        {
+          "address": "0805ef83",
+          "bytes": "8b434c",
+          "instruction": "MOV EAX,dword ptr [EBX + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805ef86",
+          "bytes": "89400c",
+          "instruction": "MOV dword ptr [EAX + 0xc],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef89",
+          "bytes": "ebca",
+          "instruction": "JMP 0x0805ef55",
+          "comment": null
+        },
+        {
+          "address": "0805ef90",
+          "bytes": "83c014",
+          "instruction": "ADD EAX,0x14",
+          "comment": null
+        },
+        {
+          "address": "0805ef93",
+          "bytes": "890424",
+          "instruction": "MOV dword ptr [ESP],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805ef96",
+          "bytes": "e8e5e91400",
+          "instruction": "CALL 0x081ad980",
+          "comment": null
+        },
+        {
+          "address": "0805ef9b",
+          "bytes": "893c24",
+          "instruction": "MOV dword ptr [ESP],EDI",
+          "comment": null
+        },
+        {
+          "address": "0805ef9e",
+          "bytes": "e83d25ffff",
+          "instruction": "CALL 0x080514e0",
+          "comment": null
+        },
+        {
+          "address": "0805efa3",
+          "bytes": "8b534c",
+          "instruction": "MOV EDX,dword ptr [EBX + 0x4c]",
+          "comment": null
+        },
+        {
+          "address": "0805efa6",
+          "bytes": "8b45d8",
+          "instruction": "MOV EAX,dword ptr [EBP + -0x28]",
+          "comment": null
+        },
+        {
+          "address": "0805efa9",
+          "bytes": "8955c8",
+          "instruction": "MOV dword ptr [EBP + -0x38],EDX",
+          "comment": null
+        },
+        {
+          "address": "0805efac",
+          "bytes": "39d0",
+          "instruction": "CMP EAX,EDX",
+          "comment": null
+        },
+        {
+          "address": "0805efae",
+          "bytes": "75e0",
+          "instruction": "JNZ 0x0805ef90",
+          "comment": null
+        },
+        {
+          "address": "0805efb0",
+          "bytes": "eb9c",
+          "instruction": "JMP 0x0805ef4e",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 53,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

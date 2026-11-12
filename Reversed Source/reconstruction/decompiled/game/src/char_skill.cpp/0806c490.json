@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0806c490",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CHARACTER::SkillLevelDown",
+      "address": "0806c490"
+    },
+    "code": "\r\n/* DWARF original prototype: bool SkillLevelDown(CHARACTER * this, DWORD dwVnum) */\r\n\r\nbool __thiscall CHARACTER::SkillLevelDown(CHARACTER *this,DWORD dwVnum)\r\n\r\n{\r\n  uint uVar1;\r\n  bool bVar2;\r\n  BYTE type;\r\n  CSkillProto *pCVar3;\r\n  int iVar4;\r\n  char *pcVar5;\r\n  \r\n                    /* Unresolved local var: CSkillProto * pkSk@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int idx@[DW_OP_reg0(EAX)] */\r\n  if (((this->m_pSkillLevels != (TPlayerSkill *)0x0) && (g_bSkillDisable == '\\0')) &&\r\n     (this->m_dwPolymorphRace == 0)) {\r\n    if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    pCVar3 = CSkillManager::Get(singleton<CSkillManager>::ms_singleton,dwVnum);\r\n    if (pCVar3 == (CSkillProto *)0x0) {\r\n      _sys_err(\"SkillLevelDown\",0x208,\"There is no such skill by number %u\",dwVnum);\r\n    }\r\n    else {\r\n      bVar2 = IsLearnableSkill(this,dwVnum);\r\n      if (!bVar2) {\r\n        return false;\r\n      }\r\n      iVar4 = GetSkillMasterType(this,pCVar3->dwVnum);\r\n      if (iVar4 != 0) {\r\n        return false;\r\n      }\r\n      if ((this->m_points).skill_group == '\\0') {\r\n        return false;\r\n      }\r\n      if (this->m_pSkillLevels[pCVar3->dwVnum].bLevel != '\\0') {\r\n        uVar1 = pCVar3->bType;\r\n        type = '\\x1c';\r\n        if (uVar1 < 5) {\r\n          if (uVar1 == 0) {\r\n            type = '\\x1b';\r\n          }\r\n        }\r\n        else {\r\n          if (uVar1 != 5) {\r\n            _sys_err(\"SkillLevelDown\",0x22c,\"Wrong skill type %d skill vnum %d\",pCVar3->bType,\r\n                     pCVar3->dwVnum);\r\n            return false;\r\n          }\r\n          type = 'q';\r\n        }\r\n        PointChange(this,type,1,false,false);\r\n        SetSkillLevel(this,pCVar3->dwVnum,this->m_pSkillLevels[pCVar3->dwVnum].bLevel + 0xff);\r\n        pcVar5 = GetName(this);\r\n        sys_log(0,\"SkillDown: %s %d %d %d type %d\",pcVar5,pCVar3->dwVnum,\r\n                (uint)this->m_pSkillLevels[pCVar3->dwVnum].bMasterType,\r\n                (uint)this->m_pSkillLevels[pCVar3->dwVnum].bLevel,pCVar3->bType);\r\n        Save(this);\r\n        ComputePoints(this);\r\n        SkillLevelPacket(this);\r\n        return true;\r\n      }\r\n    }\r\n  }\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

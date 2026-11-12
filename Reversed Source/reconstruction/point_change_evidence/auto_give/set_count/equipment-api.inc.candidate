@@ -1,0 +1,15 @@
+// All within existing full CItem (public nonconst):
+LPITEM RemoveFromCharacter();
+bool Unequip();
+void ModifyPoints(bool add);
+void StopAccessorySocketExpireEvent();
+// Within existing full ITEM_MANAGER (public nonconst):
+// void DestroyItem(LPITEM);
+// Within existing full CHARACTER (public nonconst):
+// void SetWear(BYTE,LPITEM);
+// void SetImmuneFlag(DWORD value) { m_pointsInstant.dwImmuneFlag=value; }
+// bool IsAffectFlag(DWORD);
+// bool RemoveAffect(DWORD);
+// void ComputeBattlePoints();
+// ApplyPoint signature remains governed by parent stat metadata, not redeclared here.
+

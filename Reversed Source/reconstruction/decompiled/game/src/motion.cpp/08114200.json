@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08114200",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x08114200",
+    "function": {
+      "name": "CMotionSet::GetMotion",
+      "address": "08114200"
+    },
+    "signature": "CMotion * GetMotion(CMotionSet * this, DWORD dwKey)",
+    "code": "\r\n/* DWARF original prototype: CMotion * GetMotion(CMotionSet * this, DWORD dwKey) */\r\n\r\nCMotion * __thiscall CMotionSet::GetMotion(CMotionSet *this,DWORD dwKey)\r\n\r\n{\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_CMotion*>,const_std::pair<const_long_unsigned_int,_CMotion*>&,const_std::pair<const_long_unsigned_int,_CMotion*>*>\r\n  _Var1;\r\n  CMotion *pCVar2;\r\n  \r\n                    /* Unresolved local var:\r\n                       _Rb_tree_iterator<std::pair<const_long_unsigned_int,_CMotion*>,const_std::pair<const_long_unsigned_int,_CMotion*>&,const_std::pair<const_long_unsigned_int,_CMotion*>*>\r\n                       it@[???] */\r\n  _Var1 = _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CMotion*>,std::_Select1st<std::pair<const_long_unsigned_int,_CMotion*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n          ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CMotion*>,std::_Select1st<std::pair<const_long_unsigned_int,_CMotion*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n                  *)this,&dwKey);\r\n  if (_Var1.super__Rb_tree_base_iterator._M_node ==\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_map_pkMotion)._M_t.\r\n        super__Rb_tree_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CMotion*>,std::allocator<std::pair<const_long_unsigned_int,_CMotion*>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    pCVar2 = (CMotion *)0x0;\r\n  }\r\n  else {\r\n    pCVar2 = *(CMotion **)((int)_Var1.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return pCVar2;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

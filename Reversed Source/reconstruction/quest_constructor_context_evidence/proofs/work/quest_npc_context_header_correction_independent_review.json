@@ -1,0 +1,12 @@
+{
+ "status":"passed_exact_minimal_correction",
+ "scope":"Independent review checkpoint102 standalone manager-header pointer spelling fix",
+ "original_review_gap":"My previous static review confirmed original canonical method types but missed that questmanager.h is also compiled standalone before char.h supplies LPCHARACTER. The preserved focused compile failure demonstrates this include-order condition.",
+ "correction":"Only declaration LPCHARACTER GetCurrentNPCCharacterPtr() becomes CHARACTER* GetCurrentNPCCharacterPtr(). Existing global class CHARACTER forward declaration suffices. Actual char.h191 typedef CHARACTER *LPCHARACTER proves canonical C++ type equivalence; nonconst signature/mangling/layout/body/behavior unchanged. No new typedef or include or original API change is required.",
+ "exact_checks":"Preserved questmanager.h.before transformed by only that declaration substitution equals questmanager.h.after byte-for-text; applied header matches corrected payload. Combined plan differs solely in that path's afterSHA, retaining original beforeSHA and other fields. PACKAGE_FILES original list was left unchanged: exactly TWO entries now differ, integration/plan.json and integration/payload/game/src/questmanager.h. Preserved reviewed-fixes.json explicitly records both overrides and original planSHA.",
+ "after_header_sha256":"7f0b2a5c24929d58d733c7c1971ad00c8450e5ee9e84fc6d5039e3f02dfc5440",
+ "updated_plan_sha256":"5007c27864cb6bfb51b898a8a9ba0faaebbaa52cf8ac6df494204a2f8c3bc6ea",
+ "parent_validation":"Root reported focused retry four suites+ABI terminal4418 PASSED; independent review did not execute builds. Failed original log remains work/quest-constructor-context-focused.log and parent retries use new basename.",
+ "actionable_findings":[],
+ "reviewer_source_package_helper_mutations_or_builds":false
+}

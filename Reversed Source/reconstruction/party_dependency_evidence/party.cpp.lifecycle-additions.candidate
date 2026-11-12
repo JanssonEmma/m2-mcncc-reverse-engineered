@@ -1,0 +1,17 @@
+// Append to the staged real party.cpp. STL members are constructed normally
+// before entering this body, matching the original implicit map construction.
+//08141280/08141330.
+CParty::CParty() { Initialize(); }
+//081416b0. Preserve two separate clock calls and do not clear either map.
+void CParty::Initialize() {
+    sys_log(2,"Party::Initialize");
+    m_iExpDistributionMode=0;m_pkChrExpCentralize=0;m_dwLeaderPID=0;m_eventUpdate=0;
+    for(int i=0;i<8;++i)m_anRoleCount[i]=0;
+    for(int i=0;i<8;++i)m_anMaxRole[i]=0;
+    m_anMaxRole[1]=1;m_anMaxRole[0]=32;
+    m_dwPartyStartTime=get_dword_time();m_iLongTimeExpBonus=0;
+    m_dwPartyHealTime=get_dword_time();m_iAttBonus=0;m_iDefBonus=0;
+    m_bPartyHealReady=false;m_bCanUsePartyHeal=false;m_iLeadership=0;m_iExpBonus=0;
+    m_itNextOwner=m_memberMap.begin();m_iCountNearPartyMember=0;m_pkChrLeader=0;
+    m_bPCParty=false;m_pkDungeon=0;
+}

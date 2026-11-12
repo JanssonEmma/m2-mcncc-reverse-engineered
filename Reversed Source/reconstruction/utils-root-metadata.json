@@ -1,0 +1,115 @@
+{
+  "types": [
+    {
+      "name": "thecore_msleep",
+      "die": "0x2db6c66",
+      "return_chain": [],
+      "parameters": [
+        [
+          {
+            "die": "0x2db6c7e",
+            "tag": "DW_TAG_formal_parameter",
+            "name": "dwMillisecond",
+            "byte_size": null
+          },
+          {
+            "die": "0x2db62b0",
+            "tag": "DW_TAG_typedef",
+            "name": "DWORD",
+            "byte_size": null
+          },
+          {
+            "die": "0x2db4353",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "byte_size": 4
+          }
+        ]
+      ]
+    },
+    {
+      "name": "core_dump_unix",
+      "die": "0x2db6c9f",
+      "return_chain": [],
+      "parameters": [
+        [
+          {
+            "die": "0x2db6cb7",
+            "tag": "DW_TAG_formal_parameter",
+            "name": "who",
+            "byte_size": null
+          },
+          {
+            "die": "0x2db486b",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "byte_size": 4
+          },
+          {
+            "die": "0x2db4871",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "byte_size": null
+          },
+          {
+            "die": "0x2db4509",
+            "tag": "DW_TAG_base_type",
+            "name": "char",
+            "byte_size": 1
+          }
+        ],
+        [
+          {
+            "die": "0x2db6cc5",
+            "tag": "DW_TAG_formal_parameter",
+            "name": "line",
+            "byte_size": null
+          },
+          {
+            "die": "0x2db62d1",
+            "tag": "DW_TAG_typedef",
+            "name": "WORD",
+            "byte_size": null
+          },
+          {
+            "die": "0x2db42f9",
+            "tag": "DW_TAG_base_type",
+            "name": "short unsigned int",
+            "byte_size": 2
+          }
+        ]
+      ]
+    },
+    {
+      "name": "rdtsc",
+      "die": "0x2db6cd4",
+      "return_chain": [
+        {
+          "die": "0x2db4341",
+          "tag": "DW_TAG_base_type",
+          "name": "long long unsigned int",
+          "byte_size": 8
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "get_float_time",
+      "die": "0x2db6cfc",
+      "return_chain": [
+        {
+          "die": "0x2db6d26",
+          "tag": "DW_TAG_base_type",
+          "name": "float",
+          "byte_size": 4
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "float_divisor": {
+    "address": "0x08202920",
+    "bytes": "00247449",
+    "float_le": 1000000.0
+  }
+}

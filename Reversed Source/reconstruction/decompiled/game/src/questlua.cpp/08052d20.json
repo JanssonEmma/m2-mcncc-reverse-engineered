@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08052d20",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "highscore_register",
+      "address": "08052d20"
+    },
+    "code": "\r\nint highscore_register(lua_State *L)\r\n\r\n{\r\n  CQuestManager *pCVar1;\r\n  char *__dest;\r\n  char *pcVar2;\r\n  lua_Number lVar3;\r\n  \r\n                    /* Unresolved local var: CQuestManager * q@[???]\r\n                       Unresolved local var: THighscoreRegisterQueryInfo * qi@[DW_OP_reg3(EBX)] */\r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pCVar1 = singleton<quest::CQuestManager>::ms_singleton;\r\n  __dest = operator_new(0x24);\r\n  pcVar2 = lua_tostring(L,1);\r\n  strncpy(__dest,pcVar2,0x14);\r\n  __dest[0x14] = '\\0';\r\n  *(undefined4 *)(__dest + 0x18) = *(undefined4 *)(*(int *)(pCVar1 + 0x7c) + 0xf0);\r\n  lVar3 = lua_tonumber(L,2);\r\n  *(int *)(__dest + 0x1c) = (int)ROUND(lVar3);\r\n  lVar3 = lua_tonumber(L,3);\r\n  __dest[0x20] = (int)ROUND(lVar3) != 0;\r\n  pcVar2 = get_table_postfix();\r\n  if (singleton<DBManager>::ms_singleton == (DBManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  DBManager::ReturnQuery\r\n            (singleton<DBManager>::ms_singleton,4,*(DWORD *)(__dest + 0x18),__dest,\r\n             \"SELECT value FROM highscore%s WHERE board=\\'%s\\' AND pid=%lu\",pcVar2,__dest,\r\n             *(undefined4 *)(__dest + 0x18));\r\n  return 1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

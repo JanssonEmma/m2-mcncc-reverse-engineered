@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08062b40",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "operator+<char,_std::char_traits<char>,_std::allocator<char>_>",
+      "address": "08062b40"
+    },
+    "code": "\r\n/* DWARF original name: operator+<char, std::char_traits<char>, std::allocator<char> > */\r\n\r\nbasic_string<char,std::char_traits<char>,std::allocator<char>_> *\r\noperator+<char,_std::char_traits<char>,_std::allocator<char>_>\r\n          (basic_string<char,std::char_traits<char>,std::allocator<char>_> *__return_storage_ptr__,\r\n          basic_string<char,std::char_traits<char>,std::allocator<char>_> *__lhs,\r\n          basic_string<char,std::char_traits<char>,std::allocator<char>_> *__rhs)\r\n\r\n{\r\n                    /* Unresolved local var:\r\n                       basic_string<char,std::char_traits<char>,std::allocator<char>_>\r\n                       __str@[DW_OP_breg3(EBX): 0] */\r\n  std::string::string((string *)__return_storage_ptr__,(string *)__lhs);\r\n  std::string::append((string *)__return_storage_ptr__);\r\n  return __return_storage_ptr__;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

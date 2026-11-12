@@ -1,0 +1,10 @@
+#include <cstring>
+namespace mount_polymorph_detail {
+// Explicit target32 arithmetic, with C++03 spelling and no signed overflow.
+inline long Signed(unsigned int bits) {
+    int value; std::memcpy(&value,&bits,sizeof(value)); return value;
+}
+inline long Add(long a,long b) { return Signed(static_cast<unsigned int>(a)+static_cast<unsigned int>(b)); }
+inline long Sub(long a,long b) { return Signed(static_cast<unsigned int>(a)-static_cast<unsigned int>(b)); }
+inline long Mul(long a,long b) { return Signed(static_cast<unsigned int>(a)*static_cast<unsigned int>(b)); }
+}

@@ -1,0 +1,684 @@
+
+/* DWARF original prototype: void PointChange(CHARACTER * this, BYTE type, int amount, bool bAmount,
+   bool bBroadcast) */
+
+void __thiscall
+CHARACTER::PointChange(CHARACTER *this,BYTE type,int amount,bool bAmount,bool bBroadcast)
+
+{
+  int *piVar1;
+  DWORD *pDVar2;
+  DESC *this_00;
+  DWORD x;
+  e_overtime eVar3;
+  bool bVar4;
+  byte bVar5;
+  byte bVar6;
+  DWORD DVar7;
+  long lVar8;
+  long lVar9;
+  long lVar10;
+  int iVar11;
+  DWORD DVar12;
+  int iVar13;
+  char *pcVar14;
+  uint uVar15;
+  uint uVar16;
+  char *pcVar17;
+  BYTE type_00;
+  BYTE BVar18;
+  int prev_val;
+  int iExpBalance;
+  int local_58;
+  int exp;
+  undefined4 local_48;
+  bool bBroadcast_local;
+  bool bAmount_local;
+  BYTE type_local;
+  packet_point_change pack;
+  
+                    /* Unresolved local var: long val@[DW_OP_reg6(ESI)] */
+  uVar16 = 0;
+  bAmount_local = bAmount;
+  BVar18 = type;
+  switch(type) {
+  case '\0':
+    goto switchD_0812e36f_caseD_0;
+  case '\x01':
+    bVar5 = (this->m_points).level;
+    if (99 < (int)(amount + (uint)bVar5)) {
+      return;
+    }
+    SetLevel(this,(char)amount + bVar5);
+    bVar5 = (this->m_points).level;
+    local_48 = 2000000000;
+    uVar16 = (uint)bVar5;
+    if (uVar16 < 99) {
+      local_48 = *(undefined4 *)(exp_table + uVar16 * 4);
+    }
+    pcVar14 = GetName(this);
+    sys_log(0,"LEVELUP: %s %d NEXT EXP %d",pcVar14,(uint)bVar5,local_48);
+    uVar15 = (uint)(this->m_points).level;
+    iVar11 = 2000000000;
+    if (uVar15 < 99) {
+      iVar11 = *(int *)(exp_table + uVar15 * 4);
+    }
+    PointChange(this,'\x04',iVar11,false,false);
+    if (amount != 0) {
+      uVar15 = this->m_dwPlayerID;
+      if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {
+        __assert("instance","../../common/singleton.h",0x1a);
+      }
+      CQuestManager::LevelUp((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,uVar15);
+      lVar10 = GetRealPoint(this,'\x1f');
+      DVar7 = get_dword_time();
+      DVar12 = this->m_dwPlayStartTime;
+      pcVar14 = GetName(this);
+      pcVar17 = get_table_postfix();
+      if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {
+        __assert("instance","../../common/singleton.h",0x1a);
+      }
+      LogManager::Query(singleton<LogManager>::ms_singleton,
+                        "REPLACE INTO levellog%s (name, level, time, playtime) VALUES(\'%s\', %lu, NOW(), %d)"
+                        ,pcVar17,pcVar14,uVar16,lVar10 + (DVar7 - DVar12) / 60000);
+      if (this->m_pGuild != (CGuild *)0x0) {
+        CGuild::LevelChange(this->m_pGuild,this->m_dwPlayerID,(this->m_points).level);
+      }
+      if (this->m_pkParty != (CParty *)0x0) {
+        CParty::RequestSetMemberLevel(this->m_pkParty,this->m_dwPlayerID,(this->m_points).level);
+      }
+    }
+    break;
+  case '\x02':
+  case '\x18':
+    uVar16 = GetRealPoint(this,type);
+    break;
+  case '\x03':
+                    /* Unresolved local var: int next_exp@[???] */
+    DVar12 = (this->m_points).exp;
+    uVar16 = (uint)(this->m_points).level;
+    local_58 = 2000000000;
+    if (uVar16 < 99) {
+      local_58 = *(int *)(exp_table + uVar16 * 4);
+    }
+    bVar4 = LC_IsNewCIBN();
+    if (bVar4) {
+      eVar3 = this->m_eOverTime;
+      if (eVar3 == OT_NONE) {
+        pcVar14 = GetName(this);
+        pcVar17 = "<EXP_LOG> %s = NONE";
+        iVar11 = 0xb68;
+      }
+      else if (eVar3 == OT_3HOUR) {
+        amount = amount / 2;
+        pcVar14 = GetName(this);
+        pcVar17 = "<EXP_LOG> %s = 3HOUR";
+        iVar11 = 0xb6d;
+      }
+      else {
+        if (eVar3 != OT_5HOUR) goto LAB_0812e695;
+        amount = 0;
+        pcVar14 = GetName(this);
+        pcVar17 = "<EXP_LOG> %s = 5HOUR";
+        iVar11 = 0xb72;
+      }
+      dev_log("char.cpp",iVar11,"PointChange",0x800,pcVar17,pcVar14);
+    }
+LAB_0812e695:
+    if ((amount < 0) && ((int)DVar12 < -amount)) {
+      pcVar14 = GetName(this);
+      sys_log(1,"%s AMOUNT < 0 %ld, CUR EXP: %ld",pcVar14,-amount,DVar12);
+      amount = -DVar12;
+      uVar16 = 0;
+      (this->m_points).exp = 0;
+    }
+    else {
+                    /* Unresolved local var: int q@[DW_OP_reg6(ESI)]
+                       Unresolved local var: int iLevStep@[DW_OP_reg3(EBX)] */
+      if (0x62 < (this->m_points).level) {
+        return;
+      }
+      if (test_server != 0) {
+        ChatPacket(this,'\x01',"You have gained %d exp.",amount);
+      }
+      iExpBalance = 0;
+      exp = DVar12 + amount;
+      iVar13 = exp - local_58;
+      iVar11 = iVar13;
+      sys_log(1,"PRE EXP: %d + %d >= %d (%d)",DVar12,amount,local_58,iVar13);
+      if (exp < local_58) {
+        (this->m_points).exp = exp;
+      }
+      else {
+        amount = local_58 - DVar12;
+        (this->m_points).exp = 0;
+        exp = local_58;
+        iExpBalance = iVar13;
+      }
+      pcVar14 = GetName(this);
+      sys_log(1,"EXP: %s %d / %d",pcVar14,exp,local_58,iVar11);
+      iVar11 = local_58;
+      if (local_58 < 0) {
+        iVar11 = local_58 + 3;
+      }
+      iVar11 = iVar11 >> 2;
+      lVar8 = GetRealPoint(this,'\x19');
+      lVar10 = lVar8;
+      if (3 < lVar8) {
+        pcVar14 = GetName(this);
+        lVar10 = 4;
+        _sys_err("PointChange",0xb9f,"%s LEVEL_STEP bigger than 4! (%d)",pcVar14,lVar8);
+      }
+      if ((exp < local_58) || (3 < lVar10)) {
+        if ((exp < iVar11 * 3) || (2 < lVar10)) {
+          if ((exp < iVar11 * 2) || (1 < lVar10)) {
+            if ((iVar11 <= exp) && (lVar10 < 1)) {
+              PointChange(this,'\x19',1,false,false);
+            }
+          }
+          else {
+                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */
+            iVar11 = 2 - lVar10;
+            if (0 < iVar11) {
+              do {
+                PointChange(this,'\x19',1,false,true);
+                iVar11 = iVar11 + -1;
+              } while (iVar11 != 0);
+            }
+          }
+        }
+        else {
+                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */
+          iVar11 = 3 - lVar10;
+          if (0 < iVar11) {
+            do {
+              PointChange(this,'\x19',1,false,true);
+              iVar11 = iVar11 + -1;
+            } while (iVar11 != 0);
+          }
+        }
+      }
+      else {
+                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */
+        iVar11 = 4 - lVar10;
+        if (0 < iVar11) {
+          do {
+            PointChange(this,'\x19',1,false,true);
+            iVar11 = iVar11 + -1;
+          } while (iVar11 != 0);
+        }
+      }
+      if (iExpBalance != 0) {
+        pcVar14 = GetName(this);
+        sys_log(1,"%s iExpBalance %d",pcVar14,iExpBalance);
+        PointChange(this,'\x03',iExpBalance,false,false);
+      }
+      uVar16 = (this->m_points).exp;
+    }
+    break;
+  case '\x04':
+    uVar15 = (uint)(this->m_points).level;
+    uVar16 = 2000000000;
+    if (uVar15 < 99) {
+      uVar16 = *(uint *)(exp_table + uVar15 * 4);
+    }
+    bAmount_local = false;
+    break;
+  case '\x05':
+                    /* Unresolved local var: int prev_hp@[???] */
+    bVar4 = IsDead(this);
+    if (bVar4) {
+      return;
+    }
+    bVar4 = IsStun(this);
+    if (bVar4) {
+      return;
+    }
+    uVar15 = (this->m_points).hp;
+    amount = MIN((this->m_pointsInstant).iMaxHP - uVar15,amount);
+    uVar16 = amount + (this->m_points).hp;
+    (this->m_points).hp = uVar16;
+    BroadcastTargetPacket(this);
+    if (((this->m_pkParty != (CParty *)0x0) && ((this->super_CEntity).m_lpDesc != (LPDESC)0x0)) &&
+       (uVar16 != uVar15)) {
+      CParty::SendPartyInfoOneToAll(this->m_pkParty,this);
+    }
+    break;
+  case '\x06':
+                    /* Unresolved local var: int hp@[???]
+                       Unresolved local var: int add_hp@[DW_OP_reg3(EBX)] */
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    lVar10 = GetRealPoint(this,'\x06');
+    lVar8 = GetPoint(this,'w');
+    iVar11 = MIN(0x5dc,(lVar8 * lVar10) / 100);
+    lVar8 = GetPoint(this,'\x06');
+    lVar9 = GetPoint(this,'\\');
+    uVar16 = lVar10 + iVar11 + lVar8 + lVar9;
+    (this->m_pointsInstant).iMaxHP = uVar16;
+    break;
+  case '\a':
+    bVar4 = IsDead(this);
+    if (bVar4) {
+      return;
+    }
+    bVar4 = IsStun(this);
+    if (bVar4) {
+      return;
+    }
+    amount = MIN((this->m_pointsInstant).iMaxSP - (this->m_points).sp,amount);
+    uVar16 = amount + (this->m_points).sp;
+    (this->m_points).sp = uVar16;
+    break;
+  case '\b':
+                    /* Unresolved local var: int sp@[???]
+                       Unresolved local var: int add_sp@[DW_OP_reg3(EBX)] */
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    lVar10 = GetRealPoint(this,'\b');
+    lVar8 = GetPoint(this,'x');
+    iVar11 = MIN(800,(lVar8 * lVar10) / 100);
+    lVar8 = GetPoint(this,'\b');
+    lVar9 = GetPoint(this,'h');
+    uVar16 = lVar10 + iVar11 + lVar8 + lVar9;
+    (this->m_pointsInstant).iMaxSP = uVar16;
+    break;
+  case '\t':
+    bVar4 = IsDead(this);
+    if (bVar4) {
+      return;
+    }
+    bVar4 = IsStun(this);
+    if (bVar4) {
+      return;
+    }
+    iVar11 = (this->m_points).stamina;
+    amount = MIN((this->m_pointsInstant).iMaxStamina - iVar11,amount);
+    uVar16 = amount + (this->m_points).stamina;
+    (this->m_points).stamina = uVar16;
+    if (uVar16 == 0) {
+      bVar4 = true;
+LAB_0812ed65:
+      SetNowWalking(this,bVar4);
+    }
+    else if (iVar11 == 0) {
+      bVar4 = this->m_bWalking;
+      goto LAB_0812ed65;
+    }
+    if ((amount < 0) && (uVar16 != 0)) {
+      return;
+    }
+    break;
+  case '\n':
+    uVar16 = amount + (this->m_pointsInstant).iMaxStamina;
+    (this->m_pointsInstant).iMaxStamina = uVar16;
+    break;
+  case '\v':
+    if (amount + (this->m_points).gold < 2000000000) {
+      bVar4 = LC_IsNewCIBN();
+      if ((bVar4) && (0 < amount)) {
+        eVar3 = this->m_eOverTime;
+        if (eVar3 == OT_NONE) {
+          pcVar14 = GetName(this);
+          pcVar17 = "<GOLD_LOG> %s = NONE";
+          iVar11 = 0xc78;
+        }
+        else if (eVar3 == OT_3HOUR) {
+          amount = amount / 2;
+          pcVar14 = GetName(this);
+          pcVar17 = "<GOLD_LOG> %s = 3HOUR";
+          iVar11 = 0xc7d;
+        }
+        else {
+          if (eVar3 != OT_5HOUR) goto LAB_0812eea8;
+          amount = 0;
+          pcVar14 = GetName(this);
+          pcVar17 = "<GOLD_LOG> %s = 5HOUR";
+          iVar11 = 0xc82;
+        }
+        dev_log("char.cpp",iVar11,"PointChange",0x800,pcVar17,pcVar14);
+      }
+LAB_0812eea8:
+      uVar16 = amount + (this->m_points).gold;
+      (this->m_points).gold = uVar16;
+    }
+    else {
+      pcVar14 = GetName(this);
+      _sys_err("PointChange",0xc6d,"[OVERFLOW_GOLD] OriGold %ld AddedGold %ld id %lu Name %s ",
+               (this->m_points).gold,amount,this->m_dwPlayerID,pcVar14);
+      iVar11 = (this->m_points).gold;
+      DVar12 = (this->super_CEntity).m_pos.y;
+      DVar7 = this->m_dwPlayerID;
+      x = (this->super_CEntity).m_pos.x;
+      if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {
+        __assert("instance","../../common/singleton.h",0x1a);
+      }
+      LogManager::CharLog(singleton<LogManager>::ms_singleton,DVar7,x,DVar12,amount + iVar11,
+                          "OVERFLOW_GOLD","");
+    }
+    break;
+  case '\f':
+  case '\r':
+  case '\x0e':
+  case '\x0f':
+  case '\x11':
+  case '\x12':
+  case '\x13':
+  case '\x14':
+  case '\x15':
+  case '\x16':
+  case '\x17':
+  case ' ':
+  case '!':
+  case '\"':
+  case '#':
+  case '$':
+  case '%':
+  case '&':
+  case '\'':
+  case '(':
+  case ')':
+  case '*':
+  case '+':
+  case ',':
+  case '-':
+  case '.':
+  case '/':
+  case '0':
+  case '5':
+  case '6':
+  case '7':
+  case '8':
+  case '9':
+  case ';':
+  case '<':
+  case '=':
+  case '>':
+  case '?':
+  case '@':
+  case 'A':
+  case 'B':
+  case 'C':
+  case 'D':
+  case 'E':
+  case 'F':
+  case 'G':
+  case 'H':
+  case 'I':
+  case 'J':
+  case 'K':
+  case 'L':
+  case 'M':
+  case 'N':
+  case 'O':
+  case 'P':
+  case 'Q':
+  case 'R':
+  case 'W':
+  case '[':
+  case '\\':
+  case ']':
+  case '^':
+  case 'c':
+  case 'd':
+  case 'e':
+  case 'f':
+  case 'g':
+  case 'h':
+  case 'n':
+  case 'o':
+  case 'y':
+  case 'z':
+  case '{':
+  case '|':
+    goto LAB_0812efd3;
+  case '\x10':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    BVar18 = '\x14';
+    iVar11 = amount;
+    goto LAB_0812efc2;
+  case '\x19':
+    if (0 < amount) {
+      lVar10 = GetPoint(this,'\x19');
+      uVar16 = amount + lVar10;
+      if ((int)uVar16 < 1) {
+LAB_0812f053:
+        bVar5 = (this->m_points).level;
+      }
+      else {
+        if (3 < (int)uVar16) {
+          if (uVar16 == 4) {
+                    /* Unresolved local var: int iHP@[DW_OP_reg6(ESI)]
+                       Unresolved local var: int iSP@[DW_OP_reg3(EBX)] */
+            bVar5 = GetJob(this);
+            bVar6 = GetJob(this);
+            iVar11 = number_ex(*(int *)(JobInitialPoints + (uint)bVar6 * 0x40 + 0x20),
+                               *(int *)(JobInitialPoints + (uint)bVar5 * 0x40 + 0x24),"char.cpp",
+                               0xbcf);
+            bVar5 = GetJob(this);
+            bVar6 = GetJob(this);
+            iVar13 = number_ex(*(int *)(JobInitialPoints + (uint)bVar6 * 0x40 + 0x28),
+                               *(int *)(JobInitialPoints + (uint)bVar5 * 0x40 + 0x2c),"char.cpp",
+                               0xbd0);
+            piVar1 = &(this->m_points).iRandomSP;
+            *piVar1 = *piVar1 + iVar13;
+            piVar1 = &(this->m_points).iRandomHP;
+            *piVar1 = *piVar1 + iVar11;
+            if ((this->m_points).skill_group != '\0') {
+              bVar5 = (this->m_points).level;
+              if (4 < bVar5) {
+                PointChange(this,'\x1c',1,false,false);
+                bVar5 = (this->m_points).level;
+              }
+              if (8 < bVar5) {
+                PointChange(this,'\x1b',1,false,false);
+              }
+            }
+            PointChange(this,'\x06',iVar11,false,false);
+            PointChange(this,'\b',iVar13,false,false);
+            uVar16 = 0;
+            bVar4 = true;
+            BVar18 = '\x01';
+            goto LAB_0812f2a9;
+          }
+          goto LAB_0812f053;
+        }
+        bVar5 = (this->m_points).level;
+        if (bVar5 < 0x5b) {
+          bVar4 = false;
+          BVar18 = '\x1a';
+LAB_0812f2a9:
+          PointChange(this,BVar18,1,false,bVar4);
+          goto LAB_0812f053;
+        }
+      }
+      if (bVar5 < 0xb) {
+        DVar12 = 0x6979;
+      }
+      else {
+        DVar12 = 0x697a;
+      }
+      AutoGiveItem(this,DVar12,'\x02',-1,true);
+      PointChange(this,'\x05',(this->m_pointsInstant).iMaxHP - (this->m_points).hp,false,false);
+      PointChange(this,'\a',(this->m_pointsInstant).iMaxSP - (this->m_points).sp,false,false);
+      PointChange(this,'\t',(this->m_pointsInstant).iMaxStamina - (this->m_points).stamina,false,
+                  false);
+      SetPoint(this,'\x19',uVar16);
+      SetRealPoint(this,'\x19',uVar16);
+      Save(this);
+      break;
+    }
+    BVar18 = '\x19';
+    goto LAB_0812eff4;
+  case '\x1a':
+  case '\x1b':
+  case '\x1c':
+  case 'p':
+  case 'q':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    SetRealPoint(this,type,uVar16);
+    break;
+  default:
+    pcVar14 = GetName(this);
+    _sys_err("PointChange",0xd75,"CHARACTER::PointChange: %s: unknown point change type %d",pcVar14,
+             (uint)type);
+    return;
+  case 'S':
+  case 'T':
+  case 'U':
+  case 'V':
+    lVar10 = GetPoint(this,type);
+    if (100 < lVar10 + amount) {
+      pcVar17 = "BONUS exceeded over 100!! point type: %d name: %s amount %d";
+      pcVar14 = GetName(this);
+      iVar11 = 0xd1b;
+LAB_0812f38a:
+      _sys_err("PointChange",iVar11,pcVar17,(uint)type,pcVar14,amount);
+      lVar10 = GetPoint(this,type);
+      amount = 100 - lVar10;
+    }
+    goto LAB_0812efd3;
+  case 'X':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    if (uVar16 == 0) {
+      pDVar2 = &(this->m_pointsInstant).dwImmuneFlag;
+      *pDVar2 = *pDVar2 & 0xfffffffe;
+    }
+    else {
+      pDVar2 = &(this->m_pointsInstant).dwImmuneFlag;
+      *pDVar2 = *pDVar2 | 1;
+    }
+    break;
+  case 'Y':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    if (uVar16 == 0) {
+      pDVar2 = &(this->m_pointsInstant).dwImmuneFlag;
+      *pDVar2 = *pDVar2 & 0xfffffffd;
+    }
+    else {
+      pDVar2 = &(this->m_pointsInstant).dwImmuneFlag;
+      *pDVar2 = *pDVar2 | 2;
+    }
+    break;
+  case 'Z':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    if (uVar16 == 0) {
+      pDVar2 = &(this->m_pointsInstant).dwImmuneFlag;
+      *pDVar2 = *pDVar2 & 0xfffffffb;
+    }
+    else {
+      pDVar2 = &(this->m_pointsInstant).dwImmuneFlag;
+      *pDVar2 = *pDVar2 | 4;
+    }
+    break;
+  case '_':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    type_00 = '\x12';
+    goto LAB_0812f4ef;
+  case '`':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    type_00 = '\x10';
+    goto LAB_0812f4ef;
+  case 'a':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    type_00 = '\x16';
+    goto LAB_0812f4ef;
+  case 'b':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    type_00 = '\x17';
+LAB_0812f4ef:
+    PointChange(this,type_00,amount,false,false);
+LAB_0812eff4:
+    uVar16 = GetPoint(this,BVar18);
+    break;
+  case 'l':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    SetPolymorph(this,uVar16,false);
+    break;
+  case 'm':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    MountVnum(this,uVar16);
+    break;
+  case 'r':
+  case 's':
+  case 't':
+  case 'u':
+  case 'v':
+    lVar10 = GetPoint(this,type);
+    if (100 < lVar10 + amount) {
+      pcVar17 = "MALL_BONUS exceeded over 100!! point type: %d name: %s amount %d";
+      pcVar14 = GetName(this);
+      iVar11 = 0xd05;
+      goto LAB_0812f38a;
+    }
+LAB_0812efd3:
+    lVar10 = GetPoint(this,type);
+    iVar11 = lVar10 + amount;
+LAB_0812efe8:
+    SetPoint(this,type,iVar11);
+    goto LAB_0812eff4;
+  case 'w':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    BVar18 = '\x06';
+    iVar11 = 0;
+    goto LAB_0812efc2;
+  case 'x':
+    lVar10 = GetPoint(this,type);
+    SetPoint(this,type,lVar10 + amount);
+    uVar16 = GetPoint(this,type);
+    BVar18 = '\b';
+    iVar11 = 0;
+LAB_0812efc2:
+    PointChange(this,BVar18,iVar11,false,false);
+    break;
+  case '}':
+  case '~':
+    iVar11 = amount;
+    goto LAB_0812efe8;
+  }
+  switch(type) {
+  case '\x01':
+  case '\f':
+  case '\r':
+  case '\x0e':
+  case '\x0f':
+    ComputeBattlePoints(this);
+  }
+  if (((type != '\x05') || (amount != 0)) &&
+     (this_00 = (this->super_CEntity).m_lpDesc, this_00 != (DESC *)0x0)) {
+    pack.header = 0x11;
+    pack.dwVID = (this->m_vid).m_id;
+    pack.type = type;
+    pack.amount = (bAmount_local == false) - 1 & amount;
+    pack.value = uVar16;
+    if (bBroadcast) {
+      CEntity::PacketAround(&this->super_CEntity,&pack,0x11,(LPENTITY)0x0);
+    }
+    else {
+      DESC::Packet(this_00,&pack,0x11);
+    }
+  }
+switchD_0812e36f_caseD_0:
+  return;
+}
+

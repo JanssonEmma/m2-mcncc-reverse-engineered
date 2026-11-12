@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168dc0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168dc0",
+    "function": {
+      "name": "CItem::CheckItemUseLevel",
+      "address": "08168dc0"
+    },
+    "signature": "bool CheckItemUseLevel(CItem * this, int nLevel)",
+    "code": "\r\n/* DWARF original prototype: bool CheckItemUseLevel(CItem * this, int nLevel) */\r\n\r\nbool __thiscall CItem::CheckItemUseLevel(CItem *this,int nLevel)\r\n\r\n{\r\n  int iVar1;\r\n  TItemTable *pTVar2;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg1(ECX)] */\r\n  iVar1 = 0;\r\n  pTVar2 = this->m_pProto;\r\n  do {\r\n    if (pTVar2->aLimits[0].bType == '\\x01') {\r\n      return pTVar2->aLimits[0].lValue <= nLevel;\r\n    }\r\n    iVar1 = iVar1 + 1;\r\n    pTVar2 = (TItemTable *)(pTVar2->szName + 1);\r\n  } while (iVar1 < 2);\r\n  return true;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

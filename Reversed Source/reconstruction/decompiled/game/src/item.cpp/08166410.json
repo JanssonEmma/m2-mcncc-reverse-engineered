@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08166410",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x08166410",
+    "function": {
+      "name": "CItem::Destroy",
+      "address": "08166410"
+    },
+    "signature": "void Destroy(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void Destroy(CItem * this) */\r\n\r\nvoid __thiscall CItem::Destroy(CItem *this)\r\n\r\n{\r\n  SECTREE *this_00;\r\n  \r\n  event_cancel(&this->m_pkDestroyEvent);\r\n  event_cancel(&this->m_pkOwnershipEvent);\r\n  event_cancel(&this->m_pkUniqueExpireEvent);\r\n  event_cancel(&this->m_pkAccessorySocketExpireEvent);\r\n  CEntity::Destroy(&this->super_CEntity);\r\n  this_00 = (this->super_CEntity).m_pSectree;\r\n  if (this_00 != (SECTREE *)0x0) {\r\n    SECTREE::RemoveEntity(this_00,&this->super_CEntity);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

@@ -1,0 +1,12 @@
+// Whole originalCHAR leaf08136310: noDESC skip, fullPODpacket, actualfreshDESC send.
+void CHARACTER::ConfirmWithMsg(const char* szMsg,int iTimeout,DWORD dwRequestPID){
+    if(GetDesc()){
+        TPacketGCQuestConfirm p;
+        p.header=46;
+        p.requestPID=dwRequestPID;
+        p.timeout=iTimeout;
+        std::strncpy(p.msg,szMsg,64);
+        p.msg[64]='\0';
+        GetDesc()->Packet(&p,sizeof(p));
+    }
+}

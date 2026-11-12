@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080a7530",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "SECTREE::InsertEntity",
+      "address": "080a7530"
+    },
+    "code": "\r\n/* DWARF original prototype: bool InsertEntity(SECTREE * this, LPENTITY pkEnt) */\r\n\r\nbool __thiscall SECTREE::InsertEntity(SECTREE *this,LPENTITY pkEnt)\r\n\r\n{\r\n  SECTREE *this_00;\r\n  bool bVar1;\r\n  pair<std::_Rb_tree_iterator<CEntity*,_CEntity*&,_CEntity**>,bool> __p;\r\n  _Rb_tree<CEntity*,CEntity*,std::_Identity<CEntity*>,std::less<CEntity*>,std::allocator<CEntity*>_>\r\n  local_2c [2];\r\n  \r\n                    /* Unresolved local var: LPSECTREE pkCurTree@[DW_OP_reg6(ESI)] */\r\n  bVar1 = false;\r\n  this_00 = pkEnt->m_pSectree;\r\n  if (this_00 != this) {\r\n    if (this_00 != (SECTREE *)0x0) {\r\n      _Rb_tree<CEntity*,CEntity*,std::_Identity<CEntity*>,std::less<CEntity*>,std::allocator<CEntity*>_>\r\n      ::erase(&(this_00->m_set_entity)._M_t,&pkEnt);\r\n    }\r\n    pkEnt->m_pSectree = this;\r\n    _Rb_tree<CEntity*,CEntity*,std::_Identity<CEntity*>,std::less<CEntity*>,std::allocator<CEntity*>_>\r\n    ::find(local_2c,(LPENTITY *)&this->m_set_entity);\r\n    if (local_2c[0].super__Rb_tree_base<CEntity*,std::allocator<CEntity*>_>.\r\n        super__Rb_tree_alloc_base<CEntity*,std::allocator<CEntity*>,true>._M_header ==\r\n        (_Rb_tree_alloc_base<CEntity*,std::allocator<CEntity*>,true>)\r\n        (this->m_set_entity)._M_t.super__Rb_tree_base<CEntity*,std::allocator<CEntity*>_>.\r\n        super__Rb_tree_alloc_base<CEntity*,std::allocator<CEntity*>,true>._M_header) {\r\n      _Rb_tree<CEntity*,CEntity*,std::_Identity<CEntity*>,std::less<CEntity*>,std::allocator<CEntity*>_>\r\n      ::insert_unique(&(this->m_set_entity)._M_t,&pkEnt);\r\n    }\r\n    else {\r\n      _sys_err(\"InsertEntity\",0x8b,\"entity %p already exist in this sectree!\",pkEnt);\r\n    }\r\n    bVar1 = CEntity::IsType(pkEnt,0);\r\n    if (bVar1) {\r\n                    /* Unresolved local var: LPCHARACTER pkChr@[DW_OP_reg0(EAX)] */\r\n      if (pkEnt->m_lpDesc == (LPDESC)0x0) {\r\n        if (((0 < this->m_iPCCount) && (pkEnt[4].m_bIsDestroyed != true)) &&\r\n           (pkEnt[4].m_bIsDestroyed != true)) {\r\n          CHARACTER::StartStateMachine((CHARACTER *)pkEnt,1);\r\n        }\r\n      }\r\n      else {\r\n        IncreasePC(this);\r\n        if (this_00 != (SECTREE *)0x0) {\r\n          DecreasePC(this_00);\r\n        }\r\n      }\r\n    }\r\n    bVar1 = true;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

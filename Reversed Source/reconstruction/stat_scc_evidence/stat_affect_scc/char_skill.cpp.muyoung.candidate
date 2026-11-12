@@ -1,0 +1,43 @@
+// Full original logical record20; const set reference at+16 is NOT owning.
+// Includes char.h/sectree.h/battle.h, coreutils/log, set and wrap32 helpers.
+struct FFindNearVictim {
+    LPCHARACTER m_pkChrCenter;
+    LPCHARACTER m_pkChrNextTarget;
+    LPCHARACTER m_pkChrAttacker;
+    int m_count;
+    const std::set<CHARACTER*>& m_excepts_set;
+    FFindNearVictim(LPCHARACTER center,LPCHARACTER attacker,const std::set<CHARACTER*>& excepts):
+        m_pkChrCenter(center),m_pkChrNextTarget(0),m_pkChrAttacker(attacker),m_count(0),m_excepts_set(excepts) {}
+    void operator()(LPENTITY ent) {
+        if (!ent->IsType(0)) return;
+        LPCHARACTER ch=static_cast<LPCHARACTER>(ent);
+        if (m_excepts_set.find(ch)!=m_excepts_set.end() || m_pkChrCenter==ch || !battle_is_attackable(m_pkChrAttacker,ch)) return;
+        int dx=apply_item_detail::sub(m_pkChrCenter->GetX(),ch->GetX());
+        int absolute=dx<0?apply_item_detail::negate(dx):dx;
+        if (absolute>=1001) return;
+        int dy=apply_item_detail::sub(m_pkChrCenter->GetY(),ch->GetY());
+        absolute=dy<0?apply_item_detail::negate(dy):dy;
+        if (absolute>=1001) return;
+        if (static_cast<float>(DISTANCE_APPROX(dx,dy))<1000.0f) {
+            m_count=apply_item_detail::add(m_count,1);
+            if (m_count!=1 && number_ex(1,m_count,"char_skill.cpp",0x359)!=1) return;
+            m_pkChrNextTarget=ch;
+        }
+    }
+};
+long skill_muyoung_event(LPEVENT event)
+{
+    LPCHARACTER ch=static_cast<char_event_info*>(event->info)->ch;
+    if (!ch->IsAffectFlag(27)) { ch->StopMuyeongEvent(); return 0; }
+    // INTENTIONAL ORIGINAL DANGLING TEMPORARY! Header freed080736cd BEFORE traversal.
+    // Do not replace with a static/local owning set to make this callback appear safe.
+    FFindNearVictim f(ch,ch,std::set<CHARACTER*>());
+    if (ch->GetSectree()) {
+        ch->GetSectree()->ForEachAround(f);
+        if (f.m_pkChrNextTarget) {
+            ch->CreateFly(16,f.m_pkChrNextTarget);
+            ch->ComputeSkill(78,f.m_pkChrNextTarget,0);
+        }
+    }
+    return apply_item_detail::mul(passes_per_sec,3);
+}

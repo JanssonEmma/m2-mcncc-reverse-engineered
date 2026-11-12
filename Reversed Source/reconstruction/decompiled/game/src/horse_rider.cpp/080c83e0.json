@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080c83e0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHorseRider::ReviveHorse",
+      "address": "080c83e0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool ReviveHorse(CHorseRider * this) */\r\n\r\nbool __thiscall CHorseRider::ReviveHorse(CHorseRider *this)\r\n\r\n{\r\n  short sVar1;\r\n  int iVar2;\r\n  bool bVar3;\r\n  uint uVar4;\r\n  \r\n                    /* Unresolved local var: int level@[???] */\r\n  bVar3 = false;\r\n  uVar4 = (uint)(this->m_Horse).bLevel;\r\n  if ((uVar4 != 0) && ((this->m_Horse).sHealth < 1)) {\r\n    iVar2 = uVar4 * 0x30;\r\n    sVar1 = *(short *)(c_aHorseStat + iVar2 + 0xc);\r\n    (this->m_Horse).sHealth = *(short *)(c_aHorseStat + iVar2 + 8);\r\n    (this->m_Horse).sStamina = sVar1;\r\n    ResetHorseHealthDropTime(this);\r\n    StartStaminaRegenEvent(this);\r\n    bVar3 = true;\r\n  }\r\n  return bVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

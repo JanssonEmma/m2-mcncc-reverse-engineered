@@ -1,0 +1,95 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::GetCurrentQuestName\",\n    \"address\": \"0805dd90\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: string * GetCurrentQuestName(PC * this) */\\r\\n\\r\\nstring * __thiscall PC::GetCurrentQuestName(PC *this)\\r\\n\\r\\n{\\r\\n  return &this->m_stCurQuest;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::GetCurrentQuestName",
+        "address": "0805dd90"
+      },
+      "code": "\r\n/* DWARF original prototype: string * GetCurrentQuestName(PC * this) */\r\n\r\nstring * __thiscall PC::GetCurrentQuestName(PC *this)\r\n\r\n{\r\n  return &this->m_stCurQuest;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::GetCurrentQuestName\",\n    \"address\": \"0805dd90\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 0,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::GetCurrentQuestName",
+        "address": "0805dd90"
+      },
+      "callers": null,
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 100,
+        "total": 0,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"0805dd90\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd91\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd93\",\n      \"bytes\": \"8b4508\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd96\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd97\",\n      \"bytes\": \"83c030\",\n      \"instruction\": \"ADD EAX,0x30\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd9a\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 6,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "0805dd90",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "0805dd91",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "0805dd93",
+          "bytes": "8b4508",
+          "instruction": "MOV EAX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805dd96",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0805dd97",
+          "bytes": "83c030",
+          "instruction": "ADD EAX,0x30",
+          "comment": null
+        },
+        {
+          "address": "0805dd9a",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 6,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

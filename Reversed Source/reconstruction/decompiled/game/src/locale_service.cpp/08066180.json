@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08066180",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "LocaleService_LoadEmpireTextConvertTables",
+      "address": "08066180"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid LocaleService_LoadEmpireTextConvertTables(void)\r\n\r\n{\r\n  char *pcVar1;\r\n  string *psVar2;\r\n  DWORD dwEmpireID;\r\n  DWORD DVar3;\r\n  char szFileName [256];\r\n  \r\n                    /* Unresolved local var: int iEmpire@[DW_OP_reg3(EBX)] */\r\n  dwEmpireID = 1;\r\n  do {\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    psVar2 = LocaleService_GetBasePath();\r\n    pcVar1 = (psVar2->_M_dataplus)._M_p;\r\n    pcVar1[*(int *)(pcVar1 + -0xc)] = std::string::_Rep::_S_terminal;\r\n    snprintf(szFileName,0xff,\"%s/lang%d.cvt\",(psVar2->_M_dataplus)._M_p,dwEmpireID);\r\n    sys_log(0,\"Load %s\",szFileName);\r\n    DVar3 = dwEmpireID + 1;\r\n    LoadEmpireTextConvertTable(dwEmpireID,szFileName);\r\n    dwEmpireID = DVar3;\r\n  } while ((int)DVar3 < 4);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,88 @@
+// Add char.h and desc_fixture.h outside the current private-public access macro.
+// Insert below TestDirectStartupCallbacks and call after that function in main.
+namespace quest {
+int _left_image(lua_State*);
+int _top_image(lua_State*);
+int _time_to_str(lua_State*);
+int _chat(lua_State*);
+int _cmdchat(lua_State*);
+int _syschat(lua_State*);
+int _notice(lua_State*);
+}
+
+static void TestDirectOutputCallbacks(quest::CQuestManager& qm) {
+    Reset();
+    qm.m_strScript.clear();
+    lua_pushcfunction(primary, quest::_left_image);
+    lua_pushboolean(primary, 1);
+    lua_pushlstring(primary, "pic\0ignored", 11);
+    assert(lua_pcall(primary, 2, LUA_MULTRET, 0) == 0);
+    Top(primary);
+    assert(qm.m_strScript == "[LEFTIMAGE src;pic]");
+
+    lua_pushcfunction(primary, quest::_top_image);
+    lua_pushstring(primary, "ignored");
+    lua_pushnumber(primary, 67);
+    assert(lua_pcall(primary, 2, LUA_MULTRET, 0) == 0);
+    Top(primary);
+    assert(qm.m_strScript == "[LEFTIMAGE src;pic][TOPIMAGE src;67]");
+
+    lua_pushcfunction(primary, quest::_left_image);
+    lua_pushstring(primary, "ignored");
+    lua_pushboolean(primary, 1);
+    assert(lua_pcall(primary, 2, LUA_MULTRET, 0) == 0);
+    Top(primary);
+    assert(qm.m_strScript == "[LEFTIMAGE src;pic][TOPIMAGE src;67]");
+
+    CHARACTER character;
+    DescOutputProbe descriptor;
+    LPFDWATCH watch = fdwatch_new(16);
+    LPBUFFER output = buffer_new(0, 8192);
+    descriptor.Attach(watch, 5, output);
+    descriptor.SetPacketState(5);
+    character.BindDesc(&descriptor);
+    qm.m_pCurrentCharacter = &character;
+    const lua_CFunction functions[] = {quest::_chat, quest::_cmdchat, quest::_syschat, quest::_notice};
+    const BYTE types[] = {0, 5, 1, 2};
+    for (unsigned int i = 0; i < sizeof(types) / sizeof(types[0]); ++i) {
+        lua_pushcfunction(primary, functions[i]);
+        lua_pushstring(primary, "hello% ");
+        lua_pushboolean(primary, 1);
+        lua_pushnumber(primary, 23);
+        lua_pushlstring(primary, "x\0ignored", 9);
+        assert(lua_pcall(primary, 4, LUA_MULTRET, 0) == 0);
+        Top(primary);
+        const BYTE* bytes = static_cast<const BYTE*>(buffer_read_peek(output));
+        assert(buffer_size(output) == 20 && bytes[0] == 4 && bytes[1] == 20 &&
+               bytes[2] == 0 && bytes[3] == types[i]);
+        assert(std::memcmp(bytes + 9, "hello% 23x", 11) == 0);
+        buffer_reset(output);
+    }
+    lua_pushcfunction(primary, quest::_notice);
+    assert(lua_pcall(primary, 0, LUA_MULTRET, 0) == 0);
+    Top(primary);
+    const BYTE* empty = static_cast<const BYTE*>(buffer_read_peek(output));
+    assert(buffer_size(output) == 10 && empty[0] == 4 && empty[3] == 2 && empty[9] == 0);
+    buffer_reset(output);
+    character.BindDesc(0);
+    lua_pushcfunction(primary, quest::_chat);
+    lua_pushstring(primary, "discarded by real ChatPacket without a descriptor");
+    assert(lua_pcall(primary, 1, LUA_MULTRET, 0) == 0 && !buffer_size(output));
+    Top(primary);
+    qm.m_pCurrentCharacter = 0;
+    descriptor.Attach(0, -1, 0);
+    buffer_delete(output);
+    fdwatch_delete(watch);
+
+    const int rounding = fegetround();
+    assert(fesetround(FE_UPWARD) == 0);
+    lua_pushcfunction(primary, quest::_time_to_str);
+    lua_pushnumber(primary, 0);
+    lua_pushnumber(primary, 946684799.75);
+    assert(lua_pcall(primary, 2, LUA_MULTRET, 0) == 0);
+    assert(fesetround(rounding) == 0);
+    assert(lua_gettop(primary) == 3 &&
+           std::strcmp(lua_tostring(primary, -1), "Fri Dec 31 23:59:59 1999\n") == 0);
+    lua_pop(primary, 1);
+    Top(primary);
+}

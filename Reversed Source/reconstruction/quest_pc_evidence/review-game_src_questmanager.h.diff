@@ -1,0 +1,12 @@
+--- CURRENT/game/src/questmanager.h
++++ PC/game/src/questmanager.h
+@@ -13,6 +13,9 @@
+     CQuestManager();
+     virtual ~CQuestManager();
+     int GetEventFlag(const std::string& name);
++    PC* GetPC(unsigned int pc);
++    PC* GetPCForce(unsigned int pc);
++
+     typedef std::map<std::string,int> TEventNameMap;
+     TEventNameMap m_mapEventName;
+ private:

@@ -1,0 +1,104 @@
+{
+  "items": [
+    {
+      "address": "081876c0",
+      "bytes": "55",
+      "instruction": "PUSH EBP",
+      "comment": null
+    },
+    {
+      "address": "081876c1",
+      "bytes": "31c0",
+      "instruction": "XOR EAX,EAX",
+      "comment": null
+    },
+    {
+      "address": "081876c3",
+      "bytes": "89e5",
+      "instruction": "MOV EBP,ESP",
+      "comment": null
+    },
+    {
+      "address": "081876c5",
+      "bytes": "0fb64d0c",
+      "instruction": "MOVZX ECX,byte ptr [EBP + 0xc]",
+      "comment": null
+    },
+    {
+      "address": "081876c9",
+      "bytes": "8b5508",
+      "instruction": "MOV EDX,dword ptr [EBP + 0x8]",
+      "comment": null
+    },
+    {
+      "address": "081876cc",
+      "bytes": "83c270",
+      "instruction": "ADD EDX,0x70",
+      "comment": null
+    },
+    {
+      "address": "081876cf",
+      "bytes": "90",
+      "instruction": "NOP",
+      "comment": null
+    },
+    {
+      "address": "081876d0",
+      "bytes": "380a",
+      "instruction": "CMP byte ptr [EDX],CL",
+      "comment": null
+    },
+    {
+      "address": "081876d2",
+      "bytes": "740e",
+      "instruction": "JZ 0x081876e2",
+      "comment": null
+    },
+    {
+      "address": "081876d4",
+      "bytes": "40",
+      "instruction": "INC EAX",
+      "comment": null
+    },
+    {
+      "address": "081876d5",
+      "bytes": "83c203",
+      "instruction": "ADD EDX,0x3",
+      "comment": null
+    },
+    {
+      "address": "081876d8",
+      "bytes": "83f804",
+      "instruction": "CMP EAX,0x4",
+      "comment": null
+    },
+    {
+      "address": "081876db",
+      "bytes": "7ef3",
+      "instruction": "JLE 0x081876d0",
+      "comment": null
+    },
+    {
+      "address": "081876dd",
+      "bytes": "b8ffffffff",
+      "instruction": "MOV EAX,0xffffffff",
+      "comment": null
+    },
+    {
+      "address": "081876e2",
+      "bytes": "5d",
+      "instruction": "POP EBP",
+      "comment": null
+    },
+    {
+      "address": "081876e3",
+      "bytes": "c3",
+      "instruction": "RET",
+      "comment": null
+    }
+  ],
+  "offset": 0,
+  "limit": 1000,
+  "total": 16,
+  "has_more": false
+}

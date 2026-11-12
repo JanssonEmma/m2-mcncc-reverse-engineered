@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0805efc0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "PC::SetCurrentQuestStartFlag",
+      "address": "0805efc0"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetCurrentQuestStartFlag(PC * this) */\r\n\r\nvoid __thiscall PC::SetCurrentQuestStartFlag(PC *this)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = GetCurrentQuestBeginFlag(this);\r\n  if (iVar1 != 0) {\r\n    return;\r\n  }\r\n  SetCurrentQuestBeginFlag(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

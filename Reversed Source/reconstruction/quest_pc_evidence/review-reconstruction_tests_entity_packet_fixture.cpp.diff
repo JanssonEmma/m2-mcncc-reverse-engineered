@@ -1,0 +1,12 @@
+--- CURRENT/reconstruction/tests/entity_packet_fixture.cpp
++++ PC/reconstruction/tests/entity_packet_fixture.cpp
+@@ -58,3 +58,9 @@
+ 
+ // TEST ONLY fail-fast boundary; real shutdown is exercised in item_id_regression.
+ extern "C" void thecore_shutdown(void) { std::abort(); }
++
++// TEST ONLY unused legacy event-registry boundary, never a successful result.
++// Dedicated quest PC suite defines MCNCC_TEST_REAL_EVENTS and links actual event.cpp.
++#ifndef MCNCC_TEST_REAL_EVENTS
++extern "C" void* FindEventInfo(DWORD) { std::abort(); }
++#endif

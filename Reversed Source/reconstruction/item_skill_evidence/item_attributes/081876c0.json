@@ -1,0 +1,42 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::FindAttribute\",\n    \"address\": \"081876c0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: int FindAttribute(CItem * this, BYTE bType) */\\r\\n\\r\\nint __thiscall CItem::FindAttribute(CItem *this,BYTE bType)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  TPlayerItemAttribute *pTVar2;\\r\\n  \\r\\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\\r\\n  iVar1 = 0;\\r\\n  pTVar2 = this->m_aAttr;\\r\\n  do {\\r\\n    if (pTVar2->bType == bType) {\\r\\n      return iVar1;\\r\\n    }\\r\\n    iVar1 = iVar1 + 1;\\r\\n    pTVar2 = pTVar2 + 1;\\r\\n  } while (iVar1 < 5);\\r\\n  return -1;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::FindAttribute",
+        "address": "081876c0"
+      },
+      "code": "\r\n/* DWARF original prototype: int FindAttribute(CItem * this, BYTE bType) */\r\n\r\nint __thiscall CItem::FindAttribute(CItem *this,BYTE bType)\r\n\r\n{\r\n  int iVar1;\r\n  TPlayerItemAttribute *pTVar2;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\r\n  iVar1 = 0;\r\n  pTVar2 = this->m_aAttr;\r\n  do {\r\n    if (pTVar2->bType == bType) {\r\n      return iVar1;\r\n    }\r\n    iVar1 = iVar1 + 1;\r\n    pTVar2 = pTVar2 + 1;\r\n  } while (iVar1 < 5);\r\n  return -1;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::FindAttribute\",\n    \"address\": \"081876c0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 0,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::FindAttribute",
+        "address": "081876c0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 100,
+        "total": 0,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

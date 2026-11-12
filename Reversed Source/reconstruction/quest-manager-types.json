@@ -1,0 +1,1161 @@
+[
+  {
+    "name": "AStateScriptType",
+    "size": 12,
+    "die": "0x2c02e00",
+    "fields": [
+      {
+        "name": "m_code",
+        "type": {
+          "die": "0x2c0237c",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<char,std::allocator<char> >",
+          "size": 12
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "AArgScript",
+    "size": 36,
+    "die": "0x2c02ed0",
+    "fields": [
+      {
+        "name": "arg",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "when_condition",
+        "type": {
+          "die": "0x2c0237c",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<char,std::allocator<char> >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "script",
+        "type": {
+          "die": "0x2c02e00",
+          "tag": "DW_TAG_structure_type",
+          "name": "AStateScriptType",
+          "size": 12
+        },
+        "offset": [
+          16
+        ],
+        "access": null
+      },
+      {
+        "name": "quest_index",
+        "type": {
+          "die": "0x2bc2d8b",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "offset": [
+          28
+        ],
+        "access": null
+      },
+      {
+        "name": "state_index",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          32
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "QuestState",
+    "size": 60,
+    "die": "0x2c03f60",
+    "fields": [
+      {
+        "name": "co",
+        "type": {
+          "die": "0x2be14e1",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2be14b0",
+            "tag": "DW_TAG_typedef",
+            "name": "lua_State",
+            "size": null,
+            "type": {
+              "die": "0x2be14bb",
+              "tag": "DW_TAG_structure_type",
+              "name": "lua_State",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "ico",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "args",
+        "type": {
+          "die": "0x2bc2d55",
+          "tag": "DW_TAG_base_type",
+          "name": "short int",
+          "size": 2
+        },
+        "offset": [
+          8
+        ],
+        "access": null
+      },
+      {
+        "name": "suspend_state",
+        "type": {
+          "die": "0x2bc64e8",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x2bc2d43",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "offset": [
+          10
+        ],
+        "access": null
+      },
+      {
+        "name": "iIndex",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          12
+        ],
+        "access": null
+      },
+      {
+        "name": "bStart",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          16
+        ],
+        "access": null
+      },
+      {
+        "name": "st",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          20
+        ],
+        "access": null
+      },
+      {
+        "name": "_title",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          24
+        ],
+        "access": null
+      },
+      {
+        "name": "_clock_name",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          28
+        ],
+        "access": null
+      },
+      {
+        "name": "_counter_name",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          32
+        ],
+        "access": null
+      },
+      {
+        "name": "_clock_value",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          36
+        ],
+        "access": null
+      },
+      {
+        "name": "_counter_value",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          40
+        ],
+        "access": null
+      },
+      {
+        "name": "_icon_file",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": null
+      },
+      {
+        "name": "chat_scripts",
+        "type": {
+          "die": "0x2c034c5",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::AArgScript*,std::allocator<quest::AArgScript*> >",
+          "size": 12
+        },
+        "offset": [
+          48
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "RewardData",
+    "size": 12,
+    "die": "0x2c04209",
+    "fields": [
+      {
+        "name": "type",
+        "type": {
+          "die": "0x2c04215",
+          "tag": "DW_TAG_enumeration_type",
+          "name": "RewardType",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "value1",
+        "type": {
+          "die": "0x2bc64d2",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2bc2dc1",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "value2",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "PC",
+    "size": 108,
+    "die": "0x2c05af2",
+    "fields": [
+      {
+        "name": "m_QuestStateChange",
+        "type": {
+          "die": "0x2c068fe",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::PC::TQuestStateChangeInfo,std::allocator<quest::PC::TQuestStateChangeInfo> >",
+          "size": 12
+        },
+        "offset": [
+          0
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_vRewardData",
+        "type": {
+          "die": "0x2c0767c",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<quest::RewardData,std::allocator<quest::RewardData> >",
+          "size": 12
+        },
+        "offset": [
+          12
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bIsGivenReward",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          24
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bShouldSendDone",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          25
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwID",
+        "type": {
+          "die": "0x2bc64d2",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2bc2dc1",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          28
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_QuestInfo",
+        "type": {
+          "die": "0x2c055a7",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<unsigned int,quest::QuestState,std::less<unsigned int>,std::allocator<std::pair<const unsigned int, quest::QuestState> > >",
+          "size": 12
+        },
+        "offset": [
+          32
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_RunningQuestState",
+        "type": {
+          "die": "0x2c04096",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2c03f60",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          }
+        },
+        "offset": [
+          44
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_stCurQuest",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          48
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_FlagMap",
+        "type": {
+          "die": "0x2c091bd",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          52
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_FlagSaveMap",
+        "type": {
+          "die": "0x2c091bd",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          64
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_TimerMap",
+        "type": {
+          "die": "0x2c0a71e",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,event*,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, event*> > >",
+          "size": 12
+        },
+        "offset": [
+          76
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iSendToClient",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          88
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bLoaded",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          92
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iLastState",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwWaitConfirmFromPID",
+        "type": {
+          "die": "0x2bc64d2",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2bc2dc1",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          100
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bConfirmWait",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          104
+        ],
+        "access": 3
+      }
+    ]
+  },
+  {
+    "name": "TQuestStateChangeInfo",
+    "size": 12,
+    "die": "0x2c05afd",
+    "fields": [
+      {
+        "name": "quest_idx",
+        "type": {
+          "die": "0x2bc64d2",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2bc2dc1",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          0
+        ],
+        "access": null
+      },
+      {
+        "name": "prev_state",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "next_state",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          8
+        ],
+        "access": null
+      }
+    ]
+  },
+  {
+    "name": "NPC",
+    "size": 484,
+    "die": "0x2c0e1b8",
+    "fields": [
+      {
+        "name": "m_vnum",
+        "type": {
+          "die": "0x2bc2d8b",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_mapOwnQuest",
+        "type": {
+          "die": "0x2c0e69a",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2c0bcb8",
+            "tag": "DW_TAG_structure_type",
+            "name": "map<unsigned int,std::map<int, quest::AStateScriptType, std::less<int>, std::allocator<std::pair<const int, quest::AStateScriptType> > >,std::less<unsigned int>,std::allocator<std::pair<const unsigned int, std::map<int, quest::AStateScriptType, std::less<int>, std::allocator<std::pair<const int, quest::AStateScriptType> > > > > >",
+            "size": 12
+          },
+          "bounds": [
+            19
+          ]
+        },
+        "offset": [
+          4
+        ],
+        "access": 2
+      },
+      {
+        "name": "m_mapOwnArgQuest",
+        "type": {
+          "die": "0x2c0e6aa",
+          "tag": "DW_TAG_array_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x2c0d743",
+            "tag": "DW_TAG_structure_type",
+            "name": "map<unsigned int,std::map<int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> >, std::less<int>, std::allocator<std::pair<const int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> > > > >,std::less<unsigned int>,std::allocator<std::pair<const unsigned int, std::map<int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> >, std::less<int>, std::allocator<std::pair<const int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> > > > > > > >",
+            "size": 12
+          },
+          "bounds": [
+            19
+          ]
+        },
+        "offset": [
+          244
+        ],
+        "access": 2
+      }
+    ]
+  },
+  {
+    "name": "CQuestManager",
+    "size": 216,
+    "die": "0x2c18d2b",
+    "fields": [
+      {
+        "name": null,
+        "type": {
+          "die": "0x2c38706",
+          "tag": "DW_TAG_structure_type",
+          "name": "singleton<quest::CQuestManager>",
+          "size": 4
+        },
+        "offset": [
+          0
+        ],
+        "access": 1
+      },
+      {
+        "name": "m_mapEventName",
+        "type": {
+          "die": "0x2c091bd",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          4
+        ],
+        "access": null
+      },
+      {
+        "name": "m_pSelectedDungeon",
+        "type": {
+          "die": "0x2c36010",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2c3573d",
+            "tag": "DW_TAG_structure_type",
+            "name": "CDungeon",
+            "size": 108
+          }
+        },
+        "offset": [
+          16
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_dwServerTimerArg",
+        "type": {
+          "die": "0x2bc64d2",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x2bc2dc1",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "offset": [
+          20
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapServerTimer",
+        "type": {
+          "die": "0x2c12892",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::pair<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, long unsigned int>,event*,std::less<std::pair<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, long unsigned int> >,std::allocator<std::pair<const std::pair<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, long unsigned int>, event*> > >",
+          "size": 12
+        },
+        "offset": [
+          24
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iRunningEventIndex",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          36
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapEventFlag",
+        "type": {
+          "die": "0x2c091bd",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, int> > >",
+          "size": 12
+        },
+        "offset": [
+          40
+        ],
+        "access": 3
+      },
+      {
+        "name": "L",
+        "type": {
+          "die": "0x2be14e1",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2be14b0",
+            "tag": "DW_TAG_typedef",
+            "name": "lua_State",
+            "size": null,
+            "type": {
+              "die": "0x2be14bb",
+              "tag": "DW_TAG_structure_type",
+              "name": "lua_State",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          52
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bNoSend",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          56
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_registeredNPCVnum",
+        "type": {
+          "die": "0x2c140b0",
+          "tag": "DW_TAG_structure_type",
+          "name": "set<unsigned int,std::less<unsigned int>,std::allocator<unsigned int> >",
+          "size": 12
+        },
+        "offset": [
+          60
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapNPC",
+        "type": {
+          "die": "0x2c15832",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<unsigned int,quest::NPC,std::less<unsigned int>,std::allocator<std::pair<const unsigned int, quest::NPC> > >",
+          "size": 12
+        },
+        "offset": [
+          72
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapNPCNameID",
+        "type": {
+          "die": "0x2c16fb5",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,unsigned int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int> > >",
+          "size": 12
+        },
+        "offset": [
+          84
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapTimerID",
+        "type": {
+          "die": "0x2c16fb5",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,unsigned int,std::less<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<std::pair<const std::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int> > >",
+          "size": 12
+        },
+        "offset": [
+          96
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_CurrentRunningState",
+        "type": {
+          "die": "0x2c04096",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2c03f60",
+            "tag": "DW_TAG_structure_type",
+            "name": "QuestState",
+            "size": 60
+          }
+        },
+        "offset": [
+          108
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapPC",
+        "type": {
+          "die": "0x2c187e0",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<unsigned int,quest::PC,std::less<unsigned int>,std::allocator<std::pair<const unsigned int, quest::PC> > >",
+          "size": 12
+        },
+        "offset": [
+          112
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pCurrentCharacter",
+        "type": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          124
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pCurrentNPCCharacter",
+        "type": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          128
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pCurrentPartyMember",
+        "type": {
+          "die": "0x2be1892",
+          "tag": "DW_TAG_typedef",
+          "name": "LPCHARACTER",
+          "size": null,
+          "type": {
+            "die": "0x2be189d",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x2be18a3",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": null
+            }
+          }
+        },
+        "offset": [
+          132
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_pCurrentPC",
+        "type": {
+          "die": "0x2c0ac6f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x2c05af2",
+            "tag": "DW_TAG_structure_type",
+            "name": "PC",
+            "size": 108
+          }
+        },
+        "offset": [
+          136
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_strScript",
+        "type": {
+          "die": "0x2bd3bb4",
+          "tag": "DW_TAG_typedef",
+          "name": "string",
+          "size": null,
+          "type": {
+            "die": "0x2bd0bba",
+            "tag": "DW_TAG_structure_type",
+            "name": "basic_string<char,std::char_traits<char>,std::allocator<char> >",
+            "size": 4
+          }
+        },
+        "offset": [
+          140
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_iCurrentSkin",
+        "type": {
+          "die": "0x2bc2d79",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "offset": [
+          144
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_hmQuestName",
+        "type": {
+          "die": "0x2c1bae9",
+          "tag": "DW_TAG_structure_type",
+          "name": "hash_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >,int,quest::CQuestManager::stringhash,std::equal_to<std::basic_string<char, std::char_traits<char>, std::allocator<char> > >,std::allocator<int> >",
+          "size": 20
+        },
+        "offset": [
+          148
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_hmQuestStartScript",
+        "type": {
+          "die": "0x2c1e185",
+          "tag": "DW_TAG_structure_type",
+          "name": "hash_map<unsigned int,std::vector<char, std::allocator<char> >,__gnu_cxx::hash<unsigned int>,std::equal_to<unsigned int>,std::allocator<std::vector<char, std::allocator<char> > > >",
+          "size": 20
+        },
+        "offset": [
+          168
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_mapQuestNameByIndex",
+        "type": {
+          "die": "0x2c1f8a4",
+          "tag": "DW_TAG_structure_type",
+          "name": "map<unsigned int,std::basic_string<char, std::char_traits<char>, std::allocator<char> >,std::less<unsigned int>,std::allocator<std::pair<const unsigned int, std::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >",
+          "size": 12
+        },
+        "offset": [
+          188
+        ],
+        "access": 3
+      },
+      {
+        "name": "compression_vector",
+        "type": {
+          "die": "0x2c20319",
+          "tag": "DW_TAG_structure_type",
+          "name": "vector<unsigned char,std::allocator<unsigned char> >",
+          "size": 12
+        },
+        "offset": [
+          200
+        ],
+        "access": 3
+      },
+      {
+        "name": "m_bError",
+        "type": {
+          "die": "0x2bcc915",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "offset": [
+          212
+        ],
+        "access": 3
+      }
+    ]
+  }
+]

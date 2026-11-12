@@ -1,0 +1,43 @@
+{
+  "address": "08186cf0",
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::GetAttributeSetIndex\",\n    \"address\": \"08186cf0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: int GetAttributeSetIndex(CItem * this) */\\r\\n\\r\\nint __thiscall CItem::GetAttributeSetIndex(CItem *this)\\r\\n\\r\\n{\\r\\n  TItemTable *pTVar1;\\r\\n  int iVar2;\\r\\n  BYTE BVar3;\\r\\n  \\r\\n  BVar3 = '\\\\0';\\r\\n  pTVar1 = this->m_pProto;\\r\\n  if (pTVar1 != (TItemTable *)0x0) {\\r\\n    BVar3 = pTVar1->bType;\\r\\n  }\\r\\n  if (BVar3 == '\\\\x01') {\\r\\n    BVar3 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar3 = pTVar1->bSubType;\\r\\n    }\\r\\n    return (BVar3 != '\\\\x06') - 1;\\r\\n  }\\r\\n  BVar3 = '\\\\0';\\r\\n  if (pTVar1 != (TItemTable *)0x0) {\\r\\n    BVar3 = pTVar1->bType;\\r\\n  }\\r\\n  if (BVar3 == '\\\\x02') {\\r\\n    BVar3 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar3 = pTVar1->bSubType;\\r\\n    }\\r\\n    switch(BVar3) {\\r\\n    case '\\\\0':\\r\\n      iVar2 = 1;\\r\\n      break;\\r\\n    case '\\\\x01':\\r\\n      iVar2 = 5;\\r\\n      break;\\r\\n    case '\\\\x02':\\r\\n      iVar2 = 6;\\r\\n      break;\\r\\n    case '\\\\x03':\\r\\n      iVar2 = 2;\\r\\n      break;\\r\\n    case '\\\\x04':\\r\\n      iVar2 = 3;\\r\\n      break;\\r\\n    case '\\\\x05':\\r\\n      iVar2 = 4;\\r\\n      break;\\r\\n    case '\\\\x06':\\r\\n      iVar2 = 7;\\r\\n      break;\\r\\n    default:\\r\\n      goto switchD_08186d28_default;\\r\\n    }\\r\\n  }\\r\\n  else {\\r\\nswitchD_08186d28_default:\\r\\n    iVar2 = -1;\\r\\n  }\\r\\n  return iVar2;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::GetAttributeSetIndex",
+        "address": "08186cf0"
+      },
+      "code": "\r\n/* DWARF original prototype: int GetAttributeSetIndex(CItem * this) */\r\n\r\nint __thiscall CItem::GetAttributeSetIndex(CItem *this)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  int iVar2;\r\n  BYTE BVar3;\r\n  \r\n  BVar3 = '\\0';\r\n  pTVar1 = this->m_pProto;\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar3 = pTVar1->bType;\r\n  }\r\n  if (BVar3 == '\\x01') {\r\n    BVar3 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar3 = pTVar1->bSubType;\r\n    }\r\n    return (BVar3 != '\\x06') - 1;\r\n  }\r\n  BVar3 = '\\0';\r\n  if (pTVar1 != (TItemTable *)0x0) {\r\n    BVar3 = pTVar1->bType;\r\n  }\r\n  if (BVar3 == '\\x02') {\r\n    BVar3 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar3 = pTVar1->bSubType;\r\n    }\r\n    switch(BVar3) {\r\n    case '\\0':\r\n      iVar2 = 1;\r\n      break;\r\n    case '\\x01':\r\n      iVar2 = 5;\r\n      break;\r\n    case '\\x02':\r\n      iVar2 = 6;\r\n      break;\r\n    case '\\x03':\r\n      iVar2 = 2;\r\n      break;\r\n    case '\\x04':\r\n      iVar2 = 3;\r\n      break;\r\n    case '\\x05':\r\n      iVar2 = 4;\r\n      break;\r\n    case '\\x06':\r\n      iVar2 = 7;\r\n      break;\r\n    default:\r\n      goto switchD_08186d28_default;\r\n    }\r\n  }\r\n  else {\r\nswitchD_08186d28_default:\r\n    iVar2 = -1;\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::GetAttributeSetIndex\",\n    \"address\": \"08186cf0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 0,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::GetAttributeSetIndex",
+        "address": "08186cf0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 100,
+        "total": 0,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

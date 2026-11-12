@@ -1,0 +1,38 @@
+{
+  "checkpoint": 90,
+  "status": "passed",
+  "full_runtime_commands": 99,
+  "focused_runtime_commands": 3,
+  "abi": true,
+  "original_function_mappings": 1,
+  "inline_semantic_bodies": 8,
+  "semantic_methods": 9,
+  "source_guards": {
+    "game/src/questpc.h": "25ffc7bba9ccc38f45b3d436f13b8b935b63e9bf9a9f4d08ff2fa6fe4a902c86",
+    "game/src/questpc.cpp": "a2bfb54fec279c69860fd1eb44c619a06e854d5ab1f820c7911e0ccd38843d90",
+    "reconstruction/tests/pc_state_helpers_regression.cpp": "9245f30513b124056a12beac6d392c2db9c99718da04cd878885a135fb2b5272",
+    "reconstruction/tests/pc_state_helpers_abi.cpp": "f127de75fbb7a3ec7d0c60a096bb37521da9f537e3cf1592bdced35a95587959",
+    "reconstruction/tests/Makefile": "c2ba1f0919c4410d4a9e3d62e432dc1c3a30dc58c817e187026ea08e06c47a16"
+  },
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-90-validation.receipt.json": "dae013f4ebc7fd9c54955be806b54d2db4d28c52556baaf54349e3d51b062e59",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc-state-focused.receipt.json": "6b4f966cfefc8ab7d2461cf96459658dfc7a50f3106eebf573dd4235b382be07",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest_level\\pc_state_helpers\\pc-state-helpers-o2.receipt.json": "c0499c647ef0b7ccc02c4d14556368489b104ebc929f0619161621f59c830f95",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc-state-m32.receipt.json": "f8485941ff6c9ff37503e72a8af7acf9cf6ede4722ba972319d3e3c8b9240b2b",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\pc-state-m32.log": "c6ec77c52e5288b482abe3bb8c4d0f655a660b9b08d20fcab4976915b185b439"
+  },
+  "evidence_sha256": {
+    "080603e0.json": "d1592a4bd873b5355bb48b8e1b4c4821c56a89ec7663956b1c6d756ee32394a9",
+    "0805c826-parent-asm.json": "2e0c75c0111ad15007ca61dfefca8729fbaf6e395dcdf027bc1ab60381a63825",
+    "0805f522-parent-asm.json": "60a07fb313ef9108cc0a078287be66b98d4d4726c8b07fd7bd6e6c619a9a4bb3",
+    "080c4aa4-parent-asm.json": "ea58b6e5b914f0091ca40b9bc058425d930ec1a6e9943893adfbed14224abd98",
+    "081a1f7a-parent-asm.json": "cbc32a9e3c35009125756253d67c01aa684e1fd7627fd025e0900dfcf558d89d",
+    "081a1f94-parent-asm.json": "cbc32a9e3c35009125756253d67c01aa684e1fd7627fd025e0900dfcf558d89d",
+    "081a2064-parent-asm.json": "be7436fd1fe3403d2e68889db1c68b3d09efc1e4cf4077f623e4e249d6bf1708",
+    "081a209b-parent-asm.json": "be7436fd1fe3403d2e68889db1c68b3d09efc1e4cf4077f623e4e249d6bf1708",
+    "081a4fa2-parent-asm.json": "d6ade75619a98e325e91351cbbfc79ee7990e1ad9aae2ab030ecbad963d57677"
+  },
+  "baseline_overrides_sha256": "29c0a9e2ace6318733eb4020865625214f8879930b9626ee116a508b05b2cfda",
+  "baseline_validation_status_sha256": "25f7c3f231c61cfb026b416a31e95a70671df0c3fb79b6a32197726bc34d33d1",
+  "note": "Checkpoint90 recovers nine complete PC helpers in original placement: one standalone SetSendFlag export and eight code-backed inline state/query/reward-presence/done/confirmation methods. Focused3+ABI, actual optimized full PC/registry/scheduler graph/four distinct SQL objects, standalone strict32 sources/ABI/regression and full99 ordered runtimes+ABI pass. Full61API and all data/indeterminate fields preserved. MaskOR, retained confirmation PID, zeroPID and done-reset behavior retained. IsConfirmWait() and ClearSendFlag remain reference-only declarations. Non-null QuestState/nonempty reward runtime domains remain explicitly untested until actual constructors; no fake constructors or Lua/VM/reward execution. Full server reconstruction remains incomplete."
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08167db0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8167db0",
+    "function": {
+      "name": "CItem::SetSocket",
+      "address": "08167db0"
+    },
+    "signature": "void SetSocket(CItem * this, int i, long v)",
+    "code": "\r\n/* DWARF original prototype: void SetSocket(CItem * this, int i, long v) */\r\n\r\nvoid __thiscall CItem::SetSocket(CItem *this,int i,long v)\r\n\r\n{\r\n  DWORD dwItemID;\r\n  \r\n  if (2 < i) {\r\n    __assert(\"SetSocket\",\"item.cpp\",0x351);\r\n  }\r\n  this->m_alSockets[i] = v;\r\n  UpdatePacket(this);\r\n  Save(this);\r\n  dev_log(\"item.cpp\",0x355,\"SetSocket\",0x1000,\r\n          \"ITEM SetSocket (name,apply_type,apply_value) = (%s, %d, %d)\",\r\n          (uint)this->m_pProto->szLocaleName & (this->m_pProto == (TItemTable *)0x0) - 1,i,v);\r\n  dwItemID = this->m_dwID;\r\n  if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  LogManager::ItemLog(singleton<LogManager>::ms_singleton,i,v,0,dwItemID,\"SET_SOCKET\",\"\");\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

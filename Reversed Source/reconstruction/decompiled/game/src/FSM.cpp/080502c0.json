@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080502c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CFSM::Update",
+      "address": "080502c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void Update(CFSM * this) */\r\n\r\nvoid __thiscall CFSM::Update(CFSM *this)\r\n\r\n{\r\n  CState *pCVar1;\r\n  _func_int_varargs **pp_Var2;\r\n  \r\n  if (this->m_pNewState != (CState *)0x0) {\r\n    (*this->m_pCurrentState->_vptr_CState[4])(this->m_pCurrentState);\r\n    pCVar1 = this->m_pNewState;\r\n    this->m_pNewState = (CState *)0x0;\r\n    pp_Var2 = pCVar1->_vptr_CState;\r\n    this->m_pCurrentState = pCVar1;\r\n    (*pp_Var2[2])(pCVar1);\r\n  }\r\n  (*this->m_pCurrentState->_vptr_CState[3])(this->m_pCurrentState);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

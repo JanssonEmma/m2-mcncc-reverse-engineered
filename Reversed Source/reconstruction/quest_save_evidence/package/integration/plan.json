@@ -1,0 +1,59 @@
+{
+  "root": "PROJECT_ROOT\\Reversed Source",
+  "scope": "Complete PC::Save08060770, full106byte original record, actual DB descriptor/PC/buffer/event graph regression; prepared only, no build/pass claim",
+  "runtime_count_after": 104,
+  "dependencies": [
+    {
+      "path": "game/src/questpc.h",
+      "sha256": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a"
+    },
+    {
+      "path": "game/src/desc_client.h",
+      "sha256": "035463e5284d7be9226311aa6d9d9127500db044b15e02609bfbf279e50fc50a"
+    },
+    {
+      "path": "game/src/desc_client.cpp",
+      "sha256": "49bdc10eb9380490f5b1625db5886564906581e3465395cd098dd28412afc049"
+    },
+    {
+      "path": "libthecore/include/log.h",
+      "sha256": "c255a0cc2281f0496c5eec7fa80b040cf65d20ea456d7e0913ae952a2edfea06"
+    },
+    {
+      "path": "libthecore/include/typedef.h",
+      "sha256": "5f12e1f68446151c94356b6221568bcf54f78c0fba0c33fc2a8060fa7ee5348e"
+    }
+  ],
+  "files": [
+    {
+      "path": "game/src/questpc.cpp",
+      "before": "b6a5367dbda8ecd61c238efaf6384aa84cd5b4e91e71d6cadcb0ad8610a14e45",
+      "after": "53fcb087c0480794d0f41406695e8c0cd8e3c408d8fe600ab73ed6fd2a1e2778"
+    },
+    {
+      "path": "common/tables.h",
+      "before": "4f1eaa1800177527619c20ec6ae9b4d5ea13f4243fd1891458ed7e1370d9f91d",
+      "after": "4f124da7d970c7db82b6d4de93f6d793858a0b251a6087c5a21d3bd627e45e3f"
+    },
+    {
+      "path": "reconstruction/tests/pc_quest_save_regression.cpp",
+      "before": null,
+      "after": "97ccae3dc4b4355551d68a4cf5a24129931c05b3efa1428cf12acf04fb4802d0"
+    },
+    {
+      "path": "reconstruction/tests/pc_quest_save_abi.cpp",
+      "before": null,
+      "after": "8c5ea339bf4084fcbecfb6d540eee6daecf1d92ff3e009eadc7ed1a93848af62"
+    },
+    {
+      "path": "reconstruction/tests/pc_quest_save_desc_output_syscalls.c",
+      "before": null,
+      "after": "1dcd2d623a662ec10f1ebfcc8aee52e82e5acc741c1bf34b7d19e70d837eb684"
+    },
+    {
+      "path": "reconstruction/tests/Makefile",
+      "before": "d82654e9d4f26d9f2c3fc4c6f941fd72e9d7aba22de3c20808a2872f769263e3",
+      "after": "751b2e53a047fbca9b435784d7f3c3c60db1ff98a9e814ef5215ae98674f30fb"
+    }
+  ]
+}

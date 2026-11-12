@@ -1,0 +1,46 @@
+{
+  "checkpoint": 105,
+  "status": "passed_focused",
+  "validation_scope": "focused_only",
+  "focused_runtime_commands": [
+    "quest_npc_set_regression",
+    "quest_registration_regression",
+    "quest_ownership_regression"
+  ],
+  "registered_runtime_commands": 118,
+  "abi": true,
+  "source_hashes": [
+    {
+      "path": "game/src/questmanager.cpp",
+      "before": "8b22c2fec76350d6269241f7c6f0b82e9fbcee28459e37e1830e71a9f2bf598d",
+      "after": "752231802a834152c091f1c34fc4bf732dcfdbce5f981f20724515f871aefeb1"
+    },
+    {
+      "path": "game/src/questmanager.h",
+      "before": "7f0b2a5c24929d58d733c7c1971ad00c8450e5ee9e84fc6d5039e3f02dfc5440",
+      "after": "9ca540ea3efdab7e12a1618ebe0a64ff4bd48710b730e8b01397e9e65469e621"
+    },
+    {
+      "path": "reconstruction/tests/quest_npc_set_regression.cpp",
+      "before": "591ec075f896b9780cd0fb54ecba3abd67ed15c3650810c32f0689f314cac504",
+      "after": "34be6bebc7a23db5bc57cdff7e3014a796cf8e343d15ae2941c7a89ce10f664c"
+    },
+    {
+      "path": "reconstruction/tests/quest_npc_set_desc_output_syscalls.c",
+      "before": "f486d1f82dd494509e07b2e1816e61f111dedcd3790b1e1a323e15be63ce2114",
+      "after": "9c7df62aafa5a085bfe801c325907bd23f259b6724cc0cc6cf231073966a5e13"
+    }
+  ],
+  "receipt_sha256": "4a3e846790169804f7decb564da5fea1d495c41a37a081590842a696c869a1ba",
+  "last_full_validation": {
+    "checkpoint": 103,
+    "runtime_commands": 117,
+    "receipt": "PROJECT_ROOT\\Reversed Source\\reconstruction\\npc_loader_evidence\\checkpoint-103-validation.receipt.json",
+    "receipt_sha256": "bb438c9cc6fbf6ac03f372555e2188241310c9fa7a45c34cf17089ffe1d5886c"
+  },
+  "coverage": {
+    "unreviewed": 6164,
+    "evidence_available": 746,
+    "reviewed_implementation_test_mapping": 328
+  }
+}

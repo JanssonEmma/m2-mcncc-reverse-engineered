@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08055280",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_find_pc_cond",
+      "address": "08055280"
+    },
+    "code": "\r\nint _find_pc_cond(lua_State *L)\r\n\r\n{\r\n  long lMapIndex;\r\n  int iVar1;\r\n  LPCHARACTER pCVar2;\r\n  lua_Number lVar3;\r\n  lua_Number lVar4;\r\n  lua_Number lVar5;\r\n  uint local_34;\r\n  int iMaxLev;\r\n  int iMinLev;\r\n  \r\n                    /* Unresolved local var: uint uiJobFlag@[???]\r\n                       Unresolved local var: LPCHARACTER ch@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: LPCHARACTER tch@[DW_OP_reg0(EAX)] */\r\n  iVar1 = lua_isnumber(L,1);\r\n  if (iVar1 == 0) {\r\nLAB_080552a7:\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    CQuestManager::QuestError\r\n              ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,\"_find_pc_cond\",0x223,\r\n               \"invalid argument\");\r\n  }\r\n  else {\r\n    iVar1 = lua_isnumber(L,2);\r\n    if (iVar1 == 0) goto LAB_080552a7;\r\n    iVar1 = lua_isnumber(L,3);\r\n    if (iVar1 == 0) goto LAB_080552a7;\r\n    lVar3 = lua_tonumber(L,1);\r\n    lVar4 = lua_tonumber(L,2);\r\n    lVar5 = lua_tonumber(L,3);\r\n    if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    pCVar2 = *(LPCHARACTER *)(singleton<quest::CQuestManager>::ms_singleton + 0x7c);\r\n    local_34 = (uint)(longlong)ROUND(lVar5);\r\n    if (test_server != 0) {\r\n      sys_log(0,\"find_pc_cond map=%d, job=%d, level=%d~%d\");\r\n    }\r\n    lMapIndex = (pCVar2->super_CEntity).m_lMapIndex;\r\n    if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    pCVar2 = CHARACTER_MANAGER::FindSpecifyPC\r\n                       (singleton<CHARACTER_MANAGER>::ms_singleton,local_34,lMapIndex,pCVar2,\r\n                        (int)ROUND(lVar3),(int)ROUND(lVar4));\r\n    if (pCVar2 != (LPCHARACTER)0x0) {\r\n      lVar3 = (lua_Number)(int)(pCVar2->m_vid).m_id;\r\n      goto LAB_080552d5;\r\n    }\r\n  }\r\n  lVar3 = 0.0;\r\nLAB_080552d5:\r\n  lua_pushnumber(L,lVar3);\r\n  return 1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

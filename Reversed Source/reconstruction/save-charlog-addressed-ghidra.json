@@ -1,0 +1,76 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "origin": "Closed Save/CharLog dependencies; complete exported bodies; no original runtime execution.",
+  "functions": [
+    {
+      "function": {
+        "name": "CHARACTER::Save",
+        "address": "08128b50"
+      },
+      "code": "\r\n/* DWARF original prototype: void Save(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::Save(CHARACTER *this)\r\n\r\n{\r\n  if (this->m_bSkipSave == false) {\r\n    if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    CHARACTER_MANAGER::DelayedSave(singleton<CHARACTER_MANAGER>::ms_singleton,this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08128b50",
+      "provenance": {
+        "raw_export": "work\\character_save\\08128b50-decompile.json",
+        "raw_sha256": "99291adabb0a3bf72cc973575722718baedb8d4aa0a6177655a2edd3397a2fb0",
+        "origin": "Saved original Ghidra structured function/code/truncated export; normalized without rewriting code."
+      }
+    },
+    {
+      "function": {
+        "name": "CHARACTER_MANAGER::DelayedSave",
+        "address": "0818e250"
+      },
+      "code": "\r\n/* DWARF original prototype: void DelayedSave(CHARACTER_MANAGER * this, LPCHARACTER ch) */\r\n\r\nvoid __thiscall CHARACTER_MANAGER::DelayedSave(CHARACTER_MANAGER *this,LPCHARACTER ch)\r\n\r\n{\r\n  pair<std::_Rb_tree_iterator<CHARACTER*,_CHARACTER*&,_CHARACTER**>,bool> __p;\r\n  \r\n  _Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>\r\n  ::insert_unique(&(this->m_set_pkChrForDelayedSave)._M_t,&ch);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0818e250",
+      "provenance": {
+        "raw_export": "work\\character_save\\0818e250-decompile.json",
+        "raw_sha256": "c1122ee451bd382bb221bd452d95d41ccefa765c057f3b85bd0789200e3b4286",
+        "origin": "Saved original Ghidra structured function/code/truncated export; normalized without rewriting code."
+      }
+    },
+    {
+      "function": {
+        "name": "LogManager::Query",
+        "address": "08078460"
+      },
+      "code": "\r\n/* DWARF original prototype: void Query(LogManager * this, char * c_pszFormat, ...) */\r\n\r\nvoid __thiscall LogManager::Query(LogManager *this,char *c_pszFormat,...)\r\n\r\n{\r\n  char szQuery [4096];\r\n  \r\n                    /* Unresolved local var: va_list args@[???] */\r\n  vsnprintf(szQuery,0x1000,c_pszFormat,&stack0x0000000c);\r\n  CAsyncSQL::AsyncQuery(&this->m_sql,szQuery);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08078460",
+      "provenance": {
+        "raw_export": "work\\quest_level\\charlog\\08078460-decompile.json",
+        "raw_sha256": "6d7b42faad88d1a32224945ad5b1ffff10b4e447ae5e98efa005c57a1071ce73",
+        "origin": "Saved original Ghidra structured function/code/truncated export; normalized without rewriting code."
+      }
+    },
+    {
+      "function": {
+        "name": "LogManager::EscapeString",
+        "address": "080784c0"
+      },
+      "code": "\r\n/* DWARF original prototype: ulong EscapeString(LogManager * this, void * to, void * from, ulong\r\n   length) */\r\n\r\nulong __thiscall LogManager::EscapeString(LogManager *this,void *to,void *from,ulong length)\r\n\r\n{\r\n  ulong uVar1;\r\n  \r\n  CAsyncSQL::GetSQLHandle(&this->m_sql);\r\n  uVar1 = mysql_real_escape_string();\r\n  return uVar1;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "080784c0",
+      "provenance": {
+        "raw_export": "work\\quest_level\\charlog\\080784c0-decompile.json",
+        "raw_sha256": "f3ca0322cef5f4ffd1ef656719a2cef860229b0b2df54a8d64807f97e580423d",
+        "origin": "Saved original Ghidra structured function/code/truncated export; normalized without rewriting code."
+      }
+    },
+    {
+      "function": {
+        "name": "LogManager::CharLog",
+        "address": "080785a0"
+      },
+      "code": "\r\n/* DWARF original prototype: void CharLog(LogManager * this, DWORD dwPID, DWORD x, DWORD y, DWORD\r\n   dw, char * c_pszText, char * c_pszHint) */\r\n\r\nvoid __thiscall\r\nLogManager::CharLog(LogManager *this,DWORD dwPID,DWORD x,DWORD y,DWORD dw,char *c_pszText,\r\n                   char *c_pszHint)\r\n\r\n{\r\n  size_t length;\r\n  char *pcVar1;\r\n  \r\n  length = strlen(c_pszHint);\r\n  EscapeString(this,__escape_hint,c_pszHint,length);\r\n  pcVar1 = get_table_postfix();\r\n  sys_log(0,\r\n          \"INSERT DELAYED INTO log%s (type, time, who, x, y, what, how, hint) VALUES(\\'CHARACTER\\', NOW(), %lu, %lu, %lu, %lu, \\'%s\\', \\'%s\\')\"\r\n          ,pcVar1,dwPID,x,y,dw,c_pszText,c_pszHint);\r\n  pcVar1 = get_table_postfix();\r\n  Query(this,\r\n        \"INSERT DELAYED INTO log%s (type, time, who, x, y, what, how, hint) VALUES(\\'CHARACTER\\', NOW(), %lu, %lu, %lu, %lu, \\'%s\\', \\'%s\\')\"\r\n        ,pcVar1,dwPID,x,y,dw,c_pszText,__escape_hint);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "080785a0",
+      "provenance": {
+        "raw_export": "work\\quest_level\\charlog\\080785a0-decompile.json",
+        "raw_sha256": "2844f30ae63721684162d3bc7fe2a551a297e85c5fd4ae2eff3f4427cc5513a1",
+        "origin": "Saved original Ghidra structured function/code/truncated export; normalized without rewriting code."
+      }
+    }
+  ]
+}

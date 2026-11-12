@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08123e00",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8123e00",
+    "function": {
+      "name": "__static_initialization_and_destruction_0",
+      "address": "08123e00"
+    },
+    "signature": "void __static_initialization_and_destruction_0(int __initialize_p, int __priority)",
+    "code": "\r\nvoid __static_initialization_and_destruction_0(int __initialize_p,int __priority)\r\n\r\n{\r\n  allocator *paVar1;\r\n  int *piVar2;\r\n  int iVar3;\r\n  \r\n  if (__priority == 0xffff) {\r\n    if (__initialize_p == 1) {\r\n      std::ios_base::Init::Init((Init *)&std::__ioinit);\r\n      CTextFileLoader::ms_groupNodePool._vptr_CDynamicPool =\r\n           (_func_int_varargs **)&PTR__CDynamicPool_082243b8;\r\n      LOCK();\r\n      DAT_083223c8 = DAT_083223c8 + 1;\r\n      UNLOCK();\r\n      CTextFileLoader::ms_groupNodePool.m_stName._M_dataplus._M_p = (_Alloc_hider)&DAT_083223cc;\r\n      CTextFileLoader::ms_groupNodePool.m_nodes = (CPoolNode<CTextFileLoader::SGroupNode> *)0x0;\r\n      CTextFileLoader::ms_groupNodePool.m_nodeCount = 0;\r\n      CTextFileLoader::ms_groupNodePool.m_pFreeList = (CPoolNode<CTextFileLoader::SGroupNode> *)0x0;\r\n      CTextFileLoader::ms_groupNodePool.m_pUsedList = (CPoolNode<CTextFileLoader::SGroupNode> *)0x0;\r\n    }\r\n    if (__initialize_p == 0) {\r\n                    /* Unresolved local var: _Atomic_word __result@[DW_OP_reg0(EAX)] */\r\n      CTextFileLoader::ms_groupNodePool._vptr_CDynamicPool =\r\n           (_func_int_varargs **)&PTR__CDynamicPool_082243b8;\r\n      if (CTextFileLoader::ms_groupNodePool.m_pFreeList !=\r\n          (CPoolNode<CTextFileLoader::SGroupNode> *)0x0) {\r\n        __assert(\"CDynamicPool\",\"../../common/pool.h\",0x28);\r\n      }\r\n      if (CTextFileLoader::ms_groupNodePool.m_pUsedList !=\r\n          (CPoolNode<CTextFileLoader::SGroupNode> *)0x0) {\r\n        __assert(\"CDynamicPool\",\"../../common/pool.h\",0x29);\r\n      }\r\n      CDynamicPool<CTextFileLoader::SGroupNode>::Clear(&CTextFileLoader::ms_groupNodePool);\r\n      paVar1 = (allocator *)\r\n               ((int)CTextFileLoader::ms_groupNodePool.m_stName._M_dataplus._M_p + -0xc);\r\n      LOCK();\r\n      piVar2 = (int *)((int)CTextFileLoader::ms_groupNodePool.m_stName._M_dataplus._M_p + -4);\r\n      iVar3 = *piVar2;\r\n      *piVar2 = *piVar2 + -1;\r\n      UNLOCK();\r\n      if (iVar3 < 1) {\r\n        std::string::_Rep::_M_destroy(paVar1);\r\n      }\r\n    }\r\n    if (__initialize_p == 0) {\r\n      std::ios_base::Init::~Init((Init *)&std::__ioinit);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

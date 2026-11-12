@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813d3a0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x813d3a0",
+    "function": {
+      "name": "CHARACTER::FindAffect",
+      "address": "0813d3a0"
+    },
+    "signature": "CAffect * FindAffect(CHARACTER * this, DWORD dwType, BYTE bApply)",
+    "code": "\r\n/* DWARF original prototype: CAffect * FindAffect(CHARACTER * this, DWORD dwType, BYTE bApply) */\r\n\r\nCAffect * __thiscall CHARACTER::FindAffect(CHARACTER *this,DWORD dwType,BYTE bApply)\r\n\r\n{\r\n  _List_node<CAffect*> *p_Var1;\r\n  _List_node<CAffect*> *p_Var2;\r\n  CAffect *pCVar3;\r\n  _List_iterator<CAffect*,CAffect*&,CAffect**> __tmp;\r\n  _List_iterator<CAffect*,CAffect*&,CAffect**> it;\r\n  \r\n  p_Var1 = (this->m_list_pkAffect).super__List_base<CAffect*,std::allocator<CAffect*>_>.\r\n           super__List_alloc_base<CAffect*,std::allocator<CAffect*>,true>._M_node;\r\n  p_Var2 = (_List_node<CAffect*> *)(p_Var1->super__List_node_base)._M_next;\r\n  while( true ) {\r\n    do {\r\n      if (p_Var2 == p_Var1) {\r\n        return (CAffect *)0x0;\r\n      }\r\n                    /* Unresolved local var: CAffect * pkAffect@[DW_OP_reg0(EAX)] */\r\n      pCVar3 = p_Var2->_M_data;\r\n      p_Var2 = (_List_node<CAffect*> *)(p_Var2->super__List_node_base)._M_next;\r\n    } while (pCVar3->dwType != dwType);\r\n    if (bApply == '\\0') break;\r\n    if (bApply == pCVar3->bApplyOn) {\r\n      return pCVar3;\r\n    }\r\n  }\r\n  return pCVar3;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

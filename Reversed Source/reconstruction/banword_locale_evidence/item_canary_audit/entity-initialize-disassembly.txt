@@ -1,0 +1,77 @@
+
+PROJECT_ROOT\Reversed Source\reconstruction\tests\item_regression.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000140002590 <CEntity::Initialize(int)>:
+   140002590:	53                   	push   %rbx
+   140002591:	48 83 ec 20          	sub    $0x20,%rsp
+   140002595:	66 0f ef c0          	pxor   %xmm0,%xmm0
+   140002599:	89 51 50             	mov    %edx,0x50(%rcx)
+   14000259c:	48 89 cb             	mov    %rcx,%rbx
+   14000259f:	c6 41 54 00          	movb   $0x0,0x54(%rcx)
+   1400025a3:	0f 11 41 58          	movups %xmm0,0x58(%rcx)
+   1400025a7:	48 8b 49 20          	mov    0x20(%rcx),%rcx
+   1400025ab:	e8 50 fe ff ff       	call   140002400 <std::_Rb_tree<CEntity*, std::pair<CEntity* const, int>, std::_Select1st<std::pair<CEntity* const, int> >, std::less<CEntity*>, std::allocator<std::pair<CEntity* const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<CEntity* const, int> >*) [clone .isra.0]>
+   1400025b0:	48 8d 43 18          	lea    0x18(%rbx),%rax
+   1400025b4:	48 c7 43 20 00 00 00 	movq   $0x0,0x20(%rbx)
+   1400025bb:	00 
+   1400025bc:	48 89 43 28          	mov    %rax,0x28(%rbx)
+   1400025c0:	48 89 43 30          	mov    %rax,0x30(%rbx)
+   1400025c4:	31 c0                	xor    %eax,%eax
+   1400025c6:	48 c7 43 38 00 00 00 	movq   $0x0,0x38(%rbx)
+   1400025cd:	00 
+   1400025ce:	48 c7 43 68 00 00 00 	movq   $0x0,0x68(%rbx)
+   1400025d5:	00 
+   1400025d6:	48 c7 43 48 00 00 00 	movq   $0x0,0x48(%rbx)
+   1400025dd:	00 
+   1400025de:	c7 43 40 00 00 00 00 	movl   $0x0,0x40(%rbx)
+   1400025e5:	66 89 43 08          	mov    %ax,0x8(%rbx)
+   1400025e9:	48 83 c4 20          	add    $0x20,%rsp
+   1400025ed:	5b                   	pop    %rbx
+   1400025ee:	c3                   	ret
+   1400025ef:	90                   	nop
+
+00000001400025f0 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]>:
+   1400025f0:	41 57                	push   %r15
+   1400025f2:	41 56                	push   %r14
+   1400025f4:	41 55                	push   %r13
+   1400025f6:	41 54                	push   %r12
+   1400025f8:	55                   	push   %rbp
+   1400025f9:	57                   	push   %rdi
+   1400025fa:	56                   	push   %rsi
+   1400025fb:	53                   	push   %rbx
+   1400025fc:	48 83 ec 38          	sub    $0x38,%rsp
+   140002600:	48 89 8c 24 80 00 00 	mov    %rcx,0x80(%rsp)
+   140002607:	00 
+   140002608:	48 85 c9             	test   %rcx,%rcx
+   14000260b:	0f 84 c4 01 00 00    	je     1400027d5 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x1e5>
+   140002611:	48 8b 84 24 80 00 00 	mov    0x80(%rsp),%rax
+   140002618:	00 
+   140002619:	4c 8b 68 18          	mov    0x18(%rax),%r13
+   14000261d:	4d 85 ed             	test   %r13,%r13
+   140002620:	0f 84 c0 01 00 00    	je     1400027e6 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x1f6>
+   140002626:	4d 8b 75 18          	mov    0x18(%r13),%r14
+   14000262a:	4d 85 f6             	test   %r14,%r14
+   14000262d:	0f 84 7b 01 00 00    	je     1400027ae <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x1be>
+   140002633:	4d 8b 7e 18          	mov    0x18(%r14),%r15
+   140002637:	4d 85 ff             	test   %r15,%r15
+   14000263a:	0f 84 47 01 00 00    	je     140002787 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x197>
+   140002640:	49 8b 5f 18          	mov    0x18(%r15),%rbx
+   140002644:	48 85 db             	test   %rbx,%rbx
+   140002647:	0f 84 e2 00 00 00    	je     14000272f <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x13f>
+   14000264d:	48 8b 73 18          	mov    0x18(%rbx),%rsi
+   140002651:	48 85 f6             	test   %rsi,%rsi
+   140002654:	0f 84 83 00 00 00    	je     1400026dd <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0xed>
+   14000265a:	48 8b 7e 18          	mov    0x18(%rsi),%rdi
+   14000265e:	48 85 ff             	test   %rdi,%rdi
+   140002661:	0f 84 a1 00 00 00    	je     140002708 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x118>
+   140002667:	4c 8b 67 18          	mov    0x18(%rdi),%r12
+   14000266b:	4d 85 e4             	test   %r12,%r12
+   14000266e:	0f 84 ec 00 00 00    	je     140002760 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0x170>
+   140002674:	49 8b 6c 24 18       	mov    0x18(%r12),%rbp
+   140002679:	48 85 ed             	test   %rbp,%rbp
+   14000267c:	74 35                	je     1400026b3 <std::_Rb_tree<int, std::pair<int const, quest::AStateScriptType>, std::_Select1st<std::pair<int const, quest::AStateScriptType> >, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, quest::AStateScriptType> >*) [clone .isra.0]+0xc3>
+   14000267e:	48                   	rex.W
+   14000267f:	8b                   	.byte 0x8b

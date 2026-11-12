@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08077bb0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "CMemoryFileLoader::IsReadableSize",
+      "address": "08077bb0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsReadableSize(CMemoryFileLoader * this, int size) */\r\n\r\nbool __thiscall CMemoryFileLoader::IsReadableSize(CMemoryFileLoader *this,int size)\r\n\r\n{\r\n  return this->m_pos + size <= this->m_size;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

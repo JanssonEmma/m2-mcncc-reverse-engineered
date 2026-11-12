@@ -1,0 +1,11 @@
+// DBManager08110620. Full DBManager declaration/data must accompany this method.
+void DBManager::SendMoneyLog(BYTE type,DWORD vnum,int gold)
+{
+    if (gold!=0) {
+        TPacketMoneyLog p;
+        p.type=type;
+        p.gold=gold;
+        p.vnum=vnum;
+        db_clientdesc->DBPacket(50,0,&p,9);
+    }
+}

@@ -1,0 +1,18 @@
+// Add this prototype at observer file scope.
+extern void quest_lua_char_stone_log(const char*, double);
+
+// Add before the fallback branch in the existing sys_log variadic observer.
+ else if (!strcmp(format, "dropevent.drop_char_stone = on") ||
+          !strcmp(format, "dropevent.drop_char_stone = off")) {
+     assert(level == 0);
+     quest_lua_char_stone_log(format, 0);
+ } else if (!strcmp(format, "dropevent.drop_char_stone: %d") ||
+            !strcmp(format, "dropevent.drop_char_stone.level_range: %d")) {
+     assert(level == 0);
+     quest_lua_char_stone_log(format, va_arg(args, int));
+ } else if (!strcmp(format, "dropevent.drop_char_stone.percent_lv01_10: %f") ||
+            !strcmp(format, "dropevent.drop_char_stone.percent_lv11_30: %f") ||
+            !strcmp(format, "dropevent.drop_char_stone.percent_lv31_MX: %f")) {
+     assert(level == 0);
+     quest_lua_char_stone_log(format, va_arg(args, double));
+ }

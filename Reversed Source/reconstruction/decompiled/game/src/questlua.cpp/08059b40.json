@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08059b40",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_regen_in_map",
+      "address": "08059b40"
+    },
+    "code": "\r\nint _regen_in_map(lua_State *L)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  char *pcVar3;\r\n  SECTREE_MAP *pSVar4;\r\n  lua_Number lVar5;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_SECTREE*>,std::pair<const_long_unsigned_int,_SECTREE*>&,std::pair<const_long_unsigned_int,_SECTREE*>*>\r\n  it;\r\n  allocator local_3c [16];\r\n  string szFilename;\r\n  \r\n                    /* Unresolved local var: int iMapIndex@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: SECTREE_MAP * pkMap@[DW_OP_reg3(EBX)] */\r\n  lVar5 = lua_tonumber(L,1);\r\n  iVar2 = (int)ROUND(lVar5);\r\n  pcVar3 = lua_tostring(L,2);\r\n  std::string::string((string *)&szFilename,pcVar3,local_3c);\r\n  if (singleton<SECTREE_MANAGER>::ms_singleton == (SECTREE_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pSVar4 = SECTREE_MANAGER::GetMap(singleton<SECTREE_MANAGER>::ms_singleton,iVar2);\r\n  if (pSVar4 == (SECTREE_MAP *)0x0) {\r\n    sys_log(0,\"[REGEN_LOAD_IN_MAP]not open map %d \",iVar2);\r\n  }\r\n  else {\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    *(undefined1 *)\r\n     ((int)szFilename._M_dataplus._M_p + *(int *)((int)szFilename._M_dataplus._M_p + -0xc)) =\r\n         std::string::_Rep::_S_terminal;\r\n    sys_log(0,\"[REGEN_LOAD_IN_MAP] Map %d File %s \",iVar2,szFilename._M_dataplus._M_p);\r\n                    /* Unresolved local var: size_t __n@[???] */\r\n    *(undefined1 *)\r\n     ((int)szFilename._M_dataplus._M_p + *(int *)((int)szFilename._M_dataplus._M_p + -0xc)) =\r\n         std::string::_Rep::_S_terminal;\r\n    regen_load_in_file((char *)szFilename._M_dataplus._M_p,iVar2,(pSVar4->m_setting).iBaseX,\r\n                       (pSVar4->m_setting).iBaseY);\r\n  }\r\n                    /* Unresolved local var: _Atomic_word __result@[DW_OP_reg0(EAX)] */\r\n  LOCK();\r\n  piVar1 = (int *)((int)szFilename._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)szFilename._M_dataplus._M_p + -0xc));\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

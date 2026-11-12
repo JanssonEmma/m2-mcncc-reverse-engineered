@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08167d70",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8167d70",
+    "function": {
+      "name": "CItem::SetSockets",
+      "address": "08167d70"
+    },
+    "signature": "void SetSockets(CItem * this, long * c_al)",
+    "code": "\r\n/* DWARF original prototype: void SetSockets(CItem * this, long * c_al) */\r\n\r\nvoid __thiscall CItem::SetSockets(CItem *this,long *c_al)\r\n\r\n{\r\n  (*thecore_memcpy)(this->m_alSockets,c_al,0xc);\r\n  Save(this);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

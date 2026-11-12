@@ -1,0 +1,26 @@
+[
+  {
+    "function": {
+      "name": "CHARACTER::RemoveAffect",
+      "address": "0813e9a0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool RemoveAffect(CHARACTER * this, CAffect * pkAff) */\r\n\r\nbool __thiscall CHARACTER::RemoveAffect(CHARACTER *this,CAffect *pkAff)\r\n\r\n{\r\n  LPDESC d;\r\n  bool bVar1;\r\n  \r\n  if (pkAff == (CAffect *)0x0) {\r\n    bVar1 = false;\r\n  }\r\n  else {\r\n    list<CAffect*,std::allocator<CAffect*>_>::remove(&this->m_list_pkAffect,&pkAff);\r\n    ComputeAffect(this,pkAff,false);\r\n    if (((pkAff->dwFlag != 0) || (pkAff->bApplyOn == '\\x13')) || (pkAff->bApplyOn == '\\x11')) {\r\n      UpdatePacket(this);\r\n    }\r\n    ComputePoints(this);\r\n    CheckMaximumPoints(this);\r\n    if (test_server != 0) {\r\n      sys_log(0,\"Flag %d Apply %d \",pkAff->dwFlag,(uint)pkAff->bApplyOn);\r\n    }\r\n    d = (this->super_CEntity).m_lpDesc;\r\n    if (d != (LPDESC)0x0) {\r\n      SendAffectRemovePacket(d,this->m_dwPlayerID,pkAff->dwType,pkAff->bApplyOn);\r\n    }\r\n    operator_delete(pkAff);\r\n    bVar1 = true;\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CHARACTER::RemoveAffect",
+      "address": "0813eaa0"
+    },
+    "code": "\r\n/* DWARF original prototype: bool RemoveAffect(CHARACTER * this, DWORD dwType) */\r\n\r\nbool __thiscall CHARACTER::RemoveAffect(CHARACTER *this,DWORD dwType)\r\n\r\n{\r\n  CAffect *pkAff;\r\n  char *pcVar1;\r\n  bool flag;\r\n  \r\n                    /* Unresolved local var: CAffect * pkAff@[DW_OP_reg0(EAX)] */\r\n  if (dwType == 0x200) {\r\n    pcVar1 = GetName(this);\r\n    sys_log(0,\"XXX RemoveAffect SKILL_BOOK_BONUS from %s\",pcVar1);\r\n  }\r\n  if (dwType == 0xdf) {\r\n    pcVar1 = locale_find(&DAT_08227a62,g_iUseLocale);\r\n    ChatPacket(this,'\\x01',pcVar1);\r\n  }\r\n  flag = false;\r\n  while( true ) {\r\n    pkAff = FindAffect(this,dwType,'\\0');\r\n    if (pkAff == (CAffect *)0x0) break;\r\n    RemoveAffect(this,pkAff);\r\n    flag = true;\r\n  }\r\n  return flag;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CHARACTER::IsAffectFlag",
+      "address": "0813eb60"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsAffectFlag(CHARACTER * this, DWORD dwAff) */\r\n\r\nbool __thiscall CHARACTER::IsAffectFlag(CHARACTER *this,DWORD dwAff)\r\n\r\n{\r\n  return (bool)((byte)((this->m_afAffectFlag).bits[(int)(dwAff - 1) >> 5] >>\r\n                      ((byte)(dwAff - 1) & 0x1f)) & 1);\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

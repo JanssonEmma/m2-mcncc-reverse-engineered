@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08065f60",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "check_name_alphabet",
+      "address": "08065f60"
+    },
+    "code": "\r\nint check_name_alphabet(char *str)\r\n\r\n{\r\n  char cVar1;\r\n  size_t sVar2;\r\n  int iVar3;\r\n  char *pcVar4;\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg6(ESI)] */\r\n  if (((str != (char *)0x0) && (*str != '\\0')) && (sVar2 = strlen(str), 1 < sVar2)) {\r\n    cVar1 = *str;\r\n    pcVar4 = str;\r\n    while( true ) {\r\n      if (cVar1 == '\\0') {\r\n        iVar3 = check_name_independent(str);\r\n        return iVar3;\r\n      }\r\n      iVar3 = isdigit((int)cVar1);\r\n      if ((iVar3 == 0) && (iVar3 = isalpha((int)*pcVar4), iVar3 == 0)) break;\r\n      pcVar4 = pcVar4 + 1;\r\n      cVar1 = *pcVar4;\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

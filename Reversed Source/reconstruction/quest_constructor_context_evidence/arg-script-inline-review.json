@@ -1,0 +1,109 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "inline_source_ref": {
+    "path": "game/src/quest.h",
+    "anchor": "AArgScript() {}",
+    "line": 33,
+    "file_sha256": "103d747521904c0f25928132e2f43d3a244f2ccc0c742f16c02a6e79a78d572c"
+  },
+  "inline_evidence": {
+    "status": "PREPARED_ONLY_UNCOMPILED_UNAPPLIED",
+    "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+    "inline_origin": "0x2d6f5a7 -> 0x2d73604 -> 0x2d4d618",
+    "inline_range": [
+      "081af25d",
+      "081af263 exclusive"
+    ],
+    "source_owner": "quest.h99",
+    "scalar_defaults": "indeterminate",
+    "originals_executed": false,
+    "project_mutations": false,
+    "files": [
+      {
+        "path": "081b5700-decompile.json",
+        "sha256": "a67af2606dd2c75bfc82a135b883b8ce0194b31dda92882cad4559127e9f2869"
+      },
+      {
+        "path": "81b34b0-full-assembly.txt",
+        "sha256": "fce92838f05259f872e595b025f1073afd0717e33a08fa4a5c36e3a83b9a1e1b"
+      },
+      {
+        "path": "81b5700-full-assembly.txt",
+        "sha256": "f745c38e098d10389955caab973496aac08cb891d2d7d90bcd53d22d232ecd3a"
+      },
+      {
+        "path": "arg_script_constructor_abi.cpp",
+        "sha256": "f4f262b33fa9fbfc739813fdbac7f69a2c4a92ddde6be075e09c604ff9bf1ab1"
+      },
+      {
+        "path": "arg_script_constructor_regression.cpp",
+        "sha256": "6db609afa21db9196f5abc2c76a164c64caadf507bb8cc5a38d0e9a235cbc3c3"
+      },
+      {
+        "path": "callee_assembly.py",
+        "sha256": "49d01a84f1038fbd82c74677338bc6d74b2ae12e64f1b291cf58bd70dd253928"
+      },
+      {
+        "path": "candidate.py",
+        "sha256": "9774ef83e4ea3486f3e7f112d57a8be83a5b6bbc965368170dee341dfda19d79"
+      },
+      {
+        "path": "DEFAULT_CTOR_RAW_DIES.json",
+        "sha256": "adfb725dbed727d39cc234cef6110cbfe2f6fc16638fe9fa10a4bc654c7199b1"
+      },
+      {
+        "path": "disassemble.py",
+        "sha256": "f13382120a6645a4d32019efdbc104b656db2b4f7b446fa52deed597a9b92a65"
+      },
+      {
+        "path": "ELF_AUDIT.json",
+        "sha256": "37dab0f769d68ef3e9545ededb7cbd75b268e7c60626953ddd9cf00a18b1c22b"
+      },
+      {
+        "path": "extract.py",
+        "sha256": "6a179747c26099e454c7c36a1d9db53cbc149621c3df1a9f27590248cee47c90"
+      },
+      {
+        "path": "HANDOFF.md",
+        "sha256": "b40f0711acc8ef7d7a433f1b35cbf0dcaa812e3b520ae076af6d5fb0d75cc4ac"
+      },
+      {
+        "path": "inline.py",
+        "sha256": "d837b31a3972d71a603d73a39da7f542306702a23bc754a9aaab323c8d32c85d"
+      },
+      {
+        "path": "INLINE_OWNER_METADATA.json",
+        "sha256": "bf4cad0d148fb1e4040f4bae12ecc1d8d90457dc2a7d9a936a24303dfb4615d7"
+      },
+      {
+        "path": "LoadStateScript-full-assembly.txt",
+        "sha256": "e9a219c31a0abe58ffb347f18564bd95b415d2aec9b535d0a1623390aea602a3"
+      },
+      {
+        "path": "quest.h.candidate",
+        "sha256": "103d747521904c0f25928132e2f43d3a244f2ccc0c742f16c02a6e79a78d572c"
+      },
+      {
+        "path": "SOURCE_GUARD.json",
+        "sha256": "43913881919311f78e9418ac85b7f0125ced0bb81d522935684d411e2ec9b92c"
+      }
+    ]
+  },
+  "source_guard": {
+    "path": "game/src/quest.h",
+    "before": "15dc242cf786c913ae8d672075965062f1301592cead80ded443d5bda416bdad",
+    "candidate": "quest.h.candidate",
+    "after": "103d747521904c0f25928132e2f43d3a244f2ccc0c742f16c02a6e79a78d572c",
+    "status": "prepared_only_no_apply_or_build",
+    "mapping": "inline DWARF 081af25d..081af263 exclusive, not standalone function",
+    "scalar_policy": "indeterminate; do not read/copy before explicit initialization"
+  },
+  "test_ref": {
+    "path": "reconstruction/tests/arg_script_constructor_regression.cpp",
+    "anchor": "int main(",
+    "line": 24,
+    "file_sha256": "6db609afa21db9196f5abc2c76a164c64caadf507bb8cc5a38d0e9a235cbc3c3"
+  },
+  "policy": "Original empty user body/full implicit STL members, indeterminate scalars preserved. Inline081af25d..081af263 is NOTstandalone function; compiler destructor/copy helpers context-only; no zero defaults or explicit destructor added.",
+  "limits": "Current102 validation is FOCUSED ONLY;116registered, not116executed. Last full run is101/114 on prior source state, preserved historically. NPC singleton assert and two-current-lookup sequence static-only; tests change registries/context between ordinary calls, no invented Find hook/concurrent race. Inline AArgScript constructor initializes full STL members but leaves quest_index/state_index indeterminate; tests initialize both BEFOREcopy, original loader default-resize UB remains excluded. No new standalone ctor/dtor mapping. Actual supplied SDK5.0.3 public opaque compatibility only; original5.0/internalABI equality unproven (96/16 vs92/12). SDK28objects/twoarchives reusedstrictSHA/all59guards, not rebuilt. Prior OpenState/Build matching static-only; fullVM/dispatch/Reward/EndRunning/server/VisualStudio unfinished."
+}

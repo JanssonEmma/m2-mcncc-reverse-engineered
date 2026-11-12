@@ -1,0 +1,14 @@
+--- CURRENT/game/src/item.h
++++ WEIGHTED/game/src/item.h
+@@ -68,6 +68,11 @@
+     void SetSkipSave(bool value) { m_bSkipSave=value; }
+     DWORD GetLastOwnerPID() { return m_dwLastOwnerPID; }
+     long GetFlag() { return m_lFlag; }
++    void AddAttr(BYTE bApply,BYTE bLevel);
++    void PutAttributeWithLevel(BYTE bLevel);
++    void PutAttribute(int* aiAttrPercentTable);
++    void AlterToMagicItem();
++
+ private:
+     const TItemTable * m_pProto;
+     CHARACTER * m_pOwner;

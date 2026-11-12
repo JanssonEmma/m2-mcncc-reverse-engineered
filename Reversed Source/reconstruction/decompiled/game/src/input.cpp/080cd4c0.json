@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080cd4c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CInputProcessor::Handshake",
+      "address": "080cd4c0"
+    },
+    "code": "\r\n/* DWARF original prototype: void Handshake(CInputProcessor * this, LPDESC d, char * c_pData) */\r\n\r\nvoid __thiscall CInputProcessor::Handshake(CInputProcessor *this,LPDESC d,char *c_pData)\r\n\r\n{\r\n  bool bVar1;\r\n  _func_int_varargs **pp_Var2;\r\n  undefined4 uVar3;\r\n  \r\n                    /* Unresolved local var: TPacketCGHandshake * p@[???] */\r\n  if (d->m_dwHandshake == *(DWORD *)(c_pData + 1)) {\r\n    if (d->m_iPhase != 1) {\r\n      DESC::SyncTime(d,*(DWORD *)(c_pData + 5),*(long *)(c_pData + 9),true);\r\n      return;\r\n    }\r\n    bVar1 = DESC::SyncTime(d,*(DWORD *)(c_pData + 5),*(long *)(c_pData + 9),false);\r\n    if (!bVar1) {\r\n      return;\r\n    }\r\n    if (g_bAuthServer == '\\0') {\r\n      uVar3 = 2;\r\n      pp_Var2 = d->_vptr_DESC;\r\n    }\r\n    else {\r\n      pp_Var2 = d->_vptr_DESC;\r\n      uVar3 = 10;\r\n    }\r\n  }\r\n  else {\r\n    _sys_err(\"Handshake\",0x12e,\"Invalid Handshake on %d\",d->m_sock);\r\n    pp_Var2 = d->_vptr_DESC;\r\n    uVar3 = 0;\r\n  }\r\n  (*pp_Var2[4])(d,uVar3);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestStateName",
+    "address": "0805e2a0"
+  },
+  "code": "\r\n/* DWARF original prototype: void SetCurrentQuestStateName(PC * this, string * state_name) */\r\n\r\nvoid __thiscall PC::SetCurrentQuestStateName(PC *this,string *state_name)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  basic_string<char,std::char_traits<char>,std::allocator<char>_> __str;\r\n  \r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"Instance\",\"../../common/singleton.h\",0x20);\r\n  }\r\n  iVar2 = CQuestManager::GetQuestStateIndex\r\n                    ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,\r\n                     &this->m_stCurQuest,state_name);\r\n  std::string::string((string *)&__str,(string *)&this->m_stCurQuest);\r\n  strlen(\".__status\");\r\n  std::string::append((char *)&__str,0x81f644a);\r\n  SetFlag(this,(string *)&__str,iVar2,false);\r\n  LOCK();\r\n  piVar1 = (int *)((int)__str._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)__str._M_dataplus._M_p + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "function": {
+      "name": "CLIENT_DESC::CLIENT_DESC",
+      "address": "0813f080"
+    },
+    "code": "\r\n/* DWARF original prototype: void CLIENT_DESC(CLIENT_DESC * this) */\r\n\r\nvoid __thiscall CLIENT_DESC::CLIENT_DESC(CLIENT_DESC *this)\r\n\r\n{\r\n  DESC::DESC(&this->super_DESC);\r\n  (this->super_DESC)._vptr_DESC = (_func_int_varargs **)&PTR__CLIENT_DESC_08227f10;\r\n  this->m_iPhaseWhenSucceed = 0;\r\n  this->m_bRetryWhenClosed = false;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CLIENT_DESC::~CLIENT_DESC",
+      "address": "0813f0e0"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CLIENT_DESC(CLIENT_DESC * this, int __in_chrg) */\r\n\r\nvoid __thiscall CLIENT_DESC::~CLIENT_DESC(CLIENT_DESC *this,int __in_chrg)\r\n\r\n{\r\n  int unaff_EBX;\r\n  \r\n  (this->super_DESC)._vptr_DESC = (_func_int_varargs **)&PTR__CLIENT_DESC_08227f10;\r\n  Destroy(this);\r\n  DESC::~DESC(&this->super_DESC,unaff_EBX);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CLIENT_DESC::SetRetryWhenClosed",
+      "address": "0813f350"
+    },
+    "code": "\r\n/* DWARF original prototype: void SetRetryWhenClosed(CLIENT_DESC * this, bool b) */\r\n\r\nvoid __thiscall CLIENT_DESC::SetRetryWhenClosed(CLIENT_DESC *this,bool b)\r\n\r\n{\r\n  this->m_bRetryWhenClosed = b;\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CLIENT_DESC::GetType",
+      "address": "0813fd60"
+    },
+    "code": "\r\n/* DWARF original prototype: BYTE GetType(CLIENT_DESC * this) */\r\n\r\nBYTE __thiscall CLIENT_DESC::GetType(CLIENT_DESC *this)\r\n\r\n{\r\n  return '\\x01';\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CLIENT_DESC::DBPacketHeader",
+      "address": "0813fb40"
+    },
+    "code": "\r\n/* DWARF original prototype: void DBPacketHeader(CLIENT_DESC * this, BYTE bHeader, DWORD dwHandle,\r\n   DWORD dwSize) */\r\n\r\nvoid __thiscall\r\nCLIENT_DESC::DBPacketHeader(CLIENT_DESC *this,BYTE bHeader,DWORD dwHandle,DWORD dwSize)\r\n\r\n{\r\n  encode_byte(char)::a._0_1_ = bHeader;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_byte(char)::a,1);\r\n  encode_4bytes(int)::a._0_4_ = dwHandle;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_4bytes(int)::a,4);\r\n  encode_4bytes(int)::a._0_4_ = dwSize;\r\n  buffer_write((this->super_DESC).m_lpOutputBuffer,&encode_4bytes(int)::a,4);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  {
+    "function": {
+      "name": "CLIENT_DESC::DBPacket",
+      "address": "0813fbd0"
+    },
+    "code": "\r\n/* DWARF original prototype: void DBPacket(CLIENT_DESC * this, BYTE bHeader, DWORD dwHandle, void *\r\n   c_pvData, DWORD dwSize) */\r\n\r\nvoid __thiscall\r\nCLIENT_DESC::DBPacket(CLIENT_DESC *this,BYTE bHeader,DWORD dwHandle,void *c_pvData,DWORD dwSize)\r\n\r\n{\r\n  DWORD DVar1;\r\n  void *c_pvData_local;\r\n  CLIENT_DESC *this_local;\r\n  \r\n  DVar1 = buffer_size((this->super_DESC).m_lpOutputBuffer);\r\n  sys_log(1,\"DB_PACKET: header %d handle %d size %d buffer_size %d\",(uint)bHeader,dwHandle,dwSize,\r\n          DVar1);\r\n  DBPacketHeader(this,bHeader,dwHandle,dwSize);\r\n  if (c_pvData != (void *)0x0) {\r\n    buffer_write((this->super_DESC).m_lpOutputBuffer,c_pvData,dwSize);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+]

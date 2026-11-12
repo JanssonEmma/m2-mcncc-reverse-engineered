@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08114b20",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8114b20",
+    "function": {
+      "name": "CMotion::LoadFromFile",
+      "address": "08114b20"
+    },
+    "signature": "bool LoadFromFile(CMotion * this, char * c_pszFileName)",
+    "code": "\r\n/* DWARF original prototype: bool LoadFromFile(CMotion * this, char * c_pszFileName) */\r\n\r\nbool __thiscall CMotion::LoadFromFile(CMotion *this,char *c_pszFileName)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  float fVar3;\r\n  bool bVar4;\r\n  BOOL BVar5;\r\n  D3DVECTOR *pDVar6;\r\n  float fVar7;\r\n  char *pcVar8;\r\n  char *__in_chrg;\r\n  allocator local_9c [16];\r\n  allocator local_8c [16];\r\n  string local_7c [4];\r\n  CTextFileLoader loader;\r\n  \r\n  strlen(c_pszFileName);\r\n  std::string::assign((char *)&this->m_stFileName,(uint)c_pszFileName);\r\n  CTextFileLoader::CTextFileLoader(&loader);\r\n  pcVar8 = c_pszFileName;\r\n  bVar4 = CTextFileLoader::Load(&loader,c_pszFileName);\r\n  if (bVar4) {\r\n    std::string::string((string *)local_7c,\"motionduration\",local_8c);\r\n    BVar5 = CTextFileLoader::GetTokenFloat(&loader,local_7c,&this->m_fDuration);\r\n    LOCK();\r\n    piVar1 = (int *)((int)local_7c[0]._M_dataplus._M_p + -4);\r\n    iVar2 = *piVar1;\r\n    *piVar1 = *piVar1 + -1;\r\n    UNLOCK();\r\n    if (iVar2 < 1) {\r\n      std::string::_Rep::_M_destroy((allocator *)((int)local_7c[0]._M_dataplus._M_p + -0xc));\r\n    }\r\n    if (BVar5 != 0) {\r\n      std::string::string((string *)local_7c,\"accumulation\",local_9c);\r\n      BVar5 = CTextFileLoader::GetTokenPosition(&loader,local_7c,&this->m_vec3Accumulation);\r\n      LOCK();\r\n      piVar1 = (int *)((int)local_7c[0]._M_dataplus._M_p + -4);\r\n      iVar2 = *piVar1;\r\n      *piVar1 = *piVar1 + -1;\r\n      UNLOCK();\r\n      if (iVar2 < 1) {\r\n        std::string::_Rep::_M_destroy((allocator *)((int)local_7c[0]._M_dataplus._M_p + -0xc));\r\n      }\r\n      if (BVar5 != 0) {\r\n        this->m_isAccumulation = true;\r\n      }\r\n      pDVar6 = GetAccumVector(this);\r\n      fVar3 = pDVar6->y;\r\n      fVar7 = GetDuration(this);\r\n      pcVar8 = strchr(c_pszFileName,0x2f);\r\n      __in_chrg = \"%-48s %.3f %f\";\r\n      sys_log(1,\"%-48s %.3f %f\",pcVar8 + 1,(double)fVar7,(double)fVar3);\r\n      this->m_isEmpty = false;\r\n      CTextFileLoader::~CTextFileLoader(&loader,(int)__in_chrg);\r\n      return true;\r\n    }\r\n    pcVar8 = (char *)0x203;\r\n    _sys_err(\"LoadFromFile\",0x203,\"%s does not have a duration\",c_pszFileName);\r\n  }\r\n  CTextFileLoader::~CTextFileLoader(&loader,(int)pcVar8);\r\n  return false;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

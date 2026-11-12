@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812e2c0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x812e2c0",
+    "function": {
+      "name": "CHARACTER::CheckMaximumPoints",
+      "address": "0812e2c0"
+    },
+    "signature": "void CheckMaximumPoints(CHARACTER * this)",
+    "code": "\r\n/* DWARF original prototype: void CheckMaximumPoints(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::CheckMaximumPoints(CHARACTER *this)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  \r\n  iVar1 = (this->m_pointsInstant).iMaxHP;\r\n  iVar2 = (this->m_points).hp;\r\n  if (iVar1 < iVar2) {\r\n    PointChange(this,'\\x05',iVar1 - iVar2,false,false);\r\n  }\r\n  iVar1 = (this->m_pointsInstant).iMaxSP;\r\n  iVar2 = (this->m_points).sp;\r\n  if (iVar1 < iVar2) {\r\n    PointChange(this,'\\a',iVar1 - iVar2,false,false);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

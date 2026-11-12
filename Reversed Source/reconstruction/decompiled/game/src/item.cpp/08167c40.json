@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08167c40",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8167c40",
+    "function": {
+      "name": "CItem::Save",
+      "address": "08167c40"
+    },
+    "signature": "void Save(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void Save(CItem * this) */\r\n\r\nvoid __thiscall CItem::Save(CItem *this)\r\n\r\n{\r\n  if (this->m_bSkipSave == false) {\r\n    if (singleton<ITEM_MANAGER>::ms_singleton == (ITEM_MANAGER *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    ITEM_MANAGER::DelayedSave(singleton<ITEM_MANAGER>::ms_singleton,this);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

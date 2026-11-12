@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "CQuestManager::GetCurrentNPCRace",
+    "address": "081a5660"
+  },
+  "code": "\r\n/* DWARF original prototype: uint GetCurrentNPCRace(CQuestManager * this) */\r\n\r\nuint __thiscall CQuestManager::GetCurrentNPCRace(CQuestManager *this)\r\n\r\n{\r\n  WORD WVar1;\r\n  LPCHARACTER pCVar2;\r\n  uint uVar3;\r\n  \r\n  pCVar2 = GetCurrentNPCCharacterPtr(this);\r\n  uVar3 = 0;\r\n  if (pCVar2 != (LPCHARACTER)0x0) {\r\n    pCVar2 = GetCurrentNPCCharacterPtr(this);\r\n    WVar1 = CHARACTER::GetRaceNum(pCVar2);\r\n    uVar3 = (uint)WVar1;\r\n  }\r\n  return uVar3;\r\n}\r\n\r\n",
+  "truncated": false
+}

@@ -1,0 +1,13 @@
+// Candidate signature-only validation after real dependencies are integrated.
+#include "../../game/src/char.h"
+#include "../../game/src/item.h"
+void (CHARACTER::*battle_signature)()=&CHARACTER::ComputeBattlePoints;
+long (CHARACTER::*poly_point_signature)(BYTE)=&CHARACTER::GetPolymorphPoint;
+int (CHARACTER::*poly_power_signature)()=&CHARACTER::GetPolymorphPower;
+int (CHARACTER::*skill_level_signature)(DWORD)=&CHARACTER::GetSkillLevel;
+const TMobTable& (CHARACTER::*mob_table_signature)()=&CHARACTER::GetMobTable;
+BYTE (CItem::*item_type_signature)()=&CItem::GetType;
+BYTE (CItem::*item_subtype_signature)()=&CItem::GetSubType;
+typedef char old_skill_record_size[(sizeof(TPlayerSkill)==6)?1:-1];
+typedef char old_mob_record_size[(sizeof(TMobTable)==255)?1:-1];
+typedef char old_item_record_size[(sizeof(TItemTable)==154)?1:-1];

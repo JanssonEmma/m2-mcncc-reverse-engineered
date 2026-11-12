@@ -1,0 +1,80 @@
+{
+  "function": {
+    "name": "FFindNearVictim::operator()",
+    "address": "08075430"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0806d38c",
+        "caller": {
+          "name": "ChainLightningEvent",
+          "address": "0806d1f0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0807373f",
+        "caller": {
+          "name": "skill_muyoung_event",
+          "address": "08073610"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0807544b",
+        "target": "081acb90",
+        "name": "CEntity::IsType",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08075470",
+        "target": "08074aa0",
+        "name": "_Rb_tree<CHARACTER*,CHARACTER*,std::_Identity<CHARACTER*>,std::less<CHARACTER*>,std::allocator<CHARACTER*>_>::find",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0807548d",
+        "target": "080d5ad0",
+        "name": "battle_is_attackable",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080754d1",
+        "target": "08051610",
+        "name": "DISTANCE_APPROX",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08075518",
+        "target": "081b92d0",
+        "name": "number_ex",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 5,
+    "has_more": false
+  }
+}

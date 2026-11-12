@@ -1,0 +1,60 @@
+{
+  "project": "PROJECT_ROOT\\Reversed Source",
+  "checkpoint": 112,
+  "archive": "shop_state_evidence",
+  "receipt": "work/checkpoint-112-focused.receipt.json",
+  "source_guards": "work\\spawn_shop_warp\\applied.json",
+  "status_key": "checkpoint112_shop_state",
+  "baseline_key": "checkpoint111_metin_drop",
+  "suites": [
+    "stat_primitives_regression",
+    "character_creation_regression"
+  ],
+  "abi": false,
+  "evidence_packages": [
+    "work\\spawn_shop_warp"
+  ],
+  "workspace_resume": "outputs/METIN2_RESUME.md",
+  "summary": "restored the original CHARACTER shop and exchange setters.",
+  "next": "The next shop dependencies for AssignTriggers are CShopManager::Get, GetByNPCVnum, and the full CShop::AddGuest path. Saved StartShopping and warp callback evidence is under work/spawn_shop_warp. Full spawn, quest startup and server linking remain in scope.",
+  "reviews": [
+    {
+      "address": "081304c0",
+      "export": "work\\spawn_shop_warp\\081304c0-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/char.cpp",
+          "anchor": "void CHARACTER::SetShop("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/stat_primitives_regression.cpp",
+          "anchor": "static void CheckShopState("
+        }
+      ],
+      "review_scope": "Whole original member body and pointer/flag transitions.",
+      "reviewer": "Checkpoint 112 original ELF and runtime validation",
+      "limitations": "Ownership and shop packet behavior remain in the callers."
+    },
+    {
+      "address": "08130500",
+      "export": "work\\spawn_shop_warp\\08130500-decompile.json",
+      "source_refs": [
+        {
+          "path": "game/src/char.cpp",
+          "anchor": "void CHARACTER::SetExchange("
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/stat_primitives_regression.cpp",
+          "anchor": "static void CheckShopState("
+        }
+      ],
+      "review_scope": "Whole original member body and pointer/flag transitions.",
+      "reviewer": "Checkpoint 112 original ELF and runtime validation",
+      "limitations": "Ownership and shop packet behavior remain in the callers."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080c8950",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHorseRider::CheckHorseHealthDropTime",
+      "address": "080c8950"
+    },
+    "code": "\r\n/* DWARF original prototype: void CheckHorseHealthDropTime(CHorseRider * this, bool bSend) */\r\n\r\nvoid __thiscall CHorseRider::CheckHorseHealthDropTime(CHorseRider *this,bool bSend)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  bool bSend_local;\r\n  \r\n                    /* Unresolved local var: DWORD now@[DW_OP_reg7(EDI)] */\r\n  uVar2 = get_global_time();\r\n  uVar1 = (this->m_Horse).dwHorseHealthDropTime;\r\n  while (uVar1 < uVar2) {\r\n    (this->m_Horse).dwHorseHealthDropTime = uVar1 + 0x3f480;\r\n    UpdateHorseHealth(this,-1,bSend);\r\n    uVar1 = (this->m_Horse).dwHorseHealthDropTime;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

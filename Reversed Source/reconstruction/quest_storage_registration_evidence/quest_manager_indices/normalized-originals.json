@@ -1,0 +1,68 @@
+{
+  "elf_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "standalone_original_exports": 4,
+  "entries": [
+    {
+      "name": "quest::CQuestManager::FindNPCIDByName",
+      "address": "081a1f00",
+      "kind": "standalone original function",
+      "source": "game/src/questmanager.cpp",
+      "source_anchor": "CQuestManager::FindNPCIDByName(",
+      "test": "reconstruction/tests/quest_manager_indices_regression.cpp",
+      "test_anchor": "Lookup",
+      "evidence": "081a1f00.json",
+      "evidence_sha256": "7ce4304058f574f8d6a37e5d3c4795d9461c4c7cd0ffae8e57279a440a97068a"
+    },
+    {
+      "name": "quest::CQuestManager::GetCurrentQuestName",
+      "address": "081a5720",
+      "kind": "standalone original function",
+      "source": "game/src/questmanager.cpp",
+      "source_anchor": "CQuestManager::GetCurrentQuestName(",
+      "test": "reconstruction/tests/quest_manager_indices_regression.cpp",
+      "test_anchor": "Lookup",
+      "evidence": "081a5720.json",
+      "evidence_sha256": "ae0a4fdf156d4d0fec7dccfda09036f85a9c987b17c5904cee95b8703a1b9220"
+    },
+    {
+      "name": "quest::CQuestManager::GetQuestIndexByName",
+      "address": "081a5a90",
+      "kind": "standalone original function",
+      "source": "game/src/questmanager.cpp",
+      "source_anchor": "CQuestManager::GetQuestIndexByName(",
+      "test": "reconstruction/tests/quest_manager_indices_regression.cpp",
+      "test_anchor": "Lookup",
+      "evidence": "081a5a90.json",
+      "evidence_sha256": "74af82bc3e2da274e80e9392de97f2ed0e0b48a140a250603a4ba48f60e55966"
+    },
+    {
+      "name": "quest::CQuestManager::GetQuestNameByIndex",
+      "address": "081a5b60",
+      "kind": "standalone original function",
+      "source": "game/src/questmanager.cpp",
+      "source_anchor": "CQuestManager::GetQuestNameByIndex(",
+      "test": "reconstruction/tests/quest_manager_indices_regression.cpp",
+      "test_anchor": "Lookup",
+      "evidence": "081a5b60.json",
+      "evidence_sha256": "57607b9e32a8d6008128dfa549d017f10f7edf12193615fea0406808346b9f4c"
+    }
+  ],
+  "hash_inline_dependency": {
+    "name": "quest::CQuestManager::stringhash::operator()(const std::string&) const",
+    "source": "game/src/questmanager.h",
+    "test_anchor": "HashVectors",
+    "evidence": [
+      "hash-inline-dwarf.json",
+      "081a5a90.json",
+      "081a5770.json"
+    ],
+    "standalone_original_address": null,
+    "not_a_standalone_export": true
+  },
+  "excluded": [
+    "RegisterQuest081a5770",
+    "LoadStartQuest081a4690",
+    "Lua-backed state-index/name resolution",
+    "manager destructor Lua ownership"
+  ]
+}

@@ -1,0 +1,7 @@
+# Focused closed horse batch PASSED
+Root applied all11 guarded payloads, then applied minimal duplicate-packet and private-base-access fixes. Child Fwrites stayed denied; only root performed production writes.
+Actual focused receipt: work/horse-methods-focused.receipt.json, statuspassed, make0/runtime0, forced rebuild, horse_methods_regression executed exactlyonce, ABI requested and check-abimake0. Log contains strict32 horse_methods_abi.cpp C++03 syntax gate. Finished2026-10-26T03:52:26.945883+00:00.
+Frozen evidence copies and exact current hashes: integrated-proof/, INTEGRATION_STATUS.json, focused-passed.receipt.json, integrated-original-body-mapping.json.
+Global character_fixture/desc_fixture/entity_packet_fixture SHA guards unchanged, including unused shutdown boundary. Dedicated fixture removes only three abort methods and actual leaf bodies link.
+packet.h has exactlyone dead5/move24 definition; char_horse.cpp uses existing actual inline horse getters rather than private base fields. No visibility widening.
+Do not rerun original apply payload blindly: it predates the two fixes. Current production and integrated-proof snapshots are authoritative. Focused PASS only; parent must run final fullsuite/checkpoint when appropriate. No fullsuite was run for this batch. Broader HorseSummon/Spawn/Show/Goto/SetProto/spatial/quest runtime remains incomplete and was NOT integrated. Stop here; no broad expansion until parent reviews checkpoint.

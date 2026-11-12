@@ -1,0 +1,13 @@
+#include "questevent.h"
+namespace quest {
+// 081ad980. Deliberate old numeric registry lookup, not modern dynamic_cast.
+// ppEvent and *ppEvent must be non-null even though event_cancel accepts null.
+void CancelTimerEvent(LPEVENT* ppEvent) {
+    quest_event_info* info=static_cast<quest_event_info*>(FindEventInfo((*ppEvent)->dwInfoID));
+    if(info) {
+        if(info->name) delete[] info->name;
+        info->name=0;
+    }
+    event_cancel(ppEvent);
+}
+}

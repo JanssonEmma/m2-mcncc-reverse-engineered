@@ -1,0 +1,18 @@
+#include "desc.h"
+#include "desc_client.h"
+#include "packet.h"
+#include "../../common/tables.h"
+void SendAffectRemovePacket(LPDESC d,DWORD pid,DWORD type,BYTE point)
+{
+    TPacketGCAffectRemove ptoc;
+    ptoc.bApplyOn=point;ptoc.dwType=type;ptoc.bHeader=127;
+    d->Packet(&ptoc,6);
+    TPacketGDRemoveAffect ptod;
+    ptod.dwType=type;ptod.dwPID=pid;ptod.bApplyOn=point;
+    db_clientdesc->DBPacket(33,0,&ptod,9);
+}
+bool CHARACTER::IsAffectFlag(DWORD flag)
+{
+    int shifted=static_cast<int>(static_cast<unsigned int>(flag)-1u);
+    return ((m_afAffectFlag.bits[shifted>>5]>>(static_cast<unsigned int>(shifted)&31u))&1u)!=0;
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081667d0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x81667d0",
+    "function": {
+      "name": "CItem::UpdatePacket",
+      "address": "081667d0"
+    },
+    "signature": "void UpdatePacket(CItem * this)",
+    "code": "\r\n/* DWARF original prototype: void UpdatePacket(CItem * this) */\r\n\r\nvoid __thiscall CItem::UpdatePacket(CItem *this)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  TPacketGCItemUpdate pack;\r\n  \r\n  if ((this->m_pOwner != (LPCHARACTER)0x0) &&\r\n     ((this->m_pOwner->super_CEntity).m_lpDesc != (LPDESC)0x0)) {\r\n    pack.header = '\\x19';\r\n                    /* Unresolved local var: int i@[DW_OP_reg2(EDX)] */\r\n    iVar2 = 0;\r\n    pack.pos = this->m_bCell;\r\n    pack.count = (BYTE)this->m_dwCount;\r\n    do {\r\n      pack.alSockets[iVar2] = this->m_alSockets[iVar2];\r\n      iVar2 = iVar2 + 1;\r\n    } while (iVar2 < 3);\r\n    (*thecore_memcpy)(pack.aAttr,this->m_aAttr,0x15);\r\n    pcVar1 = CHARACTER::GetName(this->m_pOwner);\r\n    sys_log(2,\"UpdatePacket %s -> %s\",\r\n            (uint)this->m_pProto->szLocaleName & (this->m_pProto == (TItemTable *)0x0) - 1,pcVar1);\r\n    DESC::Packet((this->m_pOwner->super_CEntity).m_lpDesc,&pack,0x24);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

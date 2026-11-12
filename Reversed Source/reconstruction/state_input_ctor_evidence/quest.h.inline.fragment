@@ -1,0 +1,6 @@
+// Original quest.h inline default ctor C1 0805d230 (139 bytes).
+// Preserve indeterminate _clock_value/_counter_value; do NOT copy newer defaults.
+QuestState():co(0),ico(0),args(0),suspend_state(0),iIndex(0),bStart(false),st(-1) {}
+// Existing complete field declaration generates the original memberwise copy
+// semantics corresponding to C1(const QuestState&) 080633e0. No explicit copy
+// declaration is needed or proposed by this bounded integration candidate.

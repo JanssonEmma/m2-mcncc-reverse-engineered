@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08170f60",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8170f60",
+    "function": {
+      "name": "CHARACTER::GetItem",
+      "address": "08170f60"
+    },
+    "signature": "LPITEM GetItem(CHARACTER * this, BYTE bCell)",
+    "code": "\r\n/* DWARF original prototype: LPITEM GetItem(CHARACTER * this, BYTE bCell) */\r\n\r\nLPITEM __thiscall CHARACTER::GetItem(CHARACTER *this,BYTE bCell)\r\n\r\n{\r\n  LPITEM pCVar1;\r\n  \r\n  if (bCell < 0x6d) {\r\n    pCVar1 = (this->m_pointsInstant).pItems[bCell];\r\n  }\r\n  else {\r\n    _sys_err(\"GetItem\",0xd4,\"CHARACTER::GetItem: invalid item cell %d\",(uint)bCell);\r\n    pCVar1 = (LPITEM)0x0;\r\n  }\r\n  return pCVar1;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

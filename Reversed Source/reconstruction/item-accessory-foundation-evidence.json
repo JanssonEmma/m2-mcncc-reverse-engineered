@@ -1,0 +1,38 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "functions": [
+    {
+      "requested_address": "0x8168110",
+      "function": {
+        "name": "CItem::GetSocketCount",
+        "address": "08168110"
+      },
+      "signature": "int GetSocketCount(CItem * this)",
+      "code": "\r\n/* DWARF original prototype: int GetSocketCount(CItem * this) */\r\n\r\nint __thiscall CItem::GetSocketCount(CItem *this)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\r\n  iVar1 = 0;\r\n  do {\r\n    if (this->m_alSockets[iVar1] == 0) {\r\n      return iVar1;\r\n    }\r\n    iVar1 = iVar1 + 1;\r\n  } while (iVar1 < 3);\r\n  return 3;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": ""
+    },
+    {
+      "requested_address": "0x8168810",
+      "function": {
+        "name": "CItem::IsAccessoryForSocket",
+        "address": "08168810"
+      },
+      "signature": "bool IsAccessoryForSocket(CItem * this)",
+      "code": "\r\n/* DWARF original prototype: bool IsAccessoryForSocket(CItem * this) */\r\n\r\nbool __thiscall CItem::IsAccessoryForSocket(CItem *this)\r\n\r\n{\r\n  BYTE BVar1;\r\n  bool bVar2;\r\n  \r\n  bVar2 = false;\r\n  if ((this->m_pProto->bType == '\\x02') &&\r\n     (((BVar1 = this->m_pProto->bSubType, BVar1 == '\\x03' || (BVar1 == '\\x05')) || (BVar1 == '\\x06')\r\n      ))) {\r\n    bVar2 = true;\r\n  }\r\n  return bVar2;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": ""
+    },
+    {
+      "requested_address": "0x81688d0",
+      "function": {
+        "name": "CItem::SetAccessorySocketMaxGrade",
+        "address": "081688d0"
+      },
+      "signature": "void SetAccessorySocketMaxGrade(CItem * this, int iMaxGrade)",
+      "code": "\r\n/* DWARF original prototype: void SetAccessorySocketMaxGrade(CItem * this, int iMaxGrade) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketMaxGrade(CItem *this,int iMaxGrade)\r\n\r\n{\r\n  int v;\r\n  \r\n  v = MINMAX(0,iMaxGrade,3);\r\n  SetSocket(this,1,v);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "error": ""
+    }
+  ]
+}

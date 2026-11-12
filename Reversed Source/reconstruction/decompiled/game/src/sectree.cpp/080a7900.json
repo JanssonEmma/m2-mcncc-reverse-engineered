@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080a7900",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "SECTREE::IsAttr",
+      "address": "080a7900"
+    },
+    "code": "\r\n/* DWARF original prototype: bool IsAttr(SECTREE * this, long x, long y, DWORD dwFlag) */\r\n\r\nbool __thiscall SECTREE::IsAttr(SECTREE *this,long x,long y,DWORD dwFlag)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = GetAttribute(this,x,y);\r\n  return (dwFlag & DVar1) != 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

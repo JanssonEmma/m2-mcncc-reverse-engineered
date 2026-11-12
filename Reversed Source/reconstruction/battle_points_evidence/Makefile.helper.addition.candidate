@@ -1,0 +1,9 @@
+# Shared graph already includes real CHAR/CMob/quest/locale/point modules.
+POLY_HELPER_SOURCES = $(filter-out desc_fixture.cpp ../../game/src/char_skill.cpp,$(TARGET_WALKING_SOURCES)) helper_desc_fixture.cpp ../../game/src/char_skill.cpp
+POLY_HELPER_OBJECTS = $(filter-out target_walk_desc_output_syscalls.o,$(TARGET_WALKING_OBJECTS)) helper_desc_output_syscalls.o
+
+helper_regression$(EXEEXT): helper_regression.cpp $(POLY_HELPER_SOURCES) $(POLY_HELPER_OBJECTS) $(DESC_TEST_HEADERS) ../../game/src/char.h ../../game/src/char_manager.h ../../game/src/packet.h ../../common/length.h
+	$(CXX) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(ITEM_SOCKET_FLAGS) $(CPPFLAGS) $(CXXFLAGS) -Wno-long-long helper_regression.cpp $(POLY_HELPER_SOURCES) $(POLY_HELPER_OBJECTS) $(LDFLAGS) -o $@
+
+helper_desc_output_syscalls.o: helper_desc_output_syscalls.c desc_output_syscalls.c socket_hooks.h fdwatch_shim/assert.h fdwatch_shim/sys/event.h socket_shim/sys/socket.h socket_shim/errno.h
+	$(CC) -Ifdwatch_shim -Isocket_shim -Iposix_shim $(CPPFLAGS) $(CFLAGS) -c helper_desc_output_syscalls.c -o $@

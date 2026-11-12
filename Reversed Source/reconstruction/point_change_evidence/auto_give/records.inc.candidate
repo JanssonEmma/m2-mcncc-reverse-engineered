@@ -1,0 +1,18 @@
+// Metadata-proven support records; native SUseTime alignment, packed money packet.
+typedef struct SUseTime {
+    DWORD dwLoginKey;
+    char szLogin[31];
+    BYTE bBillType;
+    DWORD dwUseSec;
+    char szIP[16];
+} TUseTime;
+#pragma pack(push,1)
+typedef struct SPacketMoneyLog {
+    BYTE type;
+    DWORD vnum;
+    int gold;
+} TPacketMoneyLog;
+struct packet_quickslot_add { BYTE header; BYTE pos; TQuickslot slot; };
+struct packet_quickslot_del { BYTE header; BYTE pos; };
+#pragma pack(pop)
+// Original sizes: SUseTime56; money9; quickadd4; quickdel2.

@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804f040",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "lzo_adler32",
+      "address": "0804f040"
+    },
+    "code": "\r\nlzo_uint32 lzo_adler32(lzo_uint32 adler,uchar *buf,lzo_uint len)\r\n\r\n{\r\n  byte *pbVar1;\r\n  byte bVar2;\r\n  lzo_uint32 lVar3;\r\n  uint uVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  int iVar7;\r\n  int iVar8;\r\n  int iVar9;\r\n  int iVar10;\r\n  int iVar11;\r\n  int iVar12;\r\n  int iVar13;\r\n  int iVar14;\r\n  int iVar15;\r\n  int iVar16;\r\n  int iVar17;\r\n  int iVar18;\r\n  int iVar19;\r\n  uint uVar20;\r\n  uint uVar21;\r\n  \r\n                    /* Unresolved local var: lzo_uint32 s1@[DW_OP_reg1(ECX)]\r\n                       Unresolved local var: lzo_uint32 s2@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int k@[DW_OP_reg2(EDX)] */\r\n  uVar4 = adler & 0xffff;\r\n  uVar21 = adler >> 0x10;\r\n  lVar3 = 1;\r\n  if (buf != (uchar *)0x0) {\r\n    while (len != 0) {\r\n      uVar20 = len;\r\n      if (0x15af < len) {\r\n        uVar20 = 0x15b0;\r\n      }\r\n      len = len - uVar20;\r\n      for (; 0xf < (int)uVar20; uVar20 = uVar20 - 0x10) {\r\n        iVar5 = uVar4 + *buf;\r\n        iVar6 = iVar5 + (uint)buf[1];\r\n        iVar7 = iVar6 + (uint)buf[2];\r\n        iVar8 = iVar7 + (uint)buf[3];\r\n        iVar9 = iVar8 + (uint)buf[4];\r\n        iVar10 = iVar9 + (uint)buf[5];\r\n        iVar11 = iVar10 + (uint)buf[6];\r\n        iVar12 = iVar11 + (uint)buf[7];\r\n        iVar13 = iVar12 + (uint)buf[8];\r\n        iVar14 = iVar13 + (uint)buf[9];\r\n        iVar15 = iVar14 + (uint)buf[10];\r\n        iVar16 = iVar15 + (uint)buf[0xb];\r\n        iVar17 = iVar16 + (uint)buf[0xc];\r\n        iVar18 = iVar17 + (uint)buf[0xd];\r\n        iVar19 = iVar18 + (uint)buf[0xe];\r\n        pbVar1 = buf + 0xf;\r\n        buf = buf + 0x10;\r\n        uVar4 = iVar19 + (uint)*pbVar1;\r\n        uVar21 = uVar21 + iVar5 + iVar6 + iVar7 + iVar8 + iVar9 + iVar10 + iVar11 + iVar12 + iVar13\r\n                 + iVar14 + iVar15 + iVar16 + iVar17 + iVar18 + iVar19 + uVar4;\r\n      }\r\n      if (uVar20 != 0) {\r\n        do {\r\n          bVar2 = *buf;\r\n          uVar20 = uVar20 - 1;\r\n          buf = buf + 1;\r\n          uVar4 = uVar4 + bVar2;\r\n          uVar21 = uVar21 + uVar4;\r\n        } while (0 < (int)uVar20);\r\n      }\r\n      uVar4 = uVar4 % 0xfff1;\r\n      uVar21 = uVar21 % 0xfff1;\r\n    }\r\n    lVar3 = uVar21 << 0x10 | uVar4;\r\n  }\r\n  return lVar3;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

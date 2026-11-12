@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08158fd0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "DESC_MANAGER::FindByHandshake",
+      "address": "08158fd0"
+    },
+    "code": "\r\n/* DWARF original prototype: LPDESC FindByHandshake(DESC_MANAGER * this, DWORD dwHandshake) */\r\n\r\nLPDESC __thiscall DESC_MANAGER::FindByHandshake(DESC_MANAGER *this,DWORD dwHandshake)\r\n\r\n{\r\n  LPDESC pDVar1;\r\n  _Rb_tree_iterator<std::pair<const_long_unsigned_int,_DESC*>,std::pair<const_long_unsigned_int,_DESC*>&,std::pair<const_long_unsigned_int,_DESC*>*>\r\n  it;\r\n  \r\n  _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_DESC*>,std::_Select1st<std::pair<const_long_unsigned_int,_DESC*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_DESC*>_>_>\r\n  ::find((_Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_DESC*>,std::_Select1st<std::pair<const_long_unsigned_int,_DESC*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_DESC*>_>_>\r\n          *)&it,(DWORD *)&this->m_map_handshake);\r\n  pDVar1 = (LPDESC)0x0;\r\n  if (it.super__Rb_tree_base_iterator._M_node !=\r\n      (_Rb_tree_base_iterator)\r\n      &((this->m_map_handshake)._M_t.\r\n        super__Rb_tree_base<std::pair<const_long_unsigned_int,_DESC*>,std::allocator<std::pair<const_long_unsigned_int,_DESC*>_>_>\r\n        .\r\n        super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_DESC*>,std::allocator<std::pair<const_long_unsigned_int,_DESC*>_>,true>\r\n       ._M_header)->super__Rb_tree_node_base) {\r\n    pDVar1 = *(LPDESC *)((int)it.super__Rb_tree_base_iterator._M_node + 0x14);\r\n  }\r\n  return pDVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

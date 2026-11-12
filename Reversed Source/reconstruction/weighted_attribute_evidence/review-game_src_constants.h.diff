@@ -1,0 +1,15 @@
+--- CURRENT/game/src/constants.h
++++ WEIGHTED/game/src/constants.h
+@@ -80,4 +80,12 @@
+ extern const int* aiPercentByDeltaLevForBoss;
+ extern const int* aiChainLightningCountBySkillLevel;
+ 
++#include <map>
++#include "../../common/tables.h"
++typedef std::map<DWORD,TItemAttrTable> TItemAttrMap;
++extern TItemAttrMap g_map_itemAttr;
++extern TItemAttrMap g_map_itemRare;
++extern const int aiItemMagicAttributePercentHigh[5];
++extern const int aiItemMagicAttributePercentLow[5];
++
+ #endif

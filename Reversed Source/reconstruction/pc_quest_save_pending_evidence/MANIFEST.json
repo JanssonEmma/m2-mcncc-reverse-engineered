@@ -1,0 +1,114 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "status": "prepared_only_uncompiled",
+  "function": {
+    "name": "quest::PC::Save",
+    "address": "08060770"
+  },
+  "assembly_complete": {
+    "instructions": 280,
+    "has_more": false
+  },
+  "record": {
+    "name": "SQuestTable",
+    "typedef": "TQuestTable",
+    "size": 106,
+    "owner": "common/tables.h",
+    "fields": [
+      {
+        "name": "dwPID",
+        "offset": 0,
+        "type": "DWORD=unsigned long32"
+      },
+      {
+        "name": "szName",
+        "offset": 4,
+        "type": "char[33]"
+      },
+      {
+        "name": "szState",
+        "offset": 37,
+        "type": "char[65]"
+      },
+      {
+        "name": "lValue",
+        "offset": 102,
+        "type": "long32"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "game/src/questpc.cpp",
+      "before": "b6a5367dbda8ecd61c238efaf6384aa84cd5b4e91e71d6cadcb0ad8610a14e45",
+      "candidate": "questpc.cpp.candidate",
+      "after": "53fcb087c0480794d0f41406695e8c0cd8e3c408d8fe600ab73ed6fd2a1e2778",
+      "insertion": "additional original-owner includes and complete method immediately before final quest namespace brace"
+    },
+    {
+      "path": "common/tables.h",
+      "before": "4f1eaa1800177527619c20ec6ae9b4d5ea13f4243fd1891458ed7e1370d9f91d",
+      "candidate": "tables.h.candidate",
+      "after": "4f124da7d970c7db82b6d4de93f6d793858a0b251a6087c5a21d3bd627e45e3f",
+      "insertion": "complete packed original record immediately before include guard endif"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "game/src/questpc.h",
+      "sha256": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a"
+    },
+    {
+      "path": "game/src/desc_client.h",
+      "sha256": "035463e5284d7be9226311aa6d9d9127500db044b15e02609bfbf279e50fc50a"
+    },
+    {
+      "path": "game/src/desc_client.cpp",
+      "sha256": "49bdc10eb9380490f5b1625db5886564906581e3465395cd098dd28412afc049"
+    },
+    {
+      "path": "libthecore/include/log.h",
+      "sha256": "c255a0cc2281f0496c5eec7fa80b040cf65d20ea456d7e0913ae952a2edfea06"
+    },
+    {
+      "path": "libthecore/include/typedef.h",
+      "sha256": "5f12e1f68446151c94356b6221568bcf54f78c0fba0c33fc2a8060fa7ee5348e"
+    }
+  ],
+  "evidence": {
+    "08060770-calls.json": "454d3c9db9c62f3f7728b3d38fc21d02df2eabe38eaf8def4e1970c4c41ba44b",
+    "08060770-decompile.c": "f10967302ea25f78559cf240321c34b79887615184467ca67aa9d9cea0290000",
+    "08060770-decompile.json": "3c531a9e33445bc78f147af79bf0d5311d724a117cbb3d37518902520353efea",
+    "apply.py": "7b2cfaa5d55a9b2515d3dc704bf482d5031965b915b52492d4ea4c3c66b69b44",
+    "check_static.py": "1eb03a6c722e2e8cc05d09452d25fdac2508e8813195b0a22cdf4e4a63edc4da",
+    "extract.py": "9a4f642908b2fc094ebe932bfa590af0a87506b4f19ca76bfea5ed1fc399886b",
+    "finalize_manifest.py": "dd40256395033355286031e3aa9558469aeebeee2de32ce9ca54c7b96d71ad91",
+    "HANDOFF.md": "ca840bc87235b23a8a77991c9279bbf647fcae9f804e4d5756eacb589729d8d2",
+    "Makefile.addition": "167d0172eda8c210bf6038a8c15745455403402c8a3dc891bd9fe7eab523193a",
+    "pc_quest_save_abi.cpp": "8c5ea339bf4084fcbecfb6d540eee6daecf1d92ff3e009eadc7ed1a93848af62",
+    "pc_quest_save_desc_output_syscalls.c": "1dcd2d623a662ec10f1ebfcc8aee52e82e5acc741c1bf34b7d19e70d837eb684",
+    "pc_quest_save_regression.cpp": "38bac1ecb8e98e49959b64418436c43cd03aa209e891252b0bdce2f69988d9ae",
+    "prepare.py": "11c2003ed4a50cfdd6aea347c5b61620a9453fb3bdd89eefd494bd8d1a98f077",
+    "prepare_integration.py": "441dd71196185791920642c57159256300718bc7d8f9237e783aed5bb585f4f6",
+    "questpc.cpp.candidate": "53fcb087c0480794d0f41406695e8c0cd8e3c408d8fe600ab73ed6fd2a1e2778",
+    "questpc.cpp.fragment": "b0d99e4bf63932a03d8b30bb70521d127589cff721267f8c521ba32bda17ff52",
+    "save-assembly.json": "c8eab5cdc2d99e0dc871dacc057a4af2586fbae3fdb6d5297d46e3f5082e098c",
+    "save-record-dwarf.json": "736af58444d67dc38ad4c33f57ae375f822a679cda90973f5a1e055b58c23b52",
+    "tables.h.candidate": "4f124da7d970c7db82b6d4de93f6d793858a0b251a6087c5a21d3bd627e45e3f",
+    "tables.h.fragment": "5e9bd005f36fe86b2d60ccefe8c60eaf7765cc1c7d779e4bc9d62eaf1ac57675",
+    "validate.py": "44e8e7cd493f587a9aadaba4c6486e376680c312ef8483067c1484f29c5a0935"
+  },
+  "limitations": [
+    "No builds, project writes, ABI/runtime pass or coverage promotion",
+    "Full target32 ABI mandatory; no LP64 type substitution",
+    "All application paths are complete; unsafe map/vector/callback domains preserved"
+  ],
+  "integration_plan_sha256": "fa9f6147f8d7b3adc0a7ea354e42a4bdae6b544a475f5c53d626a7923b06bb3d",
+  "prepared_runtime_count": 104,
+  "static_checks": {
+    "python_ast": "passed",
+    "guard_dryrun": "passed6paths5dependencies",
+    "cpp_compiled": false,
+    "runtime_executed": false
+  }
+}

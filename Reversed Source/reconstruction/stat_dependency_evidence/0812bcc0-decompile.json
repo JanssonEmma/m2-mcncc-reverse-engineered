@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"function\": {\n    \"name\": \"CHARACTER::GetMonsterDrainSPPoint\",\n    \"address\": \"0812bcc0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: DWORD GetMonsterDrainSPPoint(CHARACTER * this) */\\r\\n\\r\\nDWORD __thiscall CHARACTER::GetMonsterDrainSPPoint(CHARACTER *this)\\r\\n\\r\\n{\\r\\n  DWORD DVar1;\\r\\n  \\r\\n  DVar1 = 0;\\r\\n  if (this->m_pkMobData != (CMob *)0x0) {\\r\\n    DVar1 = (this->m_pkMobData->m_table).dwDrainSP;\\r\\n  }\\r\\n  return DVar1;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+    }
+  ],
+  "structuredContent": {
+    "function": {
+      "name": "CHARACTER::GetMonsterDrainSPPoint",
+      "address": "0812bcc0"
+    },
+    "code": "\r\n/* DWARF original prototype: DWORD GetMonsterDrainSPPoint(CHARACTER * this) */\r\n\r\nDWORD __thiscall CHARACTER::GetMonsterDrainSPPoint(CHARACTER *this)\r\n\r\n{\r\n  DWORD DVar1;\r\n  \r\n  DVar1 = 0;\r\n  if (this->m_pkMobData != (CMob *)0x0) {\r\n    DVar1 = (this->m_pkMobData->m_table).dwDrainSP;\r\n  }\r\n  return DVar1;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "isError": false
+}

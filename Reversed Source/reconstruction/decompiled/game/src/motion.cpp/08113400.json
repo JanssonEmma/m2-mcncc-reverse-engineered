@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08113400",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8113400",
+    "function": {
+      "name": "CMotionManager::GetMotionDuration",
+      "address": "08113400"
+    },
+    "signature": "float GetMotionDuration(CMotionManager * this, DWORD dwVnum, DWORD dwKey)",
+    "code": "\r\n/* DWARF original prototype: float GetMotionDuration(CMotionManager * this, DWORD dwVnum, DWORD\r\n   dwKey) */\r\n\r\nfloat __thiscall CMotionManager::GetMotionDuration(CMotionManager *this,DWORD dwVnum,DWORD dwKey)\r\n\r\n{\r\n  CMotion *this_00;\r\n  float fVar1;\r\n  \r\n                    /* Unresolved local var: CMotion * pkMotion@[DW_OP_reg0(EAX)] */\r\n  this_00 = GetMotion(this,dwVnum,dwKey);\r\n  if (this_00 != (CMotion *)0x0) {\r\n    fVar1 = CMotion::GetDuration(this_00);\r\n    return fVar1;\r\n  }\r\n  return 0.0;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

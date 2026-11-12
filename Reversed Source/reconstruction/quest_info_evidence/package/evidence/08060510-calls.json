@@ -1,0 +1,111 @@
+{
+  "function": {
+    "name": "PC::SetQuestTitle",
+    "address": "08060510"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "08169193",
+        "caller": {
+          "name": "quest_set_another_title",
+          "address": "081690d0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "08060536",
+        "target": "081a5a90",
+        "name": "CQuestManager::GetQuestIndexByName",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806054f",
+        "target": "08062350",
+        "name": "_Rb_tree<unsigned_int,std::pair<const_unsigned_int,_quest::QuestState>,std::_Select1st<std::pair<const_unsigned_int,_quest::QuestState>_>,std::less<unsigned_int>,std::allocator<std::pair<const_unsigned_int,_quest::QuestState>_>_>::find",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08060589",
+        "target": "0804bd1c",
+        "name": "<EXTERNAL>::std::string::string",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08060598",
+        "target": "0804bfcc",
+        "name": "<EXTERNAL>::std::string::assign",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "080605b0",
+        "target": "080604b0",
+        "name": "PC::GetCurrentQuestBeginFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080605c5",
+        "target": "080604d0",
+        "name": "PC::SetCurrentQuestTitle",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080605cd",
+        "target": "0805f020",
+        "name": "PC::SendQuestInfoPakcet",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "080605dc",
+        "target": "0804bfcc",
+        "name": "<EXTERNAL>::std::string::assign",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0806060c",
+        "target": "0804ca2c",
+        "name": "<EXTERNAL>::std::string::_Rep::_M_destroy",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "08060638",
+        "target": "0804c9ac",
+        "name": "<EXTERNAL>::__assert",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 10,
+    "has_more": false
+  }
+}

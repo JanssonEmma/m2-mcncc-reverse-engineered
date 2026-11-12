@@ -1,0 +1,29 @@
+// STAGED ONLY: exact lookup bodies; original declaration/access DWARF still pending.
+// No empty/above-maximum guard is added: old code reads before termination.
+#include "item_manager.h"
+namespace item_lookup_detail {
+inline int add(int a,int b) { return static_cast<int>(static_cast<unsigned int>(a)+static_cast<unsigned int>(b)); }
+inline int sub(int a,int b) { return static_cast<int>(static_cast<unsigned int>(a)-static_cast<unsigned int>(b)); }
+inline int half_arithmetic(int value) {
+    unsigned int bits=static_cast<unsigned int>(value);
+    return static_cast<int>((bits>>1)|(bits&0x80000000U));
+}
+}
+//08193080: negative RealNumber -> NULL, otherwise address of full prototype.
+TItemTable* ITEM_MANAGER::GetTable(DWORD vnum) {
+    int rnum=RealNumber(vnum);
+    return rnum<0?0:&m_vec_prototype[rnum];
+}
+//081930c0: unsigned prototype-vnum compare, signed interval and SAR midpoint.
+int ITEM_MANAGER::RealNumber(DWORD vnum) {
+    int bottom=0;
+    int top=static_cast<int>(m_vec_prototype.size());
+    for(;;) {
+        int middle=item_lookup_detail::half_arithmetic(item_lookup_detail::add(top,bottom));
+        DWORD current=m_vec_prototype[middle].dwVnum;
+        if(current==vnum) return middle;
+        if(bottom>=top) return -1;
+        if(current>vnum) top=item_lookup_detail::sub(middle,1);
+        else bottom=item_lookup_detail::add(middle,1);
+    }
+}

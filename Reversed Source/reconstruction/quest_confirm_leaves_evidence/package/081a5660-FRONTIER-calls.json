@@ -1,0 +1,39 @@
+{
+  "function": {
+    "name": "CQuestManager::GetCurrentNPCRace",
+    "address": "081a5660"
+  },
+  "callers": null,
+  "callees": {
+    "items": [
+      {
+        "call_site": "081a566f",
+        "target": "081a5700",
+        "name": "CQuestManager::GetCurrentNPCCharacterPtr",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "081a5686",
+        "target": "081a5700",
+        "name": "CQuestManager::GetCurrentNPCCharacterPtr",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "081a568e",
+        "target": "0812a4e0",
+        "name": "CHARACTER::GetRaceNum",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 100,
+    "total": 3,
+    "has_more": false
+  }
+}

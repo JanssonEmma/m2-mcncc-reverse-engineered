@@ -1,0 +1,104 @@
+{
+  "function": {
+    "name": "CHARACTER::RemoveAffect",
+    "address": "0813e9a0"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0813eaed",
+        "caller": {
+          "name": "CHARACTER::RemoveAffect",
+          "address": "0813eaa0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "080c6534",
+        "caller": {
+          "name": "do_affect_remove",
+          "address": "080c63e0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 2,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "0813e9d2",
+        "target": "0813f020",
+        "name": "list<CAffect*,std::allocator<CAffect*>_>::remove",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813e9e7",
+        "target": "0813e880",
+        "name": "CHARACTER::ComputeAffect",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813ea11",
+        "target": "0812c520",
+        "name": "CHARACTER::ComputePoints",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813ea19",
+        "target": "0812e2c0",
+        "name": "CHARACTER::CheckMaximumPoints",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813ea35",
+        "target": "0804c01c",
+        "name": "<EXTERNAL>::operator.delete",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      },
+      {
+        "call_site": "0813ea62",
+        "target": "0813d2d0",
+        "name": "SendAffectRemovePacket",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813ea8b",
+        "target": "081b82a0",
+        "name": "sys_log",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0813ea95",
+        "target": "081288a0",
+        "name": "CHARACTER::UpdatePacket",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 8,
+    "has_more": false
+  }
+}

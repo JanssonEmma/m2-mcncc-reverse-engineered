@@ -1,0 +1,78 @@
+
+// Complete original item_attribute.cpp tail. Unsafe original domains retained.
+// 08187540. Original const int* ABI; old PutAttribute ABI is int*, read-only.
+void CItem::ChangeAttribute(const int* aiChangeProb) {
+    int count=GetAttributeCount();
+    ClearAttribute();
+    if(count==0) return;
+    const TItemTable* proto=m_pProto;
+    if(proto && proto->sAddonType) ApplyAddon(proto->sAddonType);
+    int tmp[5]={0,10,40,35,15};
+    if(!aiChangeProb) aiChangeProb=tmp;
+    for(int i=GetAttributeCount();i<count;++i) PutAttribute(const_cast<int*>(aiChangeProb));
+}
+// 08187610. Local original array, not an invented global probability table.
+void CItem::AddAttribute() {
+    int percent[5]={40,50,10,0,0};
+    if(GetAttributeCount()<5) PutAttribute(percent);
+}
+// 08187670. No packet, save or audit; rare slots untouched.
+void CItem::ClearAttribute() {
+    for(int i=0;i<5;++i) {m_aAttr[i].bType=0;m_aAttr[i].sValue=0;}
+}
+// 081876f0. Only upper-count check, no new negative-index guard.
+bool CItem::RemoveAttributeAt(int index) {
+    if(GetAttributeCount()<=index) return false;
+    for(int i=index;i<4;++i) SetAttribute(i,m_aAttr[i+1].bType,m_aAttr[i+1].sValue);
+    SetAttribute(4,0,0);
+    return true;
+}
+// 081877c0. Indirect original copy hook, exact21-byte full seven-slot array.
+void CItem::SetAttributes(const TPlayerItemAttribute* c_pAttribute) {
+    (*thecore_memcpy)(m_aAttr,c_pAttribute,sizeof(m_aAttr));
+    Save();
+}
+// 08187900. Only destination saves; neither side emits item-update packet.
+void CItem::CopyAttributeTo(CItem* pItem) {pItem->SetAttributes(m_aAttr);}
+// 08186e00. Only rare slots, including matching zero; no prototype requirement.
+bool CItem::HasRareAttr(BYTE bApply) {
+    for(int i=5;i<7;++i) if(m_aAttr[i].bType==bApply) return true;
+    return false;
+}
+// 08187920. Population count, not first-hole index.
+int CItem::GetRareAttrCount() {
+    int count=m_aAttr[5].bType!=0;
+    if(m_aAttr[6].bType!=0) ++count;
+    return count;
+}
+// 08187940. Captured count; clears prefix, audit first, ignores add return values.
+bool CItem::ChangeRareAttribute() {
+    int count=GetRareAttrCount();
+    if(count==0) return false;
+    for(int i=0;i<count;++i) {m_aAttr[i+5].bType=0;m_aAttr[i+5].sValue=0;}
+    LogManager::instance().ItemLog(0,0,0,m_dwID,"SET_RARE_CHANGE","");
+    for(int i=0;i<count;++i) AddRareAttribute();
+    return true;
+}
+// 08187a20. No invalid-set or empty-vector guard: original preconditions remain.
+bool CItem::AddRareAttribute() {
+    int count=GetRareAttrCount();
+    if(count==2) {sys_log(0,"RARE: over 2");return false;}
+    int pos=count+5;
+    TPlayerItemAttribute& attr=m_aAttr[pos];
+    int set=GetAttributeSetIndex();
+    std::vector<int> avail;
+    for(int i=0;i<82;++i) {
+        const TItemAttrTable& r=g_map_itemRare[i];
+        if(r.dwApplyIndex && r.bMaxLevelBySet[set] && !HasRareAttr(static_cast<BYTE>(i))) avail.push_back(i);
+    }
+    const TItemAttrTable& r=g_map_itemRare[avail[number_ex(0,static_cast<int>(avail.size())-1,const_cast<char*>("item_attribute.cpp"),366)]];
+    int level=5;
+    if(level>r.bMaxLevelBySet[set]) level=r.bMaxLevelBySet[set];
+    attr.bType=static_cast<BYTE>(r.dwApplyIndex);
+    attr.sValue=static_cast<short>(r.lValues[level-1]);
+    UpdatePacket();
+    Save();
+    LogManager::instance().ItemLog(pos,attr.bType,attr.sValue,m_dwID,"SET_RARE","");
+    return true;
+}

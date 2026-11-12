@@ -1,0 +1,508 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "origin": "Three explicit scoped bundles; original variants remain distinct addresses, not extra semanticfeatures.",
+  "functions": [
+    {
+      "function": {
+        "name": "CSkillManager::~CSkillManager",
+        "address": "080e44d0"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~CSkillManager(CSkillManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall CSkillManager::~CSkillManager(CSkillManager *this,int __in_chrg)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_CSkillProto*>_> *p_Var1;\r\n  \r\n  (this->super_singleton<CSkillManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CSkillManager_08219b78;\r\n  wipe_second<std::map<DWORD,_CSkillProto*,_std::less<DWORD>,_std::allocator<std::pair<const_DWORD,_CSkillProto*>_>_>_>\r\n            (&this->m_map_pkSkillProto);\r\n  if ((this->m_map_pkSkillProto)._M_t._M_node_count != 0) {\r\n    _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CSkillProto*>,std::_Select1st<std::pair<const_long_unsigned_int,_CSkillProto*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n    ::_M_erase(&(this->m_map_pkSkillProto)._M_t,\r\n               (_Rb_tree_node<std::pair<const_long_unsigned_int,_CSkillProto*>_> *)\r\n               (((this->m_map_pkSkillProto)._M_t.\r\n                 super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n                 .\r\n                 super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n                ._M_header)->super__Rb_tree_node_base)._M_parent);\r\n    (this->m_map_pkSkillProto)._M_t._M_node_count = 0;\r\n    p_Var1 = (this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_left = &p_Var1->super__Rb_tree_node_base;\r\n    (((this->m_map_pkSkillProto)._M_t.\r\n      super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n      .\r\n      super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n     ._M_header)->super__Rb_tree_node_base)._M_parent = (_Rb_tree_node_base *)0x0;\r\n    p_Var1 = (this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_right = &p_Var1->super__Rb_tree_node_base;\r\n  }\r\n  std::__default_alloc_template<true,0>::deallocate\r\n            ((this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header,0x18);\r\n  (this->super_singleton<CSkillManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_08219b88;\r\n  if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CSkillManager>::ms_singleton = (CSkillManager *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSkillProto::CSkillProto",
+        "address": "080e5ea0"
+      },
+      "code": "\r\n/* DWARF original prototype: void CSkillProto(CSkillProto * this) */\r\n\r\nvoid __thiscall CSkillProto::CSkillProto(CSkillProto *this)\r\n\r\n{\r\n  CPoly::CPoly(&this->kPointPoly);\r\n  CPoly::CPoly(&this->kSPCostPoly);\r\n  CPoly::CPoly(&this->kDurationPoly);\r\n  CPoly::CPoly(&this->kDurationSPCostPoly);\r\n  CPoly::CPoly(&this->kCooldownPoly);\r\n  CPoly::CPoly(&this->kMasterBonusPoly);\r\n  CPoly::CPoly(&this->kSplashAroundDamageAdjustPoly);\r\n  CPoly::CPoly(&this->kPointPoly2);\r\n  CPoly::CPoly(&this->kDurationPoly2);\r\n  CPoly::CPoly(&this->kPointPoly3);\r\n  CPoly::CPoly(&this->kDurationPoly3);\r\n  CPoly::CPoly(&this->kGrandMasterAddSPCostPoly);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::CPoly",
+        "address": "081bc420"
+      },
+      "code": "\r\n/* CPoly::CPoly() */\r\n\r\nvoid __thiscall CPoly::CPoly(CPoly *this)\r\n\r\n{\r\n  *(undefined ***)this = &PTR__CPoly_08234740;\r\n  *(undefined4 *)(this + 0x24) = 0;\r\n  *(undefined4 *)(this + 0x28) = 0;\r\n  *(undefined4 *)(this + 0x30) = 0;\r\n  *(undefined4 *)(this + 0x34) = 0;\r\n  *(undefined4 *)(this + 0x48) = 0;\r\n  *(undefined4 *)(this + 0x4c) = 0;\r\n  *(undefined4 *)(this + 0x20) = 0;\r\n  *(undefined4 *)(this + 0x2c) = 0;\r\n  *(undefined4 *)(this + 0x38) = 0;\r\n  *(undefined4 *)(this + 0x3c) = 0;\r\n  *(undefined4 *)(this + 0x40) = 0;\r\n  *(undefined4 *)(this + 0x44) = 0;\r\n  LOCK();\r\n  DAT_083223c8 = DAT_083223c8 + 1;\r\n  UNLOCK();\r\n  *(undefined1 **)(this + 0x54) = &DAT_083223cc;\r\n  *(undefined4 *)(this + 0x1c) = 0;\r\n  this[0x18] = (CPoly)0x1;\r\n  std::vector<CSymTable*,std::allocator<CSymTable*>>::erase\r\n            ((vector<CSymTable*,std::allocator<CSymTable*>> *)(this + 0x38),\r\n             *(undefined4 *)(this + 0x38),*(undefined4 *)(this + 0x3c));\r\n  *(undefined4 *)(this + 0x50) = 0;\r\n  std::vector<CSymTable*,std::allocator<CSymTable*>>::reserve\r\n            ((vector<CSymTable*,std::allocator<CSymTable*>> *)(this + 0x38),0x32);\r\n  init(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::~CPoly",
+        "address": "081bc5c0"
+      },
+      "code": "\r\n/* CPoly::~CPoly() */\r\n\r\nvoid __thiscall CPoly::~CPoly(CPoly *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  *(undefined ***)this = &PTR__CPoly_08234740;\r\n  Clear(this);\r\n  iVar2 = *(int *)(this + 0x54);\r\n  LOCK();\r\n  piVar1 = (int *)(iVar2 + -4);\r\n  iVar3 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar3 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(iVar2 + -0xc));\r\n  }\r\n  iVar3 = *(int *)(this + 0x4c) - (int)*(void **)(this + 0x44) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x44),iVar3 << 2);\r\n  }\r\n  iVar3 = *(int *)(this + 0x40) - (int)*(void **)(this + 0x38) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x38),iVar3 << 2);\r\n  }\r\n  iVar3 = *(int *)(this + 0x34) - (int)*(void **)(this + 0x2c) >> 3;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x2c),iVar3 << 3);\r\n  }\r\n  iVar3 = *(int *)(this + 0x28) - (int)*(void **)(this + 0x20) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x20),iVar3 << 2);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::init",
+        "address": "081bda60"
+      },
+      "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* CPoly::init() */\r\n\r\nvoid __thiscall CPoly::init(CPoly *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  allocator local_4c [16];\r\n  allocator local_3c [16];\r\n  int local_2c [7];\r\n  \r\n  std::string::string((string *)local_2c,\"min\",local_3c);\r\n  insert(this,(string *)local_2c,0x16);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"max\",local_4c);\r\n  insert(this,(string *)local_2c,0x17);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"number\",local_4c);\r\n  insert(this,(string *)local_2c,0x18);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"irandom\",local_4c);\r\n  insert(this,(string *)local_2c,0x18);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"irand\",local_4c);\r\n  insert(this,(string *)local_2c,0x18);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"frandom\",local_4c);\r\n  insert(this,(string *)local_2c,0x19);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"frand\",local_4c);\r\n  insert(this,(string *)local_2c,0x19);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"rt\",local_4c);\r\n  insert(this,(string *)local_2c,1);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"sqrt\",local_4c);\r\n  insert(this,(string *)local_2c,1);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"cos\",local_4c);\r\n  insert(this,(string *)local_2c,0xc);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"sin\",local_4c);\r\n  insert(this,(string *)local_2c,0xd);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"tan\",local_4c);\r\n  insert(this,(string *)local_2c,0xe);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"cot\",local_4c);\r\n  insert(this,(string *)local_2c,0x11);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"csc\",local_4c);\r\n  insert(this,(string *)local_2c,0xf);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"cosec\",local_4c);\r\n  insert(this,(string *)local_2c,0xf);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"sec\",local_4c);\r\n  insert(this,(string *)local_2c,0x10);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"pi\",local_4c);\r\n  insert(this,(string *)local_2c,10);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"pi\",local_4c);\r\n  SetVar(this,(string *)local_2c,_DAT_08234728);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"e\",local_4c);\r\n  insert(this,(string *)local_2c,10);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"e\",local_4c);\r\n  SetVar(this,(string *)local_2c,_DAT_08234730);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"log\",local_4c);\r\n  insert(this,(string *)local_2c,0x12);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"ln\",local_4c);\r\n  insert(this,(string *)local_2c,0x13);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"log10\",local_4c);\r\n  insert(this,(string *)local_2c,0x14);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"abs\",local_4c);\r\n  insert(this,(string *)local_2c,0x15);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"mod\",local_4c);\r\n  insert(this,(string *)local_2c,0x1a);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"floor\",local_4c);\r\n  insert(this,(string *)local_2c,0x1b);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  std::string::string((string *)local_2c,\"sign\",local_4c);\r\n  insert(this,(string *)local_2c,0x1c);\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-lifecycle-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::Clear",
+        "address": "081bcc90"
+      },
+      "code": "\r\n/* CPoly::Clear() */\r\n\r\nvoid __thiscall CPoly::Clear(CPoly *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  vector<int,std::allocator<int>_>::erase\r\n            ((vector<int,std::allocator<int>_> *)(this + 0x20),\r\n             (__normal_iterator<int*,std::vector<int,_std::allocator<int>_>_>)*(int **)(this + 0x20)\r\n             ,(__normal_iterator<int*,std::vector<int,_std::allocator<int>_>_>)\r\n              *(int **)(this + 0x24));\r\n  std::vector<double,std::allocator<double>>::erase\r\n            ((vector<double,std::allocator<double>> *)(this + 0x2c),*(undefined4 *)(this + 0x2c),\r\n             *(undefined4 *)(this + 0x30));\r\n  iVar2 = *(int *)(this + 0x50);\r\n  if (iVar2 < 1) {\r\n    iVar3 = *(int *)(this + 0x38);\r\n  }\r\n  else {\r\n    iVar3 = *(int *)(this + 0x38);\r\n    iVar4 = 0;\r\n    do {\r\n      piVar1 = *(int **)(iVar4 * 4 + iVar3);\r\n      if (piVar1 != (int *)0x0) {\r\n        (**(code **)(*piVar1 + 4))(piVar1);\r\n        iVar2 = *(int *)(this + 0x50);\r\n        iVar3 = *(int *)(this + 0x38);\r\n      }\r\n      *(undefined4 *)(iVar4 * 4 + iVar3) = 0;\r\n      iVar4 = iVar4 + 1;\r\n    } while (iVar4 < iVar2);\r\n  }\r\n  std::vector<CSymTable*,std::allocator<CSymTable*>>::erase\r\n            ((vector<CSymTable*,std::allocator<CSymTable*>> *)(this + 0x38),iVar3,\r\n             *(undefined4 *)(this + 0x3c));\r\n  vector<int,std::allocator<int>_>::erase\r\n            ((vector<int,std::allocator<int>_> *)(this + 0x44),\r\n             (__normal_iterator<int*,std::vector<int,_std::allocator<int>_>_>)*(int **)(this + 0x44)\r\n             ,(__normal_iterator<int*,std::vector<int,_std::allocator<int>_>_>)\r\n              *(int **)(this + 0x48));\r\n  *(undefined4 *)(this + 0x50) = 0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-lifecycle-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::insert",
+        "address": "081bd840"
+      },
+      "code": "\r\n/* CPoly::insert(std::string const&, int) */\r\n\r\nvoid __thiscall CPoly::insert(CPoly *this,string *param_1,int param_2)\r\n\r\n{\r\n  int *piVar1;\r\n  undefined4 *puVar2;\r\n  CSymTable *pCVar3;\r\n  uint *puVar4;\r\n  int iVar5;\r\n  uint uVar6;\r\n  byte *pbVar7;\r\n  byte *pbVar8;\r\n  bool bVar9;\r\n  bool bVar10;\r\n  int local_4c;\r\n  uint local_48;\r\n  uint local_44;\r\n  CSymTable *local_40 [5];\r\n  int local_2c [7];\r\n  \r\n  pCVar3 = operator_new(0x14);\r\n  std::string::string((string *)local_2c,param_1);\r\n  CSymTable::CSymTable(pCVar3,param_2,(string *)local_2c);\r\n  puVar2 = *(undefined4 **)(this + 0x3c);\r\n  local_40[0] = pCVar3;\r\n  if (puVar2 == *(undefined4 **)(this + 0x40)) {\r\n    std::vector<CSymTable*,std::allocator<CSymTable*>>::_M_insert_aux\r\n              ((vector<CSymTable*,std::allocator<CSymTable*>> *)(this + 0x38),\r\n               *(undefined4 *)(this + 0x3c),local_40);\r\n  }\r\n  else {\r\n    if (puVar2 != (undefined4 *)0x0) {\r\n      *puVar2 = pCVar3;\r\n    }\r\n    *(undefined4 **)(this + 0x3c) = puVar2 + 1;\r\n  }\r\n  LOCK();\r\n  piVar1 = (int *)(local_2c[0] + -4);\r\n  iVar5 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar5 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_2c[0] + -0xc));\r\n  }\r\n  local_4c = 0;\r\n  if (0 < *(int *)(this + 0x50)) {\r\n    local_44 = *(uint *)(*(byte **)param_1 + -0xc);\r\n    do {\r\n      iVar5 = *(int *)(*(int *)(this + 0x38) + *(int *)(*(int *)(this + 0x44) + local_4c * 4) * 4);\r\n      local_48 = *(uint *)(*(int *)(iVar5 + 0x10) + -0xc);\r\n      puVar4 = &local_48;\r\n      if (local_44 <= local_48) {\r\n        puVar4 = &local_44;\r\n      }\r\n      uVar6 = *puVar4;\r\n      bVar9 = false;\r\n      bVar10 = true;\r\n      pbVar7 = *(byte **)param_1;\r\n      pbVar8 = *(byte **)(iVar5 + 0x10);\r\n      do {\r\n        if (uVar6 == 0) break;\r\n        uVar6 = uVar6 - 1;\r\n        bVar9 = *pbVar7 < *pbVar8;\r\n        bVar10 = *pbVar7 == *pbVar8;\r\n        pbVar7 = pbVar7 + 1;\r\n        pbVar8 = pbVar8 + 1;\r\n      } while (bVar10);\r\n      iVar5 = (int)(char)((!bVar9 && !bVar10) - bVar9);\r\n      if (iVar5 == 0) {\r\n        iVar5 = local_44 - local_48;\r\n      }\r\n      if (iVar5 < 0) {\r\n        std::vector<int,std::allocator<int>>::insert\r\n                  ((vector<int,std::allocator<int>> *)(this + 0x44),\r\n                   *(int *)(this + 0x44) + local_4c * 4,this + 0x50);\r\n        goto LAB_081bd987;\r\n      }\r\n      local_4c = local_4c + 1;\r\n    } while (local_4c < *(int *)(this + 0x50));\r\n  }\r\n  puVar2 = *(undefined4 **)(this + 0x48);\r\n  if (puVar2 == *(undefined4 **)(this + 0x4c)) {\r\n    vector<int,std::allocator<int>_>::_M_insert_aux\r\n              ((vector<int,std::allocator<int>_> *)(this + 0x44),\r\n               (__normal_iterator<int*,std::vector<int,_std::allocator<int>_>_>)\r\n               *(int **)(this + 0x48),(int *)(this + 0x50));\r\n  }\r\n  else {\r\n    if (puVar2 != (undefined4 *)0x0) {\r\n      *puVar2 = *(undefined4 *)(this + 0x50);\r\n    }\r\n    *(undefined4 **)(this + 0x48) = puVar2 + 1;\r\n  }\r\nLAB_081bd987:\r\n  *(int *)(this + 0x50) = *(int *)(this + 0x50) + 1;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-lifecycle-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSymTable::CSymTable",
+        "address": "081be8e0"
+      },
+      "code": "\r\n/* CSymTable::CSymTable(int, std::string) */\r\n\r\nvoid __thiscall CSymTable::CSymTable(CSymTable *param_1,undefined4 param_2,string *param_3)\r\n\r\n{\r\n  *(undefined ***)param_1 = &PTR__CSymTable_08234750;\r\n  *(undefined4 *)(param_1 + 0xc) = param_2;\r\n  *(undefined8 *)(param_1 + 4) = 0;\r\n  std::string::string((string *)(param_1 + 0x10),param_3);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-lifecycle-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSymTable::~CSymTable",
+        "address": "081be950"
+      },
+      "code": "\r\n/* CSymTable::~CSymTable() */\r\n\r\nvoid __thiscall CSymTable::~CSymTable(CSymTable *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  *(undefined ***)this = &PTR__CSymTable_08234750;\r\n  iVar3 = *(int *)(this + 0x10);\r\n  LOCK();\r\n  piVar1 = (int *)(iVar3 + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(iVar3 + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-lifecycle-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::find",
+        "address": "081bd710"
+      },
+      "code": "\r\n/* CPoly::find(std::string const&) */\r\n\r\nundefined4 __thiscall CPoly::find(CPoly *this,string *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  byte *pbVar2;\r\n  int iVar3;\r\n  uint *puVar4;\r\n  uint uVar5;\r\n  int iVar6;\r\n  byte *pbVar7;\r\n  byte *pbVar8;\r\n  bool bVar9;\r\n  bool bVar10;\r\n  int local_2c;\r\n  int local_24;\r\n  uint local_20;\r\n  uint local_1c;\r\n  uint local_18;\r\n  uint local_14;\r\n  \r\n  local_24 = 0;\r\n  local_2c = *(int *)(this + 0x50) + -1;\r\n  if (-1 < local_2c) {\r\n    iVar1 = *(int *)(this + 0x44);\r\n    pbVar2 = *(byte **)param_1;\r\n    local_18 = *(uint *)(pbVar2 + -0xc);\r\n    do {\r\n      iVar6 = local_24 + local_2c >> 1;\r\n      iVar3 = *(int *)(*(int *)(this + 0x38) + *(int *)(iVar1 + iVar6 * 4) * 4);\r\n      local_14 = *(uint *)(*(int *)(iVar3 + 0x10) + -0xc);\r\n      puVar4 = &local_18;\r\n      if (local_14 <= local_18) {\r\n        puVar4 = &local_14;\r\n      }\r\n      uVar5 = *puVar4;\r\n      bVar9 = false;\r\n      bVar10 = true;\r\n      pbVar7 = *(byte **)(iVar3 + 0x10);\r\n      pbVar8 = pbVar2;\r\n      do {\r\n        if (uVar5 == 0) break;\r\n        uVar5 = uVar5 - 1;\r\n        bVar9 = *pbVar7 < *pbVar8;\r\n        bVar10 = *pbVar7 == *pbVar8;\r\n        pbVar7 = pbVar7 + 1;\r\n        pbVar8 = pbVar8 + 1;\r\n      } while (bVar10);\r\n      iVar3 = (int)(char)((!bVar9 && !bVar10) - bVar9);\r\n      if (iVar3 == 0) {\r\n        iVar3 = local_14 - local_18;\r\n      }\r\n      if (iVar3 == 0) {\r\n        return *(undefined4 *)(iVar1 + iVar6 * 4);\r\n      }\r\n      iVar3 = *(int *)(*(int *)(this + 0x38) + *(int *)(iVar1 + iVar6 * 4) * 4);\r\n      local_20 = *(uint *)(pbVar2 + -0xc);\r\n      local_1c = *(uint *)(*(int *)(iVar3 + 0x10) + -0xc);\r\n      puVar4 = &local_20;\r\n      if (local_1c <= local_20) {\r\n        puVar4 = &local_1c;\r\n      }\r\n      uVar5 = *puVar4;\r\n      bVar9 = false;\r\n      bVar10 = true;\r\n      pbVar7 = *(byte **)(iVar3 + 0x10);\r\n      pbVar8 = pbVar2;\r\n      do {\r\n        if (uVar5 == 0) break;\r\n        uVar5 = uVar5 - 1;\r\n        bVar9 = *pbVar7 < *pbVar8;\r\n        bVar10 = *pbVar7 == *pbVar8;\r\n        pbVar7 = pbVar7 + 1;\r\n        pbVar8 = pbVar8 + 1;\r\n      } while (bVar10);\r\n      iVar3 = (int)(char)((!bVar9 && !bVar10) - bVar9);\r\n      if (iVar3 == 0) {\r\n        iVar3 = local_1c - local_20;\r\n      }\r\n      if (iVar3 < 0) {\r\n        local_24 = iVar6 + 1;\r\n      }\r\n      else {\r\n        local_2c = iVar6 + -1;\r\n      }\r\n    } while (local_24 <= local_2c);\r\n  }\r\n  return 0xffffffff;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-find-setvar-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::SetVar",
+        "address": "081bda10"
+      },
+      "code": "\r\n/* CPoly::SetVar(std::string const&, double) */\r\n\r\nundefined4 __thiscall CPoly::SetVar(CPoly *this,string *param_1,double param_2)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  \r\n  if (this[0x18] == (CPoly)0x0) {\r\n    iVar1 = find(this,param_1);\r\n    uVar2 = 0;\r\n    if (iVar1 != -1) {\r\n      uVar2 = 1;\r\n      *(double *)(*(int *)(iVar1 * 4 + *(int *)(this + 0x38)) + 4) = param_2;\r\n    }\r\n  }\r\n  else {\r\n    uVar2 = 0;\r\n  }\r\n  return uVar2;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-find-setvar-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::CPoly",
+        "address": "081bc350"
+      },
+      "code": "\r\n/* CPoly::CPoly() */\r\n\r\nvoid __thiscall CPoly::CPoly(CPoly *this)\r\n\r\n{\r\n  *(undefined ***)this = &PTR__CPoly_08234740;\r\n  *(undefined4 *)(this + 0x24) = 0;\r\n  *(undefined4 *)(this + 0x28) = 0;\r\n  *(undefined4 *)(this + 0x30) = 0;\r\n  *(undefined4 *)(this + 0x34) = 0;\r\n  *(undefined4 *)(this + 0x48) = 0;\r\n  *(undefined4 *)(this + 0x4c) = 0;\r\n  *(undefined4 *)(this + 0x20) = 0;\r\n  *(undefined4 *)(this + 0x2c) = 0;\r\n  *(undefined4 *)(this + 0x38) = 0;\r\n  *(undefined4 *)(this + 0x3c) = 0;\r\n  *(undefined4 *)(this + 0x40) = 0;\r\n  *(undefined4 *)(this + 0x44) = 0;\r\n  LOCK();\r\n  DAT_083223c8 = DAT_083223c8 + 1;\r\n  UNLOCK();\r\n  *(undefined1 **)(this + 0x54) = &DAT_083223cc;\r\n  *(undefined4 *)(this + 0x1c) = 0;\r\n  this[0x18] = (CPoly)0x1;\r\n  std::vector<CSymTable*,std::allocator<CSymTable*>>::erase\r\n            ((vector<CSymTable*,std::allocator<CSymTable*>> *)(this + 0x38),\r\n             *(undefined4 *)(this + 0x38),*(undefined4 *)(this + 0x3c));\r\n  *(undefined4 *)(this + 0x50) = 0;\r\n  std::vector<CSymTable*,std::allocator<CSymTable*>>::reserve\r\n            ((vector<CSymTable*,std::allocator<CSymTable*>> *)(this + 0x38),0x32);\r\n  init(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::~CPoly",
+        "address": "081bc4f0"
+      },
+      "code": "\r\n/* CPoly::~CPoly() */\r\n\r\nvoid __thiscall CPoly::~CPoly(CPoly *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  *(undefined ***)this = &PTR__CPoly_08234740;\r\n  Clear(this);\r\n  iVar2 = *(int *)(this + 0x54);\r\n  LOCK();\r\n  piVar1 = (int *)(iVar2 + -4);\r\n  iVar3 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar3 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(iVar2 + -0xc));\r\n  }\r\n  iVar3 = *(int *)(this + 0x4c) - (int)*(void **)(this + 0x44) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x44),iVar3 << 2);\r\n  }\r\n  iVar3 = *(int *)(this + 0x40) - (int)*(void **)(this + 0x38) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x38),iVar3 << 2);\r\n  }\r\n  iVar3 = *(int *)(this + 0x34) - (int)*(void **)(this + 0x2c) >> 3;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x2c),iVar3 << 3);\r\n  }\r\n  iVar3 = *(int *)(this + 0x28) - (int)*(void **)(this + 0x20) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x20),iVar3 << 2);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CPoly::~CPoly",
+        "address": "081bc690"
+      },
+      "code": "\r\n/* CPoly::~CPoly() */\r\n\r\nvoid __thiscall CPoly::~CPoly(CPoly *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  *(undefined ***)this = &PTR__CPoly_08234740;\r\n  Clear(this);\r\n  iVar2 = *(int *)(this + 0x54);\r\n  LOCK();\r\n  piVar1 = (int *)(iVar2 + -4);\r\n  iVar3 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar3 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(iVar2 + -0xc));\r\n  }\r\n  iVar3 = *(int *)(this + 0x4c) - (int)*(void **)(this + 0x44) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x44),iVar3 << 2);\r\n  }\r\n  iVar3 = *(int *)(this + 0x40) - (int)*(void **)(this + 0x38) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x38),iVar3 << 2);\r\n  }\r\n  iVar3 = *(int *)(this + 0x34) - (int)*(void **)(this + 0x2c) >> 3;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x2c),iVar3 << 3);\r\n  }\r\n  iVar3 = *(int *)(this + 0x28) - (int)*(void **)(this + 0x20) >> 2;\r\n  if (iVar3 != 0) {\r\n    std::__default_alloc_template<true,0>::deallocate(*(void **)(this + 0x20),iVar3 << 2);\r\n  }\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSymTable::CSymTable",
+        "address": "081be8b0"
+      },
+      "code": "\r\n/* CSymTable::CSymTable(int, std::string) */\r\n\r\nvoid __thiscall CSymTable::CSymTable(CSymTable *param_1,undefined4 param_2,string *param_3)\r\n\r\n{\r\n  *(undefined ***)param_1 = &PTR__CSymTable_08234750;\r\n  *(undefined4 *)(param_1 + 0xc) = param_2;\r\n  *(undefined8 *)(param_1 + 4) = 0;\r\n  std::string::string((string *)(param_1 + 0x10),param_3);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSymTable::~CSymTable",
+        "address": "081be910"
+      },
+      "code": "\r\n/* CSymTable::~CSymTable() */\r\n\r\nvoid __thiscall CSymTable::~CSymTable(CSymTable *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  *(undefined ***)this = &PTR__CSymTable_08234750;\r\n  iVar3 = *(int *)(this + 0x10);\r\n  LOCK();\r\n  piVar1 = (int *)(iVar3 + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(iVar3 + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSymTable::~CSymTable",
+        "address": "081be990"
+      },
+      "code": "\r\n/* CSymTable::~CSymTable() */\r\n\r\nvoid __thiscall CSymTable::~CSymTable(CSymTable *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  iVar3 = *(int *)(this + 0x10);\r\n  *(undefined ***)this = &PTR__CSymTable_08234750;\r\n  LOCK();\r\n  piVar1 = (int *)(iVar3 + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(iVar3 + -0xc));\r\n  }\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSkillManager::~CSkillManager",
+        "address": "080e4400"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~CSkillManager(CSkillManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall CSkillManager::~CSkillManager(CSkillManager *this,int __in_chrg)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_CSkillProto*>_> *p_Var1;\r\n  \r\n  (this->super_singleton<CSkillManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CSkillManager_08219b78;\r\n  wipe_second<std::map<DWORD,_CSkillProto*,_std::less<DWORD>,_std::allocator<std::pair<const_DWORD,_CSkillProto*>_>_>_>\r\n            (&this->m_map_pkSkillProto);\r\n  if ((this->m_map_pkSkillProto)._M_t._M_node_count != 0) {\r\n    _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CSkillProto*>,std::_Select1st<std::pair<const_long_unsigned_int,_CSkillProto*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n    ::_M_erase(&(this->m_map_pkSkillProto)._M_t,\r\n               (_Rb_tree_node<std::pair<const_long_unsigned_int,_CSkillProto*>_> *)\r\n               (((this->m_map_pkSkillProto)._M_t.\r\n                 super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n                 .\r\n                 super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n                ._M_header)->super__Rb_tree_node_base)._M_parent);\r\n    (this->m_map_pkSkillProto)._M_t._M_node_count = 0;\r\n    p_Var1 = (this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_left = &p_Var1->super__Rb_tree_node_base;\r\n    (((this->m_map_pkSkillProto)._M_t.\r\n      super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n      .\r\n      super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n     ._M_header)->super__Rb_tree_node_base)._M_parent = (_Rb_tree_node_base *)0x0;\r\n    p_Var1 = (this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_right = &p_Var1->super__Rb_tree_node_base;\r\n  }\r\n  std::__default_alloc_template<true,0>::deallocate\r\n            ((this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header,0x18);\r\n  (this->super_singleton<CSkillManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_08219b88;\r\n  if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CSkillManager>::ms_singleton = (CSkillManager *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "CSkillManager::~CSkillManager",
+        "address": "080e45a0"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~CSkillManager(CSkillManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall CSkillManager::~CSkillManager(CSkillManager *this,int __in_chrg)\r\n\r\n{\r\n  _Rb_tree_node<std::pair<const_long_unsigned_int,_CSkillProto*>_> *p_Var1;\r\n  \r\n  (this->super_singleton<CSkillManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CSkillManager_08219b78;\r\n  wipe_second<std::map<DWORD,_CSkillProto*,_std::less<DWORD>,_std::allocator<std::pair<const_DWORD,_CSkillProto*>_>_>_>\r\n            (&this->m_map_pkSkillProto);\r\n  if ((this->m_map_pkSkillProto)._M_t._M_node_count != 0) {\r\n    _Rb_tree<long_unsigned_int,std::pair<const_long_unsigned_int,_CSkillProto*>,std::_Select1st<std::pair<const_long_unsigned_int,_CSkillProto*>_>,std::less<long_unsigned_int>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n    ::_M_erase(&(this->m_map_pkSkillProto)._M_t,\r\n               (_Rb_tree_node<std::pair<const_long_unsigned_int,_CSkillProto*>_> *)\r\n               (((this->m_map_pkSkillProto)._M_t.\r\n                 super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n                 .\r\n                 super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n                ._M_header)->super__Rb_tree_node_base)._M_parent);\r\n    (this->m_map_pkSkillProto)._M_t._M_node_count = 0;\r\n    p_Var1 = (this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_left = &p_Var1->super__Rb_tree_node_base;\r\n    (((this->m_map_pkSkillProto)._M_t.\r\n      super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n      .\r\n      super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n     ._M_header)->super__Rb_tree_node_base)._M_parent = (_Rb_tree_node_base *)0x0;\r\n    p_Var1 = (this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header;\r\n    (p_Var1->super__Rb_tree_node_base)._M_right = &p_Var1->super__Rb_tree_node_base;\r\n  }\r\n  std::__default_alloc_template<true,0>::deallocate\r\n            ((this->m_map_pkSkillProto)._M_t.\r\n             super__Rb_tree_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>_>\r\n             .\r\n             super__Rb_tree_alloc_base<std::pair<const_long_unsigned_int,_CSkillProto*>,std::allocator<std::pair<const_long_unsigned_int,_CSkillProto*>_>,true>\r\n             ._M_header,0x18);\r\n  (this->super_singleton<CSkillManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_08219b88;\r\n  if (singleton<CSkillManager>::ms_singleton == (CSkillManager *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CSkillManager>::ms_singleton = (CSkillManager *)0x0;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "provenance": {
+        "saved_export": "poly-owning-variants-ghidra.json"
+      },
+      "checkpoint82_group": "owning_poly",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\skill_manager\\poly-owning-addressed-ghidra.json",
+        "sha256": "d2995fcc5875c292bbe0c992a13093231f36d6ed62166a5491cd349405bd5a8e"
+      }
+    },
+    {
+      "function": {
+        "name": "gauss_random",
+        "address": "08147480"
+      },
+      "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* WARNING: Unknown calling convention */\r\n\r\nfloat gauss_random(float avg,float sigma)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  DWORD DVar3;\r\n  float fVar4;\r\n  float fVar5;\r\n  double v2;\r\n  double v1;\r\n  \r\n  if (gauss_random::haveNextGaussian) {\r\n    gauss_random::haveNextGaussian = false;\r\n    fVar5 = gauss_random::nextGaussian;\r\n  }\r\n  else {\r\n    do {\r\n      do {\r\n                    /* Unresolved local var: double s@[DW_OP_reg12(ST1)]\r\n                       Unresolved local var: double multiplier@[DW_OP_reg11(ST0)] */\r\n        DVar3 = thecore_random();\r\n        fVar1 = (float)(int)((DVar3 & 0x1fffff) - 0x100000) * _DAT_082288a8;\r\n        DVar3 = thecore_random();\r\n        fVar2 = (float)(int)((DVar3 & 0x1fffff) - 0x100000) * _DAT_082288a8;\r\n        fVar5 = fVar2 * fVar2 + fVar1 * fVar1;\r\n      } while (1.0 <= fVar5);\r\n    } while (fVar5 == 0.0);\r\n    fVar4 = logf(fVar5);\r\n    fVar5 = sqrtf((fVar4 * _DAT_082288ac) / fVar5);\r\n    gauss_random::haveNextGaussian = true;\r\n    gauss_random::nextGaussian = fVar2 * fVar5;\r\n    fVar5 = fVar5 * fVar1;\r\n  }\r\n  return sigma * fVar5 + avg;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08147480",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\08147480.json",
+        "sha256": "154b22510cf8c5c1c8e2b8068450da0dff6d5cd9e288f46e6037f86f5fd58809"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItemAddonManager::ApplyAddonTo",
+        "address": "0816e880"
+      },
+      "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* DWARF original prototype: void ApplyAddonTo(CItemAddonManager * this, int iAddonType, LPITEM\r\n   pItem) */\r\n\r\nvoid __thiscall CItemAddonManager::ApplyAddonTo(CItemAddonManager *this,int iAddonType,LPITEM pItem)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  short sVar3;\r\n  short sValue;\r\n  float fVar4;\r\n  \r\n                    /* Unresolved local var: int iSkillBonus@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int iNormalHitBonus@[DW_OP_reg3(EBX)] */\r\n  if (pItem != (LPITEM)0x0) {\r\n    fVar4 = gauss_random(0.0,5.0);\r\n    iVar1 = MINMAX(-0x1e,(int)ROUND(fVar4 + _DAT_081f9f58),0x1e);\r\n    sValue = (short)iVar1;\r\n    if (iVar1 + 0x14U < 0x29) {\r\n      iVar1 = number_ex(-8,8,\"item_addon.cpp\",0x1a);\r\n      iVar2 = number_ex(-8,8,\"item_addon.cpp\",0x1a);\r\n      iVar2 = iVar2 + iVar1;\r\n      if (iVar2 < 0) {\r\n        iVar2 = -iVar2;\r\n      }\r\n      sVar3 = sValue * -2 + (short)iVar2;\r\n      iVar2 = 0x1a;\r\n      iVar1 = 4;\r\n    }\r\n    else {\r\n      iVar2 = 0x1c;\r\n      sVar3 = sValue * -2;\r\n      iVar1 = 5;\r\n    }\r\n    iVar1 = number_ex(1,iVar1,\"item_addon.cpp\",iVar2);\r\n    CItem::RemoveAttributeType(pItem,'G');\r\n    CItem::RemoveAttributeType(pItem,'H');\r\n    CItem::AddAttribute(pItem,'H',sVar3 + (short)iVar1);\r\n    CItem::AddAttribute(pItem,'G',sValue);\r\n    return;\r\n  }\r\n  _sys_err(\"ApplyAddonTo\",0x11,\"ITEM pointer null\");\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e880",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\0816e880.json",
+        "sha256": "b2df958e01628c2987c0e5499719a6f5a195647e4659a01a53bea00c129371e4"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItem::ApplyAddon",
+        "address": "08168720"
+      },
+      "code": "\r\n/* DWARF original prototype: void ApplyAddon(CItem * this, int iAddonType) */\r\n\r\nvoid __thiscall CItem::ApplyAddon(CItem *this,int iAddonType)\r\n\r\n{\r\n  if (singleton<CItemAddonManager>::ms_singleton == (CItemAddonManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  CItemAddonManager::ApplyAddonTo(singleton<CItemAddonManager>::ms_singleton,iAddonType,this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08168720",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\08168720.json",
+        "sha256": "62109f1a9e70f5ed477355fb1f6cc752d1da8ecb3806df194f07ed7038665cf3"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItem::RemoveAttributeType",
+        "address": "08187770"
+      },
+      "code": "\r\n/* DWARF original prototype: bool RemoveAttributeType(CItem * this, BYTE bType) */\r\n\r\nbool __thiscall CItem::RemoveAttributeType(CItem *this,BYTE bType)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  bool bVar3;\r\n  \r\n                    /* Unresolved local var: int index@[DW_OP_reg0(EAX)] */\r\n  bVar3 = false;\r\n  iVar2 = FindAttribute(this,bType);\r\n  if (iVar2 != -1) {\r\n    bVar1 = RemoveAttributeType(this,(BYTE)iVar2);\r\n    if (bVar1) {\r\n      bVar3 = true;\r\n    }\r\n  }\r\n  return bVar3;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08187770",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\08187770.json",
+        "sha256": "d04d3891ad33ed45d7301a55a434104cfdd7698ffb587be02f39badd8f187444"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItemAddonManager::CItemAddonManager",
+        "address": "0816e6c0"
+      },
+      "code": "\r\n/* DWARF original prototype: void CItemAddonManager(CItemAddonManager * this) */\r\n\r\nvoid __thiscall CItemAddonManager::CItemAddonManager(CItemAddonManager *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n                    /* Unresolved local var: int offset@[???] */\r\n  bVar1 = singleton<CItemAddonManager>::ms_singleton != (CItemAddonManager *)0x0;\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0822c910;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0xd);\r\n  }\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CItemAddonManager_0822c900;\r\n  singleton<CItemAddonManager>::ms_singleton = this;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e6c0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\0816e6c0.json",
+        "sha256": "11253283f054007cf5fbc59322153cf04f8ab2283de5303470a52437f453b5c8"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItemAddonManager::CItemAddonManager",
+        "address": "0816e720"
+      },
+      "code": "\r\n/* DWARF original prototype: void CItemAddonManager(CItemAddonManager * this) */\r\n\r\nvoid __thiscall CItemAddonManager::CItemAddonManager(CItemAddonManager *this)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n                    /* Unresolved local var: int offset@[???] */\r\n  bVar1 = singleton<CItemAddonManager>::ms_singleton != (CItemAddonManager *)0x0;\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0822c910;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0xd);\r\n  }\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__CItemAddonManager_0822c900;\r\n  singleton<CItemAddonManager>::ms_singleton = this;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e720",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\0816e720.json",
+        "sha256": "8f22584f679b86b9bdfb7b08eec82ef20dfb01ef339e71492f1ab4c078fb6990"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItemAddonManager::~CItemAddonManager",
+        "address": "0816e780"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~CItemAddonManager(CItemAddonManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall CItemAddonManager::~CItemAddonManager(CItemAddonManager *this,int __in_chrg)\r\n\r\n{\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0822c910;\r\n  if (singleton<CItemAddonManager>::ms_singleton == (CItemAddonManager *)0x0) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CItemAddonManager>::ms_singleton = (CItemAddonManager *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e780",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\0816e780.json",
+        "sha256": "05657c5f306c197d145e932293af4435cbc6453f8b8d643eb42b4f72cca5f35e"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItemAddonManager::~CItemAddonManager",
+        "address": "0816e7d0"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~CItemAddonManager(CItemAddonManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall CItemAddonManager::~CItemAddonManager(CItemAddonManager *this,int __in_chrg)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = singleton<CItemAddonManager>::ms_singleton == (CItemAddonManager *)0x0;\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0822c910;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CItemAddonManager>::ms_singleton = (CItemAddonManager *)0x0;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e7d0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\0816e7d0.json",
+        "sha256": "1f57e12c6206a075b0e9286a32e8de4b327219b991e2d3889fec4d33a68f1ff0"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "CItemAddonManager::~CItemAddonManager",
+        "address": "0816e820"
+      },
+      "code": "\r\n/* DWARF original prototype: void ~CItemAddonManager(CItemAddonManager * this, int __in_chrg) */\r\n\r\nvoid __thiscall CItemAddonManager::~CItemAddonManager(CItemAddonManager *this,int __in_chrg)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = singleton<CItemAddonManager>::ms_singleton == (CItemAddonManager *)0x0;\r\n  (this->super_singleton<CItemAddonManager>)._vptr_singleton =\r\n       (_func_int_varargs **)&PTR__singleton_0822c910;\r\n  if (bVar1) {\r\n    __assert(\"singleton\",\"../../common/singleton.h\",0x14);\r\n  }\r\n  singleton<CItemAddonManager>::ms_singleton = (CItemAddonManager *)0x0;\r\n  operator_delete(this);\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "0816e820",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\0816e820.json",
+        "sha256": "2dca26c8994e52e0d05c2883196a5114c508a540d37a699640d3f1a17edb6ce7"
+      },
+      "checkpoint82_group": "item_addon",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\point_change\\auto_give\\item_addon\\addon-addressed-ghidra.json",
+        "sha256": "26f95bfae01812338faf74be77252edfbce3a41ec9f68c09ab93ed7ec55cf994"
+      }
+    },
+    {
+      "function": {
+        "name": "__LocaleService_Init_DEFAULT",
+        "address": "08066540"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nvoid __LocaleService_Init_DEFAULT(void)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  pair<std::_Rb_tree_iterator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>&,_std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>*>,bool>\r\n  __p;\r\n  basic_string<char,std::char_traits<char>,std::allocator<char>_> __str;\r\n  \r\n  strlen(\"\");\r\n  std::string::assign((char *)&g_stLocaleFilename,0x81f5c80);\r\n  operator+<char,_std::char_traits<char>,_std::allocator<char>_>(&__str,\"locale/\",&g_stServiceName);\r\n  std::string::assign((string *)&g_stServiceBasePath);\r\n  LOCK();\r\n  piVar1 = (int *)((int)__str._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)__str._M_dataplus._M_p + -0xc));\r\n  }\r\n  std::string::string((string *)&__str,(string *)&g_stServiceBasePath);\r\n  strlen(\"/map\");\r\n  std::string::append((char *)&__str,0x81f7fc7);\r\n  std::string::assign((string *)&g_stServiceMapPath);\r\n  LOCK();\r\n  piVar1 = (int *)((int)__str._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)__str._M_dataplus._M_p + -0xc));\r\n  }\r\n  std::string::string((string *)&__str,(string *)&g_stServiceBasePath);\r\n  strlen(\"/quest\");\r\n  std::string::append((char *)&__str,0x81f7fb1);\r\n  std::string::assign((string *)&g_stQuestDir);\r\n  LOCK();\r\n  piVar1 = (int *)((int)__str._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)__str._M_dataplus._M_p + -0xc));\r\n  }\r\n  if (DAT_08323218 != 0) {\r\n    _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::_Identity<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>\r\n    ::_M_erase((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::_Identity<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>\r\n                *)&g_setQuestObjectDir,\r\n               *(_Rb_tree_node<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>\r\n                 **)(g_setQuestObjectDir + 4));\r\n    *(int *)(g_setQuestObjectDir + 8) = g_setQuestObjectDir;\r\n    *(undefined4 *)(g_setQuestObjectDir + 4) = 0;\r\n    *(int *)(g_setQuestObjectDir + 0xc) = g_setQuestObjectDir;\r\n    DAT_08323218 = 0;\r\n  }\r\n  std::string::string((string *)&__str,(string *)&g_stQuestDir);\r\n  strlen(\"/object\");\r\n  std::string::append((char *)&__str,0x81f7fe1);\r\n  _Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::_Identity<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>\r\n  ::insert_unique((_Rb_tree<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>,std::_Identity<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::less<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>,std::allocator<std::basic_string<char,_std::char_traits<char>,_std::allocator<char>_>_>_>\r\n                   *)&g_setQuestObjectDir,(string *)&__str);\r\n  LOCK();\r\n  piVar1 = (int *)((int)__str._M_dataplus._M_p + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)((int)__str._M_dataplus._M_p + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "08066540",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale_init_next\\08066540-decompile.json",
+        "sha256": "48204e1b579f3d6a677ba43f6d35a59912ff0b94b1054cad9c29e6c8daffd860"
+      },
+      "checkpoint82_group": "locale_default",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale_init_next\\default-addressed-ghidra.json",
+        "sha256": "7088b042b01f2e003aeed84dd31b626bd85cbd57a339afe978477a2452fcb459"
+      }
+    },
+    {
+      "function": {
+        "name": "LocaleService_GetQuestPath",
+        "address": "080686b0"
+      },
+      "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nstring * LocaleService_GetQuestPath(void)\r\n\r\n{\r\n  return (string *)&g_stQuestDir;\r\n}\r\n\r\n",
+      "truncated": false,
+      "requested_address": "080686b0",
+      "provenance": {
+        "saved_export": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale_init_next\\080686b0-decompile.json",
+        "sha256": "122814425f60d09ececec13f6757c6548279b6104f416da412ae870fd3493e23"
+      },
+      "checkpoint82_group": "locale_default",
+      "normalized_bundle_provenance": {
+        "path": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\locale_init_next\\default-addressed-ghidra.json",
+        "sha256": "7088b042b01f2e003aeed84dd31b626bd85cbd57a339afe978477a2452fcb459"
+      }
+    }
+  ]
+}

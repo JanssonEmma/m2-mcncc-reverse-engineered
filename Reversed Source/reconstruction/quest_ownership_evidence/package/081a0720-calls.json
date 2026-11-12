@@ -1,0 +1,66 @@
+{
+  "function": {
+    "name": "CQuestManager::Destroy",
+    "address": "081a0720"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "080a024d",
+        "caller": {
+          "name": "main",
+          "address": "0809f3d0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0819fe84",
+        "caller": {
+          "name": "CQuestManager::~CQuestManager",
+          "address": "0819fe70"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "0819fa34",
+        "caller": {
+          "name": "CQuestManager::~CQuestManager",
+          "address": "0819fa20"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      },
+      {
+        "call_site": "081a02d4",
+        "caller": {
+          "name": "CQuestManager::~CQuestManager",
+          "address": "081a02c0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 100,
+    "total": 4,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "081a0743",
+        "target": "081c5960",
+        "name": "lua_close",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      }
+    ],
+    "offset": 0,
+    "limit": 100,
+    "total": 1,
+    "has_more": false
+  }
+}

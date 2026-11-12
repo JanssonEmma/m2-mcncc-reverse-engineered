@@ -1,0 +1,97 @@
+{
+  "status": "focused_runtime_and_abi_passed",
+  "root_applied": true,
+  "child_F_writes": false,
+  "scope": "closed horse helper batch only",
+  "source_files": [
+    {
+      "file": "game/src/char.cpp",
+      "sha256": "ecad4c34b293c064a3d9bbef3540e2ec7ad2f8426665d08592520bc854abf279"
+    },
+    {
+      "file": "game/src/char_battle.cpp",
+      "sha256": "cef16545e31db3d3d7ec7e3ddc651665cb055c57728d30818db3ef65816feb88"
+    },
+    {
+      "file": "game/src/char_horse.cpp",
+      "sha256": "5df59203b2a73b8796128d0fb10723665b4e6ec6cca22bad6ed5de9840c1ae99"
+    },
+    {
+      "file": "game/src/char.h",
+      "sha256": "520510d67869879737472b2af48b4502e09b7207732c5531569a4ae510c64775"
+    },
+    {
+      "file": "game/src/guild.h",
+      "sha256": "ca83dad8ea324c177586e148f140006856a4331b7d017d40b80941339d29ca25"
+    },
+    {
+      "file": "game/src/packet.h",
+      "sha256": "8178de207a0b417068a99a2bd6a7bc431296214aff0b63e5e782c3152777c391"
+    },
+    {
+      "file": "game/src/horse-summon-detail.h",
+      "sha256": "fa594a1d2e46130e54e057ceeca0fec511993fd0c8b236fff8a7679441116cac"
+    },
+    {
+      "file": "reconstruction/tests/Makefile",
+      "sha256": "c789e4679ea43b2cab03bed62c27cd0eb97b1de5d1fa20aa6dabf078b6132f7e"
+    },
+    {
+      "file": "reconstruction/tests/horse_methods_regression.cpp",
+      "sha256": "6ce5b768367446e66888bf373047cd960148e266efc19ef075a9ed7d771f671a"
+    },
+    {
+      "file": "reconstruction/tests/horse_methods_abi.cpp",
+      "sha256": "332093996251855e458bcd6e86a54a209e738a5914e11a4e8fa1a3e5a6811b01"
+    },
+    {
+      "file": "reconstruction/tests/horse_methods_character_fixture.cpp",
+      "sha256": "660c8526f85fba0fe1cc4834fd2c2e70497f5e24ba91f905e4f81c7b645a8509"
+    }
+  ],
+  "protected_global_fixtures_unchanged": {
+    "character_fixture.cpp": "3065480d6304cb4da2a389e793e33918e545b5bcd878188d58f57fea79464631",
+    "desc_fixture.cpp": "2bea7c724addafa7022fb5749c1145816a4a6b4a33c4ddfc0a9520980e889f4d",
+    "entity_packet_fixture.cpp": "2037e478cedf3230d6fe63e2c60690d3cc40b3537f417773c37ae0d4236a3bc2"
+  },
+  "packet_duplicate_fix": "retain first block only;5duplicate blocks removed",
+  "horse_access_fix": "actual existing inline accessors; no visibility/data change",
+  "receipt": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\horse-methods-focused.receipt.json",
+  "receipt_sha256": "40ca4c0c5e868b812ae0f4795576e166d08f65a8552be559707646039d626049",
+  "log": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\horse-methods-focused.log",
+  "log_sha256": "5e68ffb3212eb1b19aee63a3dab676472adc0e9ba7ba59ec853de957cd74b5e8",
+  "validation": {
+    "started_utc": "2026-10-26T03:52:06.154679+00:00",
+    "status": "passed",
+    "scope": "focused",
+    "suites": [
+      "horse_methods_regression"
+    ],
+    "abi_requested": true,
+    "header_fingerprint": "d5134756503cbe4796226b1e26ae9d3306c1695df3a321344fcbdfbec511d8e5",
+    "headers_changed": true,
+    "forced_rebuild": true,
+    "command": [
+      "C:\\Strawberry\\c\\bin\\gmake.exe",
+      "-j3",
+      "CC=C:/Strawberry/c/bin/gcc.exe",
+      "CXX=C:/Strawberry/c/bin/g++.exe",
+      "-B",
+      "SHELL=cmd.exe",
+      "horse_methods_regression",
+      "check-abi"
+    ],
+    "cwd": "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests",
+    "log": "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\horse-methods-focused.log",
+    "limitation": "Scripted external APIs and test-only lifecycle boundaries remain; passing does not prove full server linking.",
+    "pid": 9524,
+    "make_exit_code": 0,
+    "exit_code": 0,
+    "finished_utc": "2026-10-26T03:52:26.945883+00:00",
+    "executed_runtime_commands": [
+      "horse_methods_regression"
+    ]
+  },
+  "full_suite_run_for_this_batch": false,
+  "pending": "Parent full-suite/checkpoint; broader HorseSummon/Spawn/Show/Goto/SetProto/spatial/quest SCC remains staged/unresolved"
+}

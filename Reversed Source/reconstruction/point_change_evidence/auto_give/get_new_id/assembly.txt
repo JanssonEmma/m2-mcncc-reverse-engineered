@@ -1,0 +1,88 @@
+
+PROJECT_ROOT\Original Binaries\game:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+081921c0 <_ZN12ITEM_MANAGER8GetNewIDEv>:
+ 81921c0:	55                   	push   %ebp
+ 81921c1:	89 e5                	mov    %esp,%ebp
+ 81921c3:	83 ec 18             	sub    $0x18,%esp
+ 81921c6:	89 5d fc             	mov    %ebx,-0x4(%ebp)
+ 81921c9:	8b 5d 08             	mov    0x8(%ebp),%ebx
+ 81921cc:	8b 53 30             	mov    0x30(%ebx),%edx
+ 81921cf:	85 d2                	test   %edx,%edx
+ 81921d1:	74 44                	je     8192217 <_ZN12ITEM_MANAGER8GetNewIDEv+0x57>
+ 81921d3:	3b 15 a8 31 32 08    	cmp    0x83231a8,%edx
+ 81921d9:	73 15                	jae    81921f0 <_ZN12ITEM_MANAGER8GetNewIDEv+0x30>
+ 81921db:	8d 42 01             	lea    0x1(%edx),%eax
+ 81921de:	89 43 30             	mov    %eax,0x30(%ebx)
+ 81921e1:	89 d0                	mov    %edx,%eax
+ 81921e3:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 81921e6:	89 ec                	mov    %ebp,%esp
+ 81921e8:	5d                   	pop    %ebp
+ 81921e9:	c3                   	ret
+ 81921ea:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 81921f0:	c7 04 24 77 12 23 08 	movl   $0x8231277,(%esp)
+ 81921f7:	b9 cb 00 00 00       	mov    $0xcb,%ecx
+ 81921fc:	bb 60 17 23 08       	mov    $0x8231760,%ebx
+ 8192201:	89 4c 24 04          	mov    %ecx,0x4(%esp)
+ 8192205:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+ 8192209:	e8 42 5f 02 00       	call   81b8150 <_sys_err>
+ 819220e:	e8 7d 76 02 00       	call   81b9890 <thecore_shutdown>
+ 8192213:	31 c0                	xor    %eax,%eax
+ 8192215:	eb cc                	jmp    81921e3 <_ZN12ITEM_MANAGER8GetNewIDEv+0x23>
+ 8192217:	c7 04 24 6e 12 23 08 	movl   $0x823126e,(%esp)
+ 819221e:	b8 d7 13 23 08       	mov    $0x82313d7,%eax
+ 8192223:	89 44 24 0c          	mov    %eax,0xc(%esp)
+ 8192227:	b8 c7 00 00 00       	mov    $0xc7,%eax
+ 819222c:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8192230:	b8 ea 13 23 08       	mov    $0x82313ea,%eax
+ 8192235:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192239:	e8 6e a7 eb ff       	call   804c9ac <__assert@plt>
+ 819223e:	8b 53 30             	mov    0x30(%ebx),%edx
+ 8192241:	eb 90                	jmp    81921d3 <_ZN12ITEM_MANAGER8GetNewIDEv+0x13>
+ 8192243:	90                   	nop
+ 8192244:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 819224a:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+
+08192250 <_ZN12ITEM_MANAGER12SetMaxItemIDEm>:
+ 8192250:	55                   	push   %ebp
+ 8192251:	31 c0                	xor    %eax,%eax
+ 8192253:	89 e5                	mov    %esp,%ebp
+ 8192255:	83 ec 18             	sub    $0x18,%esp
+ 8192258:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 819225b:	85 d2                	test   %edx,%edx
+ 819225d:	74 44                	je     81922a3 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x53>
+ 819225f:	8b 0d a4 31 32 08    	mov    0x83231a4,%ecx
+ 8192265:	39 ca                	cmp    %ecx,%edx
+ 8192267:	76 67                	jbe    81922d0 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x80>
+ 8192269:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+ 819226e:	39 c2                	cmp    %eax,%edx
+ 8192270:	72 35                	jb     81922a7 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x57>
+ 8192272:	89 44 24 14          	mov    %eax,0x14(%esp)
+ 8192276:	b8 a0 17 23 08       	mov    $0x82317a0,%eax
+ 819227b:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 819227f:	b8 da 00 00 00       	mov    $0xda,%eax
+ 8192284:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 8192288:	89 4c 24 10          	mov    %ecx,0x10(%esp)
+ 819228c:	89 54 24 0c          	mov    %edx,0xc(%esp)
+ 8192290:	c7 04 24 80 12 23 08 	movl   $0x8231280,(%esp)
+ 8192297:	e8 b4 5e 02 00       	call   81b8150 <_sys_err>
+ 819229c:	e8 ef 75 02 00       	call   81b9890 <thecore_shutdown>
+ 81922a1:	31 c0                	xor    %eax,%eax
+ 81922a3:	89 ec                	mov    %ebp,%esp
+ 81922a5:	5d                   	pop    %ebp
+ 81922a6:	c3                   	ret
+ 81922a7:	8b 45 08             	mov    0x8(%ebp),%eax
+ 81922aa:	89 50 30             	mov    %edx,0x30(%eax)
+ 81922ad:	b8 fb 13 23 08       	mov    $0x82313fb,%eax
+ 81922b2:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 81922b6:	89 54 24 08          	mov    %edx,0x8(%esp)
+ 81922ba:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 81922c1:	e8 da 5f 02 00       	call   81b82a0 <sys_log>
+ 81922c6:	b8 01 00 00 00       	mov    $0x1,%eax
+ 81922cb:	eb d6                	jmp    81922a3 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x53>
+ 81922cd:	8d 76 00             	lea    0x0(%esi),%esi
+ 81922d0:	a1 a8 31 32 08       	mov    0x83231a8,%eax
+ 81922d5:	eb 9b                	jmp    8192272 <_ZN12ITEM_MANAGER12SetMaxItemIDEm+0x22>

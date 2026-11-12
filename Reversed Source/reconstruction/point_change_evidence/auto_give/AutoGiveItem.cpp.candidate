@@ -1,0 +1,80 @@
+// Complete old AutoGiveItem0817fb20 control flow; staged, not link-closed.
+// Required missing APIs are declarations only; never supply substitute bodies.
+bool FN_check_item_socket(LPITEM item);
+namespace auto_give_detail {
+static int signed32(unsigned int v) { return v <= 0x7fffffffU ? (int)v : -1-(int)(0xffffffffU-v); }
+}
+LPITEM CHARACTER::AutoGiveItem(DWORD dwItemVnum, BYTE bCount, int iRarePct, bool bMsg)
+{
+    (void)iRarePct; // Original explicitly passes -1 to CreateItem.
+    TItemTable* p = ITEM_MANAGER::instance().GetTable(dwItemVnum);
+    if (!p) return 0;
+    DBManager::instance().SendMoneyLog(8, dwItemVnum, (int)bCount);
+    if ((p->dwFlags & 4) && p->bType != 27) {
+        for (int i=0; i<90; ++i) {
+            LPITEM item=GetItem((BYTE)i);
+            if (item && item->GetVnum()==dwItemVnum && FN_check_item_socket(item)) {
+                const int room=auto_give_detail::signed32(200U-item->GetCount());
+                const BYTE contribution=(BYTE)(room<(int)bCount ? room : (int)bCount);
+                bCount=(BYTE)(bCount-contribution);
+                item->SetCount(item->GetCount()+contribution);
+                if (!bCount) {
+                    if (bMsg) {
+                        const char* name=item->GetName();
+                        ChatPacket(1,locale_find("\276\306\300\314\305\333\040\310\271\265\346\072\040\045\163",g_iUseLocale),name);
+                    }
+                    return item;
+                }
+            }
+        }
+    }
+    LPITEM item=ITEM_MANAGER::instance().CreateItem(dwItemVnum,(DWORD)bCount,0,true,-1);
+    if (!item) {
+        _sys_err("AutoGiveItem",5536,"cannot create item by vnum %lu (name: %s)",dwItemVnum,GetName());
+        return 0;
+    }
+    if (item->GetType()==27) {
+        for (int i=0;i<90;++i) {
+            LPITEM inv=GetItem((BYTE)i);
+            if (inv && inv->GetType()==27 && inv->GetVnum()==item->GetVnum()
+                && inv->GetSockets()[0]==item->GetSockets()[0]
+                && inv->GetSockets()[1]==item->GetSockets()[1]
+                && inv->GetSockets()[2]==item->GetSockets()[2]
+                && inv->GetCount()<200U) {
+                inv->SetCount(inv->GetCount()+item->GetCount());
+                return inv; // Original leaves created item registered.
+            }
+        }
+    }
+    const int cell=GetEmptyInventory(item->GetSize());
+    if (cell==-1) {
+        item->AddToGround(GetMapIndex(),GetXYZ());
+        item->StartDestroyEvent();
+        item->SetOwnership(this,60);
+        const char* name=item->GetName();
+        LogManager::instance().ItemLog(GetPlayerID(),GetX(),GetY(),item->GetID(),"SYSTEM_DROP",name);
+    } else {
+        if (bMsg) {
+            const char* name=item->GetName();
+            ChatPacket(1,locale_find("\276\306\300\314\305\333\040\310\271\265\346\072\040\045\163",g_iUseLocale),name);
+        }
+        item->AddToCharacter(this,(BYTE)cell);
+        const char* name=item->GetName();
+        LogManager::instance().ItemLog(GetPlayerID(),GetX(),GetY(),item->GetID(),"SYSTEM",name);
+        TQuickslot* old;
+        if (item->GetType()==3 && item->GetSubType()==0 && GetQuickslot(0,&old) && old->type==0) {
+            TQuickslot slot; slot.type=1; slot.pos=(BYTE)cell;
+            SetQuickslot(0,slot);
+        }
+    }
+    sys_log(0,"7: %d %d",dwItemVnum,(unsigned int)bCount);
+    return item;
+}
+
+bool FN_check_item_socket(LPITEM item)
+{
+    for (int i=0;i<3;++i)
+        if (item->GetSockets()[i]!=item->GetProto()->alSockets[i]) return false;
+    return true;
+}
+

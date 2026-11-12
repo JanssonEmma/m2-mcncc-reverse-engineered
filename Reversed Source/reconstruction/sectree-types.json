@@ -1,0 +1,2498 @@
+[
+  {
+    "cu": "entity_view.cpp",
+    "name": "SECTREE",
+    "die": "0xe65c2",
+    "tag": "DW_TAG_structure_type",
+    "size": 32,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_id",
+        "type": {
+          "die": "0xe706b",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREEID",
+          "size": null,
+          "type": {
+            "die": "0xe6fea",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_set_entity",
+        "type": {
+          "die": "0xcffcd",
+          "tag": "DW_TAG_typedef",
+          "name": "ENTITY_SET",
+          "size": null,
+          "type": {
+            "die": "0xcffd8",
+            "tag": "DW_TAG_structure_type",
+            "name": "set<CEntity*,std::less<CEntity*>,std::allocator<CEntity*> >",
+            "size": 12
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_neighbor_list",
+        "type": {
+          "die": "0xe6899",
+          "tag": "DW_TAG_typedef",
+          "name": "LPSECTREE_LIST",
+          "size": null,
+          "type": {
+            "die": "0xe68a4",
+            "tag": "DW_TAG_structure_type",
+            "name": "list<SECTREE*,std::allocator<SECTREE*> >",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_iPCCount",
+        "type": {
+          "die": "0xb0f22",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "isClone",
+        "type": {
+          "die": "0xbaabe",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_pkAttribute",
+        "type": {
+          "die": "0xc2395",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xc214e",
+            "tag": "DW_TAG_structure_type",
+            "name": "CAttribute",
+            "size": 32
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xe85e5",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xe65c2",
+            "tag": "DW_TAG_structure_type",
+            "name": "SECTREE",
+            "size": 32
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREEaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Initialize",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10InitializeEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Destroy",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE7DestroyEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetID",
+        "type": {
+          "die": "0xe706b",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREEID",
+          "size": null,
+          "type": {
+            "die": "0xe6fea",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE5GetIDEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "InsertEntity",
+        "type": {
+          "die": "0xbaabe",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12InsertEntityEP7CEntity",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RemoveEntity",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12RemoveEntityEP7CEntity",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetRegenEvent",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE13SetRegenEventEP5event",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Regen",
+        "type": {
+          "die": "0xbaabe",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE5RegenEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IncreasePC",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10IncreasePCEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DecreasePC",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10DecreasePCEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "BindAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE13BindAttributeEP10CAttribute",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetAttributePtr",
+        "type": {
+          "die": "0xc2395",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xc214e",
+            "tag": "DW_TAG_structure_type",
+            "name": "CAttribute",
+            "size": 32
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE15GetAttributePtrEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetAttribute",
+        "type": {
+          "die": "0xb467b",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0xb0f6a",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12GetAttributeEll",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IsAttr",
+        "type": {
+          "die": "0xbaabe",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE6IsAttrEllm",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CloneAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE14CloneAttributeEPS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetEventAttribute",
+        "type": {
+          "die": "0xb0f22",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE17GetEventAttributeEll",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12SetAttributeEmmm",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RemoveAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE15RemoveAttributeEmmm",
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "entity_view.cpp",
+    "name": "sectree_coord",
+    "die": "0xe6f56",
+    "tag": "DW_TAG_structure_type",
+    "size": 4,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "x",
+        "type": {
+          "die": "0xb0f34",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": 16,
+        "bit_offset": 16,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "y",
+        "type": {
+          "die": "0xb0f34",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": 16,
+        "bit_offset": 0,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xe6fc8",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xe6f56",
+            "tag": "DW_TAG_structure_type",
+            "name": "sectree_coord",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN13sectree_coordaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectree_coord",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectree_coord",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "entity_view.cpp",
+    "name": "sectreeid",
+    "die": "0xe6fea",
+    "tag": "DW_TAG_union_type",
+    "size": 4,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "package",
+        "type": {
+          "die": "0xb467b",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0xb0f6a",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "coord",
+        "type": {
+          "die": "0xe6fdf",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREE_COORD",
+          "size": null,
+          "type": {
+            "die": "0xe6f56",
+            "tag": "DW_TAG_structure_type",
+            "name": "sectree_coord",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xe7054",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xe6fea",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN9sectreeidaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectreeid",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectreeid",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "sectree.cpp",
+    "name": "SECTREE",
+    "die": "0xba6e5b",
+    "tag": "DW_TAG_structure_type",
+    "size": 32,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_id",
+        "type": {
+          "die": "0xba7904",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREEID",
+          "size": null,
+          "type": {
+            "die": "0xba7883",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_set_entity",
+        "type": {
+          "die": "0xba47fb",
+          "tag": "DW_TAG_typedef",
+          "name": "ENTITY_SET",
+          "size": null,
+          "type": {
+            "die": "0xba4806",
+            "tag": "DW_TAG_structure_type",
+            "name": "set<CEntity*,std::less<CEntity*>,std::allocator<CEntity*> >",
+            "size": 12
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_neighbor_list",
+        "type": {
+          "die": "0xba7132",
+          "tag": "DW_TAG_typedef",
+          "name": "LPSECTREE_LIST",
+          "size": null,
+          "type": {
+            "die": "0xba713d",
+            "tag": "DW_TAG_structure_type",
+            "name": "list<SECTREE*,std::allocator<SECTREE*> >",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_iPCCount",
+        "type": {
+          "die": "0xb850bb",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "isClone",
+        "type": {
+          "die": "0xb8ec57",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_pkAttribute",
+        "type": {
+          "die": "0xb9652e",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xb962e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "CAttribute",
+            "size": 32
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xba9568",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xba6e5b",
+            "tag": "DW_TAG_structure_type",
+            "name": "SECTREE",
+            "size": 32
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREEaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Initialize",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10InitializeEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Destroy",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE7DestroyEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetID",
+        "type": {
+          "die": "0xba7904",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREEID",
+          "size": null,
+          "type": {
+            "die": "0xba7883",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE5GetIDEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "InsertEntity",
+        "type": {
+          "die": "0xb8ec57",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12InsertEntityEP7CEntity",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RemoveEntity",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12RemoveEntityEP7CEntity",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetRegenEvent",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE13SetRegenEventEP5event",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Regen",
+        "type": {
+          "die": "0xb8ec57",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE5RegenEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IncreasePC",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10IncreasePCEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DecreasePC",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10DecreasePCEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "BindAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE13BindAttributeEP10CAttribute",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetAttributePtr",
+        "type": {
+          "die": "0xb9652e",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xb962e7",
+            "tag": "DW_TAG_structure_type",
+            "name": "CAttribute",
+            "size": 32
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE15GetAttributePtrEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetAttribute",
+        "type": {
+          "die": "0xb88814",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0xb85103",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12GetAttributeEll",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IsAttr",
+        "type": {
+          "die": "0xb8ec57",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE6IsAttrEllm",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CloneAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE14CloneAttributeEPS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetEventAttribute",
+        "type": {
+          "die": "0xb850bb",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE17GetEventAttributeEll",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12SetAttributeEmmm",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RemoveAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE15RemoveAttributeEmmm",
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "sectree.cpp",
+    "name": "sectree_coord",
+    "die": "0xba77ef",
+    "tag": "DW_TAG_structure_type",
+    "size": 4,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "x",
+        "type": {
+          "die": "0xb850cd",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": 16,
+        "bit_offset": 16,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "y",
+        "type": {
+          "die": "0xb850cd",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": 16,
+        "bit_offset": 0,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xba7861",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xba77ef",
+            "tag": "DW_TAG_structure_type",
+            "name": "sectree_coord",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN13sectree_coordaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectree_coord",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectree_coord",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "sectree.cpp",
+    "name": "sectreeid",
+    "die": "0xba7883",
+    "tag": "DW_TAG_union_type",
+    "size": 4,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "package",
+        "type": {
+          "die": "0xb88814",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0xb85103",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "coord",
+        "type": {
+          "die": "0xba7878",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREE_COORD",
+          "size": null,
+          "type": {
+            "die": "0xba77ef",
+            "tag": "DW_TAG_structure_type",
+            "name": "sectree_coord",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0xba78ed",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0xba7883",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN9sectreeidaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectreeid",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectreeid",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "GetCharType",
+    "die": "0x1eaac48",
+    "tag": "DW_TAG_subprogram",
+    "size": null,
+    "low_pc": null,
+    "return_type": {
+      "die": "0x1e8dee0",
+      "tag": "DW_TAG_typedef",
+      "name": "BYTE",
+      "size": null,
+      "type": {
+        "die": "0x1e8a73b",
+        "tag": "DW_TAG_base_type",
+        "name": "unsigned char",
+        "size": 1
+      }
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x1ea991f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ea9925",
+            "tag": "DW_TAG_structure_type",
+            "name": "CHARACTER",
+            "size": 3812
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "ChatPacket",
+    "die": "0x1eab76b",
+    "tag": "DW_TAG_subprogram",
+    "size": null,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x1ea991f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ea9925",
+            "tag": "DW_TAG_structure_type",
+            "name": "CHARACTER",
+            "size": 3812
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x1e8a73b",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned char",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x1e8add6",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e8addc",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1e8a96f",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "StartStateMachine",
+    "die": "0x1eadfb9",
+    "tag": "DW_TAG_subprogram",
+    "size": null,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x1ea991f",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ea9925",
+            "tag": "DW_TAG_structure_type",
+            "name": "CHARACTER",
+            "size": 3812
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": null,
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "SECTREE",
+    "die": "0x1ec0258",
+    "tag": "DW_TAG_structure_type",
+    "size": 32,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_id",
+        "type": {
+          "die": "0x1ec0d03",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREEID",
+          "size": null,
+          "type": {
+            "die": "0x1ec0c82",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_set_entity",
+        "type": {
+          "die": "0x1ebe83f",
+          "tag": "DW_TAG_typedef",
+          "name": "ENTITY_SET",
+          "size": null,
+          "type": {
+            "die": "0x1ebe84a",
+            "tag": "DW_TAG_structure_type",
+            "name": "set<CEntity*,std::less<CEntity*>,std::allocator<CEntity*> >",
+            "size": 12
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              4
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_neighbor_list",
+        "type": {
+          "die": "0x1ec052f",
+          "tag": "DW_TAG_typedef",
+          "name": "LPSECTREE_LIST",
+          "size": null,
+          "type": {
+            "die": "0x1ec053a",
+            "tag": "DW_TAG_structure_type",
+            "name": "list<SECTREE*,std::allocator<SECTREE*> >",
+            "size": 4
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              16
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_iPCCount",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              20
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "isClone",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              24
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "m_pkAttribute",
+        "type": {
+          "die": "0x1e9bbe4",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e9b99d",
+            "tag": "DW_TAG_structure_type",
+            "name": "CAttribute",
+            "size": 32
+          }
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              28
+            ]
+          }
+        ],
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": 3
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1ec227d",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ec0258",
+            "tag": "DW_TAG_structure_type",
+            "name": "SECTREE",
+            "size": 32
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREEaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "~SECTREE",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Initialize",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10InitializeEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Destroy",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE7DestroyEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetID",
+        "type": {
+          "die": "0x1ec0d03",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREEID",
+          "size": null,
+          "type": {
+            "die": "0x1ec0c82",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE5GetIDEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "InsertEntity",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12InsertEntityEP7CEntity",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RemoveEntity",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12RemoveEntityEP7CEntity",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetRegenEvent",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE13SetRegenEventEP5event",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "Regen",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE5RegenEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IncreasePC",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10IncreasePCEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "DecreasePC",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE10DecreasePCEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "BindAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE13BindAttributeEP10CAttribute",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetAttributePtr",
+        "type": {
+          "die": "0x1e9bbe4",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e9b99d",
+            "tag": "DW_TAG_structure_type",
+            "name": "CAttribute",
+            "size": 32
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE15GetAttributePtrEv",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetAttribute",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12GetAttributeEll",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "IsAttr",
+        "type": {
+          "die": "0x1e9430d",
+          "tag": "DW_TAG_base_type",
+          "name": "bool",
+          "size": 1
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE6IsAttrEllm",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "CloneAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE14CloneAttributeEPS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "GetEventAttribute",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE17GetEventAttributeEll",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "SetAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE12SetAttributeEmmm",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "RemoveAttribute",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN7SECTREE15RemoveAttributeEmmm",
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "sectree_coord",
+    "die": "0x1ec0bec",
+    "tag": "DW_TAG_structure_type",
+    "size": 4,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "x",
+        "type": {
+          "die": "0x1e8a783",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": 16,
+        "bit_offset": 16,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "y",
+        "type": {
+          "die": "0x1e8a783",
+          "tag": "DW_TAG_base_type",
+          "name": "unsigned int",
+          "size": 4
+        },
+        "location": [
+          {
+            "op": "DW_OP_plus_uconst",
+            "args": [
+              0
+            ]
+          }
+        ],
+        "bit_size": 16,
+        "bit_offset": 0,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1ec0c60",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ec0bec",
+            "tag": "DW_TAG_structure_type",
+            "name": "sectree_coord",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN13sectree_coordaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectree_coord",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectree_coord",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "sectreeid",
+    "die": "0x1ec0c82",
+    "tag": "DW_TAG_union_type",
+    "size": 4,
+    "low_pc": null,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_member",
+        "name": "package",
+        "type": {
+          "die": "0x1e8deca",
+          "tag": "DW_TAG_typedef",
+          "name": "DWORD",
+          "size": null,
+          "type": {
+            "die": "0x1e8a7b9",
+            "tag": "DW_TAG_base_type",
+            "name": "long unsigned int",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_member",
+        "name": "coord",
+        "type": {
+          "die": "0x1ec0c77",
+          "tag": "DW_TAG_typedef",
+          "name": "SECTREE_COORD",
+          "size": null,
+          "type": {
+            "die": "0x1ec0bec",
+            "tag": "DW_TAG_structure_type",
+            "name": "sectree_coord",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "operator=",
+        "type": {
+          "die": "0x1ec0cec",
+          "tag": "DW_TAG_reference_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1ec0c82",
+            "tag": "DW_TAG_union_type",
+            "name": "sectreeid",
+            "size": 4
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": "_ZN9sectreeidaSERKS_",
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectreeid",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_subprogram",
+        "name": "sectreeid",
+        "type": {
+          "name": "void"
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "ChatPacket",
+    "die": "0x1f4d8b4",
+    "tag": "DW_TAG_subprogram",
+    "size": null,
+    "low_pc": 135462512,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x1f3e573",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1ea991f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ea9925",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": 3812
+            }
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "type",
+        "type": {
+          "die": "0x1e8dee0",
+          "tag": "DW_TAG_typedef",
+          "name": "BYTE",
+          "size": null,
+          "type": {
+            "die": "0x1e8a73b",
+            "tag": "DW_TAG_base_type",
+            "name": "unsigned char",
+            "size": 1
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "format",
+        "type": {
+          "die": "0x1e8add6",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x1e8addc",
+            "tag": "DW_TAG_const_type",
+            "name": null,
+            "size": null,
+            "type": {
+              "die": "0x1e8a96f",
+              "tag": "DW_TAG_base_type",
+              "name": "char",
+              "size": 1
+            }
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "StartStateMachine",
+    "die": "0x1f4db3f",
+    "tag": "DW_TAG_subprogram",
+    "size": null,
+    "low_pc": 135463680,
+    "return_type": {
+      "name": "void"
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x1f3e573",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1ea991f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ea9925",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": 3812
+            }
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      },
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "iNextPulse",
+        "type": {
+          "die": "0x1e8a771",
+          "tag": "DW_TAG_base_type",
+          "name": "int",
+          "size": 4
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  },
+  {
+    "cu": "char.cpp",
+    "name": "GetCharType",
+    "die": "0x1f4dd61",
+    "tag": "DW_TAG_subprogram",
+    "size": null,
+    "low_pc": 135464496,
+    "return_type": {
+      "die": "0x1e8dee0",
+      "tag": "DW_TAG_typedef",
+      "name": "BYTE",
+      "size": null,
+      "type": {
+        "die": "0x1e8a73b",
+        "tag": "DW_TAG_base_type",
+        "name": "unsigned char",
+        "size": 1
+      }
+    },
+    "children": [
+      {
+        "tag": "DW_TAG_formal_parameter",
+        "name": "this",
+        "type": {
+          "die": "0x1f3e573",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x1ea991f",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x1ea9925",
+              "tag": "DW_TAG_structure_type",
+              "name": "CHARACTER",
+              "size": 3812
+            }
+          }
+        },
+        "location": null,
+        "bit_size": null,
+        "bit_offset": null,
+        "low_pc": null,
+        "linkage": null,
+        "access": null
+      }
+    ]
+  }
+]

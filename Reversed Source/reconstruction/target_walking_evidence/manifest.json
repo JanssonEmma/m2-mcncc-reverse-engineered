@@ -1,0 +1,4572 @@
+{
+  "schema_version": 1,
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "program_info": "program-info.json",
+  "scope": "Two complete candidate methods and existing direct/transitive dependency exports; no build, runtime test, original execution or whole-server equivalence claim.",
+  "metadata": "old-types-signatures-strings.json",
+  "functions": [
+    {
+      "address": "080514e0",
+      "name": "_Rb_tree_base_iterator::_M_increment",
+      "decompilation": "080514e0-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "08051610",
+      "name": "DISTANCE_APPROX",
+      "decompilation": "08051610-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "080fb6d0",
+      "name": "TEMP_BUFFER::TEMP_BUFFER",
+      "decompilation": "080fb6d0-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "080fb780",
+      "name": "TEMP_BUFFER::~TEMP_BUFFER",
+      "decompilation": "080fb780-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "080fb7e0",
+      "name": "TEMP_BUFFER::read_peek",
+      "decompilation": "080fb7e0-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "080fb800",
+      "name": "TEMP_BUFFER::write",
+      "decompilation": "080fb800-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "080fb820",
+      "name": "TEMP_BUFFER::size",
+      "decompilation": "080fb820-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "08127930",
+      "name": "CHARACTER::GetName",
+      "decompilation": "08127930-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "0812fd10",
+      "name": "CHARACTER::MonsterLog",
+      "decompilation": "0812fd10-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "08132670",
+      "name": "CHARACTER::BroadcastTargetPacket",
+      "decompilation": "08132670-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "081341a0",
+      "name": "CHARACTER::SetNowWalking",
+      "decompilation": "081341a0-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "08139d10",
+      "name": "DESC::Packet",
+      "decompilation": "08139d10-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "0818e360",
+      "name": "CHARACTER_MANAGER::PacketMonsterLog",
+      "decompilation": "0818e360-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "081acbc0",
+      "name": "CEntity::PacketView",
+      "decompilation": "081acbc0-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "081acd80",
+      "name": "for_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>",
+      "decompilation": "081acd80-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "081b92a0",
+      "name": "MINMAX",
+      "decompilation": "081b92a0-decompile.json",
+      "complete_export": true
+    },
+    {
+      "address": "081b94b0",
+      "name": "get_dword_time",
+      "decompilation": "081b94b0-decompile.json",
+      "complete_export": true
+    }
+  ],
+  "graphs": [
+    {
+      "function": {
+        "name": "CHARACTER::MonsterLog",
+        "address": "0812fd10"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "08128ae1",
+            "caller": {
+              "name": "CHARACTER::SetPosition",
+              "address": "08128a60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08128b15",
+            "caller": {
+              "name": "CHARACTER::SetPosition",
+              "address": "08128a60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812d7fe",
+            "caller": {
+              "name": "CHARACTER::Stop",
+              "address": "0812d790"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812d8b9",
+            "caller": {
+              "name": "CHARACTER::Goto",
+              "address": "0812d810"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08153eb8",
+            "caller": {
+              "name": "CHARACTER::SetVictim",
+              "address": "08153e30"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08153f16",
+            "caller": {
+              "name": "CHARACTER::SetVictim",
+              "address": "08153e30"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813421b",
+            "caller": {
+              "name": "CHARACTER::SetNowWalking",
+              "address": "081341a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0807f6ce",
+            "caller": {
+              "name": "CHARACTER::__StateIdle_NPC",
+              "address": "0807f470"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080002",
+            "caller": {
+              "name": "CHARACTER::__StateIdle_Monster",
+              "address": "0807fb70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080801e0",
+            "caller": {
+              "name": "__CHARACTER_GotoNearTarget",
+              "address": "08080160"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080449",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808049c",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080806cd",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080d81",
+            "caller": {
+              "name": "CHARACTER::StateBattle",
+              "address": "08080930"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808131e",
+            "caller": {
+              "name": "CHARACTER::StateBattle",
+              "address": "08080930"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812cfe6",
+            "caller": {
+              "name": "recovery_event",
+              "address": "0812cf00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08134bf5",
+            "caller": {
+              "name": "CHARACTER::BeginStateEmpty",
+              "address": "08134be0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08130483",
+            "caller": {
+              "name": "CHARACTER::SetNextStatePulse",
+              "address": "08130430"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 18,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "0812fd62",
+            "target": "0804c6ec",
+            "name": "<EXTERNAL>::sprintf",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0812fd88",
+            "target": "0804bf0c",
+            "name": "<EXTERNAL>::vsnprintf",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0812fdbd",
+            "target": "080fb6d0",
+            "name": "TEMP_BUFFER::TEMP_BUFFER",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fdd8",
+            "target": "080fb800",
+            "name": "TEMP_BUFFER::write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fdeb",
+            "target": "080fb800",
+            "name": "TEMP_BUFFER::write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fdf3",
+            "target": "080fb820",
+            "name": "TEMP_BUFFER::size",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fe01",
+            "target": "080fb7e0",
+            "name": "TEMP_BUFFER::read_peek",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fe26",
+            "target": "0818e360",
+            "name": "CHARACTER_MANAGER::PacketMonsterLog",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fe2e",
+            "target": "080fb780",
+            "name": "TEMP_BUFFER::~TEMP_BUFFER",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0812fe5a",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 10,
+        "has_more": false
+      },
+      "evidence": "0812fd10-calls.json"
+    },
+    {
+      "function": {
+        "name": "CHARACTER::BroadcastTargetPacket",
+        "address": "08132670"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "0812eb07",
+            "caller": {
+              "name": "CHARACTER::PointChange",
+              "address": "0812e340"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 1,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "081326ba",
+            "target": "080514e0",
+            "name": "_Rb_tree_base_iterator::_M_increment",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081326dc",
+            "target": "08139d10",
+            "name": "DESC::Packet",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08132722",
+            "target": "081b92a0",
+            "name": "MINMAX",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08132732",
+            "target": "08127930",
+            "name": "CHARACTER::GetName",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08132758",
+            "target": "081b8150",
+            "name": "_sys_err",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813275d",
+            "target": "0804c06c",
+            "name": "<EXTERNAL>::abort",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 6,
+        "has_more": false
+      },
+      "evidence": "08132670-calls.json"
+    },
+    {
+      "function": {
+        "name": "CHARACTER::SetNowWalking",
+        "address": "081341a0"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "0816de36",
+            "caller": {
+              "name": "CHARACTER::HorseSummon",
+              "address": "0816d940"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0807f8a4",
+            "caller": {
+              "name": "CHARACTER::__StateIdle_NPC",
+              "address": "0807f470"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080505",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08081973",
+            "caller": {
+              "name": "CHARACTER::StateHorse",
+              "address": "08081850"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08081b3e",
+            "caller": {
+              "name": "CHARACTER::StateHorse",
+              "address": "08081850"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080aaa08",
+            "caller": {
+              "name": "do_set_walk_mode",
+              "address": "080aa9f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080aaa35",
+            "caller": {
+              "name": "do_set_run_mode",
+              "address": "080aaa20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812ed6c",
+            "caller": {
+              "name": "CHARACTER::PointChange",
+              "address": "0812e340"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 8,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "081341f8",
+            "target": "081acbc0",
+            "name": "CEntity::PacketView",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813421b",
+            "target": "0812fd10",
+            "name": "CHARACTER::MonsterLog",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08134237",
+            "target": "081b94b0",
+            "name": "get_dword_time",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 3,
+        "has_more": false
+      },
+      "evidence": "081341a0-calls.json"
+    },
+    {
+      "function": {
+        "name": "DESC::Packet",
+        "address": "08139d10"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "080d4978",
+            "caller": {
+              "name": "CShop::Broadcast",
+              "address": "080d4910"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811da0b",
+            "caller": {
+              "name": "P2P_MANAGER::RegisterConnector",
+              "address": "0811d960"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811d704",
+            "caller": {
+              "name": "P2P_MANAGER::Boot",
+              "address": "0811d610"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812ff53",
+            "caller": {
+              "name": "CHARACTER::ChatPacket",
+              "address": "0812fe70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08132a45",
+            "caller": {
+              "name": "CHARACTER::WarpSet",
+              "address": "081328a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a708",
+            "caller": {
+              "name": "DESC::TrySyncTime",
+              "address": "0813a6d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808c410",
+            "caller": {
+              "name": "CGuild::SendLogoutPacket",
+              "address": "0808c380"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080d48fc",
+            "caller": {
+              "name": "CShop::RemoveGuest",
+              "address": "080d4890"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e0f8c",
+            "caller": {
+              "name": "MessengerManager::SendLogout",
+              "address": "080e0ec0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811dc48",
+            "caller": {
+              "name": "P2P_MANAGER::Send",
+              "address": "0811dc00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081429d1",
+            "caller": {
+              "name": "CParty::SendPartyUnlinkOneToAll",
+              "address": "08142970"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813d304",
+            "caller": {
+              "name": "SendAffectRemovePacket",
+              "address": "0813d2d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816688c",
+            "caller": {
+              "name": "CItem::UpdatePacket",
+              "address": "081667d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816b424",
+            "caller": {
+              "name": "CWarMap::SendWarPacket",
+              "address": "0816b370"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809d23d",
+            "caller": {
+              "name": "CHARACTER_MANAGER::for_each_pc<<unnamed>::FGuildNameSender>",
+              "address": "0809d1d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816b56f",
+            "caller": {
+              "name": "CWarMap::SendScorePacket",
+              "address": "0816b4a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816cdf7",
+            "caller": {
+              "name": "for_each<std::_Rb_tree_iterator<CHARACTER*,_CHARACTER*_const&,_CHARACTER*_const*>,_<unnamed>::FPacket>",
+              "address": "0816cdb0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08171196",
+            "caller": {
+              "name": "CHARACTER::SetItem",
+              "address": "08170fb0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0818e3d9",
+            "caller": {
+              "name": "CHARACTER_MANAGER::PacketMonsterLog",
+              "address": "0818e360"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819c282",
+            "caller": {
+              "name": "CPVP::Packet",
+              "address": "0819c1c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081acc33",
+            "caller": {
+              "name": "CEntity::PacketView",
+              "address": "081acbc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081acdc0",
+            "caller": {
+              "name": "for_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>",
+              "address": "081acd80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0805f146",
+            "caller": {
+              "name": "PC::SendQuestInfoPakcet",
+              "address": "0805f020"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08136375",
+            "caller": {
+              "name": "CHARACTER::ConfirmWithMsg",
+              "address": "08136310"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080507e8",
+            "caller": {
+              "name": "CHARACTER::SetQuickslot",
+              "address": "08050740"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08050896",
+            "caller": {
+              "name": "CHARACTER::DelQuickslot",
+              "address": "08050840"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081a504c",
+            "caller": {
+              "name": "CQuestManager::SendScript",
+              "address": "081a4f50"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0805092f",
+            "caller": {
+              "name": "CHARACTER::SwapQuickslot",
+              "address": "080508b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813d397",
+            "caller": {
+              "name": "SendAffectAddPacket",
+              "address": "0813d350"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142874",
+            "caller": {
+              "name": "CParty::SendPartyJoinOneToAll",
+              "address": "08142700"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142946",
+            "caller": {
+              "name": "CParty::SendPartyJoinAllToOne",
+              "address": "081428c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142a61",
+            "caller": {
+              "name": "CParty::SendPartyLinkOneToAll",
+              "address": "08142a00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142b0c",
+            "caller": {
+              "name": "CParty::SendPartyLinkAllToOne",
+              "address": "08142a90"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142cc3",
+            "caller": {
+              "name": "CParty::SendPartyInfoOneToAll",
+              "address": "08142c10"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142d6b",
+            "caller": {
+              "name": "CParty::SendPartyInfoAllToOne",
+              "address": "08142d00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814475d",
+            "caller": {
+              "name": "CParty::SendParameter",
+              "address": "08144720"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08097142",
+            "caller": {
+              "name": "CSafebox::Remove",
+              "address": "08097090"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080596d9",
+            "caller": {
+              "name": "_say_in_map",
+              "address": "080594c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814cd34",
+            "caller": {
+              "name": "CHARACTER::Dead",
+              "address": "0814af70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08064381",
+            "caller": {
+              "name": "exchange_packet",
+              "address": "08064310"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08132510",
+            "caller": {
+              "name": "CHARACTER::SetTarget",
+              "address": "08132490"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0818f159",
+            "caller": {
+              "name": "CHARACTER_MANAGER::SayInMap",
+              "address": "0818f050"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814d943",
+            "caller": {
+              "name": "CHARACTER::SendDamagePacket",
+              "address": "0814d8c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814d962",
+            "caller": {
+              "name": "CHARACTER::SendDamagePacket",
+              "address": "0814d8c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806af77",
+            "caller": {
+              "name": "CHARACTER::SetSkillGroup",
+              "address": "0806af20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806b00b",
+            "caller": {
+              "name": "CHARACTER::SkillLevelPacket",
+              "address": "0806afb0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0807b4db",
+            "caller": {
+              "name": "CMarkManager::SendGuildSymbol",
+              "address": "0807b3f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808302e",
+            "caller": {
+              "name": "fishing_event",
+              "address": "08082f00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080836a7",
+            "caller": {
+              "name": "Take",
+              "address": "080834e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08090c3d",
+            "caller": {
+              "name": "CHARACTER_MANAGER::for_each_pc<<unnamed>::FGuildNameSender>",
+              "address": "08090bd0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808be9d",
+            "caller": {
+              "name": "CGuild::SendAllGradePacket",
+              "address": "0808bdc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808c024",
+            "caller": {
+              "name": "CGuild::SendListOneToAll",
+              "address": "0808bee0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808c11c",
+            "caller": {
+              "name": "CGuild::SendListPacket",
+              "address": "0808c060"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808c340",
+            "caller": {
+              "name": "CGuild::SendLoginPacket",
+              "address": "0808c2b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808d7f4",
+            "caller": {
+              "name": "CGuild::SendGuildInfoPacket",
+              "address": "0808d720"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808f094",
+            "caller": {
+              "name": "CGuild::SendSkillInfoPacket",
+              "address": "0808efe0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ad94f",
+            "caller": {
+              "name": "CGuild::SendEnemyGuild",
+              "address": "080ad8a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ad9ed",
+            "caller": {
+              "name": "CGuild::SendEnemyGuild",
+              "address": "080ad8a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ada79",
+            "caller": {
+              "name": "CGuild::SendEnemyGuild",
+              "address": "080ad8a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808bd8e",
+            "caller": {
+              "name": "CGuild::SendOnlineRemoveOnePacket",
+              "address": "0808bcf0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808d0de",
+            "caller": {
+              "name": "CGuild::__P2PUpdateGrade",
+              "address": "0808cf70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808d204",
+            "caller": {
+              "name": "CGuild::__P2PUpdateGrade",
+              "address": "0808cf70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808d4ae",
+            "caller": {
+              "name": "CGuild::ChangeGradeName",
+              "address": "0808d2e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808d6be",
+            "caller": {
+              "name": "CGuild::ChangeGradeAuth",
+              "address": "0808d540"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808d9d9",
+            "caller": {
+              "name": "CGuild::OfferExp",
+              "address": "0808d810"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808f481",
+            "caller": {
+              "name": "CGuild::GuildPointChange",
+              "address": "0808f180"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808e2f6",
+            "caller": {
+              "name": "CGuild::RefreshCommentForce",
+              "address": "0808e090"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808e56c",
+            "caller": {
+              "name": "CGuild::ChangeMemberGeneral",
+              "address": "0808e460"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808e67c",
+            "caller": {
+              "name": "CGuild::ChangeMemberGrade",
+              "address": "0808e5a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808ee3e",
+            "caller": {
+              "name": "CGuild::UseSkill",
+              "address": "0808e900"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808f6dd",
+            "caller": {
+              "name": "CGuild::LevelChange",
+              "address": "0808f5d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808f7c9",
+            "caller": {
+              "name": "CGuild::ChangeMemberData",
+              "address": "0808f700"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808f9cf",
+            "caller": {
+              "name": "CGuild::Packet",
+              "address": "0808f990"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808ff98",
+            "caller": {
+              "name": "CGuild::RecvMoneyChange",
+              "address": "0808ff20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08185d56",
+            "caller": {
+              "name": "CParty::ForEachNearMember<FSendDestPosition>",
+              "address": "08185cb0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08096fbe",
+            "caller": {
+              "name": "CSafebox::Add",
+              "address": "08096e70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809b04c",
+            "caller": {
+              "name": "CGuildManager::SendGuildNames",
+              "address": "0809af30"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ad852",
+            "caller": {
+              "name": "CGuild::GuildWarPacket",
+              "address": "080ad7c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809d5fd",
+            "caller": {
+              "name": "CHARACTER_MANAGER::for_each_pc<FSendWarList>",
+              "address": "0809d590"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809c6ea",
+            "caller": {
+              "name": "CGuildManager::SendGuildWar",
+              "address": "0809c610"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819d02f",
+            "caller": {
+              "name": "CPVPManager::Insert",
+              "address": "0819c9b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081426d1",
+            "caller": {
+              "name": "CParty::SendPartyRemoveOneToAll",
+              "address": "08142680"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e166a",
+            "caller": {
+              "name": "MessengerManager::__UpdateMobile",
+              "address": "080e10e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e0e76",
+            "caller": {
+              "name": "MessengerManager::SendLogin",
+              "address": "080e0d80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08135f57",
+            "caller": {
+              "name": "CHARACTER::SendEquipment",
+              "address": "08135e60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080afced",
+            "caller": {
+              "name": "SendLoverInfo",
+              "address": "080afc90"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080b0531",
+            "caller": {
+              "name": "TMarriage::NearCheck",
+              "address": "080b0430"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080b054c",
+            "caller": {
+              "name": "TMarriage::NearCheck",
+              "address": "080b0430"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080b2b40",
+            "caller": {
+              "name": "game_request_make_guild",
+              "address": "080b2b10"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080b6ee7",
+            "caller": {
+              "name": "SECTREE_MANAGER::SendNPCPosition",
+              "address": "080b68f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080badf3",
+            "caller": {
+              "name": "ready_to_start_event",
+              "address": "080ba9b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080bae5d",
+            "caller": {
+              "name": "ready_to_start_event",
+              "address": "080ba9b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080bb26d",
+            "caller": {
+              "name": "ready_to_start_event",
+              "address": "080ba9b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080bb2e2",
+            "caller": {
+              "name": "ready_to_start_event",
+              "address": "080ba9b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080bb66f",
+            "caller": {
+              "name": "duel_time_out",
+              "address": "080bb4a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080bb68f",
+            "caller": {
+              "name": "duel_time_out",
+              "address": "080bb4a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812a3c8",
+            "caller": {
+              "name": "CHARACTER::PointsPacket",
+              "address": "0812a2d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08133a8b",
+            "caller": {
+              "name": "CHARACTER::ChangeSafeboxSize",
+              "address": "08133a50"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a7ce",
+            "caller": {
+              "name": "DESC::SyncTime",
+              "address": "0813a720"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080cd699",
+            "caller": {
+              "name": "LoginFailure",
+              "address": "080cd650"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080cda33",
+            "caller": {
+              "name": "CInputHandshake::Analyze",
+              "address": "080cd790"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080d4877",
+            "caller": {
+              "name": "CShop::AddGuest",
+              "address": "080d4590"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080d2b00",
+            "caller": {
+              "name": "CShopManager::Buy",
+              "address": "080d2a20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080dc993",
+            "caller": {
+              "name": "CInputAuth::Login",
+              "address": "080dc850"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e0c60",
+            "caller": {
+              "name": "MessengerManager::SendList",
+              "address": "080e0560"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e7476",
+            "caller": {
+              "name": "CInputDB::LoginSuccess",
+              "address": "080e7260"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813ae02",
+            "caller": {
+              "name": "DESC::SendLoginSuccessPacket",
+              "address": "0813ad10"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e7616",
+            "caller": {
+              "name": "CInputDB::PlayerCreateFailure",
+              "address": "080e75e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e770f",
+            "caller": {
+              "name": "CInputDB::PlayerCreateSuccess",
+              "address": "080e7620"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e78de",
+            "caller": {
+              "name": "CInputDB::PlayerCreateSuccess",
+              "address": "080e7620"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e7948",
+            "caller": {
+              "name": "CInputDB::PlayerDeleteSuccess",
+              "address": "080e78f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e7999",
+            "caller": {
+              "name": "CInputDB::PlayerDeleteFail",
+              "address": "080e7970"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e7a59",
+            "caller": {
+              "name": "CInputDB::ChangeName",
+              "address": "080e79b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812a0c7",
+            "caller": {
+              "name": "CHARACTER::MainCharacterPacket",
+              "address": "08129f70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812a295",
+            "caller": {
+              "name": "CHARACTER::MainCharacterPacket",
+              "address": "08129f70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08133862",
+            "caller": {
+              "name": "CHARACTER::LoadSafebox",
+              "address": "081337f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e9ece",
+            "caller": {
+              "name": "CInputDB::SafeboxWrongPassword",
+              "address": "080e9ea0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08133c00",
+            "caller": {
+              "name": "CHARACTER::LoadMall",
+              "address": "08133b80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ea1b3",
+            "caller": {
+              "name": "CInputDB::EmpireSelect",
+              "address": "080ea140"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08142bbe",
+            "caller": {
+              "name": "CParty::SendPartyInfoOneToAll",
+              "address": "08142b20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080eb86e",
+            "caller": {
+              "name": "CInputDB::AuthLogin",
+              "address": "080eb830"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08108fbf",
+            "caller": {
+              "name": "CManager::UpdateLand",
+              "address": "08108ec0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f24dc",
+            "caller": {
+              "name": "CInputLogin::Login",
+              "address": "080f2360"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f27d0",
+            "caller": {
+              "name": "CInputLogin::LoginByKey",
+              "address": "080f2570"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f291c",
+            "caller": {
+              "name": "CInputLogin::ChangeName",
+              "address": "080f28a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f306b",
+            "caller": {
+              "name": "CInputLogin::CharacterCreate",
+              "address": "080f2fe0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f32c1",
+            "caller": {
+              "name": "CInputLogin::CharacterDelete",
+              "address": "080f31e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f3769",
+            "caller": {
+              "name": "CInputLogin::Entergame",
+              "address": "080f3390"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f37aa",
+            "caller": {
+              "name": "CInputLogin::Entergame",
+              "address": "080f3390"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f3d05",
+            "caller": {
+              "name": "CInputLogin::Entergame",
+              "address": "080f3390"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810985b",
+            "caller": {
+              "name": "CManager::SendLandList",
+              "address": "08109790"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819dc6d",
+            "caller": {
+              "name": "CPVPManager::SendList",
+              "address": "0819dbc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819dcef",
+            "caller": {
+              "name": "CPVPManager::SendList",
+              "address": "0819dbc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080fd938",
+            "caller": {
+              "name": "CInputMain::Whisper",
+              "address": "080fd760"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080fdafb",
+            "caller": {
+              "name": "CInputMain::Whisper",
+              "address": "080fd760"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080fdb5c",
+            "caller": {
+              "name": "CInputMain::Whisper",
+              "address": "080fd760"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810344f",
+            "caller": {
+              "name": "CParty::ForEachOnlineMember<ChatPacketCharacter_func>",
+              "address": "08103400"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081035dd",
+            "caller": {
+              "name": "FEmpireChatPacket::operator()",
+              "address": "08103570"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08100183",
+            "caller": {
+              "name": "CInputMain::Target",
+              "address": "08100130"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0817378c",
+            "caller": {
+              "name": "CHARACTER::RefineInformation",
+              "address": "081735e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08104ffc",
+            "caller": {
+              "name": "SendTargetCreatePacket",
+              "address": "08104f90"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810504b",
+            "caller": {
+              "name": "SendTargetUpdatePacket",
+              "address": "08105010"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081050a6",
+            "caller": {
+              "name": "SendTargetDeletePacket",
+              "address": "08105080"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08106b8c",
+            "caller": {
+              "name": "CObject::EncodeInsertPacket",
+              "address": "08106ab0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08106bf2",
+            "caller": {
+              "name": "CObject::EncodeRemovePacket",
+              "address": "08106ba0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810dbd5",
+            "caller": {
+              "name": "DBManager::LoginPrepare",
+              "address": "0810da80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810dd24",
+            "caller": {
+              "name": "DBManager::LoginPrepare",
+              "address": "0810da80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810de3c",
+            "caller": {
+              "name": "DBManager::LoginPrepare",
+              "address": "0810da80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08144304",
+            "caller": {
+              "name": "CParty::UpdateOnlineState",
+              "address": "08144170"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081443b1",
+            "caller": {
+              "name": "CParty::UpdateOfflineState",
+              "address": "08144350"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811bd1a",
+            "caller": {
+              "name": "CInputP2P::Relay",
+              "address": "0811bca0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811c3ec",
+            "caller": {
+              "name": "CInputP2P::FindPosition",
+              "address": "0811c380"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081323d8",
+            "caller": {
+              "name": "CHARACTER::ClearTarget",
+              "address": "08132360"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081283ed",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081284b5",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081285a5",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812864f",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08128691",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081287ac",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08128838",
+            "caller": {
+              "name": "CHARACTER::EncodeRemovePacket",
+              "address": "081287f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081326dc",
+            "caller": {
+              "name": "CHARACTER::BroadcastTargetPacket",
+              "address": "08132670"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081364fc",
+            "caller": {
+              "name": "CHARACTER::WarpToPID",
+              "address": "081363c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08136bd1",
+            "caller": {
+              "name": "CHARACTER::Say",
+              "address": "08136b30"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08139617",
+            "caller": {
+              "name": "ping_event",
+              "address": "08139570"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a2c9",
+            "caller": {
+              "name": "DESC::SetPhase",
+              "address": "0813a240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a5aa",
+            "caller": {
+              "name": "DESC::UDPGrant",
+              "address": "0813a550"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813b1b0",
+            "caller": {
+              "name": "DESC::SendRunupMatrixizPacket",
+              "address": "0813b160"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813b443",
+            "caller": {
+              "name": "CInputTeen::ProcessHandshake",
+              "address": "0813b3e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08141886",
+            "caller": {
+              "name": "CParty::Destroy",
+              "address": "08141780"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814698a",
+            "caller": {
+              "name": "CParty::ForEachNearMember<quest::FRunCinematicSender>",
+              "address": "08146880"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08146a8f",
+            "caller": {
+              "name": "CParty::ForEachNearMember<quest::FCinematicSender>",
+              "address": "081469a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08166633",
+            "caller": {
+              "name": "CItem::EncodeInsertPacket",
+              "address": "081665e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081666b6",
+            "caller": {
+              "name": "CItem::EncodeRemovePacket",
+              "address": "08166680"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0818f2fb",
+            "caller": {
+              "name": "CHARACTER_MANAGER::SayInMapinMyEmpire",
+              "address": "0818f1d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a234",
+            "caller": {
+              "name": "DESC::LargePacket",
+              "address": "0813a1d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080904af",
+            "caller": {
+              "name": "CGuild::Invite",
+              "address": "08090190"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081312a1",
+            "caller": {
+              "name": "CHARACTER::PartyInvite",
+              "address": "081310e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812e5a6",
+            "caller": {
+              "name": "CHARACTER::PointChange",
+              "address": "0812e340"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 178,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "08139d96",
+            "target": "0804c5ac",
+            "name": "<EXTERNAL>::time",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "08139dcb",
+            "target": "081b7c50",
+            "name": "buffer_has_space",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139e05",
+            "target": "081b7430",
+            "name": "fdwatch_add_fd",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139e1a",
+            "target": "081b7910",
+            "name": "buffer_delete",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139e36",
+            "target": "081b79c0",
+            "name": "buffer_write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139e5f",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "08139e8b",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "08139e9b",
+            "target": "081b7c50",
+            "name": "buffer_has_space",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139ec1",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139ee0",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139ef9",
+            "target": "081b82a0",
+            "name": "sys_log",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139f09",
+            "target": "081b7c20",
+            "name": "buffer_write_peek",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139f26",
+            "target": "081b7c50",
+            "name": "buffer_has_space",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139f41",
+            "target": "081b79c0",
+            "name": "buffer_write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139f5e",
+            "target": "081ba660",
+            "name": "TEA_Encrypt",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139f77",
+            "target": "081b7c30",
+            "name": "buffer_write_proceed",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08139fa3",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "08139fcf",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "08139fe3",
+            "target": "08097d60",
+            "name": "TrafficProfiler::Flush",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a00f",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a02e",
+            "target": "081b79c0",
+            "name": "buffer_write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a039",
+            "target": "081b7b10",
+            "name": "buffer_read_peek",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a047",
+            "target": "081b7990",
+            "name": "buffer_size",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a07e",
+            "target": "0804c37c",
+            "name": "<EXTERNAL>::strncpy",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a098",
+            "target": "081b7c50",
+            "name": "buffer_has_space",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a0c7",
+            "target": "081b79c0",
+            "name": "buffer_write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a0d3",
+            "target": "0804c97c",
+            "name": "<EXTERNAL>::strlen",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a0e8",
+            "target": "0804bafc",
+            "name": "<EXTERNAL>::std::string::assign",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a0fe",
+            "target": "081b7c50",
+            "name": "buffer_has_space",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a115",
+            "target": "081b79c0",
+            "name": "buffer_write",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0813a141",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a16a",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a193",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          },
+          {
+            "call_site": "0813a1c2",
+            "target": "0804c9ac",
+            "name": "<EXTERNAL>::__assert",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 34,
+        "has_more": false
+      },
+      "evidence": "08139d10-calls.json"
+    },
+    {
+      "function": {
+        "name": "CHARACTER_MANAGER::PacketMonsterLog",
+        "address": "0818e360"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "0812fe26",
+            "caller": {
+              "name": "CHARACTER::MonsterLog",
+              "address": "0812fd10"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 1,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "0818e3a5",
+            "target": "08051610",
+            "name": "DISTANCE_APPROX",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0818e3b7",
+            "target": "080514e0",
+            "name": "_Rb_tree_base_iterator::_M_increment",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0818e3d9",
+            "target": "08139d10",
+            "name": "DESC::Packet",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 3,
+        "has_more": false
+      },
+      "evidence": "0818e360-calls.json"
+    },
+    {
+      "function": {
+        "name": "CEntity::PacketView",
+        "address": "081acbc0"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "0812de73",
+            "caller": {
+              "name": "CHARACTER::SendMovePacket",
+              "address": "0812dde0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081341f8",
+            "caller": {
+              "name": "CHARACTER::SetNowWalking",
+              "address": "081341a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081acbb4",
+            "caller": {
+              "name": "CEntity::PacketAround",
+              "address": "081acbb0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 3,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "081acc33",
+            "target": "08139d10",
+            "name": "DESC::Packet",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081acc71",
+            "target": "081acd80",
+            "name": "for_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 2,
+        "has_more": false
+      },
+      "evidence": "081acbc0-calls.json"
+    },
+    {
+      "function": {
+        "name": "for_each<std::_Rb_tree_iterator<std::pair<CEntity*_const,_int>,_std::pair<CEntity*_const,_int>&,_std::pair<CEntity*_const,_int>*>,_FuncPacketView>",
+        "address": "081acd80"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "081acdc0",
+            "target": "08139d10",
+            "name": "DESC::Packet",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081acdc8",
+            "target": "080514e0",
+            "name": "_Rb_tree_base_iterator::_M_increment",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 2,
+        "has_more": false
+      },
+      "evidence": "081acd80-calls.json"
+    },
+    {
+      "function": {
+        "name": "MINMAX",
+        "address": "081b92a0"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "080d92f5",
+            "caller": {
+              "name": "config_init",
+              "address": "080d8300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08143a9e",
+            "caller": {
+              "name": "CParty::ComputeRolePoint",
+              "address": "08143910"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08135aac",
+            "caller": {
+              "name": "CHARACTER::GetPolymorphPower",
+              "address": "08135a20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08154069",
+            "caller": {
+              "name": "CHARACTER::UpdateAlignment",
+              "address": "08154010"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081676fa",
+            "caller": {
+              "name": "CItem::ModifyPoints",
+              "address": "08167420"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08168871",
+            "caller": {
+              "name": "CItem::SetAccessorySocketGrade",
+              "address": "08168850"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819266e",
+            "caller": {
+              "name": "ITEM_MANAGER::CreateItem",
+              "address": "081922e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816e8d9",
+            "caller": {
+              "name": "CItemAddonManager::ApplyAddonTo",
+              "address": "0816e880"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08133eb2",
+            "caller": {
+              "name": "CHARACTER::BuildUpdatePartyPacket",
+              "address": "08133e50"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081325e3",
+            "caller": {
+              "name": "CHARACTER::SetTarget",
+              "address": "08132490"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814879f",
+            "caller": {
+              "name": "CHARACTER::RewardGold",
+              "address": "08148600"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081492df",
+            "caller": {
+              "name": "CHARACTER::RewardGold",
+              "address": "08148600"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08152a59",
+            "caller": {
+              "name": "GiveExp",
+              "address": "08152a20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080b0067",
+            "caller": {
+              "name": "TMarriage::GetMarriagePoint",
+              "address": "080aff00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080afec5",
+            "caller": {
+              "name": "TMarriage::GetMarriageGrade",
+              "address": "080afea0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819354b",
+            "caller": {
+              "name": "ITEM_MANAGER::CreateDropItem",
+              "address": "081934e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08194778",
+            "caller": {
+              "name": "ITEM_MANAGER::CreateDropItem",
+              "address": "081934e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08073434",
+            "caller": {
+              "name": "CHARACTER::GetSkillPower",
+              "address": "08073350"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080734c8",
+            "caller": {
+              "name": "CHARACTER::GetSkillPower",
+              "address": "08073350"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08082af8",
+            "caller": {
+              "name": "DetermineFish",
+              "address": "080828e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08083225",
+            "caller": {
+              "name": "Compute",
+              "address": "080831d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c89ee",
+            "caller": {
+              "name": "CHorseRider::UpdateHorseHealth",
+              "address": "080c89b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080be798",
+            "caller": {
+              "name": "do_goto",
+              "address": "080be690"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080bf033",
+            "caller": {
+              "name": "do_item",
+              "address": "080bed40"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c0fc7",
+            "caller": {
+              "name": "do_advance",
+              "address": "080c0f20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c16ea",
+            "caller": {
+              "name": "do_event_flag",
+              "address": "080c15d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c3620",
+            "caller": {
+              "name": "do_level",
+              "address": "080c35b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c47cb",
+            "caller": {
+              "name": "do_priv_empire",
+              "address": "080c4650"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c6111",
+            "caller": {
+              "name": "do_horse_level",
+              "address": "080c6050"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c856b",
+            "caller": {
+              "name": "CHorseRider::UpdateHorseStamina",
+              "address": "080c8530"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080c8ac3",
+            "caller": {
+              "name": "CHorseRider::SetHorseLevel",
+              "address": "080c8aa0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080cef69",
+            "caller": {
+              "name": "CInputHandshake::Analyze",
+              "address": "080cd790"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e39fa",
+            "caller": {
+              "name": "horse_set_level",
+              "address": "080e3980"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e3c26",
+            "caller": {
+              "name": "horse_get_health_pct",
+              "address": "080e3bd0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080e3d88",
+            "caller": {
+              "name": "horse_get_stamina_pct",
+              "address": "080e3d30"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08196fd7",
+            "caller": {
+              "name": "ITEM_MANAGER::ReadMonsterDropItemGroup",
+              "address": "08196b40"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ef53a",
+            "caller": {
+              "name": "GetOrePct",
+              "address": "080ef4e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ef565",
+            "caller": {
+              "name": "GetOrePct",
+              "address": "080ef4e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08173174",
+            "caller": {
+              "name": "CHARACTER::DoRefineWithScroll",
+              "address": "08172480"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081731a4",
+            "caller": {
+              "name": "CHARACTER::DoRefineWithScroll",
+              "address": "08172480"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0817321f",
+            "caller": {
+              "name": "CHARACTER::DoRefineWithScroll",
+              "address": "08172480"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08173250",
+            "caller": {
+              "name": "CHARACTER::DoRefineWithScroll",
+              "address": "08172480"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08105552",
+            "caller": {
+              "name": "target_event",
+              "address": "081054f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08132722",
+            "caller": {
+              "name": "CHARACTER::BroadcastTargetPacket",
+              "address": "08132670"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816117c",
+            "caller": {
+              "name": "pc_give_exp_perc",
+              "address": "08161060"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081688ed",
+            "caller": {
+              "name": "CItem::SetAccessorySocketMaxGrade",
+              "address": "081688d0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08176c09",
+            "caller": {
+              "name": "CHARACTER::UseItemEx",
+              "address": "081746b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08176f69",
+            "caller": {
+              "name": "CHARACTER::UseItemEx",
+              "address": "081746b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08177608",
+            "caller": {
+              "name": "CHARACTER::UseItemEx",
+              "address": "081746b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081779c7",
+            "caller": {
+              "name": "CHARACTER::UseItemEx",
+              "address": "081746b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08177ca1",
+            "caller": {
+              "name": "CHARACTER::UseItemEx",
+              "address": "081746b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08177e36",
+            "caller": {
+              "name": "CHARACTER::UseItemEx",
+              "address": "081746b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 52,
+        "has_more": false
+      },
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 200,
+        "total": 0,
+        "has_more": false
+      },
+      "evidence": "081b92a0-calls.json"
+    },
+    {
+      "function": {
+        "name": "get_dword_time",
+        "address": "081b94b0"
+      },
+      "callers": {
+        "items": [
+          {
+            "call_site": "080a1abe",
+            "caller": {
+              "name": "idle",
+              "address": "080a1a70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080a1ae7",
+            "caller": {
+              "name": "idle",
+              "address": "080a1a70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080a1af4",
+            "caller": {
+              "name": "idle",
+              "address": "080a1a70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080a1b17",
+            "caller": {
+              "name": "idle",
+              "address": "080a1a70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809ed0f",
+            "caller": {
+              "name": "heartbeat",
+              "address": "0809ed00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809ed2d",
+            "caller": {
+              "name": "heartbeat",
+              "address": "0809ed00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809ed3d",
+            "caller": {
+              "name": "heartbeat",
+              "address": "0809ed00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0809ef07",
+            "caller": {
+              "name": "heartbeat",
+              "address": "0809ed00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810d3f3",
+            "caller": {
+              "name": "DBManager::FlushBilling",
+              "address": "0810d140"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0810cfac",
+            "caller": {
+              "name": "DBManager::PushBilling",
+              "address": "0810cfa0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08084e26",
+            "caller": {
+              "name": "CLoginData::SetLogonTime",
+              "address": "08084e20"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a6a2",
+            "caller": {
+              "name": "DESC::Handshake",
+              "address": "0813a690"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0815942f",
+            "caller": {
+              "name": "DESC_MANAGER::ProcessExpiredLoginKey",
+              "address": "08159420"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08128cf7",
+            "caller": {
+              "name": "CHARACTER::CreatePlayerProto",
+              "address": "08128bb0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812cee6",
+            "caller": {
+              "name": "CHARACTER::ResetPlayTime",
+              "address": "0812cee0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812e260",
+            "caller": {
+              "name": "CHARACTER::SetPoint",
+              "address": "0812e230"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812dcb0",
+            "caller": {
+              "name": "CHARACTER::CalculateMoveDuration",
+              "address": "0812dc10"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816b6a0",
+            "caller": {
+              "name": "CWarMap::CheckScore",
+              "address": "0816b670"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812bac6",
+            "caller": {
+              "name": "CHARACTER::SetProto",
+              "address": "0812ac60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812baec",
+            "caller": {
+              "name": "CHARACTER::SetProto",
+              "address": "0812ac60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812bb01",
+            "caller": {
+              "name": "CHARACTER::SetProto",
+              "address": "0812ac60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f559c",
+            "caller": {
+              "name": "CMobInstance::CMobInstance",
+              "address": "080f5590"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f55a4",
+            "caller": {
+              "name": "CMobInstance::CMobInstance",
+              "address": "080f5590"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08126fe3",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812701b",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081270cd",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812711e",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812718e",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812720c",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812726d",
+            "caller": {
+              "name": "CHARACTER::Initialize",
+              "address": "08126dc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081343c6",
+            "caller": {
+              "name": "CHARACTER::ResetStopTime",
+              "address": "081343c0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819dddb",
+            "caller": {
+              "name": "CPVPManager::Process",
+              "address": "0819dda0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081b98d0",
+            "caller": {
+              "name": "thecore_idle",
+              "address": "081b98a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081b98ea",
+            "caller": {
+              "name": "thecore_idle",
+              "address": "081b98a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081b9900",
+            "caller": {
+              "name": "thecore_idle",
+              "address": "081b98a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08141711",
+            "caller": {
+              "name": "CParty::Initialize",
+              "address": "081416b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08141720",
+            "caller": {
+              "name": "CParty::Initialize",
+              "address": "081416b0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814b8a8",
+            "caller": {
+              "name": "CHARACTER::Dead",
+              "address": "0814af70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814b8b9",
+            "caller": {
+              "name": "CHARACTER::Dead",
+              "address": "0814af70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814b8f8",
+            "caller": {
+              "name": "CHARACTER::Dead",
+              "address": "0814af70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819d44c",
+            "caller": {
+              "name": "CPVPManager::Dead",
+              "address": "0819d390"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0819c406",
+            "caller": {
+              "name": "CPVP::SetLastFightTime",
+              "address": "0819c400"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814de68",
+            "caller": {
+              "name": "CHARACTER::Damage",
+              "address": "0814d970"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814e384",
+            "caller": {
+              "name": "CHARACTER::Damage",
+              "address": "0814d970"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081282f4",
+            "caller": {
+              "name": "EncodeMovePacket",
+              "address": "081282a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08153e88",
+            "caller": {
+              "name": "CHARACTER::SetVictim",
+              "address": "08153e30"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081547b8",
+            "caller": {
+              "name": "CHARACTER::ChangeVictimByAggro",
+              "address": "081547a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806acf4",
+            "caller": {
+              "name": "TSkillUseInfo::HitOnce",
+              "address": "0806acd0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806ad3a",
+            "caller": {
+              "name": "TSkillUseInfo::HitOnce",
+              "address": "0806acd0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806ad71",
+            "caller": {
+              "name": "TSkillUseInfo::HitOnce",
+              "address": "0806acd0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806ad9e",
+            "caller": {
+              "name": "TSkillUseInfo::HitOnce",
+              "address": "0806acd0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0806adf8",
+            "caller": {
+              "name": "TSkillUseInfo::UseSkill",
+              "address": "0806ade0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08131c83",
+            "caller": {
+              "name": "CHARACTER::OnMove",
+              "address": "08131c70"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080720fb",
+            "caller": {
+              "name": "CHARACTER::UseSkill",
+              "address": "08071d80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080724a8",
+            "caller": {
+              "name": "CHARACTER::UseSkill",
+              "address": "08071d80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08073c6b",
+            "caller": {
+              "name": "CHARACTER::CanUseMobSkill",
+              "address": "08073c00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08073c79",
+            "caller": {
+              "name": "CHARACTER::CanUseMobSkill",
+              "address": "08073c00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08073eb8",
+            "caller": {
+              "name": "CHARACTER::UseMobSkill",
+              "address": "08073d40"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08134237",
+            "caller": {
+              "name": "CHARACTER::SetNowWalking",
+              "address": "081341a0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0807fa0f",
+            "caller": {
+              "name": "CHARACTER::__StateIdle_NPC",
+              "address": "0807f470"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0807fa36",
+            "caller": {
+              "name": "CHARACTER::__StateIdle_NPC",
+              "address": "0807f470"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08132f5c",
+            "caller": {
+              "name": "CHARACTER::Follow",
+              "address": "08132f00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08133296",
+            "caller": {
+              "name": "CHARACTER::Follow",
+              "address": "08132f00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08133560",
+            "caller": {
+              "name": "CHARACTER::Follow",
+              "address": "08132f00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081347ea",
+            "caller": {
+              "name": "CHARACTER::IsChangeAttackPosition",
+              "address": "08134780"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808024c",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080804a3",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080563",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080761",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808085a",
+            "caller": {
+              "name": "CHARACTER::StateMove",
+              "address": "08080240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08080eaa",
+            "caller": {
+              "name": "CHARACTER::StateBattle",
+              "address": "08080930"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08147b06",
+            "caller": {
+              "name": "CHARACTER::Attack",
+              "address": "08147ac0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808197c",
+            "caller": {
+              "name": "CHARACTER::StateHorse",
+              "address": "08081850"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0808198d",
+            "caller": {
+              "name": "CHARACTER::StateHorse",
+              "address": "08081850"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08082fc7",
+            "caller": {
+              "name": "fishing_event",
+              "address": "08082f00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08083610",
+            "caller": {
+              "name": "Take",
+              "address": "080834e0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816a14f",
+            "caller": {
+              "name": "CWarMap::CWarMap",
+              "address": "08169f60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813c203",
+            "caller": {
+              "name": "CPacketInfo::Start",
+              "address": "0813c1f0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813c256",
+            "caller": {
+              "name": "CPacketInfo::End",
+              "address": "0813c240"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813a733",
+            "caller": {
+              "name": "DESC::SyncTime",
+              "address": "0813a720"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f556c",
+            "caller": {
+              "name": "CMobInstance::CMobInstance",
+              "address": "080f5560"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080f5574",
+            "caller": {
+              "name": "CMobInstance::CMobInstance",
+              "address": "080f5560"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "080ff42d",
+            "caller": {
+              "name": "CInputMain::Move",
+              "address": "080ff310"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08135fb9",
+            "caller": {
+              "name": "CHARACTER::CanSummon",
+              "address": "08135f80"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811de12",
+            "caller": {
+              "name": "P2P_MANAGER::RecvLogin",
+              "address": "0811dc60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0811e0b0",
+            "caller": {
+              "name": "P2P_MANAGER::RecvLogin",
+              "address": "0811dc60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081283c5",
+            "caller": {
+              "name": "CHARACTER::EncodeInsertPacket",
+              "address": "08128300"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812d086",
+            "caller": {
+              "name": "recovery_event",
+              "address": "0812cf00"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081477c0",
+            "caller": {
+              "name": "CHARACTER::DistributeSP",
+              "address": "08147790"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081477d6",
+            "caller": {
+              "name": "CHARACTER::DistributeSP",
+              "address": "08147790"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08139558",
+            "caller": {
+              "name": "DESC::Destroy",
+              "address": "08139340"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081395e7",
+            "caller": {
+              "name": "ping_event",
+              "address": "08139570"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0813d640",
+            "caller": {
+              "name": "CHARACTER::UpdateAffect",
+              "address": "0813d430"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08144086",
+            "caller": {
+              "name": "CParty::Update",
+              "address": "08143df0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814409a",
+            "caller": {
+              "name": "CParty::Update",
+              "address": "08143df0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081440c1",
+            "caller": {
+              "name": "CParty::Update",
+              "address": "08143df0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814181c",
+            "caller": {
+              "name": "CParty::Destroy",
+              "address": "08141780"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814fe9f",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0814ff1a",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081500c8",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0815047f",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081504fa",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0815057a",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081509f9",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08150a79",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08151119",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08151199",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08151209",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08151255",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "081512fd",
+            "caller": {
+              "name": "CHARACTER::__Profile__Damage",
+              "address": "0814f710"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08155b7c",
+            "caller": {
+              "name": "CProfiler::PushAccum",
+              "address": "08155a60"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0816b0db",
+            "caller": {
+              "name": "CWarMap::Timeout",
+              "address": "0816b090"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08169dca",
+            "caller": {
+              "name": "CWarMap::CWarMap",
+              "address": "08169bc0"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0817f71a",
+            "caller": {
+              "name": "CHARACTER::EquipItem",
+              "address": "0817f650"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "08156596",
+            "caller": {
+              "name": "CFuncShoot::operator()",
+              "address": "08156310"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          },
+          {
+            "call_site": "0812e479",
+            "caller": {
+              "name": "CHARACTER::PointChange",
+              "address": "0812e340"
+            },
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 116,
+        "has_more": false
+      },
+      "callees": {
+        "items": [
+          {
+            "call_site": "081b94c5",
+            "target": "0804c50c",
+            "name": "<EXTERNAL>::gettimeofday",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": true
+          }
+        ],
+        "offset": 0,
+        "limit": 200,
+        "total": 1,
+        "has_more": false
+      },
+      "evidence": "081b94b0-calls.json"
+    }
+  ],
+  "instructions": [
+    {
+      "address": "08132670",
+      "instruction_count": 69,
+      "file": "08132670-instructions.json",
+      "complete": true
+    },
+    {
+      "address": "081341a0",
+      "instruction_count": 45,
+      "file": "081341a0-instructions.json",
+      "complete": true
+    }
+  ],
+  "packet_layouts": {
+    "packet_target": {
+      "size": 6,
+      "offsets": {
+        "header": 0,
+        "dwVID": 1,
+        "bHPPercent": 5
+      }
+    },
+    "SPacketGCWalkMode": {
+      "size": 6,
+      "offsets": {
+        "header": 0,
+        "vid": 1,
+        "mode": 5
+      }
+    }
+  },
+  "expected_vectors": {
+    "target_vid89abcdef_hp33": "3fefcdab8921",
+    "walk_vid1234_mode1": "6fd204000001"
+  },
+  "candidate_hashes": {
+    "char-target-walk-bodies.inc": "40edf48001d8a040ef45036b389dc83942d85b49eb3a717a0bc9a65cbb714324",
+    "char-target-walk-declarations.inc": "7593199dfa54aa52323f3daf694c4b25812e58c800e6de3990e17d7bc6bc2363",
+    "common-length-char-type.inc": "9a29cbb6b9a30b0614d7c572f5f5c2adc46c251959e96a6d09e5805afc6859a7",
+    "Makefile.target-walking.inc": "9b8d5151929d88989e232c1dd25e81157cbdebe5d25c10d4ce31bedc8066caa2",
+    "packet-target-walk.inc": "b1a243ff1152961227ae381585e00fea83e043ae8311c4457fc0f2d6bd903ffd",
+    "target_walk_desc_output_syscalls.c": "88bcdd047ac911c2b1963e7c5046737e3a633d4c64f349f8811caea8bf50da0e",
+    "target_walking_abi.cpp": "4c6b8dcd0d66697705dd3837146a3999cb39b8702341570f5bb68cd8efa22d2c",
+    "target_walking_regression.cpp": "2b48529bc8fb688fa73ee3b8be9f7ca6a217c5d5f02172916c1e36ac7c4a8217"
+  },
+  "validation": "Static export pagination, metadata/field order, original strings and candidate structure checked. ABI/regression sources remain uncompiled/unrun.",
+  "artifacts": [
+    {
+      "path": "080514e0-decompile.c",
+      "bytes": 1031,
+      "sha256": "24357baaa4c3348deb497e8673175856fd7d5a5be9b5468bc9f87983bdd01607"
+    },
+    {
+      "path": "080514e0-decompile.json",
+      "bytes": 1175,
+      "sha256": "5cb151f791978a089d1cfea0587f4b0c0c413cf13b9a4220c2d07f18164aaaae"
+    },
+    {
+      "path": "08051610-decompile.c",
+      "bytes": 419,
+      "sha256": "e3d46c9ffbfc6d93dbb2c6848cbd0c0e397002510ce6d7f7b5f0da463ed40c4d"
+    },
+    {
+      "path": "08051610-decompile.json",
+      "bytes": 529,
+      "sha256": "16211ca9407ad0e87a5967def4ccdf4dc493914736276253d2afc05d66dab9a8"
+    },
+    {
+      "path": "080fb6d0-decompile.c",
+      "bytes": 432,
+      "sha256": "e415db463d5e29f93230fb8438d4a8384af1f2d0eaeeee19129b2e725d604743"
+    },
+    {
+      "path": "080fb6d0-decompile.json",
+      "bytes": 549,
+      "sha256": "3e29650b8cc028aa5482c976f75cfa8046307aa3cd2e1a089c5960e52738b3ad"
+    },
+    {
+      "path": "080fb780-decompile.c",
+      "bytes": 418,
+      "sha256": "055069ee3f6fd7af664bb6e27a29aeb237e91777806e432c7c8ca6fe278ce65a"
+    },
+    {
+      "path": "080fb780-decompile.json",
+      "bytes": 533,
+      "sha256": "08c0fea03790c020393c5957503a8319fd1a4b2b41b4813ed10078e5f1d8691f"
+    },
+    {
+      "path": "080fb7e0-decompile.c",
+      "bytes": 237,
+      "sha256": "dc714282f51435f135bf17776622e1ff3dcc3e6a2c7cc8fc57b059af2b539325"
+    },
+    {
+      "path": "080fb7e0-decompile.json",
+      "bytes": 344,
+      "sha256": "3f66afbeece7a2ec39fce73e94a23b9c10e04524f6b1c305ba76192cef93f751"
+    },
+    {
+      "path": "080fb800-decompile.c",
+      "bytes": 235,
+      "sha256": "70dd4991f177149bbe193a1af2daa7306d2b80ea9a7450dc32f80ae25c379075"
+    },
+    {
+      "path": "080fb800-decompile.json",
+      "bytes": 336,
+      "sha256": "e2c5541e73a778fdf985c9577d3f47d17ecd8c2a882c2294369acda84849383c"
+    },
+    {
+      "path": "080fb820-decompile.c",
+      "bytes": 213,
+      "sha256": "ce10f7189b6c6c718090fac8343039aeacd5e9b96922f88defa63fc64fc7c5e3"
+    },
+    {
+      "path": "080fb820-decompile.json",
+      "bytes": 315,
+      "sha256": "f52495756d3a41142a199801d8c05d152664ef7ffcb20ff34b779f581d260d68"
+    },
+    {
+      "path": "08127930-decompile.c",
+      "bytes": 634,
+      "sha256": "c981ca16448574dbfc25d5ba15034f0f9cd53d7346b1356880f412a5728be62a"
+    },
+    {
+      "path": "08127930-decompile.json",
+      "bytes": 752,
+      "sha256": "e05f29013531e4d2224ccf60f60337efbe45948b40eacdbec0ba76a6b58abb8e"
+    },
+    {
+      "path": "0812fd10-calls.json",
+      "bytes": 4036,
+      "sha256": "d8ca7b709ae1cbac5bd72bf45d55f266464adaedf2a1c590d53a09d694d02ed2"
+    },
+    {
+      "path": "0812fd10-decompile.c",
+      "bytes": 1487,
+      "sha256": "33630a2a4a3748c200b9aaa6cf71dc53b0b2d8792faf2b6d2c892f6be489b93f"
+    },
+    {
+      "path": "0812fd10-decompile.json",
+      "bytes": 1629,
+      "sha256": "97e42754a21bcab8d2dd1e62da4c448c6dd52a507521189dbfc8b28f4ac74b68"
+    },
+    {
+      "path": "0812fd10-signature.json",
+      "bytes": 267,
+      "sha256": "8f9107ab627cdf09ce5663c56782fe2bf23ac853fa9b650fadbc1d08ba70958c"
+    },
+    {
+      "path": "08132670-calls.json",
+      "bytes": 1162,
+      "sha256": "713759424ababbfbe0a9e5173ba3e482e7f4fcd978422d27ab9df2333c2b3678"
+    },
+    {
+      "path": "08132670-decompile.c",
+      "bytes": 2541,
+      "sha256": "8d3ba0bd205476495fb2395256995231800d64802e539eaa2849434bd33cefd2"
+    },
+    {
+      "path": "08132670-decompile.json",
+      "bytes": 2709,
+      "sha256": "0ac28e18a6bdc7734569492d0d26c766e60d48935951ae286ac59f112e55737a"
+    },
+    {
+      "path": "08132670-instructions.json",
+      "bytes": 6438,
+      "sha256": "28c3ca45ce98d803eef002cf4913eb7dab5538611248267236a067ec1b006e5c"
+    },
+    {
+      "path": "08132670-signature.json",
+      "bytes": 269,
+      "sha256": "4487392ef355ebd85a83aa6291b684104bc49cc45cfbee41eb315fa41dd8ccb7"
+    },
+    {
+      "path": "081341a0-calls.json",
+      "bytes": 1690,
+      "sha256": "ce0a617e96b03e364ea7bf122dabc4ffc4758dc45aa21de0b1928545e6849d41"
+    },
+    {
+      "path": "081341a0-decompile.c",
+      "bytes": 942,
+      "sha256": "966db842f036c124c78a42319da97ac897efc9ab424005c9d7d582af3889e7e2"
+    },
+    {
+      "path": "081341a0-decompile.json",
+      "bytes": 1077,
+      "sha256": "5ba01d5f684fa89cf18fcc6816d5645ca24bbd1086741b078051280318a9f595"
+    },
+    {
+      "path": "081341a0-instructions.json",
+      "bytes": 4318,
+      "sha256": "1aea4125f7a4a9479c39435af1c3410179dd265b438241a83541f0a859638fa3"
+    },
+    {
+      "path": "081341a0-signature.json",
+      "bytes": 269,
+      "sha256": "5cd7404d2befe1bd1d10abae8fedc3a4c265d465110a76642c03bd5a98349b9d"
+    },
+    {
+      "path": "08139d10-calls.json",
+      "bytes": 29326,
+      "sha256": "86450d149ba289d14bf17992d664e9ccb349c92f84ef3a561313ecf0b5f1bdd5"
+    },
+    {
+      "path": "08139d10-decompile.c",
+      "bytes": 5346,
+      "sha256": "ad59a5de69c0a16102012df47a6fd89bbc4669081b9a2a7977b9d5c5c7e6e848"
+    },
+    {
+      "path": "08139d10-decompile.json",
+      "bytes": 5621,
+      "sha256": "2edb85f29bace4423105c8f07c2e8227ec8af958f7a4e9442dc54f48e8f0575e"
+    },
+    {
+      "path": "08139d10-signature.json",
+      "bytes": 258,
+      "sha256": "5dfef1a3c2a7691aaa333f235d8cda2a872f3e6a3ea993cf1363016c009cfefe"
+    },
+    {
+      "path": "0818e360-calls.json",
+      "bytes": 777,
+      "sha256": "6357ae67e8dd0fec5fb7fb0a2e41de16a47d3d1f084bd523bdec7fa274ffb02b"
+    },
+    {
+      "path": "0818e360-decompile.c",
+      "bytes": 1963,
+      "sha256": "4d1ccbc1cc3e665af49b157cf60280c8e6e81662429d2e2b90226e5791fee1b9"
+    },
+    {
+      "path": "0818e360-decompile.json",
+      "bytes": 2118,
+      "sha256": "7b7da6b8bf06fe40e3b415e1e32bea1fcf01b8672c8405e690b1c8e7b3aa154c"
+    },
+    {
+      "path": "0818e360-signature.json",
+      "bytes": 313,
+      "sha256": "d3153b49cf5bf5a54cb266b17d44738652a4297cd010076ab48ee866c3185373"
+    },
+    {
+      "path": "081acbc0-calls.json",
+      "bytes": 1013,
+      "sha256": "b1fdce77501fd91d6f4a29b5dd6c67fd41dee096a98bac7234f92b75b3143738"
+    },
+    {
+      "path": "081acbc0-decompile.c",
+      "bytes": 1975,
+      "sha256": "d8c0e7d77eda998d29c79fd491e5db7ec0642ef8a48079ba8437e1fd8b7776c7"
+    },
+    {
+      "path": "081acbc0-decompile.json",
+      "bytes": 2108,
+      "sha256": "daa03591fa16e9f221f60a5b8e99d51f0049fd4099a223aa3125f988c23c2a1f"
+    },
+    {
+      "path": "081acbc0-signature.json",
+      "bytes": 284,
+      "sha256": "12fe38cefde298290baa7c49892cadd5158106163bbe39636aecdeecdf8a1c5c"
+    },
+    {
+      "path": "081acd80-calls.json",
+      "bytes": 562,
+      "sha256": "67694f9991060f45306ab8b0bc33035c1ffefab1c21e7fdf3e9577fda951c8e6"
+    },
+    {
+      "path": "081acd80-decompile.c",
+      "bytes": 1814,
+      "sha256": "8035123701443bab0548fcc42209781fcf23c4c78f927425ecd1bdc3534df037"
+    },
+    {
+      "path": "081acd80-decompile.json",
+      "bytes": 2066,
+      "sha256": "40792b2d83f2f488c0ef2ddf1a883ea557e471ee2069223cb4880b00ce69bb50"
+    },
+    {
+      "path": "081b92a0-calls.json",
+      "bytes": 7173,
+      "sha256": "e3f9e96b4e6222a7f978de7e0fe02bf07db2502289219c80331da27b6fba69ec"
+    },
+    {
+      "path": "081b92a0-decompile.c",
+      "bytes": 246,
+      "sha256": "fd1210efb34318f901e8c7d525eeac1e977c7f8e765c149c23ebaf2d1723ee61"
+    },
+    {
+      "path": "081b92a0-decompile.json",
+      "bytes": 339,
+      "sha256": "33770dfbcfc27f8259352e984e009abefa76f65276701d17ef1bcf1b4d2636be"
+    },
+    {
+      "path": "081b92a0-signature.json",
+      "bytes": 242,
+      "sha256": "4ce92374b8153ff943a81d9c23e42c6b05b8ee18abf72f2add1132cdb6a52ce6"
+    },
+    {
+      "path": "081b94b0-calls.json",
+      "bytes": 15770,
+      "sha256": "601738a6661ffe2739d59f4d5c01f9324e20454c5b454e26d29ae2f27a716aea"
+    },
+    {
+      "path": "081b94b0-decompile.c",
+      "bytes": 268,
+      "sha256": "cf0e432ea200591f0730f8d4e1bcb29f2ff888ce0930eb992ce8532d8ed3e928"
+    },
+    {
+      "path": "081b94b0-decompile.json",
+      "bytes": 367,
+      "sha256": "80e560fb90123a83b680b0a561db7cc25e7cd5c6f380842e302b909abf5c8782"
+    },
+    {
+      "path": "081b94b0-signature.json",
+      "bytes": 237,
+      "sha256": "85957a8e214695400aa1ee24a17ab59fa6dc995e7455dbb1f948af0e1bf650bd"
+    },
+    {
+      "path": "char-target-walk-bodies.inc",
+      "bytes": 1936,
+      "sha256": "40edf48001d8a040ef45036b389dc83942d85b49eb3a717a0bc9a65cbb714324"
+    },
+    {
+      "path": "char-target-walk-declarations.inc",
+      "bytes": 124,
+      "sha256": "7593199dfa54aa52323f3daf694c4b25812e58c800e6de3990e17d7bc6bc2363"
+    },
+    {
+      "path": "common-length-char-type.inc",
+      "bytes": 356,
+      "sha256": "9a29cbb6b9a30b0614d7c572f5f5c2adc46c251959e96a6d09e5805afc6859a7"
+    },
+    {
+      "path": "extract_old_metadata.py",
+      "bytes": 3929,
+      "sha256": "ae54bb73a699fe5d0a6d020c4602a0b504396cb6add4b90dec072029032a53c0"
+    },
+    {
+      "path": "Makefile.target-walking.inc",
+      "bytes": 1780,
+      "sha256": "9b8d5151929d88989e232c1dd25e81157cbdebe5d25c10d4ce31bedc8066caa2"
+    },
+    {
+      "path": "normalize_manifest.py",
+      "bytes": 4009,
+      "sha256": "c66133f716a0ab1413dbf7290f3c017bdcdb3274bbbe3afdf9d522d3d9905830"
+    },
+    {
+      "path": "old-types-signatures-strings.json",
+      "bytes": 43147,
+      "sha256": "c4ffa588552f7a3ceb9e439bc246f43d4c153edba1fb12777fd2997c90d3af38"
+    },
+    {
+      "path": "packet-target-walk.inc",
+      "bytes": 502,
+      "sha256": "b1a243ff1152961227ae381585e00fea83e043ae8311c4457fc0f2d6bd903ffd"
+    },
+    {
+      "path": "program-info.json",
+      "bytes": 921,
+      "sha256": "15bd30182b02cfd19767d0afabce33d147ab1a2593f10d6a920847b86c2b6b01"
+    },
+    {
+      "path": "RECOVERY_HANDOFF.md",
+      "bytes": 8717,
+      "sha256": "82331e6400489d053f86020eadf9b006fe0f9183d18c83cec02836c36951c952"
+    },
+    {
+      "path": "target_walk_desc_output_syscalls.c",
+      "bytes": 1249,
+      "sha256": "88bcdd047ac911c2b1963e7c5046737e3a633d4c64f349f8811caea8bf50da0e"
+    },
+    {
+      "path": "target_walking_abi.cpp",
+      "bytes": 1381,
+      "sha256": "4c6b8dcd0d66697705dd3837146a3999cb39b8702341570f5bb68cd8efa22d2c"
+    },
+    {
+      "path": "target_walking_regression.cpp",
+      "bytes": 16595,
+      "sha256": "2b48529bc8fb688fa73ee3b8be9f7ca6a217c5d5f02172916c1e36ac7c4a8217"
+    }
+  ]
+}

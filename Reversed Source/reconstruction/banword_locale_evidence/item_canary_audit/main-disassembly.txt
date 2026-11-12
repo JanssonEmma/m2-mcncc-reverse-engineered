@@ -1,0 +1,2164 @@
+
+PROJECT_ROOT\Reversed Source\reconstruction\tests\item_regression.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000140013b00 <main>:
+   140013b00:	41 57                	push   %r15
+   140013b02:	b8 58 19 00 00       	mov    $0x1958,%eax
+   140013b07:	41 56                	push   %r14
+   140013b09:	41 55                	push   %r13
+   140013b0b:	41 54                	push   %r12
+   140013b0d:	55                   	push   %rbp
+   140013b0e:	57                   	push   %rdi
+   140013b0f:	56                   	push   %rsi
+   140013b10:	53                   	push   %rbx
+   140013b11:	e8 ba 5e ff ff       	call   1400099d0 <___chkstk_ms>
+   140013b16:	48 29 c4             	sub    %rax,%rsp
+   140013b19:	0f 29 b4 24 30 19 00 	movaps %xmm6,0x1930(%rsp)
+   140013b20:	00 
+   140013b21:	0f 29 bc 24 40 19 00 	movaps %xmm7,0x1940(%rsp)
+   140013b28:	00 
+   140013b29:	e8 f9 48 ff ff       	call   140008427 <__main>
+   140013b2e:	48 8d 05 93 46 00 00 	lea    0x4693(%rip),%rax        # 1400181c8 <vtable for singleton<quest::CQuestManager>+0x10>
+   140013b35:	48 83 3d 33 c7 00 00 	cmpq   $0x0,0xc733(%rip)        # 140020270 <singleton<quest::CQuestManager>::ms_singleton>
+   140013b3c:	00 
+   140013b3d:	48 89 84 24 30 02 00 	mov    %rax,0x230(%rsp)
+   140013b44:	00 
+   140013b45:	74 19                	je     140013b60 <main+0x60>
+   140013b47:	41 b8 0b 00 00 00    	mov    $0xb,%r8d
+   140013b4d:	48 8d 15 bc 35 00 00 	lea    0x35bc(%rip),%rdx        # 140017110 <.rdata+0xb0>
+   140013b54:	48 8d 0d 6b 37 00 00 	lea    0x376b(%rip),%rcx        # 1400172c6 <.rdata+0x266>
+   140013b5b:	e8 30 05 ff ff       	call   140004090 <fw_assert_fail>
+   140013b60:	48 8d 05 81 46 00 00 	lea    0x4681(%rip),%rax        # 1400181e8 <vtable for quest::CQuestManager+0x10>
+   140013b67:	45 31 d2             	xor    %r10d,%r10d
+   140013b6a:	45 31 db             	xor    %r11d,%r11d
+   140013b6d:	31 db                	xor    %ebx,%ebx
+   140013b6f:	48 89 84 24 30 02 00 	mov    %rax,0x230(%rsp)
+   140013b76:	00 
+   140013b77:	31 ff                	xor    %edi,%edi
+   140013b79:	31 ed                	xor    %ebp,%ebp
+   140013b7b:	45 31 e4             	xor    %r12d,%r12d
+   140013b7e:	48 8d 84 24 40 02 00 	lea    0x240(%rsp),%rax
+   140013b85:	00 
+   140013b86:	45 31 ed             	xor    %r13d,%r13d
+   140013b89:	45 31 f6             	xor    %r14d,%r14d
+   140013b8c:	31 d2                	xor    %edx,%edx
+   140013b8e:	48 89 84 24 50 02 00 	mov    %rax,0x250(%rsp)
+   140013b95:	00 
+   140013b96:	31 c9                	xor    %ecx,%ecx
+   140013b98:	45 31 c0             	xor    %r8d,%r8d
+   140013b9b:	45 31 c9             	xor    %r9d,%r9d
+   140013b9e:	48 89 84 24 58 02 00 	mov    %rax,0x258(%rsp)
+   140013ba5:	00 
+   140013ba6:	48 8d 84 24 80 02 00 	lea    0x280(%rsp),%rax
+   140013bad:	00 
+   140013bae:	45 31 ff             	xor    %r15d,%r15d
+   140013bb1:	66 0f ef c0          	pxor   %xmm0,%xmm0
+   140013bb5:	48 89 84 24 90 02 00 	mov    %rax,0x290(%rsp)
+   140013bbc:	00 
+   140013bbd:	48 8d b4 24 30 02 00 	lea    0x230(%rsp),%rsi
+   140013bc4:	00 
+   140013bc5:	48 89 84 24 98 02 00 	mov    %rax,0x298(%rsp)
+   140013bcc:	00 
+   140013bcd:	48 8d 84 24 b8 02 00 	lea    0x2b8(%rsp),%rax
+   140013bd4:	00 
+   140013bd5:	48 89 84 24 c8 02 00 	mov    %rax,0x2c8(%rsp)
+   140013bdc:	00 
+   140013bdd:	48 89 84 24 d0 02 00 	mov    %rax,0x2d0(%rsp)
+   140013be4:	00 
+   140013be5:	31 c0                	xor    %eax,%eax
+   140013be7:	89 84 24 f8 02 00 00 	mov    %eax,0x2f8(%rsp)
+   140013bee:	31 c0                	xor    %eax,%eax
+   140013bf0:	48 89 84 24 00 03 00 	mov    %rax,0x300(%rsp)
+   140013bf7:	00 
+   140013bf8:	48 8d 84 24 f8 02 00 	lea    0x2f8(%rsp),%rax
+   140013bff:	00 
+   140013c00:	48 89 84 24 08 03 00 	mov    %rax,0x308(%rsp)
+   140013c07:	00 
+   140013c08:	48 89 84 24 10 03 00 	mov    %rax,0x310(%rsp)
+   140013c0f:	00 
+   140013c10:	31 c0                	xor    %eax,%eax
+   140013c12:	48 89 84 24 18 03 00 	mov    %rax,0x318(%rsp)
+   140013c19:	00 
+   140013c1a:	31 c0                	xor    %eax,%eax
+   140013c1c:	89 84 24 28 03 00 00 	mov    %eax,0x328(%rsp)
+   140013c23:	31 c0                	xor    %eax,%eax
+   140013c25:	48 89 84 24 30 03 00 	mov    %rax,0x330(%rsp)
+   140013c2c:	00 
+   140013c2d:	48 8d 84 24 28 03 00 	lea    0x328(%rsp),%rax
+   140013c34:	00 
+   140013c35:	48 89 84 24 38 03 00 	mov    %rax,0x338(%rsp)
+   140013c3c:	00 
+   140013c3d:	48 89 84 24 40 03 00 	mov    %rax,0x340(%rsp)
+   140013c44:	00 
+   140013c45:	48 8d 84 24 58 03 00 	lea    0x358(%rsp),%rax
+   140013c4c:	00 
+   140013c4d:	44 89 94 24 40 02 00 	mov    %r10d,0x240(%rsp)
+   140013c54:	00 
+   140013c55:	45 31 d2             	xor    %r10d,%r10d
+   140013c58:	48 89 84 24 68 03 00 	mov    %rax,0x368(%rsp)
+   140013c5f:	00 
+   140013c60:	48 89 84 24 70 03 00 	mov    %rax,0x370(%rsp)
+   140013c67:	00 
+   140013c68:	48 8d 84 24 88 03 00 	lea    0x388(%rsp),%rax
+   140013c6f:	00 
+   140013c70:	4c 89 9c 24 48 02 00 	mov    %r11,0x248(%rsp)
+   140013c77:	00 
+   140013c78:	45 31 db             	xor    %r11d,%r11d
+   140013c7b:	48 89 9c 24 60 02 00 	mov    %rbx,0x260(%rsp)
+   140013c82:	00 
+   140013c83:	31 db                	xor    %ebx,%ebx
+   140013c85:	89 bc 24 80 02 00 00 	mov    %edi,0x280(%rsp)
+   140013c8c:	31 ff                	xor    %edi,%edi
+   140013c8e:	48 89 ac 24 88 02 00 	mov    %rbp,0x288(%rsp)
+   140013c95:	00 
+   140013c96:	31 ed                	xor    %ebp,%ebp
+   140013c98:	4c 89 a4 24 a0 02 00 	mov    %r12,0x2a0(%rsp)
+   140013c9f:	00 
+   140013ca0:	45 31 e4             	xor    %r12d,%r12d
+   140013ca3:	44 89 ac 24 b8 02 00 	mov    %r13d,0x2b8(%rsp)
+   140013caa:	00 
+   140013cab:	45 31 ed             	xor    %r13d,%r13d
+   140013cae:	4c 89 b4 24 c0 02 00 	mov    %r14,0x2c0(%rsp)
+   140013cb5:	00 
+   140013cb6:	45 31 f6             	xor    %r14d,%r14d
+   140013cb9:	48 89 94 24 48 03 00 	mov    %rdx,0x348(%rsp)
+   140013cc0:	00 
+   140013cc1:	89 8c 24 58 03 00 00 	mov    %ecx,0x358(%rsp)
+   140013cc8:	b9 64 00 00 00       	mov    $0x64,%ecx
+   140013ccd:	4c 89 84 24 60 03 00 	mov    %r8,0x360(%rsp)
+   140013cd4:	00 
+   140013cd5:	4c 89 8c 24 78 03 00 	mov    %r9,0x378(%rsp)
+   140013cdc:	00 
+   140013cdd:	48 89 35 8c c5 00 00 	mov    %rsi,0xc58c(%rip)        # 140020270 <singleton<quest::CQuestManager>::ms_singleton>
+   140013ce4:	4c 89 bc 24 d8 02 00 	mov    %r15,0x2d8(%rsp)
+   140013ceb:	00 
+   140013cec:	44 89 94 24 88 03 00 	mov    %r10d,0x388(%rsp)
+   140013cf3:	00 
+   140013cf4:	48 89 84 24 98 03 00 	mov    %rax,0x398(%rsp)
+   140013cfb:	00 
+   140013cfc:	48 89 84 24 a0 03 00 	mov    %rax,0x3a0(%rsp)
+   140013d03:	00 
+   140013d04:	48 8d 84 24 c0 03 00 	lea    0x3c0(%rsp),%rax
+   140013d0b:	00 
+   140013d0c:	48 89 84 24 d0 03 00 	mov    %rax,0x3d0(%rsp)
+   140013d13:	00 
+   140013d14:	48 89 84 24 d8 03 00 	mov    %rax,0x3d8(%rsp)
+   140013d1b:	00 
+   140013d1c:	48 8d 84 24 18 04 00 	lea    0x418(%rsp),%rax
+   140013d23:	00 
+   140013d24:	48 89 9c 24 a8 03 00 	mov    %rbx,0x3a8(%rsp)
+   140013d2b:	00 
+   140013d2c:	4c 89 9c 24 90 03 00 	mov    %r11,0x390(%rsp)
+   140013d33:	00 
+   140013d34:	89 bc 24 c0 03 00 00 	mov    %edi,0x3c0(%rsp)
+   140013d3b:	48 89 ac 24 c8 03 00 	mov    %rbp,0x3c8(%rsp)
+   140013d42:	00 
+   140013d43:	4c 89 a4 24 e0 03 00 	mov    %r12,0x3e0(%rsp)
+   140013d4a:	00 
+   140013d4b:	48 89 84 24 08 04 00 	mov    %rax,0x408(%rsp)
+   140013d52:	00 
+   140013d53:	4c 89 ac 24 10 04 00 	mov    %r13,0x410(%rsp)
+   140013d5a:	00 
+   140013d5b:	c6 84 24 18 04 00 00 	movb   $0x0,0x418(%rsp)
+   140013d62:	00 
+   140013d63:	4c 89 b4 24 48 04 00 	mov    %r14,0x448(%rsp)
+   140013d6a:	00 
+   140013d6b:	4c 89 b4 24 50 04 00 	mov    %r14,0x450(%rsp)
+   140013d72:	00 
+   140013d73:	0f 11 84 24 38 04 00 	movups %xmm0,0x438(%rsp)
+   140013d7a:	00 
+   140013d7b:	e8 30 ee fe ff       	call   140002bb0 <__gnu_cxx::__stl_next_prime(unsigned long)>
+   140013d80:	89 c3                	mov    %eax,%ebx
+   140013d82:	48 85 db             	test   %rbx,%rbx
+   140013d85:	0f 85 06 02 00 00    	jne    140013f91 <main+0x491>
+   140013d8b:	45 31 c9             	xor    %r9d,%r9d
+   140013d8e:	45 31 c0             	xor    %r8d,%r8d
+   140013d91:	66 0f ef c0          	pxor   %xmm0,%xmm0
+   140013d95:	b9 64 00 00 00       	mov    $0x64,%ecx
+   140013d9a:	4c 89 84 24 50 04 00 	mov    %r8,0x450(%rsp)
+   140013da1:	00 
+   140013da2:	4c 89 8c 24 70 04 00 	mov    %r9,0x470(%rsp)
+   140013da9:	00 
+   140013daa:	4c 89 8c 24 78 04 00 	mov    %r9,0x478(%rsp)
+   140013db1:	00 
+   140013db2:	0f 29 84 24 60 04 00 	movaps %xmm0,0x460(%rsp)
+   140013db9:	00 
+   140013dba:	e8 f1 ed fe ff       	call   140002bb0 <__gnu_cxx::__stl_next_prime(unsigned long)>
+   140013dbf:	89 c3                	mov    %eax,%ebx
+   140013dc1:	48 85 db             	test   %rbx,%rbx
+   140013dc4:	0f 85 41 01 00 00    	jne    140013f0b <main+0x40b>
+   140013dca:	31 c0                	xor    %eax,%eax
+   140013dcc:	31 d2                	xor    %edx,%edx
+   140013dce:	31 c9                	xor    %ecx,%ecx
+   140013dd0:	45 31 ff             	xor    %r15d,%r15d
+   140013dd3:	89 84 24 88 04 00 00 	mov    %eax,0x488(%rsp)
+   140013dda:	31 c0                	xor    %eax,%eax
+   140013ddc:	48 8d 9c 24 40 01 00 	lea    0x140(%rsp),%rbx
+   140013de3:	00 
+   140013de4:	66 0f ef c0          	pxor   %xmm0,%xmm0
+   140013de8:	48 89 84 24 90 04 00 	mov    %rax,0x490(%rsp)
+   140013def:	00 
+   140013df0:	48 8d 84 24 88 04 00 	lea    0x488(%rsp),%rax
+   140013df7:	00 
+   140013df8:	4c 8d 25 39 44 00 00 	lea    0x4439(%rip),%r12        # 140018238 <vtable for CEntity+0x10>
+   140013dff:	48 89 84 24 98 04 00 	mov    %rax,0x498(%rsp)
+   140013e06:	00 
+   140013e07:	48 89 84 24 a0 04 00 	mov    %rax,0x4a0(%rsp)
+   140013e0e:	00 
+   140013e0f:	31 c0                	xor    %eax,%eax
+   140013e11:	48 89 84 24 a8 04 00 	mov    %rax,0x4a8(%rsp)
+   140013e18:	00 
+   140013e19:	31 c0                	xor    %eax,%eax
+   140013e1b:	48 89 84 24 c0 04 00 	mov    %rax,0x4c0(%rsp)
+   140013e22:	00 
+   140013e23:	48 8d 05 06 ec fe ff 	lea    -0x113fa(%rip),%rax        # 140002a30 <Capture(void const*, int)>
+   140013e2a:	48 89 05 5f c4 00 00 	mov    %rax,0xc45f(%rip)        # 140020290 <isolated_packet_hook>
+   140013e31:	48 8d 05 18 ee fe ff 	lea    -0x111e8(%rip),%rax        # 140002c50 <Cancel(event**)>
+   140013e38:	48 89 05 49 c4 00 00 	mov    %rax,0xc449(%rip)        # 140020288 <isolated_cancel_hook>
+   140013e3f:	31 c0                	xor    %eax,%eax
+   140013e41:	89 84 24 58 01 00 00 	mov    %eax,0x158(%rsp)
+   140013e48:	48 8d 84 24 58 01 00 	lea    0x158(%rsp),%rax
+   140013e4f:	00 
+   140013e50:	48 89 94 24 60 01 00 	mov    %rdx,0x160(%rsp)
+   140013e57:	00 
+   140013e58:	83 ca ff             	or     $0xffffffff,%edx
+   140013e5b:	48 89 8c 24 78 01 00 	mov    %rcx,0x178(%rsp)
+   140013e62:	00 
+   140013e63:	48 89 d9             	mov    %rbx,%rcx
+   140013e66:	48 89 84 24 68 01 00 	mov    %rax,0x168(%rsp)
+   140013e6d:	00 
+   140013e6e:	48 89 84 24 70 01 00 	mov    %rax,0x170(%rsp)
+   140013e75:	00 
+   140013e76:	4c 89 bc 24 78 04 00 	mov    %r15,0x478(%rsp)
+   140013e7d:	00 
+   140013e7e:	c7 84 24 2c 02 00 00 	movl   $0xa5a5a5a5,0x22c(%rsp)
+   140013e85:	a5 a5 a5 a5 
+   140013e89:	4c 89 a4 24 40 01 00 	mov    %r12,0x140(%rsp)
+   140013e90:	00 
+   140013e91:	0f 29 84 24 b0 04 00 	movaps %xmm0,0x4b0(%rsp)
+   140013e98:	00 
+   140013e99:	e8 f2 e6 fe ff       	call   140002590 <CEntity::Initialize(int)>
+   140013e9e:	48 8d 05 63 43 00 00 	lea    0x4363(%rip),%rax        # 140018208 <vtable for CItem+0x10>
+   140013ea5:	48 8d 94 24 2d 02 00 	lea    0x22d(%rsp),%rdx
+   140013eac:	00 
+   140013ead:	48 89 84 24 40 01 00 	mov    %rax,0x140(%rsp)
+   140013eb4:	00 
+   140013eb5:	48 8d 84 24 b0 01 00 	lea    0x1b0(%rsp),%rax
+   140013ebc:	00 
+   140013ebd:	80 38 a5             	cmpb   $0xa5,(%rax)
+   140013ec0:	74 19                	je     140013edb <main+0x3db>
+   140013ec2:	41 b8 29 00 00 00    	mov    $0x29,%r8d
+   140013ec8:	48 8d 15 3b 34 00 00 	lea    0x343b(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140013ecf:	48 8d 0d 48 34 00 00 	lea    0x3448(%rip),%rcx        # 14001731e <.rdata+0x2be>
+   140013ed6:	e8 b5 01 ff ff       	call   140004090 <fw_assert_fail>
+   140013edb:	48 83 c0 01          	add    $0x1,%rax
+   140013edf:	48 39 c2             	cmp    %rax,%rdx
+   140013ee2:	75 d9                	jne    140013ebd <main+0x3bd>
+   140013ee4:	83 bc 24 90 01 00 00 	cmpl   $0xffffffff,0x190(%rsp)
+   140013eeb:	ff 
+   140013eec:	0f 84 ef 01 00 00    	je     1400140e1 <main+0x5e1>
+   140013ef2:	41 b8 2a 00 00 00    	mov    $0x2a,%r8d
+   140013ef8:	48 8d 15 0b 34 00 00 	lea    0x340b(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140013eff:	48 8d 0d 2f 34 00 00 	lea    0x342f(%rip),%rcx        # 140017335 <.rdata+0x2d5>
+   140013f06:	e8 85 01 ff ff       	call   140004090 <fw_assert_fail>
+   140013f0b:	48 89 d9             	mov    %rbx,%rcx
+   140013f0e:	e8 fd ec fe ff       	call   140002c10 <std::_Vector_base<event**, std::allocator<event**> >::_M_allocate(unsigned long long) [clone .part.0] [clone .isra.0]>
+   140013f13:	31 c9                	xor    %ecx,%ecx
+   140013f15:	49 89 c0             	mov    %rax,%r8
+   140013f18:	31 d2                	xor    %edx,%edx
+   140013f1a:	48 89 c7             	mov    %rax,%rdi
+   140013f1d:	66 48 0f 6e f0       	movq   %rax,%xmm6
+   140013f22:	e8 b9 d8 fe ff       	call   1400017e0 <__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*>(__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**)>
+   140013f27:	48 8b 8c 24 60 04 00 	mov    0x460(%rsp),%rcx
+   140013f2e:	00 
+   140013f2f:	66 0f 6c f6          	punpcklqdq %xmm6,%xmm6
+   140013f33:	48 85 c9             	test   %rcx,%rcx
+   140013f36:	74 05                	je     140013f3d <main+0x43d>
+   140013f38:	e8 e3 42 ff ff       	call   140008220 <operator delete(void*)>
+   140013f3d:	48 8d 2c dd 00 00 00 	lea    0x0(,%rbx,8),%rbp
+   140013f44:	00 
+   140013f45:	0f 29 b4 24 60 04 00 	movaps %xmm6,0x460(%rsp)
+   140013f4c:	00 
+   140013f4d:	48 89 e8             	mov    %rbp,%rax
+   140013f50:	4c 8d 24 2f          	lea    (%rdi,%rbp,1),%r12
+   140013f54:	48 c1 f8 03          	sar    $0x3,%rax
+   140013f58:	4c 89 a4 24 70 04 00 	mov    %r12,0x470(%rsp)
+   140013f5f:	00 
+   140013f60:	48 39 d8             	cmp    %rbx,%rax
+   140013f63:	0f 82 ae 00 00 00    	jb     140014017 <main+0x517>
+   140013f69:	49 89 e8             	mov    %rbp,%r8
+   140013f6c:	31 d2                	xor    %edx,%edx
+   140013f6e:	48 89 f9             	mov    %rdi,%rcx
+   140013f71:	e8 32 ba ff ff       	call   14000f9a8 <memset>
+   140013f76:	4d 89 e0             	mov    %r12,%r8
+   140013f79:	48 89 fa             	mov    %rdi,%rdx
+   140013f7c:	48 89 f9             	mov    %rdi,%rcx
+   140013f7f:	4c 89 a4 24 68 04 00 	mov    %r12,0x468(%rsp)
+   140013f86:	00 
+   140013f87:	e8 54 d8 fe ff       	call   1400017e0 <__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*>(__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**)>
+   140013f8c:	e9 39 fe ff ff       	jmp    140013dca <main+0x2ca>
+   140013f91:	48 89 d9             	mov    %rbx,%rcx
+   140013f94:	e8 77 ec fe ff       	call   140002c10 <std::_Vector_base<event**, std::allocator<event**> >::_M_allocate(unsigned long long) [clone .part.0] [clone .isra.0]>
+   140013f99:	31 c9                	xor    %ecx,%ecx
+   140013f9b:	49 89 c0             	mov    %rax,%r8
+   140013f9e:	31 d2                	xor    %edx,%edx
+   140013fa0:	48 89 c7             	mov    %rax,%rdi
+   140013fa3:	66 48 0f 6e f0       	movq   %rax,%xmm6
+   140013fa8:	e8 f3 d7 fe ff       	call   1400017a0 <__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*>(__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**)>
+   140013fad:	48 8b 8c 24 38 04 00 	mov    0x438(%rsp),%rcx
+   140013fb4:	00 
+   140013fb5:	66 0f 6c f6          	punpcklqdq %xmm6,%xmm6
+   140013fb9:	48 85 c9             	test   %rcx,%rcx
+   140013fbc:	74 05                	je     140013fc3 <main+0x4c3>
+   140013fbe:	e8 5d 42 ff ff       	call   140008220 <operator delete(void*)>
+   140013fc3:	48 8d 2c dd 00 00 00 	lea    0x0(,%rbx,8),%rbp
+   140013fca:	00 
+   140013fcb:	0f 11 b4 24 38 04 00 	movups %xmm6,0x438(%rsp)
+   140013fd2:	00 
+   140013fd3:	48 89 e8             	mov    %rbp,%rax
+   140013fd6:	4c 8d 24 2f          	lea    (%rdi,%rbp,1),%r12
+   140013fda:	48 c1 f8 03          	sar    $0x3,%rax
+   140013fde:	4c 89 a4 24 48 04 00 	mov    %r12,0x448(%rsp)
+   140013fe5:	00 
+   140013fe6:	48 39 d8             	cmp    %rbx,%rax
+   140013fe9:	0f 82 8d 00 00 00    	jb     14001407c <main+0x57c>
+   140013fef:	49 89 e8             	mov    %rbp,%r8
+   140013ff2:	31 d2                	xor    %edx,%edx
+   140013ff4:	48 89 f9             	mov    %rdi,%rcx
+   140013ff7:	e8 ac b9 ff ff       	call   14000f9a8 <memset>
+   140013ffc:	4d 89 e0             	mov    %r12,%r8
+   140013fff:	48 89 fa             	mov    %rdi,%rdx
+   140014002:	48 89 f9             	mov    %rdi,%rcx
+   140014005:	4c 89 a4 24 40 04 00 	mov    %r12,0x440(%rsp)
+   14001400c:	00 
+   14001400d:	e8 8e d7 fe ff       	call   1400017a0 <__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*>(__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**)>
+   140014012:	e9 74 fd ff ff       	jmp    140013d8b <main+0x28b>
+   140014017:	48 89 d9             	mov    %rbx,%rcx
+   14001401a:	e8 f1 eb fe ff       	call   140002c10 <std::_Vector_base<event**, std::allocator<event**> >::_M_allocate(unsigned long long) [clone .part.0] [clone .isra.0]>
+   14001401f:	48 89 c3             	mov    %rax,%rbx
+   140014022:	49 89 e8             	mov    %rbp,%r8
+   140014025:	31 d2                	xor    %edx,%edx
+   140014027:	48 89 c1             	mov    %rax,%rcx
+   14001402a:	e8 79 b9 ff ff       	call   14000f9a8 <memset>
+   14001402f:	49 89 d8             	mov    %rbx,%r8
+   140014032:	48 89 fa             	mov    %rdi,%rdx
+   140014035:	48 89 f9             	mov    %rdi,%rcx
+   140014038:	e8 a3 d7 fe ff       	call   1400017e0 <__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*>(__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**)>
+   14001403d:	48 89 fa             	mov    %rdi,%rdx
+   140014040:	48 89 f9             	mov    %rdi,%rcx
+   140014043:	4c 8d 04 28          	lea    (%rax,%rbp,1),%r8
+   140014047:	e8 94 d7 fe ff       	call   1400017e0 <__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >*>(__gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**, __gnu_cxx::_Hashtable_node<std::pair<unsigned int const, std::vector<char, std::allocator<char> > > >**)>
+   14001404c:	49 89 c4             	mov    %rax,%r12
+   14001404f:	48 85 ff             	test   %rdi,%rdi
+   140014052:	74 08                	je     14001405c <main+0x55c>
+   140014054:	48 89 f9             	mov    %rdi,%rcx
+   140014057:	e8 c4 41 ff ff       	call   140008220 <operator delete(void*)>
+   14001405c:	48 89 9c 24 60 04 00 	mov    %rbx,0x460(%rsp)
+   140014063:	00 
+   140014064:	48 01 eb             	add    %rbp,%rbx
+   140014067:	4c 89 a4 24 68 04 00 	mov    %r12,0x468(%rsp)
+   14001406e:	00 
+   14001406f:	48 89 9c 24 70 04 00 	mov    %rbx,0x470(%rsp)
+   140014076:	00 
+   140014077:	e9 4e fd ff ff       	jmp    140013dca <main+0x2ca>
+   14001407c:	48 89 d9             	mov    %rbx,%rcx
+   14001407f:	e8 8c eb fe ff       	call   140002c10 <std::_Vector_base<event**, std::allocator<event**> >::_M_allocate(unsigned long long) [clone .part.0] [clone .isra.0]>
+   140014084:	48 89 c3             	mov    %rax,%rbx
+   140014087:	49 89 e8             	mov    %rbp,%r8
+   14001408a:	31 d2                	xor    %edx,%edx
+   14001408c:	48 89 c1             	mov    %rax,%rcx
+   14001408f:	e8 14 b9 ff ff       	call   14000f9a8 <memset>
+   140014094:	49 89 d8             	mov    %rbx,%r8
+   140014097:	48 89 fa             	mov    %rdi,%rdx
+   14001409a:	48 89 f9             	mov    %rdi,%rcx
+   14001409d:	e8 fe d6 fe ff       	call   1400017a0 <__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*>(__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**)>
+   1400140a2:	48 89 fa             	mov    %rdi,%rdx
+   1400140a5:	48 89 f9             	mov    %rdi,%rcx
+   1400140a8:	4c 8d 04 28          	lea    (%rax,%rbp,1),%r8
+   1400140ac:	e8 ef d6 fe ff       	call   1400017a0 <__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*>(__gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**, __gnu_cxx::_Hashtable_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >**)>
+   1400140b1:	49 89 c4             	mov    %rax,%r12
+   1400140b4:	48 85 ff             	test   %rdi,%rdi
+   1400140b7:	74 08                	je     1400140c1 <main+0x5c1>
+   1400140b9:	48 89 f9             	mov    %rdi,%rcx
+   1400140bc:	e8 5f 41 ff ff       	call   140008220 <operator delete(void*)>
+   1400140c1:	48 89 9c 24 38 04 00 	mov    %rbx,0x438(%rsp)
+   1400140c8:	00 
+   1400140c9:	48 01 eb             	add    %rbp,%rbx
+   1400140cc:	4c 89 a4 24 40 04 00 	mov    %r12,0x440(%rsp)
+   1400140d3:	00 
+   1400140d4:	48 89 9c 24 48 04 00 	mov    %rbx,0x448(%rsp)
+   1400140db:	00 
+   1400140dc:	e9 aa fc ff ff       	jmp    140013d8b <main+0x28b>
+   1400140e1:	ba 01 00 00 00       	mov    $0x1,%edx
+   1400140e6:	48 89 d9             	mov    %rbx,%rcx
+   1400140e9:	31 ff                	xor    %edi,%edi
+   1400140eb:	31 ed                	xor    %ebp,%ebp
+   1400140ed:	e8 9e e4 fe ff       	call   140002590 <CEntity::Initialize(int)>
+   1400140f2:	41 b8 15 00 00 00    	mov    $0x15,%r8d
+   1400140f8:	45 31 c9             	xor    %r9d,%r9d
+   1400140fb:	31 c0                	xor    %eax,%eax
+   1400140fd:	66 0f ef f6          	pxor   %xmm6,%xmm6
+   140014101:	45 31 d2             	xor    %r10d,%r10d
+   140014104:	45 31 db             	xor    %r11d,%r11d
+   140014107:	45 31 ed             	xor    %r13d,%r13d
+   14001410a:	48 8d 94 24 f0 01 00 	lea    0x1f0(%rsp),%rdx
+   140014111:	00 
+   140014112:	89 bc 24 ec 01 00 00 	mov    %edi,0x1ec(%rsp)
+   140014119:	45 31 f6             	xor    %r14d,%r14d
+   14001411c:	4c 89 c1             	mov    %r8,%rcx
+   14001411f:	48 89 d7             	mov    %rdx,%rdi
+   140014122:	83 bc 24 90 01 00 00 	cmpl   $0x1,0x190(%rsp)
+   140014129:	01 
+   14001412a:	c6 84 24 c0 01 00 00 	movb   $0x0,0x1c0(%rsp)
+   140014131:	00 
+   140014132:	f3 aa                	rep stos %al,%es:(%rdi)
+   140014134:	44 89 8c 24 c4 01 00 	mov    %r9d,0x1c4(%rsp)
+   14001413b:	00 
+   14001413c:	c6 84 24 c8 01 00 00 	movb   $0x0,0x1c8(%rsp)
+   140014143:	00 
+   140014144:	c6 84 24 d0 01 00 00 	movb   $0x0,0x1d0(%rsp)
+   14001414b:	00 
+   14001414c:	44 89 94 24 cc 01 00 	mov    %r10d,0x1cc(%rsp)
+   140014153:	00 
+   140014154:	4c 89 9c 24 e4 01 00 	mov    %r11,0x1e4(%rsp)
+   14001415b:	00 
+   14001415c:	89 ac 24 28 02 00 00 	mov    %ebp,0x228(%rsp)
+   140014163:	c6 84 24 2c 02 00 00 	movb   $0x0,0x22c(%rsp)
+   14001416a:	00 
+   14001416b:	44 89 ac 24 d4 01 00 	mov    %r13d,0x1d4(%rsp)
+   140014172:	00 
+   140014173:	4c 89 b4 24 d8 01 00 	mov    %r14,0x1d8(%rsp)
+   14001417a:	00 
+   14001417b:	c6 84 24 e0 01 00 00 	movb   $0x0,0x1e0(%rsp)
+   140014182:	00 
+   140014183:	0f 29 b4 24 b0 01 00 	movaps %xmm6,0x1b0(%rsp)
+   14001418a:	00 
+   14001418b:	0f 11 b4 24 08 02 00 	movups %xmm6,0x208(%rsp)
+   140014192:	00 
+   140014193:	0f 11 b4 24 18 02 00 	movups %xmm6,0x218(%rsp)
+   14001419a:	00 
+   14001419b:	0f 85 64 0b 00 00    	jne    140014d05 <main+0x1205>
+   1400141a1:	48 8d 3d 60 41 00 00 	lea    0x4160(%rip),%rdi        # 140018308 <vtable for CStateTemplate<CHARACTER>+0x10>
+   1400141a8:	48 89 4c 24 30       	mov    %rcx,0x30(%rsp)
+   1400141ad:	48 8d 94 24 a4 00 00 	lea    0xa4(%rsp),%rdx
+   1400141b4:	00 
+   1400141b5:	b9 96 00 00 00       	mov    $0x96,%ecx
+   1400141ba:	66 48 0f 6e ff       	movq   %rdi,%xmm7
+   1400141bf:	48 89 d7             	mov    %rdx,%rdi
+   1400141c2:	48 8d ac 24 d0 04 00 	lea    0x4d0(%rsp),%rbp
+   1400141c9:	00 
+   1400141ca:	83 ca ff             	or     $0xffffffff,%edx
+   1400141cd:	f3 aa                	rep stos %al,%es:(%rdi)
+   1400141cf:	48 89 e9             	mov    %rbp,%rcx
+   1400141d2:	31 ff                	xor    %edi,%edi
+   1400141d4:	45 31 f6             	xor    %r14d,%r14d
+   1400141d7:	48 b8 67 72 6f 75 6e 	movabs $0x6920646e756f7267,%rax
+   1400141de:	64 20 69 
+   1400141e1:	4c 8d 94 24 a0 00 00 	lea    0xa0(%rsp),%r10
+   1400141e8:	00 
+   1400141e9:	66 48 0f 6e d5       	movq   %rbp,%xmm2
+   1400141ee:	4c 89 a4 24 d0 04 00 	mov    %r12,0x4d0(%rsp)
+   1400141f5:	00 
+   1400141f6:	48 89 84 24 bd 00 00 	mov    %rax,0xbd(%rsp)
+   1400141fd:	00 
+   1400141fe:	66 0f 6c fa          	punpcklqdq %xmm2,%xmm7
+   140014202:	48 8b 05 77 42 00 00 	mov    0x4277(%rip),%rax        # 140018480 <vtable for CHARACTER+0x150>
+   140014209:	4c 8d ac 24 d0 13 00 	lea    0x13d0(%rsp),%r13
+   140014210:	00 
+   140014211:	4c 89 54 24 38       	mov    %r10,0x38(%rsp)
+   140014216:	45 31 e4             	xor    %r12d,%r12d
+   140014219:	4c 8d bc 24 90 14 00 	lea    0x1490(%rsp),%r15
+   140014220:	00 
+   140014221:	48 89 84 24 98 01 00 	mov    %rax,0x198(%rsp)
+   140014228:	00 
+   140014229:	31 c0                	xor    %eax,%eax
+   14001422b:	89 84 24 e8 04 00 00 	mov    %eax,0x4e8(%rsp)
+   140014232:	31 c0                	xor    %eax,%eax
+   140014234:	48 89 84 24 f0 04 00 	mov    %rax,0x4f0(%rsp)
+   14001423b:	00 
+   14001423c:	48 8d 84 24 e8 04 00 	lea    0x4e8(%rsp),%rax
+   140014243:	00 
+   140014244:	48 89 84 24 f8 04 00 	mov    %rax,0x4f8(%rsp)
+   14001424b:	00 
+   14001424c:	48 89 84 24 00 05 00 	mov    %rax,0x500(%rsp)
+   140014253:	00 
+   140014254:	31 c0                	xor    %eax,%eax
+   140014256:	4c 89 94 24 b0 01 00 	mov    %r10,0x1b0(%rsp)
+   14001425d:	00 
+   14001425e:	48 89 84 24 08 05 00 	mov    %rax,0x508(%rsp)
+   140014265:	00 
+   140014266:	c7 84 24 a0 00 00 00 	movl   $0x3039,0xa0(%rsp)
+   14001426d:	39 30 00 00 
+   140014271:	c7 84 24 de 00 00 00 	movl   $0xdeadbeef,0xde(%rsp)
+   140014278:	ef be ad de 
+   14001427c:	c7 84 24 c5 00 00 00 	movl   $0x6d6574,0xc5(%rsp)
+   140014283:	74 65 6d 00 
+   140014287:	c7 84 24 d8 01 00 00 	movl   $0xdeadbeef,0x1d8(%rsp)
+   14001428e:	ef be ad de 
+   140014292:	c7 84 24 cc 01 00 00 	movl   $0x3db,0x1cc(%rsp)
+   140014299:	db 03 00 00 
+   14001429d:	c7 84 24 a0 01 00 00 	movl   $0xfffffff7,0x1a0(%rsp)
+   1400142a4:	f7 ff ff ff 
+   1400142a8:	e8 e3 e2 fe ff       	call   140002590 <CEntity::Initialize(int)>
+   1400142ad:	48 8d 05 b4 3f 00 00 	lea    0x3fb4(%rip),%rax        # 140018268 <vtable for CStateTemplate<CFSM>+0x10>
+   1400142b4:	31 d2                	xor    %edx,%edx
+   1400142b6:	31 c9                	xor    %ecx,%ecx
+   1400142b8:	66 49 0f 6e c5       	movq   %r13,%xmm0
+   1400142bd:	45 31 c0             	xor    %r8d,%r8d
+   1400142c0:	45 31 c9             	xor    %r9d,%r9d
+   1400142c3:	45 31 d2             	xor    %r10d,%r10d
+   1400142c6:	48 89 84 24 58 05 00 	mov    %rax,0x558(%rsp)
+   1400142cd:	00 
+   1400142ce:	66 0f 6c c0          	punpcklqdq %xmm0,%xmm0
+   1400142d2:	45 31 db             	xor    %r11d,%r11d
+   1400142d5:	48 8d 84 24 40 05 00 	lea    0x540(%rsp),%rax
+   1400142dc:	00 
+   1400142dd:	48 89 84 24 60 05 00 	mov    %rax,0x560(%rsp)
+   1400142e4:	00 
+   1400142e5:	48 8d 84 24 58 05 00 	lea    0x558(%rsp),%rax
+   1400142ec:	00 
+   1400142ed:	48 89 84 24 48 05 00 	mov    %rax,0x548(%rsp)
+   1400142f4:	00 
+   1400142f5:	48 8d 05 44 40 00 00 	lea    0x4044(%rip),%rax        # 140018340 <vtable for CHARACTER+0x10>
+   1400142fc:	48 89 84 24 d0 04 00 	mov    %rax,0x4d0(%rsp)
+   140014303:	00 
+   140014304:	48 05 a8 00 00 00    	add    $0xa8,%rax
+   14001430a:	48 89 84 24 40 05 00 	mov    %rax,0x540(%rsp)
+   140014311:	00 
+   140014312:	48 83 c0 40          	add    $0x40,%rax
+   140014316:	48 89 84 24 98 05 00 	mov    %rax,0x598(%rsp)
+   14001431d:	00 
+   14001431e:	48 8d 84 24 b8 06 00 	lea    0x6b8(%rsp),%rax
+   140014325:	00 
+   140014326:	48 89 84 24 a8 06 00 	mov    %rax,0x6a8(%rsp)
+   14001432d:	00 
+   14001432e:	48 8d 84 24 a8 13 00 	lea    0x13a8(%rsp),%rax
+   140014335:	00 
+   140014336:	48 89 84 24 98 13 00 	mov    %rax,0x1398(%rsp)
+   14001433d:	00 
+   14001433e:	31 c0                	xor    %eax,%eax
+   140014340:	48 89 84 24 a0 14 00 	mov    %rax,0x14a0(%rsp)
+   140014347:	00 
+   140014348:	31 c0                	xor    %eax,%eax
+   14001434a:	89 84 24 c8 14 00 00 	mov    %eax,0x14c8(%rsp)
+   140014351:	31 c0                	xor    %eax,%eax
+   140014353:	48 89 84 24 d0 14 00 	mov    %rax,0x14d0(%rsp)
+   14001435a:	00 
+   14001435b:	48 8d 84 24 c8 14 00 	lea    0x14c8(%rsp),%rax
+   140014362:	00 
+   140014363:	48 89 84 24 d8 14 00 	mov    %rax,0x14d8(%rsp)
+   14001436a:	00 
+   14001436b:	48 89 84 24 e0 14 00 	mov    %rax,0x14e0(%rsp)
+   140014372:	00 
+   140014373:	31 c0                	xor    %eax,%eax
+   140014375:	0f 29 84 24 d0 13 00 	movaps %xmm0,0x13d0(%rsp)
+   14001437c:	00 
+   14001437d:	66 49 0f 6e c7       	movq   %r15,%xmm0
+   140014382:	48 89 84 24 e8 14 00 	mov    %rax,0x14e8(%rsp)
+   140014389:	00 
+   14001438a:	66 0f 6c c0          	punpcklqdq %xmm0,%xmm0
+   14001438e:	48 8d 84 24 48 15 00 	lea    0x1548(%rsp),%rax
+   140014395:	00 
+   140014396:	48 89 94 24 70 05 00 	mov    %rdx,0x570(%rsp)
+   14001439d:	00 
+   14001439e:	31 d2                	xor    %edx,%edx
+   1400143a0:	48 89 8c 24 80 05 00 	mov    %rcx,0x580(%rsp)
+   1400143a7:	00 
+   1400143a8:	31 c9                	xor    %ecx,%ecx
+   1400143aa:	4c 89 84 24 90 05 00 	mov    %r8,0x590(%rsp)
+   1400143b1:	00 
+   1400143b2:	45 31 c0             	xor    %r8d,%r8d
+   1400143b5:	4c 89 8c 24 50 05 00 	mov    %r9,0x550(%rsp)
+   1400143bc:	00 
+   1400143bd:	45 31 c9             	xor    %r9d,%r9d
+   1400143c0:	4c 89 94 24 a0 05 00 	mov    %r10,0x5a0(%rsp)
+   1400143c7:	00 
+   1400143c8:	45 31 d2             	xor    %r10d,%r10d
+   1400143cb:	4c 89 9c 24 9c 06 00 	mov    %r11,0x69c(%rsp)
+   1400143d2:	00 
+   1400143d3:	45 31 db             	xor    %r11d,%r11d
+   1400143d6:	48 89 bc 24 b0 06 00 	mov    %rdi,0x6b0(%rsp)
+   1400143dd:	00 
+   1400143de:	31 ff                	xor    %edi,%edi
+   1400143e0:	4c 89 a4 24 a0 13 00 	mov    %r12,0x13a0(%rsp)
+   1400143e7:	00 
+   1400143e8:	45 31 e4             	xor    %r12d,%r12d
+   1400143eb:	4c 89 b4 24 e0 13 00 	mov    %r14,0x13e0(%rsp)
+   1400143f2:	00 
+   1400143f3:	45 31 f6             	xor    %r14d,%r14d
+   1400143f6:	0f 29 84 24 90 14 00 	movaps %xmm0,0x1490(%rsp)
+   1400143fd:	00 
+   1400143fe:	48 c7 84 24 68 05 00 	movq   $0x19,0x568(%rsp)
+   140014405:	00 19 00 00 00 
+   14001440a:	48 c7 84 24 78 05 00 	movq   $0x21,0x578(%rsp)
+   140014411:	00 21 00 00 00 
+   140014416:	48 c7 84 24 88 05 00 	movq   $0x29,0x588(%rsp)
+   14001441d:	00 29 00 00 00 
+   140014422:	66 c7 84 24 a8 05 00 	movw   $0x0,0x5a8(%rsp)
+   140014429:	00 00 00 
+   14001442c:	c6 84 24 b8 06 00 00 	movb   $0x0,0x6b8(%rsp)
+   140014433:	00 
+   140014434:	c6 84 24 a8 13 00 00 	movb   $0x0,0x13a8(%rsp)
+   14001443b:	00 
+   14001443c:	0f 29 b4 24 b0 05 00 	movaps %xmm6,0x5b0(%rsp)
+   140014443:	00 
+   140014444:	48 89 84 24 38 15 00 	mov    %rax,0x1538(%rsp)
+   14001444b:	00 
+   14001444c:	31 c0                	xor    %eax,%eax
+   14001444e:	48 89 84 24 40 15 00 	mov    %rax,0x1540(%rsp)
+   140014455:	00 
+   140014456:	48 8d 84 24 90 15 00 	lea    0x1590(%rsp),%rax
+   14001445d:	00 
+   14001445e:	48 89 84 24 a0 15 00 	mov    %rax,0x15a0(%rsp)
+   140014465:	00 
+   140014466:	48 89 84 24 a8 15 00 	mov    %rax,0x15a8(%rsp)
+   14001446d:	00 
+   14001446e:	48 8d 84 24 e8 15 00 	lea    0x15e8(%rsp),%rax
+   140014475:	00 
+   140014476:	48 89 84 24 f8 15 00 	mov    %rax,0x15f8(%rsp)
+   14001447d:	00 
+   14001447e:	48 89 84 24 00 16 00 	mov    %rax,0x1600(%rsp)
+   140014485:	00 
+   140014486:	31 c0                	xor    %eax,%eax
+   140014488:	48 89 84 24 68 16 00 	mov    %rax,0x1668(%rsp)
+   14001448f:	00 
+   140014490:	31 c0                	xor    %eax,%eax
+   140014492:	89 84 24 88 16 00 00 	mov    %eax,0x1688(%rsp)
+   140014499:	31 c0                	xor    %eax,%eax
+   14001449b:	48 89 84 24 90 16 00 	mov    %rax,0x1690(%rsp)
+   1400144a2:	00 
+   1400144a3:	48 8d 84 24 88 16 00 	lea    0x1688(%rsp),%rax
+   1400144aa:	00 
+   1400144ab:	48 89 84 24 98 16 00 	mov    %rax,0x1698(%rsp)
+   1400144b2:	00 
+   1400144b3:	48 89 84 24 a0 16 00 	mov    %rax,0x16a0(%rsp)
+   1400144ba:	00 
+   1400144bb:	31 c0                	xor    %eax,%eax
+   1400144bd:	48 89 84 24 a8 16 00 	mov    %rax,0x16a8(%rsp)
+   1400144c4:	00 
+   1400144c5:	31 c0                	xor    %eax,%eax
+   1400144c7:	89 84 24 b8 16 00 00 	mov    %eax,0x16b8(%rsp)
+   1400144ce:	48 8d 84 24 b8 16 00 	lea    0x16b8(%rsp),%rax
+   1400144d5:	00 
+   1400144d6:	48 89 94 24 80 15 00 	mov    %rdx,0x1580(%rsp)
+   1400144dd:	00 
+   1400144de:	31 d2                	xor    %edx,%edx
+   1400144e0:	89 8c 24 90 15 00 00 	mov    %ecx,0x1590(%rsp)
+   1400144e7:	31 c9                	xor    %ecx,%ecx
+   1400144e9:	4c 89 84 24 98 15 00 	mov    %r8,0x1598(%rsp)
+   1400144f0:	00 
+   1400144f1:	45 31 c0             	xor    %r8d,%r8d
+   1400144f4:	4c 89 8c 24 b0 15 00 	mov    %r9,0x15b0(%rsp)
+   1400144fb:	00 
+   1400144fc:	45 31 c9             	xor    %r9d,%r9d
+   1400144ff:	4c 89 b4 24 50 16 00 	mov    %r14,0x1650(%rsp)
+   140014506:	00 
+   140014507:	4c 8d b4 24 48 16 00 	lea    0x1648(%rsp),%r14
+   14001450e:	00 
+   14001450f:	48 89 84 24 c8 16 00 	mov    %rax,0x16c8(%rsp)
+   140014516:	00 
+   140014517:	48 89 84 24 d0 16 00 	mov    %rax,0x16d0(%rsp)
+   14001451e:	00 
+   14001451f:	48 8d 84 24 10 17 00 	lea    0x1710(%rsp),%rax
+   140014526:	00 
+   140014527:	44 89 94 24 e8 15 00 	mov    %r10d,0x15e8(%rsp)
+   14001452e:	00 
+   14001452f:	45 31 d2             	xor    %r10d,%r10d
+   140014532:	4c 89 9c 24 f0 15 00 	mov    %r11,0x15f0(%rsp)
+   140014539:	00 
+   14001453a:	45 31 db             	xor    %r11d,%r11d
+   14001453d:	48 89 bc 24 08 16 00 	mov    %rdi,0x1608(%rsp)
+   140014544:	00 
+   140014545:	31 ff                	xor    %edi,%edi
+   140014547:	44 89 a4 24 48 16 00 	mov    %r12d,0x1648(%rsp)
+   14001454e:	00 
+   14001454f:	45 31 e4             	xor    %r12d,%r12d
+   140014552:	48 89 94 24 c0 16 00 	mov    %rdx,0x16c0(%rsp)
+   140014559:	00 
+   14001455a:	31 d2                	xor    %edx,%edx
+   14001455c:	48 89 8c 24 d8 16 00 	mov    %rcx,0x16d8(%rsp)
+   140014563:	00 
+   140014564:	48 89 8c 24 e0 16 00 	mov    %rcx,0x16e0(%rsp)
+   14001456b:	00 
+   14001456c:	31 c9                	xor    %ecx,%ecx
+   14001456e:	44 89 84 24 10 17 00 	mov    %r8d,0x1710(%rsp)
+   140014575:	00 
+   140014576:	45 31 c0             	xor    %r8d,%r8d
+   140014579:	4c 89 8c 24 18 17 00 	mov    %r9,0x1718(%rsp)
+   140014580:	00 
+   140014581:	45 31 c9             	xor    %r9d,%r9d
+   140014584:	c6 84 24 48 15 00 00 	movb   $0x0,0x1548(%rsp)
+   14001458b:	00 
+   14001458c:	4c 89 b4 24 58 16 00 	mov    %r14,0x1658(%rsp)
+   140014593:	00 
+   140014594:	4c 89 b4 24 60 16 00 	mov    %r14,0x1660(%rsp)
+   14001459b:	00 
+   14001459c:	0f 29 b4 24 70 15 00 	movaps %xmm6,0x1570(%rsp)
+   1400145a3:	00 
+   1400145a4:	48 89 84 24 20 17 00 	mov    %rax,0x1720(%rsp)
+   1400145ab:	00 
+   1400145ac:	48 89 84 24 28 17 00 	mov    %rax,0x1728(%rsp)
+   1400145b3:	00 
+   1400145b4:	48 8d 84 24 18 18 00 	lea    0x1818(%rsp),%rax
+   1400145bb:	00 
+   1400145bc:	48 89 84 24 28 18 00 	mov    %rax,0x1828(%rsp)
+   1400145c3:	00 
+   1400145c4:	48 89 84 24 30 18 00 	mov    %rax,0x1830(%rsp)
+   1400145cb:	00 
+   1400145cc:	48 8d 84 24 20 19 00 	lea    0x1920(%rsp),%rax
+   1400145d3:	00 
+   1400145d4:	48 89 84 24 10 19 00 	mov    %rax,0x1910(%rsp)
+   1400145db:	00 
+   1400145dc:	31 c0                	xor    %eax,%eax
+   1400145de:	48 89 84 24 18 19 00 	mov    %rax,0x1918(%rsp)
+   1400145e5:	00 
+   1400145e6:	31 c0                	xor    %eax,%eax
+   1400145e8:	48 89 84 24 84 14 00 	mov    %rax,0x1484(%rsp)
+   1400145ef:	00 
+   1400145f0:	31 c0                	xor    %eax,%eax
+   1400145f2:	48 89 84 24 f8 16 00 	mov    %rax,0x16f8(%rsp)
+   1400145f9:	00 
+   1400145fa:	31 c0                	xor    %eax,%eax
+   1400145fc:	4c 89 94 24 30 17 00 	mov    %r10,0x1730(%rsp)
+   140014603:	00 
+   140014604:	45 31 d2             	xor    %r10d,%r10d
+   140014607:	44 89 9c 24 18 18 00 	mov    %r11d,0x1818(%rsp)
+   14001460e:	00 
+   14001460f:	45 31 db             	xor    %r11d,%r11d
+   140014612:	48 89 bc 24 20 18 00 	mov    %rdi,0x1820(%rsp)
+   140014619:	00 
+   14001461a:	31 ff                	xor    %edi,%edi
+   14001461c:	48 89 84 24 60 06 00 	mov    %rax,0x660(%rsp)
+   140014623:	00 
+   140014624:	31 c0                	xor    %eax,%eax
+   140014626:	48 89 94 24 80 06 00 	mov    %rdx,0x680(%rsp)
+   14001462d:	00 
+   14001462e:	31 d2                	xor    %edx,%edx
+   140014630:	48 89 8c 24 e0 05 00 	mov    %rcx,0x5e0(%rsp)
+   140014637:	00 
+   140014638:	48 89 e9             	mov    %rbp,%rcx
+   14001463b:	48 89 84 24 70 06 00 	mov    %rax,0x670(%rsp)
+   140014642:	00 
+   140014643:	4c 89 84 24 f0 05 00 	mov    %r8,0x5f0(%rsp)
+   14001464a:	00 
+   14001464b:	4c 89 a4 24 38 18 00 	mov    %r12,0x1838(%rsp)
+   140014652:	00 
+   140014653:	45 31 e4             	xor    %r12d,%r12d
+   140014656:	4c 89 8c 24 00 06 00 	mov    %r9,0x600(%rsp)
+   14001465d:	00 
+   14001465e:	4c 89 94 24 20 06 00 	mov    %r10,0x620(%rsp)
+   140014665:	00 
+   140014666:	4c 89 9c 24 30 06 00 	mov    %r11,0x630(%rsp)
+   14001466d:	00 
+   14001466e:	c6 84 24 20 19 00 00 	movb   $0x0,0x1920(%rsp)
+   140014675:	00 
+   140014676:	c6 84 24 f0 16 00 00 	movb   $0x0,0x16f0(%rsp)
+   14001467d:	00 
+   14001467e:	48 c7 84 24 58 06 00 	movq   $0x49,0x658(%rsp)
+   140014685:	00 49 00 00 00 
+   14001468a:	48 c7 84 24 68 06 00 	movq   $0x31,0x668(%rsp)
+   140014691:	00 31 00 00 00 
+   140014696:	48 c7 84 24 78 06 00 	movq   $0x51,0x678(%rsp)
+   14001469d:	00 51 00 00 00 
+   1400146a2:	48 c7 84 24 d8 05 00 	movq   $0x49,0x5d8(%rsp)
+   1400146a9:	00 49 00 00 00 
+   1400146ae:	48 c7 84 24 e8 05 00 	movq   $0x21,0x5e8(%rsp)
+   1400146b5:	00 21 00 00 00 
+   1400146ba:	48 c7 84 24 f8 05 00 	movq   $0x51,0x5f8(%rsp)
+   1400146c1:	00 51 00 00 00 
+   1400146c6:	48 c7 84 24 18 06 00 	movq   $0x49,0x618(%rsp)
+   1400146cd:	00 49 00 00 00 
+   1400146d2:	48 c7 84 24 28 06 00 	movq   $0x29,0x628(%rsp)
+   1400146d9:	00 29 00 00 00 
+   1400146de:	0f 11 bc 24 48 06 00 	movups %xmm7,0x648(%rsp)
+   1400146e5:	00 
+   1400146e6:	0f 11 bc 24 c8 05 00 	movups %xmm7,0x5c8(%rsp)
+   1400146ed:	00 
+   1400146ee:	0f 11 bc 24 08 06 00 	movups %xmm7,0x608(%rsp)
+   1400146f5:	00 
+   1400146f6:	48 c7 84 24 38 06 00 	movq   $0x51,0x638(%rsp)
+   1400146fd:	00 51 00 00 00 
+   140014702:	48 89 bc 24 40 06 00 	mov    %rdi,0x640(%rsp)
+   140014709:	00 
+   14001470a:	48 8d bc 24 d0 06 00 	lea    0x6d0(%rsp),%rdi
+   140014711:	00 
+   140014712:	e8 79 de fe ff       	call   140002590 <CEntity::Initialize(int)>
+   140014717:	31 c0                	xor    %eax,%eax
+   140014719:	83 05 58 bb 00 00 01 	addl   $0x1,0xbb58(%rip)        # 140020278 <isolated_float_reads>
+   140014720:	48 89 84 24 f4 13 00 	mov    %rax,0x13f4(%rsp)
+   140014727:	00 
+   140014728:	48 89 84 24 e8 13 00 	mov    %rax,0x13e8(%rsp)
+   14001472f:	00 
+   140014730:	48 89 84 24 84 17 00 	mov    %rax,0x1784(%rsp)
+   140014737:	00 
+   140014738:	48 89 84 24 8c 17 00 	mov    %rax,0x178c(%rsp)
+   14001473f:	00 
+   140014740:	31 c0                	xor    %eax,%eax
+   140014742:	48 89 84 24 a8 14 00 	mov    %rax,0x14a8(%rsp)
+   140014749:	00 
+   14001474a:	48 89 84 24 b8 14 00 	mov    %rax,0x14b8(%rsp)
+   140014751:	00 
+   140014752:	48 89 84 24 00 15 00 	mov    %rax,0x1500(%rsp)
+   140014759:	00 
+   14001475a:	31 c0                	xor    %eax,%eax
+   14001475c:	89 84 24 b8 15 00 00 	mov    %eax,0x15b8(%rsp)
+   140014763:	89 84 24 88 13 00 00 	mov    %eax,0x1388(%rsp)
+   14001476a:	31 c0                	xor    %eax,%eax
+   14001476c:	48 89 84 24 98 17 00 	mov    %rax,0x1798(%rsp)
+   140014773:	00 
+   140014774:	31 c0                	xor    %eax,%eax
+   140014776:	31 d2                	xor    %edx,%edx
+   140014778:	31 c9                	xor    %ecx,%ecx
+   14001477a:	45 31 c0             	xor    %r8d,%r8d
+   14001477d:	44 89 a4 24 98 06 00 	mov    %r12d,0x698(%rsp)
+   140014784:	00 
+   140014785:	4c 8d a4 24 10 19 00 	lea    0x1910(%rsp),%r12
+   14001478c:	00 
+   14001478d:	48 89 84 24 00 17 00 	mov    %rax,0x1700(%rsp)
+   140014794:	00 
+   140014795:	48 89 84 24 30 16 00 	mov    %rax,0x1630(%rsp)
+   14001479c:	00 
+   14001479d:	48 89 84 24 84 14 00 	mov    %rax,0x1484(%rsp)
+   1400147a4:	00 
+   1400147a5:	89 94 24 0c 19 00 00 	mov    %edx,0x190c(%rsp)
+   1400147ac:	48 8d 94 24 f0 0a 00 	lea    0xaf0(%rsp),%rdx
+   1400147b3:	00 
+   1400147b4:	48 89 8c 24 c8 13 00 	mov    %rcx,0x13c8(%rsp)
+   1400147bb:	00 
+   1400147bc:	48 89 8c 24 08 18 00 	mov    %rcx,0x1808(%rsp)
+   1400147c3:	00 
+   1400147c4:	b9 83 00 00 00       	mov    $0x83,%ecx
+   1400147c9:	c6 84 24 18 15 00 00 	movb   $0x1,0x1518(%rsp)
+   1400147d0:	01 
+   1400147d1:	c6 84 24 48 17 00 00 	movb   $0x0,0x1748(%rsp)
+   1400147d8:	00 
+   1400147d9:	c7 84 24 c0 13 00 00 	movl   $0xc0400000,0x13c0(%rsp)
+   1400147e0:	00 00 40 c0 
+   1400147e4:	4c 89 84 24 cc 06 00 	mov    %r8,0x6cc(%rsp)
+   1400147eb:	00 
+   1400147ec:	0f 11 b4 24 58 15 00 	movups %xmm6,0x1558(%rsp)
+   1400147f3:	00 
+   1400147f4:	0f 11 b4 24 68 18 00 	movups %xmm6,0x1868(%rsp)
+   1400147fb:	00 
+   1400147fc:	0f 11 b4 24 28 15 00 	movups %xmm6,0x1528(%rsp)
+   140014803:	00 
+   140014804:	0f 29 b4 24 40 18 00 	movaps %xmm6,0x1840(%rsp)
+   14001480b:	00 
+   14001480c:	0f 29 b4 24 50 18 00 	movaps %xmm6,0x1850(%rsp)
+   140014813:	00 
+   140014814:	0f 11 b4 24 c8 17 00 	movups %xmm6,0x17c8(%rsp)
+   14001481b:	00 
+   14001481c:	0f 11 b4 24 d8 17 00 	movups %xmm6,0x17d8(%rsp)
+   140014823:	00 
+   140014824:	0f 11 b4 24 e8 17 00 	movups %xmm6,0x17e8(%rsp)
+   14001482b:	00 
+   14001482c:	0f 11 b4 24 f8 17 00 	movups %xmm6,0x17f8(%rsp)
+   140014833:	00 
+   140014834:	4c 89 84 24 e4 0a 00 	mov    %r8,0xae4(%rsp)
+   14001483b:	00 
+   14001483c:	48 8b 44 24 30       	mov    0x30(%rsp),%rax
+   140014841:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+   140014844:	48 89 d7             	mov    %rdx,%rdi
+   140014847:	b9 13 01 00 00       	mov    $0x113,%ecx
+   14001484c:	48 8d 94 24 3b 14 00 	lea    0x143b(%rsp),%rdx
+   140014853:	00 
+   140014854:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+   140014857:	b9 12 00 00 00       	mov    $0x12,%ecx
+   14001485c:	31 c0                	xor    %eax,%eax
+   14001485e:	48 89 d7             	mov    %rdx,%rdi
+   140014861:	f3 ab                	rep stos %eax,%es:(%rdi)
+   140014863:	48 8d 8c 24 c8 17 00 	lea    0x17c8(%rsp),%rcx
+   14001486a:	00 
+   14001486b:	80 a4 24 90 13 00 00 	andb   $0xfe,0x1390(%rsp)
+   140014872:	fe 
+   140014873:	c6 84 24 c8 06 00 00 	movb   $0x0,0x6c8(%rsp)
+   14001487a:	00 
+   14001487b:	e8 80 e7 fe ff       	call   140003000 <event_cancel>
+   140014880:	48 8d 8c 24 d0 17 00 	lea    0x17d0(%rsp),%rcx
+   140014887:	00 
+   140014888:	e8 73 e7 fe ff       	call   140003000 <event_cancel>
+   14001488d:	80 bc 24 c8 06 00 00 	cmpb   $0x2,0x6c8(%rsp)
+   140014894:	02 
+   140014895:	48 8b 8c 24 48 05 00 	mov    0x548(%rsp),%rcx
+   14001489c:	00 
+   14001489d:	48 8d 94 24 48 06 00 	lea    0x648(%rsp),%rdx
+   1400148a4:	00 
+   1400148a5:	74 11                	je     1400148b8 <main+0xdb8>
+   1400148a7:	48 39 d1             	cmp    %rdx,%rcx
+   1400148aa:	0f 84 d7 04 00 00    	je     140014d87 <main+0x1287>
+   1400148b0:	48 89 94 24 50 05 00 	mov    %rdx,0x550(%rsp)
+   1400148b7:	00 
+   1400148b8:	c7 84 24 f8 0e 00 00 	movl   $0x7,0xef8(%rsp)
+   1400148bf:	07 00 00 00 
+   1400148c3:	e8 08 ce fe ff       	call   1400016d0 <get_dword_time>
+   1400148c8:	89 84 24 28 14 00 00 	mov    %eax,0x1428(%rsp)
+   1400148cf:	89 84 24 8c 13 00 00 	mov    %eax,0x138c(%rsp)
+   1400148d6:	31 c0                	xor    %eax,%eax
+   1400148d8:	89 84 24 c0 05 00 00 	mov    %eax,0x5c0(%rsp)
+   1400148df:	48 39 d1             	cmp    %rdx,%rcx
+   1400148e2:	0f 84 36 04 00 00    	je     140014d1e <main+0x121e>
+   1400148e8:	48 89 94 24 50 05 00 	mov    %rdx,0x550(%rsp)
+   1400148ef:	00 
+   1400148f0:	31 c9                	xor    %ecx,%ecx
+   1400148f2:	45 31 c9             	xor    %r9d,%r9d
+   1400148f5:	45 31 c0             	xor    %r8d,%r8d
+   1400148f8:	45 31 d2             	xor    %r10d,%r10d
+   1400148fb:	66 0f ef c0          	pxor   %xmm0,%xmm0
+   1400148ff:	45 31 db             	xor    %r11d,%r11d
+   140014902:	31 ff                	xor    %edi,%edi
+   140014904:	45 31 e4             	xor    %r12d,%r12d
+   140014907:	c7 84 24 88 06 00 00 	movl   $0x1,0x688(%rsp)
+   14001490e:	01 00 00 00 
+   140014912:	31 d2                	xor    %edx,%edx
+   140014914:	e8 b7 cd fe ff       	call   1400016d0 <get_dword_time>
+   140014919:	44 89 84 24 58 17 00 	mov    %r8d,0x1758(%rsp)
+   140014920:	00 
+   140014921:	2d 20 4e 00 00       	sub    $0x4e20,%eax
+   140014926:	4c 89 8c 24 78 16 00 	mov    %r9,0x1678(%rsp)
+   14001492d:	00 
+   14001492e:	89 84 24 2c 14 00 00 	mov    %eax,0x142c(%rsp)
+   140014935:	48 8b 05 4c 3b 00 00 	mov    0x3b4c(%rip),%rax        # 140018488 <vtable for CHARACTER+0x158>
+   14001493c:	4c 89 8c 24 20 14 00 	mov    %r9,0x1420(%rsp)
+   140014943:	00 
+   140014944:	44 89 94 24 68 15 00 	mov    %r10d,0x1568(%rsp)
+   14001494b:	00 
+   14001494c:	44 89 9c 24 b0 17 00 	mov    %r11d,0x17b0(%rsp)
+   140014953:	00 
+   140014954:	0f 29 84 24 00 14 00 	movaps %xmm0,0x1400(%rsp)
+   14001495b:	00 
+   14001495c:	0f 29 84 24 10 14 00 	movaps %xmm0,0x1410(%rsp)
+   140014963:	00 
+   140014964:	48 89 8c 24 38 17 00 	mov    %rcx,0x1738(%rsp)
+   14001496b:	00 
+   14001496c:	48 89 8c 24 d8 15 00 	mov    %rcx,0x15d8(%rsp)
+   140014973:	00 
+   140014974:	48 89 8c 24 50 17 00 	mov    %rcx,0x1750(%rsp)
+   14001497b:	00 
+   14001497c:	48 89 bc 24 f0 14 00 	mov    %rdi,0x14f0(%rsp)
+   140014983:	00 
+   140014984:	31 ff                	xor    %edi,%edi
+   140014986:	48 89 84 24 40 17 00 	mov    %rax,0x1740(%rsp)
+   14001498d:	00 
+   14001498e:	c6 84 24 90 13 00 00 	movb   $0x0,0x1390(%rsp)
+   140014995:	00 
+   140014996:	e8 35 cd fe ff       	call   1400016d0 <get_dword_time>
+   14001499b:	44 89 a4 24 f8 14 00 	mov    %r12d,0x14f8(%rsp)
+   1400149a2:	00 
+   1400149a3:	2d 20 bf 02 00       	sub    $0x2bf20,%eax
+   1400149a8:	c6 84 24 91 13 00 00 	movb   $0x0,0x1391(%rsp)
+   1400149af:	00 
+   1400149b0:	89 84 24 b0 14 00 00 	mov    %eax,0x14b0(%rsp)
+   1400149b7:	31 c0                	xor    %eax,%eax
+   1400149b9:	48 89 84 24 fc 18 00 	mov    %rax,0x18fc(%rsp)
+   1400149c0:	00 
+   1400149c1:	c6 84 24 19 15 00 00 	movb   $0x0,0x1519(%rsp)
+   1400149c8:	00 
+   1400149c9:	c6 84 24 60 18 00 00 	movb   $0x0,0x1860(%rsp)
+   1400149d0:	00 
+   1400149d1:	66 c7 84 24 38 14 00 	movw   $0x0,0x1438(%rsp)
+   1400149d8:	00 00 00 
+   1400149db:	c6 84 24 7f 17 00 00 	movb   $0x0,0x177f(%rsp)
+   1400149e2:	00 
+   1400149e3:	e8 e8 cc fe ff       	call   1400016d0 <get_dword_time>
+   1400149e8:	c6 84 24 80 17 00 00 	movb   $0x0,0x1780(%rsp)
+   1400149ef:	00 
+   1400149f0:	2d 10 27 00 00       	sub    $0x2710,%eax
+   1400149f5:	c6 84 24 c8 15 00 00 	movb   $0x0,0x15c8(%rsp)
+   1400149fc:	00 
+   1400149fd:	89 84 24 e8 16 00 00 	mov    %eax,0x16e8(%rsp)
+   140014a04:	31 c0                	xor    %eax,%eax
+   140014a06:	48 89 84 24 bc 15 00 	mov    %rax,0x15bc(%rsp)
+   140014a0d:	00 
+   140014a0e:	31 c0                	xor    %eax,%eax
+   140014a10:	89 84 24 c4 15 00 00 	mov    %eax,0x15c4(%rsp)
+   140014a17:	31 c0                	xor    %eax,%eax
+   140014a19:	48 89 84 24 a8 17 00 	mov    %rax,0x17a8(%rsp)
+   140014a20:	00 
+   140014a21:	31 c0                	xor    %eax,%eax
+   140014a23:	66 c7 84 24 15 16 00 	movw   $0x0,0x1615(%rsp)
+   140014a2a:	00 00 00 
+   140014a2d:	48 89 84 24 a0 17 00 	mov    %rax,0x17a0(%rsp)
+   140014a34:	00 
+   140014a35:	c6 84 24 b8 13 00 00 	movb   $0x0,0x13b8(%rsp)
+   140014a3c:	00 
+   140014a3d:	c6 84 24 20 15 00 00 	movb   $0x0,0x1520(%rsp)
+   140014a44:	00 
+   140014a45:	e8 86 cc fe ff       	call   1400016d0 <get_dword_time>
+   140014a4a:	48 8b 8c 24 50 16 00 	mov    0x1650(%rsp),%rcx
+   140014a51:	00 
+   140014a52:	89 94 24 38 16 00 00 	mov    %edx,0x1638(%rsp)
+   140014a59:	2d 60 ea 00 00       	sub    $0xea60,%eax
+   140014a5e:	89 94 24 24 15 00 00 	mov    %edx,0x1524(%rsp)
+   140014a65:	89 84 24 08 15 00 00 	mov    %eax,0x1508(%rsp)
+   140014a6c:	89 94 24 8c 06 00 00 	mov    %edx,0x68c(%rsp)
+   140014a73:	c6 84 24 3a 14 00 00 	movb   $0x0,0x143a(%rsp)
+   140014a7a:	00 
+   140014a7b:	e8 d0 d4 fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   140014a80:	45 31 d2             	xor    %r10d,%r10d
+   140014a83:	31 c9                	xor    %ecx,%ecx
+   140014a85:	45 31 c0             	xor    %r8d,%r8d
+   140014a88:	45 31 c9             	xor    %r9d,%r9d
+   140014a8b:	66 0f ef c0          	pxor   %xmm0,%xmm0
+   140014a8f:	4c 89 b4 24 58 16 00 	mov    %r14,0x1658(%rsp)
+   140014a96:	00 
+   140014a97:	45 31 db             	xor    %r11d,%r11d
+   140014a9a:	4c 89 b4 24 60 16 00 	mov    %r14,0x1660(%rsp)
+   140014aa1:	00 
+   140014aa2:	48 89 8c 24 50 16 00 	mov    %rcx,0x1650(%rsp)
+   140014aa9:	00 
+   140014aaa:	4c 89 84 24 68 16 00 	mov    %r8,0x1668(%rsp)
+   140014ab1:	00 
+   140014ab2:	c6 84 24 bd 13 00 00 	movb   $0x0,0x13bd(%rsp)
+   140014ab9:	00 
+   140014aba:	44 89 8c 24 78 17 00 	mov    %r9d,0x1778(%rsp)
+   140014ac1:	00 
+   140014ac2:	4c 89 94 24 10 15 00 	mov    %r10,0x1510(%rsp)
+   140014ac9:	00 
+   140014aca:	4c 89 94 24 b8 17 00 	mov    %r10,0x17b8(%rsp)
+   140014ad1:	00 
+   140014ad2:	0f 11 84 24 68 17 00 	movups %xmm0,0x1768(%rsp)
+   140014ad9:	00 
+   140014ada:	e8 f1 cb fe ff       	call   1400016d0 <get_dword_time>
+   140014adf:	c6 84 24 7c 17 00 00 	movb   $0x0,0x177c(%rsp)
+   140014ae6:	00 
+   140014ae7:	89 84 24 34 14 00 00 	mov    %eax,0x1434(%rsp)
+   140014aee:	e8 dd cb fe ff       	call   1400016d0 <get_dword_time>
+   140014af3:	4c 89 9c 24 c0 17 00 	mov    %r11,0x17c0(%rsp)
+   140014afa:	00 
+   140014afb:	2d b8 0b 00 00       	sub    $0xbb8,%eax
+   140014b00:	89 bc 24 94 06 00 00 	mov    %edi,0x694(%rsp)
+   140014b07:	89 84 24 d0 15 00 00 	mov    %eax,0x15d0(%rsp)
+   140014b0e:	48 8b 05 7b 39 00 00 	mov    0x397b(%rip),%rax        # 140018490 <vtable for CHARACTER+0x160>
+   140014b15:	c7 84 24 cc 15 00 00 	movl   $0x3f800000,0x15cc(%rsp)
+   140014b1c:	00 00 80 3f 
+   140014b20:	48 89 84 24 5c 17 00 	mov    %rax,0x175c(%rsp)
+   140014b27:	00 
+   140014b28:	c7 84 24 d4 15 00 00 	movl   $0xffffff9c,0x15d4(%rsp)
+   140014b2f:	9c ff ff ff 
+   140014b33:	66 c7 84 24 7d 17 00 	movw   $0x0,0x177d(%rsp)
+   140014b3a:	00 00 00 
+   140014b3d:	e8 8e cb fe ff       	call   1400016d0 <get_dword_time>
+   140014b42:	45 31 e4             	xor    %r12d,%r12d
+   140014b45:	45 31 f6             	xor    %r14d,%r14d
+   140014b48:	c6 84 24 9c 18 00 00 	movb   $0x0,0x189c(%rsp)
+   140014b4f:	00 
+   140014b50:	89 84 24 18 16 00 00 	mov    %eax,0x1618(%rsp)
+   140014b57:	31 c0                	xor    %eax,%eax
+   140014b59:	44 89 a4 24 1c 16 00 	mov    %r12d,0x161c(%rsp)
+   140014b60:	00 
+   140014b61:	4c 8d a4 24 10 19 00 	lea    0x1910(%rsp),%r12
+   140014b68:	00 
+   140014b69:	4c 89 b4 24 20 16 00 	mov    %r14,0x1620(%rsp)
+   140014b70:	00 
+   140014b71:	4c 89 b4 24 28 16 00 	mov    %r14,0x1628(%rsp)
+   140014b78:	00 
+   140014b79:	48 89 84 24 a0 18 00 	mov    %rax,0x18a0(%rsp)
+   140014b80:	00 
+   140014b81:	e8 fa ff fe ff       	call   140004b80 <singleton<quest::CQuestManager>::instance()>
+   140014b86:	48 8d 7c 24 40       	lea    0x40(%rsp),%rdi
+   140014b8b:	48 8d 15 08 28 00 00 	lea    0x2808(%rip),%rdx        # 14001739a <.rdata+0x33a>
+   140014b92:	49 89 c6             	mov    %rax,%r14
+   140014b95:	48 89 f9             	mov    %rdi,%rcx
+   140014b98:	e8 53 05 ff ff       	call   1400050f0 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) [clone .isra.0]>
+   140014b9d:	48 89 fa             	mov    %rdi,%rdx
+   140014ba0:	4c 89 f1             	mov    %r14,%rcx
+   140014ba3:	e8 88 f3 fe ff       	call   140003f30 <quest::CQuestManager::GetEventFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)>
+   140014ba8:	48 89 f9             	mov    %rdi,%rcx
+   140014bab:	89 84 24 ac 18 00 00 	mov    %eax,0x18ac(%rsp)
+   140014bb2:	e8 49 37 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140014bb7:	31 d2                	xor    %edx,%edx
+   140014bb9:	31 c0                	xor    %eax,%eax
+   140014bbb:	c6 84 24 b0 18 00 00 	movb   $0x0,0x18b0(%rsp)
+   140014bc2:	00 
+   140014bc3:	48 89 84 24 b4 18 00 	mov    %rax,0x18b4(%rsp)
+   140014bca:	00 
+   140014bcb:	89 94 24 bc 18 00 00 	mov    %edx,0x18bc(%rsp)
+   140014bd2:	89 94 24 44 17 00 00 	mov    %edx,0x1744(%rsp)
+   140014bd9:	e8 a2 ff fe ff       	call   140004b80 <singleton<quest::CQuestManager>::instance()>
+   140014bde:	48 8d 15 ce 27 00 00 	lea    0x27ce(%rip),%rdx        # 1400173b3 <.rdata+0x353>
+   140014be5:	48 89 f9             	mov    %rdi,%rcx
+   140014be8:	49 89 c6             	mov    %rax,%r14
+   140014beb:	e8 00 05 ff ff       	call   1400050f0 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) [clone .isra.0]>
+   140014bf0:	48 89 fa             	mov    %rdi,%rdx
+   140014bf3:	4c 89 f1             	mov    %r14,%rcx
+   140014bf6:	e8 35 f3 fe ff       	call   140003f30 <quest::CQuestManager::GetEventFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)>
+   140014bfb:	48 89 f9             	mov    %rdi,%rcx
+   140014bfe:	89 84 24 c0 18 00 00 	mov    %eax,0x18c0(%rsp)
+   140014c05:	e8 f6 36 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140014c0a:	66 0f 6e 05 52 14 00 	movd   0x1452(%rip),%xmm0        # 140016064 <isolated_fixture_heart+0x24>
+   140014c11:	00 
+   140014c12:	31 c0                	xor    %eax,%eax
+   140014c14:	83 05 61 b6 00 00 05 	addl   $0x5,0xb661(%rip)        # 14002027c <isolated_pulse_reads>
+   140014c1b:	48 89 84 24 c4 18 00 	mov    %rax,0x18c4(%rsp)
+   140014c22:	00 
+   140014c23:	48 8d 94 24 e4 04 00 	lea    0x4e4(%rsp),%rdx
+   140014c2a:	00 
+   140014c2b:	48 89 e8             	mov    %rbp,%rax
+   140014c2e:	66 0f 7e 84 24 dc 18 	movd   %xmm0,0x18dc(%rsp)
+   140014c35:	00 00 
+   140014c37:	66 0f 70 c8 00       	pshufd $0x0,%xmm0,%xmm1
+   140014c3c:	66 0f 6f 05 5c 38 00 	movdqa 0x385c(%rip),%xmm0        # 1400184a0 <vtable for CHARACTER+0x170>
+   140014c43:	00 
+   140014c44:	c7 84 24 f0 18 00 00 	movl   $0x15f90,0x18f0(%rsp)
+   140014c4b:	90 5f 01 00 
+   140014c4f:	0f 11 8c 24 cc 18 00 	movups %xmm1,0x18cc(%rsp)
+   140014c56:	00 
+   140014c57:	0f 29 84 24 e0 18 00 	movaps %xmm0,0x18e0(%rsp)
+   140014c5e:	00 
+   140014c5f:	6b 88 10 14 00 00 19 	imul   $0x19,0x1410(%rax),%ecx
+   140014c66:	29 88 fc 13 00 00    	sub    %ecx,0x13fc(%rax)
+   140014c6c:	48 83 c0 04          	add    $0x4,%rax
+   140014c70:	48 39 d0             	cmp    %rdx,%rax
+   140014c73:	75 ea                	jne    140014c5f <main+0x115f>
+   140014c75:	31 c0                	xor    %eax,%eax
+   140014c77:	4c 8d 0d 4d 27 00 00 	lea    0x274d(%rip),%r9        # 1400173cb <.rdata+0x36b>
+   140014c7e:	31 d2                	xor    %edx,%edx
+   140014c80:	4c 8b 84 24 18 19 00 	mov    0x1918(%rsp),%r8
+   140014c87:	00 
+   140014c88:	48 89 84 24 f4 18 00 	mov    %rax,0x18f4(%rsp)
+   140014c8f:	00 
+   140014c90:	31 c0                	xor    %eax,%eax
+   140014c92:	4c 8d a4 24 10 19 00 	lea    0x1910(%rsp),%r12
+   140014c99:	00 
+   140014c9a:	48 89 44 24 20       	mov    %rax,0x20(%rsp)
+   140014c9f:	4c 89 e1             	mov    %r12,%rcx
+   140014ca2:	e8 51 36 ff ff       	call   1400082f8 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long long, unsigned long long, char const*, unsigned long long)>
+   140014ca7:	48 8d 44 24 78       	lea    0x78(%rsp),%rax
+   140014cac:	48 89 ea             	mov    %rbp,%rdx
+   140014caf:	48 89 d9             	mov    %rbx,%rcx
+   140014cb2:	66 48 0f 6e f0       	movq   %rax,%xmm6
+   140014cb7:	48 89 44 24 30       	mov    %rax,0x30(%rsp)
+   140014cbc:	48 8b 84 24 40 01 00 	mov    0x140(%rsp),%rax
+   140014cc3:	00 
+   140014cc4:	66 0f 6c f6          	punpcklqdq %xmm6,%xmm6
+   140014cc8:	ff 50 10             	call   *0x10(%rax)
+   140014ccb:	48 8b 84 24 40 01 00 	mov    0x140(%rsp),%rax
+   140014cd2:	00 
+   140014cd3:	48 89 ea             	mov    %rbp,%rdx
+   140014cd6:	48 89 d9             	mov    %rbx,%rcx
+   140014cd9:	ff 50 18             	call   *0x18(%rax)
+   140014cdc:	48 8b 05 e5 b5 00 00 	mov    0xb5e5(%rip),%rax        # 1400202c8 <encoded+0x8>
+   140014ce3:	48 39 05 d6 b5 00 00 	cmp    %rax,0xb5d6(%rip)        # 1400202c0 <encoded>
+   140014cea:	74 45                	je     140014d31 <main+0x1231>
+   140014cec:	41 b8 39 00 00 00    	mov    $0x39,%r8d
+   140014cf2:	48 8d 15 11 26 00 00 	lea    0x2611(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014cf9:	48 8d 0d d0 26 00 00 	lea    0x26d0(%rip),%rcx        # 1400173d0 <.rdata+0x370>
+   140014d00:	e8 8b f3 fe ff       	call   140004090 <fw_assert_fail>
+   140014d05:	41 b8 2c 00 00 00    	mov    $0x2c,%r8d
+   140014d0b:	48 8d 15 f8 25 00 00 	lea    0x25f8(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014d12:	48 8d 0d 3f 26 00 00 	lea    0x263f(%rip),%rcx        # 140017358 <.rdata+0x2f8>
+   140014d19:	e8 72 f3 fe ff       	call   140004090 <fw_assert_fail>
+   140014d1e:	48 39 94 24 50 05 00 	cmp    %rdx,0x550(%rsp)
+   140014d25:	00 
+   140014d26:	0f 85 bc fb ff ff    	jne    1400148e8 <main+0xde8>
+   140014d2c:	e9 bf fb ff ff       	jmp    1400148f0 <main+0xdf0>
+   140014d31:	83 3d 48 b5 00 00 00 	cmpl   $0x0,0xb548(%rip)        # 140020280 <isolated_item_packet_logs>
+   140014d38:	75 b2                	jne    140014cec <main+0x11ec>
+   140014d3a:	48 8b 84 24 40 01 00 	mov    0x140(%rsp),%rax
+   140014d41:	00 
+   140014d42:	48 89 ea             	mov    %rbp,%rdx
+   140014d45:	48 89 d9             	mov    %rbx,%rcx
+   140014d48:	48 c7 84 24 18 05 00 	movq   $0x1,0x518(%rsp)
+   140014d4f:	00 01 00 00 00 
+   140014d54:	ff 50 10             	call   *0x10(%rax)
+   140014d57:	48 8b 05 62 b5 00 00 	mov    0xb562(%rip),%rax        # 1400202c0 <encoded>
+   140014d5e:	48 8b 15 63 b5 00 00 	mov    0xb563(%rip),%rdx        # 1400202c8 <encoded+0x8>
+   140014d65:	48 29 c2             	sub    %rax,%rdx
+   140014d68:	48 83 fa 15          	cmp    $0x15,%rdx
+   140014d6c:	74 53                	je     140014dc1 <main+0x12c1>
+   140014d6e:	41 b8 3d 00 00 00    	mov    $0x3d,%r8d
+   140014d74:	48 8d 15 8f 25 00 00 	lea    0x258f(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014d7b:	48 8d 0d 7e 26 00 00 	lea    0x267e(%rip),%rcx        # 140017400 <.rdata+0x3a0>
+   140014d82:	e8 09 f3 fe ff       	call   140004090 <fw_assert_fail>
+   140014d87:	48 39 8c 24 50 05 00 	cmp    %rcx,0x550(%rsp)
+   140014d8e:	00 
+   140014d8f:	0f 85 1b fb ff ff    	jne    1400148b0 <main+0xdb0>
+   140014d95:	c7 84 24 f8 0e 00 00 	movl   $0x7,0xef8(%rsp)
+   140014d9c:	07 00 00 00 
+   140014da0:	e8 2b c9 fe ff       	call   1400016d0 <get_dword_time>
+   140014da5:	89 84 24 28 14 00 00 	mov    %eax,0x1428(%rsp)
+   140014dac:	89 84 24 8c 13 00 00 	mov    %eax,0x138c(%rsp)
+   140014db3:	31 c0                	xor    %eax,%eax
+   140014db5:	89 84 24 c0 05 00 00 	mov    %eax,0x5c0(%rsp)
+   140014dbc:	e9 2f fb ff ff       	jmp    1400148f0 <main+0xdf0>
+   140014dc1:	83 78 01 ef          	cmpl   $0xffffffef,0x1(%rax)
+   140014dc5:	0f 94 c2             	sete   %dl
+   140014dc8:	80 38 1a             	cmpb   $0x1a,(%rax)
+   140014dcb:	0f 94 c1             	sete   %cl
+   140014dce:	21 ca                	and    %ecx,%edx
+   140014dd0:	81 78 05 40 e2 01 00 	cmpl   $0x1e240,0x5(%rax)
+   140014dd7:	0f 94 c1             	sete   %cl
+   140014dda:	21 ca                	and    %ecx,%edx
+   140014ddc:	83 78 09 f7          	cmpl   $0xfffffff7,0x9(%rax)
+   140014de0:	0f 94 c1             	sete   %cl
+   140014de3:	21 ca                	and    %ecx,%edx
+   140014de5:	81 78 11 39 30 00 00 	cmpl   $0x3039,0x11(%rax)
+   140014dec:	0f 94 c1             	sete   %cl
+   140014def:	84 ca                	test   %cl,%dl
+   140014df1:	74 09                	je     140014dfc <main+0x12fc>
+   140014df3:	81 78 0d db 03 00 00 	cmpl   $0x3db,0xd(%rax)
+   140014dfa:	74 19                	je     140014e15 <main+0x1315>
+   140014dfc:	41 b8 3f 00 00 00    	mov    $0x3f,%r8d
+   140014e02:	48 8d 15 01 25 00 00 	lea    0x2501(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014e09:	48 8d 0d 20 26 00 00 	lea    0x2620(%rip),%rcx        # 140017430 <.rdata+0x3d0>
+   140014e10:	e8 7b f2 fe ff       	call   140004090 <fw_assert_fail>
+   140014e15:	48 8b 84 24 40 01 00 	mov    0x140(%rsp),%rax
+   140014e1c:	00 
+   140014e1d:	48 89 ea             	mov    %rbp,%rdx
+   140014e20:	48 89 d9             	mov    %rbx,%rcx
+   140014e23:	ff 50 18             	call   *0x18(%rax)
+   140014e26:	48 8b 05 93 b4 00 00 	mov    0xb493(%rip),%rax        # 1400202c0 <encoded>
+   140014e2d:	48 8b 15 94 b4 00 00 	mov    0xb494(%rip),%rdx        # 1400202c8 <encoded+0x8>
+   140014e34:	48 29 c2             	sub    %rax,%rdx
+   140014e37:	48 83 fa 05          	cmp    $0x5,%rdx
+   140014e3b:	74 19                	je     140014e56 <main+0x1356>
+   140014e3d:	41 b8 41 00 00 00    	mov    $0x41,%r8d
+   140014e43:	48 8d 15 c0 24 00 00 	lea    0x24c0(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014e4a:	48 8d 0d 4f 26 00 00 	lea    0x264f(%rip),%rcx        # 1400174a0 <.rdata+0x440>
+   140014e51:	e8 3a f2 fe ff       	call   140004090 <fw_assert_fail>
+   140014e56:	80 38 1b             	cmpb   $0x1b,(%rax)
+   140014e59:	41 0f 94 c4          	sete   %r12b
+   140014e5d:	81 78 01 db 03 00 00 	cmpl   $0x3db,0x1(%rax)
+   140014e64:	0f 94 c0             	sete   %al
+   140014e67:	41 20 c4             	and    %al,%r12b
+   140014e6a:	75 19                	jne    140014e85 <main+0x1385>
+   140014e6c:	41 b8 43 00 00 00    	mov    $0x43,%r8d
+   140014e72:	48 8d 15 91 24 00 00 	lea    0x2491(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014e79:	48 8d 0d 50 26 00 00 	lea    0x2650(%rip),%rcx        # 1400174d0 <.rdata+0x470>
+   140014e80:	e8 0b f2 fe ff       	call   140004090 <fw_assert_fail>
+   140014e85:	83 3d f4 b3 00 00 02 	cmpl   $0x2,0xb3f4(%rip)        # 140020280 <isolated_item_packet_logs>
+   140014e8c:	75 de                	jne    140014e6c <main+0x136c>
+   140014e8e:	45 31 ff             	xor    %r15d,%r15d
+   140014e91:	4c 8d 74 24 50       	lea    0x50(%rsp),%r14
+   140014e96:	31 c9                	xor    %ecx,%ecx
+   140014e98:	45 31 c0             	xor    %r8d,%r8d
+   140014e9b:	4c 89 bc 24 98 00 00 	mov    %r15,0x98(%rsp)
+   140014ea2:	00 
+   140014ea3:	45 31 c9             	xor    %r9d,%r9d
+   140014ea6:	45 31 d2             	xor    %r10d,%r10d
+   140014ea9:	31 c0                	xor    %eax,%eax
+   140014eab:	4c 8b bc 24 a8 01 00 	mov    0x1a8(%rsp),%r15
+   140014eb2:	00 
+   140014eb3:	45 31 db             	xor    %r11d,%r11d
+   140014eb6:	45 31 ed             	xor    %r13d,%r13d
+   140014eb9:	48 89 8c 24 18 05 00 	mov    %rcx,0x518(%rsp)
+   140014ec0:	00 
+   140014ec1:	44 89 44 24 50       	mov    %r8d,0x50(%rsp)
+   140014ec6:	4c 89 4c 24 58       	mov    %r9,0x58(%rsp)
+   140014ecb:	4c 89 74 24 60       	mov    %r14,0x60(%rsp)
+   140014ed0:	4c 89 74 24 68       	mov    %r14,0x68(%rsp)
+   140014ed5:	4c 89 54 24 70       	mov    %r10,0x70(%rsp)
+   140014eda:	4c 89 9c 24 88 00 00 	mov    %r11,0x88(%rsp)
+   140014ee1:	00 
+   140014ee2:	44 89 6c 24 40       	mov    %r13d,0x40(%rsp)
+   140014ee7:	89 84 24 90 00 00 00 	mov    %eax,0x90(%rsp)
+   140014eee:	c6 84 24 94 00 00 00 	movb   $0x0,0x94(%rsp)
+   140014ef5:	00 
+   140014ef6:	0f 11 74 24 78       	movups %xmm6,0x78(%rsp)
+   140014efb:	49 39 ff             	cmp    %rdi,%r15
+   140014efe:	74 6a                	je     140014f6a <main+0x146a>
+   140014f00:	4d 85 ff             	test   %r15,%r15
+   140014f03:	74 0c                	je     140014f11 <main+0x1411>
+   140014f05:	49 8d 4f 08          	lea    0x8(%r15),%rcx
+   140014f09:	48 89 da             	mov    %rbx,%rdx
+   140014f0c:	e8 bf ee fe ff       	call   140003dd0 <std::_Rb_tree<CEntity*, CEntity*, std::_Identity<CEntity*>, std::less<CEntity*>, std::allocator<CEntity*> >::erase(CEntity* const&) [clone .isra.0]>
+   140014f11:	48 8b 44 24 58       	mov    0x58(%rsp),%rax
+   140014f16:	48 89 bc 24 a8 01 00 	mov    %rdi,0x1a8(%rsp)
+   140014f1d:	00 
+   140014f1e:	4c 89 f1             	mov    %r14,%rcx
+   140014f21:	48 89 c2             	mov    %rax,%rdx
+   140014f24:	48 85 d2             	test   %rdx,%rdx
+   140014f27:	74 1c                	je     140014f45 <main+0x1445>
+   140014f29:	4c 8b 42 10          	mov    0x10(%rdx),%r8
+   140014f2d:	4c 8b 4a 18          	mov    0x18(%rdx),%r9
+   140014f31:	48 39 5a 20          	cmp    %rbx,0x20(%rdx)
+   140014f35:	73 06                	jae    140014f3d <main+0x143d>
+   140014f37:	48 89 ca             	mov    %rcx,%rdx
+   140014f3a:	4d 89 c8             	mov    %r9,%r8
+   140014f3d:	48 89 d1             	mov    %rdx,%rcx
+   140014f40:	4c 89 c2             	mov    %r8,%rdx
+   140014f43:	eb df                	jmp    140014f24 <main+0x1424>
+   140014f45:	4c 39 f1             	cmp    %r14,%rcx
+   140014f48:	0f 84 8e 00 00 00    	je     140014fdc <main+0x14dc>
+   140014f4e:	48 3b 59 20          	cmp    0x20(%rcx),%rbx
+   140014f52:	0f 82 84 00 00 00    	jb     140014fdc <main+0x14dc>
+   140014f58:	e8 63 ab ff ff       	call   14000fac0 <abort>
+   140014f5d:	4d 85 ff             	test   %r15,%r15
+   140014f60:	74 08                	je     140014f6a <main+0x146a>
+   140014f62:	4c 89 f9             	mov    %r15,%rcx
+   140014f65:	e8 06 f9 fe ff       	call   140004870 <SECTREE::DecreasePC()>
+   140014f6a:	66 0f 6f 05 3e 35 00 	movdqa 0x353e(%rip),%xmm0        # 1400184b0 <vtable for CHARACTER+0x180>
+   140014f71:	00 
+   140014f72:	48 8b 05 27 b3 00 00 	mov    0xb327(%rip),%rax        # 1400202a0 <cancelled>
+   140014f79:	48 3b 05 28 b3 00 00 	cmp    0xb328(%rip),%rax        # 1400202a8 <cancelled+0x8>
+   140014f80:	0f 11 84 24 08 02 00 	movups %xmm0,0x208(%rsp)
+   140014f87:	00 
+   140014f88:	66 0f 6f 05 30 35 00 	movdqa 0x3530(%rip),%xmm0        # 1400184c0 <vtable for CHARACTER+0x190>
+   140014f8f:	00 
+   140014f90:	0f 11 84 24 18 02 00 	movups %xmm0,0x218(%rsp)
+   140014f97:	00 
+   140014f98:	74 07                	je     140014fa1 <main+0x14a1>
+   140014f9a:	48 89 05 07 b3 00 00 	mov    %rax,0xb307(%rip)        # 1400202a8 <cancelled+0x8>
+   140014fa1:	48 89 d9             	mov    %rbx,%rcx
+   140014fa4:	e8 57 f9 fe ff       	call   140004900 <CItem::Destroy()>
+   140014fa9:	48 8b 15 f8 b2 00 00 	mov    0xb2f8(%rip),%rdx        # 1400202a8 <cancelled+0x8>
+   140014fb0:	48 8b 05 e9 b2 00 00 	mov    0xb2e9(%rip),%rax        # 1400202a0 <cancelled>
+   140014fb7:	48 89 d1             	mov    %rdx,%rcx
+   140014fba:	48 29 c1             	sub    %rax,%rcx
+   140014fbd:	48 83 f9 20          	cmp    $0x20,%rcx
+   140014fc1:	74 41                	je     140015004 <main+0x1504>
+   140014fc3:	41 b8 4b 00 00 00    	mov    $0x4b,%r8d
+   140014fc9:	48 8d 15 3a 23 00 00 	lea    0x233a(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140014fd0:	48 8d 0d 43 25 00 00 	lea    0x2543(%rip),%rcx        # 14001751a <.rdata+0x4ba>
+   140014fd7:	e8 b4 f0 fe ff       	call   140004090 <fw_assert_fail>
+   140014fdc:	44 89 e2             	mov    %r12d,%edx
+   140014fdf:	4d 89 f5             	mov    %r14,%r13
+   140014fe2:	31 c9                	xor    %ecx,%ecx
+   140014fe4:	48 85 c0             	test   %rax,%rax
+   140014fe7:	74 45                	je     14001502e <main+0x152e>
+   140014fe9:	48 3b 58 20          	cmp    0x20(%rax),%rbx
+   140014fed:	4c 8b 40 18          	mov    0x18(%rax),%r8
+   140014ff1:	89 ca                	mov    %ecx,%edx
+   140014ff3:	49 89 c5             	mov    %rax,%r13
+   140014ff6:	4c 0f 42 40 10       	cmovb  0x10(%rax),%r8
+   140014ffb:	41 0f 42 d4          	cmovb  %r12d,%edx
+   140014fff:	4c 89 c0             	mov    %r8,%rax
+   140015002:	eb e0                	jmp    140014fe4 <main+0x14e4>
+   140015004:	48 8d 8c 24 08 02 00 	lea    0x208(%rsp),%rcx
+   14001500b:	00 
+   14001500c:	48 39 08             	cmp    %rcx,(%rax)
+   14001500f:	0f 84 e9 00 00 00    	je     1400150fe <main+0x15fe>
+   140015015:	41 b8 4c 00 00 00    	mov    $0x4c,%r8d
+   14001501b:	48 8d 15 e8 22 00 00 	lea    0x22e8(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140015022:	48 8d 0d 07 25 00 00 	lea    0x2507(%rip),%rcx        # 140017530 <.rdata+0x4d0>
+   140015029:	e8 62 f0 fe ff       	call   140004090 <fw_assert_fail>
+   14001502e:	84 d2                	test   %dl,%dl
+   140015030:	0f 84 84 00 00 00    	je     1400150ba <main+0x15ba>
+   140015036:	4c 39 6c 24 60       	cmp    %r13,0x60(%rsp)
+   14001503b:	74 0e                	je     14001504b <main+0x154b>
+   14001503d:	4c 89 e9             	mov    %r13,%rcx
+   140015040:	e8 2b 32 ff ff       	call   140008270 <std::_Rb_tree_decrement(std::_Rb_tree_node_base*)>
+   140015045:	48 39 58 20          	cmp    %rbx,0x20(%rax)
+   140015049:	73 33                	jae    14001507e <main+0x157e>
+   14001504b:	4d 39 f5             	cmp    %r14,%r13
+   14001504e:	74 08                	je     140015058 <main+0x1558>
+   140015050:	49 3b 5d 20          	cmp    0x20(%r13),%rbx
+   140015054:	41 0f 92 c4          	setb   %r12b
+   140015058:	b9 28 00 00 00       	mov    $0x28,%ecx
+   14001505d:	e8 ae 31 ff ff       	call   140008210 <operator new(unsigned long long)>
+   140015062:	48 89 58 20          	mov    %rbx,0x20(%rax)
+   140015066:	48 89 c2             	mov    %rax,%rdx
+   140015069:	41 0f b6 cc          	movzbl %r12b,%ecx
+   14001506d:	4d 89 f1             	mov    %r14,%r9
+   140015070:	4d 89 e8             	mov    %r13,%r8
+   140015073:	e8 b8 31 ff ff       	call   140008230 <std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)>
+   140015078:	48 83 44 24 70 01    	addq   $0x1,0x70(%rsp)
+   14001507e:	83 bc 24 90 01 00 00 	cmpl   $0x0,0x190(%rsp)
+   140015085:	00 
+   140015086:	0f 85 de fe ff ff    	jne    140014f6a <main+0x146a>
+   14001508c:	48 83 bc 24 88 01 00 	cmpq   $0x0,0x188(%rsp)
+   140015093:	00 00 
+   140015095:	74 28                	je     1400150bf <main+0x15bf>
+   140015097:	48 8b 44 24 78       	mov    0x78(%rsp),%rax
+   14001509c:	48 8b 54 24 30       	mov    0x30(%rsp),%rdx
+   1400150a1:	48 39 d0             	cmp    %rdx,%rax
+   1400150a4:	0f 84 b3 fe ff ff    	je     140014f5d <main+0x145d>
+   1400150aa:	48 8b 10             	mov    (%rax),%rdx
+   1400150ad:	48 8b 40 10          	mov    0x10(%rax),%rax
+   1400150b1:	83 40 50 01          	addl   $0x1,0x50(%rax)
+   1400150b5:	48 89 d0             	mov    %rdx,%rax
+   1400150b8:	eb e2                	jmp    14001509c <main+0x159c>
+   1400150ba:	4c 89 e8             	mov    %r13,%rax
+   1400150bd:	eb 86                	jmp    140015045 <main+0x1545>
+   1400150bf:	83 bc 24 90 00 00 00 	cmpl   $0x0,0x90(%rsp)
+   1400150c6:	00 
+   1400150c7:	0f 8e 9d fe ff ff    	jle    140014f6a <main+0x146a>
+   1400150cd:	0f b6 84 24 38 03 00 	movzbl 0x338(%rsp),%eax
+   1400150d4:	00 
+   1400150d5:	3c 03                	cmp    $0x3,%al
+   1400150d7:	0f 84 8d fe ff ff    	je     140014f6a <main+0x146a>
+   1400150dd:	3c 09                	cmp    $0x9,%al
+   1400150df:	0f 84 85 fe ff ff    	je     140014f6a <main+0x146a>
+   1400150e5:	41 b8 14 00 00 00    	mov    $0x14,%r8d
+   1400150eb:	48 8d 15 1e 20 00 00 	lea    0x201e(%rip),%rdx        # 140017110 <.rdata+0xb0>
+   1400150f2:	48 8d 0d 3f 20 00 00 	lea    0x203f(%rip),%rcx        # 140017138 <.rdata+0xd8>
+   1400150f9:	e8 92 ef fe ff       	call   140004090 <fw_assert_fail>
+   1400150fe:	48 8d 8c 24 20 02 00 	lea    0x220(%rsp),%rcx
+   140015105:	00 
+   140015106:	48 39 48 08          	cmp    %rcx,0x8(%rax)
+   14001510a:	0f 85 05 ff ff ff    	jne    140015015 <main+0x1515>
+   140015110:	48 8d 8c 24 10 02 00 	lea    0x210(%rsp),%rcx
+   140015117:	00 
+   140015118:	48 39 48 10          	cmp    %rcx,0x10(%rax)
+   14001511c:	0f 85 f3 fe ff ff    	jne    140015015 <main+0x1515>
+   140015122:	48 8d 8c 24 18 02 00 	lea    0x218(%rsp),%rcx
+   140015129:	00 
+   14001512a:	48 39 48 18          	cmp    %rcx,0x18(%rax)
+   14001512e:	0f 85 e1 fe ff ff    	jne    140015015 <main+0x1515>
+   140015134:	48 83 bc 24 a8 01 00 	cmpq   $0x0,0x1a8(%rsp)
+   14001513b:	00 00 
+   14001513d:	74 19                	je     140015158 <main+0x1658>
+   14001513f:	41 b8 4d 00 00 00    	mov    $0x4d,%r8d
+   140015145:	48 8d 15 be 21 00 00 	lea    0x21be(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   14001514c:	48 8d 0d 95 24 00 00 	lea    0x2495(%rip),%rcx        # 1400175e8 <.rdata+0x588>
+   140015153:	e8 38 ef fe ff       	call   140004090 <fw_assert_fail>
+   140015158:	48 83 7c 24 70 00    	cmpq   $0x0,0x70(%rsp)
+   14001515e:	75 df                	jne    14001513f <main+0x163f>
+   140015160:	80 bc 24 94 01 00 00 	cmpb   $0x0,0x194(%rsp)
+   140015167:	00 
+   140015168:	74 d5                	je     14001513f <main+0x163f>
+   14001516a:	48 8b 4c 24 38       	mov    0x38(%rsp),%rcx
+   14001516f:	48 39 8c 24 b0 01 00 	cmp    %rcx,0x1b0(%rsp)
+   140015176:	00 
+   140015177:	74 19                	je     140015192 <main+0x1692>
+   140015179:	41 b8 4e 00 00 00    	mov    $0x4e,%r8d
+   14001517f:	48 8d 15 84 21 00 00 	lea    0x2184(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   140015186:	48 8d 0d ab 24 00 00 	lea    0x24ab(%rip),%rcx        # 140017638 <.rdata+0x5d8>
+   14001518d:	e8 fe ee fe ff       	call   140004090 <fw_assert_fail>
+   140015192:	81 bc 24 cc 01 00 00 	cmpl   $0x3db,0x1cc(%rsp)
+   140015199:	db 03 00 00 
+   14001519d:	75 da                	jne    140015179 <main+0x1679>
+   14001519f:	48 39 c2             	cmp    %rax,%rdx
+   1400151a2:	74 07                	je     1400151ab <main+0x16ab>
+   1400151a4:	48 89 05 fd b0 00 00 	mov    %rax,0xb0fd(%rip)        # 1400202a8 <cancelled+0x8>
+   1400151ab:	48 8b 84 24 40 01 00 	mov    0x140(%rsp),%rax
+   1400151b2:	00 
+   1400151b3:	48 89 d9             	mov    %rbx,%rcx
+   1400151b6:	ff 10                	call   *(%rax)
+   1400151b8:	48 8b 05 e9 b0 00 00 	mov    0xb0e9(%rip),%rax        # 1400202a8 <cancelled+0x8>
+   1400151bf:	48 2b 05 da b0 00 00 	sub    0xb0da(%rip),%rax        # 1400202a0 <cancelled>
+   1400151c6:	48 83 f8 20          	cmp    $0x20,%rax
+   1400151ca:	74 19                	je     1400151e5 <main+0x16e5>
+   1400151cc:	41 b8 4f 00 00 00    	mov    $0x4f,%r8d
+   1400151d2:	48 8d 15 31 21 00 00 	lea    0x2131(%rip),%rdx        # 14001730a <.rdata+0x2aa>
+   1400151d9:	48 8d 0d 3a 23 00 00 	lea    0x233a(%rip),%rcx        # 14001751a <.rdata+0x4ba>
+   1400151e0:	e8 ab ee fe ff       	call   140004090 <fw_assert_fail>
+   1400151e5:	31 d2                	xor    %edx,%edx
+   1400151e7:	48 8d 0d 7a 24 00 00 	lea    0x247a(%rip),%rcx        # 140017668 <.rdata+0x608>
+   1400151ee:	48 89 15 93 b0 00 00 	mov    %rdx,0xb093(%rip)        # 140020288 <isolated_cancel_hook>
+   1400151f5:	48 89 15 94 b0 00 00 	mov    %rdx,0xb094(%rip)        # 140020290 <isolated_packet_hook>
+   1400151fc:	e8 97 a9 ff ff       	call   14000fb98 <puts>
+   140015201:	48 89 f9             	mov    %rdi,%rcx
+   140015204:	e8 57 c8 fe ff       	call   140001a60 <SECTREE::~SECTREE()>
+   140015209:	48 89 e9             	mov    %rbp,%rcx
+   14001520c:	e8 9f f2 fe ff       	call   1400044b0 <CHARACTER::~CHARACTER()>
+   140015211:	48 89 f1             	mov    %rsi,%rcx
+   140015214:	e8 07 ef fe ff       	call   140004120 <quest::CQuestManager::~CQuestManager()>
+   140015219:	90                   	nop
+   14001521a:	0f 28 b4 24 30 19 00 	movaps 0x1930(%rsp),%xmm6
+   140015221:	00 
+   140015222:	0f 28 bc 24 40 19 00 	movaps 0x1940(%rsp),%xmm7
+   140015229:	00 
+   14001522a:	31 c0                	xor    %eax,%eax
+   14001522c:	48 81 c4 58 19 00 00 	add    $0x1958,%rsp
+   140015233:	5b                   	pop    %rbx
+   140015234:	5e                   	pop    %rsi
+   140015235:	5f                   	pop    %rdi
+   140015236:	5d                   	pop    %rbp
+   140015237:	41 5c                	pop    %r12
+   140015239:	41 5d                	pop    %r13
+   14001523b:	41 5e                	pop    %r14
+   14001523d:	41 5f                	pop    %r15
+   14001523f:	c3                   	ret
+   140015240:	48 89 c3             	mov    %rax,%rbx
+   140015243:	eb 13                	jmp    140015258 <main+0x1758>
+   140015245:	48 89 c3             	mov    %rax,%rbx
+   140015248:	48 89 f9             	mov    %rdi,%rcx
+   14001524b:	e8 10 c8 fe ff       	call   140001a60 <SECTREE::~SECTREE()>
+   140015250:	48 89 e9             	mov    %rbp,%rcx
+   140015253:	e8 58 f2 fe ff       	call   1400044b0 <CHARACTER::~CHARACTER()>
+   140015258:	48 89 f1             	mov    %rsi,%rcx
+   14001525b:	e8 c0 ee fe ff       	call   140004120 <quest::CQuestManager::~CQuestManager()>
+   140015260:	48 89 d9             	mov    %rbx,%rcx
+   140015263:	e8 58 47 ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015268:	48 89 c3             	mov    %rax,%rbx
+   14001526b:	eb 05                	jmp    140015272 <main+0x1772>
+   14001526d:	48 89 c3             	mov    %rax,%rbx
+   140015270:	eb de                	jmp    140015250 <main+0x1750>
+   140015272:	4c 89 e1             	mov    %r12,%rcx
+   140015275:	e8 86 30 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   14001527a:	48 8b 8c 24 20 18 00 	mov    0x1820(%rsp),%rcx
+   140015281:	00 
+   140015282:	e8 19 c8 fe ff       	call   140001aa0 <std::_Rb_tree<int, std::pair<int const, event*>, std::_Select1st<std::pair<int const, event*> >, std::less<int>, std::allocator<std::pair<int const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, event*> >*) [clone .isra.0]>
+   140015287:	48 8b 8c 24 18 17 00 	mov    0x1718(%rsp),%rcx
+   14001528e:	00 
+   14001528f:	e8 bc cc fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   140015294:	48 8b 8c 24 c0 16 00 	mov    0x16c0(%rsp),%rcx
+   14001529b:	00 
+   14001529c:	e8 8f c9 fe ff       	call   140001c30 <std::_Rb_tree<int, std::pair<int const, TSkillUseInfo>, std::_Select1st<std::pair<int const, TSkillUseInfo> >, std::less<int>, std::allocator<std::pair<int const, TSkillUseInfo> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, TSkillUseInfo> >*) [clone .isra.0]>
+   1400152a1:	48 8b 8c 24 90 16 00 	mov    0x1690(%rsp),%rcx
+   1400152a8:	00 
+   1400152a9:	e8 12 cb fe ff       	call   140001dc0 <std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*) [clone .isra.0]>
+   1400152ae:	48 8b 8c 24 50 16 00 	mov    0x1650(%rsp),%rcx
+   1400152b5:	00 
+   1400152b6:	e8 95 cc fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   1400152bb:	48 8b 8c 24 f0 15 00 	mov    0x15f0(%rsp),%rcx
+   1400152c2:	00 
+   1400152c3:	e8 88 cc fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   1400152c8:	48 8b 8c 24 98 15 00 	mov    0x1598(%rsp),%rcx
+   1400152cf:	00 
+   1400152d0:	e8 0b ce fe ff       	call   1400020e0 <std::_Rb_tree<VID, std::pair<VID const, CHARACTER::TBattleInfo>, std::_Select1st<std::pair<VID const, CHARACTER::TBattleInfo> >, std::less<VID>, std::allocator<std::pair<VID const, CHARACTER::TBattleInfo> > >::_M_erase(std::_Rb_tree_node<std::pair<VID const, CHARACTER::TBattleInfo> >*) [clone .isra.0]>
+   1400152d5:	48 8b 8c 24 70 15 00 	mov    0x1570(%rsp),%rcx
+   1400152dc:	00 
+   1400152dd:	48 85 c9             	test   %rcx,%rcx
+   1400152e0:	74 05                	je     1400152e7 <main+0x17e7>
+   1400152e2:	e8 39 2f ff ff       	call   140008220 <operator delete(void*)>
+   1400152e7:	48 8d 8c 24 38 15 00 	lea    0x1538(%rsp),%rcx
+   1400152ee:	00 
+   1400152ef:	e8 0c 30 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   1400152f4:	48 8b 8c 24 d0 14 00 	mov    0x14d0(%rsp),%rcx
+   1400152fb:	00 
+   1400152fc:	e8 6f cf fe ff       	call   140002270 <std::_Rb_tree<unsigned long, std::pair<unsigned long const, event*>, std::_Select1st<std::pair<unsigned long const, event*> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned long const, event*> >*) [clone .isra.0]>
+   140015301:	48 8b 8c 24 90 14 00 	mov    0x1490(%rsp),%rcx
+   140015308:	00 
+   140015309:	4c 39 f9             	cmp    %r15,%rcx
+   14001530c:	0f 84 d5 00 00 00    	je     1400153e7 <main+0x18e7>
+   140015312:	48 8b 39             	mov    (%rcx),%rdi
+   140015315:	e8 06 2f ff ff       	call   140008220 <operator delete(void*)>
+   14001531a:	48 89 f9             	mov    %rdi,%rcx
+   14001531d:	eb ea                	jmp    140015309 <main+0x1809>
+   14001531f:	48 89 c3             	mov    %rax,%rbx
+   140015322:	eb 08                	jmp    14001532c <main+0x182c>
+   140015324:	48 89 c3             	mov    %rax,%rbx
+   140015327:	e9 97 00 00 00       	jmp    1400153c3 <main+0x18c3>
+   14001532c:	48 8b 8c 24 38 04 00 	mov    0x438(%rsp),%rcx
+   140015333:	00 
+   140015334:	48 85 c9             	test   %rcx,%rcx
+   140015337:	74 05                	je     14001533e <main+0x183e>
+   140015339:	e8 e2 2e ff ff       	call   140008220 <operator delete(void*)>
+   14001533e:	48 8d 8c 24 08 04 00 	lea    0x408(%rsp),%rcx
+   140015345:	00 
+   140015346:	e8 b5 2f ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   14001534b:	48 8b 8c 24 c8 03 00 	mov    0x3c8(%rsp),%rcx
+   140015352:	00 
+   140015353:	e8 c8 e9 fe ff       	call   140003d20 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0]>
+   140015358:	48 8b 8c 24 90 03 00 	mov    0x390(%rsp),%rcx
+   14001535f:	00 
+   140015360:	e8 6b e9 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   140015365:	48 8b 8c 24 60 03 00 	mov    0x360(%rsp),%rcx
+   14001536c:	00 
+   14001536d:	e8 5e e9 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   140015372:	48 8b 8c 24 30 03 00 	mov    0x330(%rsp),%rcx
+   140015379:	00 
+   14001537a:	e8 31 e3 fe ff       	call   1400036b0 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::NPC>, std::_Select1st<std::pair<unsigned int const, quest::NPC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::NPC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::NPC> >*) [clone .isra.0]>
+   14001537f:	48 8b 8c 24 00 03 00 	mov    0x300(%rsp),%rcx
+   140015386:	00 
+   140015387:	e8 14 d5 fe ff       	call   1400028a0 <std::_Rb_tree<unsigned int, unsigned int, std::_Identity<unsigned int>, std::less<unsigned int>, std::allocator<unsigned int> >::_M_erase(std::_Rb_tree_node<unsigned int>*) [clone .isra.0]>
+   14001538c:	48 8b 8c 24 c0 02 00 	mov    0x2c0(%rsp),%rcx
+   140015393:	00 
+   140015394:	e8 37 e9 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   140015399:	48 8b 8c 24 88 02 00 	mov    0x288(%rsp),%rcx
+   1400153a0:	00 
+   1400153a1:	e8 8a e8 fe ff       	call   140003c30 <std::_Rb_tree<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*>, std::_Select1st<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*> >, std::less<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*> >*) [clone .isra.0]>
+   1400153a6:	48 8b 8c 24 48 02 00 	mov    0x248(%rsp),%rcx
+   1400153ad:	00 
+   1400153ae:	e8 1d e9 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   1400153b3:	48 89 f1             	mov    %rsi,%rcx
+   1400153b6:	e8 15 ed fe ff       	call   1400040d0 <singleton<quest::CQuestManager>::~singleton()>
+   1400153bb:	48 89 d9             	mov    %rbx,%rcx
+   1400153be:	e8 fd 45 ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400153c3:	48 8b 8c 24 60 04 00 	mov    0x460(%rsp),%rcx
+   1400153ca:	00 
+   1400153cb:	48 85 c9             	test   %rcx,%rcx
+   1400153ce:	74 05                	je     1400153d5 <main+0x18d5>
+   1400153d0:	e8 4b 2e ff ff       	call   140008220 <operator delete(void*)>
+   1400153d5:	48 8d 8c 24 30 04 00 	lea    0x430(%rsp),%rcx
+   1400153dc:	00 
+   1400153dd:	e8 00 03 00 00       	call   1400156e2 <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()>
+   1400153e2:	e9 57 ff ff ff       	jmp    14001533e <main+0x183e>
+   1400153e7:	48 8b 8c 24 d0 13 00 	mov    0x13d0(%rsp),%rcx
+   1400153ee:	00 
+   1400153ef:	4c 39 e9             	cmp    %r13,%rcx
+   1400153f2:	74 0d                	je     140015401 <main+0x1901>
+   1400153f4:	48 8b 39             	mov    (%rcx),%rdi
+   1400153f7:	e8 24 2e ff ff       	call   140008220 <operator delete(void*)>
+   1400153fc:	48 89 f9             	mov    %rdi,%rcx
+   1400153ff:	eb ee                	jmp    1400153ef <main+0x18ef>
+   140015401:	48 8d 8c 24 98 13 00 	lea    0x1398(%rsp),%rcx
+   140015408:	00 
+   140015409:	e8 f2 2e ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   14001540e:	48 8d 8c 24 a8 06 00 	lea    0x6a8(%rsp),%rcx
+   140015415:	00 
+   140015416:	e8 e5 2e ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   14001541b:	48 8d 8c 24 98 05 00 	lea    0x598(%rsp),%rcx
+   140015422:	00 
+   140015423:	e8 08 dc fe ff       	call   140003030 <CHorseRider::~CHorseRider()>
+   140015428:	48 89 e9             	mov    %rbp,%rcx
+   14001542b:	e8 10 f0 fe ff       	call   140004440 <CEntity::~CEntity()>
+   140015430:	e9 23 fe ff ff       	jmp    140015258 <main+0x1758>
+   140015435:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+   14001543c:	00 00 00 00 
+
+0000000140015440 <_sub_I_65535_0.0>:
+   140015440:	48 83 ec 38          	sub    $0x38,%rsp
+   140015444:	0f 29 74 24 20       	movaps %xmm6,0x20(%rsp)
+   140015449:	48 8d 05 58 ac 00 00 	lea    0xac58(%rip),%rax        # 1400200a8 <mapLocale[abi:cxx11]+0x8>
+   140015450:	48 8d 0d 29 e8 fe ff 	lea    -0x117d7(%rip),%rcx        # 140003c80 <__tcf_0.lto_priv.4>
+   140015457:	66 0f ef f6          	pxor   %xmm6,%xmm6
+   14001545b:	c7 05 43 ac 00 00 00 	movl   $0x0,0xac43(%rip)        # 1400200a8 <mapLocale[abi:cxx11]+0x8>
+   140015462:	00 00 00 
+   140015465:	48 c7 05 40 ac 00 00 	movq   $0x0,0xac40(%rip)        # 1400200b0 <mapLocale[abi:cxx11]+0x10>
+   14001546c:	00 00 00 00 
+   140015470:	48 89 05 41 ac 00 00 	mov    %rax,0xac41(%rip)        # 1400200b8 <mapLocale[abi:cxx11]+0x18>
+   140015477:	48 89 05 42 ac 00 00 	mov    %rax,0xac42(%rip)        # 1400200c0 <mapLocale[abi:cxx11]+0x20>
+   14001547e:	48 c7 05 3f ac 00 00 	movq   $0x0,0xac3f(%rip)        # 1400200c8 <mapLocale[abi:cxx11]+0x28>
+   140015485:	00 00 00 00 
+   140015489:	e8 f5 c0 fe ff       	call   140001583 <atexit>
+   14001548e:	48 8d 15 0a 23 00 00 	lea    0x230a(%rip),%rdx        # 14001779f <.rdata+0x73f>
+   140015495:	48 8d 0d e4 ac 00 00 	lea    0xace4(%rip),%rcx        # 140020180 <g_stLocale[abi:cxx11]>
+   14001549c:	e8 4f fc fe ff       	call   1400050f0 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) [clone .isra.0]>
+   1400154a1:	48 8d 0d 28 dd fe ff 	lea    -0x122d8(%rip),%rcx        # 1400031d0 <__tcf_0.lto_priv.3>
+   1400154a8:	e8 d6 c0 fe ff       	call   140001583 <atexit>
+   1400154ad:	48 8d 05 bc ac 00 00 	lea    0xacbc(%rip),%rax        # 140020170 <g_stServiceName[abi:cxx11]+0x10>
+   1400154b4:	48 8d 0d 45 dd fe ff 	lea    -0x122bb(%rip),%rcx        # 140003200 <__tcf_1.lto_priv.1>
+   1400154bb:	48 c7 05 a2 ac 00 00 	movq   $0x0,0xaca2(%rip)        # 140020168 <g_stServiceName[abi:cxx11]+0x8>
+   1400154c2:	00 00 00 00 
+   1400154c6:	48 89 05 93 ac 00 00 	mov    %rax,0xac93(%rip)        # 140020160 <g_stServiceName[abi:cxx11]>
+   1400154cd:	c6 05 9c ac 00 00 00 	movb   $0x0,0xac9c(%rip)        # 140020170 <g_stServiceName[abi:cxx11]+0x10>
+   1400154d4:	e8 aa c0 fe ff       	call   140001583 <atexit>
+   1400154d9:	48 8d 15 c5 22 00 00 	lea    0x22c5(%rip),%rdx        # 1400177a5 <.rdata+0x745>
+   1400154e0:	48 8d 0d 59 ac 00 00 	lea    0xac59(%rip),%rcx        # 140020140 <g_stServiceBasePath[abi:cxx11]>
+   1400154e7:	e8 04 fc fe ff       	call   1400050f0 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) [clone .isra.0]>
+   1400154ec:	48 8d 0d 3d dd fe ff 	lea    -0x122c3(%rip),%rcx        # 140003230 <__tcf_2>
+   1400154f3:	e8 8b c0 fe ff       	call   140001583 <atexit>
+   1400154f8:	48 8d 15 a8 22 00 00 	lea    0x22a8(%rip),%rdx        # 1400177a7 <.rdata+0x747>
+   1400154ff:	48 8d 0d 1a ac 00 00 	lea    0xac1a(%rip),%rcx        # 140020120 <g_stServiceMapPath[abi:cxx11]>
+   140015506:	e8 e5 fb fe ff       	call   1400050f0 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) [clone .isra.0]>
+   14001550b:	48 8d 0d 4e dd fe ff 	lea    -0x122b2(%rip),%rcx        # 140003260 <__tcf_3>
+   140015512:	e8 6c c0 fe ff       	call   140001583 <atexit>
+   140015517:	48 8d 05 f2 ab 00 00 	lea    0xabf2(%rip),%rax        # 140020110 <g_stLocaleFilename[abi:cxx11]+0x10>
+   14001551e:	48 8d 0d 6b dd fe ff 	lea    -0x12295(%rip),%rcx        # 140003290 <__tcf_4>
+   140015525:	48 c7 05 d8 ab 00 00 	movq   $0x0,0xabd8(%rip)        # 140020108 <g_stLocaleFilename[abi:cxx11]+0x8>
+   14001552c:	00 00 00 00 
+   140015530:	48 89 05 c9 ab 00 00 	mov    %rax,0xabc9(%rip)        # 140020100 <g_stLocaleFilename[abi:cxx11]>
+   140015537:	c6 05 d2 ab 00 00 00 	movb   $0x0,0xabd2(%rip)        # 140020110 <g_stLocaleFilename[abi:cxx11]+0x10>
+   14001553e:	e8 40 c0 fe ff       	call   140001583 <atexit>
+   140015543:	48 8d 15 81 1e 00 00 	lea    0x1e81(%rip),%rdx        # 1400173cb <.rdata+0x36b>
+   14001554a:	48 8d 0d 8f ab 00 00 	lea    0xab8f(%rip),%rcx        # 1400200e0 <g_stLocal[abi:cxx11]>
+   140015551:	e8 9a fb fe ff       	call   1400050f0 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) [clone .isra.0]>
+   140015556:	48 8d 0d 63 dd fe ff 	lea    -0x1229d(%rip),%rcx        # 1400032c0 <__tcf_5>
+   14001555d:	e8 21 c0 fe ff       	call   140001583 <atexit>
+   140015562:	48 8d 05 7f 25 00 00 	lea    0x257f(%rip),%rax        # 140017ae8 <vtable for CDynamicPool<CTextFileLoader::SGroupNode>+0x10>
+   140015569:	48 8d 0d 40 fb fe ff 	lea    -0x104c0(%rip),%rcx        # 1400050b0 <__tcf_0.lto_priv.2>
+   140015570:	48 c7 05 55 ac 00 00 	movq   $0x0,0xac55(%rip)        # 1400201d0 <CTextFileLoader::ms_groupNodePool+0x30>
+   140015577:	00 00 00 00 
+   14001557b:	48 89 05 1e ac 00 00 	mov    %rax,0xac1e(%rip)        # 1400201a0 <CTextFileLoader::ms_groupNodePool>
+   140015582:	48 8d 05 4f ac 00 00 	lea    0xac4f(%rip),%rax        # 1400201d8 <CTextFileLoader::ms_groupNodePool+0x38>
+   140015589:	48 89 05 38 ac 00 00 	mov    %rax,0xac38(%rip)        # 1400201c8 <CTextFileLoader::ms_groupNodePool+0x28>
+   140015590:	c6 05 41 ac 00 00 00 	movb   $0x0,0xac41(%rip)        # 1400201d8 <CTextFileLoader::ms_groupNodePool+0x38>
+   140015597:	48 c7 05 06 ac 00 00 	movq   $0x0,0xac06(%rip)        # 1400201a8 <CTextFileLoader::ms_groupNodePool+0x8>
+   14001559e:	00 00 00 00 
+   1400155a2:	c7 05 14 ac 00 00 00 	movl   $0x0,0xac14(%rip)        # 1400201c0 <CTextFileLoader::ms_groupNodePool+0x20>
+   1400155a9:	00 00 00 
+   1400155ac:	48 c7 05 f9 ab 00 00 	movq   $0x0,0xabf9(%rip)        # 1400201b0 <CTextFileLoader::ms_groupNodePool+0x10>
+   1400155b3:	00 00 00 00 
+   1400155b7:	48 c7 05 f6 ab 00 00 	movq   $0x0,0xabf6(%rip)        # 1400201b8 <CTextFileLoader::ms_groupNodePool+0x18>
+   1400155be:	00 00 00 00 
+   1400155c2:	e8 bc bf fe ff       	call   140001583 <atexit>
+   1400155c7:	e8 14 e3 ff ff       	call   1400138e0 <BUFFER_MANAGER::BUFFER_MANAGER() [clone .constprop.0]>
+   1400155cc:	48 8d 0d 9d f8 fe ff 	lea    -0x10763(%rip),%rcx        # 140004e70 <__tcf_0.lto_priv.1>
+   1400155d3:	e8 ab bf fe ff       	call   140001583 <atexit>
+   1400155d8:	48 8d 0d 41 c2 fe ff 	lea    -0x13dbf(%rip),%rcx        # 140001820 <__tcf_0.lto_priv.0>
+   1400155df:	0f 29 35 da ac 00 00 	movaps %xmm6,0xacda(%rip)        # 1400202c0 <encoded>
+   1400155e6:	48 c7 05 df ac 00 00 	movq   $0x0,0xacdf(%rip)        # 1400202d0 <encoded+0x10>
+   1400155ed:	00 00 00 00 
+   1400155f1:	e8 8d bf fe ff       	call   140001583 <atexit>
+   1400155f6:	0f 29 35 a3 ac 00 00 	movaps %xmm6,0xaca3(%rip)        # 1400202a0 <cancelled>
+   1400155fd:	0f 28 74 24 20       	movaps 0x20(%rsp),%xmm6
+   140015602:	48 8d 0d 37 c2 fe ff 	lea    -0x13dc9(%rip),%rcx        # 140001840 <__tcf_1.lto_priv.0>
+   140015609:	48 c7 05 9c ac 00 00 	movq   $0x0,0xac9c(%rip)        # 1400202b0 <cancelled+0x10>
+   140015610:	00 00 00 00 
+   140015614:	48 83 c4 38          	add    $0x38,%rsp
+   140015618:	e9 66 bf fe ff       	jmp    140001583 <atexit>
+   14001561d:	90                   	nop
+   14001561e:	90                   	nop
+   14001561f:	90                   	nop
+
+0000000140015620 <event_cancel.cold>:
+   140015620:	e8 9b a4 ff ff       	call   14000fac0 <abort>
+   140015625:	90                   	nop
+
+0000000140015626 <CHARACTER::EncodeInsertPacket(CEntity*)>:
+   140015626:	48 83 ec 28          	sub    $0x28,%rsp
+   14001562a:	e8 91 a4 ff ff       	call   14000fac0 <abort>
+   14001562f:	90                   	nop
+
+0000000140015630 <CHARACTER::StateBattle()>:
+   140015630:	48 83 ec 28          	sub    $0x28,%rsp
+   140015634:	e8 87 a4 ff ff       	call   14000fac0 <abort>
+   140015639:	90                   	nop
+
+000000014001563a <CHARACTER::SetHorseLevel(int)>:
+   14001563a:	48 83 ec 28          	sub    $0x28,%rsp
+   14001563e:	e8 7d a4 ff ff       	call   14000fac0 <abort>
+   140015643:	90                   	nop
+
+0000000140015644 <non-virtual thunk to CHARACTER::SetHorseLevel(int)>:
+   140015644:	48 83 ec 28          	sub    $0x28,%rsp
+   140015648:	e8 73 a4 ff ff       	call   14000fac0 <abort>
+   14001564d:	90                   	nop
+
+000000014001564e <CHARACTER::StopRiding()>:
+   14001564e:	48 83 ec 28          	sub    $0x28,%rsp
+   140015652:	e8 69 a4 ff ff       	call   14000fac0 <abort>
+   140015657:	90                   	nop
+
+0000000140015658 <non-virtual thunk to CHARACTER::StartRiding()>:
+   140015658:	48 83 ec 28          	sub    $0x28,%rsp
+   14001565c:	e8 5f a4 ff ff       	call   14000fac0 <abort>
+   140015661:	90                   	nop
+
+0000000140015662 <non-virtual thunk to CHARACTER::StopRiding()>:
+   140015662:	48 83 ec 28          	sub    $0x28,%rsp
+   140015666:	e8 55 a4 ff ff       	call   14000fac0 <abort>
+   14001566b:	90                   	nop
+
+000000014001566c <CHARACTER::GetMyHorseVnum()>:
+   14001566c:	48 83 ec 28          	sub    $0x28,%rsp
+   140015670:	e8 4b a4 ff ff       	call   14000fac0 <abort>
+   140015675:	90                   	nop
+
+0000000140015676 <non-virtual thunk to CHARACTER::GetMyHorseVnum()>:
+   140015676:	48 83 ec 28          	sub    $0x28,%rsp
+   14001567a:	e8 41 a4 ff ff       	call   14000fac0 <abort>
+   14001567f:	90                   	nop
+
+0000000140015680 <non-virtual thunk to CHARACTER::HorseDie()>:
+   140015680:	48 83 ec 28          	sub    $0x28,%rsp
+   140015684:	e8 37 a4 ff ff       	call   14000fac0 <abort>
+   140015689:	90                   	nop
+
+000000014001568a <non-virtual thunk to CHARACTER::ReviveHorse()>:
+   14001568a:	48 83 ec 28          	sub    $0x28,%rsp
+   14001568e:	e8 2d a4 ff ff       	call   14000fac0 <abort>
+   140015693:	90                   	nop
+
+0000000140015694 <non-virtual thunk to CHARACTER::SendHorseInfo()>:
+   140015694:	48 83 ec 28          	sub    $0x28,%rsp
+   140015698:	e8 23 a4 ff ff       	call   14000fac0 <abort>
+   14001569d:	90                   	nop
+
+000000014001569e <non-virtual thunk to CHARACTER::ClearHorseInfo()>:
+   14001569e:	48 83 ec 28          	sub    $0x28,%rsp
+   1400156a2:	e8 19 a4 ff ff       	call   14000fac0 <abort>
+   1400156a7:	90                   	nop
+
+00000001400156a8 <CHorseRider::~CHorseRider() [clone .cold]>:
+   1400156a8:	e8 13 a4 ff ff       	call   14000fac0 <abort>
+   1400156ad:	90                   	nop
+
+00000001400156ae <CHorseRider::~CHorseRider() [clone .cold]>:
+   1400156ae:	e8 0d a4 ff ff       	call   14000fac0 <abort>
+   1400156b3:	e8 08 a4 ff ff       	call   14000fac0 <abort>
+   1400156b8:	48 89 c6             	mov    %rax,%rsi
+   1400156bb:	48 89 d9             	mov    %rbx,%rcx
+   1400156be:	e8 5d 2b ff ff       	call   140008220 <operator delete(void*)>
+   1400156c3:	48 89 f1             	mov    %rsi,%rcx
+   1400156c6:	e8 f5 42 ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400156cb:	90                   	nop
+
+00000001400156cc <CHorseRider::SetHorseLevel(int)>:
+   1400156cc:	48 83 ec 28          	sub    $0x28,%rsp
+   1400156d0:	e8 eb a3 ff ff       	call   14000fac0 <abort>
+   1400156d5:	90                   	nop
+
+00000001400156d6 <CItem::EncodeInsertPacket(CEntity*) [clone .cold]>:
+   1400156d6:	e8 e5 a3 ff ff       	call   14000fac0 <abort>
+   1400156db:	90                   	nop
+
+00000001400156dc <CItem::EncodeRemovePacket(CEntity*) [clone .cold]>:
+   1400156dc:	e8 df a3 ff ff       	call   14000fac0 <abort>
+   1400156e1:	90                   	nop
+
+00000001400156e2 <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()>:
+   1400156e2:	41 54                	push   %r12
+   1400156e4:	55                   	push   %rbp
+   1400156e5:	57                   	push   %rdi
+   1400156e6:	56                   	push   %rsi
+   1400156e7:	53                   	push   %rbx
+   1400156e8:	48 83 ec 20          	sub    $0x20,%rsp
+   1400156ec:	31 ff                	xor    %edi,%edi
+   1400156ee:	48 83 79 20 00       	cmpq   $0x0,0x20(%rcx)
+   1400156f3:	48 89 cb             	mov    %rcx,%rbx
+   1400156f6:	74 5c                	je     140015754 <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x72>
+   1400156f8:	48 8b 53 08          	mov    0x8(%rbx),%rdx
+   1400156fc:	48 8b 43 10          	mov    0x10(%rbx),%rax
+   140015700:	48 29 d0             	sub    %rdx,%rax
+   140015703:	48 c1 f8 03          	sar    $0x3,%rax
+   140015707:	48 39 c7             	cmp    %rax,%rdi
+   14001570a:	73 42                	jae    14001574e <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x6c>
+   14001570c:	48 8b 34 fa          	mov    (%rdx,%rdi,8),%rsi
+   140015710:	48 8d 2c fd 00 00 00 	lea    0x0(,%rdi,8),%rbp
+   140015717:	00 
+   140015718:	48 85 f6             	test   %rsi,%rsi
+   14001571b:	74 22                	je     14001573f <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x5d>
+   14001571d:	48 8b 4e 08          	mov    0x8(%rsi),%rcx
+   140015721:	48 8d 46 18          	lea    0x18(%rsi),%rax
+   140015725:	4c 8b 26             	mov    (%rsi),%r12
+   140015728:	48 39 c1             	cmp    %rax,%rcx
+   14001572b:	74 05                	je     140015732 <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x50>
+   14001572d:	e8 ee 2a ff ff       	call   140008220 <operator delete(void*)>
+   140015732:	48 89 f1             	mov    %rsi,%rcx
+   140015735:	4c 89 e6             	mov    %r12,%rsi
+   140015738:	e8 e3 2a ff ff       	call   140008220 <operator delete(void*)>
+   14001573d:	eb d9                	jmp    140015718 <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x36>
+   14001573f:	48 8b 43 08          	mov    0x8(%rbx),%rax
+   140015743:	31 d2                	xor    %edx,%edx
+   140015745:	48 ff c7             	inc    %rdi
+   140015748:	48 89 14 28          	mov    %rdx,(%rax,%rbp,1)
+   14001574c:	eb aa                	jmp    1400156f8 <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x16>
+   14001574e:	31 c0                	xor    %eax,%eax
+   140015750:	48 89 43 20          	mov    %rax,0x20(%rbx)
+   140015754:	48 8b 4b 08          	mov    0x8(%rbx),%rcx
+   140015758:	48 85 c9             	test   %rcx,%rcx
+   14001575b:	74 0f                	je     14001576c <__gnu_cxx::hashtable<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, quest::CQuestManager::stringhash, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<int> >::~hashtable()+0x8a>
+   14001575d:	48 83 c4 20          	add    $0x20,%rsp
+   140015761:	5b                   	pop    %rbx
+   140015762:	5e                   	pop    %rsi
+   140015763:	5f                   	pop    %rdi
+   140015764:	5d                   	pop    %rbp
+   140015765:	41 5c                	pop    %r12
+   140015767:	e9 b4 2a ff ff       	jmp    140008220 <operator delete(void*)>
+   14001576c:	48 83 c4 20          	add    $0x20,%rsp
+   140015770:	5b                   	pop    %rbx
+   140015771:	5e                   	pop    %rsi
+   140015772:	5f                   	pop    %rdi
+   140015773:	5d                   	pop    %rbp
+   140015774:	41 5c                	pop    %r12
+   140015776:	c3                   	ret
+   140015777:	90                   	nop
+
+0000000140015778 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::NPC>, std::_Select1st<std::pair<unsigned int const, quest::NPC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::NPC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::NPC> >*) [clone .isra.0] [clone .cold]>:
+   140015778:	48 8b 49 18          	mov    0x18(%rcx),%rcx
+   14001577c:	e8 2f df fe ff       	call   1400036b0 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::NPC>, std::_Select1st<std::pair<unsigned int const, quest::NPC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::NPC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::NPC> >*) [clone .isra.0]>
+   140015781:	e8 3a a3 ff ff       	call   14000fac0 <abort>
+   140015786:	48 89 c5             	mov    %rax,%rbp
+   140015789:	48 8d b3 80 07 00 00 	lea    0x780(%rbx),%rsi
+   140015790:	48 8d bb c0 03 00 00 	lea    0x3c0(%rbx),%rdi
+   140015797:	48 8b 4e 10          	mov    0x10(%rsi),%rcx
+   14001579b:	48 83 ee 30          	sub    $0x30,%rsi
+   14001579f:	e8 0c dd fe ff       	call   1400034b0 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, std::map<int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> >, std::less<int>, std::allocator<std::pair<int const, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> > > > > >, std::_Select1st<std::pair<unsigned int const, std::map<int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> >, std::less<int>, std::allocator<std::pair<int const, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> > > > > > >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, std::map<int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> >, std::less<int>, std::allocator<std::pair<int const, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> > > > > > > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, std::map<int, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> >, std::less<int>, std::allocator<std::pair<int const, std::vector<quest::AArgScript, std::allocator<quest::AArgScript> > > > > > >*) [clone .isra.0]>
+   1400157a4:	48 39 fe             	cmp    %rdi,%rsi
+   1400157a7:	75 ee                	jne    140015797 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::NPC>, std::_Select1st<std::pair<unsigned int const, quest::NPC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::NPC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::NPC> >*) [clone .isra.0] [clone .cold]+0x1f>
+   1400157a9:	48 8b 4e 10          	mov    0x10(%rsi),%rcx
+   1400157ad:	48 83 ee 30          	sub    $0x30,%rsi
+   1400157b1:	e8 6a d0 fe ff       	call   140002820 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, std::map<int, quest::AStateScriptType, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > > >, std::_Select1st<std::pair<unsigned int const, std::map<int, quest::AStateScriptType, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > > > >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, std::map<int, quest::AStateScriptType, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > > > > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, std::map<int, quest::AStateScriptType, std::less<int>, std::allocator<std::pair<int const, quest::AStateScriptType> > > > >*) [clone .isra.0]>
+   1400157b6:	48 39 de             	cmp    %rbx,%rsi
+   1400157b9:	75 ee                	jne    1400157a9 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::NPC>, std::_Select1st<std::pair<unsigned int const, quest::NPC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::NPC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::NPC> >*) [clone .isra.0] [clone .cold]+0x31>
+   1400157bb:	48 89 e9             	mov    %rbp,%rcx
+   1400157be:	e8 fd 41 ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400157c3:	90                   	nop
+
+00000001400157c4 <quest::PC::~PC()>:
+   1400157c4:	56                   	push   %rsi
+   1400157c5:	53                   	push   %rbx
+   1400157c6:	48 83 ec 28          	sub    $0x28,%rsp
+   1400157ca:	48 89 cb             	mov    %rcx,%rbx
+   1400157cd:	e8 ee a2 ff ff       	call   14000fac0 <abort>
+   1400157d2:	48 89 c6             	mov    %rax,%rsi
+   1400157d5:	48 8b 8b 00 01 00 00 	mov    0x100(%rbx),%rcx
+   1400157dc:	e8 8f df fe ff       	call   140003770 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, event*>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, event*> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, event*> >*) [clone .isra.0]>
+   1400157e1:	48 8b 8b d0 00 00 00 	mov    0xd0(%rbx),%rcx
+   1400157e8:	e8 e3 e4 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   1400157ed:	48 8b 8b a0 00 00 00 	mov    0xa0(%rbx),%rcx
+   1400157f4:	e8 d7 e4 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   1400157f9:	48 8d 4b 70          	lea    0x70(%rbx),%rcx
+   1400157fd:	e8 fe 2a ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140015802:	48 8b 4b 48          	mov    0x48(%rbx),%rcx
+   140015806:	e8 c5 de fe ff       	call   1400036d0 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::QuestState>, std::_Select1st<std::pair<unsigned int const, quest::QuestState> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::QuestState> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::QuestState> >*) [clone .isra.0]>
+   14001580b:	48 8b 4b 18          	mov    0x18(%rbx),%rcx
+   14001580f:	48 85 c9             	test   %rcx,%rcx
+   140015812:	74 05                	je     140015819 <quest::PC::~PC()+0x55>
+   140015814:	e8 07 2a ff ff       	call   140008220 <operator delete(void*)>
+   140015819:	48 8b 0b             	mov    (%rbx),%rcx
+   14001581c:	48 85 c9             	test   %rcx,%rcx
+   14001581f:	74 05                	je     140015826 <quest::PC::~PC()+0x62>
+   140015821:	e8 fa 29 ff ff       	call   140008220 <operator delete(void*)>
+   140015826:	48 89 f1             	mov    %rsi,%rcx
+   140015829:	e8 92 41 ff ff       	call   1400099c0 <_Unwind_Resume>
+   14001582e:	90                   	nop
+   14001582f:	90                   	nop
+
+0000000140015830 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]>:
+   140015830:	48 8b 41 18          	mov    0x18(%rcx),%rax
+   140015834:	48 85 c0             	test   %rax,%rax
+   140015837:	74 51                	je     14001588a <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x5a>
+   140015839:	48 8b 50 18          	mov    0x18(%rax),%rdx
+   14001583d:	48 85 d2             	test   %rdx,%rdx
+   140015840:	74 51                	je     140015893 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x63>
+   140015842:	48 8b 42 18          	mov    0x18(%rdx),%rax
+   140015846:	48 85 c0             	test   %rax,%rax
+   140015849:	74 51                	je     14001589c <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x6c>
+   14001584b:	48 8b 50 18          	mov    0x18(%rax),%rdx
+   14001584f:	48 85 d2             	test   %rdx,%rdx
+   140015852:	74 51                	je     1400158a5 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x75>
+   140015854:	48 8b 42 18          	mov    0x18(%rdx),%rax
+   140015858:	48 85 c0             	test   %rax,%rax
+   14001585b:	74 51                	je     1400158ae <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x7e>
+   14001585d:	48 8b 50 18          	mov    0x18(%rax),%rdx
+   140015861:	48 85 d2             	test   %rdx,%rdx
+   140015864:	74 51                	je     1400158b7 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x87>
+   140015866:	48 8b 42 18          	mov    0x18(%rdx),%rax
+   14001586a:	48 85 c0             	test   %rax,%rax
+   14001586d:	74 51                	je     1400158c0 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x90>
+   14001586f:	48 8b 58 18          	mov    0x18(%rax),%rbx
+   140015873:	48 85 db             	test   %rbx,%rbx
+   140015876:	74 51                	je     1400158c9 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0] [clone .cold]+0x99>
+   140015878:	48 8b 4b 18          	mov    0x18(%rbx),%rcx
+   14001587c:	e8 9f e4 fe ff       	call   140003d20 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::PC>, std::_Select1st<std::pair<unsigned int const, quest::PC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::PC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::PC> >*) [clone .isra.0]>
+   140015881:	48 8d 4b 28          	lea    0x28(%rbx),%rcx
+   140015885:	e8 3a ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   14001588a:	48 83 c1 28          	add    $0x28,%rcx
+   14001588e:	e8 31 ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   140015893:	48 8d 48 28          	lea    0x28(%rax),%rcx
+   140015897:	e8 28 ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   14001589c:	48 8d 4a 28          	lea    0x28(%rdx),%rcx
+   1400158a0:	e8 1f ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   1400158a5:	48 8d 48 28          	lea    0x28(%rax),%rcx
+   1400158a9:	e8 16 ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   1400158ae:	48 8d 4a 28          	lea    0x28(%rdx),%rcx
+   1400158b2:	e8 0d ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   1400158b7:	48 8d 48 28          	lea    0x28(%rax),%rcx
+   1400158bb:	e8 04 ff ff ff       	call   1400157c4 <quest::PC::~PC()>
+   1400158c0:	48 8d 4a 28          	lea    0x28(%rdx),%rcx
+   1400158c4:	e8 fb fe ff ff       	call   1400157c4 <quest::PC::~PC()>
+   1400158c9:	48 8d 48 28          	lea    0x28(%rax),%rcx
+   1400158cd:	e8 f2 fe ff ff       	call   1400157c4 <quest::PC::~PC()>
+   1400158d2:	90                   	nop
+   1400158d3:	90                   	nop
+
+00000001400158d4 <std::_Deque_base<buffer*, std::allocator<buffer*> >::_M_initialize_map(unsigned long long) [clone .cold]>:
+   1400158d4:	e8 2f 29 ff ff       	call   140008208 <__cxa_begin_catch>
+   1400158d9:	49 39 dc             	cmp    %rbx,%r12
+   1400158dc:	73 0f                	jae    1400158ed <std::_Deque_base<buffer*, std::allocator<buffer*> >::_M_initialize_map(unsigned long long) [clone .cold]+0x19>
+   1400158de:	49 8b 0c 24          	mov    (%r12),%rcx
+   1400158e2:	49 83 c4 08          	add    $0x8,%r12
+   1400158e6:	e8 35 29 ff ff       	call   140008220 <operator delete(void*)>
+   1400158eb:	eb ec                	jmp    1400158d9 <std::_Deque_base<buffer*, std::allocator<buffer*> >::_M_initialize_map(unsigned long long) [clone .cold]+0x5>
+   1400158ed:	e8 06 29 ff ff       	call   1400081f8 <__cxa_rethrow>
+   1400158f2:	48 89 c3             	mov    %rax,%rbx
+   1400158f5:	e8 06 29 ff ff       	call   140008200 <__cxa_end_catch>
+   1400158fa:	48 89 d9             	mov    %rbx,%rcx
+   1400158fd:	e8 06 29 ff ff       	call   140008208 <__cxa_begin_catch>
+   140015902:	48 8b 0e             	mov    (%rsi),%rcx
+   140015905:	e8 16 29 ff ff       	call   140008220 <operator delete(void*)>
+   14001590a:	31 c0                	xor    %eax,%eax
+   14001590c:	48 89 06             	mov    %rax,(%rsi)
+   14001590f:	48 89 46 08          	mov    %rax,0x8(%rsi)
+   140015913:	e8 e0 28 ff ff       	call   1400081f8 <__cxa_rethrow>
+   140015918:	48 89 c3             	mov    %rax,%rbx
+   14001591b:	e8 e0 28 ff ff       	call   140008200 <__cxa_end_catch>
+   140015920:	48 89 d9             	mov    %rbx,%rcx
+   140015923:	e8 98 40 ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015928:	90                   	nop
+   140015929:	90                   	nop
+
+000000014001592a <quest::CQuestManager::~CQuestManager() [clone .cold]>:
+   14001592a:	48 8d 4b 28          	lea    0x28(%rbx),%rcx
+   14001592e:	e8 91 fe ff ff       	call   1400157c4 <quest::PC::~PC()>
+   140015933:	48 8b 8f 60 01 00 00 	mov    0x160(%rdi),%rcx
+   14001593a:	48 89 c3             	mov    %rax,%rbx
+   14001593d:	e8 8e e3 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   140015942:	48 8b 8f 30 01 00 00 	mov    0x130(%rdi),%rcx
+   140015949:	e8 82 e3 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   14001594e:	48 8b 8f 00 01 00 00 	mov    0x100(%rdi),%rcx
+   140015955:	e8 56 dd fe ff       	call   1400036b0 <std::_Rb_tree<unsigned int, std::pair<unsigned int const, quest::NPC>, std::_Select1st<std::pair<unsigned int const, quest::NPC> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, quest::NPC> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, quest::NPC> >*) [clone .isra.0]>
+   14001595a:	48 8b 8f d0 00 00 00 	mov    0xd0(%rdi),%rcx
+   140015961:	e8 3a cf fe ff       	call   1400028a0 <std::_Rb_tree<unsigned int, unsigned int, std::_Identity<unsigned int>, std::less<unsigned int>, std::allocator<unsigned int> >::_M_erase(std::_Rb_tree_node<unsigned int>*) [clone .isra.0]>
+   140015966:	48 8b 8f 90 00 00 00 	mov    0x90(%rdi),%rcx
+   14001596d:	e8 5e e3 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   140015972:	48 8b 4f 58          	mov    0x58(%rdi),%rcx
+   140015976:	e8 b5 e2 fe ff       	call   140003c30 <std::_Rb_tree<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long>, std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*>, std::_Select1st<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*> >, std::less<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> >, std::allocator<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long> const, event*> >*) [clone .isra.0]>
+   14001597b:	48 8b 4f 18          	mov    0x18(%rdi),%rcx
+   14001597f:	e8 4c e3 fe ff       	call   140003cd0 <std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >*) [clone .isra.0]>
+   140015984:	48 89 f9             	mov    %rdi,%rcx
+   140015987:	e8 44 e7 fe ff       	call   1400040d0 <singleton<quest::CQuestManager>::~singleton()>
+   14001598c:	48 89 d9             	mov    %rbx,%rcx
+   14001598f:	e8 2c 40 ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015994:	90                   	nop
+   140015995:	90                   	nop
+
+0000000140015996 <quest::CQuestManager::~CQuestManager() [clone .cold]>:
+   140015996:	48 89 d9             	mov    %rbx,%rcx
+   140015999:	e8 82 28 ff ff       	call   140008220 <operator delete(void*)>
+   14001599e:	48 89 f1             	mov    %rsi,%rcx
+   1400159a1:	e8 1a 40 ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400159a6:	90                   	nop
+   1400159a7:	90                   	nop
+
+00000001400159a8 <singleton<quest::CQuestManager>::~singleton() [clone .cold]>:
+   1400159a8:	48 89 d9             	mov    %rbx,%rcx
+   1400159ab:	e8 70 28 ff ff       	call   140008220 <operator delete(void*)>
+   1400159b0:	48 89 f1             	mov    %rsi,%rcx
+   1400159b3:	e8 08 40 ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400159b8:	90                   	nop
+   1400159b9:	90                   	nop
+
+00000001400159ba <CEntity::~CEntity() [clone .cold]>:
+   1400159ba:	48 8b 4b 20          	mov    0x20(%rbx),%rcx
+   1400159be:	e8 3d ca fe ff       	call   140002400 <std::_Rb_tree<CEntity*, std::pair<CEntity* const, int>, std::_Select1st<std::pair<CEntity* const, int> >, std::less<CEntity*>, std::allocator<std::pair<CEntity* const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<CEntity* const, int> >*) [clone .isra.0]>
+   1400159c3:	48 89 f1             	mov    %rsi,%rcx
+   1400159c6:	e8 f5 3f ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400159cb:	90                   	nop
+
+00000001400159cc <CHARACTER::~CHARACTER() [clone .cold]>:
+   1400159cc:	e8 ef a0 ff ff       	call   14000fac0 <abort>
+   1400159d1:	e8 ea a0 ff ff       	call   14000fac0 <abort>
+   1400159d6:	48 89 c6             	mov    %rax,%rsi
+   1400159d9:	48 89 d9             	mov    %rbx,%rcx
+   1400159dc:	e8 5f ea fe ff       	call   140004440 <CEntity::~CEntity()>
+   1400159e1:	48 89 f1             	mov    %rsi,%rcx
+   1400159e4:	e8 d7 3f ff ff       	call   1400099c0 <_Unwind_Resume>
+   1400159e9:	48 8d 8b 40 14 00 00 	lea    0x1440(%rbx),%rcx
+   1400159f0:	e8 0b 29 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   1400159f5:	48 8b 8b 50 13 00 00 	mov    0x1350(%rbx),%rcx
+   1400159fc:	e8 9f c0 fe ff       	call   140001aa0 <std::_Rb_tree<int, std::pair<int const, event*>, std::_Select1st<std::pair<int const, event*> >, std::less<int>, std::allocator<std::pair<int const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, event*> >*) [clone .isra.0]>
+   140015a01:	48 8b 8b 48 12 00 00 	mov    0x1248(%rbx),%rcx
+   140015a08:	e8 43 c5 fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   140015a0d:	48 8b 8b f0 11 00 00 	mov    0x11f0(%rbx),%rcx
+   140015a14:	e8 17 c2 fe ff       	call   140001c30 <std::_Rb_tree<int, std::pair<int const, TSkillUseInfo>, std::_Select1st<std::pair<int const, TSkillUseInfo> >, std::less<int>, std::allocator<std::pair<int const, TSkillUseInfo> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, TSkillUseInfo> >*) [clone .isra.0]>
+   140015a19:	48 8b 8b c0 11 00 00 	mov    0x11c0(%rbx),%rcx
+   140015a20:	e8 9b c3 fe ff       	call   140001dc0 <std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*) [clone .isra.0]>
+   140015a25:	48 8b 8b 80 11 00 00 	mov    0x1180(%rbx),%rcx
+   140015a2c:	e8 1f c5 fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   140015a31:	48 8b 8b 20 11 00 00 	mov    0x1120(%rbx),%rcx
+   140015a38:	e8 13 c5 fe ff       	call   140001f50 <std::_Rb_tree<CHARACTER*, CHARACTER*, std::_Identity<CHARACTER*>, std::less<CHARACTER*>, std::allocator<CHARACTER*> >::_M_erase(std::_Rb_tree_node<CHARACTER*>*) [clone .isra.0]>
+   140015a3d:	48 8b 8b c8 10 00 00 	mov    0x10c8(%rbx),%rcx
+   140015a44:	e8 97 c6 fe ff       	call   1400020e0 <std::_Rb_tree<VID, std::pair<VID const, CHARACTER::TBattleInfo>, std::_Select1st<std::pair<VID const, CHARACTER::TBattleInfo> >, std::less<VID>, std::allocator<std::pair<VID const, CHARACTER::TBattleInfo> > >::_M_erase(std::_Rb_tree_node<std::pair<VID const, CHARACTER::TBattleInfo> >*) [clone .isra.0]>
+   140015a49:	48 8b 8b a0 10 00 00 	mov    0x10a0(%rbx),%rcx
+   140015a50:	48 85 c9             	test   %rcx,%rcx
+   140015a53:	74 05                	je     140015a5a <CHARACTER::~CHARACTER() [clone .cold]+0x8e>
+   140015a55:	e8 c6 27 ff ff       	call   140008220 <operator delete(void*)>
+   140015a5a:	48 8d 8b 68 10 00 00 	lea    0x1068(%rbx),%rcx
+   140015a61:	48 8d bb c0 0f 00 00 	lea    0xfc0(%rbx),%rdi
+   140015a68:	e8 93 28 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140015a6d:	48 8b 8b 00 10 00 00 	mov    0x1000(%rbx),%rcx
+   140015a74:	e8 f7 c7 fe ff       	call   140002270 <std::_Rb_tree<unsigned long, std::pair<unsigned long const, event*>, std::_Select1st<std::pair<unsigned long const, event*> >, std::less<unsigned long>, std::allocator<std::pair<unsigned long const, event*> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned long const, event*> >*) [clone .isra.0]>
+   140015a79:	48 8b 8b c0 0f 00 00 	mov    0xfc0(%rbx),%rcx
+   140015a80:	48 39 f9             	cmp    %rdi,%rcx
+   140015a83:	74 0d                	je     140015a92 <CHARACTER::~CHARACTER() [clone .cold]+0xc6>
+   140015a85:	48 8b 29             	mov    (%rcx),%rbp
+   140015a88:	e8 93 27 ff ff       	call   140008220 <operator delete(void*)>
+   140015a8d:	48 89 e9             	mov    %rbp,%rcx
+   140015a90:	eb ee                	jmp    140015a80 <CHARACTER::~CHARACTER() [clone .cold]+0xb4>
+   140015a92:	48 8b 8b 00 0f 00 00 	mov    0xf00(%rbx),%rcx
+   140015a99:	48 8d bb 00 0f 00 00 	lea    0xf00(%rbx),%rdi
+   140015aa0:	48 39 f9             	cmp    %rdi,%rcx
+   140015aa3:	74 0d                	je     140015ab2 <CHARACTER::~CHARACTER() [clone .cold]+0xe6>
+   140015aa5:	48 8b 29             	mov    (%rcx),%rbp
+   140015aa8:	e8 73 27 ff ff       	call   140008220 <operator delete(void*)>
+   140015aad:	48 89 e9             	mov    %rbp,%rcx
+   140015ab0:	eb ee                	jmp    140015aa0 <CHARACTER::~CHARACTER() [clone .cold]+0xd4>
+   140015ab2:	48 8d 8b c8 0e 00 00 	lea    0xec8(%rbx),%rcx
+   140015ab9:	e8 42 28 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140015abe:	48 8d 8b d8 01 00 00 	lea    0x1d8(%rbx),%rcx
+   140015ac5:	e8 36 28 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140015aca:	48 8d 8b c8 00 00 00 	lea    0xc8(%rbx),%rcx
+   140015ad1:	e8 5a d5 fe ff       	call   140003030 <CHorseRider::~CHorseRider()>
+   140015ad6:	e9 fe fe ff ff       	jmp    1400159d9 <CHARACTER::~CHARACTER() [clone .cold]+0xd>
+   140015adb:	90                   	nop
+
+0000000140015adc <CHARACTER::~CHARACTER() [clone .cold]>:
+   140015adc:	48 89 d9             	mov    %rbx,%rcx
+   140015adf:	e8 3c 27 ff ff       	call   140008220 <operator delete(void*)>
+   140015ae4:	48 89 f1             	mov    %rsi,%rcx
+   140015ae7:	e8 d4 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015aec:	90                   	nop
+
+0000000140015aed <non-virtual thunk to CHARACTER::~CHARACTER() [clone .cold]>:
+   140015aed:	48 89 d9             	mov    %rbx,%rcx
+   140015af0:	e8 2b 27 ff ff       	call   140008220 <operator delete(void*)>
+   140015af5:	48 89 f1             	mov    %rsi,%rcx
+   140015af8:	e8 c3 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015afd:	90                   	nop
+
+0000000140015afe <non-virtual thunk to CHARACTER::~CHARACTER() [clone .cold]>:
+   140015afe:	48 89 d9             	mov    %rbx,%rcx
+   140015b01:	e8 1a 27 ff ff       	call   140008220 <operator delete(void*)>
+   140015b06:	48 89 f1             	mov    %rsi,%rcx
+   140015b09:	e8 b2 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b0e:	90                   	nop
+   140015b0f:	90                   	nop
+
+0000000140015b10 <SECTREE::DecreasePC() [clone .cold]>:
+   140015b10:	e8 ab 9f ff ff       	call   14000fac0 <abort>
+   140015b15:	90                   	nop
+
+0000000140015b16 <CItem::Destroy() [clone .cold]>:
+   140015b16:	e8 a5 9f ff ff       	call   14000fac0 <abort>
+   140015b1b:	90                   	nop
+
+0000000140015b1c <CItem::~CItem() [clone .cold]>:
+   140015b1c:	48 89 d9             	mov    %rbx,%rcx
+   140015b1f:	e8 1c e9 fe ff       	call   140004440 <CEntity::~CEntity()>
+   140015b24:	48 89 f1             	mov    %rsi,%rcx
+   140015b27:	e8 94 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b2c:	90                   	nop
+   140015b2d:	90                   	nop
+
+0000000140015b2e <CItem::~CItem() [clone .cold]>:
+   140015b2e:	48 89 d9             	mov    %rbx,%rcx
+   140015b31:	e8 0a e9 fe ff       	call   140004440 <CEntity::~CEntity()>
+   140015b36:	48 89 d9             	mov    %rbx,%rcx
+   140015b39:	e8 e2 26 ff ff       	call   140008220 <operator delete(void*)>
+   140015b3e:	48 89 f1             	mov    %rsi,%rcx
+   140015b41:	e8 7a 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b46:	90                   	nop
+   140015b47:	90                   	nop
+
+0000000140015b48 <BUFFER_MANAGER::~BUFFER_MANAGER() [clone .cold]>:
+   140015b48:	48 83 7b 08 00       	cmpq   $0x0,0x8(%rbx)
+   140015b4d:	48 8d 4b 08          	lea    0x8(%rbx),%rcx
+   140015b51:	74 05                	je     140015b58 <BUFFER_MANAGER::~BUFFER_MANAGER() [clone .cold]+0x10>
+   140015b53:	e8 18 bd fe ff       	call   140001870 <std::_Deque_base<buffer*, std::allocator<buffer*> >::~_Deque_base() [clone .part.0]>
+   140015b58:	48 89 d9             	mov    %rbx,%rcx
+   140015b5b:	e8 70 f1 fe ff       	call   140004cd0 <singleton<BUFFER_MANAGER>::~singleton()>
+   140015b60:	48 89 f1             	mov    %rsi,%rcx
+   140015b63:	e8 58 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b68:	90                   	nop
+   140015b69:	90                   	nop
+
+0000000140015b6a <BUFFER_MANAGER::~BUFFER_MANAGER() [clone .cold]>:
+   140015b6a:	48 89 d9             	mov    %rbx,%rcx
+   140015b6d:	e8 ae 26 ff ff       	call   140008220 <operator delete(void*)>
+   140015b72:	48 89 f1             	mov    %rsi,%rcx
+   140015b75:	e8 46 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b7a:	90                   	nop
+   140015b7b:	90                   	nop
+
+0000000140015b7c <singleton<BUFFER_MANAGER>::~singleton() [clone .cold]>:
+   140015b7c:	48 89 d9             	mov    %rbx,%rcx
+   140015b7f:	e8 9c 26 ff ff       	call   140008220 <operator delete(void*)>
+   140015b84:	48 89 f1             	mov    %rsi,%rcx
+   140015b87:	e8 34 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b8c:	90                   	nop
+   140015b8d:	90                   	nop
+
+0000000140015b8e <CDynamicPool<CTextFileLoader::SGroupNode>::~CDynamicPool() [clone .cold]>:
+   140015b8e:	48 8d 4b 28          	lea    0x28(%rbx),%rcx
+   140015b92:	e8 69 27 ff ff       	call   140008300 <std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()>
+   140015b97:	48 89 f1             	mov    %rsi,%rcx
+   140015b9a:	e8 21 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015b9f:	90                   	nop
+
+0000000140015ba0 <CDynamicPool<CTextFileLoader::SGroupNode>::~CDynamicPool() [clone .cold]>:
+   140015ba0:	48 89 d9             	mov    %rbx,%rcx
+   140015ba3:	e8 78 26 ff ff       	call   140008220 <operator delete(void*)>
+   140015ba8:	48 89 f1             	mov    %rsi,%rcx
+   140015bab:	e8 10 3e ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015bb0:	90                   	nop
+   140015bb1:	90                   	nop
+
+0000000140015bb2 <BUFFER_MANAGER::BUFFER_MANAGER() [clone .constprop.0] [clone .cold]>:
+   140015bb2:	48 83 7c 24 70 00    	cmpq   $0x0,0x70(%rsp)
+   140015bb8:	74 0a                	je     140015bc4 <BUFFER_MANAGER::BUFFER_MANAGER() [clone .constprop.0] [clone .cold]+0x12>
+   140015bba:	48 8b 4c 24 28       	mov    0x28(%rsp),%rcx
+   140015bbf:	e8 ac bc fe ff       	call   140001870 <std::_Deque_base<buffer*, std::allocator<buffer*> >::~_Deque_base() [clone .part.0]>
+   140015bc4:	48 89 f9             	mov    %rdi,%rcx
+   140015bc7:	e8 04 f1 fe ff       	call   140004cd0 <singleton<BUFFER_MANAGER>::~singleton()>
+   140015bcc:	48 89 d9             	mov    %rbx,%rcx
+   140015bcf:	e8 ec 3d ff ff       	call   1400099c0 <_Unwind_Resume>
+   140015bd4:	90                   	nop

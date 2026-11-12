@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804e6d0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "_Deque_base<event*,std::allocator<event*>_>::_M_destroy_nodes",
+      "address": "0804e6d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void _M_destroy_nodes(_Deque_base<event*,std::allocator<event*>_> *\r\n   this, LPEVENT * * __nstart, LPEVENT * * __nfinish) */\r\n\r\nvoid __thiscall\r\n_Deque_base<event*,std::allocator<event*>_>::_M_destroy_nodes\r\n          (_Deque_base<event*,std::allocator<event*>_> *this,LPEVENT **__nstart,LPEVENT **__nfinish)\r\n\r\n{\r\n  for (; __nstart < __nfinish; __nstart = __nstart + 1) {\r\n    std::__default_alloc_template<true,0>::deallocate(*__nstart,0x200);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

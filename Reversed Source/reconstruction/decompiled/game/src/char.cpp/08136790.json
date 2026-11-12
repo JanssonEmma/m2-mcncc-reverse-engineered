@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08136790",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CHARACTER::ClearKillCount",
+      "address": "08136790"
+    },
+    "code": "\r\n/* DWARF original prototype: void ClearKillCount(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::ClearKillCount(CHARACTER *this)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  allocator local_2c [16];\r\n  int local_1c [5];\r\n  \r\n  std::string::string((string *)local_1c,\"threeway_war_dead_count\",local_2c);\r\n  if (singleton<quest::CQuestManager>::ms_singleton == (CQuestManager *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  iVar2 = CQuestManager::GetEventFlag\r\n                    ((CQuestManager *)singleton<quest::CQuestManager>::ms_singleton,\r\n                     (string *)local_1c);\r\n  this->m_iKillCount = iVar2;\r\n  LOCK();\r\n  piVar1 = (int *)(local_1c[0] + -4);\r\n  iVar2 = *piVar1;\r\n  *piVar1 = *piVar1 + -1;\r\n  UNLOCK();\r\n  if (iVar2 < 1) {\r\n    std::string::_Rep::_M_destroy((allocator *)(local_1c[0] + -0xc));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::SetID\",\n    \"address\": \"0805dd70\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void SetID(PC * this, DWORD dwID) */\\r\\n\\r\\nvoid __thiscall PC::SetID(PC *this,DWORD dwID)\\r\\n\\r\\n{\\r\\n  this->m_bShouldSendDone = false;\\r\\n  this->m_dwID = dwID;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::SetID",
+        "address": "0805dd70"
+      },
+      "code": "\r\n/* DWARF original prototype: void SetID(PC * this, DWORD dwID) */\r\n\r\nvoid __thiscall PC::SetID(PC *this,DWORD dwID)\r\n\r\n{\r\n  this->m_bShouldSendDone = false;\r\n  this->m_dwID = dwID;\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"PC::SetID\",\n    \"address\": \"0805dd70\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 0,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "PC::SetID",
+        "address": "0805dd70"
+      },
+      "callers": null,
+      "callees": {
+        "items": [],
+        "offset": 0,
+        "limit": 100,
+        "total": 0,
+        "has_more": false
+      }
+    },
+    "isError": false
+  },
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"items\": [\n    {\n      \"address\": \"0805dd70\",\n      \"bytes\": \"55\",\n      \"instruction\": \"PUSH EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd71\",\n      \"bytes\": \"89e5\",\n      \"instruction\": \"MOV EBP,ESP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd73\",\n      \"bytes\": \"8b5508\",\n      \"instruction\": \"MOV EDX,dword ptr [EBP + 0x8]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd76\",\n      \"bytes\": \"8b450c\",\n      \"instruction\": \"MOV EAX,dword ptr [EBP + 0xc]\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd79\",\n      \"bytes\": \"c6421900\",\n      \"instruction\": \"MOV byte ptr [EDX + 0x19],0x0\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd7d\",\n      \"bytes\": \"89421c\",\n      \"instruction\": \"MOV dword ptr [EDX + 0x1c],EAX\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd80\",\n      \"bytes\": \"5d\",\n      \"instruction\": \"POP EBP\",\n      \"comment\": null\n    },\n    {\n      \"address\": \"0805dd81\",\n      \"bytes\": \"c3\",\n      \"instruction\": \"RET\",\n      \"comment\": null\n    }\n  ],\n  \"offset\": 0,\n  \"limit\": 2000,\n  \"total\": 8,\n  \"has_more\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "items": [
+        {
+          "address": "0805dd70",
+          "bytes": "55",
+          "instruction": "PUSH EBP",
+          "comment": null
+        },
+        {
+          "address": "0805dd71",
+          "bytes": "89e5",
+          "instruction": "MOV EBP,ESP",
+          "comment": null
+        },
+        {
+          "address": "0805dd73",
+          "bytes": "8b5508",
+          "instruction": "MOV EDX,dword ptr [EBP + 0x8]",
+          "comment": null
+        },
+        {
+          "address": "0805dd76",
+          "bytes": "8b450c",
+          "instruction": "MOV EAX,dword ptr [EBP + 0xc]",
+          "comment": null
+        },
+        {
+          "address": "0805dd79",
+          "bytes": "c6421900",
+          "instruction": "MOV byte ptr [EDX + 0x19],0x0",
+          "comment": null
+        },
+        {
+          "address": "0805dd7d",
+          "bytes": "89421c",
+          "instruction": "MOV dword ptr [EDX + 0x1c],EAX",
+          "comment": null
+        },
+        {
+          "address": "0805dd80",
+          "bytes": "5d",
+          "instruction": "POP EBP",
+          "comment": null
+        },
+        {
+          "address": "0805dd81",
+          "bytes": "c3",
+          "instruction": "RET",
+          "comment": null
+        }
+      ],
+      "offset": 0,
+      "limit": 2000,
+      "total": 8,
+      "has_more": false
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "quest::CQuestManager::CloseState",
+    "address": "0805d000"
+  },
+  "code": "\r\n/* DWARF original prototype: void CloseState(CQuestManager * this, QuestState * qs) */\r\n\r\nvoid __thiscall quest::CQuestManager::CloseState(CQuestManager *this,QuestState *qs)\r\n\r\n{\r\n  if (qs->co != (lua_State *)0x0) {\r\n    luaL_unref(*(lua_State **)(this + 0x34),-10000,qs->ico);\r\n    qs->co = (lua_State *)0x0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

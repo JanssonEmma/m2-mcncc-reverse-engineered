@@ -1,0 +1,3 @@
+from pathlib import Path
+import json,hashlib,ast
+p=Path('work/pc_quest_save');q=p/'MANIFEST.json';m=json.loads(q.read_text(encoding='utf-8'));m['integration_plan_sha256']=hashlib.sha256((p/'integration/plan.json').read_bytes()).hexdigest();m['prepared_runtime_count']=104;m['static_checks']={'python_ast':'passed','guard_dryrun':'passed6paths5dependencies','cpp_compiled':False,'runtime_executed':False};m['evidence']={x.name:hashlib.sha256(x.read_bytes()).hexdigest() for x in p.iterdir() if x.is_file() and x.name!='MANIFEST.json'};q.write_text(json.dumps(m,indent=2)+'\n',encoding='utf-8');print('Manifest refreshed; prepared only104; no F writes/builds')

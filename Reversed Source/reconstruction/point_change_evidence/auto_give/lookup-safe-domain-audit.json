@@ -1,0 +1,52 @@
+{
+  "kind": "static address-safety model from saved x86 control flow; not target execution",
+  "safe_query_count": 932,
+  "lengths": [
+    3,
+    7,
+    15,
+    31
+  ],
+  "invalid_cases": [
+    {
+      "values": [],
+      "key": 0,
+      "trace": {
+        "safe": false,
+        "read_indices": [
+          0
+        ]
+      }
+    },
+    {
+      "values": [
+        9
+      ],
+      "key": 0,
+      "trace": {
+        "safe": false,
+        "read_indices": [
+          0,
+          -1
+        ]
+      }
+    },
+    {
+      "values": [
+        10,
+        20,
+        30
+      ],
+      "key": 35,
+      "trace": {
+        "safe": false,
+        "read_indices": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "original_elf_executed": false
+}

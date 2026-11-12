@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08051bb0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "PrintHexa",
+      "address": "08051bb0"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention */\r\n\r\nvoid PrintHexa(void *pD,int Size)\r\n\r\n{\r\n  byte bVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  char *__s;\r\n  int Base;\r\n  char Line [80];\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: char * pData@[???] */\r\n  Base = 0;\r\n  do {\r\n    if (Size < 1) {\r\n      return;\r\n    }\r\n    __s = Line + 0xb;\r\n    memset(Line,0x20,0x50);\r\n    sprintf(Line,\"%08Xh: \",Base);\r\n    Line[0x4c] = '\\0';\r\n    iVar3 = 0;\r\n    do {\r\n      if (Size <= iVar3) break;\r\n      iVar2 = Base + iVar3;\r\n      sprintf(__s,\"%02X \",(uint)*(byte *)(iVar2 + (int)pD));\r\n      bVar1 = *(byte *)(iVar2 + (int)pD);\r\n      if (((' ' < (char)bVar1) || ((byte)(bVar1 + 0x50) < 0x19)) ||\r\n         ((0 < iVar3 &&\r\n          ((((byte)(*(char *)(iVar2 + -1 + (int)pD) + 0x50U) < 0x19 && (0xa0 < bVar1)) &&\r\n           (bVar1 != 0xff)))))) {\r\n        Line[iVar3 + 0x3c] = *(char *)(iVar2 + (int)pD);\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n      __s = __s + 3;\r\n    } while (iVar3 < 0x10);\r\n    Line[iVar3 * 3 + 0xb] = ' ';\r\n    Base = Base + iVar3;\r\n    Size = Size - iVar3;\r\n    Line[0x3b] = '|';\r\n    fprintf(__stderrp,\"%s\\n\",Line);\r\n  } while( true );\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

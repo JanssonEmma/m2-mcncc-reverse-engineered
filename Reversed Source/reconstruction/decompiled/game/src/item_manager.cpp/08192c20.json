@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08192c20",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8192c20",
+    "function": {
+      "name": "ITEM_MANAGER::RemoveItem",
+      "address": "08192c20"
+    },
+    "signature": "void RemoveItem(ITEM_MANAGER * this, LPITEM item, char * c_pszReason)",
+    "code": "\r\n/* DWARF original prototype: void RemoveItem(ITEM_MANAGER * this, LPITEM item, char * c_pszReason)\r\n    */\r\n\r\nvoid __thiscall ITEM_MANAGER::RemoveItem(ITEM_MANAGER *this,LPITEM item,char *c_pszReason)\r\n\r\n{\r\n  CHARACTER *this_00;\r\n  DWORD y;\r\n  DWORD dwItemID;\r\n  DWORD x;\r\n  DWORD dwPID;\r\n  CSafebox *this_01;\r\n  char szHint [64];\r\n  \r\n                    /* Unresolved local var: LPCHARACTER o@[DW_OP_reg3(EBX)] */\r\n  this_00 = item->m_pOwner;\r\n  if (this_00 != (CHARACTER *)0x0) {\r\n    snprintf(szHint,0x40,\"%s %lu \",\r\n             (uint)item->m_pProto->szLocaleName & (item->m_pProto == (TItemTable *)0x0) - 1,\r\n             item->m_dwCount);\r\n    y = (this_00->super_CEntity).m_pos.y;\r\n    dwItemID = item->m_dwID;\r\n    x = (this_00->super_CEntity).m_pos.x;\r\n    dwPID = this_00->m_dwPlayerID;\r\n    if (singleton<LogManager>::ms_singleton == (LogManager *)0x0) {\r\n      __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n    }\r\n    if (c_pszReason == (char *)0x0) {\r\n      c_pszReason = \"REMOVE\";\r\n    }\r\n    LogManager::ItemLog(singleton<LogManager>::ms_singleton,dwPID,x,y,dwItemID,c_pszReason,szHint);\r\n    if (item->m_bWindow == '\\x04') {\r\n      this_01 = CHARACTER::GetMall(this_00);\r\n    }\r\n    else {\r\n      if (item->m_bWindow != '\\x03') {\r\n        CHARACTER::SyncQuickslot(this_00,'\\x01',item->m_bCell,0xff);\r\n        CItem::RemoveFromCharacter(item);\r\n        goto LAB_08192d10;\r\n      }\r\n                    /* Unresolved local var: CSafebox * pSafebox@[???] */\r\n      this_01 = CHARACTER::GetSafebox(this_00);\r\n    }\r\n    if (this_01 != (CSafebox *)0x0) {\r\n      CSafebox::Remove(this_01,(uint)item->m_bCell);\r\n    }\r\n  }\r\nLAB_08192d10:\r\n  DestroyItem(this,item);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

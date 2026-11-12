@@ -1,0 +1,16 @@
+// Complete original08171300; not independently closed: RemoveAffect required.
+void CHARACTER::SetWear(BYTE cell,LPITEM item)
+{
+    if(cell>=19) {
+        _sys_err("SetWear",361,"CHARACTER::SetItem: invalid item cell %d",(unsigned int)cell);
+        return;
+    }
+    SetItem((BYTE)(cell+90),item);
+    if(!item && cell==4) {
+        if(IsAffectFlag(20)) RemoveAffect(63);
+        if(IsAffectFlag(16)) RemoveAffect(4);
+    }
+}
+// Original inline header setter (metadata API proof + direct assembly store).
+// Insert inside existing FULL CHARACTER:
+// void SetImmuneFlag(DWORD value) { m_pointsInstant.dwImmuneFlag=value; }

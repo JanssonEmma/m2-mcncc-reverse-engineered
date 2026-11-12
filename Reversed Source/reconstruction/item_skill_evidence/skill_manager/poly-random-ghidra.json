@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "_random",
+    "address": "081bc270"
+  },
+  "code": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n/* _random() */\r\n\r\nlongdouble _random(void)\r\n\r\n{\r\n  long lVar1;\r\n  \r\n  lVar1 = random();\r\n  return (longdouble)lVar1 * (longdouble)_DAT_082343a4;\r\n}\r\n\r\n",
+  "truncated": false
+}

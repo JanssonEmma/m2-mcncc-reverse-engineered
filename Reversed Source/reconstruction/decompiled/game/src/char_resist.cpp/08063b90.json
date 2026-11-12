@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08063b90",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "poison_event",
+      "address": "08063b90"
+    },
+    "code": "\r\nlong poison_event(EVENT *event)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  LPCHARACTER ch;\r\n  bool bVar2;\r\n  LPCHARACTER pAttacker;\r\n  int iVar3;\r\n  int iVar4;\r\n  LPCHARACTER pkAttacker;\r\n  TPoisonEventInfo *info;\r\n  \r\n                    /* Unresolved local var: LPCHARACTER ch@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: int dam@[DW_OP_reg6(ESI)] */\r\n  puVar1 = event->info;\r\n  ch = (LPCHARACTER)*puVar1;\r\n  if (singleton<CHARACTER_MANAGER>::ms_singleton == (CHARACTER_MANAGER *)0x0) {\r\n    __assert(\"instance\",\"../../common/singleton.h\",0x1a);\r\n  }\r\n  pAttacker = CHARACTER_MANAGER::FindByPID(singleton<CHARACTER_MANAGER>::ms_singleton,puVar1[2]);\r\n  iVar4 = (ch->m_pointsInstant).iMaxHP;\r\n  iVar3 = GetPoisonDamageRate(ch);\r\n  iVar4 = (iVar4 * iVar3) / 1000;\r\n  if (test_server != 0) {\r\n    CHARACTER::ChatPacket(ch,'\\x02',\"Poison Damage %d\",iVar4);\r\n  }\r\n  bVar2 = CHARACTER::Damage(ch,pAttacker,iVar4,DAMAGE_TYPE_POISON);\r\n  if ((bVar2) || (iVar4 = puVar1[1], puVar1[1] = iVar4 + -1, iVar4 + -1 == 0)) {\r\n    iVar4 = 0;\r\n    ch->m_pkPoisonEvent = (LPEVENT)0x0;\r\n  }\r\n  else {\r\n    iVar4 = passes_per_sec * 3;\r\n  }\r\n  return iVar4;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

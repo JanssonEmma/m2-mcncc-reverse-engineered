@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b63a0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "socket_write",
+      "address": "081b63a0"
+    },
+    "code": "\r\nint socket_write(socket_t desc,char *data,size_t length)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  undefined4 *puVar3;\r\n  char *format;\r\n  \r\n  do {\r\n    iVar1 = socket_write_tcp(desc,data,length);\r\n    if (iVar1 < 0) {\r\n      piVar2 = (int *)__error();\r\n      if (*piVar2 == 0x23) {\r\n        puVar3 = (undefined4 *)__error();\r\n        *puVar3 = 0x23;\r\n      }\r\n      piVar2 = (int *)__error();\r\n      if (*piVar2 == 0x23) {\r\n        format = \"socket write would block, about to close!\";\r\n        iVar1 = 0x6d;\r\n      }\r\n      else {\r\n        format = \"write to desc error\";\r\n        iVar1 = 0x6f;\r\n      }\r\n      _sys_err(\"socket_write\",iVar1,format);\r\n      return -1;\r\n    }\r\n    data = data + iVar1;\r\n    length = length - iVar1;\r\n  } while (length != 0);\r\n  return 0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

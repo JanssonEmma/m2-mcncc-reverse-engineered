@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08051af0",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "locale_convert",
+      "address": "08051af0"
+    },
+    "code": "\r\nchar * locale_convert(char *src,int len)\r\n\r\n{\r\n  char cVar1;\r\n  bool bVar2;\r\n  char *__ptr;\r\n  char *pcVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  char last_char;\r\n  int start;\r\n  char *buf;\r\n  \r\n                    /* Unresolved local var: char * tmp@[DW_OP_reg2(EDX)]\r\n                       Unresolved local var: int i@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: int j@[DW_OP_reg7(EDI)]\r\n                       Unresolved local var: char * dest@[DW_OP_reg1(ECX)] */\r\n  bVar2 = false;\r\n  last_char = '\\0';\r\n  if (len != 0) {\r\n    iVar5 = 0;\r\n    iVar4 = 0;\r\n    __ptr = operator_new__(len + 1);\r\n    pcVar3 = __ptr;\r\n    if (0 < len) {\r\n      do {\r\n        cVar1 = *src;\r\n        if (cVar1 == '\\\"') {\r\n          if (last_char == '\\\\') goto LAB_08051b41;\r\n          bVar2 = !bVar2;\r\n        }\r\n        else {\r\n          if (cVar1 == ';') {\r\n            if ((last_char != '\\\\') && (!bVar2)) break;\r\n          }\r\n          else if (!bVar2) goto LAB_08051b4f;\r\nLAB_08051b41:\r\n          if ((cVar1 == '\\\\') && (src[1] == 'n')) {\r\n            *pcVar3 = '\\n';\r\n            src = src + 1;\r\n            last_char = '\\n';\r\n          }\r\n          else {\r\n            *pcVar3 = cVar1;\r\n            last_char = *src;\r\n          }\r\n          pcVar3 = pcVar3 + 1;\r\n          iVar5 = iVar5 + 1;\r\n        }\r\nLAB_08051b4f:\r\n        iVar4 = iVar4 + 1;\r\n        src = src + 1;\r\n      } while (iVar4 < len);\r\n      if (iVar5 != 0) {\r\n        *pcVar3 = '\\0';\r\n        return __ptr;\r\n      }\r\n    }\r\n    free(__ptr);\r\n  }\r\n  return (char *)0x0;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

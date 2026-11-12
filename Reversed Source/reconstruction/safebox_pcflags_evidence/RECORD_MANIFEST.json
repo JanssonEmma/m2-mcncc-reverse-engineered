@@ -1,0 +1,63 @@
+{
+  "checkpoint": 89,
+  "status": "passed",
+  "full_runtime_commands": 98,
+  "focused_runtime_commands": 4,
+  "abi": true,
+  "original_function_mappings": 18,
+  "safebox_methods": 11,
+  "pc_flag_timer_methods": 7,
+  "source_guards": {
+    "game/src/safebox.h": "b443bbe2075dd1bc56e9186e267cc7838070361bdc642a837ba9ccce452f6ac7",
+    "game/src/safebox.cpp": "16e270ef3becd7ab1296041353822d7173db6a0ee83173cc661501c38efb7de1",
+    "reconstruction/tests/safebox_closed_regression.cpp": "350081a4195712d0934553b9b6480cc88560e41ff824583ce8112031d4b09486",
+    "reconstruction/tests/safebox_closed_abi.cpp": "64e8dbe266fb413aeae8801100363788c938e1b9505ee35aba2a316347256746",
+    "reconstruction/tests/safebox_desc_output_syscalls.c": "ecf92dda9dde1d53424607bdfda0b303924c29a38d9ca441bc9d783c8a8fdcbf",
+    "common/length.h": "872e5a3ece715d45b7a4c5fd2d9d946f017259004964e4775b743f0460f42abc",
+    "common/tables.h": "4f1eaa1800177527619c20ec6ae9b4d5ea13f4243fd1891458ed7e1370d9f91d",
+    "game/src/char.h": "a58cc3c4c7ef99e5f1cf93d86525464fc4412d1379acd4dc07523a31d560760d",
+    "game/src/char.cpp": "d17f8213ab5a046c47dfc8a5c38a2366d5479706c8e71999286f7ed220457841",
+    "reconstruction/tests/Makefile": "65749b16931cdf5aba20c9a7c8ec4af9a5619d61680303a26d0d9f1435413f9a",
+    "game/src/questpc.cpp": "32311f9c25ffbc0839fbb91bd6c4cbd4dee5e8d96cd71df24d76aae6828cc758",
+    "reconstruction/tests/pc_flags_timers_regression.cpp": "28fff082371ffe8cde101108d8c55b19f7f8145e98b94df28f071d0cc41da43a",
+    "reconstruction/tests/pc_flags_timers_abi.cpp": "e1d3196fd124d15fc3dcb4b509931b309f4e53c47ce73e61637ffbc11909f15a",
+    "reconstruction/tests/pc_flags_timers_desc_output_syscalls.c": "6dde65de0ab7042a938b86e49f76ba404d1b6a88281e730178f6a4618ce94afc"
+  },
+  "source_guard_review": {
+    "review": "Safebox10 guarded files then PCflag/timer5 guarded files, only overlap Makefile. Sequential beforeSHA agrees, final14paths frozen. No production fixes.",
+    "guards": {
+      "game/src/safebox.h": "b443bbe2075dd1bc56e9186e267cc7838070361bdc642a837ba9ccce452f6ac7",
+      "game/src/safebox.cpp": "16e270ef3becd7ab1296041353822d7173db6a0ee83173cc661501c38efb7de1",
+      "reconstruction/tests/safebox_closed_regression.cpp": "350081a4195712d0934553b9b6480cc88560e41ff824583ce8112031d4b09486",
+      "reconstruction/tests/safebox_closed_abi.cpp": "64e8dbe266fb413aeae8801100363788c938e1b9505ee35aba2a316347256746",
+      "reconstruction/tests/safebox_desc_output_syscalls.c": "ecf92dda9dde1d53424607bdfda0b303924c29a38d9ca441bc9d783c8a8fdcbf",
+      "common/length.h": "872e5a3ece715d45b7a4c5fd2d9d946f017259004964e4775b743f0460f42abc",
+      "common/tables.h": "4f1eaa1800177527619c20ec6ae9b4d5ea13f4243fd1891458ed7e1370d9f91d",
+      "game/src/char.h": "a58cc3c4c7ef99e5f1cf93d86525464fc4412d1379acd4dc07523a31d560760d",
+      "game/src/char.cpp": "d17f8213ab5a046c47dfc8a5c38a2366d5479706c8e71999286f7ed220457841",
+      "reconstruction/tests/Makefile": "65749b16931cdf5aba20c9a7c8ec4af9a5619d61680303a26d0d9f1435413f9a",
+      "game/src/questpc.cpp": "32311f9c25ffbc0839fbb91bd6c4cbd4dee5e8d96cd71df24d76aae6828cc758",
+      "reconstruction/tests/pc_flags_timers_regression.cpp": "28fff082371ffe8cde101108d8c55b19f7f8145e98b94df28f071d0cc41da43a",
+      "reconstruction/tests/pc_flags_timers_abi.cpp": "e1d3196fd124d15fc3dcb4b509931b309f4e53c47ce73e61637ffbc11909f15a",
+      "reconstruction/tests/pc_flags_timers_desc_output_syscalls.c": "6dde65de0ab7042a938b86e49f76ba404d1b6a88281e730178f6a4618ce94afc"
+    }
+  },
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-89-validation.receipt.json": "8c26f649d45b72045211354bd641d94bd805693cea63507e23d19cbfb7d5b2f5",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\safebox-pc-flags-focused.receipt.json": "035a4dafcd3cbf9ce51950353c9a1f64cc9c4a27abe179e69eb267fe1840007b",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\safebox-pc-flags-m32.receipt.json": "03a0e4f912285430093334fd663e6c867e2b723647eaa574afb92f42ad792df5",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\safebox-pc-flags-m32.log": "24a56e0cab41ecc3fb8069dd40090e37ac77ce3794e1071141b5ff472ecc3920",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\strict32.receipt.json": "1c7861765ab925c98b10f114ba6d64229d8815d1959c6d0f2567f87be3b51341",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\item_sql_runtime-o2.receipt.json": "1971562e1f4ffea823fc5db471a23cc31f27d340aa7a693fb05ca20ce605a57e",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\item_sql_semaphore-o2.receipt.json": "6eba6a3f4d205b4908f0738f14a32eaa5118af6c6b0fc4d52abb78538169b4af",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\item_sql_api-o2.receipt.json": "01def1f96fa52cc87702f40e31b0cfb6b9dc36a641cd8e353a011776dfa7f937",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\item_socket_config-o2.receipt.json": "4a587aa7a6cb33cb88f2e87639dfb63a681df9f13129fa9aac8a5af8680a5c4a",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\safebox_desc_output_syscalls-o2.receipt.json": "2ac6a3e7ea29eb07df2683135aea1edd260bb0c11bb72c95fa97d27bb0b64eeb",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\o2-build.receipt.json": "980f158a9813f3819c70e9d6d357b73efec4cae00d707b505a69e5a15bc84b0f",
+    "PROJECT_ROOT\\Reversed Source\\reconstruction\\tests\\safebox_validation\\o2-runtime.receipt.json": "6ec0aba491d42f2cfb3ee8515596fbe99b316591bee2b9167f1e3def1a0d9920",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\quest_level\\pc_flags_timers\\pc-flags-timers-o2.receipt.json": "18c8536ded301c294d5eb74ba11420213d217acc2b640c7c09729421ad1484db"
+  },
+  "baseline_overrides_sha256": "7bbd507ecc7e9ab1f0889e62eab01cd3b6f8450ae8b1dfbd60acd42382a51185",
+  "baseline_validation_status_sha256": "a699a257c078b0a1125c93b31354529725ceb8c2edc166ebeb9a2cc04f99f232",
+  "note": "Checkpoint89 integrates two independent groups together:11 complete safebox constructor/Add/Save/lookup/window/resize/CHARgetter bodies with full135-slot class/EWindows6/packed11-byte safebox row; seven complete PC flag/pending-save/named-timer helpers. Focused combined4+ABI, actual optimized safebox/item/SQL graph/five optimized objects and actual PC/registry/scheduler graph/four optimized SQL objects, strict32 actual sources/ABIs/regressions and full98 ordered runtimes+ABI pass. Original grid leak/uncleared copied tail/ignoredPut failure, save-beforeGUI ordering, PC zero/skip-save and live iterator/timer callback behavior retained. No fake production destructor/Remove/MoveItem/timer/VM. Explicit test-only empty raw-storage cleanup does not claim original populated safebox lifecycle. Quest VM/LevelUp, full item removal/stat/affect/horse/Boot/startup/server and VisualStudio completion remain unfinished."
+}

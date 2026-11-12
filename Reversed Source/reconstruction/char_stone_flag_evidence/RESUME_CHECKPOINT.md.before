@@ -1,0 +1,9 @@
+# Metin2 reconstruction restart — checkpoint 109
+
+Checkpoint 109 restored seven quest output/time callbacks and GetEmpireFromMapIndex. 2 focused runtime suites passed. The registry has 120 suites. The last full run remains checkpoint 103.
+
+Evidence, source guards and focused proof are in reconstruction/quest_output_empire_evidence.
+
+The direct Lua callbacks preserve exact script markers, descriptor packet types and UTC conversion. The spatial manager now has all direct lookups needed by SpawnMob and ProcessEventFlag. SpawnMob still requires the genuine SetProto, Show and character destruction paths. Continue staging complete non-Monarch startup dependencies, including character-stone event settings and Metin drop selection.
+
+Current scope excludes Monarch. Batch related focused tests. Keep the original ELF unexecuted and unmodified.

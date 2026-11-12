@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "CHARACTER_Packet_BufferedPacket_inventory_matches": [],
+  "inspected_CHAR_DWARF_matches": [],
+  "actual_LevelChange_calls": "0808f5d0-calls.json",
+  "existing_complete_wrappers": {
+    "CLIENT_DESC::DBPacket": "0813fbd0-decompile.json",
+    "CLIENT_DESC::DBPacketHeader": "0813fb40-decompile.json",
+    "DESC::BufferedPacket": "08139cb0-decompile.json",
+    "DESC::Packet": "08139d10-decompile.json"
+  },
+  "conclusion": "No target CHARACTER::Packet/BufferedPacket methods found; LevelChange directly uses the complete real DESC methods after GetDesc. Do not invent CHAR wrappers or substitute app mocks. CGuild::Packet is a separate helper, not a LevelChange dependency."
+}

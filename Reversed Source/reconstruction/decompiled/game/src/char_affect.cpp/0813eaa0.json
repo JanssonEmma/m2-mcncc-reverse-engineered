@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813eaa0",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x813eaa0",
+    "function": {
+      "name": "CHARACTER::RemoveAffect",
+      "address": "0813eaa0"
+    },
+    "signature": "bool RemoveAffect(CHARACTER * this, DWORD dwType)",
+    "code": "\r\n/* DWARF original prototype: bool RemoveAffect(CHARACTER * this, DWORD dwType) */\r\n\r\nbool __thiscall CHARACTER::RemoveAffect(CHARACTER *this,DWORD dwType)\r\n\r\n{\r\n  CAffect *pkAff;\r\n  char *pcVar1;\r\n  bool flag;\r\n  \r\n                    /* Unresolved local var: CAffect * pkAff@[DW_OP_reg0(EAX)] */\r\n  if (dwType == 0x200) {\r\n    pcVar1 = GetName(this);\r\n    sys_log(0,\"XXX RemoveAffect SKILL_BOOK_BONUS from %s\",pcVar1);\r\n  }\r\n  if (dwType == 0xdf) {\r\n    pcVar1 = locale_find(&DAT_08227a62,g_iUseLocale);\r\n    ChatPacket(this,'\\x01',pcVar1);\r\n  }\r\n  flag = false;\r\n  while( true ) {\r\n    pkAff = FindAffect(this,dwType,'\\0');\r\n    if (pkAff == (CAffect *)0x0) break;\r\n    RemoveAffect(this,pkAff);\r\n    flag = true;\r\n  }\r\n  return flag;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

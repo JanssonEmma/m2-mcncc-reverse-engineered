@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b9770",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "pid_init",
+      "address": "081b9770"
+    },
+    "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nint pid_init(void)\r\n\r\n{\r\n  FILE *__stream;\r\n  __pid_t _Var1;\r\n  \r\n                    /* Unresolved local var: FILE.conflict * fp@[DW_OP_reg3(EBX)] */\r\n  __stream = fopen(\"pid\",\"w\");\r\n  if (__stream == (FILE *)0x0) {\r\n    printf(\"pid_init(): could not open file for writing. (filename: ./pid)\");\r\n  }\r\n  else {\r\n    _Var1 = getpid();\r\n    fprintf(__stream,\"%d\",_Var1);\r\n    fclose(__stream);\r\n  }\r\n  return (uint)(__stream != (FILE *)0x0);\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

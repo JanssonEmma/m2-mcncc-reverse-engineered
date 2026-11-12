@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "CHARACTER::ConfirmWithMsg",
+    "address": "08136310"
+  },
+  "code": "\r\n/* DWARF original prototype: void ConfirmWithMsg(CHARACTER * this, char * szMsg, int iTimeout, DWORD\r\n   dwRequestPID) */\r\n\r\nvoid __thiscall\r\nCHARACTER::ConfirmWithMsg(CHARACTER *this,char *szMsg,int iTimeout,DWORD dwRequestPID)\r\n\r\n{\r\n  TPacketGCQuestConfirm p;\r\n  \r\n  if ((this->super_CEntity).m_lpDesc != (LPDESC)0x0) {\r\n    p.header = '.';\r\n    p.requestPID = dwRequestPID;\r\n    p.timeout = iTimeout;\r\n    strncpy(p.msg,szMsg,0x40);\r\n    p.msg[0x40] = '\\0';\r\n    DESC::Packet((this->super_CEntity).m_lpDesc,&p,0x4a);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

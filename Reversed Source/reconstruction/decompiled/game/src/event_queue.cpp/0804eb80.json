@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0804eb80",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CEventQueue::Enqueue",
+      "address": "0804eb80"
+    },
+    "code": "\r\n/* DWARF original prototype: TQueueElement * Enqueue(CEventQueue * this, void * pvData, int key) */\r\n\r\nTQueueElement * __thiscall CEventQueue::Enqueue(CEventQueue *this,void *pvData,int key)\r\n\r\n{\r\n  TQueueElement ***pppTVar1;\r\n  TQueueElement **ppTVar2;\r\n  __normal_iterator<SQueueElement**,std::vector<SQueueElement*,_std::allocator<SQueueElement*>_>_>\r\n  _Var3;\r\n  TQueueElement *pElem;\r\n  \r\n  pElem = operator_new(0xc);\r\n  _Var3._M_current =\r\n       (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n       super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_finish;\r\n  ppTVar2 = (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n            super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>.\r\n            _M_end_of_storage;\r\n  pElem->bCancel = false;\r\n  pElem->pvData = pvData;\r\n  pElem->iKey = key;\r\n  if (_Var3._M_current == ppTVar2) {\r\n    vector<SQueueElement*,std::allocator<SQueueElement*>_>::_M_insert_aux\r\n              ((vector<SQueueElement*,std::allocator<SQueueElement*>_> *)this,_Var3,&pElem);\r\n  }\r\n  else {\r\n    if (_Var3._M_current != (TQueueElement **)0x0) {\r\n      *_Var3._M_current = pElem;\r\n    }\r\n    pppTVar1 = &(this->m_pq_queue).c.\r\n                super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n                super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>.\r\n                _M_finish;\r\n    *pppTVar1 = *pppTVar1 + 1;\r\n  }\r\n  ppTVar2 = (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n            super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_finish;\r\n  _Var3._M_current =\r\n       (this->m_pq_queue).c.super__Vector_base<SQueueElement*,std::allocator<SQueueElement*>_>.\r\n       super__Vector_alloc_base<SQueueElement*,std::allocator<SQueueElement*>,true>._M_start;\r\n  __push_heap<__gnu_cxx::__normal_iterator<TQueueElement**,_std::vector<TQueueElement*,_std::allocator<TQueueElement*>_>_>,_int,_TQueueElement*,_CEventQueue::FuncQueueComp>\r\n            (_Var3,((int)ppTVar2 - (int)_Var3._M_current >> 2) + -1,0,ppTVar2[-1],(FuncQueueComp)0x0\r\n            );\r\n  return pElem;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

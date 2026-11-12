@@ -1,0 +1,28 @@
+// Complete original mutations. Not independently closed: real stat/combat SCC required.
+bool CHARACTER::RemoveAffect(CAffect* affect)
+{
+    if (!affect) return false;
+    m_list_pkAffect.remove(affect);
+    ComputeAffect(affect,false);
+    if (affect->dwFlag || affect->bApplyOn==19 || affect->bApplyOn==17) UpdatePacket();
+    ComputePoints();
+    CheckMaximumPoints();
+    if (test_server) sys_log(0,"Flag %d Apply %d ",affect->dwFlag,static_cast<unsigned int>(affect->bApplyOn));
+    LPDESC d=GetDesc();
+    if (d) SendAffectRemovePacket(d,m_dwPlayerID,affect->dwType,affect->bApplyOn);
+    delete affect;
+    return true;
+}
+bool CHARACTER::RemoveAffect(DWORD type)
+{
+    if (type==512) sys_log(0,"XXX RemoveAffect SKILL_BOOK_BONUS from %s",GetName());
+    if (type==223) ChatPacket(1,locale_find("\xc3\xa4\xc6\xc3\x20\xb1\xdd\xc1\xf6\xb0\xa1\x20\xc7\xae\xb7\xc8\xbd\xc0\xb4\xcf\xb4\xd9\x2e",g_iUseLocale));
+    bool flag=false;
+    for (;;) {
+        CAffect* affect=FindAffect(type,0);
+        if (!affect) break;
+        RemoveAffect(affect);
+        flag=true;
+    }
+    return flag;
+}

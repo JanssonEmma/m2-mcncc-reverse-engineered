@@ -1,0 +1,34 @@
+{
+  "review": "Sequential manager7 -> PCstorage6 -> registration6 SHA chain verified; final15unique paths. Two explicit TESTONLY fixes from reviewed-fixes; production bodies unchanged.",
+  "guards": {
+    "game/src/questmanager.h": "aecbbafee9b5de3f3128cbf9d3010a4a89af9f9ae70c7d59f932626113e4857b",
+    "game/src/questmanager.cpp": "fd568546b0f7714719a9a0adddeae0d5decc7509ef4044cdeb42fc25715d6933",
+    "reconstruction/tests/quest_manager_indices_regression.cpp": "248edaed29b7f031a8eb226c187d81645ec0542011a3a52a8b3538da7caaae03",
+    "reconstruction/tests/quest_manager_indices_abi.cpp": "e878f0e99151f2b314cd9ddbeed69e0c39094b176b13ff0d09daf4773cdcfaa5",
+    "reconstruction/tests/quest_manager_indices_desc_fixture.cpp": "691ae6b29f6aebcfeb3ed119699a2a6cbd8dcf7a7b0585d376763d6f17141d1e",
+    "reconstruction/tests/quest_manager_indices_desc_output_syscalls.c": "e0ef4dfa58667b9c7f4f0b60b4735e882027411231828921b7b750c8fd32422e",
+    "reconstruction/tests/Makefile": "c7519f99a4795423acb49e2d4d0b84778c2a8bb00701f1d2cb227c2c5d5f4c7d",
+    "game/src/questpc.h": "83dda5dc1bb410f3d120e7acd0b679b5fdf83da173ffa636f5b7d5fd098b4e4a",
+    "game/src/questpc.cpp": "8e37fbdf7249caaed475423d4334dafd41c4cd03e275420ac85a3a047e05d8ba",
+    "reconstruction/tests/pc_quest_storage_regression.cpp": "59875cf5871c299be4ee4aaf8326b0f426a0927d48f9e27993b1c511af07c12b",
+    "reconstruction/tests/pc_quest_storage_abi.cpp": "5014cd52b7bbda2cb99be3c32862addb02619e4d5c354059d7dfbd2d4226a0f8",
+    "reconstruction/tests/pc_quest_storage_desc_output_syscalls.c": "570fafbdfbc8f2c389561af0be8a63866c0d02ee8d28cc2d71fd855d407ac566",
+    "reconstruction/tests/quest_registration_regression.cpp": "3b79811eb18f9c48419b11e20b816ba7731446cc1b99cd37dd2ecf0c15f8f26e",
+    "reconstruction/tests/quest_registration_abi.cpp": "3b651f2de36bfc6496e47346c9942e3a47ec69f9ab3f2b8d2ef9632489053283",
+    "reconstruction/tests/quest_registration_desc_output_syscalls.c": "16c373a70b3901932084dd729444a6d7193e1fd4b77af3aebb79341d408908ed"
+  },
+  "support_read_guards": {
+    "reconstruction/tests/desc_fixture.cpp": "135c1ae2850b81d46cf0d654e48394a9f59ebe647548fe610a16c444ad12ebcf",
+    "reconstruction/tests/desc_output_syscalls.c": "a584ce372bdf5d60e467398d4908da3ea6ff387e228e347fa22d18c84b973270",
+    "reconstruction/tests/quest_flag_fixture.cpp": "cdd8cc62b78c0a709bb81edcbe059ad63a374862927867115ea60e814a27c3fe",
+    "game/src/config.h": "0dd8b9717a4d4000cf34e2076555b11d00a024ed1eadb71c6fc6c83f23d088d3",
+    "game/src/config.cpp": "2a2fd8e465ed267554ced663136ea0591a37b2f17e8346f455d25df48d635e86"
+  },
+  "test_fixes": {
+    "review": "TEST ONLY rename counter gets -> getLogCount to avoid C stdio gets declaration collision. No production body/API/assertion changes. TEST ONLY registration fixture uses native stat/is-directory when mkdir fails, because BSD socket errno shim is not native filesystem errno. No socket shim or production loader changes. Supersedes stat attempt (also shim-shadowed): existing mkdir then actualofstream/close/remove probe verifies writable fixture directory without native errno/stat or sharedshim edits.",
+    "guards": {
+      "reconstruction/tests/pc_quest_storage_regression.cpp": "59875cf5871c299be4ee4aaf8326b0f426a0927d48f9e27993b1c511af07c12b",
+      "reconstruction/tests/quest_registration_regression.cpp": "3b79811eb18f9c48419b11e20b816ba7731446cc1b99cd37dd2ecf0c15f8f26e"
+    }
+  }
+}

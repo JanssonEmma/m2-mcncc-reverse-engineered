@@ -1,0 +1,110 @@
+{
+  "items": [
+    {
+      "address": "08186e00",
+      "bytes": "55",
+      "instruction": "PUSH EBP",
+      "comment": null
+    },
+    {
+      "address": "08186e01",
+      "bytes": "31d2",
+      "instruction": "XOR EDX,EDX",
+      "comment": null
+    },
+    {
+      "address": "08186e03",
+      "bytes": "89e5",
+      "instruction": "MOV EBP,ESP",
+      "comment": null
+    },
+    {
+      "address": "08186e05",
+      "bytes": "0fb64d0c",
+      "instruction": "MOVZX ECX,byte ptr [EBP + 0xc]",
+      "comment": null
+    },
+    {
+      "address": "08186e09",
+      "bytes": "8b4508",
+      "instruction": "MOV EAX,dword ptr [EBP + 0x8]",
+      "comment": null
+    },
+    {
+      "address": "08186e0c",
+      "bytes": "83c07f",
+      "instruction": "ADD EAX,0x7f",
+      "comment": null
+    },
+    {
+      "address": "08186e0f",
+      "bytes": "3808",
+      "instruction": "CMP byte ptr [EAX],CL",
+      "comment": null
+    },
+    {
+      "address": "08186e11",
+      "bytes": "740d",
+      "instruction": "JZ 0x08186e20",
+      "comment": null
+    },
+    {
+      "address": "08186e13",
+      "bytes": "42",
+      "instruction": "INC EDX",
+      "comment": null
+    },
+    {
+      "address": "08186e14",
+      "bytes": "83c003",
+      "instruction": "ADD EAX,0x3",
+      "comment": null
+    },
+    {
+      "address": "08186e17",
+      "bytes": "83fa01",
+      "instruction": "CMP EDX,0x1",
+      "comment": null
+    },
+    {
+      "address": "08186e1a",
+      "bytes": "7ef3",
+      "instruction": "JLE 0x08186e0f",
+      "comment": null
+    },
+    {
+      "address": "08186e1c",
+      "bytes": "31c0",
+      "instruction": "XOR EAX,EAX",
+      "comment": null
+    },
+    {
+      "address": "08186e1e",
+      "bytes": "5d",
+      "instruction": "POP EBP",
+      "comment": null
+    },
+    {
+      "address": "08186e1f",
+      "bytes": "c3",
+      "instruction": "RET",
+      "comment": null
+    },
+    {
+      "address": "08186e20",
+      "bytes": "b801000000",
+      "instruction": "MOV EAX,0x1",
+      "comment": null
+    },
+    {
+      "address": "08186e25",
+      "bytes": "ebf7",
+      "instruction": "JMP 0x08186e1e",
+      "comment": null
+    }
+  ],
+  "offset": 0,
+  "limit": 1000,
+  "total": 17,
+  "has_more": false
+}

@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0812d940",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x812d940",
+    "function": {
+      "name": "CHARACTER::GetMotionMode",
+      "address": "0812d940"
+    },
+    "signature": "DWORD GetMotionMode(CHARACTER * this)",
+    "code": "\r\n/* DWARF original prototype: DWORD GetMotionMode(CHARACTER * this) */\r\n\r\nDWORD __thiscall CHARACTER::GetMotionMode(CHARACTER *this)\r\n\r\n{\r\n  LPITEM pCVar1;\r\n  DWORD DVar2;\r\n  \r\n                    /* Unresolved local var: DWORD dwMode@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: LPITEM pkItem@[DW_OP_reg0(EAX)] */\r\n  DVar2 = 0;\r\n  if (this->m_dwPolymorphRace == 0) {\r\n    pCVar1 = GetWear(this,'\\x04');\r\n    if (pCVar1 != (LPITEM)0x0) {\r\n      switch(pCVar1->m_pProto->bSubType) {\r\n      case '\\0':\r\n        DVar2 = 1;\r\n        break;\r\n      case '\\x01':\r\n        DVar2 = 3;\r\n        break;\r\n      case '\\x02':\r\n        DVar2 = 4;\r\n        break;\r\n      case '\\x03':\r\n        DVar2 = 2;\r\n        break;\r\n      case '\\x04':\r\n        DVar2 = 5;\r\n        break;\r\n      case '\\x05':\r\n        DVar2 = 6;\r\n      }\r\n    }\r\n  }\r\n  else {\r\n    DVar2 = 0;\r\n  }\r\n  return DVar2;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

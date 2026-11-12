@@ -1,0 +1,14 @@
+{
+  "status": "Static candidate/evidence checks passed. No build, test, original execution or production edits.",
+  "GetLevel": "int, nonconst",
+  "GetPlayerID": "DWORD, nonconst; replace preexisting const getter",
+  "packets": {
+    "DB_payload": 14,
+    "client_header": 4,
+    "member_prefix": 13,
+    "client_total": 17
+  },
+  "constructors": "Both original overloads preserve uninitialized _dummy",
+  "ordering": "DBPacket before _dummy reset; BufferedPacket4 then live member prefix13; online advance after sends",
+  "source_sha256": "c0929b1280d40e8cc7093d771fe256980b1b4039cb9b7af40c8949a7f08b98b0"
+}

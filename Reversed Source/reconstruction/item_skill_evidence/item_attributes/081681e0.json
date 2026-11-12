@@ -1,0 +1,91 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AlterToMagicItem\",\n    \"address\": \"081681e0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void AlterToMagicItem(CItem * this) */\\r\\n\\r\\nvoid __thiscall CItem::AlterToMagicItem(CItem *this)\\r\\n\\r\\n{\\r\\n  TItemTable *pTVar1;\\r\\n  BYTE BVar2;\\r\\n  int iVar3;\\r\\n  int iVar4;\\r\\n  int iVar5;\\r\\n  \\r\\n                    /* Unresolved local var: int idx@[DW_OP_reg0(EAX)]\\r\\n                       Unresolved local var: int iSecondPct@[DW_OP_reg6(ESI)]\\r\\n                       Unresolved local var: int iThirdPct@[DW_OP_reg7(EDI)] */\\r\\n  iVar3 = GetAttributeSetIndex(this);\\r\\n  if (iVar3 < 0) {\\r\\n    return;\\r\\n  }\\r\\n  if (g_iUseLocale == 0) {\\r\\n    pTVar1 = this->m_pProto;\\r\\n    BVar2 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar2 = pTVar1->bType;\\r\\n    }\\r\\n    if (BVar2 == '\\\\x01') {\\r\\n      iVar3 = 0x1e;\\r\\n      iVar5 = 0xf;\\r\\n      goto LAB_08168260;\\r\\n    }\\r\\n    if (BVar2 != '\\\\x02') {\\r\\n      return;\\r\\n    }\\r\\n    BVar2 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar2 = pTVar1->bSubType;\\r\\n    }\\r\\n    iVar3 = 10;\\r\\n    if (BVar2 == '\\\\0') {\\r\\n      iVar3 = 0x14;\\r\\n      iVar5 = 10;\\r\\n      goto LAB_08168260;\\r\\n    }\\r\\n  }\\r\\n  else {\\r\\n    pTVar1 = this->m_pProto;\\r\\n    BVar2 = '\\\\0';\\r\\n    if (pTVar1 != (TItemTable *)0x0) {\\r\\n      BVar2 = pTVar1->bType;\\r\\n    }\\r\\n    if (BVar2 != '\\\\x01') {\\r\\n      if (BVar2 != '\\\\x02') {\\r\\n        return;\\r\\n      }\\r\\n      BVar2 = '\\\\0';\\r\\n      if (pTVar1 != (TItemTable *)0x0) {\\r\\n        BVar2 = pTVar1->bSubType;\\r\\n      }\\r\\n      if (BVar2 == '\\\\0') {\\r\\n        iVar5 = 2;\\r\\n        iVar3 = 10;\\r\\n      }\\r\\n      else {\\r\\n        iVar3 = 10;\\r\\n        iVar5 = 1;\\r\\n      }\\r\\n      goto LAB_08168260;\\r\\n    }\\r\\n    iVar3 = 0x14;\\r\\n  }\\r\\n  iVar5 = 5;\\r\\nLAB_08168260:\\r\\n  PutAttribute(this,(int *)aiItemMagicAttributePercentHigh);\\r\\n  iVar4 = number_ex(1,100,\\\"item.cpp\\\",0x417);\\r\\n  if (iVar4 <= iVar3) {\\r\\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\\r\\n  }\\r\\n  iVar3 = number_ex(1,100,\\\"item.cpp\\\",0x41a);\\r\\n  if (iVar3 <= iVar5) {\\r\\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AlterToMagicItem",
+        "address": "081681e0"
+      },
+      "code": "\r\n/* DWARF original prototype: void AlterToMagicItem(CItem * this) */\r\n\r\nvoid __thiscall CItem::AlterToMagicItem(CItem *this)\r\n\r\n{\r\n  TItemTable *pTVar1;\r\n  BYTE BVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  \r\n                    /* Unresolved local var: int idx@[DW_OP_reg0(EAX)]\r\n                       Unresolved local var: int iSecondPct@[DW_OP_reg6(ESI)]\r\n                       Unresolved local var: int iThirdPct@[DW_OP_reg7(EDI)] */\r\n  iVar3 = GetAttributeSetIndex(this);\r\n  if (iVar3 < 0) {\r\n    return;\r\n  }\r\n  if (g_iUseLocale == 0) {\r\n    pTVar1 = this->m_pProto;\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bType;\r\n    }\r\n    if (BVar2 == '\\x01') {\r\n      iVar3 = 0x1e;\r\n      iVar5 = 0xf;\r\n      goto LAB_08168260;\r\n    }\r\n    if (BVar2 != '\\x02') {\r\n      return;\r\n    }\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bSubType;\r\n    }\r\n    iVar3 = 10;\r\n    if (BVar2 == '\\0') {\r\n      iVar3 = 0x14;\r\n      iVar5 = 10;\r\n      goto LAB_08168260;\r\n    }\r\n  }\r\n  else {\r\n    pTVar1 = this->m_pProto;\r\n    BVar2 = '\\0';\r\n    if (pTVar1 != (TItemTable *)0x0) {\r\n      BVar2 = pTVar1->bType;\r\n    }\r\n    if (BVar2 != '\\x01') {\r\n      if (BVar2 != '\\x02') {\r\n        return;\r\n      }\r\n      BVar2 = '\\0';\r\n      if (pTVar1 != (TItemTable *)0x0) {\r\n        BVar2 = pTVar1->bSubType;\r\n      }\r\n      if (BVar2 == '\\0') {\r\n        iVar5 = 2;\r\n        iVar3 = 10;\r\n      }\r\n      else {\r\n        iVar3 = 10;\r\n        iVar5 = 1;\r\n      }\r\n      goto LAB_08168260;\r\n    }\r\n    iVar3 = 0x14;\r\n  }\r\n  iVar5 = 5;\r\nLAB_08168260:\r\n  PutAttribute(this,(int *)aiItemMagicAttributePercentHigh);\r\n  iVar4 = number_ex(1,100,\"item.cpp\",0x417);\r\n  if (iVar4 <= iVar3) {\r\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\r\n  }\r\n  iVar3 = number_ex(1,100,\"item.cpp\",0x41a);\r\n  if (iVar3 <= iVar5) {\r\n    PutAttribute(this,(int *)aiItemMagicAttributePercentLow);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AlterToMagicItem\",\n    \"address\": \"081681e0\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"081681f5\",\n        \"target\": \"08186cf0\",\n        \"name\": \"CItem::GetAttributeSetIndex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"0816826c\",\n        \"target\": \"081874d0\",\n        \"name\": \"CItem::PutAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08168293\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081682be\",\n        \"target\": \"081b92d0\",\n        \"name\": \"number_ex\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081682d7\",\n        \"target\": \"081874d0\",\n        \"name\": \"CItem::PutAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"081682ed\",\n        \"target\": \"081874d0\",\n        \"name\": \"CItem::PutAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 6,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AlterToMagicItem",
+        "address": "081681e0"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "081681f5",
+            "target": "08186cf0",
+            "name": "CItem::GetAttributeSetIndex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "0816826c",
+            "target": "081874d0",
+            "name": "CItem::PutAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08168293",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081682be",
+            "target": "081b92d0",
+            "name": "number_ex",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081682d7",
+            "target": "081874d0",
+            "name": "CItem::PutAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "081682ed",
+            "target": "081874d0",
+            "name": "CItem::PutAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 6,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,9 @@
+# Metin2 reconstruction restart — checkpoint 104
+
+Checkpoint 104 restored NPC::Set. Five focused suites and ABI checks passed. The current registry contains 118 suites. The last full run passed 117 suites at checkpoint 103. The ledger records 1072 functions with evidence and 326 bounded source/test mappings.
+
+The recovered NPC::Set at 081ae340 uses native directory traversal, both original formatting calls and the recovered state-script loader. The logger-only fake directory header now lives in its own test include path. Test coverage includes event/root iteration, dot and CVS-prefix filtering, missing directories and log order. Unsafe original path and format inputs are preserved in source and excluded from execution.
+
+Proofs and source hashes are in reconstruction/npc_set_evidence. Complete original evidence is in reconstruction/npc_set_pending_evidence. Checkpoint 103 full proof and historical restart notes are in reconstruction/npc_loader_evidence.
+
+Next integrate the whole RegisterNPCVnum at 081a7780 and LoadTimerScript at 081a5430. Their matching binary evidence and candidate bodies are in work/npc_set_callers. Check the exact signatures and guards. Test repeated registration across roots, registration retained after failed probes, timer ID allocation and no reload on a hit. Initialize still requires InitializeLua and SetEventFlag. Full VM, dispatch, reward/stat/item chains and server linking remain in scope. Follow reconstruction/VALIDATION_POLICY.md.

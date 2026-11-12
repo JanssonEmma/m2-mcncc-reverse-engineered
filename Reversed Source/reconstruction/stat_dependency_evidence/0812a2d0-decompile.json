@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"function\": {\n    \"name\": \"CHARACTER::PointsPacket\",\n    \"address\": \"0812a2d0\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void PointsPacket(CHARACTER * this) */\\r\\n\\r\\nvoid __thiscall CHARACTER::PointsPacket(CHARACTER *this)\\r\\n\\r\\n{\\r\\n  long lVar1;\\r\\n  uint uVar2;\\r\\n  int iVar3;\\r\\n  TPacketGCPoints pack;\\r\\n  \\r\\n  if ((this->super_CEntity).m_lpDesc != (LPDESC)0x0) {\\r\\n    pack.header = '\\\\x10';\\r\\n    pack.points[1] = (long)(this->m_points).level;\\r\\n    pack.points[3] = (this->m_points).exp;\\r\\n    pack.points[4] = 2000000000;\\r\\n    uVar2 = (uint)(this->m_points).level;\\r\\n    if (uVar2 < 99) {\\r\\n      pack.points[4] = *(long *)(exp_table + uVar2 * 4);\\r\\n    }\\r\\n                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */\\r\\n    iVar3 = 0xc;\\r\\n    pack.points[5] = (this->m_points).hp;\\r\\n    pack.points[6] = (this->m_pointsInstant).iMaxHP;\\r\\n    pack.points[7] = (this->m_points).sp;\\r\\n    pack.points[8] = (this->m_pointsInstant).iMaxSP;\\r\\n    pack.points[0xb] = (this->m_points).gold;\\r\\n    pack.points[9] = (this->m_points).stamina;\\r\\n    pack.points[10] = (this->m_pointsInstant).iMaxStamina;\\r\\n    do {\\r\\n      lVar1 = GetPoint(this,(BYTE)iVar3);\\r\\n      pack.points[iVar3] = lVar1;\\r\\n      iVar3 = iVar3 + 1;\\r\\n    } while (iVar3 < 0xff);\\r\\n    DESC::Packet((this->super_CEntity).m_lpDesc,&pack,0x3fd);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+    }
+  ],
+  "structuredContent": {
+    "function": {
+      "name": "CHARACTER::PointsPacket",
+      "address": "0812a2d0"
+    },
+    "code": "\r\n/* DWARF original prototype: void PointsPacket(CHARACTER * this) */\r\n\r\nvoid __thiscall CHARACTER::PointsPacket(CHARACTER *this)\r\n\r\n{\r\n  long lVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  TPacketGCPoints pack;\r\n  \r\n  if ((this->super_CEntity).m_lpDesc != (LPDESC)0x0) {\r\n    pack.header = '\\x10';\r\n    pack.points[1] = (long)(this->m_points).level;\r\n    pack.points[3] = (this->m_points).exp;\r\n    pack.points[4] = 2000000000;\r\n    uVar2 = (uint)(this->m_points).level;\r\n    if (uVar2 < 99) {\r\n      pack.points[4] = *(long *)(exp_table + uVar2 * 4);\r\n    }\r\n                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)] */\r\n    iVar3 = 0xc;\r\n    pack.points[5] = (this->m_points).hp;\r\n    pack.points[6] = (this->m_pointsInstant).iMaxHP;\r\n    pack.points[7] = (this->m_points).sp;\r\n    pack.points[8] = (this->m_pointsInstant).iMaxSP;\r\n    pack.points[0xb] = (this->m_points).gold;\r\n    pack.points[9] = (this->m_points).stamina;\r\n    pack.points[10] = (this->m_pointsInstant).iMaxStamina;\r\n    do {\r\n      lVar1 = GetPoint(this,(BYTE)iVar3);\r\n      pack.points[iVar3] = lVar1;\r\n      iVar3 = iVar3 + 1;\r\n    } while (iVar3 < 0xff);\r\n    DESC::Packet((this->super_CEntity).m_lpDesc,&pack,0x3fd);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  },
+  "isError": false
+}

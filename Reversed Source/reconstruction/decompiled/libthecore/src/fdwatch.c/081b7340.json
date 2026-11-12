@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7340",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "fdwatch_register",
+      "address": "081b7340"
+    },
+    "code": "\r\nvoid fdwatch_register(LPFDWATCH fdw,int flag,int fd,int rw)\r\n\r\n{\r\n  LPKEVENT pkVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  \r\n  if (flag == 2) {\r\n    piVar3 = fdw->fd_rw;\r\n    if ((*(byte *)(piVar3 + fd) & 1) != 0) {\r\n      pkVar1 = fdw->kqevents;\r\n      pkVar1[fdw->nkqevents].ident = fd;\r\n      iVar2 = fdw->nkqevents;\r\n      pkVar1[iVar2].flags = 2;\r\n      pkVar1[iVar2].filter = -1;\r\n      fdw->nkqevents = iVar2 + 1;\r\n    }\r\n    if ((*(byte *)(piVar3 + fd) & 2) != 0) {\r\n      pkVar1 = fdw->kqevents;\r\n      pkVar1[fdw->nkqevents].ident = fd;\r\n      iVar2 = fdw->nkqevents;\r\n      pkVar1[iVar2].flags = 2;\r\n      pkVar1[iVar2].filter = -2;\r\n      fdw->nkqevents = iVar2 + 1;\r\n    }\r\n  }\r\n  else {\r\n    pkVar1 = fdw->kqevents;\r\n    pkVar1[fdw->nkqevents].ident = fd;\r\n    iVar2 = fdw->nkqevents;\r\n    pkVar1[iVar2].flags = (u_short)flag;\r\n    fdw->nkqevents = iVar2 + 1;\r\n    pkVar1[iVar2].filter = ~(ushort)(rw != 1);\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

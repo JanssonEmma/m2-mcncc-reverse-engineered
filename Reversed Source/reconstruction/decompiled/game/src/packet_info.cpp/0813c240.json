@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x0813c240",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CPacketInfo::End",
+      "address": "0813c240"
+    },
+    "code": "\r\n/* DWARF original prototype: void End(CPacketInfo * this) */\r\n\r\nvoid __thiscall CPacketInfo::End(CPacketInfo *this)\r\n\r\n{\r\n  int *piVar1;\r\n  DWORD *pDVar2;\r\n  TPacketElement *pTVar3;\r\n  DWORD DVar4;\r\n  \r\n  pTVar3 = this->m_pCurrentPacket;\r\n  piVar1 = &pTVar3->iCalled;\r\n  *piVar1 = *piVar1 + 1;\r\n  DVar4 = get_dword_time();\r\n  pDVar2 = &pTVar3->dwLoad;\r\n  *pDVar2 = *pDVar2 + (DVar4 - this->m_dwStartTime);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

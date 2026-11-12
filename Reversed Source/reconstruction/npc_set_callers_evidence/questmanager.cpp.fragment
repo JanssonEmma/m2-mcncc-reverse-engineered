@@ -1,0 +1,36 @@
+// In questmanager.cpp include <cstdio>, <dirent.h>, and "config.h".
+namespace quest {
+void CQuestManager::RegisterNPCVnum(DWORD vnum)
+{
+    if (m_registeredNPCVnum.find(vnum) != m_registeredNPCVnum.end())
+        return;
+
+    m_registeredNPCVnum.insert(vnum);
+    char path[256];
+    for (std::set<std::string>::const_iterator objectDir = g_setQuestObjectDir.begin();
+         objectDir != g_setQuestObjectDir.end(); ++objectDir) {
+        ::snprintf(path, sizeof(path) - 1, "%s/%lu", objectDir->c_str(), vnum);
+        sys_log(0, "%s", path);
+        DIR* directory = opendir(path);
+        if (!directory)
+            continue;
+
+        closedir(directory);
+        ::snprintf(path, sizeof(path) - 1, "%lu", vnum);
+        sys_log(0, "%s", path);
+        m_mapNPC[vnum].Set(vnum, std::string(path));
+    }
+}
+
+unsigned int CQuestManager::LoadTimerScript(const std::string& name)
+{
+    const std::map<std::string, unsigned int>::iterator found = m_mapTimerID.find(name);
+    if (found != m_mapTimerID.end())
+        return found->second;
+
+    const unsigned int newId = UINT_MAX - static_cast<unsigned int>(m_mapTimerID.size());
+    m_mapNPC[newId].Set(newId, name);
+    m_mapTimerID.insert(std::make_pair(name, newId));
+    return newId;
+}
+}

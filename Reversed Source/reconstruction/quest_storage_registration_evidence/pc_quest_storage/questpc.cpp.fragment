@@ -1,0 +1,71 @@
+// Complete original questpc.cpp storage helpers. Requires actual CQM::GetQuestIndexByName.
+#include "questmanager.h"
+namespace quest {
+//08060c10: unknown names resolve0 and can match an existing0-key state; do NOT reject0.
+bool PC::HasQuest(const std::string& name)
+{
+    unsigned int index=CQuestManager::instance().GetQuestIndexByName(name);
+    return m_QuestInfo.find(index)!=m_QuestInfo.end();
+}
+//08060ca0: reference + original operator[] insertion, default counters remain indeterminate.
+QuestState& PC::GetQuest(const std::string& name)
+{
+    unsigned int index=CQuestManager::instance().GetQuestIndexByName(name);
+    return m_QuestInfo[index];
+}
+//0805dda0: return int retains original high-bit conversion.
+int PC::GetCurrentQuestIndex()
+{
+    const std::string& name=GetCurrentQuestName();
+    return static_cast<int>(CQuestManager::instance().GetQuestIndexByName(name));
+}
+//0805e5a0: insert/update, context, flag callback, then CURRENT running pointer/index/done.
+void PC::SetQuest(const std::string& name,QuestState& state)
+{
+    unsigned int index=CQuestManager::instance().GetQuestIndexByName(name);
+    QuestInfoIterator it=m_QuestInfo.find(index);
+    if(it==m_QuestInfo.end())m_QuestInfo.insert(std::make_pair(index,state));
+    else it->second=state;
+    m_stCurQuest=name;
+    m_RunningQuestState=&m_QuestInfo[index];
+    m_iSendToClient=0;
+    m_iLastState=state.st;
+    {
+        std::string flag=name+".__status";
+        SetFlag(flag,state.st,false);
+    }
+    m_RunningQuestState->iIndex=static_cast<int>(index);
+    m_bShouldSendDone=false;
+}
+//0805e400: integer overload only, QUEUE a change; never resolve Lua or directly change state/flags.
+void PC::SetQuestState(const std::string& name,int next)
+{
+    int previous;
+    { std::string flag=name+".__status";previous=GetFlag(flag); }
+    if(previous!=next)AddQuestStateChange(name,previous,next);
+}
+//0805e4b0: query BEFORE external diagnostic, then append to CURRENT vector after callback.
+void PC::AddQuestStateChange(const std::string& name,int previous,int next)
+{
+    DWORD index=CQuestManager::instance().GetQuestIndexByName(name);
+    sys_log(0,"QUEST reserve Quest State Change quest %s[%lu] from %d to %d",name.c_str(),index,previous,next);
+    m_QuestStateChange.push_back(TQuestStateChangeInfo(index,previous,next));
+}
+//080617f0: full original flag loop/timer clear/state reset; dangling live-key path NOT repaired.
+void PC::ClearQuest(const std::string& name)
+{
+    std::string prefix=name+'.';
+    for(TFlagMap::iterator it=m_FlagMap.begin();it!=m_FlagMap.end();) {
+        TFlagMap::iterator now=it++;
+        if(now->second!=0 && now->first.compare(0,prefix.size(),prefix)==0)
+            SetFlag(now->first,0,false);
+    }
+    ClearTimer();
+    QuestInfoIterator it=quest_begin();
+    unsigned int index=CQuestManager::instance().GetQuestIndexByName(name);
+    while(it!=quest_end()) {
+        if(it->first==index){it->second.st=0;break;}
+        ++it;
+    }
+}
+}

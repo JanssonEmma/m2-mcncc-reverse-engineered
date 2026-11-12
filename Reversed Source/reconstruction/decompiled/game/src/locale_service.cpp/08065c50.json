@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08065c50",
+  "origin": "attached Ghidra MCP",
+  "result": {
+    "function": {
+      "name": "check_name_big5",
+      "address": "08065c50"
+    },
+    "code": "\r\nint check_name_big5(char *str)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  BYTE b2;\r\n  BYTE b [2];\r\n  WORD b12;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg3(EBX)]\r\n                       Unresolved local var: BYTE b1@[???] */\r\n  if ((str == (char *)0x0) || (b[1] = *str, b[1] == 0)) {\r\nLAB_08065d20:\r\n    iVar2 = 0;\r\n  }\r\n  else {\r\n    iVar2 = 0;\r\n    do {\r\n      if ((char)b[1] < '\\0') {\r\n        if (str[iVar2 + 1] == '\\0') goto LAB_08065d20;\r\n        iVar1 = iVar2 + 2;\r\n        b[0] = str[iVar2 + 1];\r\n        if ((0x223e < (ushort)((short)b + 0x5bc0U)) && (0x3095 < (ushort)((short)b + 0x36c0U))) {\r\n          if (test_server != 0) {\r\n            sys_log(0,\"check_name_big5[%d][%s] %x %x %x\",iVar2,str,(uint)b[1],\r\n                    (uint)(byte)str[iVar2 + 1],(uint)(ushort)b);\r\n          }\r\n          goto LAB_08065d20;\r\n        }\r\n      }\r\n      else {\r\n        iVar1 = isdigit((int)(char)b[1]);\r\n        if ((iVar1 == 0) && (iVar1 = isalpha((int)str[iVar2]), iVar1 == 0)) {\r\n          return 0;\r\n        }\r\n        iVar1 = iVar2 + 1;\r\n      }\r\n      b[1] = str[iVar1];\r\n      iVar2 = iVar1;\r\n    } while (b[1] != 0);\r\n    iVar2 = check_name_independent(str);\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

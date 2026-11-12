@@ -1,0 +1,16 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x08168850",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "requested_address": "0x8168850",
+    "function": {
+      "name": "CItem::SetAccessorySocketGrade",
+      "address": "08168850"
+    },
+    "signature": "void SetAccessorySocketGrade(CItem * this, int iGrade)",
+    "code": "\r\n/* DWARF original prototype: void SetAccessorySocketGrade(CItem * this, int iGrade) */\r\n\r\nvoid __thiscall CItem::SetAccessorySocketGrade(CItem *this,int iGrade)\r\n\r\n{\r\n  int v;\r\n  DWORD time;\r\n  \r\n                    /* Unresolved local var: int iDownTime@[DW_OP_reg1(ECX)] */\r\n  v = MINMAX(0,iGrade,this->m_alSockets[1]);\r\n  SetSocket(this,0,v);\r\n  time = *(DWORD *)(aiAccessorySocketDegradeTime + this->m_alSockets[0] * 4);\r\n  if (test_server != 0) {\r\n    time = (int)time / 0x3c;\r\n  }\r\n  SetAccessorySocketDownGradeTime(this,time);\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false,
+    "error": ""
+  }
+}

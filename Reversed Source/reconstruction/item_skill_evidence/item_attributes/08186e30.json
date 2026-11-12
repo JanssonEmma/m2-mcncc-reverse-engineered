@@ -1,0 +1,75 @@
+{
+  "d": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AddAttribute\",\n    \"address\": \"08186e30\"\n  },\n  \"code\": \"\\r\\n/* DWARF original prototype: void AddAttribute(CItem * this, BYTE bApply, short sValue) */\\r\\n\\r\\nvoid __thiscall CItem::AddAttribute(CItem *this,BYTE bApply,short sValue)\\r\\n\\r\\n{\\r\\n  bool bVar1;\\r\\n  int i;\\r\\n  \\r\\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\\r\\n  bVar1 = HasAttr(this,bApply);\\r\\n  if (!bVar1) {\\r\\n    i = GetAttributeCount(this);\\r\\n    if (4 < i) {\\r\\n      _sys_err(\\\"AddAttribute\\\",0x52,\\\"item attribute overflow!\\\");\\r\\n      return;\\r\\n    }\\r\\n    if (sValue != 0) {\\r\\n      SetAttribute(this,i,bApply,sValue);\\r\\n    }\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\",\n  \"truncated\": false\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AddAttribute",
+        "address": "08186e30"
+      },
+      "code": "\r\n/* DWARF original prototype: void AddAttribute(CItem * this, BYTE bApply, short sValue) */\r\n\r\nvoid __thiscall CItem::AddAttribute(CItem *this,BYTE bApply,short sValue)\r\n\r\n{\r\n  bool bVar1;\r\n  int i;\r\n  \r\n                    /* Unresolved local var: int i@[DW_OP_reg0(EAX)] */\r\n  bVar1 = HasAttr(this,bApply);\r\n  if (!bVar1) {\r\n    i = GetAttributeCount(this);\r\n    if (4 < i) {\r\n      _sys_err(\"AddAttribute\",0x52,\"item attribute overflow!\");\r\n      return;\r\n    }\r\n    if (sValue != 0) {\r\n      SetAttribute(this,i,bApply,sValue);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+      "truncated": false
+    },
+    "isError": false
+  },
+  "c": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"function\": {\n    \"name\": \"CItem::AddAttribute\",\n    \"address\": \"08186e30\"\n  },\n  \"callers\": null,\n  \"callees\": {\n    \"items\": [\n      {\n        \"call_site\": \"08186e51\",\n        \"target\": \"08186d90\",\n        \"name\": \"CItem::HasAttr\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08186e6a\",\n        \"target\": \"081876a0\",\n        \"name\": \"CItem::GetAttributeCount\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08186e88\",\n        \"target\": \"08187800\",\n        \"name\": \"CItem::SetAttribute\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      },\n      {\n        \"call_site\": \"08186eb1\",\n        \"target\": \"081b8150\",\n        \"name\": \"_sys_err\",\n        \"ref_type\": \"UNCONDITIONAL_CALL\",\n        \"direct\": true,\n        \"external\": false\n      }\n    ],\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 4,\n    \"has_more\": false\n  }\n}"
+      }
+    ],
+    "structuredContent": {
+      "function": {
+        "name": "CItem::AddAttribute",
+        "address": "08186e30"
+      },
+      "callers": null,
+      "callees": {
+        "items": [
+          {
+            "call_site": "08186e51",
+            "target": "08186d90",
+            "name": "CItem::HasAttr",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08186e6a",
+            "target": "081876a0",
+            "name": "CItem::GetAttributeCount",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08186e88",
+            "target": "08187800",
+            "name": "CItem::SetAttribute",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          },
+          {
+            "call_site": "08186eb1",
+            "target": "081b8150",
+            "name": "_sys_err",
+            "ref_type": "UNCONDITIONAL_CALL",
+            "direct": true,
+            "external": false
+          }
+        ],
+        "offset": 0,
+        "limit": 100,
+        "total": 4,
+        "has_more": false
+      }
+    },
+    "isError": false
+  }
+}

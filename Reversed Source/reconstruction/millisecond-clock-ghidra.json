@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "get_dword_time",
+    "address": "081b94b0"
+  },
+  "code": "\r\n/* WARNING: Unknown calling convention -- yet parameter storage is locked */\r\n\r\nDWORD get_dword_time(void)\r\n\r\n{\r\n  timeval tv;\r\n  \r\n  gettimeofday((timeval *)&tv,(__timezone_ptr_t)0x0);\r\n  return tv.tv_usec / 1000 + -0x43d4db10 + tv.tv_sec * 1000;\r\n}\r\n\r\n",
+  "truncated": false
+}

@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "ITEM_MANAGER::SetMaxItemID",
+    "address": "08192250"
+  },
+  "code": "\r\n/* DWARF original prototype: bool SetMaxItemID(ITEM_MANAGER * this, DWORD dwID) */\r\n\r\nbool __thiscall ITEM_MANAGER::SetMaxItemID(ITEM_MANAGER *this,DWORD dwID)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  bVar1 = false;\r\n  if (dwID != 0) {\r\n    if ((g_dwItemIDRange < dwID) && (dwID < DAT_083231a8)) {\r\n      this->m_dwCurrentID = dwID;\r\n      sys_log(0,\"ITEM: ID start at %lu\",dwID);\r\n      bVar1 = true;\r\n    }\r\n    else {\r\n      _sys_err(\"SetMaxItemID\",0xda,\"FATAL ERROR! item id out of range! id %lu, range %lu ~ %lu\",dwID\r\n               ,g_dwItemIDRange,DAT_083231a8);\r\n      thecore_shutdown();\r\n      bVar1 = false;\r\n    }\r\n  }\r\n  return bVar1;\r\n}\r\n\r\n",
+  "truncated": false
+}

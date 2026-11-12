@@ -1,0 +1,42 @@
+{
+  "checkpoint": 91,
+  "status": "passed",
+  "full_runtime_commands": 99,
+  "focused_runtime_commands": 3,
+  "abi": true,
+  "original_function_mappings": 1,
+  "inline_reward_constructor": 1,
+  "semantic_constructor_methods": 2,
+  "copy_evidence_only_address": "080633e0",
+  "source_guards": {
+    "game/src/quest.h": "15dc242cf786c913ae8d672075965062f1301592cead80ded443d5bda416bdad",
+    "game/src/questpc.h": "fe10da2b205160fcebd9aec7a9ce3b9c51308841d2f2844bd0f4bf4117204207",
+    "reconstruction/tests/pc_state_helpers_regression.cpp": "d9a1c1b995daed3a6de4d3ec1c7c52b133e7b793122076ce0b6131c24db15258"
+  },
+  "artifact_hashes": {
+    "0805d230.json": "6d1fb0d387319f608098ced28f511342e02ea02f354bc6dbedffbb577e862d7f",
+    "08060f34-parent-asm.json": "a07dda658658c94dfc06c5cb3dcfce93048875ccbeda945535c556f933e32b73",
+    "0806109d-parent-asm.json": "f39073c230860dff23ac6c9e4d6d7a6c94445d86780d6f2ccfd29b516db9292a",
+    "080633e0.json": "d455daa185e115981c751d7c74eac900786d124cffc3b620e2e48e0ddf8867f1",
+    "complete-records-api.json": "6da08a23ff3057d61b0794b29a7bd70665bee40ce1e8a3664efaf89bde3fbe81",
+    "ctor-dwarf.json": "6b8ed43f60190b1b4ac392cdb30e0c37cb7be7d700b04db638c99da76ea44e18",
+    "extract.py": "a49b8f2779539593f9404d1bbe32f87182033e7a56887f43d308a00e2f8f66d4",
+    "HANDOFF.md": "bde87a03ffbe12604b72d10454c13f56406f1bd4c5d86dc8bcb5693c0df84f60",
+    "original-symbols.json": "56db904972445c40d1c2d2b930cf786a09e02afe7e9760df27c42a5079736b21",
+    "pc_state_helpers.extension.cpp.fragment": "efc9ea16d7c0f027d88c4a159e829ec44d07dd840e3656c32d0f9f0296c90cbb",
+    "quest.h.inline.fragment": "337dda7d6ed8b1e0d9e67c9ddd4c6ec9e809134d0f634e96bf554799958c0c17",
+    "questpc.h.inline.fragment": "832d95a99bd4e08e39f48b438c16655a4612cebba3141b40a7dbb249f5573420",
+    "queststate-copy.translation.cpp": "1b3f8e5cc036c6ec6e4742ca8e827189c90176d43da0ade250734f5a2ba90eb0",
+    "RESUME.md": "bde87a03ffbe12604b72d10454c13f56406f1bd4c5d86dc8bcb5693c0df84f60"
+  },
+  "proof_sha256": {
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint-91-validation.receipt.json": "94c38d3d5b1a63892d3d35def6f21ff9673b1aa082a6da74f715d7080669f09d",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\state-ctors-focused.receipt.json": "ebd577260eebca17db8313e039d44cefc98b3b6f1d07b50c1f7a152024ac684a",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\checkpoint91_state_ctors\\pc-state-helpers-o2.receipt.json": "311f3dd50966648d00532b7e5167cbf87338ee84c7e17ecdc0c65ec58a7cdd62",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\state-ctors-m32.receipt.json": "d2b9d2cd830864395cac904b902822c77b43986c78a08c315346f23f6cfce987",
+    "USER_HOME\\Documents\\Codex\\2026-10-23\\i-h\\work\\state-ctors-m32.log": "c6ec77c52e5288b482abe3bb8c4d0f655a660b9b08d20fcab4976915b185b439"
+  },
+  "baseline_overrides_sha256": "d5036e1f80f344d82ac3fd67e1532fa69ae295a1a6593cdf0207a1c042dbd9fa",
+  "baseline_validation_status_sha256": "7e3380b356d51295c98d112650fa7cf1a15d805fc41033a019f6d1d4dd5293a9",
+  "note": "Checkpoint91 adds complete original inline QuestState default constructor0805d230 and code-backed inline RewardData constructor, preserving full existing data/API. Original QuestState clock/counter scalar fields remain indeterminate; original080633e0 is compiler memberwise COPY evidence, not default and not an extra recovered implementation. Extended existing PC state runtime now tests real non-null running-state and nonempty reward-vector domains, defined defaults, full memberwise copy after explicit TEST counter initialization, independent strings/vector and three-field reward construction. No fake constructor/VM/reward/AArgScript body. Focused3+ABI, optimized actual full PC/event graph/four distinct SQL objects, strict32 source/ABI/regression and full99 exact ordered runtimes+ABI pass; canonical count stays99. Broader quest/stat/removal/server/VisualStudio reconstruction remains unfinished."
+}

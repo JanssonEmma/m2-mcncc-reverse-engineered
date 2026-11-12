@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x080f5440",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "CMob::~CMob",
+      "address": "080f5440"
+    },
+    "code": "\r\n/* DWARF original prototype: void ~CMob(CMob * this, int __in_chrg) */\r\n\r\nvoid __thiscall CMob::~CMob(CMob *this,int __in_chrg)\r\n\r\n{\r\n  CMob *pCVar1;\r\n  TMobSplashAttackInfo *pTVar2;\r\n  int iVar3;\r\n  CMob *pCVar4;\r\n  \r\n  if (this != (CMob *)0xffffff00) {\r\n    pCVar4 = this + 1;\r\n    while ((CMob *)this->m_mobSkillInfo != pCVar4) {\r\n      pCVar1 = pCVar4 + -1;\r\n      for (pTVar2 = pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                    ._M_start;\r\n          pTVar2 != pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                    super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                    super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                    ._M_finish; pTVar2 = pTVar2 + 1) {\r\n      }\r\n      pTVar2 = pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n               super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n               super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n               ._M_start;\r\n      iVar3 = (int)pCVar4[-1].m_mobSkillInfo[4].vecSplashAttack.\r\n                   super__Vector_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>_>.\r\n                   super__Vector_alloc_base<SMobSplashAttackInfo,std::allocator<SMobSplashAttackInfo>,true>\r\n                   ._M_end_of_storage - (int)pTVar2 >> 3;\r\n      pCVar4 = (CMob *)(pCVar1->m_mobSkillInfo + 4);\r\n      if (iVar3 != 0) {\r\n        std::__default_alloc_template<true,0>::deallocate(pTVar2,iVar3 << 3);\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

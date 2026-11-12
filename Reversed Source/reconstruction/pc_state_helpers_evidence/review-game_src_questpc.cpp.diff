@@ -1,0 +1,10 @@
+--- CURRENT/game/src/questpc.cpp
++++ PCSTATE/game/src/questpc.cpp
+@@ -82,4 +82,7 @@
+     sys_log(1,"QUEST timer map size %d by RemoveTimer",static_cast<int>(m_TimerMap.size()));
+ }
+ 
++// Original questpc.cpp 080603e0: mask OR, not bit-index shift.
++void PC::SetSendFlag(int mask) { m_iSendToClient|=mask; }
++
+ }

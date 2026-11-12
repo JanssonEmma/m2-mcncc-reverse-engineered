@@ -1,0 +1,292 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "status": "pending_parent_validation",
+  "reviews": [
+    {
+      "address": "0805d580",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::PC():",
+          "line": 7,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lifecycle()",
+          "line": 63,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "PC base ctor, same full initializer, LastState indeterminate.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805d790",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::PC():",
+          "line": 7,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lifecycle()",
+          "line": 63,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "PC complete ctor; full native containers/known scalar defaults.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805d900",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::~PC()",
+          "line": 11,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void DestructorOwnedTimer()",
+          "line": 110,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Base dtor variant, actual populated timer ownership cleanup.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805db30",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "PC::~PC()",
+          "line": 11,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void DestructorOwnedTimer()",
+          "line": 110,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Complete dtor and whole member teardown, actual populated timer cleanup.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805dd60",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "void PC::Destroy()",
+          "line": 13,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lifecycle()",
+          "line": 63,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Timer-only Destroy preserves other PC data, repeat empty cleanup.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805dd70",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "void PC::SetID(",
+          "line": 15,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lifecycle()",
+          "line": 63,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Done reset and DWORD ID store, no loaded/context reset.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805dd90",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "const std::string& PC::GetCurrentQuestName()",
+          "line": 17,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lifecycle()",
+          "line": 63,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Old nonconst method returning actual const string reference identity.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0805ef10",
+      "source_refs": [
+        {
+          "path": "game/src/questpc.cpp",
+          "anchor": "void PC::ClearTimer()",
+          "line": 19,
+          "staged_file_sha256": "4ecd55cbaea2aa8366e7c374ece610f42c6eed7315508d7b6c93707cb0af7aaf"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lifecycle()",
+          "line": 63,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Complete lexical/embeddedNUL map cancel, actual registry/free/queue semantics.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "081ad980",
+      "source_refs": [
+        {
+          "path": "game/src/questevent.cpp",
+          "anchor": "void CancelTimerEvent(",
+          "line": 5,
+          "staged_file_sha256": "d5f64c11db7b175e7f610d12ffee8b33ac24352cda5152bbb9acfe768f86b144"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Processing()",
+          "line": 97,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Old numeric registry lookup, name-null before actual free, queued/processing/null-name/missing-info branch inputs.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "081a4d40",
+      "source_refs": [
+        {
+          "path": "game/src/questmanager.cpp",
+          "anchor": "PC* CQuestManager::GetPCForce(",
+          "line": 14,
+          "staged_file_sha256": "52951eef57d512a99e8e2191b0256b7849b9d8f5b0911817935b0d4989022898"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lookup(",
+          "line": 123,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Complete real PC value insertion/lifetime, uint32 keys/identity and SetID only new key.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "081a4e50",
+      "source_refs": [
+        {
+          "path": "game/src/questmanager.cpp",
+          "anchor": "PC* CQuestManager::GetPC(",
+          "line": 22,
+          "staged_file_sha256": "52951eef57d512a99e8e2191b0256b7849b9d8f5b0911817935b0d4989022898"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "static void Lookup(",
+          "line": 123,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Actual PID map/context success and absence/null failure preservation.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0819f0f0",
+      "source_refs": [
+        {
+          "path": "game/src/questmanager.cpp",
+          "anchor": "CQuestManager::CQuestManager():L(0)",
+          "line": 12,
+          "staged_file_sha256": "52951eef57d512a99e8e2191b0256b7849b9d8f5b0911817935b0d4989022898"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "int main()",
+          "line": 143,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Manager base ctor full STL/singleton; onlyL scalar initialized.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    },
+    {
+      "address": "0819f5e0",
+      "source_refs": [
+        {
+          "path": "game/src/questmanager.cpp",
+          "anchor": "CQuestManager::CQuestManager():L(0)",
+          "line": 12,
+          "staged_file_sha256": "52951eef57d512a99e8e2191b0256b7849b9d8f5b0911817935b0d4989022898"
+        }
+      ],
+      "test_refs": [
+        {
+          "path": "reconstruction/tests/quest_pc_lookup_regression.cpp",
+          "anchor": "int main()",
+          "line": 143,
+          "staged_file_sha256": "dbcf42f70cbb42f2a113f4b5cc36a2dcb91a93059a09376e7504fe488421d853"
+        }
+      ],
+      "review_scope": "Manager complete ctor same full initializer, no Lua created.",
+      "reviewer": "pending parent focused/ABI/O2/strict32/full96",
+      "limitations": "13 distinct variants represent10 semantic source methods, not13 features. No allocation-failure/unwind proof or old STL layout/copy-count equivalence. PC LastState remains indeterminate and original implicit map copy may read it; avoiding explicit test reads does not establish definedness/portability. Never zero/deepcopy production. Manager Lua-owning destructor/NPC execution remain honest TEST boundaries. No original ELF/full leveling equivalence."
+    }
+  ]
+}

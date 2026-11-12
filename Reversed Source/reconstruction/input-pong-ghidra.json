@@ -1,0 +1,8 @@
+{
+  "function": {
+    "name": "CInputProcessor::Pong",
+    "address": "080cd450"
+  },
+  "code": "\r\n/* DWARF original prototype: void Pong(CInputProcessor * this, LPDESC d) */\r\n\r\nvoid __thiscall CInputProcessor::Pong(CInputProcessor *this,LPDESC d)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  \r\n  DESC::SetPong(d,true);\r\n  bVar1 = Metin2Server_IsInvalid();\r\n  if (bVar1) {\r\n    iVar2 = rand();\r\n    if (iVar2 == (iVar2 / 50000) * 50000) {\r\n                    /* WARNING: Subroutine does not return */\r\n      exit(0);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "truncated": false
+}

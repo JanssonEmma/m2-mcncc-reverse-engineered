@@ -1,0 +1,7 @@
+// Complete original CQM owning lifecycle. Compiler retains complete member/base teardown.
+namespace quest {
+//081a0720: actual currentL close; setNULL ONLYafter all SDKfinalizers return. No registry/context repair.
+void CQuestManager::Destroy(){if(L){lua_close(L);L=0;}}
+//D2 0819fa20/D1 0819fe70/D0 081a02c0. All full owner fields and singleton base destruct afterward.
+CQuestManager::~CQuestManager(){Destroy();}
+}

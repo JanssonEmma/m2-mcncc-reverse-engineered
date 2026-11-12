@@ -1,0 +1,13 @@
+{
+  "target_sha256": "61fa6e736a5b0ff446dfd817dd9a87a42d2bfbcf5da27b7975cb8ae1e2b67a1c",
+  "requested_address": "0x081b7580",
+  "origin": "previously retained Ghidra result",
+  "result": {
+    "function": {
+      "name": "fdwatch_clear_event",
+      "address": "081b7580"
+    },
+    "code": "\r\nvoid fdwatch_clear_event(LPFDWATCH fdw,socket_t fd,uint event_idx)\r\n\r\n{\r\n  if ((uint)(fdw->nfiles * 2) <= event_idx) {\r\n    __assert(\"fdwatch_clear_event\",\"fdwatch.c\",0xa3);\r\n  }\r\n  if (fdw->kqrevents[event_idx].ident == fd) {\r\n    fdw->kqrevents[event_idx].ident = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+    "truncated": false
+  }
+}

@@ -1,0 +1,914 @@
+{
+  "enums": [
+    {
+      "name": "ESkillFlags",
+      "size": 4,
+      "line": 5,
+      "enumerators": [
+        {
+          "name": "SKILL_FLAG_ATTACK",
+          "value": 1
+        },
+        {
+          "name": "SKILL_FLAG_USE_MELEE_DAMAGE",
+          "value": 2
+        },
+        {
+          "name": "SKILL_FLAG_COMPUTE_ATTGRADE",
+          "value": 4
+        },
+        {
+          "name": "SKILL_FLAG_SELFONLY",
+          "value": 8
+        },
+        {
+          "name": "SKILL_FLAG_USE_MAGIC_DAMAGE",
+          "value": 16
+        },
+        {
+          "name": "SKILL_FLAG_USE_HP_AS_COST",
+          "value": 32
+        },
+        {
+          "name": "SKILL_FLAG_COMPUTE_MAGIC_DAMAGE",
+          "value": 64
+        },
+        {
+          "name": "SKILL_FLAG_SPLASH",
+          "value": 128
+        },
+        {
+          "name": "SKILL_FLAG_GIVE_PENALTY",
+          "value": 256
+        },
+        {
+          "name": "SKILL_FLAG_USE_ARROW_DAMAGE",
+          "value": 512
+        },
+        {
+          "name": "SKILL_FLAG_PENETRATE",
+          "value": 1024
+        },
+        {
+          "name": "SKILL_FLAG_IGNORE_TARGET_RATING",
+          "value": 2048
+        },
+        {
+          "name": "SKILL_FLAG_SLOW",
+          "value": 4096
+        },
+        {
+          "name": "SKILL_FLAG_STUN",
+          "value": 8192
+        },
+        {
+          "name": "SKILL_FLAG_HP_ABSORB",
+          "value": 16384
+        },
+        {
+          "name": "SKILL_FLAG_SP_ABSORB",
+          "value": 32768
+        },
+        {
+          "name": "SKILL_FLAG_FIRE_CONT",
+          "value": 65536
+        },
+        {
+          "name": "SKILL_FLAG_REMOVE_BAD_AFFECT",
+          "value": 131072
+        },
+        {
+          "name": "SKILL_FLAG_REMOVE_GOOD_AFFECT",
+          "value": 262144
+        },
+        {
+          "name": "SKILL_FLAG_CRUSH",
+          "value": 524288
+        },
+        {
+          "name": "SKILL_FLAG_POISON",
+          "value": 1048576
+        },
+        {
+          "name": "SKILL_FLAG_TOGGLE",
+          "value": 2097152
+        },
+        {
+          "name": "SKILL_FLAG_DISABLE_BY_POINT_UP",
+          "value": 4194304
+        },
+        {
+          "name": "SKILL_FLAG_CRUSH_LONG",
+          "value": 8388608
+        },
+        {
+          "name": "SKILL_FLAG_WIND",
+          "value": 16777216
+        },
+        {
+          "name": "SKILL_FLAG_ELEC",
+          "value": 33554432
+        },
+        {
+          "name": "SKILL_FLAG_FIRE",
+          "value": 67108864
+        }
+      ]
+    },
+    {
+      "name": "ESkillIndexes",
+      "size": 4,
+      "line": 42,
+      "enumerators": [
+        {
+          "name": "SKILL_RESERVED",
+          "value": 0
+        },
+        {
+          "name": "SKILL_SAMYEON",
+          "value": 1
+        },
+        {
+          "name": "SKILL_PALBANG",
+          "value": 2
+        },
+        {
+          "name": "SKILL_JEONGWI",
+          "value": 3
+        },
+        {
+          "name": "SKILL_GEOMKYUNG",
+          "value": 4
+        },
+        {
+          "name": "SKILL_TANHWAN",
+          "value": 5
+        },
+        {
+          "name": "SKILL_GIGONGCHAM",
+          "value": 16
+        },
+        {
+          "name": "SKILL_GYOKSAN",
+          "value": 17
+        },
+        {
+          "name": "SKILL_DAEJINGAK",
+          "value": 18
+        },
+        {
+          "name": "SKILL_CHUNKEON",
+          "value": 19
+        },
+        {
+          "name": "SKILL_GEOMPUNG",
+          "value": 20
+        },
+        {
+          "name": "SKILL_AMSEOP",
+          "value": 31
+        },
+        {
+          "name": "SKILL_GUNGSIN",
+          "value": 32
+        },
+        {
+          "name": "SKILL_CHARYUN",
+          "value": 33
+        },
+        {
+          "name": "SKILL_EUNHYUNG",
+          "value": 34
+        },
+        {
+          "name": "SKILL_SANGONG",
+          "value": 35
+        },
+        {
+          "name": "SKILL_YEONSA",
+          "value": 46
+        },
+        {
+          "name": "SKILL_KWANKYEOK",
+          "value": 47
+        },
+        {
+          "name": "SKILL_HWAJO",
+          "value": 48
+        },
+        {
+          "name": "SKILL_GYEONGGONG",
+          "value": 49
+        },
+        {
+          "name": "SKILL_GIGUNG",
+          "value": 50
+        },
+        {
+          "name": "SKILL_SWAERYUNG",
+          "value": 61
+        },
+        {
+          "name": "SKILL_YONGKWON",
+          "value": 62
+        },
+        {
+          "name": "SKILL_GWIGEOM",
+          "value": 63
+        },
+        {
+          "name": "SKILL_TERROR",
+          "value": 64
+        },
+        {
+          "name": "SKILL_JUMAGAP",
+          "value": 65
+        },
+        {
+          "name": "SKILL_PABEOB",
+          "value": 66
+        },
+        {
+          "name": "SKILL_MARYUNG",
+          "value": 76
+        },
+        {
+          "name": "SKILL_HWAYEOMPOK",
+          "value": 77
+        },
+        {
+          "name": "SKILL_MUYEONG",
+          "value": 78
+        },
+        {
+          "name": "SKILL_MANASHILED",
+          "value": 79
+        },
+        {
+          "name": "SKILL_TUSOK",
+          "value": 80
+        },
+        {
+          "name": "SKILL_MAHWAN",
+          "value": 81
+        },
+        {
+          "name": "SKILL_BIPABU",
+          "value": 91
+        },
+        {
+          "name": "SKILL_YONGBI",
+          "value": 92
+        },
+        {
+          "name": "SKILL_PAERYONG",
+          "value": 93
+        },
+        {
+          "name": "SKILL_HOSIN",
+          "value": 94
+        },
+        {
+          "name": "SKILL_REFLECT",
+          "value": 95
+        },
+        {
+          "name": "SKILL_GICHEON",
+          "value": 96
+        },
+        {
+          "name": "SKILL_NOEJEON",
+          "value": 106
+        },
+        {
+          "name": "SKILL_BYEURAK",
+          "value": 107
+        },
+        {
+          "name": "SKILL_CHAIN",
+          "value": 108
+        },
+        {
+          "name": "SKILL_JEONGEOP",
+          "value": 109
+        },
+        {
+          "name": "SKILL_KWAESOK",
+          "value": 110
+        },
+        {
+          "name": "SKILL_JEUNGRYEOK",
+          "value": 111
+        },
+        {
+          "name": "SKILL_LEADERSHIP",
+          "value": 121
+        },
+        {
+          "name": "SKILL_COMBO",
+          "value": 122
+        },
+        {
+          "name": "SKILL_CREATE",
+          "value": 123
+        },
+        {
+          "name": "SKILL_MINING",
+          "value": 124
+        },
+        {
+          "name": "SKILL_LANGUAGE1",
+          "value": 126
+        },
+        {
+          "name": "SKILL_LANGUAGE2",
+          "value": 127
+        },
+        {
+          "name": "SKILL_LANGUAGE3",
+          "value": 128
+        },
+        {
+          "name": "SKILL_POLYMORPH",
+          "value": 129
+        },
+        {
+          "name": "SKILL_HORSE",
+          "value": 130
+        },
+        {
+          "name": "SKILL_HORSE_SUMMON",
+          "value": 131
+        },
+        {
+          "name": "SKILL_HORSE_WILDATTACK",
+          "value": 137
+        },
+        {
+          "name": "SKILL_HORSE_CHARGE",
+          "value": 138
+        },
+        {
+          "name": "SKILL_HORSE_ESCAPE",
+          "value": 139
+        },
+        {
+          "name": "SKILL_HORSE_WILDATTACK_RANGE",
+          "value": 140
+        },
+        {
+          "name": "GUILD_SKILL_START",
+          "value": 151
+        },
+        {
+          "name": "GUILD_SKILL_EYE",
+          "value": 151
+        },
+        {
+          "name": "GUILD_SKILL_BLOOD",
+          "value": 152
+        },
+        {
+          "name": "GUILD_SKILL_BLESS",
+          "value": 153
+        },
+        {
+          "name": "GUILD_SKILL_SEONGHWI",
+          "value": 154
+        },
+        {
+          "name": "GUILD_SKILL_ACCEL",
+          "value": 155
+        },
+        {
+          "name": "GUILD_SKILL_BUNNO",
+          "value": 156
+        },
+        {
+          "name": "GUILD_SKILL_JUMUN",
+          "value": 157
+        },
+        {
+          "name": "GUILD_SKILL_TELEPORT",
+          "value": 158
+        },
+        {
+          "name": "GUILD_SKILL_DOOR",
+          "value": 159
+        },
+        {
+          "name": "GUILD_SKILL_END",
+          "value": 162
+        },
+        {
+          "name": "GUILD_SKILL_COUNT",
+          "value": 12
+        }
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x3f8041",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x3f80cc",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x3f7e07",
+            "tag": "DW_TAG_structure_type",
+            "name": "CSkillProto",
+            "size": 1184
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": null,
+        "DW_AT_low_pc": null,
+        "DW_AT_high_pc": null,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42b86f",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134676582,
+        "DW_AT_high_pc": 134676602,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42bbe0",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134677199,
+        "DW_AT_high_pc": 134677228,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42bf32",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134677824,
+        "DW_AT_high_pc": 134677839,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42c8aa",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134680514,
+        "DW_AT_high_pc": 134680537,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42cbfc",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134681575,
+        "DW_AT_high_pc": 134681590,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42cc32",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134681766,
+        "DW_AT_high_pc": 134681781,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x42cdc0",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": null,
+        "DW_AT_high_pc": null,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42cefc",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134684351,
+        "DW_AT_high_pc": 134684374,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42cf15",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134685296,
+        "DW_AT_high_pc": 134685316,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "char_skill.cpp",
+      "tag": "DW_TAG_inlined_subroutine",
+      "die": "0x42d0b7",
+      "file": "skill.h",
+      "return": {
+        "die": "0x3ba665",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x42cdd7",
+          "tag": "DW_TAG_const_type",
+          "name": null,
+          "size": null,
+          "type": {
+            "die": "0x3f80cc",
+            "tag": "DW_TAG_pointer_type",
+            "name": null,
+            "size": 4,
+            "type": {
+              "die": "0x3f7e07",
+              "tag": "DW_TAG_structure_type",
+              "name": "CSkillProto",
+              "size": 1184
+            }
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": 2,
+        "DW_AT_low_pc": 134685849,
+        "DW_AT_high_pc": 134685864,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "battle.cpp",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x133762a",
+      "file": "skill.h",
+      "return": {
+        "die": "0x12ddba1",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x13376b5",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x13373f0",
+            "tag": "DW_TAG_structure_type",
+            "name": "CSkillProto",
+            "size": 1184
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": null,
+        "DW_AT_low_pc": null,
+        "DW_AT_high_pc": null,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    },
+    {
+      "cu": "skill.cpp",
+      "tag": "DW_TAG_subprogram",
+      "die": "0x14ea367",
+      "file": "skill.h",
+      "return": {
+        "die": "0x14d4afa",
+        "tag": "DW_TAG_base_type",
+        "name": "bool",
+        "size": 1
+      },
+      "params": [
+        {
+          "die": "0x14ea3f2",
+          "tag": "DW_TAG_pointer_type",
+          "name": null,
+          "size": 4,
+          "type": {
+            "die": "0x14ea12d",
+            "tag": "DW_TAG_structure_type",
+            "name": "CSkillProto",
+            "size": 1184
+          }
+        }
+      ],
+      "attrs": {
+        "DW_AT_inline": null,
+        "DW_AT_low_pc": null,
+        "DW_AT_high_pc": null,
+        "DW_AT_ranges": null,
+        "DW_AT_decl_line": 217,
+        "DW_AT_MIPS_linkage_name": "_ZN11CSkillProto13IsChargeSkillEv"
+      }
+    }
+  ]
+}

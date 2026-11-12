@@ -1,0 +1,55 @@
+{
+  "function": {
+    "name": "PC::SetCurrentQuestBeginFlag",
+    "address": "08060430"
+  },
+  "callers": {
+    "items": [
+      {
+        "call_site": "0805efe9",
+        "caller": {
+          "name": "PC::SetCurrentQuestStartFlag",
+          "address": "0805efc0"
+        },
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 1,
+    "has_more": false
+  },
+  "callees": {
+    "items": [
+      {
+        "call_site": "08060450",
+        "target": "081a5a90",
+        "name": "CQuestManager::GetQuestIndexByName",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "0806046b",
+        "target": "080603e0",
+        "name": "PC::SetSendFlag",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": false
+      },
+      {
+        "call_site": "08060499",
+        "target": "0804c9ac",
+        "name": "<EXTERNAL>::__assert",
+        "ref_type": "UNCONDITIONAL_CALL",
+        "direct": true,
+        "external": true
+      }
+    ],
+    "offset": 0,
+    "limit": 1000,
+    "total": 3,
+    "has_more": false
+  }
+}
