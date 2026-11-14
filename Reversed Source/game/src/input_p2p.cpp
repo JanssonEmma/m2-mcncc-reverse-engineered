@@ -247,14 +247,25 @@ int CInputP2P::Relay(DESC*, const char* data, int bytes)
     return PeerField32<int>(data+26);
 }
 
+namespace {
+struct FuncShout
+{
+    const char* m_str;
+    BYTE m_bEmpire;
+
+    void operator()(LPDESC desc)
+    {
+        if (desc->GetCharacter() && (desc->GetCharacter()->GetGMLevel() || desc->GetEmpire() == m_bEmpire))
+            desc->GetCharacter()->ChatPacket(6, "%s", m_str);
+    }
+};
+}
+
 void SendShout(const char* text, BYTE empire)
 {
-    const DESC_MANAGER::DESC_SET& clients=DESC_MANAGER::instance().GetClientSet();
-    for (DESC_MANAGER::DESC_SET::const_iterator it=clients.begin();it!=clients.end();++it) {
-        DESC* desc=*it;
-        if (desc->GetCharacter() && (desc->GetCharacter()->GetGMLevel() || desc->GetEmpire()==empire))
-            desc->GetCharacter()->ChatPacket(6,"%s",text);
-    }
+    FuncShout send{text, empire};
+    for (DESC* desc : DESC_MANAGER::instance().GetClientSet())
+        send(desc);
 }
 
 int CInputP2P::Guild(DESC*, const char* data, int bytes)

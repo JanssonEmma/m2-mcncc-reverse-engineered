@@ -32,7 +32,8 @@ inline int mul(int a, int b);
 // 08168370
 DWORD CItem::GetRefineFromVnum()
 {
-    return ITEM_MANAGER::instance().GetRefineFromVnum(GetVnum());
+    const DWORD vnum = GetVnum();
+    return ITEM_MANAGER::instance().GetRefineFromVnum(vnum);
 }
 
 // 08166260/08166290: item scalar initialization is explicitly separate.
@@ -41,7 +42,7 @@ CItem::~CItem() { Destroy(); }
 void CItem::Initialize() {
     CEntity::Initialize(1);
     m_bWindow=0; m_pOwner=0; m_dwID=0; m_bEquipped=false;
-    m_lFlag=0; m_dwCount=0; m_bCell=0; m_dwVID=0; m_pProto=0;
+    SetFlag(0); m_dwCount=0; m_bCell=0; m_dwVID=0; m_pProto=0;
     m_bExchanging=false;
     std::memset(m_alSockets,0,sizeof(m_alSockets));
     std::memset(m_aAttr,0,sizeof(m_aAttr));
@@ -60,35 +61,39 @@ void CItem::Destroy() {
 // 081667a0
 void CItem::RemoveFlag(long bit)
 {
-    m_lFlag = apply_item_detail::bits(static_cast<unsigned int>(m_lFlag) & ~static_cast<unsigned int>(bit));
+    SetFlag(apply_item_detail::bits(static_cast<unsigned int>(GetFlag()) & ~static_cast<unsigned int>(bit)));
 }
 
 // 081667b0
 void CItem::AddFlag(long bit)
 {
-    m_lFlag = apply_item_detail::bits(static_cast<unsigned int>(m_lFlag) | static_cast<unsigned int>(bit));
+    SetFlag(apply_item_detail::bits(static_cast<unsigned int>(GetFlag()) | static_cast<unsigned int>(bit)));
 }
 
 void CItem::SetProto(TItemTable* table) {
     assert(table);
-    m_pProto=table; m_lFlag=apply_item_detail::bits(table->dwFlags);
+    m_pProto=table; SetFlag(apply_item_detail::bits(table->dwFlags));
 }
 void CItem::EncodeInsertPacket(LPENTITY entity) {
-    if(entity->GetDesc()) {
+    if (auto* desc = entity->GetDesc()) {
         TPacketGCItemGroundAdd packet;
         packet.bHeader=26;
         packet.x=GetX(); packet.y=GetY(); packet.z=GetZ();
         packet.dwVnum=m_pProto->dwVnum; packet.dwVID=m_dwVID;
-        entity->GetDesc()->Packet(&packet,sizeof(packet));
-        sys_log(2,"Item::EncodeInsertPacket %s to %s",m_pProto ? m_pProto->szLocaleName : 0,static_cast<CHARACTER*>(entity)->GetName());
+        desc->Packet(&packet,sizeof(packet));
+        const char* recipient = static_cast<CHARACTER*>(entity)->GetName();
+        const char* name = m_pProto ? m_pProto->szLocaleName : nullptr;
+        sys_log(2, "Item::EncodeInsertPacket %s to %s", name, recipient);
     }
 }
 void CItem::EncodeRemovePacket(LPENTITY entity) {
-    if(entity->GetDesc()) {
+    if (auto* desc = entity->GetDesc()) {
         TPacketGCItemGroundDel packet;
         packet.bHeader=27; packet.dwVID=m_dwVID;
-        entity->GetDesc()->Packet(&packet,sizeof(packet));
-        sys_log(2,"Item::EncodeRemovePacket %s to %s",m_pProto ? m_pProto->szLocaleName : 0,static_cast<CHARACTER*>(entity)->GetName());
+        desc->Packet(&packet,sizeof(packet));
+        const char* recipient = static_cast<CHARACTER*>(entity)->GetName();
+        const char* name = m_pProto ? m_pProto->szLocaleName : nullptr;
+        sys_log(2, "Item::EncodeRemovePacket %s to %s", name, recipient);
     }
 }
 
@@ -102,8 +107,10 @@ void CItem::UpdatePacket() {
         TPacketGCItemUpdate packet;
         packet.header=25; packet.pos=m_bCell; packet.count=static_cast<BYTE>(m_dwCount);
         for(int i=0;i<3;++i) packet.alSockets[i]=m_alSockets[i];
-        std::memcpy(packet.aAttr,m_aAttr,sizeof(m_aAttr));
-        sys_log(2,"UpdatePacket %s -> %s",GetName(),m_pOwner->GetName());
+        thecore_memcpy(packet.aAttr, m_aAttr, sizeof(m_aAttr));
+        const char* ownerName = m_pOwner->GetName();
+        const char* itemName = GetName();
+        sys_log(2, "UpdatePacket %s -> %s", itemName, ownerName);
         m_pOwner->GetDesc()->Packet(&packet,sizeof(packet));
     }
 }
@@ -113,7 +120,7 @@ bool CItem::AddToCharacter(CHARACTER* character,BYTE cell) {
     assert(!GetSectree());
     assert(!m_pOwner);
     if(m_bCell>=90) return false;
-    if(character->GetDesc()) m_dwLastOwnerPID=character->GetPlayerID();
+    if(character->GetDesc()) m_dwLastOwnerPID = static_cast<std::uint32_t>(character->GetPlayerID());
     event_cancel(&m_pkDestroyEvent);
     character->SetItem(cell,this);
     m_pOwner=character;
@@ -128,8 +135,10 @@ long item_destroy_event(LPEVENT event)
 {
     CItem* item = static_cast<item_event_info*>(event->info)->item;
     if (CHARACTER* owner = item->GetOwner()) {
+        const char* ownerName = owner->GetName();
+        const char* itemName = item->GetName();
         _sys_err("item_destroy_event", 0x4f, "item_destroy_event: Owner exist. (item %s owner %s)",
-                 item->GetName(), owner->GetName());
+                 itemName, ownerName);
     }
     item->SetDestroyEvent(0);
     ITEM_MANAGER::instance().DestroyItem(item);
@@ -165,9 +174,13 @@ long ownership_event(LPEVENT event) {
 void CItem::SetOwnershipEvent(LPEVENT event) { m_pkOwnershipEvent=event; }
 bool CItem::DistanceValid(CHARACTER* character)
 {
-    return GetSectree() && character &&
-           DISTANCE_APPROX(apply_item_detail::sub(GetX(), character->GetX()),
-                           apply_item_detail::sub(GetY(), character->GetY())) < 301;
+    if (!GetSectree() || !character)
+        return false;
+    const auto y = GetY();
+    const auto x = GetX();
+    const auto dy = apply_item_detail::sub(y, character->GetY());
+    const auto dx = apply_item_detail::sub(x, character->GetX());
+    return DISTANCE_APPROX(dx, dy) < 301;
 }
 
 bool CItem::IsOwnership(CHARACTER* character) {
@@ -204,10 +217,14 @@ bool CItem::AddToGround(long mapIndex, const PIXEL_POSITION& position)
         return false;
     }
 
-    LPSECTREE sectree = SECTREE_MANAGER::instance().Get(mapIndex, position.x, position.y);
+    auto& sectors = SECTREE_MANAGER::instance();
+    const auto y = position.y;
+    const auto x = position.x;
+    LPSECTREE sectree = sectors.Get(mapIndex, x, y);
     if (!sectree) {
-        _sys_err("AddToGround", 0x145, "cannot find sectree by %dx%d",
-                 static_cast<int>(position.x), static_cast<int>(position.y));
+        const int loggedY = static_cast<int>(position.y);
+        const int loggedX = static_cast<int>(position.x);
+        _sys_err("AddToGround", 0x145, "cannot find sectree by %dx%d", loggedX, loggedY);
         return false;
     }
 
@@ -249,14 +266,13 @@ long CItem::GetValue(DWORD idx) {
 // 08166760
 void CItem::UsePacketEncode(CHARACTER* character, CHARACTER* victim, packet_item_use* packet)
 {
-    const DWORD vnum = GetVnum();
-    if (!vnum)
+    if (!GetVnum())
         return;
     packet->header = 0x16;
-    packet->pos = m_bCell;
     packet->ch_vid = static_cast<DWORD>(character->GetVID());
     packet->victim_vid = static_cast<DWORD>(victim->GetVID());
-    packet->vnum = vnum;
+    packet->pos = m_bCell;
+    packet->vnum = GetVnum();
 }
 
 // 08167ca0
@@ -265,9 +281,10 @@ bool CItem::CreateSocket(BYTE slot, BYTE gold)
     assert(slot < 3);
     if (slot >= 3)
         return false;
-    if (m_alSockets[slot]) {
+    if (static_cast<std::uint32_t>(m_alSockets[slot])) {
+        const char* name = GetName();
         _sys_err("CreateSocket", 0x33a, "Item::CreateSocket : socket already exist %s %d",
-                 GetName() ? GetName() : "", static_cast<int>(slot));
+                 name ? name : "", static_cast<int>(slot));
         return false;
     }
     m_alSockets[slot] = gold ? 2 : 1;
@@ -294,8 +311,29 @@ long CItem::FindApplyValue(BYTE type)
 }
 
 void CItem::SetSockets(const long* sockets) {
-    for (int index = 0; index < 3; ++index)
-        m_alSockets[index] = apply_item_detail::bits(static_cast<unsigned int>(sockets[index]));
+    if (sizeof(long) == sizeof(std::int32_t)) {
+        SetPackedSockets(sockets);
+        return;
+    }
+    const std::int32_t packed[] = {
+        static_cast<std::int32_t>(sockets[0]),
+        static_cast<std::int32_t>(sockets[1]),
+        static_cast<std::int32_t>(sockets[2]),
+    };
+    SetPackedSockets(packed);
+}
+
+void CItem::SetPackedSockets(const void* sockets) {
+    if (sizeof(long) == sizeof(std::int32_t)) {
+        thecore_memcpy(m_alSockets, sockets, 3 * sizeof(std::int32_t));
+    } else {
+        std::int32_t destination[3];
+        for (int index = 0; index < 3; ++index)
+            destination[index] = static_cast<std::int32_t>(m_alSockets[index]);
+        thecore_memcpy(destination, sockets, sizeof(destination));
+        for (int index = 0; index < 3; ++index)
+            m_alSockets[index] = destination[index];
+    }
     Save();
 }
 
@@ -316,15 +354,17 @@ long unique_expire_event(LPEVENT event)
 {
     CItem* item = static_cast<item_event_info*>(event->info)->item;
     if (item->GetValue(2) == 0) {
-        const long expiry = item->GetSockets()[2];
+        const auto expiry = static_cast<std::int32_t>(item->GetSockets()[2]);
         if (expiry > 1) {
             item->SetSocket(2, expiry - 1);
             return apply_item_detail::mul(passes_per_sec, 60);
         }
-        sys_log(0, "UNIQUE_ITEM: expire %s %lu", item->GetName(), item->GetID());
+        const char* name = item->GetName();
+        const auto id = item->GetID();
+        sys_log(0, "UNIQUE_ITEM: expire %s %lu", name, id);
     } else {
         const int now = apply_item_detail::bits(static_cast<unsigned>(get_global_time()));
-        if (now <= item->GetSockets()[2])
+        if (now <= static_cast<std::int32_t>(item->GetSockets()[2]))
             return apply_item_detail::mul(passes_per_sec, 600);
     }
 
@@ -345,8 +385,8 @@ void CItem::StartUniqueExpireEvent()
     if (GetVnum() == 70048 && m_pOwner)
         m_pOwner->ShowAlignment(false);
 
-    const long saved = m_alSockets[1];
-    const long seconds = !saved || saved > 60 ? 60 : saved;
+    const auto saved = static_cast<std::int32_t>(m_alSockets[1]);
+    const int seconds = !saved || saved > 60 ? 60 : saved;
     SetSocket(1, 0);
     void* eventData;
     const DWORD info = __AllocEventInfo(sizeof(item_event_info), &eventData);
@@ -359,7 +399,8 @@ void CItem::StartUniqueExpireEvent()
 void CItem::StopUniqueExpireEvent() {
     if(m_pkUniqueExpireEvent && GetValue(2)==0) {
         if(GetVnum()==70048) m_pOwner->ShowAlignment(true);
-        SetSocket(1,event_time(m_pkUniqueExpireEvent)/passes_per_sec);
+        const auto remaining = static_cast<std::int32_t>(event_time(m_pkUniqueExpireEvent));
+        SetSocket(1, remaining / passes_per_sec);
         event_cancel(&m_pkUniqueExpireEvent);
     }
 }
@@ -375,7 +416,10 @@ bool CItem::AddSocket()
 }
 
 int CItem::GetSocketCount() {
-    for(int i=0;i<3;++i) if(m_alSockets[i]==0) return i;
+    for (int index = 0; index < 3; ++index) {
+        if (static_cast<std::uint32_t>(m_alSockets[index]) == 0)
+            return index;
+    }
     return 3;
 }
 // 08168810: the old accessory predicate requires an assigned prototype.
@@ -384,6 +428,7 @@ bool CItem::CanPutInto(CItem* item)
 {
     if (item->GetType() != 2)
         return false;
+    const DWORD targetVnum = item->GetVnum();
     DWORD base;
     switch (item->GetSubType()) {
     case 3: base = 14000; break;
@@ -391,7 +436,7 @@ bool CItem::CanPutInto(CItem* item)
     case 6: base = 17000; break;
     default: return false;
     }
-    const auto group = static_cast<unsigned int>(item->GetVnum() - base) / 20;
+    const auto group = static_cast<unsigned int>(targetVnum - base) / 20;
     return group < 12 && GetVnum() == group + 50623;
 }
 
@@ -418,7 +463,11 @@ void CItem::SetAccessorySocketDownGradeTime(DWORD time) {
     SetSocket(2, seconds);
     if (test_server) {
         CHARACTER* ch = GetOwner();
-        if (ch) ch->ChatPacket(1, locale_find("\045\163\040\277\241\274\255\040\274\322\304\317\040\272\374\301\372\266\247\261\356\301\366\040\263\262\300\272\040\275\303\260\243\040\045\144", g_iUseLocale), GetName(), seconds);
+        if (ch) {
+            const char* name = GetName();
+            const char* format = locale_find("\045\163\040\277\241\274\255\040\274\322\304\317\040\272\374\301\372\266\247\261\356\301\366\040\263\262\300\272\040\275\303\260\243\040\045\144", g_iUseLocale);
+            ch->ChatPacket(1, format, name, seconds);
+        }
     }
 }
 
@@ -441,21 +490,23 @@ void CItem::AlterToMagicItem() {
     if(GetAttributeSetIndex()<0) return;
     int second,third;
     if(g_iUseLocale==0) {
-        if(GetType()==1) {second=30;third=15;}
-        else if(GetType()!=2) return;
+        const BYTE type = GetType();
+        if(type==1) {second=30;third=15;}
+        else if(type!=2) return;
         else if(GetSubType()==0) {second=20;third=10;}
         else {second=10;third=5;}
     } else {
-        if(GetType()==1) {second=20;third=5;}
-        else if(GetType()!=2) return;
+        const BYTE type = GetType();
+        if(type==1) {second=20;third=5;}
+        else if(type!=2) return;
         else if(GetSubType()==0) {second=10;third=2;}
         else {second=10;third=1;}
     }
-    PutAttribute(const_cast<int*>(aiItemMagicAttributePercentHigh));
+    PutAttribute(aiItemMagicAttributePercentHigh);
     if(number_ex(1,100,const_cast<char*>("item.cpp"),1047)<=second)
-        PutAttribute(const_cast<int*>(aiItemMagicAttributePercentLow));
+        PutAttribute(aiItemMagicAttributePercentLow);
     if(number_ex(1,100,const_cast<char*>("item.cpp"),1050)<=third)
-        PutAttribute(const_cast<int*>(aiItemMagicAttributePercentLow));
+        PutAttribute(aiItemMagicAttributePercentLow);
 }
 
 
@@ -463,10 +514,12 @@ void CItem::AlterToMagicItem() {
 // 08167ed0
 int CItem::GetGold()
 {
-    const DWORD gold = GetProto()->dwGold;
-    if (GetFlag() & 0x08)
-        return gold ? GetCount() / gold : GetCount();
-    return gold;
+    if (GetFlag() & 0x08) {
+        const auto gold = static_cast<std::uint32_t>(GetProto()->dwGold);
+        const auto count = static_cast<std::uint32_t>(GetCount());
+        return apply_item_detail::bits(gold ? count / gold : count);
+    }
+    return apply_item_detail::bits(static_cast<std::uint32_t>(GetProto()->dwGold));
 }
 
 int CItem::GetShopBuyPrice() { return m_pProto->dwShopBuyPrice; }
@@ -540,7 +593,8 @@ void CItem::ModifyPoints(bool bAdd)
             m_pOwner->SetPart(0,static_cast<WORD>(p->dwVnum));
         } else {
             if (p->bSubType!=0) return;
-            m_pOwner->SetPart(0,m_pOwner->GetOriginalPart(0));
+            const WORD originalPart = m_pOwner->GetOriginalPart(0);
+            m_pOwner->SetPart(0, originalPart);
         }
     } else if (type==1 || type==13 || type==24) {
         if (m_bCell!=94) return;
@@ -551,9 +605,10 @@ void CItem::ModifyPoints(bool bAdd)
 
 bool CItem::SetCount(DWORD count)
 {
-    m_dwCount=count;
+    const auto itemCount = static_cast<std::uint32_t>(count);
+    m_dwCount = itemCount;
     CHARACTER* owner;
-    if(count!=0 || (owner=m_pOwner)==0) {
+    if (itemCount != 0 || (owner = m_pOwner) == nullptr) {
         UpdatePacket();
         Save();
         return true;
@@ -595,11 +650,10 @@ LPITEM CItem::RemoveFromCharacter()
 // Complete original08167a70. No m_bEquipped guard, no added null/proto guards.
 int CItem::FindEquipCell(CHARACTER* character)
 {
-    if (!character || !m_pProto || !m_pProto->dwWearFlags || GetType() == 26)
+    if (!character || !m_pProto || !GetWearFlag() || GetType() == 26)
         return -1;
-    const DWORD flags = m_pProto->dwWearFlags;
     const BYTE job = character->GetJob();
-    if (job < 4 && (m_pProto->dwAntiFlags & (4UL << job)))
+    if (job < 4 && (GetAntiFlag() & (4UL << job)))
         return -1;
 
     constexpr const char* limitMessages[] = {
@@ -612,11 +666,12 @@ int CItem::FindEquipCell(CHARACTER* character)
     };
     constexpr BYTE limitPoints[] = {0, POINT_LEVEL, POINT_ST, POINT_DX, POINT_IQ, POINT_HT};
     for (const TItemLimit& limit : m_pProto->aLimits) {
+        const auto required = limit.lValue;
         const BYTE type = limit.bType;
         if (!type || type >= sizeof(limitPoints))
             continue;
         const long actual = type == 1 ? character->GetLevel() : character->GetPoint(limitPoints[type]);
-        if (actual < limit.lValue) {
+        if (actual < required) {
             character->ChatPacket(1, LC_TEXT(limitMessages[type]));
             return -1;
         }
@@ -627,12 +682,12 @@ int CItem::FindEquipCell(CHARACTER* character)
         {0x20, 5}, {0x40, 6}, {0x200, 9},
     };
     for (const auto& entry : wear) {
-        if (flags & entry.flag)
+        if (GetWearFlag() & entry.flag)
             return entry.cell;
     }
 
-    if (!(flags & 0x80)) {
-        if (flags & 0x800) {
+    if (!(GetWearFlag() & 0x80)) {
+        if (GetWearFlag() & 0x800) {
             for (BYTE slot = 11; slot < 19; ++slot) {
                 if (!character->GetWear(slot))
                     return slot;
@@ -668,14 +723,21 @@ bool CItem::EquipTo(CHARACTER* character, BYTE wearCell)
         return false;
     }
     if (wearCell >= 19) {
+        const auto* proto = GetProto();
+        const int flags = proto ? static_cast<int>(proto->dwWearFlags) : 0;
+        const char* name = proto ? proto->szLocaleName : nullptr;
+        const int vnum = proto ? static_cast<int>(proto->dwVnum) : 0;
         _sys_err("EquipTo", 0x2c4, "EquipTo: invalid wear cell (this: #%d %s wearflag: %d cell: %d)",
-                 static_cast<int>(GetVnum()), GetName(), m_pProto ? static_cast<int>(m_pProto->dwWearFlags) : 0,
-                 static_cast<int>(wearCell));
+                 vnum, name, flags, static_cast<int>(wearCell));
         return false;
     }
-    if (CItem* existing = character->GetWear(wearCell)) {
+    if (character->GetWear(wearCell)) {
+        const auto existing = character->GetWear(wearCell);
+        const char* existingName = existing ? existing->GetName() : "";
+        const char* incomingName = GetName();
+        const int incomingVnum = static_cast<int>(GetVnum());
         _sys_err("EquipTo", 0x2ca, "EquipTo: item already exist (this: #%d %s cell: %d %s)",
-                 static_cast<int>(GetVnum()), GetName(), static_cast<int>(wearCell), existing->GetName());
+                 incomingVnum, incomingName, static_cast<int>(wearCell), existingName);
         return false;
     }
 
@@ -687,10 +749,10 @@ bool CItem::EquipTo(CHARACTER* character, BYTE wearCell)
     m_pOwner = character;
     DWORD immune = 0;
     for (BYTE slot = 0; slot < 19; ++slot) {
-        if (CItem* item = character->GetWear(slot)) {
-            if (const TItemTable* proto = item->GetProto())
-                immune |= proto->dwImmuneFlag;
-        }
+        if (!m_pOwner->GetWear(slot))
+            continue;
+        if (CItem* item = m_pOwner->GetWear(slot))
+            immune |= item->GetImmuneFlag();
     }
     m_pOwner->SetImmuneFlag(immune);
     ModifyPoints(true);
@@ -707,7 +769,10 @@ bool CItem::Unequip()
     CHARACTER* owner=m_pOwner;
     BYTE cell=m_bCell;
     if(!owner || cell<90) {
-        _sys_err("Unequip",762,"%s %lu m_pOwner %p, GetCell %d",GetName(),m_dwID,owner,(unsigned int)cell);
+        const char* name = GetName();
+        const auto id = static_cast<std::uint32_t>(m_dwID);
+        _sys_err("Unequip", 762, "%s %lu m_pOwner %p, GetCell %d",
+                 name, static_cast<unsigned long>(id), static_cast<void*>(owner), static_cast<int>(cell));
         return false;
     }
     if(owner->GetWear((BYTE)(cell-90))!=this) {
@@ -750,7 +815,9 @@ long accessory_socket_expire_event(LPEVENT event)
 
 void CItem::StartAccessorySocketExpireEvent()
 {
-    if (IsAccessoryForSocket() && !m_pkAccessorySocketExpireEvent && m_alSockets[1]!=0 && m_alSockets[0]!=0) {
+    if (IsAccessoryForSocket() && !m_pkAccessorySocketExpireEvent &&
+        static_cast<std::uint32_t>(m_alSockets[1]) != 0 &&
+        static_cast<std::uint32_t>(m_alSockets[0]) != 0) {
         int seconds=m_alSockets[2];
         SetAccessorySocketExpireEvent(0);
         if (seconds<2) seconds=5;
@@ -806,8 +873,7 @@ void CItem::StopAccessorySocketExpireEvent()
 int CItem::GetSpecialGroup()
 {
     ITEM_MANAGER& manager = ITEM_MANAGER::instance();
-    std::map<DWORD, int>::iterator it = manager.m_ItemToSpecialGroup.find(GetVnum());
-    return it == manager.m_ItemToSpecialGroup.end() ? 0 : it->second;
+    return manager.GetSpecialGroupFromItem(GetVnum());
 }
 
 void CItem::SetExchanging(bool on)
@@ -827,7 +893,7 @@ bool CItem::CheckItemUseLevel(int level)
 bool CItem::CanUsedBy(CHARACTER* character)
 {
     const BYTE job = character->GetJob();
-    return job >= 4 || !m_pProto || !(m_pProto->dwAntiFlags & (4U << job));
+    return job >= 4 || !m_pProto || !(GetAntiFlag() & (4U << job));
 }
 
 // 08168d90

@@ -129,7 +129,8 @@ void CHARACTER::AttackedByPoison(LPCHARACTER attacker)
         const int victimLevel = GetLevel();
         if (attackerLevel < victimLevel) {
             const int delta = MIN(8, victimLevel - attackerLevel);
-            if (poison_level_adjust[delta] < number_ex(1, 100, "char_resist.cpp", 161))
+            const int roll = number_ex(1, 100, "char_resist.cpp", 161);
+            if (poison_level_adjust[delta] < roll)
                 return;
         }
     }
@@ -154,7 +155,7 @@ void CHARACTER::AttackedByPoison(LPCHARACTER attacker)
 // 08064150
 bool CHARACTER::IsImmune(DWORD flag)
 {
-    if (!(m_pointsInstant.dwImmuneFlag & flag)) {
+    if (!(m_pointsInstant.dwImmuneFlag & static_cast<std::uint32_t>(flag))) {
         if (test_server && GetDesc())
             ChatPacket(3, "<IMMUNE_FAIL> (%s) NO_IMMUNE_FLAG", GetName());
         return false;

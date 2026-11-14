@@ -1,3 +1,4 @@
+#include <cstdint>
 #include "locale.hpp"
 #include "assert.h"
 #include "char.h"
@@ -343,7 +344,7 @@ void PC::CancelRunning() {
 namespace quest {
 //08060e60: log before reading live quest/label; a nonzero flag marks duplicate, otherwise queue unchanged inputs.
 void PC::GiveItem(const std::string& label,DWORD dwVnum,int count) {
-    sys_log(1,"QUEST GiveItem %s %d %d",label.c_str(),dwVnum,count);
+    sys_log(1,"QUEST GiveItem %s %d %d",label.c_str(),static_cast<int>(static_cast<std::int32_t>(dwVnum)),count);
     if (!GetFlag(m_stCurQuest+"."+label))
         m_vRewardData.push_back(RewardData(RewardData::REWARD_TYPE_ITEM,dwVnum,count));
     else
@@ -351,7 +352,7 @@ void PC::GiveItem(const std::string& label,DWORD dwVnum,int count) {
 }
 //08060fd0: original default third RewardData argument is0; no EXP grant or flag write occurs here.
 void PC::GiveExp(const std::string& label,DWORD exp) {
-    sys_log(1,"QUEST GiveExp %s %d",label.c_str(),exp);
+    sys_log(1,"QUEST GiveExp %s %d",label.c_str(),static_cast<int>(static_cast<std::int32_t>(exp)));
     if (!GetFlag(m_stCurQuest+"."+label))
         m_vRewardData.push_back(RewardData(RewardData::REWARD_TYPE_EXP,exp));
     else
@@ -465,18 +466,24 @@ void PC::Reward(CHARACTER* character)
     }
     for (std::vector<RewardData>::iterator reward = m_vRewardData.begin(); reward != m_vRewardData.end(); ++reward) {
         if (reward->type == RewardData::REWARD_TYPE_EXP) {
-            sys_log(0, "EXP cur %d add %d next %d", static_cast<int>(character->GetExp()),
-                    static_cast<int>(reward->value1), static_cast<int>(character->GetNextExp()));
+            const int loggedNext = static_cast<int>(character->GetNextExp());
+            const int loggedExp = static_cast<int>(character->GetExp());
+            const int loggedDelta = static_cast<int>(reward->value1);
+            sys_log(0, "EXP cur %d add %d next %d", loggedExp, loggedDelta, loggedNext);
+
+            const unsigned int requested = static_cast<unsigned int>(reward->value1);
             const unsigned int exp = static_cast<unsigned int>(character->GetExp());
             const unsigned int next = static_cast<unsigned int>(character->GetNextExp());
-            unsigned int delta = static_cast<unsigned int>(reward->value1);
-            if (next < exp + delta)
-                delta = next - exp - 1u;
+            const unsigned int delta = next < exp + requested
+                ? static_cast<unsigned int>(character->GetNextExp()) - exp - 1u
+                : static_cast<unsigned int>(reward->value1);
             int amount;
             std::memcpy(&amount, &delta, sizeof(amount));
             character->PointChange(3, amount, false, false);
         } else if (reward->type == RewardData::REWARD_TYPE_ITEM) {
-            character->AutoGiveItem(reward->value1, static_cast<BYTE>(reward->value2), -1, true);
+            const BYTE count = static_cast<BYTE>(reward->value2);
+            const auto vnum = static_cast<std::uint32_t>(reward->value1);
+            character->AutoGiveItem(vnum, count, -1, true);
         } else {
             _sys_err("Reward", 0x289, "Invalid RewardData type");
         }

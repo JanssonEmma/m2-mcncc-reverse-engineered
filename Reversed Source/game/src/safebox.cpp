@@ -40,8 +40,17 @@ bool CSafebox::Add(DWORD dwPos,LPITEM item)
     packet.vnum=item->GetVnum();
     packet.count=static_cast<BYTE>(item->GetCount());
     packet.pos=static_cast<BYTE>(dwPos);
-    for (int i = 0; i < 3; ++i)
-        packet.alSockets[i] = static_cast<std::int32_t>(item->GetSockets()[i]);
+    const long* sockets = item->GetSockets();
+    if (sizeof(long) == sizeof(std::int32_t)) {
+        thecore_memcpy(packet.alSockets, sockets, sizeof(packet.alSockets));
+    } else {
+        const std::int32_t packedSockets[] = {
+            static_cast<std::int32_t>(sockets[0]),
+            static_cast<std::int32_t>(sockets[1]),
+            static_cast<std::int32_t>(sockets[2]),
+        };
+        thecore_memcpy(packet.alSockets, packedSockets, sizeof(packet.alSockets));
+    }
     (*thecore_memcpy)(packet.aAttr,item->GetAttributes(),21);
     m_pkChrOwner->GetDesc()->Packet(&packet,sizeof(packet));
     DWORD count=item->GetCount();

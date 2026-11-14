@@ -108,7 +108,7 @@ void CMobManager::RebindMobProto(CHARACTER* character)
 
 //080f6530.
 const CMob* CMobManager::Get(DWORD vnum) {
-    std::map<DWORD,CMob*>::iterator it=m_map_pkMobByVnum.find(vnum);
+    std::map<DWORD,CMob*>::iterator it=m_map_pkMobByVnum.find(static_cast<std::uint32_t>(vnum));
     return it==m_map_pkMobByVnum.end()?0:it->second;
 }
 //080f6580: abbreviation searches sorted keys with a case-sensitive byte prefix.
@@ -124,19 +124,34 @@ const CMob* CMobManager::Get(const char* name,bool abbreviation) {
 }
 //080f6b60.
 CMobGroup* CMobManager::GetGroup(DWORD vnum) {
-    std::map<DWORD,CMobGroup*>::iterator it=m_map_pkMobGroup.find(vnum);
+    std::map<DWORD,CMobGroup*>::iterator it=m_map_pkMobGroup.find(static_cast<std::uint32_t>(vnum));
     return it==m_map_pkMobGroup.end()?0:it->second;
 }
 
 DWORD CMobManager::GetGroupFromGroupGroup(DWORD vnum)
 {
-    std::map<DWORD,CMobGroupGroup*>::iterator found=m_map_pkMobGroupGroup.find(vnum);
+    std::map<DWORD,CMobGroupGroup*>::iterator found=m_map_pkMobGroupGroup.find(static_cast<std::uint32_t>(vnum));
     if (found==m_map_pkMobGroupGroup.end()) return 0;
-    CMobGroupGroup* group=found->second;
-    if (group->m_vec_dwMemberVnum.empty()) return 0;
-    int roll=number_ex(1,group->m_vec_iProbs.back(),"mob_manager.h",0x51);
-    std::vector<int>::iterator selected=std::lower_bound(group->m_vec_iProbs.begin(),group->m_vec_iProbs.end(),roll);
-    return group->m_vec_dwMemberVnum[selected-group->m_vec_iProbs.begin()];
+    return found->second->GetMember();
+}
+
+void CMobGroupGroup::AddMember(DWORD vnum, int probability)
+{
+    if (!probability)
+        return;
+    if (!m_vec_iProbs.empty())
+        probability = static_cast<int>(static_cast<std::uint32_t>(probability) + static_cast<std::uint32_t>(m_vec_iProbs.back()));
+    m_vec_iProbs.push_back(probability);
+    m_vec_dwMemberVnum.push_back(static_cast<std::uint32_t>(vnum));
+}
+
+DWORD CMobGroupGroup::GetMember()
+{
+    if (m_vec_dwMemberVnum.empty())
+        return 0;
+    const int roll = number_ex(1, m_vec_iProbs.back(), "mob_manager.h", 0x51);
+    const auto selected = std::lower_bound(m_vec_iProbs.begin(), m_vec_iProbs.end(), roll);
+    return m_vec_dwMemberVnum[selected - m_vec_iProbs.begin()];
 }
 
 bool CMobManager::LoadGroup(const char* filename)
@@ -157,9 +172,8 @@ bool CMobManager::LoadGroup(const char* filename)
             _sys_err("LoadGroup",0x16e,"LoadGroup : Syntax error %s : no leader vnum, node %s",filename,name.c_str());
         } else {
             CMobGroup* group=new CMobGroup;
-            group->m_dwVnum=static_cast<std::uint32_t>(vnum);
-            group->m_stName=name;
-            group->m_vec_dwMemberVnum.push_back(static_cast<std::uint32_t>(std::atoi(tokens->at(1).c_str())));
+            group->Create(static_cast<std::uint32_t>(vnum), name);
+            group->AddMember(static_cast<std::uint32_t>(std::atoi(tokens->at(1).c_str())));
             sys_log(0,"GROUP: %-5d %s",vnum,name.c_str());
             sys_log(0,"               %s %s",tokens->at(0).c_str(),tokens->at(1).c_str());
             for (int member=1;member<256;++member) {
@@ -167,7 +181,7 @@ bool CMobManager::LoadGroup(const char* filename)
                 std::sprintf(key,"%d",member);
                 if (!loader.GetTokenVector(key,&tokens)) break;
                 sys_log(0,"               %s %s",tokens->at(0).c_str(),tokens->at(1).c_str());
-                group->m_vec_dwMemberVnum.push_back(static_cast<std::uint32_t>(std::atoi(tokens->at(1).c_str())));
+                group->AddMember(static_cast<std::uint32_t>(std::atoi(tokens->at(1).c_str())));
             }
             loader.SetParentNode();
             m_map_pkMobGroup.insert(std::make_pair(group->m_dwVnum,group));
@@ -192,8 +206,7 @@ bool CMobManager::LoadGroupGroup(const char* filename)
             loader.SetParentNode();
             continue;
         }
-        CMobGroupGroup* group=new CMobGroupGroup;
-        group->m_dwVnum=static_cast<std::uint32_t>(vnum);
+        CMobGroupGroup* group = new CMobGroupGroup(static_cast<std::uint32_t>(vnum));
         for (int member=1;member<256;++member) {
             char key[4];
             std::sprintf(key,"%d",member);
@@ -202,9 +215,7 @@ bool CMobManager::LoadGroupGroup(const char* filename)
             const DWORD groupVnum=static_cast<std::uint32_t>(std::atoi(tokens->at(0).c_str()));
             if (tokens->size()>1) std::atoi(tokens->at(1).c_str());
             if (!groupVnum) continue;
-            int weight=group->m_vec_iProbs.empty() ? 1 : group->m_vec_iProbs.back()+1;
-            group->m_vec_iProbs.push_back(weight);
-            group->m_vec_dwMemberVnum.push_back(groupVnum);
+            group->AddMember(groupVnum);
         }
         loader.SetParentNode();
         m_map_pkMobGroupGroup.insert(std::make_pair(group->m_dwVnum,group));
@@ -214,6 +225,7 @@ bool CMobManager::LoadGroupGroup(const char* filename)
 
 void CMobManager::IncRegenCount(BYTE type, DWORD vnum, int count, int seconds)
 {
+    vnum = static_cast<std::uint32_t>(vnum);
     if (type == 0) {
         double& total = m_mapRegenCount[vnum];
         total = static_cast<long double>(total) + count * 86400.0L / seconds;

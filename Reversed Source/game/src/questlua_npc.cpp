@@ -7,6 +7,7 @@
 #include "../../libthecore/include/log.h"
 
 #include <algorithm>
+#include <cfenv>
 #include <cstdint>
 
 extern "C" {
@@ -20,10 +21,12 @@ bool IsNear(CHARACTER* first, CHARACTER* second, double range)
 {
     if (!first || !second)
         return false;
-    const auto dx = static_cast<std::int32_t>(static_cast<std::uint32_t>(first->GetX()) -
-                                              static_cast<std::uint32_t>(second->GetX()));
-    const auto dy = static_cast<std::int32_t>(static_cast<std::uint32_t>(first->GetY()) -
-                                              static_cast<std::uint32_t>(second->GetY()));
+    const auto secondY = static_cast<std::uint32_t>(second->GetY());
+    const auto firstY = static_cast<std::uint32_t>(first->GetY());
+    const auto secondX = static_cast<std::uint32_t>(second->GetX());
+    const auto dy = static_cast<std::int32_t>(firstY - secondY);
+    const auto firstX = static_cast<std::uint32_t>(first->GetX());
+    const auto dx = static_cast<std::int32_t>(firstX - secondX);
     return DISTANCE_APPROX(dx, dy) < 100.0L * static_cast<long double>(range);
 }
 
@@ -36,14 +39,14 @@ CHARACTER* GetSanta()
 int GetSantaCount(lua_State* state, BYTE point)
 {
     CHARACTER* npc = GetSanta();
-    lua_pushnumber(state, npc ? std::max(0L, npc->GetPoint(point)) : 0);
+    lua_pushnumber(state, npc ? std::max(std::int32_t{0}, static_cast<std::int32_t>(npc->GetPoint(point))) : 0);
     return 1;
 }
 
 int DecSantaCount(BYTE point)
 {
     if (CHARACTER* npc = GetSanta()) {
-        const long count = npc->GetPoint(point);
+        const auto count = static_cast<std::int32_t>(npc->GetPoint(point));
         npc->SetPoint(point, count > 0 ? count - 1 : 0);
     }
     return 0;
@@ -72,7 +75,7 @@ int npc_open_shop(lua_State* state)
 int npc_is_pc(lua_State* state)
 {
     CHARACTER* npc = CQuestManager::instance().GetCurrentNPCCharacterPtr();
-    lua_pushboolean(state, npc && npc->GetDesc());
+    lua_pushboolean(state, npc && npc->IsPC());
     return 1;
 }
 
@@ -107,16 +110,21 @@ int npc_is_quest(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
     CHARACTER* npc = manager.GetCurrentNPCCharacterPtr();
-    lua_pushboolean(state, npc && manager.GetCurrentPC()
-        && npc->GetQuestByVnum() == manager.GetQuestIndexByName(manager.GetCurrentQuestName()));
+    bool isQuest = false;
+    if (npc && manager.GetCurrentPC()) {
+        const auto questIndex = manager.GetQuestIndexByName(manager.GetCurrentQuestName());
+        isQuest = questIndex == npc->GetQuestBy();
+    }
+    lua_pushboolean(state, isQuest);
     return 1;
 }
 
 int npc_kill(lua_State*)
 {
     CQuestManager& manager = CQuestManager::instance();
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
     CHARACTER* npc = manager.GetCurrentNPCCharacterPtr();
-    if (CHARACTER* character = manager.GetCurrentCharacterPtr())
+    if (character)
         character->SetQuestNPCID(0);
     if (npc)
         npc->Dead(nullptr, false);
@@ -126,8 +134,9 @@ int npc_kill(lua_State*)
 int npc_purge(lua_State*)
 {
     CQuestManager& manager = CQuestManager::instance();
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
     CHARACTER* npc = manager.GetCurrentNPCCharacterPtr();
-    if (CHARACTER* character = manager.GetCurrentCharacterPtr())
+    if (character)
         character->SetQuestNPCID(0);
     if (npc)
         CHARACTER_MANAGER::instance().DestroyCharacter(npc);
@@ -137,8 +146,10 @@ int npc_purge(lua_State*)
 int npc_is_near(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
+    LPCHARACTER character = manager.GetCurrentCharacterPtr();
+    LPCHARACTER npc = manager.GetCurrentNPCCharacterPtr();
     const double distance = lua_isnumber(state, 1) ? lua_tonumber(state, 1) : 10.0;
-    lua_pushboolean(state, IsNear(manager.GetCurrentCharacterPtr(), manager.GetCurrentNPCCharacterPtr(), distance));
+    lua_pushboolean(state, IsNear(character, npc, distance));
     return 1;
 }
 
@@ -150,8 +161,11 @@ int npc_is_near_vid(lua_State* state)
         return 1;
     }
     const double value = lua_tonumber(state, 1);
-    const auto vid = value >= -9223372036854775808.0 && value < 9223372036854775808.0
-        ? static_cast<std::uint32_t>(static_cast<std::int64_t>(value)) : 0u;
+    std::uint32_t vid = 0;
+    if (value >= -9223372036854775808.0 && value < 9223372036854775808.0)
+        vid = static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
+    else
+        std::feraiseexcept(FE_INVALID);
     CHARACTER* target = CHARACTER_MANAGER::instance().Find(vid);
     CHARACTER* npc = CQuestManager::instance().GetCurrentNPCCharacterPtr();
     const double distance = lua_isnumber(state, 2) ? lua_tonumber(state, 2) : 10.0;

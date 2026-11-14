@@ -1182,3 +1182,1806 @@ Source batch 650 restored global TransformRefineItem(CItem*, CItem*) and signed 
 Source batch 651 restored original DB mob damage multiplier atof-to-float rounding (DB ELF 0806ff90/0806ff9b). Gameserver attribute transfer matches the original 21-byte copy then destination Save (081877c0/08187900); asserted the original size. Accessory decay and quest guild/storage prompts matched inspected paths. Source guards and read-back passed. No builds or tests.
 
 Source batch 652 restored all three building rotation conversions in DB InitializeObjectTable using atof followed by float storage (DB ELF 08073400-08073421). Source guards and read-back passed. No builds or tests.
+
+Static audit after batch 652: repository-local path resolution verified with project_paths.py. The 2009 ELF matches current building and DB boot loaders, FSM state transitions, mob damage multiplier rounding in melee/arrow damage, wedding lifecycle, and the reviewed arena/party placeholder bodies. The dormant profiled damage routine is already present in char_battle.cpp from batch 487. Prioritize original symbols demonstrably absent from current definitions before spending credits on broad re-audits. No builds or tests.
+
+Source batch 653 restored the original dormant DB packet statistics helpers Add/Reset (0805c340/0805c3b0) and both global instances. No live callers were added. CGrid::Print now explicitly interprets cell bytes as signed, matching ELF movsbl at 081f512a. The non-Monarch dungeon and quest Lua definition scan found no missing bodies. Source guards and read-back passed. No builds or tests.
+
+Source batch 654 restored the DB test-server item-cache flush diagnostic (08059273-080592a0) and explicit 32-bit unsigned arithmetic for number_ex (081b92e9-081b92ff). The full signed interval uses the RNG draw directly to avoid modulo zero. Static comparisons of arena and guild war branches and the resolved numeric gameplay tables found no further deltas. Source guards and read-back passed. No builds or tests.
+
+Source batch 655 restored the original x87 intermediate arithmetic in gauss_random_extended (08147492-0814749f and 08147514-0814754b). The fresh result retains its float rounding and the cached path retains the extended arithmetic until its double API boundary. Static audits matched unique item timers, DB item ownership and six mixed gameplay tables. Source guards and read-back passed. No builds or tests.
+
+Source batch 656 restored signed 32-bit microsecond inputs in get_dword_time and get_float_time_extended (081b9487/081b94ca) and unsigned 32-bit DB wedding deadline arithmetic and comparisons (DB ELF 0808e4f4/0808e787/0808e9f7/0808eb1e). Reviewed movement timing, Chain Lightning, Eunhyung and skill cooldown matched inspected original paths. Source guards and read-back passed. No builds or tests.
+
+Source batch 657 restored wrapped 32-bit year/day arithmetic in tm_calc (081b913d/081b915e/081b91ae/081b91c7/081b9210) and the original fishing timing-roll-before-table-read order (08083253-08083260), retaining bounds checks. Reviewed wedding event delays, ordinary DB privilege and reservation deadlines, and mining leaves matched. Source guards and read-back passed. No builds or tests.
+
+Source batch 658 restored original highest_array_element value caching and single load per visited entry (081471ce-081471e9), preserving last-index ties. Restored fishing length range reads before the ordinary and rare RNG draws (08083356-08083362/0808344b-08083486), with the final ordinary minimum read preserved. Quest rewards and ordinary DB player persistence matched audited paths. Source guards and read-back passed. No builds or tests.
+
+Source batch 659 retained extended precision across the cached Gaussian return into the item bonus roll (08147492/0814749f/0816e8aa-0816e8cb), restored signed dword x87 truncation for DB guild war power and handicap (0807f6c8/0807f8db/0807f9ea), and restored fishing length division before the float display rounding (0808391c-08083935). Santa reward counters matched audited paths. Source guards and read-back passed. No builds or tests.
+
+Source batch 660 restored ordered logarithm evaluation and extended division in CPoly::Eval (DB ELF 080c0a87-080c0ab0), and the guild war payout multiplication using the stored double ratio and x87-width intermediate where supported (DB ELF 08081a5a-08081ac1). Reviewed ordinary consumable effects, stone rewards and fishing outcomes matched. Source guards and read-back passed. No builds or tests.
+
+Source batch 661 restored extended intermediate division for CSC, SEC and COT in CPoly::Eval before the double stack store (DB ELF 080c09ee/080c0a52). Guild ranking tie handling and quest kill/login event dispatch matched audited original paths. Source guards and read-back passed. No builds or tests.
+
+Source batch 662 restored x87-width intermediate arithmetic for four CPoly operators (DB ELF 080c08c0/080c08d1/080c0914/080c0944), wrapped guild ladder point addition with negative clamp (0807e544-0807e54b), and the gradual potion fullness comparison and HP/SP read order (08178dcc-08178f47). Quest item grant paths matched the original. Source guards and read-back passed. No builds or tests.
+
+Source batch 663 restored uint32 storage for DB guild war and bet scores, matching the original ADD width and subsequent comparisons (0807dde0-0807dde2). Reviewed immediate potions and dungeon counters/completion matched ordinary gameplay. Source guards and read-back passed. No builds or tests.
+
+Source batch 664 restored extended division of the unsigned dword guild bet amounts before the binary64 ratio store (DB ELF 08081a20-08081a5a). Quest state transition ordering matched inspected paths. Source guard and read-back passed. No builds or tests.
+
+Source batch 665 restored wrapped 32-bit handicap score subtraction before signed comparison (DB 080817b1/08081be9) and the Metin stone drop chance width and RNG order (081942d3-08194308). Source guards and read-back passed. No builds or tests.
+
+Source batch 666 restored scaled chance calculation before the random draw for generic, glove and miscellaneous drops (081939db-08193a17, 08193e21-08193e5d, 081943d0-0819440b). Guild bet/refund and quest party paths matched audited behavior. Source guards and read-back passed. No builds or tests.
+
+Source batch 667 restored the mob kill-group drop chance calculation before RNG (08194523-08194554) and explicit low-dword addition of rare drop rate bonuses (08194730/0819473f). Special item group rewards and DB item socket persistence matched audited paths. Source guards and read-back passed. No builds or tests.
+
+Source batch 668 restored the original boss-table decision before level delta evaluation and fresh mob rank read for common drops (081934f2-0819356a, 0819474e-08194783). Retained existing stone snapshot for the later drop branch. GiveExp matched the audited bonus sequence. Source guard and read-back passed. No builds or tests.
+
+Source batch 669 restored wrapped signed 32-bit drop chance arithmetic for Christmas socks and moon drops, including chance evaluation before the moon draw (0819581f-08195859/0819596a-0819597e). Source guards and read-back passed. No builds or tests.
+
+Source batch 670 restored Mars and three-skill drop arithmetic and read order (08195115-08195186/0819530c-08195329) and extended guild ladder percentage multiplication before truncation (DB ELF 0807c5a9-0807c5e2). Seasonal item tables matched. Source guards and read-back passed. No builds or tests.
+
+Source batch 671 restored event-local rank and locale reads for seasonal drops and the original DB guild war countdown clock width and minute conversion (0807ffa9-0807ffde). Source guards and read-back passed. No builds or tests.
+
+Source batch 672 restored the live killer level read for Mars drop eligibility after earlier event processing (0819506f-0819507c). Quest scheduler timing matched inspected paths. Source guards and read-back passed. No builds or tests.
+
+Source batch 673 restored signed 32-bit DB guild war, wait-start and skill deadline storage and wrap (0807b7e1/0807b8c4/0807b9ca). Includes original signed epoch boundary behavior. Source guards and read-back passed. No builds or tests.
+
+Source batch 674 restored original character-stone drop diagnostic level snapshots and name lookup order (081948a0-081948d2/0819498f-081949c7). Drop selection and rates matched. DB marriage writes matched audited current-day data. No builds or tests.
+
+Source batch 675 restored original live victim race, item and stone type reads in ordinary drops (08193911/08193add/08193b2f/08193d35/08193f27/08193f37/0819438c/08194428). Game utility definitions were verified against ELF names and a stale file comment was corrected. Monster idle movement and DB party state matched audited paths. No builds or tests.
+
+Source batch 676 restored independent row copies for the generic, level and glove drop loops (081939b0/08193bf4/08193def). DB building updates and monster victim selection matched audited paths. No builds or tests.
+
+Source batch 677 restored the original null mob kill-drop group check before dereference and continued level-drop processing (08193b0a-08193b12). Monster aggro branches matched the inspected original. Source guard and read-back passed. No builds or tests.
+
+Source batch 678 restored missing-set and successful-flush DB diagnostics for FlushItemCacheSet (08058a00-08058a2c/08058a94). Persistence ordering matched. No builds or tests.
+
+Source batch 679 restored queued and direct DB item cache save diagnostics (08058bf7/08058cc0). Mob skill timing matched ordinary paths, with live distinct event keys retained for overlapping casts. No builds or tests.
+
+Source batch 680 restored live-end traversal of common drops (0819372c) using an index and per-row copy to survive vector reallocation. Only the boot loader writes the list in recovered production paths. Also restored original DB item cache creation, hit and owner-transfer diagnostics (08058d64/08058e80/08058e34). No builds or tests.
+
+Source batch 681 restored the DB shop price-list cache flush diagnostic after queuing writes and before clearing the dirty flag (0805073b-08050740). Party role bonus arithmetic matched the audited original. No builds or tests.
+
+Source batch 682 restored original coordinate read order and signed low-dword spawn positions for special item group monster and group rewards (08180c32-08180c8b/08180e1a-08180ed3). Source guard and read-back passed. No builds or tests.
+
+Source batch 683 restored the single signed 32-bit slowdown value shared by the special reward diagnostic and affect (08180aa0/08180d2a-08180d75). Player level-up stat and reward order matched. No builds or tests.
+
+Source batch 684 restored the original player cache timeout diagnostic (08059034/080590a2-080590c0), reading data without refreshing the cache timestamp before flush. No builds or tests.
+
+Source batch 685 restored low-dword HP drain limit and negation (08180d91-08180dcd) and the original cache flush limit diagnostic (DB ELF 08059166). Ordinary reset stat paths matched; exact class rereads remain for follow-up. Source guards and read-back passed. No builds or tests.
+
+Source batch 686 restored fresh job reads for ResetPoint HP and SP growth bounds after the level change, upper then lower for each roll (08134578/0813458f/081345d0/081345e7). DB item-load and cache setup matched. No builds or tests.
+
+Source batch 687 restored combat poison RNG before reading the level adjustment (08063ef0-08063ef5). Treasure poison bypasses this draw and matched the original. No builds or tests.
+
+Source batch 688 restored ResetPoint modulo-32 level, growth, stat and resource arithmetic and explicit level-step/stat read order (081343f0/081345c1/08134614-08134675). DB price cache order matched. Source guards and read-back passed. No builds or tests.
+
+Source batch 689 restored SP recovery fullness and cap evaluation before rereading the recovery pool (0813d4af-0813d4eb/0813d69f). DB quest flag persistence matched. Source guards and read-back passed. No builds or tests.
+
+Source batch 690 restored skill-level rereads in ComputePassiveSkill and IsLearnableSkill (0806d0a2/0806d0d3 and 0806b0ed/0806b16b). Skill table text matched valid original data. No builds or tests.
+
+Source batch 691 restored NPC recovery maximum HP reads before each mob table lookup (0812cfa0/0812cfae/0812cfeb/0812cff4). Player HP affect recovery matched. No builds or tests.
+
+Source batch 692 restored the revive roll before the mob table threshold read (0813802f-08138046) and current descriptor lookup per loaded affect (0813e1e4), retaining a null guard. DB item award values matched. No builds or tests.
+
+Source batch 693 restored fifteen original skill book locale keys and the GM_READ_SUCCESS and GM_READ_FAIL action names (0806bab0). No builds or tests.
+
+Source batch 694 restored sixteen original skill book cooldown locale keys (08073910), including fallback. No builds or tests.
+
+Source batch 695 restored the exact CP949 locale key for the +3 refine stone rejection (0817a566/0822f340). All nine grandmaster skill messages already matched. No builds or tests.
+
+Source batch 696 restored original DB player load, save, create and delete dispatch diagnostics and log levels (0805c545/0805c587/0805c5c9/0805c620). Existing validation retained. No builds or tests.
+
+Source batch 697 restored original Forked War DeadCount test-server formats and flag-before-count reads (080a54f5/080a54fa/080a556c/080a5571). DB ordinary item ID allocation matched; current exhaustion guard retained. No builds or tests.
+
+Source batch 698 aligned the DB affect load row bound with the original 32-bit wire length and eight-byte prefix (08068d90). Ordinary skill book gameplay matched. No builds or tests.
+
+Source batch 699 restored clock and max-SP read order in DistributeSP (081477c0-081477e1/081478f5-08147967). Ordinary amounts and effect thresholds matched. No builds or tests.
+
+Source batch 700 restored unsigned 32-bit player cache key conversions at three logout and update boundaries (0806c009/0806c040/08060fa0), preserving high-bit IDs on LP64. No builds or tests.
+
+Source batch 701 restored original low-dword gold scatter coordinate addition and offset order (08148b58/08148b76/08148dba/08148dd8/08149116/0814911e). No builds or tests.
+
+Source batch 702 restored live EXP double-bonus and PC bang point reads (08153057/0815306a/08152bff/08152efd). Other DB cache lookup boundaries audited use unsigned keys. No builds or tests.
+
+Source batch 703 restored the original skill power read order and deferred float narrowing in cast and compute paths (08071f26/08071f75/0806dc00/0806f855). Highscore persistence matched. No builds or tests.
+
+Source batch 704 restored the signed weighted party EXP divisor, signed 64-bit truncation then low-dword share, and low-dword range deltas (08157673-0815768f). No builds or tests.
+
+Source batch 705 restored x87 signed dword conversion for damage-weighted EXP and wrapping bonus addition (081533be/081534f8). No builds or tests.
+
+Source batch 706 restored 32-bit unsigned SQL socket formatting for safebox awards (08055990), preventing LP64 sign expansion. Ordinary skill cast gates and charges matched. No builds or tests.
+
+Source batch 707 restored low-dword values for item award IDs, vnums, counts and sockets at DB ingestion (08089d7e-08089dce). No builds or tests.
+
+Source batch 708 restored original EXP scaling-before-cap and marriage partner-before-level evaluation (08152c62-08152ca6/08152cf9-08152d04). No builds or tests.
+
+Source batch 709 restored per-recipient marriage point reads for the original test-server message (080b0845-080b08d0). No builds or tests.
+
+Ongoing documentation requirement: update the repository-root README.md with each integrated reconstruction batch, alongside both restart notes. Keep source milestones and build/test milestones distinct.
+
+Source batch 710 restored the original clock-before-marriage-time read order (080aff35/080aff3c). Marriage point arithmetic and caps matched. No builds or tests.
+
+Source batch 711 restored live love point reads after proximity notifications (080b04e7/080b04fa). No builds or tests.
+
+Source batch 712 restored original existing-row safebox and mall size diagnostics (080566db-080566f0). No builds or tests.
+
+Source batch 713 restored the original combat item scatter order and wrapped 32-bit position arithmetic (08149d68-08149da3/0814a1f8). No builds or tests.
+
+Source batch 714 restored one-based null loot row diagnostics (08149ad9/08149c8a). No builds or tests.
+
+Source batch 715 restored the DB test-server diagnostic for cached item saves (08058524). No builds or tests.
+
+Source batch 716 restored original test-server item cache SQL diagnostics and enqueue order (0804fe08/0804fea4/0805013f/08050170). Combat loot ownership matched audited behavior. No builds or tests.
+
+Source batch 717 restored a fresh position snapshot for party gold distribution (0817eb2a/0817eb3f). No builds or tests.
+
+Source batch 718 restored signed dword wrap in DB money log aggregation (08089566). No builds or tests.
+
+Source batch 719 restored original dungeon group spawn upper bounds one unit beyond the center (0818486a/08184874), retaining range checks. No builds or tests.
+
+Source batch 720 restored original SpawnGotoMob map lookup and spawn-before-name order (08184630), retaining the missing-map guard and dword coordinate arithmetic. Adjacent dungeon, party gold and DB money log paths matched. No builds or tests.
+
+Source batch 721 restored unsigned 32-bit guild ranking IDs and persisted wager guild/amount values at DB load (0807b660/08080a60). No builds or tests.
+
+Source batch 722 restored original fixed destination snapshot before dungeon party warp iteration (081823a7-081823d3/08185e35-08185e52). AutoGiveItem matched audited behavior. No builds or tests.
+
+Source batch 723 restored unsigned 32-bit guild treasury values at SQL output (0807e840). Dungeon group transfer matched; duplicate destruction guard retained. No builds or tests.
+
+Source batch 724 restored wrapped signed 32-bit guild treasury deposits, withdrawals and rollback (0807ea06/0807eab0/0807ebd4). Loot group loading matched. Dungeon potion and revive flags remain an original initialization gap. No builds or tests.
+
+Source batch 725 restored 32-bit tile-to-world coordinate arithmetic in dungeon mob spawning (081843e4-081843fa). No builds or tests.
+
+Source batch 726 restored original 32-bit guild win/loss/draw counter wrap (0807bf03/0807bfd3/0807c0a3). No builds or tests.
+
+Source batch 727 restored the original item slot reread after GoldBarLog (0817fa11), with null and requested-vnum guards. DB guild value conversions matched audited paths. No builds or tests.
+
+Source batch 728 restored original low-dword area coordinate arithmetic for four dungeon spawn paths (0818423d/08183741/081832d0/08184c90). No builds or tests.
+
+Source batch 729 restored SpawnUnique draws before the map base reads in original Y/X order (081836de-08183747). DB hot-backup behavior matched. No builds or tests.
+
+Source batch 730 restored the live source stack count read before transfer (0817e994), guarding against a now-oversized transfer before mutation. DB shutdown ordering matched. No builds or tests.
+
+Source batch 731 restored moving unique spawn and destination map-base read order (0818320e-081832d6/08183422-08183435). No builds or tests.
+
+Source batch 732 restored live map and position reads immediately before full and split item drops (0817e06d-0817e093), retaining rollback. No builds or tests.
+
+Source batch 733 restored moving group direction draw and map-base read order (08184db6/08184c33/08184c71-08184cf8). DB player binary field persistence matched. No builds or tests.
+
+Source batch 734 restored original Y-before-X map-base reads after both area spawn rolls (0818423a/08184243). DB player-load order matched, retaining peer validation. Pickup retains full-width counts to avoid truncating oversized stacks. No builds or tests.
+
+Source batch 735 restored original character type checks at dungeon detach and attach (08131b34/08131a80). No builds or tests.
+
+Source batch 736 restored original 32-bit player ID formatting for empire relocation SQL (08057472/080574b4). Inventory equip/swap matched ordinary behavior. No builds or tests.
+
+Source batch 737 restored unsigned 32-bit MAX(item ID) values at both DB range ingestion points (0805ee74/0805bbf0). Dungeon regen and inventory paths matched reviewed behavior. No builds or tests.
+
+Source batch 738 restores 32-bit bounds and coordinate-read order in CHARACTER_MANAGER::SpawnMoveGroup. Verified against the original disassembly and checked patch application. No build or runtime run.
+
+Source batch 739 restores the original coordinate reads before RNG calls and count-before-vnum reads in OreDrop (Ghidra 080ef2f0). Reviewed NPC spawning, bow damage, attack rating and DB shop price reload paths matched for the behaviors checked. No build or runtime run.
+
+Source batch 740 restores original pick experience read order and 32-bit player IDs in DB marriage reload (080ef630 and 0808cca9/0808ccba). Bounded wall placement and magic damage comparisons found no gameplay arithmetic mismatch. No build or runtime run.
+
+Source batch 741 restores mining skill-bonus read order (080ef4e0), 32-bit marriage timestamps (0808cd48/0808d1bf), and 32-bit attack reposition distance and clock-read order (081347be-081347ef). Terrain lookups matched the reviewed behavior. No build or runtime run.
+
+Source batch 742 restores max-pick experience read order (080efc20), Follow leash timeout and distance evaluation (08132f5c-08132fa3, 08133560-081335a4), and 32-bit guild withdrawal timestamps (0807888c/08078b93). No build or runtime run.
+
+Source batch 743 restores current-position reads for Follow prediction and clamp (08133495/081334a7, 081334ed/08133510). All 117 dwords in the four mining tables matched the game ELF at 0823fea0, 0823ff40, 0823ffc0 and 08240000. NPC roaming and reviewed DB persistence paths matched. No build or runtime run.
+
+Source batch 744 restores signed 32-bit practice socket reads (0816efc0) and signed 32-bit guild rematch deadline comparisons (0807c3de-0807c3f7). Horse behavior matched reviewed paths. StateMove zero-duration arrival guard retained after original comparison to avoid invalid coordinates. No build or runtime run.
+
+Source batch 745 restores polymorph chance input read order (0816ede0-0816edf8) and clock-before-start-time order in StateMove (0808024c/08080251). The zero-duration movement guard remains in place. Guild reservation recovery matched reviewed paths. No build or runtime run.
+
+Source batch 746 restores the mob vnum reread after applying polymorph (0816ed70) and 32-bit coordinate addition for the idle NPC destination, midpoint and Goto checks (0807f470). Reviewed quest gold/SP and guild war reconnect paths matched. No build or runtime run.
+
+Source batch 747 restores original 32-bit monster idle movement coordinates for destination, midpoint and Goto (0807fe37/0807feb4/0807fefd). NPC and monster idle paths share the coordinate addition. Quest refinement and guild payout matched reviewed paths. No build or runtime run.
+
+Source batch 748 restores CowardEscape path sample and destination addition at 32 bits (0807d961-0807da28), using the existing idle movement arithmetic. Quest teleport and DB quest/affect reload matched reviewed paths. No build or runtime run.
+
+Source batch 749 restores StateHorse current Y/X reads for the midpoint check and final movement call (08081ade/08081af9 and 08081b61/08081b72). Base horse rider stubs and the reviewed quest scroll/mastery paths matched. No build or runtime run.
+
+Source batch 750 restores the original horse wander distance draw before heading read (08081a20/08081a26) and per-item prototype startup diagnostics (DB 08071220). Reviewed horse persistence and quest paths matched. No build or runtime run.
+
+Source batch 751 restores NPC and monster idle distance draws before heading reads (0807f732/0807f741 and 0807fdaf/0807fdb5) and skill prototype reload and per-row diagnostics (DB 080719ef/080718b2). Reviewed fishing and quest item loading matched. No build or runtime run.
+
+Source batch 752 restores original DB reload and per-row diagnostics for normal and rare item attributes (080721cf/0807271f and 08072094/080725e4). No build or runtime run.
+
+Source batch 753 restores 32-bit coordinate subtraction in monster and NPC idle leader-distance checks (0807fce8/0807fcee and 0807f674 vicinity). No build or runtime run.
+
+Source batch 754 restores the original shop identifier and item count startup diagnostic (DB 080705d7). Reviewed shop data loading and polymorph chance, duration, and bonuses matched. No build or runtime run.
+
+Source batch 755 restores extended precision where available for the pursuit threshold (08080e1e) and original mob prototype startup diagnostics (DB 080701d8/08070117). Reviewed quest NPC proximity and seasonal counters matched. No build or runtime run.
+
+Source batch 756 restores battle cooldown evaluation order (08080eaa-08080edd) and building object reload and per-row diagnostics (DB 080735ac/08073468). No build or runtime run.
+
+Source batch 757 restores the original 0-80 apply ID range for the three quest affect add variants (08069331/08069721/080699c1), with the separate 1-254 direct point range. No build or runtime run.
+
+Source batch 758 restores original DB building object prototype reload and row diagnostics (08073244/080730cd). Reviewed quest affect removal, monster skill recovery ticks and object NPC placement matched. No build or runtime run.
+
+Source batch 759 restores monster skill power scaling with a single float rounding and original input order (08073e07-08073e36) plus DB land reload and row diagnostics (08072bcf/08072a4e). Reviewed quest item getters and land decoding matched. No build or runtime run.
+
+Source batch 760 restores the immediate monster splash skill-level reread (0807408f-080740b1) and original DB refine recipe reload and row diagnostics (0806f995/0806f89f). Reviewed marriage quest bindings and recipe decoding matched. No build or runtime run.
+
+Source batch 761 restores clock-before-cooldown reads in CanUseMobSkill (08073c6b/08073c70 and 08073c79/08073c7e) and original DB item prototype reload diagnostics (08071393). Reviewed horse quest behavior matched. No build or runtime run.
+
+Source batch 762 restores the original clock-before-expiry read order in HitOnce (0806ad9e/0806ada3) and DB banword load count diagnostic (08071c8d). Quest state bindings matched the reviewed paths. No build or runtime run.
+
+Source batch 763 restores DB item ID range startup diagnostics (0805eb8f/0805ed3a). Reviewed party quest bindings, arena duel lifecycle, unique expiry, HP percentage, ranged resistance and building material parsing matched ordinary inputs. No build or runtime run.
+
+Source batch 764 restores original DB localization load count, selected region and name column diagnostics (0805f05c/0805f337). Arena observer and accessory expiration behavior matched the reviewed paths. No build or runtime run.
+
+Source batch 765 restores DB startup diagnostics for successfully parsed guild power and handicap formulas (0807b315/0807b2c4). Reviewed arena Lua bindings and ground-item timers matched ordinary paths. No build or runtime run.
+
+Source batch 766 restores stun from normal attacks without an HP modifier (080d72db-080d72e3). Reviewed building quest bindings matched ordinary gameplay. No build or runtime run.
+
+Source batch 767 restores the original DB guild rank row diagnostic (0807b6e1). The rank calculation already matched. No build or runtime run.
+
+Source batch 768 restores the point-before-name read order in test-server attack-effect diagnostics (080d78e0). Slow and poison parameters, OX quest bindings, and DB guild reservation payouts matched reviewed paths. No build or runtime run.
+
+Source batch 769 restores the mana shield strength reread after SP consumption (0814e5bb-0814e5e5), guarding against a zero divisor if the shield disappears. Reviewed quest target bindings and DB highscore/logout diagnostics matched. No build or runtime run.
+
+Source batch 770 restores the second mall defense point read before damage reduction in both original paths (0814dc06-0814dc32 and 0814f96a-0814f990). Reviewed NPC quest and price-list loading matched. No build or runtime run.
+
+Source batch 771 restores the mana burn chance reread after the RNG draw (0814db60/0814e6b7-0814e6c5). Quest event flags and item drops matched reviewed paths. No build or runtime run.
+
+Source batch 772 restores signed 32-bit hot-backup elapsed comparison (DB 08085af7-08085b0a), retaining the original epoch versus tick clock inputs. No build or runtime run.
+
+Source batch 773 restores the damage bonus reread and 32-bit addition (0814e603/0814e63d-0814e668) and the DB signed 32-bit logout cache cutoff (0806bfdc-0806bfe1). Reviewed mining quest bindings matched. No build or runtime run.
+
+Source batch 774 restores 32-bit subtraction for the capped damage defense factor (0814dbc5-0814dbd2). Reviewed mount and horse quest bindings matched. No build or runtime run.
+
+Source batch 775 restores DB cache timestamps and signed 32-bit elapsed comparisons for flush and expiry (0805901b-0805902e/080590e0/080591ef/080592f7). No build or runtime run.
+
+Source batch 776 restores the original one-third damage snapshot and shield strength reread after SP consumption in the normal damage path (0814e520-0814e5e5). Division is guarded for zero and signed overflow. Reviewed quest alignment and DB timer storage matched. No build or runtime run.
+
+Source batch 777 restores the original test-server item cache deletion diagnostic (DB 0804fc3c) and explicitly stores the fixed-width update timestamp. Reviewed quest polymorph paths matched. No build or runtime run.
+
+Source batch 778 restores original first-hit damage entry creation and recovery only for existing attacker entries in normal Damage (0814e080-0814e11d). No build or runtime run.
+
+Source batch 779 restores the test-server player cache flush diagnostic (DB 08050379). Aggro scaling, target switching, and horse stamina paths matched the reviewed original behavior. No build or runtime run.
+
+Source audit after batch 779: recovery scheduling, horse offline recovery, gold and experience payout, and DB shop price and item cache paths matched reviewed ordinary behavior. No source changes, build or runtime run.
+
+Source audit after batch 779: WAEGU boss gold drops, HP/SP steal and melee reflection (0814f440-0814f706, 0814e961-0814eb98, 0814ed4a), mining completion and OreDrop (080efdc0/080ef2f0), and DB item cache set flush (080588b0) matched reviewed ordinary behavior. No source changes, build or runtime run.
+
+Source audit after batch 779: monster pull/attract/forget helpers, arrow handling, death experience penalty, and ordinary DB building create/delete and land update matched reviewed behavior. Recovery event recheck matched prior audit. No source changes, build or runtime run.
+
+Source audit after batch 779: symbol-to-source matching found no missing in-scope names in the scanned game quest/sectree/dungeon/forked-war methods or DB client manager/item award/guild manager/guild war reservation classes. This verifies name coverage for the scanned classes. Polymorph book grants and guild skill polynomial calculations matched the reviewed branches. No source changes, build or runtime run.
+
+Source audit after batch 779: equipment point modifiers, accessory degradation, affect expiration, quest event timers, DB item award load/taken handling, and world start/create/arena/Santa tables matched the original in reviewed paths. No source changes, build or runtime run.
+
+Source audit after batch 779: local game symbol scan found no missing ordinary gameplay names. Remaining DB ItemAwardManager, PlayerHB, CMoneyLog, CPrivManager and marriage manager exported methods were found in source; wedding time ordering matched. AlterToMagicItem, GetGold, CheckItemUseLevel and DistanceValid matched audited item branches. No source changes, build or runtime run.
+
+Source batch 780 restores the guild state reread before refine notifications (08171d8d/0817200c/081720b1) and the original unsigned 32-bit love-point log display (DB 0808d857). Arena duel list matched reviewed behavior. No build or runtime run.
+
+Source batch 781 restores the original DB marriage reload count and per-row diagnostics (0808cc34/0808cc5e/0808cef6). Reviewed refinement fees, preview, socket transfer and arena placement matched. No build or runtime run.
+
+Source batch 782 restores original locale reads for scroll refinement probability and for failures without a downgrade (08173031/08172dae). Reviewed dungeon elimination and marriage creation matched. No build or runtime run.
+
+Source batch 783 restores the scroll refinement level rereads for chance tables and test diagnostics (08173126/0817315b/08173190/08173206/0817323c). Wedding expiry uses the copied PID after erasing the wedding entry, preserving cleanup without a dangling reference (DB 0808e720). No build or runtime run.
+
+Source batch 784 restores accessory socket grade reads after drilling and insertion RNG (0817b2a5/0817b60b-0817b625). Reviewed building reconstruction, guild NPC respawn and wedding replay matched. No build or runtime run.
+
+Source audit after batch 784: socket cleaning and Metin insertion (0817aa26-0817ab40/0817bb42-0817be3f), guild building bonuses (08106df0/08106ed0) and DB party level updates (08077880) matched reviewed ordinary behavior. Existing item lifetime guard retained. No source changes, build or runtime run.
+
+Source batch 785 restores the attribute count read after rolling in both item attribute add paths (0817b03d/0817b8b1), with a probability table bounds check. Reviewed arena attack rules matched. No build or runtime run.
+
+Source audit after batch 785: item attribute reroll and selection (08187540/08187060/0817ab7e), dungeon notice delivery (08185310), and DB affect save/remove (0806b980/0806ba40) matched reviewed ordinary behavior. No source changes, build or runtime run.
+
+Source audit after batch 785: accessory socket timers and unequip handling (081689a0/08168a90/08168b70) and ordinary shop pricing/restrictions (080d2b10/080d37d0) matched. CreatePlayerSaveQuery uses signed historical PID formatting (080675b0) only differing above INT32_MAX, as with quest saves. Kept current unsigned-schema-compatible behavior. No source changes, build or runtime run.
+
+Source audit after batch 785: Cube crafting reward/material ordering (080fcd70), unique item expiration and unequip (08168450/08168580/08168680), and DB money log accumulation and flush (08089390) matched the reviewed behavior. Existing recipe and item lifetime checks retained. No source changes, build or runtime run.
+
+Source audit after batch 785: rare attribute eligibility and assignment (08187a20), item addon roll and application order (0816e880), Santa respawn (0818ac80/0818ae10), and DB highscore signed score and tie handling (0806bd64-0806bd96) matched the original paths reviewed. No source changes, build or runtime run.
+
+Source batch 786 restores independent locale reads at the skill-book EXP gate and progression branch (0806bb3f/0806bb48 and 0806bfcf/0806bfd8). Reviewed dungeon quest flags and DB guild decoding matched. No build or runtime run.
+
+Source batch 787 restores original per-row DB event flag load diagnostics (0808b42d). All 27 party EXP table values and reviewed skill-book timing matched. No build or runtime run.
+
+Source batch 788 restores current skill level reads at mastery rolls (0806cab9/0806cb8f) and DB changed event flag logging after query submission (0808b7fc). All 40 skill-book progression table values matched the game ELF. No build or runtime run.
+
+Source audit after batch 788: GetSkillPower, SetSkillLevel and ComputePassiveSkill (08073350/0806b020/0806d070), all 15 poison table entries and GetPoisonDamageRate (081f7910/0823b460/08063b20), and DB PutPlayerCache hot-backup ordering (08067910) matched reviewed behavior. No source changes, build or runtime run.
+
+Source batch 789 restores cooldown, victim VID, and skill-use record lookup order in targeted UseSkill (080722bc/080722d6). All 82 chain-lightning target table values and ordinary DB item row decoding matched. No build or runtime run.
+
+Source audit after batch 789: Chain Lightning bounce selection and hit order (0806d1f0/08075430), all 70 stone drop table values (0821b420), and DB safebox gold persistence (08057030) matched the reviewed original paths. No source changes, build or runtime run.
+
+Source batch 790 restores original 32-bit DB usage aggregation counters (0805d57e/0805d639/0805d640). Reviewed skill eligibility and resets matched, as did all 17 mob enchantment and resistance mapping entries. No build or runtime run.
+
+Source batch 791 restores original movement speed lookup before base duration arithmetic (0812dc6e-0812dc95). All 17 item attribute probability values and the DB usage log output matched reviewed behavior. No build or runtime run.
+
+Source batch 792 restores a shared wrapped 32-bit deadline for the DB guild war start queue and diagnostic (0807e40c-0807e439). Reviewed movement paths and all 15 accessory socket table values matched. No build or runtime run.
+
+Source audit after batch 792: Attack dispatch and nearest-victim selection (08147ac0/08153cf0), all 100 party EXP distribution weights (0821ab20), and DB guild war reservation timing (0807f430) matched reviewed behavior. No source changes, build or runtime run.
+
+Source batch 793 restores the single mounted horse armor read in ComputeBattlePoints (0812c0cb-0812c0e0). All 372 horse stat values and reviewed DB guild skill cooldown paths matched. No build or runtime run.
+
+Source audit after batch 793: ComputePoints and adjacent armor/magic calculations (0812c520), 78 mining fraction/grade/skill values (0823ff40/0823ffc0/08240000, recheck), and in-range DB item ID allocation (0805ef80) matched. The reconstruction retains the exhaustion check at the unsigned 32-bit boundary. No source changes, build or runtime run.
+
+Source audit after batch 793: all 155 fishing timing probabilities (0823c0e0), ResetPoint stat and HP/SP formulas (081343f0), and DB FlushPlayerCacheSet order (0806c040) matched the reviewed original. No source changes, build or runtime run.
+
+Source audit after batch 793: blend socket rolls (080e6430), marriage bonus and point progression (080b00f0/080aff00), all ten Metin wave thresholds and stage guards (0807dbf0), and DB guild member count and average decoding (0807f0a0/0807f270) matched reviewed behavior. No source changes, build or runtime run.
+
+Source batch 794 restores explicit signed 32-bit score broadcast values and unsigned 32-bit diagnostic display in DB UpdateScore (0807db20). Existing uint32 accumulation already matches original wrapping. Metin spawn radii and war-map potion and kill scoring matched. No build or runtime run.
+
+Source audit after batch 794: all 124 level-difference table values (0821a920/0821a9a0/0821aa20/0821aaa0), war-map score/timeout/reward paths (0816b670/0816b090/0816afb0), and DB reserve-war countdown and queued start (0807ff40) matched reviewed behavior. No source changes, build or runtime run.
+
+Source audit after batch 794: all 600 values of six locale EXP curves (08219f60-0821a90f), DropGold and ItemProcess_Hair (0817e2d0/08180fc0), and DB guild ladder gain, loss and persistence (0807e500/0807c5bc-0807c609) matched reviewed original behavior. No source changes, build or runtime run.
+
+Source audit after batch 794: all 35 item socket chance and capacity values (0821ade0/0821ae40/0821ae60), quest percentage EXP and reviewed party shares (08161060/08060fd0), and DB player part, skill-group and alignment loading (08068550) matched. No source changes, build or runtime run.
+
+Source batch 795 restores the successful DB item ID range diagnostic and original signed 32-bit remaining-count display (0805c086). All 100 EXP loss table entries and reviewed castle siege tower cleanup matched. No build or runtime run.
+
+Source audit after batch 795: all 41 polymorph power values (0821b540), horse health decay and 32-bit deadline updates (080c8950), and DB item-range collision diagnostics (0804c980/0804c9ef) matched the reviewed original. No source changes, build or runtime run.
+
+Source batch 796 restores the DB item cache set creation diagnostic after insertion (08058870-08058899). All 42 guild EXP table values matched. No build or runtime run.
+
+Source batch 797 corrects batch 757: the original quest apply wrappers decrement the input byte before the unsigned comparison against 80 (08069319/08069331, 08069700/08069721, 080699a0/080699c1), accepting IDs 1-81. Direct-point limits unchanged. No build or runtime run.
+
+Source batch 798 restores original DB shop price cache update diagnostics (08050597-080505c8). Reviewed quest affect checks and all six monster-rank gold probabilities matched. No build or runtime run.
+
+Source batch 799 restores original DB shop price cache hit, miss and load-result diagnostics (0805baa3/0805bb38/08056f05). Reviewed shop placement and visibility, and all 72 CN/KR item drop penalty values matched. No build or runtime run.
+
+Source batch 800 restores the original DB shutdown cache flush diagnostic (080542ba). The raw pointer startup diagnostic remains omitted. Reviewed inventory grid behavior and all 32 battle-type modifiers matched. No build or runtime run.
+
+Source batch 801 restores original DB boot packet size, version and gameplay record size diagnostics (080547ac-0805490f). All 64 initial job stat and growth values and reviewed fish grilling behavior matched. No build or runtime run.
+
+Source audit after batch 801: all 36 Chinese/Korean guild war settings (0823fca0/0823fd00), CalcAttBonus race priority and percentage stacking (080d61e0), and DB item load cache order and diagnostics (08068c50/08068cf8) matched reviewed original behavior. No source changes, build or runtime run.
+
+Source audit after batch 801: all 161 nearby position offset pairs (0823f760), ordinary fishing practice (08082cf0), and DB guild war cancellation order (08080910) matched reviewed behavior. No source changes, build or runtime run.
+
+Source audit after batch 801: all 32 skill point mapping entries (0823f260), pick refinement (080ef720), and DB guild war draw handling (0807c4b0) matched reviewed original behavior. Existing owner checks retained. No source changes, build or runtime run.
+
+Source audit after batch 801: dungeon stone and wooden door defaults (08183b90/08183bc0), quest item drop conversion, offsets and expiry (080b2df0), and DB item award polling (08089ba0) matched the reviewed original. No source changes, build or runtime run.
+
+Source audit after batch 801: dungeon party destination and recipient selection (081821d0/080947c0), PC::Reward item quantities and EXP cap (08061140), and DB player load result diagnostics (08068b00/08068b7c) matched reviewed behavior. No source changes, build or runtime run.
+
+Source batch 802 restores original guild skill, experience and member update diagnostics (DB 080789a3/08078a03/08078a7a). Reviewed dungeon region parsing and recall item behavior matched ordinary inputs. No build or runtime run.
+
+Source batch 803 restores five original DB guild membership diagnostics (08077f7d/08078029/080780bf/08078832/08078aea). Reviewed private map allocation and movement stamina matched. No build or runtime run.
+
+Source batch 804 restores original DB guild ladder update and skill request diagnostics (08079399/08079429). Reviewed map region lookup and movement stamina recovery matched. No build or runtime run.
+
+Source batch 805 restores the original DB guild skill availability diagnostic (080794f3). Reviewed map midpoint arithmetic and normal and skill attack effects matched. No build or runtime run.
+
+Source batch 806 restores eight DB guild war state diagnostics (08078df0). NPC map position insertion matched the original. No build or runtime run.
+
+Source audit after batch 806: named dungeon monster spawn (081844d0), reviewed horse feeding, stamina and skill-level synchronization, and DB guild treasury diagnostics (0805a570/0805a5e0/0805a650 and 0807e869-0807ebc3) matched. No source changes, build or runtime run.
+
+Source batch 807 preserves the selected DB guild wait-start entry across priority queue pop. Reviewed dungeon destination marker and polymorph paths matched. No build or runtime run.
+
+Source batch 808 zero-initialized the DB queued guild war start record. The original Game dispatch uses the guild IDs to start the war and receives initial scores separately. CDungeon::SetUnique and reviewed item equip requirements matched original behavior. Ghidra confirmed the original game ELF with 7,238 recognized functions. No build or runtime run.
+
+Source batch 809 restored the original read order for CHARACTER::GetMobAttackRange (0812bd54–0812bd71) and CHARACTER::GetPremiumRemainSeconds (081363a3–081363b2). Reviewed dungeon regeneration, kill and purge, accessory bonuses, and horse quest paths matched for ordinary gameplay. Disassembly at 080e3980 confirms truncation before clamping horse level. No build or runtime run.
+
+Source audit after batch 809 found source bodies for all 103 checked original dungeon and quest-dungeon symbols and no missing ordinary item or character stat methods in the reviewed classes. Static comparisons matched quest coroutine transitions and cache (0805c1d0, 0805cb90–0805d000, 081a7380), target bindings (081899b0–0818a1c0), OX event bindings (0813c780–0813cc60), and ordinary arena round transitions (080bc440). Next, prioritize link dependencies and startup integration over repeated body presence scans. No source changes, build, or runtime run.
+
+Source batch 810 restored config startup CMD tokenization through two_arguments (config_init 080d8300, CMD path 080d9f74–080da0a2). Quoted tokens now reach the existing privilege lookup without quote delimiters. The reviewed main initialization sequence matched the original. No build or runtime run.
+
+Source batch 811 restored original AUTH_SERVER argument parsing (config_init at 080d8300). The quoted master keyword and quoted host and port now reach the same configuration branches as unquoted tokens. The startup DB table order, game boot table consumption, blend loader, and locale conversion loaders matched the reviewed ordinary paths. No build or runtime run.
+
+Source batch 812 restored game boot asset path preparation before loader invocation (080e8c2b–080e8d88) and the fresh map base read before Build (080e8f5a). The five drop loader calls retain the original order. All supplied SQL skill power rows have 45 space-separated entries; both the binary and reconstructed loader consume the first 41 for those rows. Reviewed motion lists and cube recipes matched normal inputs. No build or runtime run.
+
+Source and project audit after batch 812: the Game Visual Studio project covers all 132 C++ files and the one C file. Every translation unit listed by the nine repository Visual Studio projects resolves to an existing path. Game uses a Makefile configuration with no NMake build command or production Game Makefile. Reviewed map index loading (080b5c80), ordinary and special drop groups, building finalization (08109450), and motion initialization (08113440) matched ordinary original behavior. No source changes, build, or runtime run.
+
+Source batch 813 restored const input in building::CManager::LoadObjectProto (08108b10; ELF symbol _ZN8building8CManager15LoadObjectProtoEPKNS_12SObjectProtoEi). Declaration and definition agree, and the existing Boot caller remains compatible. Reviewed material validation and building finalization matched the original. No build or runtime run.
+
+Source batch 814 restored the original const input to building::CLand::PutData (081076c0; ELF symbol _ZN8building5CLand7PutDataEPKNS_5SLandE). Declaration and definition agree, and the existing LoadLand call remains compatible. Reviewed ordinary building placement matched the original. No build or runtime run.
+
+Source batch 815 restored CItem::PutAttribute(const int*) (081874d0; ELF symbol _ZN5CItem12PutAttributeEPKi) and removed four casts from callers. Also fixed an invalid string member call left in batch 811 after AUTH_SERVER host changed to a character buffer. Declaration, definition and call sites were checked statically. No build or runtime run.
+
+Source batch 816 restored building::CManager::UpdateLand recipient traversal (08108ec0). The client iterator is acquired before packet preparation and advanced before each send. Map filtering and packet sizes remain 3 plus 24 bytes. Reviewed map, sector and regen parameter lists matched the ELF. No build or runtime run.
+
+Batch 816 also restored the original non-const CItem::IsEquipped() declaration (DWARF linkage name _ZN5CItem10IsEquippedEv). All three current production call sites use mutable items. No build or runtime run.
+
+Source batch 817 restored ELF parameter types for CreatePlayerProto (08128bb0, reference), SetPlayerProto (0812a680, pointer to const), and UpdateAggrPointEx (08154500, reference). Declarations, definitions, and source call sites were reconciled. No build or runtime run.
+
+Source batch 818 restored the DWARF return type const CSpecialItemGroup* for ITEM_MANAGER::GetSpecialItemGroup and updated GiveItemFromSpecialItemGroup. The reviewed target marker behavior matched. No build or runtime run.
+
+Source batch 819 restored CHARACTER::UseSilkBotaryReal(const TPacketMyshopPricelistHeader*) at 08174150. Game and DB now share the same five-byte header. The game dispatcher still verifies packet length and entry count before calling the handler. Reviewed fishing catch logic matched the original. No build or runtime run.
+
+Source batch 819 also restored ITEM_MANAGER::GetSpecialGroupFromItem(DWORD) from DWARF and its inlined lookup in CItem::GetSpecialGroup at 08168780. No build or runtime run.
+
+Source batch 820 restored evaluation order in CItem::GetRefineFromVnum (08168370). The item VNUM is read before the item manager singleton and passed to the existing reverse lookup at 08198c30. OX event answer handling and manager API parameters matched the original. No build or runtime run.
+
+Batch 820 also restored SetPlayerProto skill array installation before the copy hook (0812a680), preserving allocation before deletion so allocation failure keeps the previous array. No build or runtime run.
+
+Source batch 821 restored CSpecialItemGroup::IsEmpty and GetOneIndex from DWARF and the original weighted lookup. SelectItem retains the empty and out-of-range guards. Reviewed arena round transitions matched. No build or runtime run.
+
+Source batch 822 restored both CInputDB::PlayerLoad map fallbacks to use g_start_map (080e7a60). The denied-map path rereads descriptor empire before selecting the return map and coordinates. The reviewed arena timeout path matched the original. No build or runtime run.
+
+Source batch 823 restored DWARF-indexed special item group accessors and integrated them in GiveItemFromSpecialItemGroup (08180a68–08180aa3). Selection uses one roll for nonempty groups, validates the index, and reads vnum, count and rare chance before reward dispatch. Reviewed OX quiz flow matched. No build or runtime run.
+
+Source batch 824 restored QuestLoad post-Build descriptor lookup and live deferred-login PID (080e9850), keeping the null guard. Also restored DWARF-confirmed CMobItemGroup::GetOneIndex with one roll for nonempty groups and guarded caller selection. Reviewed fishing grill, safebox, and mall paths matched. No build or runtime run.
+
+Source batch 825 restored live character PID reads in quest_login_event (080e96f0). The scheduled PID still selects the character; the callback reads that character ID again for logging and Login, matching the original. Reviewed ore refinement and level-limited drops matched normal behavior. No build or runtime run.
+
+Source batch 826 restored shared g_start_map and g_nation_name use in the three-way war logic recovered from CHARACTER::Dead (0814af70). Evacuation captures the shared map value when scheduled, and announcements localize the shared empire names. Reviewed dungeon monster counting and accessory socket compatibility matched. No build or runtime run.
+
+Source batch 827 restored the two distinct event flag lookups around logging in CQuestManager::SetEventFlag (081a5e60). Reviewed quest PC flag persistence, item ground removal and ownership expiry matched. No build or runtime run.
+
+Source batch 828 restored signed PID diagnostics in QuestButton (081a3a20) and QuestInfo (ELF CQuestManager::QuestInfo). Existing safe localized format handling remains in place. Quest resume and guild war observer flow matched ordinary original behavior. No build or runtime run.
+
+Source audit after batch 828 confirmed ordinary quest state transitions, current NPC and item helpers, item initialization and prototype flags, and dungeon return fallback (08186c20). No source changes, build, or runtime run. Continue with unverified gameplay branches rather than rechecking these helpers.
+
+Source batch 829 corrected GetLimitPoint diagnostic arguments (0812e120). Static comparison confirmed the original limit values and exposed a missing point-type argument in the diagnostic. The reconstruction supplies that argument so the original format has matching values. Reviewed party level bounds and movement speed arithmetic matched. No build or runtime run.
+
+Batch 829 also corrected the same missing point-type argument in the sibling GetPoint diagnostic.
+
+Source batch 830 restored MainCharacterPacket branch-local reads after the BGM diagnostic and current descriptor lookup at send (08129f70). All three packet layouts and the mobile notice remain unchanged. Reviewed quest rewards and party bonus calculations matched. No build or runtime run.
+
+Source batch 831 restored the original FFindReviver state fields and HasReviverInParty return field (08137f90 and 08137170). x86 disassembly confirms return of the flag byte from the functor result, despite the decompiler showing false. Existing null guard and roll order remain. Reviewed polymorph power, motion mode and party proximity matched. No build or runtime run.
+
+Source batch 832 restored the post-log dungeon member field reads in CHARACTER::SetDungeon (081319c0). Party, solo player, and monster additions use the assigned member field. Reviewed pick refinement and dungeon group placement matched normal original behavior. No build or runtime run.
+
+Source batch 833 restored the late job read in GiveRandomSkillBook (08134810), after item award and the job-specific roll. The existing partial-table safeguard is retained. Reviewed dungeon removal, exit location and party gold distribution matched ordinary original behavior. No build or runtime run.
+
+Source batch 834 restored the time_t parameter in SetSkillNextReadTime (DWARF at 0806acb0). Kept the fixed 32-bit timestamp in the packed player record and the existing slot bounds check. Reviewed dungeon member count transitions and skill book reward selection matched. No build or runtime run.
+
+Source batch 835 restored GetMobSkill prototype snapshot and count ordering (08073bb0). The original mutable return is still unresolved against the current const CMob pointer and const CMobManager::Get API; this batch retains the const result and bounds. Reviewed item pricing and party roles matched. No build or runtime run.
+
+Batch 835 type audit resolved GetMobSkill: raw DWARF 0x3d087e and 0x1ead5c3 give pointer to const TMobSkillInfo. CMobManager::Get (0x18326e3/0x1832704), m_pkMobData (0x1eaa421) and SetProto (0x1eaaa9d) also confirm pointers to const CMob. This supersedes the mutable-return inference in the preceding entry. Reviewed skill eligibility and cooldown matched. No source changes, build, or runtime run.
+
+Source batch 836 restored the order of skill prototype ID reads in SkillLevelDown, keeping guards before the later array accesses. Reviewed monster cooldown reset, immediate and timed skill execution, and random stone rewards matched. No build or runtime run.
+
+Source batch 837 restored SkillLevelUp prerequisite and mastery ordering and the alternate normal mastery transition (0806c6e0), plus ComputePassiveSkill diagnostic read ordering (0806d070). Existing skill ID and formatting guards remain. Normal book item handling and party summoning matched. No build or runtime run.
+
+Source batch 838 restored ResetOneSkill log input reads before the logger lookup (08074910). Full and secondary skill reset, skill-forget item flow, and arena cleanup matched the checked original paths. No build or runtime run.
+
+Source batch 839 restored ComputeSkill target range rounding to float after the 32-bit addition. Ability items now read duration before amount (08174a02–08174a2e). Dungeon empty-instance timer matched ordinary behavior, with the existing duplicate callback guard. No build or runtime run.
+
+Source batch 840 restored the single sector lookup in ChainLightningEvent fallback target traversal (0806d1f0). Skill power calculations and ordinary delayed map travel matched the reviewed original paths. No build or runtime run.
+
+Source batch 841 restored point polynomial input order in ComputeSkill and ComputeSkillAtPosition. ComputeSkill rereads the mounted skill type after polynomial setup (0806f94d), retaining the early riding guard. Timed consumables reread duration, amount, apply and applicable affect ID after eligibility checks and validate the new apply index (08179b70–08179bc0 and 08175261–081752bf). Automatic warp NPC scheduling matched. No build or runtime run.
+
+Source batch 842 restored CDungeon::Join destination capture before SaveExitLocation (08182290), retaining the missing-map guard. Reviewed chain lightning limits, used skill mastery and accessory degradation matched. No build or runtime run.
+
+Source batch 843 restored evaluation order for timed nonattack effects in ComputeSkill (0806f710). The locale check precedes the Chunkeon ID and mastery checks, and duration SP cost is evaluated before the primary affect fields are read. No build or runtime run.
+
+Source batch 844 restored the original CItem inline GetWearFlag, GetAntiFlag, GetImmuneFlag, GetRefinedVnum and GetRefineSet APIs from DWARF and the reference. The corresponding equipment and refinement paths call the accessors, which return zero when the prototype is absent. No build or runtime run.
+
+Source batch 845 restored seven DWARF-confirmed Chain Lightning and Eunhyung inline CHARACTER helpers and routed the live movement and skill callers. Preserved initialization and exclusion-set update order and 32-bit counter arithmetic. Arena and item accessor candidates remain staged for subsequent review. No build or runtime run.
+
+Source batch 846 restored nine original CArena helpers and four indexed CItem socket/attribute accessors with live callers. The arena map list uses mutable arena pointers for the original nonconst getters. Item call sites use fixed or bounded indices. No build or runtime run.
+
+Source batch 847 restored the DWARF-confirmed CItem::IsStackable and used it in item creation, movement, splitting and pickup while retaining the existing flag check and guards. No build or runtime run.
+
+Source batch 848 restored FWarpToDungeon (08185dc0) for solo and party entry, retaining map guards and exit-save order. Restored four DWARF-confirmed character timing accessors and integrated movement, combat, and equipment callers. Rebased the equipment timing hunk onto batch 847. No build or runtime run.
+
+Source batch 849 restored CItem::SetFlag(long) from DWARF and the reference. Item initialization, prototype binding, and flag add/remove now use the setter with existing 32-bit normalization. No build or runtime run.
+
+Source batch 850 restored FExitDungeon through CParty::ForEachNearMember (08145000) and the DWARF-confirmed CHARACTER::GetAIFlag (DIE 0x1eaa7c5), with existing party and AI call sites. No build or runtime run.
+
+Source batch 851 restored IsPosition(int) and GetStateDuration() (DWARF DIEs 0x1eaaeea and 0x1eaa981), wired into IsDead, CanBeginFight and UpdateStateMachine. Preserved the callback lifetime guard. The shop DWARF audit found no missing ordinary method bodies. No build or runtime run.
+
+Source batch 852 restored FExitDungeonToStartPosition (08186c20) at the active dungeon exit. The shared traversal supplies filtered CHARACTER pointers to the helper and retains the empire recall, map-zero warp and saved-location fallback. No build or runtime run.
+
+Source batch 853 restored rod socket read order in RefinableRod (08084230) and GetFishingLevel (08083170). Both use the recovered GetSocket accessor; eligibility checks and 32-bit arithmetic remain. No build or runtime run.
+
+Source batch 854 restored FWarpToPosition::operator()(CEntity*) (081869c0) in WarpMapPlayers, used by JumpAll and JumpToEliminateLocation. Preserved sector traversal, the player filter, tile conversion and same-map Show then Stop versus cross-map WarpSet. No build or runtime run.
+
+Source batch 855 restored DetermineFish locale and selected fish ID read order (080828e0). Existing selection and exclusion logic stays in place. Next verified named helper is FPurgeSectree at 08186b10 for CDungeon::Purge. No build or runtime run.
+
+Source batch 856 restored FPurgeSectree (08186b10) to CDungeon::Purge. DetermineFish now reads the selected vnum separately inside each enabled locale branch (08082a38–08082a6c). Existing filters, purge traversal and branches remain. No build or runtime run.
+
+Source batch 857 restored global POLYMORPH_BONUS_TYPE and public GetBonusType(DWORD) from DWARF DIEs 0x279020f and 0x27927ba, and routed the existing bonus selection through the original constants. No build or runtime run.
+
+Source batch 858 restored the named dungeon callbacks FKillSectree, FNotice and FExitDungeon from DWARF and the reference. Existing notice formatting, entity filters, map guards and sector traversals are retained. Party.cpp uses a separate translation-unit-local FExitDungeon. No build or runtime run.
+
+Source batch 859 restored SetRandomHP, SetRandomSP, GetRandomHP and GetRandomSP (DWARF DIEs 0x1eab0f2, 0x1eab110, 0x1eab12e and 0x1eab14b). Wired into level changes, point recalculation, resets, and player record save/load. Preserved RNG and write order and record width. No build or runtime run.
+
+Source batch 860 restored FCountMonster (DWARF DIE 0x28e9b7b; CDungeon::CountRealMonster at 08185070). One mutable counter is passed by reference across the original per-sector neighbor traversal, retaining the same entity filter and map fallback. No build or runtime run.
+
+Source batch 861 restored GetDropMetinStoneVnum and GetDropMetinStonePct (DWARF DIEs 0x1ead1ee and 0x1ead20b). The drop branch retains its initial VNUM guard, chance arithmetic, roll, and VNUM reread on success. Next verified source gap: quest::FSetQuestFlag at 08096a60. No build or runtime run.
+
+Source batch 862 restored CHARACTER::IsStone (DIE 0x1eaacbc) in drop and dungeon kill paths, and quest::FSetQuestFlag (DIE 0x8e17f0; traversal 08096a60) at dungeon_set_quest_flag. Preserved descriptor and PC checks and the false flag-update argument. No build or runtime run.
+
+Source batch 863 integrated IsStone at seven additional active call sites: prototype setup, dungeon membership, combat logging and behavior, and idle-state handling. Existing guards and monster-first membership checks remain. No build or runtime run.
+
+Source batch 864 restored FPartyChat and FPartyClearReady (08146aa0 and 08146810) and CDungeon::CheckDestroy (DWARF 0x28b022f; inlined at 081825a0). The chat uses a fixed format and dungeon cleanup retains the reconstruction guard against duplicate timers. No build or runtime run.
+
+Source batch 865 restored quest::FCinematicSender and FRunCinematicSender (081469a0 and 08146880) at their active party quest call sites. Both share the existing guarded packet-send routine. No build or runtime run.
+
+Source batch 866 restored the original nonconst CHARACTER::IsMonster() (DWARF DIE 0x1eaac9f). Thirteen verified type checks use it across character, combat, and AI paths. No build or runtime run.
+
+Source batch 867 restored the party FSetQuestFlag callback (DWARF 0x229d14c; traversal 08146b30 and solo branch 08146625). Internal linkage avoids collision with the dungeon callback of the same name. Existing descriptor and quest PC checks and the false SetFlag argument remain. No build or runtime run.
+
+Source batch 868 restored the original nonconst GetTarget, IsWarp and IsGoto APIs (DWARF 0x1ead979, 0x1eaad13 and 0x1eaad30) at five active gameplay call sites. Existing target fallback and event and descriptor guards remain. No build or runtime run.
+
+Source batch 869 restored FPartyAlignmentCompute (DWARF 0x2371150, traversal 08155040, callback 081550b8) in the character death path. The first pass counts nearby online members and the second applies the signed share. A zero count falls back to the killer. No build or runtime run.
+
+Source batch 870 restored nonconst CHARACTER::IsBlockMode(BYTE) (DWARF 0x1eab860) at four social gameplay call sites, retaining the existing masks and evaluation order. No build or runtime run.
+
+Source batch 871 restored the three nonconst CHARACTER killing-count methods (DWARF 0x1eae4a3, 0x1eae4bc, 0x1eae4d5), integrating clear and increment in initialization and three-way war scoring. Increment retains the existing modulo-32 arithmetic. No build or runtime run.
+
+Source batch 872 restored nonconst CHARACTER::SetQuestBy(DWORD), GetQuestBy() and GetAffectContainer() (DWARF 0x1eadf11, 0x1eadf2f, 0x1eac13e). The two quest NPC callers and the death-time effect traversal use the original APIs. No build or runtime run.
+
+Source batch 873 restored nonconst CHARACTER::IsWalking(), SetWalking(bool) and ResetWalking() (DWARF 0x1eaba12, 0x1eaba2f, 0x1eaba6b) at six movement and stamina call sites. The walk packet still carries the current mode byte. No build or runtime run.
+
+Source batch 874 restored nonconst CHARACTER::SetStamina, GetStamina, SetMaxStamina and GetMaxStamina (DWARF 0x1eab006, 0x1eab024, 0x1eab0b7, 0x1eab0d5) across active character stat, movement, regeneration, item and player record paths. Arithmetic and walking transitions are preserved. No build or runtime run.
+
+Source batch 875 restored nonconst CHARACTER::SetExp(DWORD) and SetGold(long) (DWARF 0x1eaae33 and 0x1eaca9b). Character setup, point changes, player loading and the experience distribution reset use the original setters. No build or runtime run.
+
+Source batch 876 restored nonconst CHARACTER::SetPotionLimit(int) and GetPotionLimit() (DWARF 0x1eae2c1, 0x1eae2df). Character initialization, arena rounds and potion eligibility use the original APIs. Both decrements retain their placement relative to item consumption. No build or runtime run.
+
+Source batch 877 restored nonconst CHARACTER::SetCubeNpc(LPCHARACTER) (DWARF 0x1eae6aa and 0x18dab56). Crafting open and close use the setter at the existing state transitions. No build or runtime run.
+
+Source batch 878 restored ResetChangeAttackPositionTime, SetChangeAttackPositionTime, SetPartyRequestEvent and GetWeddingMap (DWARF 0x1ead885, 0x1ead89e, 0x1eac2d1, 0x1eae0ac). Existing timer arithmetic, request identity and cancellation guards, and wedding membership cleanup remain. No build or runtime run.
+
+Source batch 879 restored nonconst CHARACTER::IsPC, IsNPC, IsDoor and IsBuilding (DWARF 0x1eaac65, 0x1eaac82, 0x1eaacd9, 0x1eaacf6). Marriage bonus and combat AI use IsNPC and IsBuilding at the verified type checks. IsPC tests descriptor presence. No build or runtime run.
+
+Source batch 880 restored nonconst CHARACTER::SetSP(int) and SetMaxSP(int) (DWARF 0x1eaafcb and 0x1eab07c). Point changes, monster setup and player loading use the recovered setters. No build or runtime run.
+
+Source batch 881 restored nonconst CHARACTER::IsWarping(), GetMyShopTime() and IsAlive() (DWARF 0x1eae12d, 0x1eae4f2 and 0x1eacd3e). Five active item and shop checks use the warp and cooldown APIs. No build or runtime run.
+
+Source batch 882 restored GetUseSeedOrMoonBottleTime(), SetUseSeedOrMoonBottleTime() and IsPCBang() (DWARF 0x1eae3ca, 0x1eae3e7, 0x1eae18e). The item cooldown keeps separate pulse reads and the success update. Experience and drops use IsPCBang. SetPCBang return behavior remains unverified. No build or runtime run.
+
+Source batch 883 restored nonconst CHARACTER::DetailLog() (DWARF 0x1eadd3f) and its active diagnostic command caller. The method toggles the existing detail-log flag. No build or runtime run.
+
+Source batch 884 restored nonconst CHARACTER::IsOverTime(e_overtime) (DWARF 0x1eae702). The character click handler uses the original comparisons for three- and five-hour regional notices. No build or runtime run.
+
+Source batch 885 restored nonconst CHARACTER::SetKillCount(int), GetKillCount() and DecKillCount() (DWARF 0x1eae44f, 0x1eae46d and 0x1eae48a). Battle, restart, diagnostics and forked quests use the original remaining-deaths APIs. The decrement retains 32-bit wrapping. No build or runtime run.
+
+Source batch 886 restored nonconst CHARACTER::GetRefineTime(), SetRefineTime(), GetExchangeTime() and SetExchangeTime() (DWARF 0x1eae394, 0x1eae3b1, 0x1eae400 and 0x1eae41d). Refine and exchange updates sample the pulse separately for each call, and the cooldown checks preserve evaluation order. No build or runtime run.
+
+Source batch 887 restored nonconst CHARACTER::GetSkillPowerByLevel(int, bool) (DWARF 0x1eae36d and 0x3d0792). GetSkillPower at 08073350 confirms the clamp to 0-40 and the skill group read before GetJob. The active caller retains its unique-item, guild and overflow branches. No build or runtime run.
+
+Source batch 888 restored nonconst CHARACTER::IsItemLoaded() and SetItemLoaded() (DWARF 0x1eac447 and 0x1eac464). Inventory loading uses the methods at the existing duplicate-load guard and completion point. No build or runtime run.
+
+Source batch 889 restored SetMallLoadTime(int), GetMallLoadTime(), CancelSafeboxLoad(), SetOpenSafebox(bool), GetSafeboxLoadTime() and SetSafeboxLoadTime() (DWARF 0x1eadaa2, 0x1eadac0, 0x1eada89, 0x1eae319, 0x1eae337 and 0x1eae354). Storage state transitions preserve their clock reads and existing guards. No build or runtime run.
+
+Static coverage review after source batch 889: all 21 fishing and 19 mining ELF symbols checked have source definitions with matching parameter shapes. DWARF name comparison found no further confirmed omissions with active callers in CItem, CParty or CSkillProto. The next comparison should use full signatures and targeted body checks. No source change or build.
+
+Static signature and record audit after batch 889: owner DWARF comparisons of CItem, CParty and CSkillProto found no confirmed signature mismatches after accounting for aliases, overloads and compiler parameters. CParty::SMember and TSkillUseInfo member names match. SSkillTable DIE 0x14d1037 spells its 32-bit fields DWORD and long; fixed-width declarations retain the 1475-byte packed boot record. Fishing DetermineFish and CShop::RemoveGuest match the reviewed original paths. No source change or build.
+
+Source batch 890 restored FGuildCompare (0809eb60) and quest::FBuildLuaGuildWarList (080d1c30). Ranking uses the original comparison keys and read order. The Lua callback looks up the guild for each pair and appends eligible wars at one-based indices. No build or runtime run.
+
+Source batch 891 restored FWarpAllToVillage, FWarpAllToVillageExceptMyEmpire and FWarpInMap (0805d2c0, 0805d3b0, 0805d4e0) through the shared character traversal. Village diagnostics read map index before name. The unfiltered map warp omits the empire read. Existing empire bounds are retained. No build or runtime run.
+
+Source batch 892 restored FEmpireChatPacket (08103570) and ChatPacketCharacter_func (party traversal 08103400). Local chat captures the sender map for the delivery pass. The existing message bounds check and packet parser remain intact. No build or runtime run.
+
+Source batch 893 restored FuncMatchChatEvent (081b5f10) and FuncMissChatEvent (MatchingQuest 081b40f0). Both walk scripts by index and resolve accepted entries again after IsScriptTrue, with a bounds check if evaluation changed the list. Empty conditions use the existing zero-length success path. No build or runtime run.
+
+Source batch 894 restored FuncAggregateMonster, FuncAttractRanger and FuncPullMonster (08156c10, 08156ce0, 08156db0). Ranger attraction rereads the current victim and attack range at the original decision points. Existing coordinate arithmetic and movement update order are retained. No build or runtime run.
+
+Source batch 895 restored quest::FBuildLuaWeddingMapList and marriage::CManager::for_each_wedding (080fa670). Traversal returns the callback by value. Lua rows preserve the active-wedding gate, two IDs, two names and one-based indexing, with the counter advanced after insertion. No build or runtime run.
+
+Source batch 896 restored FuncFindChrForFlag (08081d10) and FuncFindChrForFlagBase (08081e50). Pickup reads the owner per candidate after affect checks. Capture rereads the owner for logging, both comparisons and scoring, retaining existing eligibility guards. No build or runtime run.
+
+Source batch 897 restored FuncDeadSpawnedByStone (for_each 08137eb0, ClearStone 081322a0). The callback calls Dead before clearing the stone pointer. The current traversal erases by key because a child stone can unlink itself during Dead and invalidate the original iterator. No build or runtime run.
+
+Source batch 898 restored FuncWeaken (080c81e0; command call at 080c3aa2). It computes distance before applying the all option and preserves the character-type filter and HP adjustment. No build or runtime run.
+
+Source batch 899 restored NPartyPickupDistribute::FPartyMoneyTotaler, FPartyMoneyDistributor and FPartyFindOwnership (08181680, 08181720 and 08181870). Gold logging reads Y, X and PID after PointChange and before resolving the logger. The existing range, payout and ownership fallback remain. Coordinate fields retain unsigned 32-bit storage for wrapped deltas. No build or runtime run.
+
+Source batch 900 restored FSendUserCount, FExitGuildWar, FPacket and FRemoveFlagAffect (traversals 0816cc80, 0816cd00, 0816cdb0, 0816ce20). Count messages retain original 30-byte buffers and send order. Packet delivery keeps the existing descriptor guard. No build or runtime run.
+
+Source batch 901 restored FuncPurge (080c8100, DWARF 0xfaed61). It retains distance evaluation, command logging before the NPC check, and destruction through the character manager. No build or runtime run.
+
+Source batch 902 restored FuncForgetMyAttacker (08154260), FGuildNameSender (0809d1d0) and FSendWarList (0809d590). Attacker reset retains the direct two-field VID comparison. Guild name delivery captures the name pointer once and both broadcasts preserve packet order and descriptor checks. No build or runtime run.
+
+Source batch 903 restored FuncClearSync (traversal 08137dd0). The callback asserts each character and clears its sync owner without unlinking it during traversal. ClearSync still releases its own owner first and clears the list last. No build or runtime run.
+
+Source batch 904 restored FGuildChat (traversal 08091550) for local delivery to online guild members. The existing literal format string and chat type are retained. No build or runtime run.
+
+Source batch 905 restored FuncShout (traversal 0811cd30). Delivery checks for a character, then GM level and empire, and sends the existing type 6 message. No build or runtime run.
+
+Source batch 906 restored FuncPacketView and its FuncPacketAround base (original traversal 081acd80). Sector, observer, excluded-recipient and descriptor checks are preserved, with self-send still evaluated after the view traversal. No build or runtime run.
+
+Source batch 907 restored FSendChangeGrade (Boost holder 080929d0). Both existing post-query callers hold the same eight-byte TPacketGuild by value and relay it through DBPacket with the original header. No build or runtime run.
+
+Source batch 908 restored FuncWho (original traversal 0815a3b0). Local counts are updated before reading empire. The existing bounds check and later peer totals are retained. No build or runtime run.
+
+Source batch 909 restored the single leader pointer read in CParty::IsPositionNearLeader (081445d0). Both coordinate deltas use that leader; wrapped arithmetic and the strict 5000 cutoff remain. No build or runtime run.
+
+Source batch 910 restored six nonconst building accessors: CObject SetLand, GetVnum, GetGroup and GetNPC, and CLand GetID and GetOwner (DWARF 0x1a9d796, 0x1a9d7cf, 0x1a9d7eb, 0x1a9d86c, 0x1a9d9b2, 0x1a9d9eb). Existing CObject GetID also matches the nonconst original. Object prototype fallbacks and all lookup guards are retained. No build or runtime run.
+
+Source batch 911 restored nonconst CObject::GetVID() (DWARF 0x1a9d737). The three VID callers already use mutable objects. Two wall cleanup locals now match the nonconst GetID() restored in batch 910. No build or runtime run.
+
+Source batch 912 restored npc_is_near read order (08120f20): current character, current NPC, Lua distance, then proximity calculation. The existing default, null checks and distance precision remain. No build or runtime run.
+
+Source batch 913 restored npc_is_quest evaluation order (08120d20). It resolves the current quest name and index before reading NPC quest ownership. Existing NPC and current PC guards are retained. No build or runtime run.
+
+Source batch 914 wired npc_is_pc (08120840) to the recovered CHARACTER::IsPC() descriptor check, retaining the null NPC guard. Local objdump confirmed the descriptor load. npc_open_shop and CLand::PutData matched their reviewed paths. No build or runtime run.
+
+Source batch 915 restored SetWarMap pointer use (08131b60): read the previous map once, remove the member, store the incoming map and use that argument for registration. No build or runtime run.
+
+Source batch 916 restored the leader lookup before the fresh nearby-member count and clamp in ComputePartyBonusExpPercent (081449d5–081449ed). No build or runtime run.
+
+Source batch 917 restored the single party pointer read and signed 32-bit delay result in party_update_event (08141231 and 0814124e). The leader and descriptor guards remain. No build or runtime run.
+
+Source batch 918 restored 32-bit timer arithmetic at CParty::Link (08142401–0814241d) and shares the delay calculation with party_update_event. No build or runtime run.
+
+Source batch 919 restored CWarMap::UpdateUserCount read order (0816a7f1–0816a853). It reads team IDs and accumulated counts in team order, then snapshots the observer count for both messages. No build or runtime run.
+
+Source batch 920 restored SummonToLeader position reads (08143680–08143692 and 08143767): each candidate reads Y, X and current map, and Show reads the map again after random selection. The existing noninserting member lookup and guards remain. No build or runtime run.
+
+Source batch 921 restored the GetSkillPowerByLevel path in CParty::ComputeRolePoint (08143a85–08143ab2). The original skill-group read precedes GetJob. Role formulas are unchanged. No build or runtime run.
+
+Source batch 922 restored 32-bit point deltas in CParty::ComputeRolePoint (0814394f–08143a4b and 08143b4e–08143d8a), preserving the separate comparison and fresh point read. No build or runtime run.
+
+Source batch 923 restored CParty::Update clock sequencing, live leader dungeon reads, the pre-callback near flag and conditional EXP bonus store (08143e5e–081440fb). No build or runtime run.
+
+Source batch 924 restored the direct member traversal and fresh character read in CParty::ChatPacketToAllMember (081419e0–08141a23). The descriptor guard and literal chat format remain. No build or runtime run.
+
+Source batch 925 restored the low-dword VNUM comparison in CountMemberByVnum (08144708). The existing member filters and byte count are retained. No build or runtime run.
+
+Source batch 926 restored the member pointer snapshot and wrapped role counters in CParty::SetRole (08143200, 081432ac, 081432ff). Existing role bounds and update guards remain. No build or runtime run.
+
+Source batch 927 restored the 32-bit role-counter decrement in CParty::P2PQuit (08141ff2). It still runs after logging and before the player lookup. No build or runtime run.
+
+Source batch 928 restored the 32-bit member-count diagnostic arithmetic in CParty::P2PJoin and P2PQuit (08141b8d and 08141fba). The local join log reads the name before the leader ID (08141b22–08141b27) and rereads the name for the member record. No build or runtime run.
+
+Source batch 929 restored the CParty::Link diagnostic read order (08142287 and 08142291): character name, leader PID, log, then member pointer assignment. No build or runtime run.
+
+Source batch 930 restored the live role reads in CParty::Unlink (081425ff and 081425bf). Existing dungeon and pointer cleanup order remains. No build or runtime run.
+
+Source batch 931 restored party status logging reads at 08142c5e–08142c7a: recipient VID and name, then source VID and name. The original signed 32-bit diagnostic format and post-log recipient reload are preserved. No build or runtime run.
+
+Source batch 932 restored the diagnostic read order in CParty::SendPartyInfoAllToOne (08142da5–08142dc7). It reads the recipient fields first, then reloads the linked member for source fields. No build or runtime run.
+
+Source batch 933 restored CDungeon::SpawnGroup upper bounds to the map-relative center (0818486a, 08184874). Existing coordinate range checks and the first-success result are retained. No build or runtime run.
+
+Source batch 934 restored signed 32-bit SpawnMobRange diagnostic arguments in the original VID, Y, X, name read order (0818d647–0818d681). The downstream range accepts equal endpoints and preserves both random draws. No build or runtime run.
+
+Source batch 935 restored the four wrapped 32-bit group spawn bounds (0818dc2b, 0818dc5b, 0818dc88 and 0818dcba), with each coordinate read before its random draw. No build or runtime run.
+
+Source batch 936 restored random spawn coordinate sequencing (0818ca73–0818cab7). Each axis reads the extent, draws its offset, then reads the map base before adding with 32-bit wrap. No build or runtime run.
+
+Source batch 937 restored signed 32-bit arguments for the SpawnMob missing-sector, blocked and ban-PK diagnostics (0818d010). No build or runtime run.
+
+Source batch 938 initializes dungeon potion and revive usage flags to false in Initialize, matching the supplied newer reference. The 2009 ELF does not initialize these flags. Both Lua argument guards already match the original (08094660, 08094710). No build or runtime run.
+
+Source batch 939 restored the direct Lua number read in dungeon_select (080967e8–08096808), retaining the original low 32 bits of the truncated 64-bit value and existing zero-map behavior. No build or runtime run.
+
+Source batch 940 restored dungeon_spawn_group Lua read order (0809614e–08096365), retaining the coordinate, radius and count limits before spawning. No build or runtime run.
+
+Source batch 941 restored the missing-dungeon return in dungeon_spawn_group (08096237–08096241, 08096377–08096390). After numeric type checks, an absent dungeon returns one Lua zero before conversions. Active dungeon spawn limits remain. No build or runtime run.
+
+Source batch 942 restored dungeon_spawn_unique argument sequencing and separate signed log conversion (08095690). It validates types first and rereads arguments after the dungeon lookup. No build or runtime run.
+
+Source batch 943 restored Lua argument sequencing for dungeon_spawn_move_unique and dungeon_spawn_move_group (080954b0, 08095310), including separate signed diagnostic and DWORD spawn conversions. No build or runtime run.
+
+Source batch 944 restored argument order 2 then 1 for logging and spawning in both dungeon door bindings (080950f0, 08095200). No build or runtime run.
+
+Source batch 945 restored the Lua read sequences for named and waypoint mobs (08095fb0, 08095e20), preserving coordinate bounds. No build or runtime run.
+
+Source batch 946 restored dungeon_spawn_mob Lua type checks, missing-dungeon return and optional argument reads (08095a70–08095ddb). Existing coordinate and count bounds remain. GhidraMCP was unreachable on port 8080, so evidence came from the original ELF via objdump. No build or runtime run.
+
+Source batch 947 restored dungeon_spawn argument reads and separate signed diagnostic and DWORD placement conversions (08095830–08095936). No build or runtime run.
+
+Source batch 948 restored Lua argument reads in six unique-monster bindings (08094920, 08094a50, 08094b80, 08094ed0, 08094fe0, 08095980), preserving the signed setter range checks. Both unique getters already matched. No build or runtime run.
+
+Source batch 949 restored dungeon_join (080963d0), dungeon_jump_all (080943f0) and dungeon_set_dest (080947c0). Retained integer range checks and destroy the newly created dungeon if no current character exists. No build or runtime run.
+
+Source batch 950 restored new dungeon jump sequencing (08093ec0 and 08094180). The reconstruction destroys the newly created instance if the character is absent or the coordinate range checks reject the inputs. No build or runtime run.
+
+Source batch 951 restored explicit dungeon quest flag key assembly order (080930fa–08093169). The string guard stays in place. Static comparison confirmed the elimination Lua wrappers, notice and ordinary dungeon flag paths. No build or runtime run.
+
+Source batch 952 restored signed 32-bit map index conversion for the Lua result (080936e6). The 45-entry registration table and sentinel match the original (081fdc2c). Static exit, kill-all and purge checks matched normal contexts. No build or runtime run.
+
+Source batch 953 restored JoinParty registration and map lookup order (08182346–081823d3). The missing-map guard remains after registration. No build or runtime run.
+
+Source batch 954 restored maximum-then-current HP reads (08183f5b–08183f6d) and the unique enemy pointer reload before the defense change (0818305f–0818307b). The HP setters matched. No build or runtime run.
+
+Source batch 955 restored dungeon party counter insertion and 32-bit increment/decrement (08182670–081827a1). Zero-count removal and member cleanup remain in original order. No build or runtime run.
+
+Source batch 956 restored the empty dungeon teardown delay calculation (0818260c–0818262a). The pending event guard remains. CheckEliminated exit and warp scheduling matched. No build or runtime run.
+
+Source batch 957 restored SpawnRegen map setting read order (081849ab–081849c3). ClearRegen retains character reference invalidation before deleting records. No build or runtime run.
+
+Source batch 958 verified Initialize field offsets (08182046–08182055) against the potion, revive and kill getters (08185030–0818506a) and restored the original write order. The reconstruction retains deterministic defaults for the kill counters and usage flags. Kill counting and dead-character cleanup matched. No build or runtime run.
+
+Source batch 959 restored SpawnMob map lookup before logging and Y-before-X base reads in SpawnMob and SpawnNameMob (0818438a–081843f1, 08184530–08184539). Missing-map guards remain. No build or runtime run.
+
+Source batch 960 restored the midpoint evaluation order in the SpawnUnique failure diagnostic (0818376f–081837b3). The message takes X then Y. No build or runtime run.
+
+Source batch 961 restored SpawnMoveUnique destination-first short circuit (081830d1–08183155) and failure midpoint order (081834e6–08183513). No build or runtime run.
+
+Source batch 962 restored the SpawnMoveGroup destination-first short circuit (08184b4e–08184bcc). No build or runtime run.
+
+Source batch 963 corrects batch 933: SpawnGroup LEA instructions at 0818486a and 08184874 add one to the center via a scale-1 index, and 081848ad/081848b4 pass those upper bounds to CHARACTER_MANAGER::SpawnGroup. Existing coordinate range checks and first-success return remain. CountRealMonster matched. No build or runtime run.
+
+Source batch 964 restored JumpToEliminateLocation field reads for a destination dungeon (081858f2–0818590d) and the map fallback (08185994–0818599d). No build or runtime run.
+
+Source batch 965 made the original signed 32-bit delay and destination map stores explicit in both elimination setters (081857e0, 08185820), including on hosts with wider long. No build or runtime run.
+
+Source batch 966 restored SendDestPositionToParty diagnostic read order (0818221a–0818223e). The normal destination packet path matched. No build or runtime run.
+
+Source batch 967 restored outer sector iterator advancement before callbacks in KillAll (08184e58) and Purge (08184f58). Existing missing-map guards remain. No build or runtime run.
+
+Source batch 968 restored the OX quiz timer ten- and five-second pulse arithmetic (08087cfd–08087d05, 08087dbf–08087dc4). No build or runtime run.
+
+Source batch 969 restored ShowQuizList locale and signed quiz level read order (08087a87–08087ad2). No build or runtime run.
+
+Source batch 970 restored OX Quiz delay preparation and fresh quiz lookups (08087f00–08088032). Level bounds and tracked timer ownership remain. No build or runtime run.
+
+Source batch 971 restored CheckAnswer VID read before cheer RNG (0808826c–0808828f) and attendee iterator advancement after the branch callbacks (08088151–08088165, 0808837c–08088387). No build or runtime run.
+
+Source batch 972 restored phase-local OX event manager access (08087bf6–08087c20, 08087d3f–08087d5e) and one answer read for scoring and announcement (08087d3f–08087e43). Timer ownership tracking is retained. No build or runtime run.
+
+Source batch 973 restored OX Lua event manager access before status updates after script load or forced close (0813c82e–0813c843, 0813cbd7–0813cbe9). No build or runtime run.
+
+Source batch 974 restored the forced OX command manager reload between CloseEvent and SetStatus (080cb346–080cb357). No build or runtime run.
+
+Source batch 975 restored manager reads before quiz clear and after announcements in do_oxevent_open (080ca9ce–080ca9f3, 080caae4–080caaf9). Existing path and Lua-state checks remain. No build or runtime run.
+
+Source batch 976 restored do_oxevent_quiz manager and argument conversion order (080caf7f–080cafaf). No build or runtime run.
+
+Source batch 977 restored the OX attendee command count read before localization (080cb2a5–080cb2bb). No build or runtime run.
+
+Source batch 978 restored OX reward reporting order and 32-bit total (080cb43a–080cb47e), using objdump. Defer Ghidra-dependent work until Ghidra is available again. No build or runtime run.
+
+Source batch 979 restored the OX door manager reload before SetStatus (080cb145–080cb15a), verified via objdump. No build or runtime run.
+
+Source batch 980 restored the regular OX close manager reload before FINISH (080cad79–080cad8b), verified via objdump. No build or runtime run.
+
+Source batch 981 restored the guild member update order: level, offered experience, grade (0808f74b–0808f75c). Static ELF comparison only.
+
+Source batch 982 restored guild AddMember diagnostic reads in offer, level, job, grade and PID order (0808b433–0808b468). Static ELF comparison only.
+
+Source batch 983 restored guild experience carry at level 20: only clear experience when it reaches the level-20 threshold (0808f2ab–0808f2d0). Static ELF comparison only.
+
+Source batch 984 restored the experience underflow path's unchanged guild level (0808f4c2–0808f4db). Successful updates still bound the level before indexing the experience table. Static ELF comparison only.
+
+Source batch 985 restored the original CGuild::UpdateSkill byte-pointer signature (0808f100), matching the reference and existing caller. Skill copy and power calculations matched the ELF. Static comparison only.
+
+Source batch 986 restored the non-const CGuild::GetTotalLevel signature and 32-bit accumulation (0808f9f0–0808fa3e). The newer reference declares this method const. Static comparison only.
+
+Source batch 987 restored GetMasterCharacter's master PID snapshot before character manager lookup (0808f93c–0808f94f). Static ELF comparison only.
+
+Source batch 988 restored the guild general counter update before storing the member flag (0808e4db–0808e4e8, 0808e592) with explicit 32-bit arithmetic. Static ELF comparison only.
+
+Source batch 989 restored local guild logout iteration: notify the current member before advancing (0808bcd8–0808bce0). Static ELF comparison only.
+
+Source batch 990 restored job-before-name diagnostic reads in the guild roster (0808c250–0808c283). Local and cross-core guild login/logout call order matched. Static ELF comparison only.
+
+Source batch 991 made the original unsigned 32-bit skill index explicit in GetSkillLevel (0808f0e5–0808f0f6). Static ELF comparison only.
+
+Source batch 992 restored the unsigned 32-bit index in CGuild::SkillUsableChange (0808fb7c–0808fba0). Static ELF comparison only.
+
+Source batch 993 restored unsigned 32-bit skill indexing and prototype lookup in SkillLevelUp (0808e70c–0808e750). Static ELF comparison only.
+
+Source batch 994 restored 32-bit skill ID handling in CGuild::UseSkill (0808e912–0808e9dc), retaining the skill array bounds and authorization checks. Static ELF comparison only.
+
+Source batch 995 restored SkillLevelUp diagnostic reads in type, level and VNUM order (0808e84e–0808e888). Static ELF comparison only.
+
+Source batch 996 restored the guild skill debug power snapshot before localization (0808eed3–0808eeef). Static ELF comparison only.
+
+Source batch 997 restored the shared guild power snapshot for the insufficient-power check and message (0808eafa–0808eb55). Static ELF comparison only.
+
+Source batch 998 made the ChargeSP capacity reads explicit (0808fa80–0808fa8e) and widened the subtraction before retaining the nonnegative capacity clamp. Static ELF comparison only.
+
+Source batch 999 restored the current-power comparison before storing the computed maximum in ComputeGuildPoints (0808f0c0–0808f0d5). Static ELF comparison only.
+
+Source batch 1000 restored ChangeGuildPower store-then-clamp order (0808f1b6–0808f1d0). The 32-bit sum and subsequent save and notification calls are preserved. Static ELF comparison only.
+
+Source batch 1001 tied guild grade name validation and escaping to the nine-byte grade field and rejects null names. The ELF length check was reviewed at 0808d340. The existing eight-byte usable limit is retained for storage and packet compatibility. Static comparison only.
+
+Source batch 1002 restored invalid guild grade diagnostics in ChangeGradeName and ChangeGradeAuth (0808d32a, 0808d587). Rank 1 returns silently and existing guards remain. Static ELF comparison only.
+
+Source batch 1003 checked the guild rank-name notification against the 14-byte ELF packet and made the nine-byte wire field explicit. Existing termination and padding are retained. Static comparison only.
+
+Source batch 1004 restored the grade-name row snapshot before authorization conversion in __P2PUpdateGrade (0808cfca–0808cffe). Existing row, rank and name bounds are retained.
+
+Source batch 1005 restored the guild ID read before the building manager lookup in HasLand (0809009c–080900ae). The 39-byte guild info packet matched. Static ELF comparison only.
+
+Source batch 1006 restored the unsigned 32-bit guild war map index store and the opponent-before-guild diagnostic reads (080af0d0–080af0f4). Static ELF comparison only.
+
+Source batch 1007 restored the 32-bit guild war score store and explicit size-before-data reads for both score broadcasts (080adf85–080adfe0). Static ELF comparison only.
+
+Source batch 1008 restored the fresh 32-bit guild war score read after logging in GetWarScoreAgainstTo (080ae08f–080ae09a). Static ELF comparison only.
+
+Source batch 1009 restored the 32-bit guild war start timestamp store (080ae791–080ae796). State, announcement and entry prompt order matched. Static ELF comparison only.
+
+Source batch 1010 restored the guild war end notification (state 7) before erasing the opponent record (080aeec6–080aef36) and moved the self check before lookup. Static ELF comparison only.
+
+Source batch 1011 restored ReserveWar lookup before construction and the reservation log (080aed36–080aed6c, 080aee39). Existing reservations retain their type. Static ELF comparison only.
+
+Source batch 1012 restored the guild war map index reread after saving the character exit location (080af243–080af260). Existing entry guards remain. Static ELF comparison only.
+
+Source batch 1013 restored GuildWarEntryAsk map index rereads after logging and before spawn-position lookup (080af37f–080af3bb). Static ELF comparison only.
+
+Source batch 1014 restored the Y-before-X reads in the missing war-map spawn diagnostic (0816c875–0816c89a). Normal spawn lookup and map creation matched; existing map ownership handling remains.
+
+Source batch 1015 restored war reward calculation order (0816afc2–0816b015): winner potion share, base war price, then loser potion share. Arithmetic remains 32-bit. UpdateScore and CheckScore victory rules matched. Static ELF comparison only.
+
+Source batch 1016 restored the second-then-first score reads and 32-bit winning guild return in GetWinnerGuild (0816a6f9–0816a717). Timeout gameplay matched. Static ELF comparison only.
+
+Source batch 1017 restored end-event payload initialization order in CWarMap::SetEnded (0816b90f–0816b912). Ten-second scheduling matches. Static ELF comparison only.
+
+Source batch 1018 restored the single war-map pointer snapshot in war_end_event (08169a8f–08169ad3), reused for clearing and destroying the same map. Static ELF comparison only.
+
+Source batch 1019 restored the war-map index reread after logging in DestroyWarMap (0816cac0–0816cae0). The index is retained through map deletion for private-map cleanup. Static ELF comparison only.
+
+Source batch 1020 restored team-two then team-one ID reads in CWarMap::Draw (0816b042–0816b053). ExitAll and OnShutdown traversal matched. Static ELF comparison only.
+
+Source batch 1021 restored the UsePotion guild-before-prototype check and the 32-bit potion price read before team lookup (0816a737–0816a750). Static ELF comparison only.
+
+Source batch 1022 restored 32-bit war map team member count arithmetic in AppendMember and RemoveMember (0816a7c1, 0816a7d6). Joiner insertion precedes increment as in the ELF. Static comparison only.
+
+Source batch 1023 restored explicit 32-bit observer count updates before logging (0816ab2a, 0816ae28). Static ELF comparison only.
+
+Source batch 1024 restored the 32-bit opponent ID returned by GetGuildOpponent (0816a6cf). Team matching and missing-guild handling are preserved. Static ELF comparison only.
+
+Source batch 1025 restored 32-bit war-map team ID storage and lookup (08169f60, 0816a5c6–0816a5d4). Static ELF comparison only.
+
+Source batch 1026 restored 32-bit accumulated war-map participant IDs and count return (0816a77a, 0816a7a2–0816a7bc). Static ELF comparison only.
+
+Source batch 1027 restored the 32-bit guild ID return in CWarMap::GetGuildID (0816a61e). Flag reset and respawn order matched the ELF. Static comparison only.
+
+Source batch 1028 restored guild-ID-before-spawn-pointer diagnostic reads for AddFlag and AddFlagBase (0816bc5c–0816bc8f, 0816be04–0816be32). Existing spawn failure guards remain. Static ELF comparison only.
+
+Source batch 1029 restored 32-bit flag base coordinate comparisons and base-before-flag reads (0816bfae–0816bfcb). Existing index and null checks remain. Static ELF comparison only.
+
+Source batch 1030 restored second-before-first guild ID reads in the war timeout announcement diagnostic (0816af19–0816af37). Static ELF comparison only.
+
+Source batch 1031 restored the 32-bit war-map start tick store and the original GetType call before flag setup (0816a14f–0816a16b). Start timer and flag spawn order matched. Static ELF comparison only.
+
+Source batch 1032 restored CheckScore score reads and tie-before-threshold evaluation (0816b6b6–0816b6d9), plus size-before-data reads in SendScorePacket (0816b552–0816b591). Static ELF comparison only.
+
+Source batch 1033 restored per-map locale checks in LoadWarMapInfo (0816c60a, 0816c699). All four map IDs and 24 X/Y coordinates match the ELF. Zero Z and duplicate-entry ownership guards are retained. Static comparison only.
+Source batch 1034 restored OX CloseEvent return coordinates for empire IDs outside 1–3 and the Y-before-X lookup for valid IDs (080886fd–08088727). Static ELF comparison only.
+
+Source batch 1035 corrected the earlier dungeon SpawnGroup upper-bound interpretation. The original uses base plus the requested coordinate as the inclusive upper bound on each axis (0818485a–08184877). Static ELF comparison only.
+
+Source batch 1036 restored signed 32-bit land master spawn coordinates in CLand::ClearLand (08109a32–08109a60). Static ELF review also confirmed the checked normal paths in building reconstruction, OX entry and scoring, and dungeon group spawning.
+
+Source batch 1037 restored the signed 32-bit pickaxe refinement stage and post-roll log field reads (080ef798–080ef80a, 080ef980–080ef9d1). The reconstruction retains its owner validation. Static ELF comparison only.
+
+Source batch 1038 restored separate fishing catch-length reads for the test notice, high score and catch log, plus the catch log field read order (08083789–0808381e, 0808391c–0808393b). Static ELF comparison only.
+
+Source batch 1039 restored the grilling name snapshot before locale lookup (0808419a–080841c0). The original file inventory was cross-checked against game and library paths. Apparent gameplay gaps resolve to existing library or FSM sources and excluded Monarch registrations. File presence does not establish complete function coverage. Static ELF comparison only.
+
+Source batch 1040 restored CHARACTER_MANAGER::NoticeInMap (0818ecf0), with direct per-sector traversal and descriptor filtering. Static ELF comparison only. The original item-use call at 08178cc2 still needs to be mapped to its reconstructed branch. Three other original callers are in the excluded Monarch area.
+
+Source batch 1041 restored the fishing random draw and search for valid rows with nonpositive totals (0808284c, 08082a07). Invalid row indices and one-past search results still return zero. The pending NoticeInMap item-use caller at 08178cc2 was identified as the excluded Monarch heal branch. All four direct original callers belong to Monarch. Static ELF comparison only.
+
+Source batch 1042 restored value-before-type reads when shifting item attributes and logging rare attribute additions (08187748–0818774c, 08187cb0–08187cf5). Static ELF comparison only.
+
+Batch 1043 audit verified the original dungeon_set_dest x87 conversion (08094842–080948a6). The source keeps the existing range guard because the supplied reference client uses signed coordinate subtraction and abs on the destination marker. Valid coordinate handling matches the ELF. The original client was outside this audit.
+
+Source batch 1044 restored the original 32-bit mob lookup and signed socket values in CPolymorphUtils::GiveBook (0816f040). The book grant still precedes mob validation. Static ELF comparison only.
+
+Source batch 1045 restored marriage proximity checks after the diagnostic, the original near/far notification branches, and the previous love-point snapshot (080b04b7–080b05bf). Descriptor guards remain. Static ELF comparison only.
+
+Source batch 1046 checked wedding entry and exit against the ELF (0816faf0, 0816fb70, 0816fd60). SendLocalEvent now passes the generated music command as literal text, as the existing broadcast does. This is an intentional departure from the original format argument. Static comparison only.
+
+Source batch 1047 restored the love-point-before-spouse reads in marriage login (080b02f0, 080b0320) and filename-before-enabled Lua argument conversion for wedding music (080f9fbd–080f9fd0). Static ELF comparison only.
+
+Source batch 1048 restored signed 32-bit arena observer coordinate scaling and Y-before-X reads after SaveExitLocation (080bce95–080bcec3). Static review also confirmed duel startup and the five arena Lua bindings.
+
+Source batch 1049 restored the post-log riding flag read in horse_is_riding (080e36a0–080e36c3). The existing null guard remains. Static ELF comparison only.
+
+Source batch 1050 restored current-before-maximum HP and SP reads at duel startup (080bb932–080bb9e9). Static ELF comparison only.
+
+Source batch 1051 restored per-notification locale lookups during arena timeout and missing-opponent handling (080bb55a–080bb632, 080bb6d3). This avoids retaining a pointer to the shared locale buffer across another lookup. Static ELF comparison only.
+
+Source batch 1052 restored per-send locale lookups during arena readiness and literal zero return coordinates outside empire IDs 1–3 (080bb179, 080baf98, 080bbd6a). Static ELF comparison only.
+
+Source batch 1053 restored signed 32-bit arena round-restart placement, scaling Y and X before reading each player map index (080bab95, 080bac07). Static ELF comparison only.
+
+Source batch 1054 restored per-recipient winner name and locale reads and per-send round transition localization in CArena::OnDead, plus current-before-maximum refill reads in the round restart (080bac4b–080bad29). Static ELF comparison only.
+
+Source batch 1055 restored current-before-maximum arena cleanup refill reads and captured the empire before clearing the arena pointer (080bbb98–080bbc4b, 080bbc81–080bbd27). Static ELF comparison only.
+
+Source batch 1056 restored rare percentage, count and VNUM read order for weighted mob drops (081945c8–081945de). Static ELF review confirmed the checked mob group and item group selection paths.
+
+Source batch 1057 restored the motion diagnostic read order (08114c64–08114cbb). Paths without a slash use the whole filename as a deliberate fallback. Mob skill loading and mob group weight parsing matched the checked ELF paths.
+
+Source batch 1058 restored the movement-duration diagnostic field order (0812dcce–0812dd35). Static ELF comparison only.
+
+Source batch 1059 restored movement-speed displacement-before-duration and missing-motion race-before-name reads (0812da3c–0812da99). Static ELF comparison only.
+
+Source batch 1060 restored Y-before-X character position reads in SetRotationToXY (0812d3bf–0812d3e8). Static ELF comparison only.
+
+Source batch 1061 restored the stamina-start notification read order: half-consumption check, current stamina, then pulse rate (081342ad–081342fa). Static ELF comparison only.
+
+Source batch 1062 restored the mounted motion fallback walking-state reread and motion load displacement-before-duration order (0812db33–0812db64, 081142d6–081142e6). Static ELF comparison only.
+
+Source batch 1063 restored StateMove interpolation field reads: start X then destination X, followed by destination Y then start Y (0808028f–080802f7). Static ELF comparison only.
+
+Source batch 1064 restored movement deadline evaluation in EncodeInsertPacket: read duration and start time, add as uint32, then read the clock and subtract (081283b7–081283ce). Static ELF comparison only.
+
+Source batch 1065 restored CalculateMoveDuration coordinate snapshots and reuse (0812dc1b–0812dc40). Static ELF comparison only.
+
+Source batch 1066 restored the player recovery elapsed-period calculation before DistributeSP (0812d086–0812d0ac). The poison delay and NPC recovery checks matched the reviewed ELF paths.
+
+Source batch 1067 restored the movable-position lookup field order for ground gold drops (0814864b–08148670): Y, X, then map index. Static ELF comparison only.
+
+Source batch 1068 restored separate mob table reads for the maximum and minimum gold roll bounds in all three RewardGold branches (08148952, 08148c86, 08148ec6). Static ELF comparison only.
+
+Source batch 1069 restored the 32-bit experience rollover when DistributeExp credits the spawning stone (0815329d). Static ELF comparison only.
+
+Source batch 1070 restored separate centralized party EXP recipient reads for presence, range and payout, with the original coordinate read order (0815607d, 0815614b–081561cf). Static ELF comparison only.
+
+Source batch 1071 restored the original party EXP payout range read order in FPartyDistributor (081575a2–081575b9). The weighted split and highest-damage share rounding matched the checked ELF paths.
+
+Source batch 1072 restored damage entry snapshot and iterator advancement before attacker lookup in DistributeExp (081531c0–081531e2). Static comparison also confirmed XP pool consumption before the zero-total early return.
+
+Source batch 1073 restored party EXP totaler coordinate reads (08156fa2–08156fb4). The inclusive distance cutoff and locale-dependent weight rules matched the ELF.
+
+Source batch 1074 restored the attacker range coordinate read order in DistributeExp (08153720–08153741), preserving the inclusive 5000 cutoff and wrapped differences.
+
+Source batch 1075 restored the WAEGU gold branch position and roll bound read order, and the boss scatter X offset store before the Y draws (0814a05b–0814a0be, 081490b7). Static ELF comparison only.
+
+Source batch 1076 restored the Y-before-X coordinate snapshots for party gold distribution (0817eb2a–0817eb3f). The original recipient still receives the remainder after the group payouts.
+
+Source batch 1077 restored the regular reward itemDrop gate before its position snapshot (08149514–08149569) and separate mob-table reads for the boss gold diagnostic (08148fa0–08148fb9). Static ELF comparison only.
+
+Source batch 1078 restored member Y-before-X reads for party gold counting and payout range checks (081816f0, 0818174c). The signed inclusive 5000 cutoff matched the ELF.
+
+Source batch 1079 restored killer-before-victim name reads for the quest-drop diagnostic (08194c18–08194c48). The checked seasonal rates matched the ELF.
+
+Source batch 1080 restored live common-drop row access and level-drop VNUM-before-count reads (0819377b, 08193c68–08193c78). Static ELF comparison only.
+
+Source batch 1081 restored VNUM-before-count reads when creating thief glove drops (08193e82–08193ea3). Static ELF comparison only.
+
+Source batch 1082 restored VNUM-before-count reads for regular mob drop-group rows (08193a35–08193a48). The Metin stone drop path matched the checked ELF.
+
+Source batch 1083 restored parsing of the sixth common-drop column with atoi (08195c40), while retaining the original four-field stored record. Common and ETC drop parsing and probability scaling matched the reviewed ordinary data paths.
+
+Source batch 1084 restored the original MINMAX call for kill-group rarity (08196fbe–08196fd7). Static review confirmed numbered rows 1–255, the regular drop default count, and monster probability conversion.
+
+Source batch 1085 restored treasure gold and EXP log snapshots after PointChange: X, Y, then player ID before resolving the logger (08180ada–08180aee, 08180bb9–08180bcd). Static ELF comparison only.
+
+Source batch 1086 restored the item reward name read before localization for treasure and gift box notices (0817d180, 0817d1d1). The checked key and chest consumption sequence matched the ELF.
+
+Source batch 1087 restored explicit key-before-chest value reads (0817cbb3–0817cbc8). Gift-box count and consumption matched the checked ELF.
+
+Source batch 1088 restored campfire placement coordinate evaluation in original Y-before-X order (0817c000–0817c039). Static ELF comparison only.
+
+Source batch 1089 restored separate campfire position reads for water and spawning, with map reread after rotation RNG (0817c091–0817c1f3), and blend duration/value snapshots before effect lookup (0817d443–0817d465). Static ELF comparison only.
+
+Source batch 1090 made campfire expiry delay and item consumption explicitly 32-bit (0817c226–0817c258). Retained the reconstruction's VID-based event payload and spawn-success guard.
+
+Source batch 1091 restored the polymorph ball skill reread for nonzero duration, separate from the gate and attack bonus reads (08181364, 08181458, 08181389). Static ELF comparison only.
+
+Source batch 1092 restored the 32-bit polymorph race read from socket zero (0818113d–0818115c). Skill-book consumption matched the checked ELF paths.
+
+Source batch 1093 normalized the mount and polymorph race arguments to the original unsigned 32-bit width before comparison and storage (08135b10, 08136010). Static ELF comparison only.
+
+Source batch 1094 restored horse departure rotation with the original extended angle addition before float rounding, and original coordinate read order (0816de3b–0816dec3). Static ELF comparison only.
+
+Source batch 1095 restored horse Show Z-before-map reads and Lua mount VNUM conversion before the negative-duration fallback (0816db82–0816dbad, 081619d2–08161a9e). Static ELF comparison only.
+
+Source batch 1096 restored the horse health maximum snapshot before reading current health and the death diagnostic consume-before-regen event reads (080c89c9–080c89ee, 080c8a3c–080c8a5a). Horse status grades and decay timing matched the checked ELF paths.
+
+Source batch 1097 restored the horse stamina maximum snapshot before reading current stamina (080c8546–080c856b). Static ELF comparison only.
+
+Source batch 1098 restored post-update stamina snapshots before delay calculation in both horse stamina callbacks (080c868f–080c8693, 080c873e–080c8756). Static ELF comparison only.
+
+Source batch 1099 restored horse revival stat reads from a single level snapshot before either stat is stored (080c83ee–080c8420). The original stamina timer creation paths matched in static review.
+
+Source batch 1100 restored SetHorseLevel stat snapshots and clearing the health decay deadline before storing stamina and health (080c8ac8–080c8af1). Static ELF comparison only.
+
+Source batch 1101 restored the current-before-maximum reads in the Lua horse health and stamina percentage queries (080e3bef, 080e3d4f). Existing null and denominator guards remain. Static ELF comparison only.
+
+Source batch 1102 restored sequential potion recipe ingredient deductions, bottle lookup after ingredients, and reading the recipe chance after the roll (0817a76a–0817a959). Missing bottles return failure and aliased stacks retain lifetime guards.
+
+Source batch 1103 restored the Cube_make random draw before reading the recipe success percentage (080fce34–080fce3c). Static ELF comparison only.
+
+
+Source batch 1104 aligned shared potion ingredient deduction and shortage notice (0817a7e9, 0817a836), continuous potion duration and magnitude (0817a5ac-0817a6b5), Cube diagnostic name and cell (080fcff7, 080fd13e), and 32-bit land owner updates (08108196-081081a5). Static ELF comparison only. Ghidra work remains deferred.
+Source batch 1105 restored 32-bit lookup keys for building object groups (0810796b-0810798f) and guild land ownership (081091dc-081091df). Static ELF comparison only. Ghidra work remains deferred.
+
+Batch 1105 also restored immediate potion effect reads, post-effect bottle type and count-before-limit sequencing (08179d0e-08179ffb), plus Cube distance coordinate reads (080fc494-080fc4ab).
+
+Source batch 1106 restored the 32-bit land object VNUM lookup (081079cb-081079ee) and Cube success and failure log read order (080fce91-080fcedf, 080fcf3a-080fcf7d). Static ELF comparison only.
+Source batch 1107 restored the 32-bit persistent land object ID lookup (08107922-08107930) and the fishing practice notice maximum-before-progress reads (08082dd4-08082ddb). Static ELF comparison only.
+
+Batch 1107 also restored 32-bit wrapping potion-limit decrements (08178f00, 08179e23).
+
+Source batch 1108 restored 32-bit building VID lookups (08107a92-08107aa0, 08109702-08109710) and the fishing start VID-before-rotation snapshot (080830db-080830e7). Static ELF comparison only.
+
+Source batch 1109 restored 32-bit land and building prototype lookups (08109042-08109050, 08108da2-08108db0) and signed nonzero horse percentage division before clamping (080e3c17, 080e3d77). The zero guard remains. Static ELF comparison only.
+
+Batch 1109 also restored the 32-bit ID used when removing a land object (08107ad9-08107aec).
+
+Source batch 1110 restored 32-bit object IDs in the building manager removal path (08109689-081096e8) and post-roll fishing rod refinement log snapshots (08084314-0808433f). Static ELF comparison only.
+
+Source batch 1111 restored the 32-bit guild master and player ID comparison for horse race selection (0816df23-0816df31). Static ELF comparison only.
+
+Batch 1111 also restored 32-bit occupancy-bound arithmetic when showing building objects (08106c20-08106d2c). The fishing timing table matched all 155 ELF values (0823c0e0).
+
+Batch 1111 also restored horse-feed food name lookups after inventory counting and feeding, including the separate Korean suffix lookup (080a8a57-080a8ae2, 080a8bb0).
+
+Source batch 1112 restored 32-bit building occupancy removal bounds (08106890-0810690d) and localized fishing simulation row read order (08083cbe-08083cc3). Static ELF comparison only.
+
+Batch 1112 also restored signed 32-bit building occupancy rotation conversion for showing and removing objects.
+
+Source batch 1113 restored horse stat updates using live deltas without preclamping (080c62b6-080c62f8) and horse state report read order (080c5f64-080c6036). Parsing remains bounded to signed 32-bit inputs and zero maxima display zero percent. Static ELF comparison only.
+
+Batch 1113 also restored 32-bit wall-block VNUM subtraction and comparison (0810a630-0810a676).
+
+Source batch 1114 restored the fishing table tab-error diagnostic line ending (0808274e-08082759). Short successful reloads matched the original zero-fill behavior. Static ELF comparison only.
+
+Batch 1114 also restored 32-bit VNUM arithmetic for wall block creation (0810a3bb-0810a3d3). Wall geometry and block count matched the ELF.
+
+Source batch 1115 restored map-relative land lookup snapshots and signed 32-bit map keys (081090d8-0810911c), plus guild NPC spawn coordinate snapshots (0810707e-081070e4). Static ELF comparison only.
+
+Source batch 1116 restored 32-bit wedding armor VNUM checks (0816d67d-0816d68d) and branch-specific mining refinement log snapshots (080ef89a-080ef8b7, 080efa67-080efa89). Static ELF comparison only.
+
+Batch 1116 also restored 32-bit horse summon race forwarding (0816da97-0816dadd) and land list map filtering (08109886).
+
+Source batch 1117 restored land owner update logging from the same 32-bit snapshot sent to the DB (081081d0-0810821e). Static ELF comparison only.
+
+Batch 1117 also restored wrapping wall center arithmetic (08109cc9, 08109cd5) and ore drop log prototype-before-count reads (080ef415-080ef418).
+
+Source batch 1118 restored 32-bit wrapping offsets for wall placement and test-server corner markers (08109cc0-0810a34f). Static ELF comparison only.
+
+Batch 1118 also restored pc_polymorph character lookup before Lua race and duration conversion (08161826-081618bc).
+
+Source batch 1119 restored 32-bit building VID storage before object registration (08106c13-08106c19, 081078bc). Static ELF comparison only.
+
+Source batch 1120 restored Lua polymorph book character, argument and current item lookup order (08163db8-08163ed1, 08163fbb-08163ff0). Static ELF comparison only.
+
+Batch 1120 also restored deletion log IDs from the 32-bit request key (08108083-081080d8) and polymorph level subtraction before reading the book socket (0816edee-0816edf3).
+
+Source batch 1121 restored the original 32-bit polymorph bonus race key (0816ec3f-0816ec78). The existing nonpositive-chance RNG skip matched the ELF (0816edff-0816ee25). Static ELF comparison only.
+
+Source batch 1122 restored 32-bit blend item VNUM storage and lookup (080e64f0-080e6506). Blend selection and independent effect rolls matched the ELF. Static ELF comparison only.
+
+Batch 1122 also restored the 32-bit map comparison in marriage_in_my_wedding (080fa384-080fa386), retaining the missing-record guard.
+
+Source batch 1123 restored the 32-bit wedding map lookup key (08170252-08170260). Blend record layout matched the 48-byte ELF record. Static comparison only.
+
+Source batch 1124 restored unsigned 32-bit wedding map classification (08170213-0817022a). Static ELF comparison only.
+
+Batch 1124 also restored the wedding end event's map snapshot before the stage check (0816f5d2).
+
+Source batch 1125 restored 32-bit wedding recall map division and the destination map reread after SaveExitLocation, followed by Y and X (080b09a4-080b0a12). Static ELF comparison only.
+
+Batch 1125 also restored 32-bit spouse comparisons for wedding guest gifts (0816fa2e-0816fa39).
+
+Source batch 1126 restored wedding NPC placement and diagnostic coordinate reads (081703f2-081704bd) and Lua join ID conversion before character capture (080f9356-080f93b0). Static ELF comparison only.
+
+Source batch 1127 restored the accessory downgrade test-server diagnostic owner and name reads before localization (08168943-0816896b). Static ELF comparison only.
+
+Source batch 1128 restored accessory socket result log reads after the result notice (0817b2e8-0817b332, 0817b65f-0817b6a9). Static ELF comparison only.
+
+Source batch 1129 restored unique item expiry log name and ID capture order (081684b0-081684dc). Static ELF comparison only.
+
+Source batch 1130 restored 32-bit target ID formatting in accessory socket operations (0817b256, 0817b503) and the distinct logger lookup order on success and failure (0817b2fd, 0817b3b8, 0817b665, 0817b73c). Static ELF comparison only.
+
+Source batch 1131 restored the signed int promotion in the item attribute diagnostic (08187302-08187324) and corrected the PutAttribute const pointer ABI comment. Static ELF comparison only.
+
+Batch 1131 also restored signed 32-bit stone cleaner socket comparisons (0817aa50-0817aa69). Source ID remains captured before stack consumption for lifetime safety.
+
+Source batch 1132 restored CLEAN_SOCKET post-consumption log field order and 32-bit target ID formatting (0817aa9a-0817aafc). The source ID is reread only when SetCount reports the item survived. Static ELF comparison only.
+
+Source batch 1133 restored RemoveItem audit field order and 32-bit count formatting (08192c37-08192c8d). Static ELF comparison only.
+
+Batch 1133 also restored the 32-bit special item group lookup key (08198c92-08198ca0) and signed 32-bit clock division before the attribute cooldown comparison and persistence (0817adbd-0817ade0, 0817aed9).
+
+Source batch 1134 restored the 32-bit reverse refinement VNUM lookup key (08198c42-08198c50). Static ELF comparison only.
+
+Batch 1134 also restored 32-bit item count storage and zero-count lifecycle branching (081668a9-081668b4).
+
+Source batch 1135 restored 32-bit item ID and VID lookup keys (08192ff2-08193000, 08193042-08193050). Item count initialization matched the ELF. Static comparison only.
+
+Batch 1135 also normalized item ID creation and ID/VID setters to keep registration and lookup keys consistent with i386.
+
+Source batch 1136 restored 32-bit prototype VNUMs in CreateItem and RealNumber, and the original DWORD VID counter declaration with explicit 32-bit increment wrapping. Static ELF and DWARF comparison only.
+
+Batch 1136 also bounds prototype search to valid vector indices. Empty tables and misses above the highest VNUM return no match without reading past the table.
+
+Source batch 1137 restored the original RealNumber midpoint sequence, including duplicate VNUM selection (081930e0-08193113), with an index guard before each prototype access.
+
+Batch 1137 also restored signed 32-bit flag storage in SetFlag, consistent with item initialization and prototype assignment (08166393, 08166719-0816671c).
+
+Source batch 1138 restored 32-bit lookup keys for mob prototypes, mob groups and weighted mob group selection (080f6542, 080f6b72, 080f6ac2). Static ELF comparison only.
+
+Batch 1138 also restored 32-bit last-owner PID assignment (08166b57-08166b5d) and the original const-vector GetTable overload (DWARF DIE 0x2b419da).
+
+Source batch 1139 restored 32-bit mob regeneration statistics keys at IncRegenCount entry (080f66c2, 080f6870, 080f6904). Static ELF comparison only.
+
+Batch 1139 also restored original inline GetVIDMap, GetVecProto and GetMemberCount APIs using DWARF declarations and matching reference bodies.
+Roulette uses GetVIDMap again (inline DWARF DIEs 0x72ac6e, 0x72acc3, 0x72ad4a).
+
+Source batch 1140 restored CMobGroup::Create and AddMember and their LoadGroup call sites (080f7268, 080f729d, 080f74c4), using original DWARF and reference bodies.
+
+Batch 1140 also restored CMobGroupGroup construction, AddMember and GetMember at their original loader and selection sites (080f6d0e, 080f6e55, 080f6ae7). The loader retains weight 1 per accepted member.
+
+Source batch 1141 restored the original declaration-only CItem::IsTwohanded API (DWARF _ZN5CItem11IsTwohandedEv and reference item.h). The original ELF and reference contain no function body or call site.
+
+Batch 1141 also restored the declaration-only CMobManager::Destroy API (DWARF DIE 0x1832644 and reference mob_manager.h). No definition was found.
+
+Batch 1141 also restored the protected CItem::EquipEx declaration and public CMobManager::RebindMobProto access, based on original DWARF and the reference headers.
+
+Source batch 1142 restored the original public CItem::SetValue(DWORD, long) declaration (DWARF _ZN5CItem8SetValueEml). No original definition was found.
+
+Source batch 1143 restored CMobItemGroup::GetOne and CSpecialItemGroup::Contains from DWARF and reference headers. GetOne bounds-checks the result; CreateDropItem retains its nullable selection path and single roll.
+
+Source batch 1144 restored the mining::GetFractionCount header declaration. The existing implementation and OreDrop calls match the exported original symbol at 080ef260.
+
+Source batch 1145 restored 32-bit mining vein and raw ore lookup keys (080ef200, 080ef230). DWARF confirmed the checked fishing and mining implementation helpers belong in their translation units.
+
+Source batch 1146 restored the original 32-bit fish ID and elapsed-time inputs in fishing::Compute (080831dd-080831f4). Static ELF comparison only.
+
+Source batch 1147 restored signed 32-bit blend apply, duration and magnitude reads (0817d443-0817d44b) while retaining the apply-index guard.
+
+Batch 1147 also restored the 32-bit rod practice comparison in RefinableRod (08084271).
+
+Source batch 1148 restored fishing level capture before reading the selected fish ID on the bite path (0808362c-08083649). Fish length draws and arithmetic matched the ELF.
+
+Batch 1148 also restored the 32-bit bait socket check before fishing starts (08130218-0813021b).
+
+Source batch 1149 restored the original 32-bit bait replacement check and item name capture before localization (08179696-081796c5). Static ELF comparison only.
+
+Source batch 1150 restored hair item VNUM capture before job lookup (08180ff3-08180ffb). All 13 ore lookup rows matched the ELF.
+
+Source batch 1151 restored the 32-bit skill prototype lookup key (080e59a2-080e59b0). Static ELF comparison only.
+
+Batch 1151 also restored live wear-flag reads after equipment eligibility checks in FindEquipCell (08166f08-08166fa7).
+
+Source batch 1152 restored EquipTo immunity scanning via the current owner and the original occupied-slot reread (08167959-0816795f, 081679c7-081679d5). Static ELF comparison only.
+
+Source batch 1153 restored Unequip diagnostic field reads and original 32-bit item ID formatting (08167a92-08167ad2). Its immunity scan matched the ELF.
+
+Batch 1153 also restored 32-bit immunity masks at SetImmuneFlag and IsImmune (08064165-0806416b), preserving the original DWORD declarations.
+
+Source batch 1154 restored the declaration-only TSkillUseInfo::ResetHitCount API. Original DWARF records the declaration with no emitted body or inline use.
+
+Batch 1154 restored the occupied-slot reread in EquipItem (0817f78e-0817f7a6). Existing swap eligibility guards remain.
+
+Source batch 1155 restored non-const CHARACTER GetPosition and GetRotation signatures from original DWARF (0x1eaaf0c, 0x1eab703). Existing game call sites use mutable characters. Static comparison only.
+
+Source batch 1156 restored the occupied-slot diagnostic reread and name/VNUM capture order in EquipTo (081679e7-08167a13). Swap failure recovery is retained as an explicit compatibility difference.
+
+Source batch 1157 restored original non-const stat, mount and polymorph getters from CHARACTER DWARF, and the single prototype snapshot in the EquipTo invalid-slot diagnostic (08167890-081678af). Static source and ELF comparison only.
+
+Source batch 1158 restored FindEquipCell limit value capture before the limit type and character stat lookup (08166ec6-08166ed8). Static ELF comparison only.
+
+Batch 1158 also restored non-const GetParty, GetGuild, GetSkillGroup and GetEmpire signatures from original CHARACTER DWARF.
+
+Source batch 1159 restored the 32-bit motion set lookup key (08113382-08113390). Static ELF comparison only.
+
+Batch 1159 also restored original public motion iterator aliases (DWARF 0x1be4edc, 0x1be4ee7, 0x1c05b2d).
+
+Source batch 1160 restored the original non-const GetLastShoutPulse and GetQuestNPCID signatures (DWARF 0x1eaad4d and 0x1eade83). Current callers use mutable characters.
+
+Source batch 1161 restored signed 32-bit coordinate comparisons and destination writes in CHARACTER::Goto (0812d828-0812d93c). Static ELF comparison only.
+
+Batch 1161 restored marriage::TMarriage::IsOnline and its seven source call sites from original DWARF (0xd7f366) and the reference body.
+
+Source batch 1162 restored 32-bit affect type semantics across insertion, lookup and removal (0813d3af, 0813d3da, 0813e397-0813e49b), and signed 32-bit coordinates in Move (0812dd4f-0812dd88). Static ELF comparison only.
+
+Source batch 1163 restored TAffectFlag::IsSet, Set and Reset at their original inline sites (0813eb6a, 0813e974, 0813e8e1), with bounds checks for the two 32-bit words. AddAffect normalizes value, duration, flags and SP cost before applying the original predicates and stores (0813e4aa-0813e4b9).
+
+Source batch 1164 restored the TAffectFlag zero and two-word constructors using original DWARF and reference bodies. The original DWORD member declarations are retained, with constructor inputs normalized to 32 bits.
+
+Batch 1164 also restored the constructor call in CHARACTER::Initialize (08126f0a-08126f20) and typed AddAffect diagnostic arguments to match their format and original widths.
+
+Source batch 1165 restored TAffectFlag copy assignment at the original initialization site (08126f18-08126f20), copying the two low 32-bit words.
+
+Batch 1165 also restored the signed 32-bit clock comparison for hair affect expiration (0813dac4-0813dad3).
+
+Source batch 1166 restored TAffectFlag equality and inequality at the four original inline sites (0813d950, 0813dbeb, 0813e238, 0813e7df).
+
+Batch 1166 also restored the three original affect enums from DWARF (0x20f8e92, 0x20f9021, 0x20f912a).
+
+Source batch 1167 reconnected recovered affect enum names to their original type and flag checks in char_affect.cpp. Numeric values, premium ranges and operation order are unchanged.
+
+Source batch 1168 restored the signed 32-bit SP cost snapshot for the affordability check and the separate debit reread in ProcessAffect (0813db95-0813dba5, 0813dd1c-0813dd34).
+
+Source batch 1169 restored the shared SendAffectAddPacket declaration in affect.h and its use from char_battle.cpp (0813d350, 0814b6cd).
+
+Source batch 1170 restored FindAffect iterator advancement before matching type and apply point (0813d3d8-0813d3f8). Static ELF comparison only.
+
+Batch 1170 restored the shared SendLog declaration in cmd.h and replaced four local declarations (ELF 080c05f0; fishing loader calls at 08082765 and adjacent sites).
+
+Source batch 1171 restored ClearAffect descriptor and removal field capture order (0813d8ea, 0813d9df-0813d9fa). Static ELF comparison only.
+
+Source batch 1172 restored separate SaveAffect type reads for filtering, logging and serialization (0813ddca, 0813de17, 0813de42), and the original load_affect_login_event_info record name (DWARF 0x21182df). Static comparison only.
+
+Batch 1172 restored the original FindLandByGuild iterator advancement and CLand::GetData lookup (081091c6, 081091d7, 081091df).
+
+Source batch 1173 restored the original ClearLand GetData call after resetting ownership and its use for the land NPC map and coordinates (081099dc-08109a66). The existing missing-region guard remains. Static ELF comparison only.
+
+Batch 1173 also restored the mirror item cooldown's flag-before-clock order and signed 32-bit elapsed time, with an independent clock read for the success timestamp (0817a368-0817a3c6).
+
+Source batch 1174 restored the original refine recipe diagnostic field reads in cost, probability and recipe ID order (0806a300-0806a32c). Static ELF comparison only.
+
+Batch 1174 also restored the refine cooldown flag reread after the clock and signed 32-bit strict comparison in DoRefine and DoRefineWithScroll (08171acb, 08173502). FindLand now advances its iterator before inspecting the saved land entry (08109106-08109117).
+
+Source batch 1175 restored horse skill book signed 32-bit cooldown and wait message resampling (08176f8c-08176fa9, 0817728e-081772a3), the original short-circuit skill cap reads (08176fbe-08177078), and the original mining probability MINMAX calls (080ef53a, 080ef565). Static ELF comparison only.
+
+Source batch 1176 restored SendLandList iterator advancement before reading the saved land entry and independent size reads for logging, header and payload (081097c3-0810987c). Static ELF comparison only.
+
+Batch 1176 also restored both stone detectors' 32-bit attempt increment and socket rereads for distance, retry limit and heading (0817583c-081758dd, 08176220-081762ad).
+
+Source batch 1177 restored the original marriage_engage_to name, player ID and manager read order before RequestAdd (080f8d3a-080f8d57). Static ELF comparison only.
+
+Batch 1177 also restored the original 32-bit arena observer keys (080bd522) and the full-refill items' stat read order and 32-bit subtraction (081768a4, 0817685a, 0817680b).
+
+Source batch 1178 restored the 32-bit arena EndDuel PID comparison (080bd36a-080bd38a) and alignment item locale and stat read order with wrapped negation (081780ab-081780f7). Static ELF comparison only.
+
+Source batch 1179 restored 32-bit player ID comparisons in CArenaMap::IsMember (080bcf8c, 080bcfcb-080bcfd2), preserving observer lookup priority. Static ELF comparison only.
+
+Batch 1179 also restored the hair dye cooldown threshold's 32-bit arithmetic and live item ID check (08178283-081782c4). The consumed item is not accessed after its count changes.
+
+Source batch 1180 restored 32-bit arena duelist storage and PID handling in CanAttack, OnDisconnect and both OnDead paths (080bb820, 080bc300, 080bc3c0, 080bc440, 080bd040). Static ELF comparison only.
+
+Source batch 1181 restored quest affect apply ID 80 as the maximum (08069331, 08069721, 080699c1) and rare attribute add audit ordering after the success notice (0817855b-081785e9), retaining the pre-consumption source ID for lifetime safety. Static ELF comparison only.
+
+Source batch 1182 restored 32-bit arena map IDs in registry keys, stored map records and the same-map combat check (080ba3bc, 080ba484, 080bc1f0, 080bcee9, 080bcf32). Static ELF comparison only.
+
+Batch 1182 also restored quest item drops applying the X offset before rolling Y (080b2ed3-080b2f07) and the Moonlight box audit field read order (08175e5b-08175e70).
+
+Source batch 1183 restored UseItemEx live prototype reads after the locale check and test-server diagnostic (081746dd-0817477e). Static ELF comparison only.
+
+Source batch 1184 restored separate guild power comparisons for the two reserve-war Lua fields (080d191f, 080d195e) and original arena list coordinate reads (080ba816-080ba858). Static ELF comparison only.
+
+Source batch 1185 restored the original building quest land record accessor (0808549a) and seed/moon bottle cooldown pulse and rate sampling with 32-bit arithmetic (0817d4f0-0817d509, 0817d556-0817d578). Static ELF comparison only.
+
+Source batch 1186 restored reserved guild war diagnostic reads in handicap, destination guild, source guild and reservation ID order (080d18bd-080d18d7). Static ELF comparison only.
+
+Batch 1186 also restored the target name and PID reads before target manager resolution for the position and VID quest bindings (08189b9b-08189ba8, 08189e21-08189e2e).
+
+Source batch 1187 restored the ready-event presence snapshot before duelist ID reset in CArena::Clear (080ba32c-080ba33e). Static ELF comparison only.
+
+Batch 1187 also restored target delete, clear and ID lookup argument reads before target manager resolution (08189fed-0818a012, 0818a0f0-0818a110, 0818a261-0818a286).
+
+Source batch 1188 restored 32-bit target manager player keys and quest event identifiers, including lookup and deletion comparisons (08105800, 08105ce0, 08105de0, 08105eb6). Static ELF comparison only.
+
+Source batch 1189 restored nonstandard skill book zero-value routing through LearnSkillByBook (0817c7e1-0817c7ff), retaining the zero-socket handling for standard and forget books. Static ELF comparison only.
+
+Batch 1189 also restored 32-bit storage for the building object VID (08106c19), keeping the public getter and setter signatures.
+
+Source batch 1190 restored the owner-first 32-bit map comparison for VID quest targets (08105787-0810578d). Static ELF comparison only.
+
+Batch 1190 also restored mining skill book requirement sampling (08177985-08177acc) and matched building VID diagnostic arguments to their unsigned-long format after narrowing storage.
+
+Source batch 1191 restored the character-coordinate read before the map base in pc_get_local_x and pc_get_local_y (0815e8d8-0815e8db, 0815e9b8-0815e9bb). Static ELF comparison only.
+
+Batch 1191 also restored the original low 32-bit building rotation conversion, including zero for invalid signed 64-bit conversions (08106b5b, 08106b6d).
+
+Source batch 1192 restored separate combo book skill reads, language book chance sampling before eligibility, and the map scroll Lua name read before manager lookup (0817778e, 081777b6, 081777d1, 081775ef-08177619, 08161dee). Static ELF comparison only.
+
+Batch 1192 also restored chance sampling before the skill cap for value, fixed and test skill books (08176c09, 08177ca1, 08177e36).
+
+Source batch 1193 restored localization before the reward count read for quest special-item group gold and experience notices (0815dc29-0815dc4c). Static ELF comparison only.
+
+Batch 1193 also restored Lua slot-before-value conversion in pc_set_part (081614e7-08161544) and iterator advancement before object unregistration in CLand::Destroy (08107648-08107666).
+
+Source batch 1194 restored 32-bit shop price-list command values (081740ec-08174115) and explicit X-before-Y land master coordinate reads in CLand::PutData (0810778b-08107799). Static ELF comparison only.
+
+Source batch 1195 restored the distinct land bounds comparison orders for PutData (0810779b-081077bb) and FindLand (08109140-08109160), retaining inclusive boundaries and wrapped coordinate arithmetic. Static ELF comparison only.
+
+Batch 1195 also restored 32-bit unique equipment comparisons (08180912, 0818093b, 0818099f, 081809c5) and quest percentage XP label sampling around reward logging (081610e6-08161249).
+
+Source batch 1196 restored Lua amount-before-label sampling and fresh amount and label reads around reward logging in pc_give_exp (08160e37-08160f8f). Static ELF comparison only.
+
+Batch 1196 also restored signed 32-bit event time sampling before division in StopUniqueExpireEvent (081686d1-081686dc).
+
+Source batch 1197 restored signed 32-bit unique expiry socket reads in scheduling and both expiry modes (0816847d, 08168545, 081685ce). Static ELF comparison only.
+
+Batch 1197 also restored the quest XP amount reread in pc_give_exp2 (08160c45-08160c4d) and the original land pointer reuse in building reconstruction (08106a05-08106a5b).
+
+Source batch 1198 restored the ground item expiry diagnostic name read order (08166491-081664d2). Static ELF comparison only.
+
+Batch 1198 also restored FindObject and its null-result check in CLand::DeleteObject (08107aec), plus character-before-item label reads in quest reward diagnostics (0815df0f, 0815e399).
+
+Source batch 1199 restored 32-bit VID diagnostics in RequestDeleteObjectByVID (08108141, 0810816d) and flag-before-price order in CItem::GetGold (08167ed6-08167f03). Static ELF comparison only.
+
+Batch 1199 also restored quest reward diagnostic reads in level, player ID, quest name and table postfix order (08160ee8-08160f12).
+
+Source batch 1200 restored the original gold-bar quest reward audit read order (0815e494-0815e4c4). Static ELF comparison only.
+
+Batch 1200 also restored the original 12-byte SetSockets copy hook before Save (08167d92), using a packed-width temporary when host long is wider.
+
+Source batch 1201 restored 32-bit CreateSocket occupancy (08167cc2), numeric Lua inventory argument order (0815dcd0, 0815ea91), and unsigned 32-bit land dimension diagnostics (08108e70-08108ea2). Static ELF comparison only.
+
+Source batch 1202 restored 32-bit socket occupancy reads in GetSocketCount and its AddSocket caller (08168118, 0816813f). Static ELF comparison only.
+
+Batch 1202 also restored accessory expiry 32-bit socket gates (08168ab8-08168abf) and quest item removal count and diagnostic read ordering (0815ed04-0815ed49, 0815effb-0815f009).
+
+Source batch 1203 restored the original count-before-VNUM material diagnostic reads in LoadObjectProto (08108c39-08108c41). Static ELF comparison only.
+
+Batch 1203 also restored the alignment Lua amount read before character resolution (0815fc98-0815fcb4) and separate X/Y trigonometric evaluation in building NPC placement (08106ff3-08107055).
+
+Source batch 1204 restored the original armor removal appearance read before resolving the SetPart owner (081675fd, 081675dc, 08167541). Static ELF comparison only.
+
+Batch 1204 also restored the zero-amount short circuit in pc_change_sp (0815f82c-0815f85b) and 32-bit VNUM lookup in FindSpecifyItem (0817f87b, 0817f8cc).
+
+Source batch 1205 restored the original 32-bit VNUM comparison and count accumulator in CountSpecifyItem (0817f94d, 0817f963). Static ELF comparison only.
+
+Batch 1205 also restored the Lua gold amount read before current character resolution (0815fd28-0815fd3c) and shared Y/X position snapshots for building occupancy removal (08106887-081068d1).
+
+Source batch 1206 restored item Y, item X, character Y, character X read order in DistanceValid (08166d73-08166d90). Static ELF comparison only.
+
+Batch 1206 restored signed 32-bit building placement inputs (08106c80-08106ca4) and original Lua key reads in quest flag writes and deletion (08160711, 081608a1, 08160a8c).
+
+Source batch 1207 restored Y-before-X coordinate reads for ground item sectree lookup and failure logging (08166c89-08166c90, 08166ce6-08166cf2). Static ELF comparison only.
+
+Batch 1207 also restored cross-quest flag argument order (081601a9-081601cc, 0815ff85-0815ff9d) and item-use packet field order and VNUM reread (08166772-08166799).
+
+Source batch 1208 restored Lua key reads before quest PC lookup (081603ac, 081604f1) and Y-before-X landmaster placement during FinalizeBoot (0810956d-081095a1). Static ELF comparison only.
+
+Source batch 1209 restored recipient-before-item name reads in both ground item encoder diagnostics (0816663b-08166640, 081666be-081666c3). Static ELF comparison only.
+
+Batch 1209 also restored the wall deletion ID snapshot and independent test-server rule (0810a2e5-0810a30b, 0810a348).
+
+Source batch 1210 restored the single attribute weight read per roll step (08187510-08187518) and player ID reads before marriage manager lookup (08162e65, 08162f25, 08162fe5). Static ELF comparison only.
+
+Batch 1210 also restored one-read attribute candidate weights and level cap (081872c9, 08187428), and Y-before-X wall placement reads (08109bf5-08109bfe).
+
+Source batch 1211 restored separate lottery reward player ID reads and table postfix resolution before the DB manager lookup (0816297f-081629c9). Static ELF comparison only.
+
+Batch 1211 restored a single rare attribute cap read (08187c80-08187c89).
+
+Source batch 1212 restored the quest point reset character reread after level capture (0815f2a3-0815f2bb). Static ELF comparison only.
+
+Batch 1212 also restored the item update attribute copy hook (08166834) and Lua argument reads before quest timer context lookup (08056411, 08057052).
+
+Source batch 1213 restored iterator advancement before land deletion in building manager cleanup (0810ab20-0810ab7e). Static ELF comparison only.
+
+Batch 1213 also restored the original item save socket and attribute copy hooks (08192a28-08192a64) and 32-bit building creation inputs (08107c5b, 08107fbb).
+
+Source batch 1214 restored named quest timer argument and context order (08056c43-08056cf3, 08056e53-08056f00). Cancel a newly created event if the quest PC is unavailable. Static ELF comparison only.
+
+Batch 1214 restored the socket and attribute copy hooks for both populated inventory item packet formats (08171165, 0817117c, 081711f9, 08171215).
+
+Source batch 1215 restored the quest manager lookup before Lua timer arguments in server timer cancellation (08056a89-08056b02). Static ELF comparison only.
+
+Batch 1215 restored live same-quest state reads (08057d29-08057dab), the guild snapshot for building reconstruction (080857ff), and the refine materials copy hook (0817376a).
+
+Source batch 1216 restored Lua keys before item and mob metadata lookups (08053fc3, 08054093, 08054160) and the safebox socket copy hook (08096f89). Static ELF comparison only.
+
+Source batch 1217 restored shop socket copy hooks before attribute copies in AddGuest and BroadcastUpdateItem (080d47b7, 080d4ad6). Static ELF comparison only.
+
+Batch 1217 restored Lua player name and VID reads before character manager lookup (0805521c, 08055580).
+
+Source batch 1218 restored the exchange socket copy hook (080643ad) and guild name conversion before quest guild lookup (08054fc0-08054feb). Static ELF comparison only.
+
+Source batch 1219 restored the Lua VNUM read before character manager lookup for quest NPC search (080556a8-080556dc). Static ELF comparison only.
+
+Source batch 1220 restored the packed socket copy source in ItemLoad (080eae91-080eaea5) and Lua filter reads before the conditional player search resolves its character (0805535f-080553e1). Static ELF comparison only.
+
+Source batch 1221 restored map regeneration base Y-before-X reads (08059c0d-08059c25). Static ELF comparison only.
+
+Source batch 1222 restored single item type reads for magic attribute thresholds (08168215, 0816831b) and the X/Y/PID read order in fishing rod refinement result logging (08084426-0808442c). Static ELF comparison only.
+
+Source batch 1223 restored single addon and socket configuration reads in CreateItem (08192486, 081924df), unsigned 32-bit Lua start values and literal zero for invalid empire coordinates (0805a340, 0805a3b0, 0805a430). Static ELF comparison only.
+
+Source batch 1224 restored the signed 32-bit Lua clock result (08053e46-08053e58). Static ELF comparison only.
+
+Batch 1224 restored signed 32-bit Lua playtime conversion (0815f367) and owner-before-name reads in the duplicate item diagnostic (081927b5-081927d2).
+
+Source batch 1225 restored signed 32-bit Lua global coordinates before division and signed 32-bit current map indices (0815e752, 0815e7bc-0815e7c6, 0815e83c-0815e846). Static ELF comparison only.
+
+Batch 1225 restored prototype row and VNUM rereads after quest registration in ITEM_MANAGER::Initialize (08191e21-08191e70).
+
+Source batch 1226 restored the current character snapshot before Lua argument validation in pc_get_part (081613c8-081613d7). Missing character and invalid argument return zero. Static ELF comparison only.
+
+Source batch 1227 restored the signed 32-bit map result and per-result empire reads in pc_get_start_location (0815cd01-0815cd46). Static ELF comparison only.
+
+Source batch 1228 restored target VNUM capture before accessory subtype selection (08168d16) and signed 32-bit war map Lua output (08161f59). Static ELF comparison only.
+
+Source batch 1229 restored the current quest PC read between key and value in flag setters, after the key in deletion (08160711-0816073b, 081608a1-081608cb, 08160a8c-08160aac), and the single item name read in CreateSocket diagnostics (08167cca-08167cfc). Static ELF comparison only.
+
+Source batch 1230 restored original character snapshots in the Lua part and skill-group setters (081614a4, 08161699-081616b0), retaining argument checks and avoiding a missing-character dereference. Static ELF comparison only.
+
+Source batch 1231 restored completion of signed alignment conversion before current character lookup (0815fcbc-0815fcc9). Static ELF comparison only.
+
+Source batch 1232 restored the quest PC snapshot before percentage XP logging (081611c2-08161275) and NPC shop flag-before-price reads (080d3675-080d3695). Static ELF comparison only.
+
+Source batch 1233 restored the quest player snapshot before fixed XP reward logging (08160edf-08160f8f). Static ELF comparison only.
+
+Source batch 1234 restored early character snapshots in quest item rewards and reused the captured quest PC for item delivery and logging (0815ddcc-0815dfb9, 0815e279). Static ELF comparison only.
+
+Source batch 1235 restored the character snapshot before Lua slot conversion in pc_get_equip_refine_level (08162249-08162258), with a zero result for missing character context. Static ELF comparison only.
+
+Source batch 1236 restored early character snapshots for quest position scroll and equipment refinement bindings (08161fc9, 08162379), with missing-context guards. Static ELF comparison only.
+
+Source batch 1237 restored the character snapshot before Lua validation in pc_enough_inventory (0815dca9-0815dd17), with a false result for missing character context. Static ELF comparison only.
+
+Source batch 1238 restored the original 32-bit mount VNUM backing field (0813601f-08136027), preserving the public signatures. Static ELF comparison only.
+
+Batch 1238 also restored character capture before Lua empire conversion (081642e8-08164322).
+
+Source batch 1239 restored 32-bit polymorph race storage (08135b34-08135b44) and early character capture in the premium-time Lua binding (081640bf-081641de). Static ELF comparison only.
+
+Source batch 1240 restored live shop slot reads after socket and attribute copies (080d4adc-080d4b02), with bounds and missing-item guards. Static ELF comparison only.
+
+Batch 1240 also restored character capture before grand-master skill argument validation (0815c63c-0815c6ed).
+
+Source batch 1241 restored the original party quest flag name construction order (08146485-081464ef). Static ELF comparison only.
+
+Source batch 1242 restored the Lua cinematic payload read after party update and before script construction (081457f0-08145801). Static ELF comparison only.
+
+Source batch 1243 restored signed 32-bit Lua item value conversion (080f0b95-080f0b9b). Static ELF comparison only.
+
+Batch 1243 restored the owner and diagnostic field snapshots in SaveSingleItem (0819298c-081929a6).
+
+Source batch 1244 restored Lua mask conversion before the item flag read (080f09d2-080f09ef). Static ELF comparison only.
+
+Source batch 1245 restored Y-before-X coordinate reads for the initial horse wander target (08081a6a, 08081a7e). Static ELF comparison only.
+
+Batch 1245 also restored Lua guild ID reads before manager resolution in guild_name, guild_get_name and guild_level (080d103c, 080d1383, 080d10fb).
+
+Source batch 1246 restored the skip-save flag read before the item name in the destruction diagnostic (08192e90-08192ec4). Static ELF comparison only.
+
+Batch 1246 also restored descriptor and login capture before the Lua reservation ID in guild_is_bet (080d16f5-080d1719).
+
+Source batch 1247 restored the original floating-point invalid flag on out-of-range OX quest numeric conversions (0813c9d0, 0813ccce). Static ELF comparison only.
+
+Source batch 1248 restored map-before-player-ID reads and the second manager lookup in arena_start_duel (08078d9a-08078de3). Static ELF comparison only. Ghidra-dependent work is deferred until Ghidra is available.
+
+Source batch 1249 restored arena_is_in_arena lookup order (08079393-080793b0) and the arena_start_duel manager reload before StartDuel (08078e21). Static ELF comparison only.
+
+Source batch 1250 restored the arena conversion invalid flag (08078d72, 08079344) and signed 32-bit Santa gift counters (08120ac0, 08120c30). Static ELF comparison only.
+
+Source batch 1251 restored NPC proximity coordinate read order (08120f64-08120f76, 081210be-081210c9) and the horse quest signed 32-bit conversion before clamping (080e39f3-080e39fa). Static ELF comparison only.
+
+Source batch 1252 restored marriage quest identifier conversion (080f8d04, 080f9374, 080f9397) and the player snapshot before NPC lookup in kill and purge (08120de5, 08120e75). Static ELF comparison only.
+
+Source batch 1253 restored upper-before-lower reads in GetFishLength (08083356-08083362) and GetFractionCount (080ef2cb-080ef2d9), plus the Grill prototype snapshot (08084163-0808419d). Static ELF comparison only.
+
+Batch 1253 also restored the player and partner ID reads before manager access in marriage_remove (080f8e5b-080f8e89).
+
+Source batch 1254 restored the missing marriage diagnostic read order (080f8ecd-080f8eda, 080f9006-080f9013 and equivalent wedding paths) and the clock read before the marriage timestamp (080fa460-080fa465). Static ELF comparison only.
+
+Batch 1254 also restored the fishing timing RNG draw before the time-type read (0808324e-08083260), retaining the bounds check before table access.
+
+Source batch 1255 restored the floating-point invalid flag on invalid rare fish length conversion (080834c4). Static ELF comparison only.
+
+Batch 1255 also restored partner ID resolution before character manager access in marriage_find_married_vid (080f911e-080f914c).
+
+Source batch 1256 restored the invalid floating-point flag on target quest numeric conversions (08189ad9, 08189b1d, 08189b91, 08189c65, 08189e17, 08189eea). Static ELF comparison only.
+
+Batch 1256 also restored post-lookup Lua conversions for wedding dark, client command, music and snow (080f9932, 080f9b62, 080f9fbd, 080fa202), retaining null-map checks.
+
+Source batch 1257 restored the mining weight read (080ef2a0-080ef2ab) and fishing practice socket reads before prototype limits (08082d60-08082d6f, 08082e16-08082e25). Static ELF comparison only.
+
+Batch 1257 also restored the Lua reads before the matching map origin coordinate reads in target_pos (08189abc-08189ac4, 08189af7-08189aff).
+
+Source batch 1258 restored the floating-point invalid flag for invalid NPC proximity VID conversions (0812106e). Static ELF comparison only.
+
+Batch 1258 also restored the event step check before final rod practice in fishing::Take (08083579-08083596).
+
+Source batch 1259 restored the fishing step guard for unexpected Compute results (08083651, 08083662) and the invalid floating-point flag in item quest numeric conversion (080f0704, 080f033a, 080f046f). Static ELF comparison only.
+
+Source batch 1260 restored the Lua ID read before item manager access (080f0453-080f0467) and the item VNUM read before the base VNUM in UseFish (08083f37-08083f46). Static ELF comparison only.
+
+Batch 1260 also restored affect type resolution before character lookup in affect_remove (080694de, 08069509-0806950e).
+
+Source batch 1261 restored the invalid floating-point flag in affect quest slot and signed numeric conversion (080692d6, 0806931e, 080693b2, 080693e4, 080694d1). Static ELF comparison only.
+
+Batch 1261 also restored the character snapshot before affect diagnostics (080692dc, 080696d1, 08069971, 08069bac), the selected item reread before socket retrieval (080f0715), and the 32-bit fishing step increment (08082f87-08082f90).
+
+Source batch 1262 restored the mining event character manager lookup between player and vein resolution (080efde6-080efe05). Static ELF comparison only.
+
+Batch 1262 also restored the inclusive apply ID 81 limit in the quest affect bindings (08069331, 08069721, 080699c1).
+
+Source batch 1263 restored the map index write on replacement quest targets (0810599b, 08105a8d) and the invalid flag for three-way war Lua numeric conversions (080a5c12, 080a5db5, 080a5e3f, 080a5e9f). Static ELF comparison only.
+
+Batch 1263 also restored the fishing table backup and rollback copy hook (08082217, 08082791, 080827db) with the staged parser retained.
+
+Source batch 1264 restored 32-bit target map comparisons (0810551e, 08105875) and the fishing tab diagnostic newline (08082759). Corrected batch 1263: 0810599b writes arg2 at +0x5c; only creation writes map at +0x60 (08105a8d). Static ELF comparison only.
+
+Source batch 1265 restored the three-way war diagnostic map and path rereads (080a5b44, 080a5c54, 080a5c9a). Static ELF comparison only.
+
+Batch 1265 also restored the 32-bit quest target ID increment on creation and replacement (08105974-0810597f, 08105a3b-08105a49).
+
+Source batch 1266 restored the fishing simulation species diagnostic read order (08083cb0-08083cc3). Static ELF comparison only.
+
+Batch 1266 also restored the replacement name and ID reads before the character fields in the final rod refinement audit (0808440f-0808442c).
+
+Source batch 1267 restored quest target delete packet field reads (081059c1-081059ce, 08105db8-08105dbd) and separate owner ID reads before die callback and deletion (08105656, 08105696). Static ELF comparison only.
+
+Batch 1267 also restored the current PC snapshot before the Lua thread comparison in quest_setstate (081696e3-081696e9).
+
+Source batch 1268 restored the owner ID read before the quest index in the target arrival callback (08105581-081055b9). Static ELF comparison only.
+
+Batch 1268 also restored Lua rounding before the current PC lookup for the quest clock and counter setters (08169354-08169359, 081694f4-081694f9).
+
+Source batch 1269 restored Lua string construction before the current PC lookup for quest title, clock name, counter name and icon setters (0816905b, 0816928b, 0816942b, 081695cb). Static ELF comparison only.
+
+Source batch 1270 restored clock and counter conversion after the current PC lookup (08169359-08169374, 081694f9-08169514) and the invalid flag in quest and game numeric conversions (080b2977, 080b2c4d, 080b2caa). Static ELF comparison only.
+
+Source batch 1271 restored the quest manager capture before Lua validation in game event flag bindings (080b28f9-080b291c, 080b2a19-080b2a3c). Static ELF comparison only.
+
+Source batch 1272 restored immediate Lua argument conversion before position capture for game_drop_item (080b2e18-080b2e61), and the invalid flag for party flag conversions (08146293, 08146564). Static ELF comparison only.
+
+Batch 1272 also restored unsigned 32-bit Lua conversion of the nearby party member count (08145a76-08145a80).
+
+Source batch 1273 restored cinematic party rereads (081459df, 0814588d), the reroll addon snapshot (08187572), and signed 32-bit quest drop map index (080b2f0a-080b2f1b). Static ELF comparison only.
+
+Source batch 1274 restored the 32-bit party leader comparison and leader-first ID read (08145eb8-08145ebd). Static ELF comparison only.
+
+Source batch 1275 restored the invalid floating-point flag for building quest conversions. ELF signed 32-bit stores: 080851e9, 0808520d, 08085232. Signed 64-bit stores: 08085302, 08085478, 080854cc, 080855a6, 080857e3. Static ELF comparison only.
+
+Source batch 1276 made original Lua land ID, price and owner result widths explicit (0808525e-08085264, 08085327-08085359). Static ELF comparison only.
+
+Source batch 1277 restored the Y-before-X candidate position reads for party loot ownership (081438a7-081438be) and the guild ID read before the building manager in building_reconstruct (08085809-0808581b). Static ELF comparison only.
+
+Source batch 1278 restored the polymorph utility reload before book practice update (08181218, 08181237-0818124e). Static ELF comparison only.
+
+Batch 1278 also restored altar NPC guild master ID and level read order (08107141-08107154, 08107165-0810717c).
+
+Source batch 1279 restored long-time-before-base reads in GetExpBonusPercent (08144633-08144639). Static ELF comparison only.
+
+Batch 1279 also restored the post-lookup altar VNUM check (08106e39-08106e8b) and 32-bit PID lookup in SetExpCentralizeCharacter (08144860).
+
+Source batch 1280 restored 32-bit PID keys in party role reads and updates and the leader proximity query (08143330, 0814337c, 08144660). Static ELF comparison only.
+
+Batch 1280 also restored the sector manager reload and occupancy region argument preparation in CObject::Show (08106cbb-08106d2c).
+
+Source batch 1281 restored the party member and leader coordinate read order in IsPositionNearLeader (081445f0-08144607). Static ELF comparison only.
+
+Batch 1281 also restored occupancy region field read order in CObject::Destroy (0810687c-081068e6).
+
+Source batch 1282 restored the NPC snapshot before character manager access in CObject::Destroy (0810692d-08106945). Static ELF comparison only.
+
+Batch 1282 also restored building boot position reads (0810963b-08109653) and the 32-bit IsRole lookup (0814337c-08143387). The address 0814337c in batch 1280 identifies IsRole; SetRole starts at 08143200.
+
+Source batch 1283 restored 32-bit PID lookup keys for P2PSetMemberLevel (08142532-08142543) and SendPartyInfoOneToAll (08142b23-08142b40). Static ELF comparison only.
+
+Batch 1283 also restored recall item diagnostic and warp coordinate reads (08173f45-08173f57, 08173f8d-08173f90).
+
+Source batch 1284 restored the recall map lookup coordinate width and read order (08173ec2-08173ee3). The existing singleton accessor assertion remains. Static ELF comparison only.
+
+Batch 1284 also restored the 32-bit player ID key in SummonToLeader (0814350e).
+
+Source batch 1285 restored building coordinate conversion invalid flags (08106ce9, 081068e6, 08107038, 08107078, 081070bd, 08107d29-08107f22, 08109b68) and 32-bit party member keys for join, quit, membership and bonus removal (08141a70, 08141ee0, 08143430). Static ELF comparison only.
+
+Source batch 1286 restored 32-bit party manager index keys at the container type, covering both insertion and lookup (SetPartyMember 08141110, P2PLogin 08140c20, P2PJoinParty 08140ce0). Static ELF comparison only.
+
+Source batch 1287 restored the wall angle snapshot (08109bd0-08109be0) and stone detachment audit field reads (08173a70-08173a9c). Static ELF comparison only.
+
+Source batch 1288 restored the two signed 32-bit socket scans in stone detachment (08173ada-08173b61) and 32-bit party member and leader storage (08103490, 08144f20, 08141a70). Static ELF comparison only.
+
+Source batch 1289 restored the refinement information prototype snapshot (08173644-08173676) and ClearLand character manager capture before coordinate reads (08109a08-08109a79). Static ELF comparison only.
+
+Source batch 1290 restored refinement eligibility and recipe prototype snapshots (08173682-081736ba, 081738b9-0817390f). Static ELF comparison only.
+
+Source batch 1291 restored the land-load diagnostic field reads (08108e66-08108ea2). Static ELF comparison only.
+
+Batch 1291 also restored object prototype diagnostic reads and the material VNUM snapshot before lookup (08108bcd-08108c18).
+
+Source batch 1292 restored LoadObject diagnostic and runtime position field reads (0810924d-0810927f, 081093a0-081093b8). Static ELF comparison only.
+
+Source batch 1293 restored ID-before-VNUM reads on the missing building prototype diagnostic (081093f1-08109417). Static ELF comparison only.
+
+Source batch 1294 restored the 32-bit map comparison in UpdateLand recipient selection (08108f8c-08108f92). Static ELF comparison only.
+
+Source batch 1295 restored invalid floating-point flags in dungeon quest integer conversion helpers (08093407, 08093b2d, 080967ff). Static ELF comparison only.
+
+Batch 1295 also restored the guarded Metin stone wear flag read in the target type branches (0817bda2-0817bdb4).
+
+Source batch 1296 restored the Metin stone target-type reread after the duplicate scan (0817bb55-0817bb77). Static ELF comparison only.
+
+Source batch 1297 restored signed 32-bit socket eligibility comparison in UseMetinStone (0817bb7f-0817bb8a, 0817bbdc-0817bbe3). Static ELF comparison only.
+
+Batch 1297 also restored the original 32-bit dungeon manager map key (Find at 081829d0-081829f6) consistently across insertion, lookup and removal.
+
+Source batch 1298 restored Metin socket audit field reads and item manager reload before removal (0817bc66-0817bce2). Static ELF comparison only.
+
+Batch 1298 also restored 32-bit storage for both dungeon map fields (constructor stores 08181905 and 08181911; unsigned declarations in the reference tree).
+
+Source batch 1299 restored 32-bit dungeon warp destination storage (08185856, 0818585c, 08185862; signed fields in the reference) and the guarded occupied-slot reread for CountEmptyInventory (0817170c, 08171737). Static ELF comparison only.
+
+Source batch 1300 restored Lua type validation before quest manager access in the dungeon flag setter and getter (0809339c-080933a5, 080934f8). Static ELF comparison only.
+
+Source batch 1301 restored advance-before-check traversal in CDungeon::DeadCharacter (08183ff8-0818400b). Static ELF comparison only.
+
+Source batch 1302 restored 32-bit warp callback fields and map comparison in FWarpToPosition (081869eb-08186a41). Static ELF comparison only.
+
+Source batch 1303 restored party pickup notice read order for both recipients (0817f15b-0817f1fc). Static ELF comparison only.
+
+Batch 1303 also restored direct pickup name reads before localization (0817edfc, 0817ef38, 0817f206) and the leader-first 32-bit PID comparison in dungeon_join (08096474-08096479).
+
+Source batch 1304 restored the full-inventory pickup diagnostic field reads (0817ee79-0817eeae). Static ELF comparison only.
+
+Source batch 1305 restored ground item audit prototype and field reads for direct pickup (0817ed68-0817edf7), party pickup (0817f0b9-0817f14a), and drop (0817e0fb-0817e184). Static ELF comparison only.
+
+Source batch 1306 restored find/update versus direct insertion in CDungeon::SetFlag (08182089, 081820a1, 08182106). Static ELF comparison only.
+
+Batch 1306 also restored the dungeon_jump_all map read between Lua X read and conversion (08094499-080944be), retaining coordinate guards.
+
+Source batch 1307 restored split drop audit field order and the 51-byte hint limit (0817dfda-0817e068), retaining placement and rollback behavior. Static ELF comparison only.
+
+Source batch 1308 restored inventory stack split audit reads, 32-bit total and 51-byte hint limit (0817e7fb-0817e844). Static ELF comparison only.
+
+Source batch 1309 restored item-name-before-character-name reads in MoveItem diagnostics (0817e642-0817e651, 0817e72e-0817e73d). Static ELF comparison only.
+
+Source batch 1310 restored stack merge diagnostic count width and name order (0817e911-0817e973) and the quest_set_another_title PC lookup after Lua string construction (08169138-08169193). Static ELF comparison only.
+
+Source batch 1311 restored the Lua state name read before quest manager access in quest_setstate (0816965e, 08169667, 081696d2). Static ELF comparison only.
+
+Batch 1311 also restored party flag insertion and unchanged-value handling (08144459-081444dc) and single descriptor reads for ground item add and remove (081665f2-08166633, 08166692-081666b6).
+
+Source batch 1312 restored signed 32-bit OX entry coordinate comparisons and diagnostics (080876c2-080876f6). Static ELF comparison only.
+
+Source batch 1313 restored 32-bit OX participant index keys and values (08087782, 080877ba, 080877ee, 08087810). Static ELF comparison only.
+
+Source batch 1314 restored signed 32-bit coordinate comparisons in OX answer scoring (0808810a-08088131). Static ELF comparison only.
+
+Source batch 1315 restored signed 32-bit OX return coordinates in COXEventManager::CloseEvent (0808870a, 08088720, 08088738). Static ELF comparison only. Ghidra-dependent work is deferred until Ghidra is available.
+
+Source batch 1316 restored the shared unsigned 32-bit reward VNUM in COXEventManager::GiveItemToAttender (08088913-08088917, 0808892b-08088952). Static ELF comparison only.
+
+Source batch 1317 restored the live unsigned 32-bit player ID read after the effect and attendee removal in COXEventManager::CheckAnswer (08088151-080881b1, 08088210). Static ELF comparison only.
+
+Source batch 1318 restored disconnected OX attendee cleanup by key in both auxiliary indexes (0808839f-080884fa) and per-marker Y/X coordinate reads in CLand::RequestCreateWall (08109d62-08109e6d). Static ELF comparison only.
+
+Source batch 1319 restored signed 32-bit VNUM and experience arguments in PC::GiveItem and PC::GiveExp reward diagnostics (08060ea6, 0806100f). Static ELF comparison only.
+
+Source batch 1320 restored the quest experience diagnostic reads and initial cap inputs in PC::Reward (080611d8-08061245). Static ELF comparison only.
+
+Source batch 1321 restored branch-specific next EXP table and queued reward reads in PC::Reward (08061245-080612ac). Static ELF comparison only.
+
+Source batch 1322 restored queued item reward count and VNUM reads (080611a2-080611c9) and the fishing::Take entry step snapshot and time read order (080834ef-080834f5, 08083610-08083649). Static ELF comparison only.
+
+Source batch 1323 restored canonical vertical gate rotation in CLand::RequestCreateWall, including positive zero for a negative-zero input (08109cb5, 0810a1c8-0810a214). Static ELF comparison only.
+
+Source batch 1324 restored explicit object map traversal in RequestDeleteWall and RequestDeleteWallBlocks (0810a319-0810a329, 0810a684-0810a694). Static ELF comparison only.
+
+Source batch 1325 restored quest timer conversion before allocation and the signed conversion invalid flag (081adced-081adcfa, 081addd0-081adddd). Static ELF comparison only.
+
+Source batch 1326 restored eager rotated bounds conversions in CLand::RequestCreateObject (08107d29, 08107d86, 08107de7, 08107e56). Static ELF comparison only.
+
+Source batch 1327 restored the dispatch manager and NPC-then-player reads in quest_timer_event (081adb17-081adb35). Static ELF comparison only.
+
+Source batch 1328 restored server quest timer dispatch and cleanup argument order (081ad9f3-081ada04, 081ada40-081ada60). Static ELF comparison only.
+
+Source batch 1329 restored castle village destination snapshots (081186b7-081186ea, 0811877d) and sequential Lua goto argument conversions (080581e0-080582a4). Static ELF comparison only.
+
+Source batch 1330 restored the original 0x3ca3d70b default volume in quest::_add_bgm_info (080581a3-080581b3). Static ELF comparison only.
+
+Source batch 1331 restored the signed 64-bit invalid flag in ReadLuaDword, verified across item and mob names, player and NPC lookups, and server timer arguments (08053fdf, 080540af, 080553cd, 0805559c, 080556c4, 0805673d, 08056adf). Static ELF comparison only.
+
+Source batch 1332 restored 32-bit siege pulse update and threshold (08118841-08118862) and quest NPC map comparison width and read order (08055710-08055718). Static ELF comparison only. Retained stone timer cancellation after tracing the stale callback across a siege restart.
+
+Source batch 1333 restored signed 32-bit castle siege callback return delays after notices or the loser warp (08118961-0811896c, 081189cf-081189da). Static ELF comparison only.
+
+Source batch 1334 restored the normal castle frog spawn order and second free-slot lookup (0811946f-08119551). If that lookup finds no slot, discard the untracked frog. Static ELF comparison only.
+
+Source batch 1335 restored FindSpecifyPC level, map and job reads (0818e978-0818e9ac, 0818e9f2-0818e9fd) and forced castle frog coordinate computation (08119628-0811968e). Static ELF comparison only.
+
+Source batch 1336 restored ordered 32-bit guard spawn bounds and group VNUM (0811979c-08119830, 08119877-0811987d). Follow-up: verify group ownership and cleanup before moving guard slot selection after spawning (08119789, 08119856). Static ELF comparison only.
+
+Source batch 1337 restored the separate map reads for diagnostics and selection in _find_pc_cond (08055462-08055486, 080553ed). Static ELF comparison only.
+
+Source batch 1338 restored the unsigned 32-bit VNUM range checks for castle guards and towers (08119fb3-08119fc2, 0811a213-0811a222). Static ELF comparison only.
+
+Source batch 1339 restored castle_cost_of_hiring_guard and its declaration from the original switch (08119fd0-0811a007, 0822313c-082231a3). Static ELF comparison only.
+
+Source batch 1340 restored separate tower slot cleanup and surviving-tower scan (08119e40-08119e7f, 08119f14-08119f1e). Static ELF comparison only.
+
+Source batch 1341 restored castle_is_my_castle (0811a1c0-0811a20f), mapping empires 1/2/3 to maps 181/183/182 and rejecting other empires. Static ELF comparison only.
+
+Source batch 1342 restored the fishing table comparison read order (080821c6-080821d0). Static ELF comparison only.
+
+Static coverage after batch 1342: all 372 signed 32-bit cells of c_aHorseStat match the ELF .data symbol (0823ec40, size 0x5d0). Arena observer send methods are genuine no-ops (080bd2d0, 080bd2e0). The emitted arena, marriage and wedding function names checked have source counterparts. No source edit was warranted for these checks.
+
+Source batch 1343 restored the empire read order in both castle_can_attack comparison branches (0811a079-0811a086, 0811a0a5-0811a0b2). Static ELF comparison only.
+
+Source batch 1344 restored signed 32-bit arena return coordinates (080bbc17, 080bbc30, 080bbc4b, and corresponding repeat paths). The initial start map, start position, arena return and create position arrays match ELF .data (08240140, 08240160, 08240180, 082401a0). Static ELF comparison only.
+
+Source batch 1345 restored signed 32-bit Y/X village return reads in both quest traversal callbacks (0805d384-0805d39a, 0805d3f9-0805d40f). Static ELF comparison only.
+
+Source batch 1346 restored the single-player quest village return read order (0805918b-080591a1) and per-observer character manager lookup in CArena::EndDuel (080bbd40-080bbd58). Static ELF comparison only.
+
+Source batch 1347 restored FWarpInMap layout and construction (0805925c-0805926b, 0805d515-0805d522), arena observer registration (080bd512-080bd5d4), and the fishing miss-rate clamp call (08082af8). Static ELF comparison only.
+
+Source batch 1348 restored destination field read order for the diagnostic and WarpSet in FWarpInMap (0805d515-0805d52c, 0805d54a-0805d557). Static ELF comparison only.
+
+Source batch 1349 restored the fishing::Compute timing table clamp call (08083204-08083225). Static ELF comparison only.
+
+Source batch 1350 restored explicit arena map-list traversal in CArenaMap::SendArenaMapListTo (080ba88d-080ba8a6). Static ELF comparison only.
+
+Source batch 1351 restored the polymorph level allowance and ordered level reads (081812d7-0818131d) and separate arena timeout descriptor reads (080bb661-080bb68f), retaining null guards. Static ELF comparison only.
+
+Source batch 1352 restored signed 16-bit refinement slot conversion side effects and timing before character lookup (08058437-08058464, 080584e7-08058514). Static ELF comparison only.
+
+Source batch 1353 restored per-player potion limit reads in CArena::HandleReadyEvent (080bb09c-080bb111). Static ELF comparison only.
+
+Source batch 1354 restored the replacement VNUM width in mining::RealRefinePick, including the downgrade from GetValue(4) (080ef9e5-080efa1e). Static ELF comparison only.
+
+Source batch 1355 restored the replacement VNUM width in fishing::RealRefineRod (080843bb, 080845c2-080845fb). Static ELF comparison only.
+
+Source batch 1356 restored the prototype fallback in successful fishing::RealRefineRod via CItem::GetRefinedVnum (08084377-08084389). Static ELF comparison only.
+
+Source batch 1357 restored the pick prototype fallback (080ef812-080ef81f) and separate rod item manager lookups (08084389, 080843d6, 080845c9, 08084616). Static ELF comparison only.
+
+Source batch 1358 restored B-name, A-name, B-score, A-score reads for each arena round score notice (080bc877-080bc94f, 080bcab5-080bcb90), preserving formatting and recipients. Static ELF comparison only.
+
+Source batch 1359 restored the item manager capture and fresh factory lookup in pick refinement (080ef74f-080ef765, 080ef81f, 080ef86d, 080ef9ec, 080efa3a) and the final rod audit logger lookup (08084438, 08084678). Static ELF comparison only.
+
+Source batch 1360 restored 32-bit Y/X coordinates for both duel start warps (080bb858-080bb890, 080bb8a4-080bb8dc). Static ELF comparison only.
+
+Source batch 1361 restored signed 32-bit map index in mining OreDrop ground placement (080ef3df-080ef3f0). Static ELF comparison only.
+
+Source batch 1362 restored branch-specific rod audit field reads and the logger lookup after the postfix (08084314-0808433f, 08084550-0808457b). Static ELF comparison only.
+
+Source batch 1363 restored the signed 32-bit tool refinement chance comparisons (08084307-0808430e, 080ef701-080ef70b) and rod stage arithmetic (080842bd). Static ELF comparison only.
+
+Source batch 1364 restored the single attacker map read in CArenaManager::CanAttack (080bc216-080bc244). Static ELF comparison only.
+
+Source batch 1365 restored the Lua item-name reread before pc_count_item diagnostics (0815ebc6-0815ebf8). Static ELF comparison only.
+
+Source batch 1366 restored the 32-bit map comparison and shared lookup key in CArenaManager::OnDead (080bc360-080bc390). Static ELF comparison only.
+
+Source batch 1367 restored signed 32-bit coordinates and lower-X, lower-Y, upper-X, upper-Y checks in pc_have_map_scroll (08161ea7-08161ebf). Static ELF comparison only.
+
+Source batch 1368 restored signed 32-bit position-scroll type comparisons (08161e89-08161e9f, 081621b8-081621bd) and the player A ID snapshot in CArenaMap::GetDuelList (080bbf8e-080bbfb5). Static ELF comparison only.
+
+Source batch 1369 restored separate low-byte empire reads for the defense success and reward window notices (081188b9, 08118908). Static ELF comparison only.
+
+Source batch 1370 restored the castle stone-wave pulse-rate read and 32-bit delay (08118b69-08118b8d), retaining timer cleanup. Static ELF comparison only.
+
+Source batch 1371 restored 32-bit castle stone-wave count updates (08118b6f-08118b7e) and mining chance bonus arithmetic and order (080ef557-080ef571). Static ELF comparison only.
+
+Source batch 1372 restored castle siege spawn placement-before-RNG order (081199b3-08119a17 and the stone callback). Castle frog positions and guard bounds match all 168 active ELF data values. Static ELF comparison only.
+
+Source batch 1373 restored the initial siege delay width and stone event field initialization order (081192e8-08119307, 08119334-0811933b). Static ELF comparison only.
+
+Source batch 1374 corrected fishing::Take elapsed-time scope and restored its 7000 ms timeout diagnostic (ELF .rodata 081fb480). Verified castle random stone and tower VNUMs and selection bounds (081189e0, 08119900) and siege rectangles (08240960). Static ELF comparison only.
+
+Source batch 1375 restored the no-guild empty string branch in guild_around_ranking_string (080d0bee-080d0bf3). Static ELF comparison only.
+
+Source batch 1376 restored the CArena constructor Clear call after event pointer and position initialization (080ba2ec-080ba310). Static ELF comparison only.
+
+Source batch 1377 restored guild war list callback initialization before Lua table creation (080d17c6-080d17d6). Static ELF comparison only.
+
+Source batch 1378 restored the guild war entry argument and guild read order (080d1242-080d1273) and per-map manager lookups in castle_siege (08119129, 0811914e, 08119170). Static ELF comparison only.
+
+Source batch 1379 restored explicit START and END state handling in castle_siege (08119193-081191c0). Static ELF comparison only.
+
+Source batch 1380 restored the low-byte empire value for both final castle tower notice branches (08119e9b, 08119ef4). Static ELF comparison only.
+
+Source batch 1381 restored the START/END phase filter for castle_tower_die (08119d99-08119da9), retaining the empire guard. Static ELF comparison only.
+
+Source batch 1382 restored the killer empire read before the siege phase in castle_tower_die (08119d8c-08119d99). All three tower notice texts match original bytes. Static ELF comparison only.
+
+Source batch 1383 restored the single horse level read in CHorseRider::GetHorseGrade (080c8b18-080c8b36). Static ELF comparison only.
+
+Source batch 1384 restored the wedding end log argument width (0816f94a-0816f96e) and wedding list callback initialization order (080f9226-080f9236). Static ELF comparison only.
+
+Source batch 1385 restored the stored music state read in WeddingMap::SetMusic after filename assignment (0816fc49-0816fc6c). Static ELF comparison only.
+
+Source batch 1386 restored wedding end map reads after map_allow_find and on End failure (080b1be7-080b1bfd, 080b1c4d onward). Static ELF comparison only.
+
+Source batch 1387 restored the 32-bit wedding map field and assignment in WeddingReady (080b1a3b-080b1a4e). Reviewed all source consumers of TWeddingInfo. Static ELF comparison only.
+
+Source batch 1388 restored unsigned 32-bit WeddingMap index storage and registry keys. Checked constructor and registry Find, insert and erase paths against the original 32-bit index representation (0816f650, 08170240). Static ELF comparison only.
+
+Source batch 1389 restored the unsigned 32-bit wedding participant backing fields and reward comparisons (0816f6c0-0816f6c9, 0816fa34-0816fa39). Static ELF comparison only.
+
+Source batch 1390 restored signed 32-bit map index interpretation at wedding private map teardown (08170554-0817056b). Static ELF comparison only.
+
+Source batch 1391 restored signed 32-bit PID arguments for all three wedding map creation diagnostics (081702d2-081702f2, 0817044e-0817046e, 081704dd-081704eb). Static ELF comparison only.
+
+Source batch 1392 restored step-before-map reads in wedding_end_event (0816f5cf-0816f5d6). Wedding map classification and the exit callback match the reviewed ELF paths. Static ELF comparison only.
+
+Source batch 1393 restored the live member end check in WeddingMap::ShoutInMap (0816fbea-0816fbf7), retaining literal message formatting. Confirmed the wedding timer step starts zero through the event allocator. Static ELF comparison only.
+
+Source batch 1394 restored 32-bit marriage bonus item VNUMs (080b0130, 080b0185, 080b019a), and verified all six bonus table rows (0823ebc0-0823ec37). Wedding teardown order matches. Static ELF comparison only.
+
+Source batch 1395 restored the second-then-first 32-bit map comparison in TMarriage::IsNear (080b00d4-080b00dd). Static ELF comparison only.
+
+Source batch 1396 restored the equipped spouse count in TMarriage::GetBonus (080b0148-080b0178, 080b018e, 080b01ee). Both eligible spouses are checked and the grade bonus is applied once. Static ELF comparison only.
+
+Source batch 1397 restored unsigned 32-bit marriage record IDs and registry keys, with normalization at add, lookup, update, removal and wedding transitions (080b1320, 080b1410, 080b19c0, 080b1a60, and spouse login/logout). Static ELF comparison only.
+
+Source batch 1398 restored signed 32-bit recurring delay arithmetic in near_check_event (080b05e1-080b05ee). The initial one-tick delay and event setup match the ELF (080b0600-080b0660). Static ELF comparison only.
+
+Source batch 1399 restored unsigned 32-bit PID sorting for marriage update and removal requests (080b130a-080b1314, 080b1709, 080b1813). Static ELF comparison only.
+
+Source batch 1400 restored the unsigned 32-bit PID comparison and corresponding name order in CManager::RequestAdd (080b1379-080b13a0). The packed 13-byte RequestUpdate layout and write order already match. Static ELF comparison only.
+
+Source batch 1401 restored the shared 32-bit love-point delta in TMarriage::Update (080b07e9, 080b0808, 080b081a). Static ELF comparison only.
+
+Source batch 1402 restored separate character manager reads for the two love-point diagnostic recipients (080b082e-080b0845, 080b0883-080b0897). Point cap arithmetic and display conversions match the reviewed ELF paths. Static ELF comparison only.
+
+Source batch 1403 restored the two point-before-recipient reads in TMarriage::SetMarried (080b0764-080b077a, 080b0782-080b0798). Verified marriage grade clamp and thresholds (080afea0-080afee3). Static ELF comparison only.
+
+Source batch 1404 restored the manager and second-then-first PID reads in TMarriage::RequestEndWedding (080b0aa3-080b0abd). Static ELF comparison only.
+
+Source batch 1405 restored the marriage save manager and field read sequence (080b06bf-080b06ed). Static ELF comparison only.
+
+Source batch 1406 restored the married flag read before assigning either spouse pointer in TMarriage::Login (080b02e0-080b02e4, 080b0310-080b0314). Static ELF comparison only.

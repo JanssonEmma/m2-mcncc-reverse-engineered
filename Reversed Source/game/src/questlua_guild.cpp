@@ -56,10 +56,13 @@ int guild_high_ranking_string(lua_State* state)
 
 int guild_around_ranking_string(lua_State* state)
 {
-    char buffer[4097] = {};
-    if (CGuild* guild = CurrentGuild())
+    if (CGuild* guild = CurrentGuild()) {
+        char buffer[4097];
         CGuildManager::instance().GetAroundRankString(guild->GetID(), buffer);
-    lua_pushstring(state, buffer);
+        lua_pushstring(state, buffer);
+    } else {
+        lua_pushstring(state, "");
+    }
     return 1;
 }
 
@@ -71,7 +74,8 @@ int guild_name(lua_State* state)
         return 0;
     }
 
-    CGuild* guild = CGuildManager::instance().FindGuild(GuildNumber(state, 1));
+    const DWORD guildId = GuildNumber(state, 1);
+    CGuild* guild = CGuildManager::instance().FindGuild(guildId);
     lua_pushstring(state, guild ? guild->GetName() : "");
     return 1;
 }
@@ -79,7 +83,8 @@ int guild_name(lua_State* state)
 int guild_level(lua_State* state)
 {
     luaL_checknumber(state, 1);
-    CGuild* guild = CGuildManager::instance().FindGuild(GuildNumber(state, 1));
+    const DWORD guildId = GuildNumber(state, 1);
+    CGuild* guild = CGuildManager::instance().FindGuild(guildId);
     lua_pushnumber(state, guild ? guild->GetLevel() : 0);
     return 1;
 }
@@ -104,8 +109,11 @@ int guild_war_enter(lua_State* state)
         return 0;
     }
     CHARACTER* ch = CQuestManager::instance().GetCurrentCharacterPtr();
-    if (ch && ch->GetGuild())
-        ch->GetGuild()->GuildWarEntryAccept(GuildNumber(state, 1), ch);
+    if (ch && ch->GetGuild()) {
+        const DWORD opponent = GuildNumber(state, 1);
+        if (CGuild* guild = ch->GetGuild())
+            guild->GuildWarEntryAccept(opponent, ch);
+    }
     return 0;
 }
 
@@ -118,8 +126,11 @@ int guild_get_any_war(lua_State* state)
 
 int guild_get_name(lua_State* state)
 {
-    CGuild* guild = lua_isnumber(state, 1)
-        ? CGuildManager::instance().FindGuild(GuildNumber(state, 1)) : nullptr;
+    CGuild* guild = nullptr;
+    if (lua_isnumber(state, 1)) {
+        const DWORD guildId = GuildNumber(state, 1);
+        guild = CGuildManager::instance().FindGuild(guildId);
+    }
     lua_pushstring(state, guild ? guild->GetName() : "");
     return 1;
 }
@@ -146,23 +157,31 @@ int guild_war_bet(lua_State* state)
     return 0;
 }
 
+struct FBuildLuaGuildWarList
+{
+    lua_State* L;
+    int m_count;
+
+    void operator()(DWORD first, DWORD second)
+    {
+        CGuild* guild = CGuildManager::instance().FindGuild(first);
+        if (!guild || guild->GetGuildWarType(second) == 0 || guild->GetGuildWarState(second) != 6)
+            return;
+
+        lua_newtable(L);
+        lua_pushnumber(L, first);
+        lua_rawseti(L, -2, 1);
+        lua_pushnumber(L, second);
+        lua_rawseti(L, -2, 2);
+        lua_rawseti(L, -2, m_count++);
+    }
+};
+
 int guild_get_warp_war_list(lua_State* state)
 {
+    FBuildLuaGuildWarList build{state, 1};
     lua_newtable(state);
-    CGuildManager& guilds = CGuildManager::instance();
-    int index = 1;
-    guilds.for_each_war([&](DWORD first, DWORD second) {
-        CGuild* guild = guilds.FindGuild(first);
-        if (guild && guild->GetGuildWarType(second) != 0 && guild->GetGuildWarState(second) == 6)
-        {
-            lua_newtable(state);
-            lua_pushnumber(state, first);
-            lua_rawseti(state, -2, 1);
-            lua_pushnumber(state, second);
-            lua_rawseti(state, -2, 2);
-            lua_rawseti(state, -2, index++);
-        }
-    });
+    CGuildManager::instance().for_each_war(build);
     return 1;
 }
 
@@ -179,14 +198,16 @@ int guild_get_reserve_war_table(lua_State* state)
             continue;
 
         lua_newtable(state);
-        sys_log(0, "con.size(): %lu %lu %lu handi %ld", static_cast<DWORD>(data.dwID),
-            static_cast<DWORD>(data.dwGuildFrom), static_cast<DWORD>(data.dwGuildTo), static_cast<long>(data.lHandicap));
-        const bool fromStronger = data.lPowerFrom > data.lPowerTo;
+        const auto handicap = static_cast<long>(data.lHandicap);
+        const auto guildTo = static_cast<DWORD>(data.dwGuildTo);
+        const auto guildFrom = static_cast<DWORD>(data.dwGuildFrom);
+        const auto reserveId = static_cast<DWORD>(data.dwID);
+        sys_log(0, "con.size(): %lu %lu %lu handi %ld", reserveId, guildFrom, guildTo, handicap);
         lua_pushnumber(state, data.dwID);
         lua_rawseti(state, -2, 1);
-        lua_pushnumber(state, fromStronger ? data.dwGuildFrom : data.dwGuildTo);
+        lua_pushnumber(state, data.lPowerFrom > data.lPowerTo ? data.dwGuildFrom : data.dwGuildTo);
         lua_rawseti(state, -2, 2);
-        lua_pushnumber(state, fromStronger ? data.dwGuildTo : data.dwGuildFrom);
+        lua_pushnumber(state, data.lPowerFrom > data.lPowerTo ? data.dwGuildTo : data.dwGuildFrom);
         lua_rawseti(state, -2, 3);
         lua_pushnumber(state, data.lHandicap);
         lua_rawseti(state, -2, 4);
@@ -203,8 +224,11 @@ int guild_is_bet(lua_State* state)
     else
     {
         CHARACTER* ch = CQuestManager::instance().GetCurrentCharacterPtr();
-        if (ch && ch->GetDesc())
-            bet = CGuildManager::instance().IsBet(GuildNumber(state, 1), ch->GetDesc()->GetAccountTable().login);
+        if (auto* desc = ch ? ch->GetDesc() : nullptr) {
+            const char* login = desc->GetAccountTable().login;
+            const DWORD reserveId = GuildNumber(state, 1);
+            bet = CGuildManager::instance().IsBet(reserveId, login);
+        }
     }
     lua_pushboolean(state, bet);
     return 1;

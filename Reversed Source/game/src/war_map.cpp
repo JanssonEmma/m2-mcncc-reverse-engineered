@@ -52,15 +52,17 @@ long war_begin_event(LPEVENT event)
 long war_end_event(LPEVENT event)
 {
     auto* info = static_cast<WarEndInfo*>(event->info);
-    if (info->step == 0)
+    const int step = info->step;
+    CWarMap* const map = info->map;
+    if (step == 0)
     {
         info->step = 1;
-        info->map->ExitAll();
+        map->ExitAll();
         return WarMapDelay(5);
     }
 
-    info->map->SetEndEvent(nullptr);
-    CWarMapManager::instance().DestroyWarMap(info->map);
+    map->SetEndEvent(nullptr);
+    CWarMapManager::instance().DestroyWarMap(map);
     return 0;
 }
 
@@ -98,20 +100,20 @@ CWarMap::CWarMap(long mapIndex, const TGuildWarInfo& war, SWarMapInfo* map,
     m_kMapInfo.lMapIndex = mapIndex;
     CGuildManager& guilds = CGuildManager::instance();
     m_TeamData[0].Initialize();
-    m_TeamData[0].dwID = first;
-    m_TeamData[0].pkGuild = guilds.TouchGuild(first);
+    m_TeamData[0].dwID = static_cast<std::uint32_t>(first);
+    m_TeamData[0].pkGuild = guilds.TouchGuild(m_TeamData[0].dwID);
     m_TeamData[1].Initialize();
-    m_TeamData[1].dwID = second;
-    m_TeamData[1].pkGuild = guilds.TouchGuild(second);
+    m_TeamData[1].dwID = static_cast<std::uint32_t>(second);
+    m_TeamData[1].pkGuild = guilds.TouchGuild(m_TeamData[1].dwID);
 
     void* data = nullptr;
     const DWORD infoId = __AllocEventInfo(sizeof(WarTimeoutInfo), &data);
     static_cast<WarTimeoutInfo*>(data)->map = this;
     SetBeginEvent(event_create_ex(war_begin_event, infoId, WarMapDelay(60),
         const_cast<char*>("war_map.cpp"), 0x59));
-    m_dwStartTime = get_dword_time();
+    m_dwStartTime = static_cast<std::uint32_t>(get_dword_time());
 
-    if (m_kMapInfo.bType == 1)
+    if (GetType() == 1)
     {
         AddFlagBase(0, 0, 0);
         AddFlagBase(1, 0, 0);
@@ -164,19 +166,64 @@ void CWarMap::AddFlagBase(BYTE index, DWORD x, DWORD y)
 
     team.pkChrFlagBase = CHARACTER_MANAGER::instance().SpawnMob(20038, m_kMapInfo.lMapIndex,
         static_cast<std::int32_t>(x), static_cast<std::int32_t>(y), 0, false, -1, true);
+    const DWORD guildId = team.dwID;
     sys_log(0, "WarMap::AddFlagBase %u %p id %lu", static_cast<unsigned int>(index),
-        static_cast<void*>(team.pkChrFlagBase), team.dwID);
+        static_cast<void*>(team.pkChrFlagBase), guildId);
     if (!team.pkChrFlagBase)
         return;
     team.pkChrFlagBase->SetPoint(POINT_STAT, team.dwID);
     team.pkChrFlagBase->SetWarMap(this);
 }
 
-void CWarMap::ExitAll()
+namespace {
+struct FExitGuildWar
 {
-    for (CHARACTER* ch : m_set_pkChr)
+    void operator()(CHARACTER* ch)
+    {
         if (ch->GetDesc())
             ch->ExitToSavedLocation();
+    }
+};
+
+struct FSendUserCount
+{
+    char buf1[30];
+    char buf2[30];
+
+    void operator()(CHARACTER* ch)
+    {
+        ch->ChatPacket(5, "%s", buf1);
+        ch->ChatPacket(5, "%s", buf2);
+    }
+};
+
+struct FPacket
+{
+    const void* m_pvData;
+    int m_iSize;
+
+    void operator()(CHARACTER* ch)
+    {
+        if (DESC* desc = ch->GetDesc())
+            desc->Packet(m_pvData, m_iSize);
+    }
+};
+
+struct FRemoveFlagAffect
+{
+    void operator()(CHARACTER* ch)
+    {
+        if (ch->FindAffect(222))
+            ch->RemoveAffect(222);
+    }
+};
+}
+
+void CWarMap::ExitAll()
+{
+    FExitGuildWar exit;
+    for (CHARACTER* ch : m_set_pkChr)
+        exit(ch);
 }
 
 bool CWarMap::SetEnded()
@@ -203,8 +250,8 @@ bool CWarMap::SetEnded()
     void* data = nullptr;
     const DWORD infoId = __AllocEventInfo(sizeof(WarEndInfo), &data);
     auto* info = static_cast<WarEndInfo*>(data);
-    info->step = 0;
     info->map = this;
+    info->step = 0;
     SetEndEvent(event_create_ex(war_end_event, infoId, WarMapDelay(10),
         const_cast<char*>("war_map.cpp"), 0x2db));
     return true;
@@ -217,7 +264,10 @@ void CWarMap::SetEndEvent(LPEVENT event)
 
 void CWarMap::Draw()
 {
-    CGuildManager::instance().RequestWarOver(m_TeamData[0].dwID, m_TeamData[1].dwID, 0, 0);
+    CGuildManager& guilds = CGuildManager::instance();
+    const DWORD second = m_TeamData[1].dwID;
+    const DWORD first = m_TeamData[0].dwID;
+    guilds.RequestWarOver(first, second, 0, 0);
 }
 
 void CWarMap::IncMember(CHARACTER* ch)
@@ -246,7 +296,8 @@ void CWarMap::IncMember(CHARACTER* ch)
     }
     else
     {
-        sys_log(0, "WarMap +o %d", ++m_iObserverCount);
+        m_iObserverCount = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_iObserverCount) + 1u);
+        sys_log(0, "WarMap +o %d", m_iObserverCount);
         ch->SetObserverMode(true);
         ch->ChatPacket(1, locale_find(observerMode, g_iUseLocale));
         ch->ChatPacket(1, locale_find(observerExit, g_iUseLocale));
@@ -267,7 +318,8 @@ void CWarMap::DecMember(CHARACTER* ch)
     sys_log(0, "WarMap::DecMember");
     if (ch->IsObserverMode())
     {
-        sys_log(0, "WarMap -o %d", --m_iObserverCount);
+        m_iObserverCount = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_iObserverCount) - 1u);
+        sys_log(0, "WarMap -o %d", m_iObserverCount);
         ch->SetObserverMode(false);
     }
     else
@@ -317,8 +369,9 @@ void CWarMap::AddFlag(BYTE index, DWORD x, DWORD y)
 
     team.pkChrFlag = CHARACTER_MANAGER::instance().SpawnMob(20035 + index, m_kMapInfo.lMapIndex,
         static_cast<std::int32_t>(x), static_cast<std::int32_t>(y), 0, false, -1, true);
+    const DWORD guildId = team.dwID;
     sys_log(0, "WarMap::AddFlag %u %p id %lu", static_cast<unsigned int>(index),
-        static_cast<void*>(team.pkChrFlag), team.dwID);
+        static_cast<void*>(team.pkChrFlag), guildId);
     if (!team.pkChrFlag)
         return;
     team.pkChrFlag->SetPoint(POINT_STAT, team.dwID);
@@ -346,7 +399,9 @@ void CWarMap::CheckWarEnd()
         return;
     Notice(locale_find(opponentsMissing, g_iUseLocale));
     Notice(locale_find(timeoutWarning, g_iUseLocale));
-    sys_log(0, "CheckWarEnd: Timeout begin %lu vs %lu", m_TeamData[0].dwID, m_TeamData[1].dwID);
+    const DWORD second = m_TeamData[1].dwID;
+    const DWORD first = m_TeamData[0].dwID;
+    sys_log(0, "CheckWarEnd: Timeout begin %lu vs %lu", first, second);
     void* data = nullptr;
     const DWORD id = __AllocEventInfo(sizeof(WarTimeoutInfo), &data);
     static_cast<WarTimeoutInfo*>(data)->map = this;
@@ -359,19 +414,23 @@ int CWarMap::GetRewardGold(BYTE winner)
     const auto potionReward = [](int percent, int total) {
         return static_cast<std::int32_t>(static_cast<std::uint32_t>(percent) * total) / 100;
     };
-    const auto warPrice = static_cast<std::uint32_t>(m_WarInfo.iWarPrice);
-    return static_cast<std::int32_t>(warPrice +
-        potionReward(m_WarInfo.iWinnerPotionRewardPctToWinner, m_TeamData[winner].iUsePotionPrice) +
-        potionReward(m_WarInfo.iLoserPotionRewardPctToWinner, m_TeamData[winner ? 0 : 1].iUsePotionPrice));
+    const int winnerPercent = m_WarInfo.iWinnerPotionRewardPctToWinner;
+    const int winnerShare = potionReward(winnerPercent, m_TeamData[winner].iUsePotionPrice);
+    const auto reward = static_cast<std::uint32_t>(m_WarInfo.iWarPrice) + winnerShare;
+    const int loserPercent = m_WarInfo.iLoserPotionRewardPctToWinner;
+    const int loserShare = potionReward(loserPercent, m_TeamData[winner ? 0 : 1].iUsePotionPrice);
+    return static_cast<std::int32_t>(reward + loserShare);
 }
 
 DWORD CWarMap::GetWinnerGuild()
 {
-    const int first = m_TeamData[0].iScore;
     const int second = m_TeamData[1].iScore;
-    if (first == second)
-        return 0;
-    return m_TeamData[first > second ? 0 : 1].dwID;
+    const int first = m_TeamData[0].iScore;
+    if (second > first)
+        return static_cast<std::uint32_t>(m_TeamData[1].dwID);
+    if (first > second)
+        return static_cast<std::uint32_t>(m_TeamData[0].dwID);
+    return 0;
 }
 
 void CWarMap::UpdateScore(DWORD first, int firstScore, DWORD second, int secondScore)
@@ -397,10 +456,13 @@ bool CWarMap::CheckScore()
     if (static_cast<std::uint32_t>(get_dword_time() - m_dwStartTime) < 30000)
         return false;
 
-    const int first = m_TeamData[0].iScore;
     const int second = m_TeamData[1].iScore;
+    const int first = m_TeamData[0].iScore;
+    if (first == second)
+        return false;
+
     const int endScore = test_server ? m_WarInfo.iEndScore / 10 : m_WarInfo.iEndScore;
-    if (first == second || (first < endScore && second < endScore))
+    if (first < endScore && second < endScore)
         return false;
 
     const BYTE index = first >= endScore ? 0 : 1;
@@ -456,14 +518,15 @@ DWORD CWarMap::GetGuildOpponent(CHARACTER* character)
 {
     BYTE team;
     CGuild* guild = character->GetGuild();
-    return guild && GetTeamIndex(guild->GetID(), team) ? m_TeamData[1 - team].dwID : 0;
+    return guild && GetTeamIndex(guild->GetID(), team) ? static_cast<std::uint32_t>(m_TeamData[1 - team].dwID) : 0;
 }
 
 bool CWarMap::GetTeamIndex(DWORD guild, BYTE& index)
 {
-    if (m_TeamData[0].dwID == guild)
+    const auto guildId = static_cast<std::uint32_t>(guild);
+    if (m_TeamData[0].dwID == guildId)
         index = 0;
-    else if (m_TeamData[1].dwID == guild)
+    else if (m_TeamData[1].dwID == guildId)
         index = 1;
     else
         return false;
@@ -472,7 +535,7 @@ bool CWarMap::GetTeamIndex(DWORD guild, BYTE& index)
 
 int CWarMap::STeamData::GetAccumulatedJoinerCount()
 {
-    return static_cast<int>(set_pidJoiner.size());
+    return static_cast<std::int32_t>(set_pidJoiner.size());
 }
 
 int CWarMap::STeamData::GetCurJointerCount()
@@ -482,35 +545,36 @@ int CWarMap::STeamData::GetCurJointerCount()
 
 void CWarMap::STeamData::AppendMember(CHARACTER* ch)
 {
-    set_pidJoiner.insert(ch->GetPlayerID());
-    ++iMemberCount;
+    set_pidJoiner.insert(static_cast<std::uint32_t>(ch->GetPlayerID()));
+    iMemberCount = static_cast<std::int32_t>(static_cast<std::uint32_t>(iMemberCount) + 1u);
 }
 
 void CWarMap::STeamData::RemoveMember(CHARACTER*)
 {
-    --iMemberCount;
+    iMemberCount = static_cast<std::int32_t>(static_cast<std::uint32_t>(iMemberCount) - 1u);
 }
 
 void CWarMap::UpdateUserCount()
 {
-    char observer[30];
-    char users[30];
-    std::snprintf(observer, sizeof(observer), "ObserverCount %d", m_iObserverCount);
-    std::snprintf(users, sizeof(users), "WarUC %lu %d %lu %d %d",
-        m_TeamData[0].dwID, m_TeamData[0].GetAccumulatedJoinerCount(),
-        m_TeamData[1].dwID, m_TeamData[1].GetAccumulatedJoinerCount(), m_iObserverCount);
+    const DWORD firstGuild = m_TeamData[0].dwID;
+    const int firstJoiners = m_TeamData[0].GetAccumulatedJoinerCount();
+    const DWORD secondGuild = m_TeamData[1].dwID;
+    const int secondJoiners = m_TeamData[1].GetAccumulatedJoinerCount();
+    const int observers = m_iObserverCount;
+
+    FSendUserCount send;
+    std::snprintf(send.buf1, sizeof(send.buf1), "ObserverCount %d", observers);
+    std::snprintf(send.buf2, sizeof(send.buf2), "WarUC %lu %d %lu %d %d",
+        firstGuild, firstJoiners, secondGuild, secondJoiners, observers);
     for (CHARACTER* ch : m_set_pkChr)
-    {
-        ch->ChatPacket(5, "%s", observer);
-        ch->ChatPacket(5, "%s", users);
-    }
+        send(ch);
 }
 
 void CWarMap::Packet(const void* data, int size)
 {
+    FPacket send{data, size};
     for (CHARACTER* ch : m_set_pkChr)
-        if (DESC* desc = ch->GetDesc())
-            desc->Packet(data, size);
+        send(ch);
 }
 
 void CWarMap::SendWarPacket(DESC* desc)
@@ -539,10 +603,12 @@ void CWarMap::SendScorePacket(BYTE index, DESC* desc)
     buffer.write(&guild, sizeof(guild));
     buffer.write(&opponent, sizeof(opponent));
     buffer.write(&score, sizeof(score));
+    const int size = buffer.size();
+    const void* data = buffer.read_peek();
     if (desc)
-        desc->Packet(buffer.read_peek(), buffer.size());
+        desc->Packet(data, size);
     else
-        Packet(buffer.read_peek(), buffer.size());
+        Packet(data, size);
 }
 
 CWarMapManager::CWarMapManager() = default;
@@ -564,9 +630,9 @@ bool CWarMapManager::LoadWarMapInfo(const char*)
         {1, 105, {{0x3458, 7000, 0}, {0x5d5c, 18000, 0}, {0x3458, 7000, 0}}},
     };
 
-    const auto& maps = LC_IsCIBN() ? cibnMaps : defaultMaps;
-    for (const SWarMapInfo& info : maps)
+    for (std::size_t index = 0; index < sizeof(defaultMaps) / sizeof(defaultMaps[0]); ++index)
     {
+        const SWarMapInfo& info = LC_IsCIBN() ? cibnMaps[index] : defaultMaps[index];
         std::unique_ptr<SWarMapInfo> entry(new SWarMapInfo(info));
         if (m_map_kWarMapInfo.emplace(info.lMapIndex, entry.get()).second)
             entry.release();
@@ -585,8 +651,9 @@ bool CWarMapManager::GetStartPosition(long mapIndex, BYTE index, PIXEL_POSITION&
         for (const auto& entry : m_map_kWarMapInfo)
         {
             const PIXEL_POSITION& start = entry.second->posStart[index];
-            sys_log(0, "WarMap[%d]=Pos(%d, %d)", static_cast<int>(entry.first),
-                static_cast<int>(start.x), static_cast<int>(start.y));
+            const int y = static_cast<std::int32_t>(start.y);
+            const int x = static_cast<std::int32_t>(start.x);
+            sys_log(0, "WarMap[%d]=Pos(%d, %d)", static_cast<std::int32_t>(entry.first), x, y);
         }
         return false;
     }
@@ -634,8 +701,8 @@ long CWarMapManager::CreateWarMap(const TGuildWarInfo& war, DWORD first, DWORD s
 
 void CWarMapManager::DestroyWarMap(CWarMap* map)
 {
+    sys_log(0, "WarMap::DestroyWarMap : %ld", map->GetMapIndex());
     const long index = map->GetMapIndex();
-    sys_log(0, "WarMap::DestroyWarMap : %ld", index);
     m_mapWarMap.erase(index);
     delete map;
     SECTREE_MANAGER::instance().DestroyPrivateMap(index);
@@ -702,13 +769,16 @@ void CWarMap::UsePotion(CHARACTER* character, CItem* item)
     if (m_pkEndEvent || character->IsObserverMode())
         return;
     CGuild* guild = character->GetGuild();
-    const TItemTable* proto = item->GetProto();
-    if (!guild || !proto)
+    if (!guild)
         return;
+    const TItemTable* proto = item->GetProto();
+    if (!proto)
+        return;
+    const auto potionPrice = static_cast<std::uint32_t>(proto->dwGold);
     BYTE index;
     if (GetTeamIndex(guild->GetID(), index)) {
         int& price = m_TeamData[index].iUsePotionPrice;
-        price = static_cast<std::int32_t>(static_cast<std::uint32_t>(price) + proto->dwGold);
+        price = static_cast<std::int32_t>(static_cast<std::uint32_t>(price) + potionPrice);
     }
 }
 
@@ -730,7 +800,7 @@ DWORD CWarMap::GetGuildID(BYTE index)
         assert(index < 2);
         std::abort();
     }
-    return m_TeamData[index].dwID;
+    return static_cast<std::uint32_t>(m_TeamData[index].dwID);
 }
 
 // 0816a680
@@ -777,8 +847,14 @@ bool CWarMap::IsFlagOnBase(BYTE index)
         std::abort();
     }
     CHARACTER* flag = m_TeamData[index].pkChrFlag;
-    return flag && flag->GetX() == m_kMapInfo.posStart[index].x &&
-           flag->GetY() == m_kMapInfo.posStart[index].y;
+    if (!flag)
+        return false;
+    const PIXEL_POSITION& base = m_kMapInfo.posStart[index];
+    const auto x = static_cast<std::uint32_t>(base.x);
+    if (x != static_cast<std::uint32_t>(flag->GetX()))
+        return false;
+    const auto y = static_cast<std::uint32_t>(base.y);
+    return y == static_cast<std::uint32_t>(flag->GetY());
 }
 
 void CWarMap::SetResetFlagEvent(LPEVENT event)
@@ -791,10 +867,9 @@ void CWarMap::ResetFlag()
     if (m_kMapInfo.bType != 1 || m_pkResetFlagEvent || m_bEnded)
         return;
 
-    for (CHARACTER* character : m_set_pkChr) {
-        if (character->FindAffect(222))
-            character->RemoveAffect(222);
-    }
+    FRemoveFlagAffect remove;
+    for (CHARACTER* character : m_set_pkChr)
+        remove(character);
     RemoveFlag(0);
     RemoveFlag(1);
 

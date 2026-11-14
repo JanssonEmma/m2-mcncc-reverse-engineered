@@ -1,4 +1,4 @@
-// Recovered game clock adjustment; other game utils remain unreconstructed.
+// Game utility functions reconstructed from the 2009 server.
 #include "utils.h"
 #include "../../libthecore/include/utils.h"
 #include "../../libthecore/include/log.h"
@@ -182,12 +182,12 @@ void str_lower(const char* src,char* dest,int len)
 }
 
 // 08147480. Include <cmath>. Exact zero rejection (not reference epsilon).
-double gauss_random_extended(float avg,float sigma) {
+long double gauss_random_extended(float avg,float sigma) {
     static bool haveNextGaussian=false;
     static float nextGaussian=0.0f;
     if(haveNextGaussian) {
         haveNextGaussian=false;
-        return static_cast<double>(nextGaussian) * sigma + avg;
+        return static_cast<long double>(nextGaussian) * sigma + avg;
     }
     double v1,v2,s;
     do {
@@ -196,10 +196,11 @@ double gauss_random_extended(float avg,float sigma) {
         s=v1*v1+v2*v2;
     } while(s>=1.0 || s==0.0);
     // Original logf(float(s)), sqrtf(float(...)); v1/v2/s are doubles.
-    double multiplier=::sqrtf(static_cast<float>((-2.0f*::logf(static_cast<float>(s)))/s));
+    const float logRadius = ::logf(static_cast<float>(s));
+    const float multiplier = ::sqrtf(static_cast<float>(-2.0L * logRadius / s));
     nextGaussian=static_cast<float>(v2*multiplier);
     haveNextGaussian=true;
-    return static_cast<float>(v1*multiplier*sigma+avg);
+    return static_cast<float>(static_cast<long double>(v1) * multiplier * sigma + avg);
 }
 
 float gauss_random(float avg,float sigma) {
@@ -243,10 +244,17 @@ float linear_interpolate(float begin, float end, float rate)
 // 081471c0
 int highest_array_element(int* array, int size)
 {
+    if (size <= 0)
+        return 0;
+
     int highest = 0;
+    int highestValue = array[0];
     for (int index = 1; index < size; ++index) {
-        if (array[highest] <= array[index])
+        const int value = array[index];
+        if (highestValue <= value) {
             highest = index;
+            highestValue = value;
+        }
     }
     return highest;
 }

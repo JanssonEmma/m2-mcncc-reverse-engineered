@@ -4,6 +4,7 @@
 #include "target.h"
 #include "../../liblua/include/lauxlib.h"
 #include "../../libthecore/include/log.h"
+#include <cfenv>
 #include <climits>
 #include <cstring>
 
@@ -13,7 +14,10 @@ int TargetNumber(lua_State* state, int argument)
 {
     const lua_Number value=lua_tonumber(state,argument);
     // FISTP with x87 rounding set to truncate.
-    if (!(value>-2147483649.0 && value<2147483648.0)) return INT_MIN;
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
+        return INT_MIN;
+    }
     return static_cast<int>(value);
 }
 
@@ -40,12 +44,16 @@ int target_pos(lua_State* state)
         _sys_err("target_pos",0x1b,"cannot find base position in this map %ld",ch->GetMapIndex());
         return 0;
     }
-    int x=TargetCoordinate(base.x,TargetNumber(state,2));
-    int y=TargetCoordinate(base.y,TargetNumber(state,3));
+    const int cellX = TargetNumber(state, 2);
+    const int x = TargetCoordinate(base.x, cellX);
+    const int cellY = TargetNumber(state, 3);
+    const int y = TargetCoordinate(base.y, cellY);
     int send=lua_isnumber(state,6) ? TargetNumber(state,6) : 1;
     const char* description=lua_isstring(state,5) ? lua_tostring(state,5) : 0;
     int map=TargetNumber(state,4);
-    CTargetManager::instance().CreateTarget(ch->GetPlayerID(),index,lua_tostring(state,1),TARGET_TYPE_POS,x,y,map,description,send);
+    const char* name = lua_tostring(state, 1);
+    const DWORD pid = ch->GetPlayerID();
+    CTargetManager::instance().CreateTarget(pid,index,name,TARGET_TYPE_POS,x,y,map,description,send);
     return 1;
 }
 
@@ -62,7 +70,9 @@ int target_vid(lua_State* state)
     const char* description=lua_isstring(state,3) ? lua_tostring(state,3) : 0;
     int map=ch->GetMapIndex();
     int vid=TargetNumber(state,2);
-    CTargetManager::instance().CreateTarget(ch->GetPlayerID(),index,lua_tostring(state,1),TARGET_TYPE_VID,vid,0,map,description,send);
+    const char* name = lua_tostring(state, 1);
+    const DWORD pid = ch->GetPlayerID();
+    CTargetManager::instance().CreateTarget(pid,index,name,TARGET_TYPE_VID,vid,0,map,description,send);
     return 1;
 }
 
@@ -75,7 +85,9 @@ int target_delete(lua_State* state)
         _sys_err("target_delete",0x4e,"invalid argument, name: %s, quest_index %d",ch->GetName(),index);
         return 0;
     }
-    CTargetManager::instance().DeleteTarget(ch->GetPlayerID(),index,lua_tostring(state,1));
+    const char* name = lua_tostring(state, 1);
+    const DWORD pid = ch->GetPlayerID();
+    CTargetManager::instance().DeleteTarget(pid, index, name);
     return 1;
 }
 
@@ -84,7 +96,8 @@ int target_clear(lua_State*)
     CQuestManager& manager=CQuestManager::instance();
     CHARACTER* ch=manager.GetCurrentCharacterPtr();
     int index=manager.GetCurrentPC()->GetCurrentQuestIndex();
-    CTargetManager::instance().DeleteTarget(ch->GetPlayerID(),index,0);
+    const DWORD pid = ch->GetPlayerID();
+    CTargetManager::instance().DeleteTarget(pid, index, 0);
     return 1;
 }
 
@@ -98,7 +111,9 @@ int target_id(lua_State* state)
         lua_pushnumber(state,0);
         return 0;
     }
-    LPEVENT event=CTargetManager::instance().GetTargetEvent(ch->GetPlayerID(),index,lua_tostring(state,1));
+    const char* name = lua_tostring(state, 1);
+    const DWORD pid = ch->GetPlayerID();
+    LPEVENT event = CTargetManager::instance().GetTargetEvent(pid, index, name);
     int vid=0;
     if (event) {
         TargetInfo* info=static_cast<TargetInfo*>(event_info(event));

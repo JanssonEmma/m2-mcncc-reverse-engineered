@@ -51,7 +51,7 @@ void do_oxevent_open(CHARACTER* character, char*, int, int)
         return;
     }
 
-    manager.ClearQuiz();
+    COXEventManager::instance().ClearQuiz();
     char script[256];
     const int length = std::snprintf(script, 255, "%s/oxquiz.lua", LocaleService_GetBasePath().c_str());
     lua_State* state = quest::CQuestManager::instance().GetLuaState();
@@ -76,7 +76,7 @@ void do_oxevent_open(CHARACTER* character, char*, int, int)
         BroadcastOXNotice(LC_TEXT("\300\273\265\316\301\366\270\246 \305\353\307\317\277\251 \300\324\300\345 \260\241\264\311\307\325\264\317\264\331."));
         BroadcastOXNotice(LC_TEXT("\270\271\300\272 \302\374\277\251 \272\316\305\271\265\345\270\263\264\317\264\331."));
     }
-    manager.SetStatus(OXEVENT_OPEN);
+    COXEventManager::instance().SetStatus(OXEVENT_OPEN);
 }
 
 void do_oxevent_door(CHARACTER* character, char*, int, int)
@@ -85,7 +85,7 @@ void do_oxevent_door(CHARACTER* character, char*, int, int)
     const auto status = manager.GetStatus();
     if (status != OXEVENT_OPEN)
         character->ChatPacket(1, LC_TEXT("OX\300\314\272\245\306\256\260\241 \277\255\267\301 \300\326\301\366 \276\312\260\305\263\252 \271\256\301\246 \303\342\301\246\301\337\300\324\264\317\264\331.(Flag: %d)"), status);
-    manager.SetStatus(OXEVENT_CLOSE);
+    COXEventManager::instance().SetStatus(OXEVENT_CLOSE);
     character->ChatPacket(1, "%s", LC_TEXT("\264\365 \300\314\273\363 OX\300\314\272\245\306\256 \302\374\260\241\300\332\270\246 \271\336\301\366 \276\312\275\300\264\317\264\331."));
 }
 
@@ -118,7 +118,7 @@ void do_oxevent_close(CHARACTER* character, char* argument, int, int)
         BroadcastOXNotice(LC_TEXT("OX \300\314\272\245\306\256\270\246 \270\266\304\241\260\331\275\300\264\317\264\331."));
         BroadcastOXNotice(LC_TEXT("\300\341\275\303 \310\304 \270\266\300\273\267\316 \300\314\265\277\265\307\260\332\275\300\264\317\264\331."));
     }
-    manager.SetStatus(OXEVENT_FINISH);
+    COXEventManager::instance().SetStatus(OXEVENT_FINISH);
     void* data;
     const DWORD id = __AllocEventInfo(sizeof(int), &data);
     const auto delay = static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 5U);
@@ -128,9 +128,8 @@ void do_oxevent_close(CHARACTER* character, char* argument, int, int)
 void do_oxevent_end_force(CHARACTER* character, char*, int, int)
 {
     character->ChatPacket(1, "%s", LC_TEXT("OX\300\314\272\245\306\256\270\246 \260\255\301\246 \301\276\267\341 \275\303\305\265\264\317\264\331."));
-    COXEventManager& manager = COXEventManager::instance();
-    manager.CloseEvent();
-    manager.SetStatus(OXEVENT_FINISH);
+    COXEventManager::instance().CloseEvent();
+    COXEventManager::instance().SetStatus(OXEVENT_FINISH);
 }
 
 void do_oxevent_quiz(CHARACTER* character, char* argument, int, int)
@@ -144,7 +143,10 @@ void do_oxevent_quiz(CHARACTER* character, char* argument, int, int)
     }
     char level[256], seconds[256];
     two_arguments(argument, level, seconds);
-    const bool started = manager.Quiz(static_cast<BYTE>(std::atoi(level)), std::atoi(seconds));
+    COXEventManager& quizManager = COXEventManager::instance();
+    const int duration = std::atoi(seconds);
+    const auto quizLevel = static_cast<BYTE>(std::atoi(level));
+    const bool started = quizManager.Quiz(quizLevel, duration);
     character->ChatPacket(1, "%s", LC_TEXT(started ? "\271\256\301\246\270\246 \303\342\301\246\307\317\277\264\275\300\264\317\264\331." : "\271\256\301\246\270\246 \303\342\301\246\307\317\301\366 \270\370\307\337\275\300\264\317\264\331."));
 }
 
@@ -163,7 +165,8 @@ void do_oxevent_log(CHARACTER* character, char*, int, int)
 
 void do_oxevent_get_attender(CHARACTER* character, char*, int, int)
 {
-    character->ChatPacket(1, LC_TEXT("\307\366\300\347 \263\262\300\272 \302\374\260\241\300\332\274\366 : %d"), static_cast<int>(COXEventManager::instance().GetAttenderCount()));
+    const int count = static_cast<int>(COXEventManager::instance().GetAttenderCount());
+    character->ChatPacket(1, LC_TEXT("\307\366\300\347 \263\262\300\272 \302\374\260\241\300\332\274\366 : %d"), count);
 }
 
 void do_oxevent_give_item(CHARACTER* character, char* argument, int, int)
@@ -172,8 +175,9 @@ void do_oxevent_give_item(CHARACTER* character, char* argument, int, int)
     two_arguments(argument, item, quantity);
     const DWORD vnum = static_cast<DWORD>(std::atoi(item));
     const BYTE count = static_cast<BYTE>(std::atoi(quantity));
-    COXEventManager& manager = COXEventManager::instance();
-    manager.GiveItemToAttender(vnum, count);
+    COXEventManager::instance().GiveItemToAttender(vnum, count);
+    const auto attendees = static_cast<std::uint32_t>(COXEventManager::instance().GetAttenderCount());
+    const auto total = static_cast<std::int32_t>(attendees * count);
     character->ChatPacket(1, LC_TEXT("OX \273\363\307\260\300\273 \301\366\261\336\307\317\277\264\275\300\264\317\264\331. ID: %d \274\366\267\256: %d"), static_cast<int>(vnum),
-                          static_cast<int>(count * manager.GetAttenderCount()));
+                          static_cast<int>(total));
 }

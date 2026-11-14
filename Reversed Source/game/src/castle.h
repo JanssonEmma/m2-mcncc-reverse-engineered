@@ -5,7 +5,9 @@
 class CHARACTER;
 bool castle_can_attack(CHARACTER* attacker, CHARACTER* victim);
 bool castle_is_tower_vnum(DWORD vnum);
+bool castle_is_my_castle(int empire, int mapIndex);
 bool castle_is_guard_vnum(DWORD vnum);
+int castle_cost_of_hiring_guard(DWORD groupVnum);
 bool castle_boot();
 int castle_guard_count(int empire, int region);
 int castle_frog_count(int empire);

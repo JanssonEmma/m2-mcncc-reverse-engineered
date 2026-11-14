@@ -4,6 +4,8 @@
 #include "DBManager.h"
 #include "ItemAwardManager.h"
 
+#include <cstdint>
+
 ItemAwardManager::ItemAwardManager()
 {
 }
@@ -26,7 +28,7 @@ void ItemAwardManager::Load(SQLMsg* pMsg)
     for (int i = 0; i < pMsg->Get()->iNumRows; ++i)
     {
         MYSQL_ROW row = mysql_fetch_row(result);
-        DWORD id = atoi(row[0]);
+        const DWORD id = static_cast<std::uint32_t>(atoi(row[0]));
         if (m_map_award.find(id) != m_map_award.end())
             continue;
 
@@ -34,11 +36,11 @@ void ItemAwardManager::Load(SQLMsg* pMsg)
         memset(award, 0, sizeof(*award));
         award->dwID = id;
         trim_and_lower(award->szLogin, row[1], LOGIN_MAX_LEN);
-        award->dwVnum = atoi(row[2]);
-        award->dwCount = atoi(row[3]);
-        award->dwSocket0 = atoi(row[4]);
-        award->dwSocket1 = atoi(row[5]);
-        award->dwSocket2 = atoi(row[6]);
+        award->dwVnum = static_cast<std::uint32_t>(atoi(row[2]));
+        award->dwCount = static_cast<std::uint32_t>(atoi(row[3]));
+        award->dwSocket0 = static_cast<std::uint32_t>(atoi(row[4]));
+        award->dwSocket1 = static_cast<std::uint32_t>(atoi(row[5]));
+        award->dwSocket2 = static_cast<std::uint32_t>(atoi(row[6]));
         award->bMall = atoi(row[7]) != 0;
 
         if (row[8])

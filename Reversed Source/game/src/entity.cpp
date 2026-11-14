@@ -24,15 +24,47 @@ int CEntity::GetType() { return m_iType; }
 bool CEntity::IsType(int type) { return m_iType==type; }
 
 void CEntity::PacketAround(const void* data,int bytes,LPENTITY except) { PacketView(data,bytes,except); }
-void CEntity::PacketView(const void* data,int bytes,LPENTITY except) {
-    if(!m_pSectree) return;
-    if(!m_bIsObserver) {
-        for(ENTITY_MAP::iterator it=m_map_view.begin();it!=m_map_view.end();++it) {
-            CEntity* entity=it->first;
-            if(entity!=except && entity->m_lpDesc) entity->m_lpDesc->Packet(data,bytes);
-        }
+namespace {
+struct FuncPacketAround
+{
+    const void* m_data;
+    int m_bytes;
+    LPENTITY m_except;
+
+    void operator()(LPENTITY entity)
+    {
+        if (entity == m_except)
+            return;
+        if (LPDESC desc = entity->GetDesc())
+            desc->Packet(m_data, m_bytes);
     }
-    if(this!=except && m_lpDesc) m_lpDesc->Packet(data,bytes);
+};
+
+struct FuncPacketView : FuncPacketAround
+{
+    FuncPacketView(const void* data, int bytes, LPENTITY except)
+        : FuncPacketAround{data, bytes, except}
+    {
+    }
+
+    void operator()(const CEntity::ENTITY_MAP::value_type& entry)
+    {
+        FuncPacketAround::operator()(entry.first);
+    }
+};
+}
+
+void CEntity::PacketView(const void* data, int bytes, LPENTITY except)
+{
+    if (!m_pSectree)
+        return;
+    if (!m_bIsObserver) {
+        FuncPacketView send(data, bytes, except);
+        for (const auto& entry : m_map_view)
+            send(entry);
+    }
+    if (this != except && m_lpDesc)
+        m_lpDesc->Packet(data, bytes);
 }
 
 void CEntity::SetObserverMode(bool value) {

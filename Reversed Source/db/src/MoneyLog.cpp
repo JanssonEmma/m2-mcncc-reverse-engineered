@@ -3,6 +3,8 @@
 #include "ClientManager.h"
 #include "Peer.h"
 
+#include <cstdint>
+
 CMoneyLog::CMoneyLog()
 {
 }
@@ -34,5 +36,8 @@ void CMoneyLog::Save()
 
 void CMoneyLog::AddLog(BYTE bType, DWORD dwVnum, int iGold)
 {
-	m_MoneyLogContainer[bType][dwVnum] += iGold;
+	int& total = m_MoneyLogContainer[bType][dwVnum];
+	const auto bits = static_cast<std::uint32_t>(total) + static_cast<std::uint32_t>(iGold);
+	total = bits <= 0x7fffffffu ? static_cast<int>(bits)
+	                            : -1 - static_cast<int>(0xffffffffu - bits);
 }

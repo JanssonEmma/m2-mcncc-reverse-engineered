@@ -39,6 +39,49 @@
 #include "input.h"
 void SendShout(const char* text, BYTE empire);
 
+namespace {
+struct FEmpireChatPacket
+{
+    const BYTE* header;
+    const char* message;
+    std::size_t length;
+    BYTE empire;
+    long mapIndex;
+    std::size_t nameLength;
+
+    void operator()(DESC* desc)
+    {
+        CHARACTER* listener = desc->GetCharacter();
+        if (!listener || listener->GetMapIndex() != mapIndex)
+            return;
+
+        desc->BufferedPacket(header, 9);
+        if (desc->GetEmpire() == empire || !empire || listener->GetGMLevel()
+            || listener->IsEquipUniqueGroup(0x2729) || nameLength >= length) {
+            desc->Packet(message, length);
+            return;
+        }
+
+        char converted[86] = {};
+        std::memcpy(converted, message, length);
+        ConvertEmpireText(empire, converted + nameLength, listener->GetSkillPower(empire + 0x7d) * 2 + 10);
+        desc->Packet(converted, length);
+    }
+};
+
+struct ChatPacketCharacter_func
+{
+    const void* data;
+    int size;
+
+    void operator()(CHARACTER* member)
+    {
+        if (DESC* desc = member->GetDesc())
+            desc->Packet(data, size);
+    }
+};
+}
+
 int CInputMain::Chat(CHARACTER* character, const char* data, int bytes)
 {
     const int size = static_cast<BYTE>(data[1]);
@@ -106,30 +149,15 @@ int CInputMain::Chat(CHARACTER* character, const char* data, int bytes)
         const BYTE empire = character->GetGMLevel() || character->IsEquipUniqueGroup(0x2729)
             ? 0 : character->GetEmpire();
         const auto nameLength = std::strlen(character->GetName());
-        for (DESC* desc : DESC_MANAGER::instance().GetClientSet()) {
-            CHARACTER* listener = desc->GetCharacter();
-            if (!listener || listener->GetMapIndex() != character->GetMapIndex())
-                continue;
-            desc->BufferedPacket(header, sizeof(header));
-            if (desc->GetEmpire() == empire || !empire || listener->GetGMLevel()
-                || listener->IsEquipUniqueGroup(0x2729) || nameLength >= length) {
-                desc->Packet(message, length);
-            } else {
-                char converted[86] = {};
-                std::memcpy(converted, message, length);
-                ConvertEmpireText(empire, converted + nameLength, listener->GetSkillPower(empire + 0x7d) * 2 + 10);
-                desc->Packet(converted, length);
-            }
-        }
+        FEmpireChatPacket sendChat{header, message, length, empire, character->GetMapIndex(), nameLength};
+        for (DESC* desc : DESC_MANAGER::instance().GetClientSet())
+            sendChat(desc);
     } else if (type == 3) {
         if (CParty* party = character->GetParty()) {
             TEMP_BUFFER buffer;
             buffer.write(header, sizeof(header));
             buffer.write(message, length);
-            party->ForEachOnlineMember([&](CHARACTER* member) {
-                if (DESC* desc = member->GetDesc())
-                    desc->Packet(buffer.read_peek(), buffer.size());
-            });
+            party->ForEachOnlineMember(ChatPacketCharacter_func{buffer.read_peek(), buffer.size()});
         } else {
             character->ChatPacket(1, "%s", locale_find("\306\304\306\274\040\301\337\300\314\040\276\306\264\325\264\317\264\331\056", g_iUseLocale));
         }
@@ -1465,7 +1493,7 @@ void CInputMain::Refine(CHARACTER* character, const char* data)
     if (!item)
         return;
 
-    character->m_iRefineTime = thecore_pulse();
+    character->SetRefineTime();
     sys_log(0, "DoRefine type %d item %s", type, item->GetName());
     switch (type) {
     case 0:

@@ -16,6 +16,8 @@
 namespace marriage {
 void Align(DWORD& first, DWORD& second)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     if (second<first) {
         DWORD old=first;
         first=second;
@@ -45,29 +47,35 @@ struct NearCheckInfo {
 EVENTFUNC(near_check_event)
 {
     static_cast<NearCheckInfo*>(event->info)->marriage->NearCheck();
-    return passes_per_sec * 5;
+    return static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 5u);
 }
 
 void TMarriage::Login(CHARACTER* character)
 {
-    const DWORD pid = character->GetPlayerID();
+    const auto pid = static_cast<std::uint32_t>(character->GetPlayerID());
     if (pid == pid1) {
+        const bool married = is_married;
         ch1 = character;
-        if (is_married)
-            SendLoverInfo(ch1, name2, GetMarriagePoint());
+        if (married) {
+            const int points = GetMarriagePoint();
+            SendLoverInfo(ch1, name2, points);
+        }
     } else if (pid == pid2) {
+        const bool married = is_married;
         ch2 = character;
-        if (is_married)
-            SendLoverInfo(ch2, name1, GetMarriagePoint());
+        if (married) {
+            const int points = GetMarriagePoint();
+            SendLoverInfo(ch2, name1, points);
+        }
     }
 
-    if (!ch1 || !ch2)
+    if (!IsOnline())
         return;
 
     ch1->SetMarryPartner(ch2);
     ch2->SetMarryPartner(ch1);
     if (is_married) {
-        sys_log(0, "lover_login %lu %lu", pid1, pid2);
+        sys_log(0, "lover_login %lu %lu", static_cast<unsigned long>(pid1), static_cast<unsigned long>(pid2));
         ch1->ChatPacket(5, "lover_login");
         ch2->ChatPacket(5, "lover_login");
     }
@@ -87,22 +95,26 @@ void TMarriage::NearCheck()
 {
     if (!is_married)
         return;
-    if (!ch1 || !ch2) {
+    if (!IsOnline()) {
         StopNearCheckEvent();
         return;
     }
 
     const int lovePoint = GetMarriagePoint();
     const bool near = IsNear();
-    sys_log(0, "NearCheck %lu %lu %d %d %d", pid1, pid2, near, isLastNear, byLastLovePoint, lovePoint);
-    if (near != isLastNear) {
-        isLastNear = near;
-        const char* command = near ? "lover_near" : "lover_far";
-        ch1->ChatPacket(5, "%s", command);
-        ch2->ChatPacket(5, "%s", command);
+    sys_log(0, "NearCheck %lu %lu %d %d %d", static_cast<unsigned long>(pid1), static_cast<unsigned long>(pid2), near, isLastNear, byLastLovePoint, lovePoint);
+    if (IsNear() && !isLastNear) {
+        isLastNear = true;
+        ch1->ChatPacket(5, "lover_near");
+        ch2->ChatPacket(5, "lover_near");
+    } else if (!IsNear() && isLastNear) {
+        isLastNear = false;
+        ch1->ChatPacket(5, "lover_far");
+        ch2->ChatPacket(5, "lover_far");
     }
-    if (byLastLovePoint != lovePoint) {
-        byLastLovePoint = static_cast<BYTE>(lovePoint);
+    const BYTE previousLovePoint = byLastLovePoint;
+    if (previousLovePoint != GetMarriagePoint()) {
+        byLastLovePoint = static_cast<BYTE>(GetMarriagePoint());
         const BYTE packet[] = {0x84, byLastLovePoint};
         if (DESC* desc = ch1->GetDesc())
             desc->Packet(packet, sizeof(packet));
@@ -119,7 +131,7 @@ void CManager::Login(CHARACTER* character)
 
 TMarriage* CManager::Get(DWORD pid)
 {
-    std::map<DWORD,TMarriage*>::iterator it=m_MarriageByPID.find(pid);
+    const auto it = m_MarriageByPID.find(static_cast<std::uint32_t>(pid));
     return it==m_MarriageByPID.end() ? 0 : it->second;
 }
 
@@ -138,7 +150,12 @@ void TMarriage::Save()
 {
     sys_log(0,"TMarriage::Save() - RequestUpdate.bSave=%d",bSave);
     if (bSave) {
-        CManager::instance().RequestUpdate(pid1,pid2,love_point,is_married);
+        auto& manager = CManager::instance();
+        const BYTE married = is_married;
+        const int points = love_point;
+        const auto second = pid2;
+        const auto first = pid1;
+        manager.RequestUpdate(first, second, points, married);
         bSave=false;
     }
 }
@@ -154,8 +171,8 @@ void TMarriage::StopNearCheckEvent()
 
 void TMarriage::Logout(DWORD pid)
 {
-    if (pid==pid1) ch1=0;
-    else if (pid==pid2) ch2=0;
+    if (static_cast<std::uint32_t>(pid)==pid1) ch1=0;
+    else if (static_cast<std::uint32_t>(pid)==pid2) ch2=0;
     if (!ch1 && !ch2) return;
 
     Save();
@@ -181,7 +198,7 @@ void CManager::Logout(CHARACTER* character)
 namespace marriage {
 // 0823ebc0: item-specific values for the four marriage grades.
 static const struct {
-    DWORD vnum;
+    std::uint32_t vnum;
     int values[4];
 } g_ItemBonus[] = {
     {71069, {4, 5, 6, 8}},
@@ -195,7 +212,7 @@ static const struct {
 bool CManager::IsMarriageUniqueItem(DWORD vnum)
 {
     for (const auto& bonus : g_ItemBonus) {
-        if (bonus.vnum == vnum)
+        if (bonus.vnum == static_cast<std::uint32_t>(vnum))
             return true;
     }
     return false;
@@ -220,7 +237,11 @@ bool CManager::IsEngagedOrMarried(DWORD pid)
 
 bool TMarriage::IsNear()
 {
-    return is_married && ch1 && ch2 && ch1->GetMapIndex() == ch2->GetMapIndex();
+    if (!is_married || !IsOnline())
+        return false;
+
+    const auto secondMap = static_cast<std::int32_t>(ch2->GetMapIndex());
+    return static_cast<std::int32_t>(ch1->GetMapIndex()) == secondMap;
 }
 
 int TMarriage::GetMarriagePoint()
@@ -231,11 +252,11 @@ int TMarriage::GetMarriagePoint()
             return MINMAX(0, overrideValue, 100);
     }
 
-    const bool fast = ch1 && ch2 &&
+    const bool fast = IsOnline() &&
                       (ch1->GetPremiumRemainSeconds(5) > 0 || ch2->GetPremiumRemainSeconds(5) > 0);
     const int cap = fast ? 40 : 30;
-    const auto elapsed = static_cast<std::int32_t>(
-        static_cast<std::uint32_t>(get_global_time()) - static_cast<std::uint32_t>(marry_time));
+    const auto now = static_cast<std::uint32_t>(get_global_time());
+    const auto elapsed = static_cast<std::int32_t>(now - static_cast<std::uint32_t>(marry_time));
     const int periods = elapsed / (test_server ? 60 : 86400);
     const int timePoints = MIN(periods * (fast ? 2 : 1), cap);
     const int lovePoints = MIN(love_point / 1000000, cap);
@@ -257,35 +278,38 @@ int TMarriage::GetBonus(DWORD vnum, bool share, CHARACTER* character)
     if (!is_married)
         return 0;
     for (const auto& bonus : g_ItemBonus) {
-        if (bonus.vnum != vnum)
+        if (bonus.vnum != static_cast<std::uint32_t>(vnum))
             continue;
 
-        bool equipped = false;
-        if (ch1 && (share || character != ch1))
-            equipped = ch1->IsEquipUniqueItem(vnum);
-        if (ch2 && (share || character != ch2)) {
-            if (ch2->IsEquipUniqueItem(vnum))
-                equipped = true;
-        }
-        return equipped ? bonus.values[GetMarriageGrade()] : 0;
+        int equipped = 0;
+        if (ch1 && (share || character != ch1) && ch1->IsEquipUniqueItem(bonus.vnum))
+            ++equipped;
+        if (ch2 && (share || character != ch2) && ch2->IsEquipUniqueItem(bonus.vnum))
+            ++equipped;
+        return equipped > 0 ? bonus.values[GetMarriageGrade()] : 0;
     }
     return 0;
 }
 
 void TMarriage::Update(DWORD points)
 {
-    if (!ch1 || !ch2 || !points || !is_married)
+    const auto delta = static_cast<std::uint32_t>(points);
+    if (!IsOnline() || !delta || !is_married)
         return;
     love_point = static_cast<std::int32_t>(
-        static_cast<std::uint32_t>(love_point) + static_cast<std::uint32_t>(points));
+        static_cast<std::uint32_t>(love_point) + delta);
     bSave = true;
     if (test_server) {
-        CHARACTER_MANAGER& characters = CHARACTER_MANAGER::instance();
-        const double millions = static_cast<double>(love_point) / 1000000.0;
-        if (CHARACTER* first = characters.FindByPID(pid1))
-            first->ChatPacket(3, "lovepoint bykill %.3g total %d", millions, GetMarriagePoint());
-        if (CHARACTER* second = characters.FindByPID(pid2))
-            second->ChatPacket(3, "lovepoint bykill %.3g total %d", millions, GetMarriagePoint());
+        if (CHARACTER* first = CHARACTER_MANAGER::instance().FindByPID(pid1)) {
+            const int total = GetMarriagePoint();
+            const double millions = static_cast<double>(love_point) / 1000000.0;
+            first->ChatPacket(3, "lovepoint bykill %.3g total %d", millions, total);
+        }
+        if (CHARACTER* second = CHARACTER_MANAGER::instance().FindByPID(pid2)) {
+            const int total = GetMarriagePoint();
+            const double millions = static_cast<double>(love_point) / 1000000.0;
+            second->ChatPacket(3, "lovepoint bykill %.3g total %d", millions, total);
+        }
     }
 }
 }
@@ -314,6 +338,8 @@ static_assert(sizeof(MarriageAddPacket) == 62, "marriage add wire size");
 
 void CManager::RequestAdd(DWORD first, DWORD second, const char* firstName, const char* secondName)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     if (second < first) {
         std::swap(first, second);
         std::swap(firstName, secondName);
@@ -349,9 +375,11 @@ void TMarriage::SetMarried()
     is_married = true;
     bSave = true;
     Save();
-    if (ch1 && ch2) {
-        SendLoverInfo(ch1, name2, GetMarriagePoint());
-        SendLoverInfo(ch2, name1, GetMarriagePoint());
+    if (IsOnline()) {
+        const int firstPoints = GetMarriagePoint();
+        SendLoverInfo(ch1, name2, firstPoints);
+        const int secondPoints = GetMarriagePoint();
+        SendLoverInfo(ch2, name1, secondPoints);
         ch1->ChatPacket(5, "lover_login");
         ch2->ChatPacket(5, "lover_login");
     }
@@ -361,24 +389,34 @@ void TMarriage::WarpToWeddingMap(DWORD pid)
 {
     if (!pWeddingInfo)
         return;
-    CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid);
+    CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(static_cast<std::uint32_t>(pid));
     if (!character)
         return;
 
-    const DWORD map = pWeddingInfo->dwMapIndex;
+    const auto map = static_cast<unsigned int>(pWeddingInfo->dwMapIndex);
     PIXEL_POSITION position;
     if (!SECTREE_MANAGER::instance().GetRecallPositionByEmpire(map / 10000, 0, position)) {
         _sys_err("WarpToWeddingMap", 0x181, "cannot get warp position");
         return;
     }
     character->SaveExitLocation();
-    character->WarpSet(position.x, position.y, map);
+    if (!pWeddingInfo)
+        return;
+    const auto destinationMap = static_cast<int>(pWeddingInfo->dwMapIndex);
+    const auto y = position.y;
+    const auto x = position.x;
+    character->WarpSet(x, y, destinationMap);
 }
 
 void TMarriage::RequestEndWedding()
 {
-    if (pWeddingInfo)
-        CManager::instance().RequestEndWedding(pid1, pid2);
+    if (!pWeddingInfo)
+        return;
+
+    auto& manager = CManager::instance();
+    const auto second = pid2;
+    const auto first = pid1;
+    manager.RequestEndWedding(first, second);
 }
 }
 
@@ -398,7 +436,7 @@ void CManager::Destroy() {}
 TMarriage::~TMarriage()
 {
     StopNearCheckEvent();
-    if (ch1 && ch2) {
+    if (IsOnline()) {
         ch1->ChatPacket(5, "lover_divorce");
         ch2->ChatPacket(5, "lover_divorce");
     }
@@ -411,6 +449,8 @@ TMarriage::~TMarriage()
 
 void CManager::Add(DWORD first, DWORD second, time_t marriedAt, const char* firstName, const char* secondName)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     if (first == second || IsEngagedOrMarried(first) || IsEngagedOrMarried(second)) {
         _sys_err("Add", 0x1e5, "cannot marry already married character. %d - %d",
                  static_cast<int>(first), static_cast<int>(second));
@@ -440,6 +480,8 @@ void CManager::Add(DWORD first, DWORD second, time_t marriedAt, const char* firs
 
 void CManager::Update(DWORD first, DWORD second, long totalPoints, BYTE married)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     TMarriage* record = Get(first);
     if (!record || record->GetOther(first) != second) {
         _sys_err("Update", 0x214, "not under marriage : %lu %lu", first, second);
@@ -451,6 +493,8 @@ void CManager::Update(DWORD first, DWORD second, long totalPoints, BYTE married)
 
 void CManager::Remove(DWORD first, DWORD second)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     TMarriage* record = Get(first);
     if (!record || record->GetOther(first) != second) {
         _sys_err("Remove", 0x22b, "not under marriage : %lu %lu", first, second);
@@ -466,6 +510,8 @@ void CManager::Remove(DWORD first, DWORD second)
 
 void CManager::WeddingReady(DWORD first, DWORD second, DWORD map)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     TMarriage* record = Get(first);
     if (!record || record->GetOther(first) != second) {
         _sys_err("WeddingReady", 0x251, "wrong marriage %lu, %lu", first, second);
@@ -473,11 +519,13 @@ void CManager::WeddingReady(DWORD first, DWORD second, DWORD map)
     }
     if (!record->pWeddingInfo)
         record->pWeddingInfo = new TWeddingInfo;
-    record->pWeddingInfo->dwMapIndex = map;
+    record->pWeddingInfo->dwMapIndex = static_cast<std::uint32_t>(map);
 }
 
 void CManager::WeddingStart(DWORD first, DWORD second)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     TMarriage* record = Get(first);
     if (!record || record->GetOther(first) != second) {
         _sys_err("WeddingStart", 0x266, "wrong marriage %lu, %lu", first, second);
@@ -492,6 +540,8 @@ void CManager::WeddingStart(DWORD first, DWORD second)
 
 void CManager::WeddingEnd(DWORD first, DWORD second)
 {
+    first = static_cast<std::uint32_t>(first);
+    second = static_cast<std::uint32_t>(second);
     TMarriage* record = Get(first);
     if (!record || record->GetOther(first) != second) {
         _sys_err("WeddingEnd", 0x27c, "wrong marriage %lu, %lu", first, second);
@@ -501,10 +551,14 @@ void CManager::WeddingEnd(DWORD first, DWORD second)
         _sys_err("WeddingEnd", 0x282, "not under wedding %lu, %lu", first, second);
         return;
     }
-    const DWORD map = record->pWeddingInfo->dwMapIndex;
-    if (map_allow_find(81) && !WeddingManager::instance().End(map)) {
-        _sys_err("WeddingEnd", 0x28a, "wedding map error: map_index=%d", static_cast<int>(map));
-        return;
+    if (map_allow_find(81)) {
+        auto& weddings = WeddingManager::instance();
+        const DWORD map = record->pWeddingInfo->dwMapIndex;
+        if (!weddings.End(map)) {
+            const DWORD failedMap = record->pWeddingInfo ? record->pWeddingInfo->dwMapIndex : map;
+            _sys_err("WeddingEnd", 0x28a, "wedding map error: map_index=%d", static_cast<int>(failedMap));
+            return;
+        }
     }
     delete record->pWeddingInfo;
     record->pWeddingInfo = nullptr;

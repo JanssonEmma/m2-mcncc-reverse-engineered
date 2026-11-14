@@ -11,6 +11,7 @@
 #include "wedding.h"
 #include "char.h"
 #include <cstdio>
+#include <cstdint>
 
 namespace marriage {
 void WeddingMap::IncMember(CHARACTER* character)
@@ -33,7 +34,7 @@ void WeddingMap::SendLocalEvent(CHARACTER* character)
     if (m_isMusic) {
         char command[256];
         const char* text=__BuildCommandPlayMusic(command,255,1,m_stMusicFileName.c_str());
-        character->ChatPacket(5,text);
+        character->ChatPacket(5, "%s", text);
     }
 }
 
@@ -51,8 +52,8 @@ const char* WeddingMap::__BuildCommandPlayMusic(char* command, int length, BYTE 
 namespace marriage {
 
 WeddingMap::WeddingMap(DWORD map, DWORD first, DWORD second)
-    : m_dwMapIndex(map), m_pEndEvent(0), m_isDark(false), m_isSnow(false), m_isMusic(false),
-      dwPID1(first), dwPID2(second)
+    : m_dwMapIndex(static_cast<std::uint32_t>(map)), m_pEndEvent(0), m_isDark(false), m_isSnow(false), m_isMusic(false),
+      dwPID1(static_cast<std::uint32_t>(first)), dwPID2(static_cast<std::uint32_t>(second))
 {
 }
 
@@ -66,14 +67,14 @@ WeddingManager::~WeddingManager() {}
 
 WeddingMap* WeddingManager::Find(DWORD map)
 {
-    std::map<DWORD,WeddingMap*>::iterator it=m_mapWedding.find(map);
+    const auto it = m_mapWedding.find(static_cast<std::uint32_t>(map));
     return it==m_mapWedding.end() ? 0 : it->second;
 }
 
 void WeddingManager::DestroyWeddingMap(WeddingMap* map)
 {
-    m_mapWedding.erase(map->GetMapIndex());
-    SECTREE_MANAGER::instance().DestroyPrivateMap(map->GetMapIndex());
+    m_mapWedding.erase(static_cast<std::uint32_t>(map->GetMapIndex()));
+    SECTREE_MANAGER::instance().DestroyPrivateMap(static_cast<std::int32_t>(map->GetMapIndex()));
     delete map;
 }
 
@@ -123,19 +124,22 @@ long WeddingEndDelay()
 long wedding_end_event(LPEVENT event)
 {
     WeddingMapEventInfo* info=static_cast<WeddingMapEventInfo*>(event->info);
-    if (!info->step) {
+    const int step = info->step;
+    WeddingMap* map = info->map;
+    if (!step) {
         info->step=1;
-        info->map->ExitAll();
+        map->ExitAll();
         return WeddingEndDelay();
     }
-    WeddingManager::instance().DestroyWeddingMap(info->map);
+    WeddingManager::instance().DestroyWeddingMap(map);
     return 0;
 }
 
 void WeddingMap::SetEnded()
 {
     if (m_pEndEvent) {
-        _sys_err("SetEnded",0x38,"WeddingMap::SetEnded - ALREADY EndEvent(m_pEndEvent=%x)",m_pEndEvent);
+        const auto eventAddress = static_cast<unsigned int>(reinterpret_cast<std::uintptr_t>(m_pEndEvent));
+        _sys_err("SetEnded", 0x38, "WeddingMap::SetEnded - ALREADY EndEvent(m_pEndEvent=%x)", eventAddress);
         return;
     }
     void* rawInfo = nullptr;
@@ -147,8 +151,9 @@ void WeddingMap::SetEnded()
     Notice(locale_find("\300\332\265\277\300\270\267\316\040\263\252\260\241\260\324\265\313\264\317\264\331\056",g_iUseLocale));
     for (std::set<CHARACTER*>::iterator it=m_set_pkChr.begin();it!=m_set_pkChr.end();++it) {
         CHARACTER* character=*it;
-        DWORD pid=character->GetPlayerID();
-        if (pid!=dwPID1 && pid!=dwPID2 && character->GetLevel()>=10)
+        const auto pid = static_cast<std::uint32_t>(character->GetPlayerID());
+        if (pid != dwPID1 &&
+            pid != dwPID2 && character->GetLevel() >= 10)
             character->AutoGiveItem(27002,5,-1,true);
     }
 }
@@ -165,7 +170,8 @@ bool WeddingManager::End(DWORD map)
 
 bool WeddingManager::IsWeddingMap(DWORD map)
 {
-    return map==81 || map/10000==81;
+    const auto mapIndex = static_cast<unsigned int>(map);
+    return mapIndex == 81u || mapIndex / 10000u == 81u;
 }
 }
 
@@ -173,10 +179,10 @@ namespace marriage {
 DWORD WeddingManager::__CreateWeddingMap(DWORD first, DWORD second)
 {
     SECTREE_MANAGER& sectors=SECTREE_MANAGER::instance();
-    const DWORD index=sectors.CreatePrivateMap(81);
+    const auto index = static_cast<std::uint32_t>(sectors.CreatePrivateMap(81));
     if (!index) {
         _sys_err("__CreateWeddingMap",0x100,"CreateWeddingMap(pid1=%d, pid2=%d) / CreatePrivateMap(%d) FAILED",
-                 first,second,81);
+                 static_cast<int>(static_cast<std::int32_t>(first)), static_cast<int>(static_cast<std::int32_t>(second)), 81);
         return 0;
     }
     m_mapWedding.insert(std::make_pair(index,new WeddingMap(index,first,second)));
@@ -185,13 +191,18 @@ DWORD WeddingManager::__CreateWeddingMap(DWORD first, DWORD second)
     filename.reserve(64);
     filename=LocaleService_GetMapPath();
     filename+="/metin2_map_wedding_01/npc.txt";
-    if (regen_do(filename.c_str(),index,map->m_setting.iBaseX,map->m_setting.iBaseY,0,true)) {
+    const auto baseY = map->m_setting.iBaseY;
+    const auto baseX = map->m_setting.iBaseX;
+    const bool loaded = regen_do(filename.c_str(), index, baseX, baseY, 0, true);
+    const auto diagnosticY = map->m_setting.iBaseY;
+    const auto diagnosticX = map->m_setting.iBaseX;
+    if (loaded) {
         sys_log(0,"CreateWeddingMap(pid1=%d, pid2=%d) / regen_do(fileName=%s, mapIndex=%d, basePos=(%d, %d)) ok",
-                first,second,filename.c_str(),index,map->m_setting.iBaseX,map->m_setting.iBaseY);
+                static_cast<int>(static_cast<std::int32_t>(first)), static_cast<int>(static_cast<std::int32_t>(second)), filename.c_str(),static_cast<int>(index),diagnosticX,diagnosticY);
     } else {
         _sys_err("__CreateWeddingMap",0x110,
                  "CreateWeddingMap(pid1=%d, pid2=%d) / regen_do(fileName=%s, mapIndex=%d, basePos=(%d, %d)) FAILED",
-                 first,second,filename.c_str(),index,map->m_setting.iBaseX,map->m_setting.iBaseY);
+                 static_cast<int>(static_cast<std::int32_t>(first)), static_cast<int>(static_cast<std::int32_t>(second)), filename.c_str(),static_cast<int>(index),diagnosticX,diagnosticY);
     }
     return index;
 }
@@ -214,8 +225,8 @@ void WeddingManager::Request(DWORD first, DWORD second)
 namespace marriage {
 void WeddingMap::ShoutInMap(BYTE, const char* message)
 {
-    for (CHARACTER* character : m_set_pkChr)
-        character->ChatPacket(5, "%s", message);
+    for (auto it = m_set_pkChr.begin(); it != m_set_pkChr.end(); ++it)
+        (*it)->ChatPacket(5, "%s", message);
 }
 
 bool WeddingMap::IsPlayingMusic()
@@ -244,9 +255,10 @@ void WeddingMap::SetMusic(bool enabled, const char* filename)
     if (m_isMusic != enabled) {
         m_isMusic = enabled;
         m_stMusicFileName = filename;
+        const bool playing = m_isMusic;
         char command[256];
-        ShoutInMap(5, __BuildCommandPlayMusic(command, 255, enabled,
-            enabled ? m_stMusicFileName.c_str() : "default"));
+        ShoutInMap(5, __BuildCommandPlayMusic(command, 255, playing,
+            playing ? m_stMusicFileName.c_str() : "default"));
     }
 }
 }

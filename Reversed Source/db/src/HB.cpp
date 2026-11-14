@@ -32,15 +32,16 @@ bool PlayerHB::Initialize()
 
 void PlayerHB::Put(DWORD id)
 {
-    std::map<DWORD, time_t>::iterator entry = m_map_data.find(id);
+    auto entry = m_map_data.find(id);
     if (entry == m_map_data.end())
     {
         Query(id);
-        m_map_data.insert(std::make_pair(id, static_cast<time_t>(get_dword_time())));
+        m_map_data.insert(std::make_pair(id, static_cast<std::uint32_t>(get_dword_time())));
         return;
     }
 
-    if (time(0) - entry->second > m_iExpireTime)
+    const auto elapsed = static_cast<std::uint32_t>(time(0)) - entry->second;
+    if (static_cast<std::int32_t>(elapsed) > m_iExpireTime)
         Query(id);
 }
 

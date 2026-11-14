@@ -71,7 +71,7 @@ DWORD get_dword_time(void)
     struct timeval now;
     gettimeofday(&now, NULL);
     const uint32_t milliseconds = (uint32_t)now.tv_sec * UINT32_C(1000)
-        + (uint32_t)(now.tv_usec / 1000) - UINT32_C(0x43d4db10);
+        + (uint32_t)(signed_time_word((uint32_t)now.tv_usec) / 1000) - UINT32_C(0x43d4db10);
     return (DWORD)milliseconds;
 }
 
@@ -80,7 +80,7 @@ struct tm* tm_calc(const struct tm* current, int days)
 {
     static struct tm result;
     int monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int year;
+    int32_t year;
     if (current)
         thecore_memcpy(&result, current, sizeof(struct tm));
     else
@@ -88,18 +88,18 @@ struct tm* tm_calc(const struct tm* current, int days)
         time_t now = time(NULL);
         result = *localtime(&now);
     }
-    year = result.tm_year + 1900;
+    year = signed_time_word((uint32_t)result.tm_year + UINT32_C(1900));
     if (result.tm_mon == 1 && year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
     {
-        ++result.tm_mday;
+        result.tm_mday = signed_time_word((uint32_t)result.tm_mday + UINT32_C(1));
         monthdays[1] = 29;
     }
-    result.tm_mday += days;
+    result.tm_mday = signed_time_word((uint32_t)result.tm_mday + (uint32_t)days);
     if (result.tm_mday <= 0)
     {
         if (--result.tm_mon < 0)
         {
-            --result.tm_year;
+            result.tm_year = signed_time_word((uint32_t)result.tm_year - UINT32_C(1));
             result.tm_mon = 11;
         }
         result.tm_mday += monthdays[result.tm_mon];
@@ -108,7 +108,7 @@ struct tm* tm_calc(const struct tm* current, int days)
     {
         if (++result.tm_mon > 11)
         {
-            ++result.tm_year;
+            result.tm_year = signed_time_word((uint32_t)result.tm_year + UINT32_C(1));
             result.tm_mon = 0;
         }
         result.tm_mday = monthdays[result.tm_mon] - result.tm_mday;
@@ -155,7 +155,7 @@ long double get_float_time_extended(void)
     const uint32_t seconds_bits = (uint32_t)now.tv_sec - UINT32_C(1057699978);
     int32_t seconds;
     memcpy(&seconds, &seconds_bits, sizeof(seconds));
-    return (long double)seconds + (long double)now.tv_usec / 1000000.0L;
+    return (long double)seconds + (long double)signed_time_word((uint32_t)now.tv_usec) / 1000000.0L;
 }
 
 float get_float_time(void)
@@ -186,7 +186,6 @@ DWORD thecore_random(void)
 
 int number_ex(int from, int to, char *file, int line)
 {
-    DWORD span;
     if (from > to)
     {
         int tmp = from;
@@ -196,9 +195,14 @@ int number_ex(int from, int to, char *file, int line)
         from = to;
         to = tmp;
     }
-    /* Original 32-bit SUB/LEA wrap before unsigned DIV; no zero-span guard. */
-    span = (DWORD)to - (DWORD)from + 1UL;
-    return (int)((DWORD)from + thecore_random() % span);
+    /* The original uses unsigned 32-bit arithmetic. Zero encodes the full range. */
+    const uint32_t span = (uint32_t)to - (uint32_t)from + UINT32_C(1);
+    const uint32_t draw = (uint32_t)thecore_random();
+    const uint32_t offset = span ? draw % span : draw;
+    const uint32_t bits = (uint32_t)from + offset;
+    int32_t result;
+    memcpy(&result, &bits, sizeof(result));
+    return result;
 }
 /* Recovered utils.c string/file portion.
  * Preserve the old API and edge behavior; see utils-strings-recovery.md.

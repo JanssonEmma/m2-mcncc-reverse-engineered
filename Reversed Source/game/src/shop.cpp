@@ -17,6 +17,22 @@
 #include "../../libthecore/include/memcpy.h"
 #include <cstring>
 
+namespace {
+void CopyShopSockets(void* destination, const long* sockets)
+{
+    if (sizeof(long) == sizeof(std::int32_t)) {
+        thecore_memcpy(destination, sockets, 3 * sizeof(std::int32_t));
+    } else {
+        const std::int32_t packedSockets[] = {
+            static_cast<std::int32_t>(sockets[0]),
+            static_cast<std::int32_t>(sockets[1]),
+            static_cast<std::int32_t>(sockets[2]),
+        };
+        thecore_memcpy(destination, packedSockets, sizeof(packedSockets));
+    }
+}
+}
+
 CShop::CShop() : m_dwVnum(0), m_pkPC(0) {
     m_pGrid = new CGrid(5, 9);
 }
@@ -64,8 +80,7 @@ bool CShop::AddGuest(CHARACTER* character, DWORD ownerVid, bool otherEmpire) {
         entry.count = item.count;
         if (item.pkItem) {
             const long* sockets = item.pkItem->GetSockets();
-            for (std::size_t socket = 0; socket < sizeof(entry.alSockets) / sizeof(entry.alSockets[0]); ++socket)
-                entry.alSockets[socket] = static_cast<std::int32_t>(sockets[socket]);
+            CopyShopSockets(entry.alSockets, sockets);
             thecore_memcpy(entry.aAttr, item.pkItem->GetAttributes(), sizeof(entry.aAttr));
         }
     }
@@ -150,8 +165,9 @@ void CShop::SetShopItems(TShopItemTable* table, BYTE count) {
         } else {
             slot.vnum = table->vnum;
             slot.count = table->count;
+            const bool countPerGold = (proto->dwFlags & 8) != 0;
             const auto gold = static_cast<std::uint32_t>(proto->dwGold);
-            if (!(proto->dwFlags & 8))
+            if (!countPerGold)
                 slot.price = static_cast<std::int32_t>(slot.count * gold);
             else
                 slot.price = gold ? slot.count / gold : slot.count;
@@ -180,20 +196,24 @@ void CShop::BroadcastUpdateItem(BYTE position) {
     const TPacketGCShop header = {38, sizeof(TPacketGCShop) + sizeof(TPacketGCShopUpdateItem), 2};
     TPacketGCShopUpdateItem update{};
     update.pos = position;
-    const SHOP_ITEM& slot = m_itemVector[position];
-    if (m_pkPC && !slot.pkItem) {
-        update.item.vnum = 0;
-    } else {
-        update.item.vnum = slot.vnum;
-        if (slot.pkItem) {
-            const long* sockets = slot.pkItem->GetSockets();
-            for (std::size_t socket = 0; socket < sizeof(update.item.alSockets) / sizeof(update.item.alSockets[0]); ++socket)
-                update.item.alSockets[socket] = static_cast<std::int32_t>(sockets[socket]);
-            thecore_memcpy(update.item.aAttr, slot.pkItem->GetAttributes(), sizeof(update.item.aAttr));
-        }
+    if (position >= m_itemVector.size())
+        return;
+
+    CItem* item = m_itemVector[position].pkItem;
+    update.item.vnum = m_pkPC && !item ? 0 : m_itemVector[position].vnum;
+    if (item) {
+        CopyShopSockets(update.item.alSockets, item->GetSockets());
+        if (position >= m_itemVector.size())
+            return;
+        item = m_itemVector[position].pkItem;
+        if (!item)
+            return;
+        thecore_memcpy(update.item.aAttr, item->GetAttributes(), sizeof(update.item.aAttr));
+        if (position >= m_itemVector.size())
+            return;
     }
-    update.item.price = static_cast<std::uint32_t>(slot.price);
-    update.item.count = slot.count;
+    update.item.price = static_cast<std::uint32_t>(m_itemVector[position].price);
+    update.item.count = m_itemVector[position].count;
     buffer.write(&header, sizeof(header));
     buffer.write(&update, sizeof(update));
     const int bytes = buffer.size();

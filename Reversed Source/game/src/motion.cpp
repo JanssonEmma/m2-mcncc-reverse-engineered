@@ -31,7 +31,7 @@ CMotionManager::~CMotionManager() {
     m_map_pkMotionSet.clear();
 }
 const CMotionSet* CMotionManager::GetMotionSet(DWORD vnum) {
-    TContainer::iterator it=m_map_pkMotionSet.find(vnum);
+    TContainer::iterator it=m_map_pkMotionSet.find(static_cast<std::uint32_t>(vnum));
     return it==m_map_pkMotionSet.end() ? 0 : it->second;
 }
 const CMotion* CMotionManager::GetMotion(DWORD vnum,DWORD key) {
@@ -52,15 +52,19 @@ bool CMotion::LoadFromFile(const char* filename) {
         return false;
     }
     if(loader.GetTokenPosition("accumulation",&m_vec3Accumulation)) m_isAccumulation=true;
-    // Target paths contain '/'; the old log uses the first slash rather than basename.
-    sys_log(1,"%-48s %.3f %f",std::strchr(filename,'/')+1,static_cast<double>(GetDuration()),static_cast<double>(GetAccumVector().y));
+    const double accumulationY = GetAccumVector().y;
+    const double duration = GetDuration();
+    const char* separator = std::strchr(filename, '/');
+    sys_log(1, "%-48s %.3f %f", separator ? separator + 1 : filename, duration, accumulationY);
     m_isEmpty=false;
     return true;
 }
 bool CMotionSet::Load(const char* filename,int mode,int motion) {
     CMotion* loaded=new CMotion;
     if(!loaded->LoadFromFile(filename)) { delete loaded; return false; }
-    const long double speed = -static_cast<long double>(loaded->GetAccumVector().y) / loaded->GetDuration();
+    const float displacement = -loaded->GetAccumVector().y;
+    const float duration = loaded->GetDuration();
+    const long double speed = static_cast<long double>(displacement) / duration;
     sys_log(0,"Motion: mode %d motion %d dist/sec %4.0f filename %s",mode,motion,static_cast<double>(speed),filename);
     Insert(MAKE_MOTION_KEY(mode,motion),loaded);
     return true;

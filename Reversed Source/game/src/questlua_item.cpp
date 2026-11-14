@@ -3,6 +3,7 @@
 #include "item_manager.h"
 #include "questmanager.h"
 
+#include <cfenv>
 #include <cstdint>
 
 extern "C" {
@@ -23,16 +24,20 @@ int PushItemValue(lua_State* state, Value (CItem::*getter)())
 std::int32_t ItemSignedNumber(lua_State* state, int index)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value > -2147483649.0 && value < 2147483648.0))
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
         return INT32_MIN;
+    }
     return static_cast<std::int32_t>(value);
 }
 
 std::uint32_t ItemUnsignedNumber(lua_State* state, int index)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value >= -9223372036854775808.0 && value < 9223372036854775808.0))
+    if (!(value >= -9223372036854775808.0 && value < 9223372036854775808.0)) {
+        std::feraiseexcept(FE_INVALID);
         return 0;
+    }
     return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
 }
 }
@@ -50,7 +55,8 @@ int item_select(lua_State* state)
 {
     lua_pushboolean(state, false);
     if (lua_isnumber(state, 1)) {
-        if (CItem* item = ITEM_MANAGER::instance().Find(ItemUnsignedNumber(state, 1))) {
+        const auto id = ItemUnsignedNumber(state, 1);
+        if (CItem* item = ITEM_MANAGER::instance().Find(id)) {
             CQuestManager::instance().SetCurrentItem(item);
             lua_pushboolean(state, true);
         }
@@ -86,10 +92,14 @@ int item_remove(lua_State*)
 
 int item_get_socket(lua_State* state)
 {
-    CItem* item = CQuestManager::instance().GetCurrentItem();
-    const auto index = item && lua_isnumber(state, 1) ? ItemSignedNumber(state, 1) : -1;
-    lua_pushnumber(state, index >= 0 && index < 3
-        ? static_cast<std::int32_t>(item->GetSockets()[index]) : 0);
+    auto& manager = CQuestManager::instance();
+    const auto index = manager.GetCurrentItem() && lua_isnumber(state, 1) ? ItemSignedNumber(state, 1) : -1;
+    std::int32_t value = 0;
+    if (index >= 0 && index < 3) {
+        if (CItem* item = manager.GetCurrentItem())
+            value = static_cast<std::int32_t>(item->GetSockets()[index]);
+    }
+    lua_pushnumber(state, value);
     return 1;
 }
 
@@ -112,8 +122,10 @@ int item_has_flag(lua_State* state)
     bool hasFlag = false;
     if (!lua_isnumber(state, 1))
         manager.QuestError("item_has_flag", 0x95, "flag is not a number.");
-    else if (item)
-        hasFlag = (static_cast<std::int32_t>(item->GetFlag()) & ItemSignedNumber(state, 1)) != 0;
+    else if (item) {
+        const auto mask = ItemSignedNumber(state, 1);
+        hasFlag = (static_cast<std::int32_t>(item->GetFlag()) & mask) != 0;
+    }
     lua_pushboolean(state, hasFlag);
     return 1;
 }
@@ -121,7 +133,7 @@ int item_has_flag(lua_State* state)
 int item_get_value(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
-    long result = 0;
+    std::int32_t result = 0;
     if (CItem* item = manager.GetCurrentItem()) {
         if (!lua_isnumber(state, 1)) {
             manager.QuestError("item_get_value", 0xb3, "index is not a number");
@@ -130,7 +142,7 @@ int item_get_value(lua_State* state)
             if (index < 0 || index >= 6)
                 manager.QuestError("item_get_value", 0xbc, "index(%d) is out of range (0..%d)", index, 6);
             else
-                result = item->GetValue(index);
+                result = static_cast<std::int32_t>(item->GetValue(index));
         }
     }
     lua_pushnumber(state, result);

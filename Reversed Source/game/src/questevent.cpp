@@ -3,6 +3,7 @@
 #include "char_manager.h"
 #include "config.h"
 #include "../../libthecore/include/log.h"
+#include <cfenv>
 #include <cmath>
 #include <climits>
 #include <cstring>
@@ -11,7 +12,10 @@ namespace {
 int TimerPulses(double seconds)
 {
     const double pulses = std::rint(passes_per_sec * seconds);
-    return pulses >= INT_MIN && pulses <= INT_MAX ? static_cast<int>(pulses) : INT_MIN;
+    if (pulses >= INT_MIN && pulses <= INT_MAX)
+        return static_cast<int>(pulses);
+    std::feraiseexcept(FE_INVALID);
+    return INT_MIN;
 }
 
 char* CopyTimerName(const char* name)
@@ -28,7 +32,9 @@ EVENTFUNC(quest_server_timer_event)
 {
     auto* info = static_cast<quest_server_event_info*>(event->info);
     auto& quests = CQuestManager::instance();
-    const bool ran = quests.ServerTimer(info->npc_id, info->arg);
+    const auto arg = info->arg;
+    const auto npcId = info->npc_id;
+    const bool ran = quests.ServerTimer(npcId, arg);
     if (event->is_force_to_end)
         return 0;
     if (!ran)
@@ -36,7 +42,10 @@ EVENTFUNC(quest_server_timer_event)
     if (info->time_cycle)
         return info->time_cycle;
 
-    quests.ClearServerTimerNotCancel(info->name, info->arg);
+    {
+        const std::string name(info->name);
+        quests.ClearServerTimerNotCancel(name, info->arg);
+    }
     delete[] info->name;
     info->name = nullptr;
     return 0;
@@ -47,7 +56,10 @@ EVENTFUNC(quest_timer_event)
     auto* info = static_cast<quest_event_info*>(event->info);
     auto& quests = CQuestManager::instance();
     if (CHARACTER_MANAGER::instance().FindByPID(info->player_id)) {
-        const bool ran = quests.Timer(info->player_id, info->npc_id);
+        auto& timerQuests = CQuestManager::instance();
+        const auto npcId = info->npc_id;
+        const auto playerId = info->player_id;
+        const bool ran = timerQuests.Timer(playerId, npcId);
         if (event->is_force_to_end)
             return 0;
         if (!ran)
@@ -68,9 +80,9 @@ EVENTFUNC(quest_timer_event)
 
 LPEVENT quest_create_server_timer_event(const char* name, double seconds, unsigned npc, bool loop, unsigned arg)
 {
+    const int pulses = TimerPulses(seconds);
     quest_server_event_info* info;
     const DWORD id = __AllocEventInfo(sizeof(*info), reinterpret_cast<void**>(&info));
-    const int pulses = TimerPulses(seconds);
     info->time_cycle = loop ? pulses : 0;
     info->npc_id = npc;
     info->arg = arg;
@@ -80,9 +92,9 @@ LPEVENT quest_create_server_timer_event(const char* name, double seconds, unsign
 
 LPEVENT quest_create_timer_event(const char* name, unsigned player, double seconds, unsigned npc, bool loop)
 {
+    const int pulses = TimerPulses(seconds);
     quest_event_info* info;
     const DWORD id = __AllocEventInfo(sizeof(*info), reinterpret_cast<void**>(&info));
-    const int pulses = TimerPulses(seconds);
     info->time_cycle = loop ? pulses : 0;
     info->player_id = player;
     info->npc_id = npc;

@@ -419,9 +419,12 @@ void AttackAffect(CHARACTER* attacker, CHARACTER* victim, BYTE point, DWORD immu
     const bool success = roll <= attacker->GetPoint(point) && !victim->IsImmune(immunity);
     if (success)
         victim->AddAffect(affect, apply, amount, flag, duration, 0, true, false);
-    if (test_server)
+    if (test_server) {
+        const long chance = attacker->GetPoint(point);
+        const char* attackerName = attacker->GetName();
         victim->ChatPacket(3, success ? "%s %s(%ld%%) SUCCESS" : "%s %s(%ld%%) FAIL",
-                           attacker->GetName(), name, attacker->GetPoint(point));
+                           attackerName, name, chance);
+    }
 }
 }
 
@@ -433,7 +436,7 @@ void NormalAttackAffect(CHARACTER* attacker, CHARACTER* victim)
             victim->AttackedByPoison(attacker);
     }
     const int stunDuration = attacker->GetDesc() && !victim->GetDesc() ? 4 : 2;
-    AttackAffect(attacker, victim, 38, 1, 210, POINT_MAX_HP, 6, 6, stunDuration, "STUN");
+    AttackAffect(attacker, victim, 38, 1, 210, POINT_NONE, 0, 6, stunDuration, "STUN");
     AttackAffect(attacker, victim, 39, 2, 211, 19, -30, 5, 20, "SLOW");
 }
 

@@ -80,17 +80,19 @@ namespace marriage
         unique_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
 
         SQLResult * pRes = pmsg->Get();
+        sys_log(0, "MarriageList(size=%d)", pRes->iNumRows);
 
         if (pRes->iNumRows > 0)
         {
+            sys_log(0, "MarriageList(size=%d)", pRes->iNumRows);
             for (int uiRow = 0; uiRow != pRes->iNumRows; ++uiRow)
             {
                 MYSQL_ROW row = mysql_fetch_row(pRes->pSQLResult);
 
-                DWORD pid1 = static_cast<DWORD>(atoi(row[0]));
-                DWORD pid2 = static_cast<DWORD>(atoi(row[1]));
+                const DWORD pid1 = static_cast<std::uint32_t>(atoi(row[0]));
+                const DWORD pid2 = static_cast<std::uint32_t>(atoi(row[1]));
                 int love_point = atoi(row[2]);
-                DWORD time = strtoul(row[3], NULL, 10);
+                const auto time = static_cast<std::uint32_t>(strtoul(row[3], NULL, 10));
                 BYTE is_married = static_cast<BYTE>(atoi(row[4]));
                 const char* name1 = row[5];
                 const char* name2 = row[6];
@@ -99,6 +101,9 @@ namespace marriage
                 m_Marriages.insert(pMarriage);
                 m_MarriageByPID.insert(make_pair(pid1, pMarriage));
                 m_MarriageByPID.insert(make_pair(pid2, pMarriage));
+
+                sys_log(0, "Marriage %d: LP:%d TM:%lu ST:%d %10lu:%16s %10lu:%16s ",
+                        uiRow, love_point, static_cast<unsigned long>(time), is_married, pid1, name1, pid2, name2);
             }
         }
         return true;
@@ -122,7 +127,7 @@ namespace marriage
 
     void CManager::Add(DWORD dwPID1, DWORD dwPID2, const char* szName1, const char* szName2)
     {
-        DWORD now = CClientManager::instance().GetCurrentTime();
+        const auto now = static_cast<std::uint32_t>(CClientManager::instance().GetCurrentTime());
         if (IsMarried(dwPID1) || IsMarried(dwPID2))
         {
             sys_err("cannot marry already married character. %d - %d", static_cast<int>(dwPID1), static_cast<int>(dwPID2));
@@ -132,7 +137,8 @@ namespace marriage
         Align(dwPID1, dwPID2);
 
         char szQuery[513];
-        dbsql::snprintf(szQuery, 512, "INSERT INTO marriage(pid1, pid2, love_point, time) VALUES (%lu, %lu, 0, %lu)", dwPID1, dwPID2, now);
+        dbsql::snprintf(szQuery, 512, "INSERT INTO marriage(pid1, pid2, love_point, time) VALUES (%lu, %lu, 0, %lu)",
+                dwPID1, dwPID2, static_cast<unsigned long>(now));
 
         unique_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
 
@@ -185,7 +191,8 @@ namespace marriage
             return;
         }
 
-        sys_log(0, "MARRIAGE UPDATE PID:%lu %lu LP:%lu ST:%d", dwPID1, dwPID2, static_cast<unsigned long>(lLovePoint), byMarried);
+        sys_log(0, "MARRIAGE UPDATE PID:%lu %lu LP:%lu ST:%d", dwPID1, dwPID2,
+                static_cast<unsigned long>(static_cast<std::uint32_t>(lLovePoint)), byMarried);
         pMarriage->love_point = static_cast<int>(lLovePoint);
         pMarriage->is_married = byMarried;
 
@@ -339,7 +346,7 @@ namespace marriage
 
     void CManager::ReadyWedding(DWORD dwMapIndex, DWORD dwPID1, DWORD dwPID2)
     {
-        DWORD dwStartTime = CClientManager::instance().GetCurrentTime();
+        const auto dwStartTime = static_cast<std::uint32_t>(CClientManager::instance().GetCurrentTime());
         m_pqWeddingStart.push(TWedding(dwStartTime + 5, dwMapIndex, dwPID1, dwPID2));
     }
 
@@ -363,7 +370,7 @@ namespace marriage
 
     void CManager::Update()
     {
-        DWORD now = CClientManager::instance().GetCurrentTime();
+        const auto now = static_cast<std::uint32_t>(CClientManager::instance().GetCurrentTime());
 
         if (!m_pqWeddingEnd.empty())
         {
@@ -384,8 +391,7 @@ namespace marriage
                 CClientManager::instance().ForwardPacket(WEDDING_END_HEADER, &p, sizeof(p));
                 m_mapRunningWedding.erase(it);
 
-                // Preserve the original lookup through the erased wedding entry.
-                std::map<DWORD, TMarriage*>::iterator it_marriage = m_MarriageByPID.find(w.dwPID1);
+                std::map<DWORD, TMarriage*>::iterator it_marriage = m_MarriageByPID.find(p.dwPID1);
 
                 if (it_marriage != m_MarriageByPID.end())
                 {

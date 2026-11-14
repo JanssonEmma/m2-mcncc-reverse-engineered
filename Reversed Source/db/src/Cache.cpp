@@ -29,9 +29,12 @@ void CItemCache::Delete()
     if (m_data.vnum == 0)
         return;
 
+    if (g_test_server)
+        sys_log(0, "ItemCache::Delete : DELETE %lu", static_cast<unsigned long>(m_data.id));
+
     m_data.vnum = 0;
     m_bNeedQuery = true;
-    m_lastUpdateTime = time(0);
+    m_lastUpdateTime = static_cast<std::uint32_t>(time(0));
     OnFlush();
 }
 
@@ -41,6 +44,8 @@ void CItemCache::OnFlush()
     {
         const auto query = fmt::sprintf("DELETE FROM item%s WHERE id=%u", GetTablePostfix(), m_data.id);
         CDBManager::instance().ReturnQuery(query.c_str(), QID_ITEM_DESTROY, 0, nullptr);
+        if (g_test_server)
+            sys_log(0, "ItemCache::Flush : DELETE %lu %s", static_cast<unsigned long>(m_data.id), query.c_str());
     }
     else
     {
@@ -76,6 +81,8 @@ void CItemCache::OnFlush()
         }
 
         const auto query = fmt::sprintf("REPLACE INTO item%s (%s) VALUES(%s)", GetTablePostfix(), columns, values);
+        if (g_test_server)
+            sys_log(0, "ItemCache::Flush :REPLACE  (%s)", query.c_str());
 
         CDBManager::instance().ReturnQuery(query.c_str(), QID_ITEM_SAVE, 0, nullptr);
         ++g_item_count;
@@ -95,6 +102,9 @@ CPlayerTableCache::~CPlayerTableCache()
 
 void CPlayerTableCache::OnFlush()
 {
+    if (g_test_server)
+        sys_log(0, "PlayerTableCache::Flush : %s", m_data.name);
+
     const auto query = CreatePlayerSaveQuery(m_data);
     if (!query)
     {
@@ -141,6 +151,9 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* update)
     }
 
     m_bNeedQuery = true;
+    sys_log(0, "ItemPriceListTableCache::UpdateList : OwnerID[%lu] Update [%lu] Items, Delete [%lu] Items, Total [%lu] Items",
+            static_cast<unsigned long>(m_data.dwOwnerID), static_cast<unsigned long>(update->byCount),
+            static_cast<unsigned long>(retained.size() - added), static_cast<unsigned long>(m_data.byCount));
 }
 
 void CItemPriceListTableCache::OnFlush()
@@ -158,5 +171,7 @@ void CItemPriceListTableCache::OnFlush()
                  static_cast<unsigned long>(m_data.aPriceInfo[i].dwPrice));
         CDBManager::instance().ReturnQuery(query, QID_ITEMPRICE_SAVE, 0, NULL);
     }
+    sys_log(0, "ItemPriceListTableCache::Flush : OwnerID[%lu] Update [%lu]Items",
+            static_cast<unsigned long>(m_data.dwOwnerID), static_cast<unsigned long>(m_data.byCount));
     m_bNeedQuery = false;
 }

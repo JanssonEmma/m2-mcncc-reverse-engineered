@@ -399,17 +399,22 @@ void do_user_horse_feed(CHARACTER* character, char*, int, int)
     }
 
     const DWORD food = character->GetHorseGrade() + 0xc385;
-    const TItemTable* proto = ITEM_MANAGER::instance().GetTable(food);
-    const char* name = proto ? proto->szLocaleName : "";
     if (character->CountSpecifyItem(food) < 1) {
+        const TItemTable* proto = ITEM_MANAGER::instance().GetTable(food);
+        const char* name = proto ? proto->szLocaleName : "";
         character->ChatPacket(1, locale_find("\045\163\040\276\306\300\314\305\333\300\314\040\307\312\277\344\307\325\264\317\264\331", g_iUseLocale), name);
         return;
     }
     character->RemoveSpecifyItem(food, 1);
     character->FeedHorse();
     const char* suffix = "";
-    if (proto && g_iUseLocale == 0)
-        suffix = locale_find(under_han(name) ? "\300\273" : "\270\246", g_iUseLocale);
+    if (g_iUseLocale == 0) {
+        const TItemTable* proto = ITEM_MANAGER::instance().GetTable(food);
+        if (proto)
+            suffix = locale_find(under_han(proto->szLocaleName) ? "\300\273" : "\270\246", g_iUseLocale);
+    }
+    const TItemTable* proto = ITEM_MANAGER::instance().GetTable(food);
+    const char* name = proto ? proto->szLocaleName : "";
     character->ChatPacket(1, locale_find("\270\273\277\241\260\324\040\045\163\045\163\040\301\326\276\372\275\300\264\317\264\331\056", g_iUseLocale), name, suffix);
 }
 
@@ -588,7 +593,7 @@ void do_restart(CHARACTER* character, char*, int, int subcommand)
             restoreVitals();
             return;
         }
-        if (character->m_iKillCount > 0)
+        if (character->GetKillCount() > 0)
         {
             character->Show(mapIndex, GetSungziStartX(empire), GetSungziStartY(empire), 0x7fffffff, false);
             restoreVitals();

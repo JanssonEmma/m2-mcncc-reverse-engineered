@@ -15,7 +15,7 @@ void CItemAddonManager::ApplyAddonTo(int iAddonType,CItem* pItem) {
         return;
     }
     // The 2009 x87 caller adds 0.5 before truncating, with no float store.
-    const double roll = gauss_random_extended(0.0f, 5.0f) + 0.5;
+    const long double roll = gauss_random_extended(0.0f, 5.0f) + 0.5L;
     int skill = MINMAX(-30, static_cast<int>(roll), 30);
     int normal=-2*skill;
     if(skill>=-20 && skill<=20) {

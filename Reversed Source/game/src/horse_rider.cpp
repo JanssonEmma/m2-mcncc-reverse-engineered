@@ -52,22 +52,28 @@ void CHorseRider::Initialize() {
 void CHorseRider::Destroy() { event_cancel(&m_eventStaminaRegen); event_cancel(&m_eventStaminaConsume); }
 short CHorseRider::GetHorseMaxHealth() { return static_cast<short>(c_aHorseStat[m_Horse.bLevel].iMaxHealth); }
 short CHorseRider::GetHorseMaxStamina() { return static_cast<short>(c_aHorseStat[m_Horse.bLevel].iMaxStamina); }
-BYTE CHorseRider::GetHorseGrade() { return m_Horse.bLevel?static_cast<BYTE>((m_Horse.bLevel-1)/10+1):0; }
+BYTE CHorseRider::GetHorseGrade()
+{
+    const BYTE level = m_Horse.bLevel;
+    return level ? static_cast<BYTE>((level - 1) / 10 + 1) : 0;
+}
 void CHorseRider::SetHorseData(const THorseInfo& info) { m_Horse=info; }
 void CHorseRider::UpdateHorseDataByLogoff(DWORD seconds) {
     const auto elapsed = static_cast<std::uint32_t>(seconds);
     if(m_Horse.bLevel && elapsed>=720) UpdateHorseStamina(static_cast<int>(elapsed/720),false);
 }
 void CHorseRider::UpdateHorseStamina(int amount,bool send) {
+    const int maximum = c_aHorseStat[m_Horse.bLevel].iMaxStamina;
     int total=static_cast<int>(static_cast<unsigned int>(m_Horse.sStamina)+static_cast<unsigned int>(amount));
-    m_Horse.sStamina=static_cast<short>(MINMAX(0,total,c_aHorseStat[m_Horse.bLevel].iMaxStamina));
+    m_Horse.sStamina = static_cast<short>(MINMAX(0, total, maximum));
     if(!m_Horse.sStamina && m_Horse.bRiding) StopRiding();
     if(send) SendHorseInfo();
 }
 void CHorseRider::UpdateHorseHealth(int amount,bool send) {
     BYTE level=m_Horse.bLevel;
+    const int maximum = c_aHorseStat[level].iMaxHealth;
     int total=static_cast<int>(static_cast<unsigned int>(m_Horse.sHealth)+static_cast<unsigned int>(amount));
-    m_Horse.sHealth=static_cast<short>(MINMAX(0,total,c_aHorseStat[level].iMaxHealth));
+    m_Horse.sHealth=static_cast<short>(MINMAX(0,total,maximum));
     if(level && !m_Horse.sHealth) HorseDie();
     if(send) SendHorseInfo();
 }
@@ -79,14 +85,24 @@ void CHorseRider::CheckHorseHealthDropTime(bool send) {
     while(m_Horse.dwHorseHealthDropTime<now) { m_Horse.dwHorseHealthDropTime+=259200UL; UpdateHorseHealth(-1,send); }
 }
 void CHorseRider::SetHorseLevel(int level) {
-    level=MINMAX(0,level,30); m_Horse.bLevel=static_cast<BYTE>(level);
-    m_Horse.sStamina=static_cast<short>(c_aHorseStat[level].iMaxStamina);
-    m_Horse.sHealth=static_cast<short>(c_aHorseStat[level].iMaxHealth);
-    m_Horse.dwHorseHealthDropTime=0; ResetHorseHealthDropTime(); SendHorseInfo();
+    level = MINMAX(0, level, 30);
+    m_Horse.bLevel = static_cast<BYTE>(level);
+    const short stamina = static_cast<short>(c_aHorseStat[level].iMaxStamina);
+    const short health = static_cast<short>(c_aHorseStat[level].iMaxHealth);
+    m_Horse.dwHorseHealthDropTime = 0;
+    m_Horse.sStamina = stamina;
+    m_Horse.sHealth = health;
+    ResetHorseHealthDropTime();
+    SendHorseInfo();
 }
 bool CHorseRider::ReviveHorse() {
-    if(!m_Horse.bLevel || m_Horse.sHealth>0) return false;
-    m_Horse.sHealth=GetHorseMaxHealth(); m_Horse.sStamina=GetHorseMaxStamina();
+    const BYTE level = m_Horse.bLevel;
+    if (!level || m_Horse.sHealth > 0)
+        return false;
+    const short health = static_cast<short>(c_aHorseStat[level].iMaxHealth);
+    const short stamina = static_cast<short>(c_aHorseStat[level].iMaxStamina);
+    m_Horse.sHealth = health;
+    m_Horse.sStamina = stamina;
     ResetHorseHealthDropTime(); StartStaminaRegenEvent(); return true;
 }
 void CHorseRider::FeedHorse() {
@@ -108,7 +124,9 @@ bool CHorseRider::StopRiding() {
     m_Horse.bRiding=0; StartStaminaRegenEvent(); return true;
 }
 void CHorseRider::HorseDie() {
-    sys_log(0,"HORSE DIE %p %p",m_eventStaminaRegen,m_eventStaminaConsume);
+    const auto consume = m_eventStaminaConsume;
+    const auto regen = m_eventStaminaRegen;
+    sys_log(0, "HORSE DIE %p %p", static_cast<void*>(regen), static_cast<void*>(consume));
     UpdateHorseStamina(-static_cast<int>(m_Horse.sStamina),true);
     event_cancel(&m_eventStaminaRegen); event_cancel(&m_eventStaminaConsume);
 }
@@ -145,15 +163,19 @@ long horse_stamina_consume_event(LPEVENT event) {
     CHorseRider* rider=static_cast<horserider_info*>(event->info)->hr;
     if(rider->m_Horse.sHealth<=0) { rider->m_eventStaminaConsume=0; return 0; }
     rider->UpdateHorseStamina(-1,true); rider->UpdateRideTime(360);
+    const short stamina = rider->m_Horse.sStamina;
     long next=static_cast<int>(static_cast<unsigned int>(passes_per_sec)*360U);
-    if(!rider->m_Horse.sStamina) { rider->m_eventStaminaConsume=0; next=0; }
+    if(!stamina) { rider->m_eventStaminaConsume=0; next=0; }
     rider->CheckHorseHealthDropTime(true); sys_log(0,"HORSE STAMINA - %p",event); return next;
 }
 long horse_stamina_regen_event(LPEVENT event) {
     CHorseRider* rider=static_cast<horserider_info*>(event->info)->hr;
     if(rider->m_Horse.sHealth<=0) { rider->m_eventStaminaRegen=0; return 0; }
     rider->UpdateHorseStamina(1,true);
-    long next=static_cast<int>(static_cast<unsigned int>(passes_per_sec)*720U);
-    if(rider->m_Horse.sStamina==rider->GetHorseMaxStamina()) { rider->m_eventStaminaRegen=0; next=0; }
+    const short stamina = rider->m_Horse.sStamina;
+    const auto pulseRate = static_cast<std::uint32_t>(passes_per_sec);
+    const short maximum = rider->GetHorseMaxStamina();
+    long next = static_cast<std::int32_t>(pulseRate * 720u);
+    if(stamina==maximum) { rider->m_eventStaminaRegen=0; next=0; }
     rider->CheckHorseHealthDropTime(true); sys_log(0,"HORSE STAMINA + %p",event); return next;
 }

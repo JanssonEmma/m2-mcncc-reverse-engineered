@@ -107,11 +107,15 @@ LPCHARACTER CHARACTER_MANAGER::FindSpecifyPC(unsigned jobFlags, long map, LPCHAR
     int count = 0;
     for (const auto& entry : m_map_pkChrByPID) {
         LPCHARACTER candidate = entry.second;
-        if (candidate == except || candidate->GetLevel() < minLevel || candidate->GetLevel() > maxLevel
-            || candidate->GetMapIndex() != map)
+        if (candidate == except)
+            continue;
+        const auto level = candidate->GetLevel();
+        if (level < minLevel || level > maxLevel
+            || static_cast<std::int32_t>(candidate->GetMapIndex()) != static_cast<std::int32_t>(map))
             continue;
         if (jobFlags) {
-            const unsigned job = (candidate->GetSkillGroup() + 3 + candidate->GetJob() * 3) & 31;
+            const auto candidateJob = candidate->GetJob();
+            const unsigned job = (candidate->GetSkillGroup() + 3 + candidateJob * 3) & 31;
             if (!(jobFlags & (1u << job)))
                 continue;
         }
@@ -220,7 +224,9 @@ LPCHARACTER CHARACTER_MANAGER::SpawnMob(DWORD vnum,long map,long x,long y,long z
         SECTREE* tree=SECTREE_MANAGER::instance().Get(static_cast<DWORD>(map),
                                                    static_cast<DWORD>(x),static_cast<DWORD>(y));
         if(!tree) {
-            sys_log(0,"no sectree for spawn at %d %d mobvnum %d mapindex %d",x,y,vnum,map);
+            sys_log(0,"no sectree for spawn at %d %d mobvnum %d mapindex %d",
+                    static_cast<std::int32_t>(x), static_cast<std::int32_t>(y),
+                    static_cast<std::int32_t>(vnum), static_cast<std::int32_t>(map));
             return 0;
         }
         DWORD attributes=tree->GetAttribute(x,y);
@@ -230,12 +236,13 @@ LPCHARACTER CHARACTER_MANAGER::SpawnMob(DWORD vnum,long map,long x,long y,long z
             const auto now = static_cast<std::uint32_t>(get_global_time());
             if(next<now) { next=now;log=quest::CQuestManager::instance().GetEventFlag("spawn_block_log")!=0; }
             if(log) sys_log(0,"SpawnMob: BLOCKED position for spawn %s %lu at %d %d (attr %lu)",
-                           mob->m_table.szName,vnum,x,y,attributes);
+                           mob->m_table.szName, vnum, static_cast<std::int32_t>(x),
+                           static_cast<std::int32_t>(y), attributes);
             return 0;
         }
         if(attributes & ATTR_BANPK) {
             sys_log(0,"SpawnMob: BAN_PK position for mob spawn %s %lu at %d %d",
-                    mob->m_table.szName,vnum,x,y);
+                    mob->m_table.szName, vnum, static_cast<std::int32_t>(x), static_cast<std::int32_t>(y));
             return 0;
         }
     }
@@ -280,16 +287,17 @@ LPCHARACTER CHARACTER_MANAGER::SpawnMobRandomPosition(DWORD vnum, long mapIndex)
     }
     SECTREE_MANAGER& sectors=SECTREE_MANAGER::instance();
     SECTREE_MAP* map=sectors.GetMap(mapIndex);
-    const auto randomCoordinate = [](int extent, int base, int line) {
+    const auto randomOffset = [](int extent, int line) {
         const auto limit = static_cast<std::int32_t>(static_cast<std::uint32_t>(extent) - 100u);
-        const int offset = number_ex(100, limit, "char_manager.cpp", line);
-        return static_cast<std::int32_t>(static_cast<std::uint32_t>(base) + offset);
+        return static_cast<std::uint32_t>(number_ex(100, limit, "char_manager.cpp", line));
     };
     long x,y;
     int attempt=0;
     for (;attempt<2000;++attempt) {
-        x = randomCoordinate(map->m_setting.iWidth, map->m_setting.iBaseX, 0xf1);
-        y = randomCoordinate(map->m_setting.iHeight, map->m_setting.iBaseY, 0xf2);
+        const auto offsetX = randomOffset(map->m_setting.iWidth, 0xf1);
+        x = static_cast<std::int32_t>(static_cast<std::uint32_t>(map->m_setting.iBaseX) + offsetX);
+        const auto offsetY = randomOffset(map->m_setting.iHeight, 0xf2);
+        y = static_cast<std::int32_t>(static_cast<std::uint32_t>(map->m_setting.iBaseY) + offsetY);
         SECTREE* tree=map->Find(x,y);
         if (tree && !(tree->GetAttribute(x,y) & (ATTR_BLOCK | ATTR_BANPK | ATTR_OBJECT))) break;
     }
@@ -343,6 +351,21 @@ void SendMapScript(int mapIndex, const std::string& script, int empire)
         });
     }
 }
+}
+
+void CHARACTER_MANAGER::NoticeInMap(int mapIndex, const char* text)
+{
+    SECTREE_MAP* map = SECTREE_MANAGER::instance().GetMap(mapIndex);
+    if (!map)
+        return;
+
+    const std::string message(text);
+    for (const auto& entry : *map) {
+        entry.second->ForEachEntity([&](LPENTITY entity) {
+            if (entity->IsType(0) && entity->GetDesc())
+                static_cast<CHARACTER*>(entity)->ChatPacket(2, "%s", message.c_str());
+        });
+    }
 }
 
 // 0818ee90
@@ -406,10 +429,11 @@ LPCHARACTER CHARACTER_MANAGER::SpawnMobRange(DWORD vnum, long map, int sx, int s
         int y=number_ex(sy,ey,"char_manager.cpp",0x18b);
         CHARACTER* ch=SpawnMob(vnum,map,x,y,0,spawnMotion,-1,true);
         if (!ch) continue;
-        DWORD vid=ch->GetVID();
-        long placedY=ch->GetY();
-        long placedX=ch->GetX();
-        sys_log(1,"MOB_SPAWN: %s(%d) %dx%d",ch->GetName(),vid,placedX,placedY);
+        const auto vid = static_cast<std::int32_t>(static_cast<DWORD>(ch->GetVID()));
+        const auto placedY = static_cast<std::int32_t>(ch->GetY());
+        const auto placedX = static_cast<std::int32_t>(ch->GetX());
+        const char* name = ch->GetName();
+        sys_log(1, "MOB_SPAWN: %s(%d) %dx%d", name, vid, placedX, placedY);
         if (aggressive) ch->SetAggressive();
         return ch;
     }
@@ -438,14 +462,14 @@ LPCHARACTER CHARACTER_MANAGER::SpawnGroup(DWORD vnum, long map, int sx, int sy, 
         }
         if (i==0) leader=ch;
         ch->SetDungeon(dungeon);
-        long x=ch->GetX();
-        sx=x-number_ex(300,500,"char_manager.cpp",0x218);
-        long y=ch->GetY();
-        sy=y-number_ex(300,500,"char_manager.cpp",0x219);
-        x=ch->GetX();
-        ex=x+number_ex(300,500,"char_manager.cpp",0x21a);
-        y=ch->GetY();
-        ey=y+number_ex(300,500,"char_manager.cpp",0x21b);
+        auto x = static_cast<std::uint32_t>(ch->GetX());
+        sx = static_cast<std::int32_t>(x - static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x218)));
+        auto y = static_cast<std::uint32_t>(ch->GetY());
+        sy = static_cast<std::int32_t>(y - static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x219)));
+        x = static_cast<std::uint32_t>(ch->GetX());
+        ex = static_cast<std::int32_t>(x + static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x21a)));
+        y = static_cast<std::uint32_t>(ch->GetY());
+        ey = static_cast<std::int32_t>(y + static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x21b)));
         if (m_pkChrSelectedStone) ch->SetStone(m_pkChrSelectedStone);
         else if (party) {
             party->Join(ch->GetVID());
@@ -484,10 +508,18 @@ bool CHARACTER_MANAGER::SpawnMoveGroup(DWORD vnum, long map, int sx, int sy, int
             continue;
         }
 
-        sx = character->GetX() - number_ex(300, 500, const_cast<char*>("char_manager.cpp"), 0x1c9);
-        sy = character->GetY() - number_ex(300, 500, const_cast<char*>("char_manager.cpp"), 0x1ca);
-        ex = character->GetX() + number_ex(300, 500, const_cast<char*>("char_manager.cpp"), 0x1cb);
-        ey = character->GetY() + number_ex(300, 500, const_cast<char*>("char_manager.cpp"), 0x1cc);
+        const auto sxBase = static_cast<std::uint32_t>(character->GetX());
+        const auto sxOffset = static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x1c9));
+        sx = static_cast<std::int32_t>(sxBase - sxOffset);
+        const auto syBase = static_cast<std::uint32_t>(character->GetY());
+        const auto syOffset = static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x1ca));
+        sy = static_cast<std::int32_t>(syBase - syOffset);
+        const auto exBase = static_cast<std::uint32_t>(character->GetX());
+        const auto exOffset = static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x1cb));
+        ex = static_cast<std::int32_t>(exBase + exOffset);
+        const auto eyBase = static_cast<std::uint32_t>(character->GetY());
+        const auto eyOffset = static_cast<std::uint32_t>(number_ex(300, 500, "char_manager.cpp", 0x1cc));
+        ey = static_cast<std::int32_t>(eyBase + eyOffset);
         if (m_pkChrSelectedStone) {
             character->SetStone(m_pkChrSelectedStone);
         } else if (party) {

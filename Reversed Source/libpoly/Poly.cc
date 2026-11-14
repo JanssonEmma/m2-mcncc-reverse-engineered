@@ -198,15 +198,15 @@ double CPoly::Eval()
 				
 			case PLU:
 				iSp--;
-				save[iSp-1]+=save[iSp]; break;
+				save[iSp-1] = static_cast<double>(static_cast<long double>(save[iSp-1]) + save[iSp]); break;
 				
 			case MIN:
 				iSp--;
-				save[iSp-1]-=save[iSp]; break;
+				save[iSp-1] = static_cast<double>(static_cast<long double>(save[iSp-1]) - save[iSp]); break;
 				
 			case MUL:
 				iSp--;
-				save[iSp-1]*=save[iSp]; break;
+				save[iSp-1] = static_cast<double>(static_cast<long double>(save[iSp-1]) * save[iSp]); break;
 				
 			case MOD:
 				iSp--;
@@ -224,7 +224,7 @@ double CPoly::Eval()
 					
 					return 0;
 				}
-				save[iSp-1]/=save[iSp]; break;
+				save[iSp-1] = static_cast<double>(static_cast<long double>(save[iSp-1]) / save[iSp]); break;
 				
 			case POW:
 				iSp--;
@@ -258,21 +258,21 @@ double CPoly::Eval()
 					
 					return 0;
 				}
-				save[iSp-1]=1/t; break;
+				save[iSp-1] = static_cast<double>(1.0L / t); break;
 			case SEC:
 				if (!(t=cos(save[iSp-1]))) 
 				{
 					
 					return 0;
 				}
-				save[iSp-1]=1/t; break;
+				save[iSp-1] = static_cast<double>(1.0L / t); break;
 			case COT:
 				if (!(t=sin(save[iSp-1]))) 
 				{
 					
 					return 0;
 				}
-				save[iSp-1]=cos(save[iSp-1])/t; break;
+				save[iSp-1] = static_cast<double>(static_cast<long double>(cos(save[iSp-1])) / t); break;
 			case LN:
 				if (save[iSp-1]<=0) 
 				{
@@ -299,7 +299,11 @@ double CPoly::Eval()
 					return 0;
 				}
 
-				save[iSp-2]=log(save[iSp-1])/log(save[iSp-2]);
+				{
+					const double numerator = log(save[iSp-1]);
+					const long double denominator = log(save[iSp-2]);
+					save[iSp-2] = static_cast<double>(numerator / denominator);
+				}
 				iSp--;
 				break;
 			case ABS:	save[iSp-1]=fabs(save[iSp-1]); break;

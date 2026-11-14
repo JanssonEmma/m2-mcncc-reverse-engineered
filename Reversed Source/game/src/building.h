@@ -1,5 +1,6 @@
 #ifndef MCNCC_GAME_BUILDING_H
 #define MCNCC_GAME_BUILDING_H
+#include <cstdint>
 #include "entity.h"
 #include "../../common/building.h"
 #include "../../common/singleton.h"
@@ -16,10 +17,14 @@ public:
     ~CObject() override;
     void EncodeInsertPacket(LPENTITY entity) override;
     void EncodeRemovePacket(LPENTITY entity) override;
-    DWORD GetID() const { return m_data.dwID; }
-    DWORD GetVID() const { return m_dwVID; }
+    DWORD GetID() { return m_data.dwID; }
+    DWORD GetVID() { return m_dwVID; }
     void SetVID(DWORD vid);
     CLand* GetLand() { return m_pkLand; }
+    void SetLand(CLand* land) { m_pkLand = land; }
+    DWORD GetVnum() { return m_pProto ? m_pProto->dwVnum : 0; }
+    DWORD GetGroup() { return m_pProto ? m_pProto->dwGroupVnum : 0; }
+    ::CHARACTER* GetNPC() { return m_chNPC; }
     bool Show(long map, long x, long y);
     void Destroy();
     void RegenNPC();
@@ -32,7 +37,7 @@ private:
 
     TObjectProto* m_pProto;
     TObject m_data;
-    DWORD m_dwVID;
+    std::uint32_t m_dwVID;
     CLand* m_pkLand;
     ::CHARACTER* m_chNPC;
 };
@@ -46,8 +51,10 @@ public:
     CObject* FindObjectByVnum(DWORD vnum);
     CObject* FindObjectByVID(DWORD vid);
     const TLand& GetData();
+    DWORD GetID() { return m_data.dwID; }
+    DWORD GetOwner() { return m_data.dwGuildID; }
     void InsertObject(CObject* object);
-    void PutData(TLand* data);
+    void PutData(const TLand* data);
     void DeleteObject(DWORD id);
     void ClearLand();
     void SetOwner(DWORD guild);
@@ -81,7 +88,7 @@ public:
     void UnregisterObject(CObject* object);
     CObject* FindObjectByVID(DWORD vid);
     bool LoadLand(TLand* table);
-    bool LoadObjectProto(TObjectProto* table, int size);
+    bool LoadObjectProto(const TObjectProto* table, int size);
     bool LoadObject(TObject* table, bool boot);
     CLand* FindLand(DWORD id);
     CLand* FindLand(long map, long x, long y);

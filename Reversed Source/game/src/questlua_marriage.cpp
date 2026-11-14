@@ -5,8 +5,7 @@
 #include "utils.h"
 #include "wedding.h"
 #include <cstdint>
-#include <cmath>
-#include <limits>
+#include <cfenv>
 
 extern "C" {
 #include "../../liblua/include/lua.h"
@@ -24,9 +23,11 @@ LPCHARACTER CurrentMarriageCharacter()
 
 DWORD ReadMarriageId(lua_State* state, int index)
 {
-    const auto value = std::trunc(lua_tonumber(state, index));
-    return value >= 0 && value <= std::numeric_limits<std::uint32_t>::max()
-        ? static_cast<DWORD>(value) : 0;
+    const lua_Number value = lua_tonumber(state, index);
+    if (value >= -9223372036854775808.0 && value < 9223372036854775808.0)
+        return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
+    std::feraiseexcept(FE_INVALID);
+    return 0;
 }
 
 marriage::TMarriage* FindMarriage(LPCHARACTER character, const char* function, int line)
@@ -34,9 +35,11 @@ marriage::TMarriage* FindMarriage(LPCHARACTER character, const char* function, i
     if (!character)
         return nullptr;
     auto* record = marriage::CManager::instance().Get(character->GetPlayerID());
-    if (!record && function)
-        CQuestManager::instance().QuestError(function, line, "pid[%d:%s] is not exist couple",
-                                           static_cast<int>(character->GetPlayerID()), character->GetName());
+    if (!record && function) {
+        const char* name = character->GetName();
+        const auto playerId = static_cast<std::int32_t>(character->GetPlayerID());
+        CQuestManager::instance().QuestError(function, line, "pid[%d:%s] is not exist couple", playerId, name);
+    }
     return record;
 }
 
@@ -52,18 +55,25 @@ int marriage_engage_to(lua_State* state)
     const DWORD vid = ReadMarriageId(state, 1);
     LPCHARACTER character = CurrentMarriageCharacter();
     LPCHARACTER partner = CHARACTER_MANAGER::instance().Find(vid);
-    if (character && partner)
-        marriage::CManager::instance().RequestAdd(character->GetPlayerID(), partner->GetPlayerID(),
-                                                   character->GetName(), partner->GetName());
+    if (character && partner) {
+        const char* partnerName = partner->GetName();
+        const char* characterName = character->GetName();
+        const DWORD partnerId = partner->GetPlayerID();
+        auto& manager = marriage::CManager::instance();
+        const DWORD characterId = character->GetPlayerID();
+        manager.RequestAdd(characterId, partnerId, characterName, partnerName);
+    }
     return 0;
 }
 
 int marriage_remove(lua_State*)
 {
     LPCHARACTER character = CurrentMarriageCharacter();
-    if (auto* record = FindMarriage(character, "marriage_remove", 0x23))
-        marriage::CManager::instance().RequestRemove(character->GetPlayerID(),
-                                                      record->GetOther(character->GetPlayerID()));
+    if (auto* record = FindMarriage(character, "marriage_remove", 0x23)) {
+        const DWORD playerId = character->GetPlayerID();
+        const DWORD partnerId = record->GetOther(playerId);
+        marriage::CManager::instance().RequestRemove(playerId, partnerId);
+    }
     return 0;
 }
 
@@ -79,7 +89,8 @@ int marriage_find_married_vid(lua_State* state)
     LPCHARACTER character = CurrentMarriageCharacter();
     DWORD vid = 0;
     if (auto* record = FindMarriage(character, nullptr, 0)) {
-        LPCHARACTER partner = CHARACTER_MANAGER::instance().FindByPID(record->GetOther(character->GetPlayerID()));
+        const DWORD partnerId = record->GetOther(character->GetPlayerID());
+        LPCHARACTER partner = CHARACTER_MANAGER::instance().FindByPID(partnerId);
         if (partner)
             vid = partner->GetVID();
     }
@@ -87,24 +98,35 @@ int marriage_find_married_vid(lua_State* state)
     return 1;
 }
 
-int marriage_get_wedding_list(lua_State* state)
+struct FBuildLuaWeddingMapList
 {
-    lua_newtable(state);
-    int index = 1;
-    marriage::CManager::instance().ForEachWedding([&](marriage::TMarriage* record) {
+    lua_State* L;
+    int m_count;
+
+    void operator()(marriage::TMarriage* record)
+    {
         if (!record->pWeddingInfo)
             return;
-        lua_newtable(state);
-        lua_pushnumber(state, record->pid1);
-        lua_rawseti(state, -2, 1);
-        lua_pushnumber(state, record->pid2);
-        lua_rawseti(state, -2, 2);
-        lua_pushstring(state, record->name1.c_str());
-        lua_rawseti(state, -2, 3);
-        lua_pushstring(state, record->name2.c_str());
-        lua_rawseti(state, -2, 4);
-        lua_rawseti(state, -2, index++);
-    });
+
+        lua_newtable(L);
+        lua_pushnumber(L, record->pid1);
+        lua_rawseti(L, -2, 1);
+        lua_pushnumber(L, record->pid2);
+        lua_rawseti(L, -2, 2);
+        lua_pushstring(L, record->name1.c_str());
+        lua_rawseti(L, -2, 3);
+        lua_pushstring(L, record->name2.c_str());
+        lua_rawseti(L, -2, 4);
+        lua_rawseti(L, -2, m_count);
+        ++m_count;
+    }
+};
+
+int marriage_get_wedding_list(lua_State* state)
+{
+    FBuildLuaWeddingMapList build{state, 1};
+    lua_newtable(state);
+    marriage::CManager::instance().for_each_wedding(build);
     return 1;
 }
 
@@ -115,11 +137,11 @@ int marriage_join_wedding(lua_State* state)
         quests.QuestError("marriage_join_wedding", 0x6d, "invalid player id for wedding map");
         return 0;
     }
+    const DWORD first = ReadMarriageId(state, 1);
+    const DWORD second = ReadMarriageId(state, 2);
     LPCHARACTER character = quests.GetCurrentCharacterPtr();
     if (!character)
         return 0;
-    const DWORD first = ReadMarriageId(state, 1);
-    const DWORD second = ReadMarriageId(state, 2);
     auto* record = marriage::CManager::instance().Get(first);
     if (!record) {
         quests.QuestError("marriage_join_wedding", 0x79, "pid[%d:%s] is not exist couple",
@@ -154,8 +176,13 @@ int marriage_wedding_dark(lua_State* state)
         CQuestManager::instance().QuestError("marriage_wedding_dark", 0xb3, "invalid argument 1 : must be boolean");
         return 0;
     }
-    if (auto* wedding = FindWedding(FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_dark", 0xbb)))
-        wedding->SetDark(lua_toboolean(state, 1) != 0);
+    auto* record = FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_dark", 0xbb);
+    if (record && record->pWeddingInfo) {
+        auto* wedding = FindWedding(record);
+        const bool enabled = lua_toboolean(state, 1) != 0;
+        if (wedding)
+            wedding->SetDark(enabled);
+    }
     return 0;
 }
 
@@ -166,8 +193,13 @@ int marriage_wedding_client_command(lua_State* state)
                                              "invalid argument 1 : must be string");
         return 0;
     }
-    if (auto* wedding = FindWedding(FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_client_command", 0xd3)))
-        wedding->ShoutInMap(5, lua_tostring(state, 1));
+    auto* record = FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_client_command", 0xd3);
+    if (record && record->pWeddingInfo) {
+        auto* wedding = FindWedding(record);
+        const char* command = lua_tostring(state, 1);
+        if (wedding)
+            wedding->ShoutInMap(5, command);
+    }
     return 0;
 }
 
@@ -196,8 +228,14 @@ int marriage_wedding_music(lua_State* state)
         quests.QuestError("marriage_wedding_music", 0xfd, "invalid argument 2 : must be string");
         return 0;
     }
-    if (auto* wedding = FindWedding(FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_music", 0x105)))
-        wedding->SetMusic(lua_toboolean(state, 1) != 0, lua_tostring(state, 2));
+    auto* record = FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_music", 0x105);
+    if (record && record->pWeddingInfo) {
+        auto* wedding = FindWedding(record);
+        const char* filename = lua_tostring(state, 2);
+        const bool enabled = lua_toboolean(state, 1) != 0;
+        if (wedding)
+            wedding->SetMusic(enabled, filename);
+    }
     return 0;
 }
 
@@ -207,8 +245,13 @@ int marriage_wedding_snow(lua_State* state)
         CQuestManager::instance().QuestError("marriage_wedding_snow", 0x116, "invalid argument 1 : must be boolean");
         return 0;
     }
-    if (auto* wedding = FindWedding(FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_snow", 0x11d)))
-        wedding->SetSnow(lua_toboolean(state, 1) != 0);
+    auto* record = FindMarriage(CurrentMarriageCharacter(), "marriage_wedding_snow", 0x11d);
+    if (record && record->pWeddingInfo) {
+        auto* wedding = FindWedding(record);
+        const bool enabled = lua_toboolean(state, 1) != 0;
+        if (wedding)
+            wedding->SetSnow(enabled);
+    }
     return 0;
 }
 
@@ -217,18 +260,22 @@ int marriage_in_my_wedding(lua_State* state)
     LPCHARACTER character = CurrentMarriageCharacter();
     auto* record = FindMarriage(character, nullptr, 0);
     lua_pushboolean(state, record && record->pWeddingInfo &&
-                    static_cast<DWORD>(character->GetMapIndex()) == record->pWeddingInfo->dwMapIndex);
+                    static_cast<std::uint32_t>(character->GetMapIndex()) == 
+                         static_cast<std::uint32_t>(record->pWeddingInfo->dwMapIndex));
     return 1;
 }
 
 int marriage_get_married_time(lua_State* state)
 {
     auto* record = FindMarriage(CurrentMarriageCharacter(), nullptr, 0);
-    if (!record)
+    std::int32_t elapsed = 0;
+    if (record) {
+        const auto now = static_cast<std::uint32_t>(get_global_time());
+        elapsed = static_cast<std::int32_t>(now - static_cast<std::uint32_t>(record->marry_time));
+    } else {
         CQuestManager::instance().QuestError("marriage_get_married_time", 0x13e,
                                             "trying to get time for not married character");
-    const auto elapsed = record ? static_cast<std::int32_t>(
-        static_cast<std::uint32_t>(get_global_time()) - static_cast<std::uint32_t>(record->marry_time)) : 0;
+    }
     lua_pushnumber(state, elapsed);
     return 1;
 }

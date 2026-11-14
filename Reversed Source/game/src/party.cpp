@@ -35,7 +35,7 @@ void CParty::P2PSetMemberLevel(DWORD pid, BYTE level)
         return;
     sys_log(0, "PARTY P2PSetMemberLevel leader %d pid %d level %d",
             static_cast<int>(GetLeaderPID()), static_cast<int>(pid), level);
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     if (member != m_memberMap.end())
         member->second.bLevel = level;
 }
@@ -55,7 +55,11 @@ void CParty::SendPartyInfoOneToAll(CHARACTER* ch) {
     for(TMemberMap::iterator it=m_memberMap.begin();it!=m_memberMap.end();++it) {
         CHARACTER* recipient=it->second.pCharacter;
         if(recipient && recipient->GetDesc()) {
-            sys_log(2,"PARTY send info %s[%d] to %s[%d]",ch->GetName(),static_cast<DWORD>(ch->GetVID()),recipient->GetName(),static_cast<DWORD>(recipient->GetVID()));
+            const auto recipientVid = static_cast<std::int32_t>(static_cast<DWORD>(recipient->GetVID()));
+            const char* recipientName = recipient->GetName();
+            const auto sourceVid = static_cast<std::int32_t>(static_cast<DWORD>(ch->GetVID()));
+            const char* sourceName = ch->GetName();
+            sys_log(2, "PARTY send info %s[%d] to %s[%d]", sourceName, sourceVid, recipientName, recipientVid);
             // Reload from iterator after sys_log, matching the target call path.
             it->second.pCharacter->GetDesc()->Packet(&p,sizeof(p));
         }
@@ -64,13 +68,14 @@ void CParty::SendPartyInfoOneToAll(CHARACTER* ch) {
 
 bool CParty::IsMember(DWORD pid)
 {
+    pid = static_cast<std::uint32_t>(pid);
     return m_memberMap.find(pid) != m_memberMap.end();
 }
 
 // 08143200
 bool CParty::IsRole(DWORD pid, BYTE role)
 {
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     return member != m_memberMap.end() && member->second.bRole == role;
 }
 
@@ -78,25 +83,26 @@ bool CParty::SetRole(DWORD pid, BYTE role, bool enabled)
 {
     if (role >= 8)
         return false;
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     if (member == m_memberMap.end())
         return false;
 
     TMember& value = member->second;
+    CHARACTER* character = value.pCharacter;
     if (enabled) {
         if (m_anRoleCount[role] >= m_anMaxRole[role] || value.bRole != PARTY_ROLE_NORMAL)
             return false;
         value.bRole = role;
-        if (value.pCharacter && m_pkChrLeader)
-            ComputeRolePoint(value.pCharacter, role, true);
-        ++m_anRoleCount[role];
+        if (character && m_pkChrLeader)
+            ComputeRolePoint(character, role, true);
+        m_anRoleCount[role] = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_anRoleCount[role]) + 1u);
     } else {
         if (value.bRole == PARTY_ROLE_LEADER || value.bRole == PARTY_ROLE_NORMAL)
             return false;
         value.bRole = PARTY_ROLE_NORMAL;
-        if (value.pCharacter && m_pkChrLeader)
-            ComputeRolePoint(value.pCharacter, PARTY_ROLE_NORMAL, false);
-        --m_anRoleCount[role];
+        if (character && m_pkChrLeader)
+            ComputeRolePoint(character, PARTY_ROLE_NORMAL, false);
+        m_anRoleCount[role] = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_anRoleCount[role]) - 1u);
     }
     SendPartyInfoOneToAll(pid);
     return true;
@@ -105,7 +111,7 @@ bool CParty::SetRole(DWORD pid, BYTE role, bool enabled)
 // 08142b20
 void CParty::SendPartyInfoOneToAll(DWORD pid)
 {
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     if (member == m_memberMap.end())
         return;
     if (CHARACTER* character = member->second.pCharacter) {
@@ -142,7 +148,7 @@ void CParty::SummonToLeader(DWORD pid)
     CHARACTER* leader = GetLeaderCharacter();
     if (!leader)
         return;
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     CHARACTER* target = member == m_memberMap.end() ? nullptr : member->second.pCharacter;
     if (!target) {
         leader->ChatPacket(1, "%s", LC_TEXT("<\306\304\306\274> \274\322\310\257\307\317\267\301\264\302 \264\353\273\363\300\273 \303\243\300\273 \274\366 \276\370\275\300\264\317\264\331."));
@@ -155,11 +161,10 @@ void CParty::SummonToLeader(DWORD pid)
 
     PIXEL_POSITION candidates[12];
     int count = 0;
-    const long map = leader->GetMapIndex();
     for (const auto& offset : offsets) {
-        const auto x = static_cast<std::int32_t>(static_cast<std::uint32_t>(leader->GetX()) + offset[0]);
         const auto y = static_cast<std::int32_t>(static_cast<std::uint32_t>(leader->GetY()) + offset[1]);
-        if (sectrees.GetMovablePosition(map, x, y, candidates[count]))
+        const auto x = static_cast<std::int32_t>(static_cast<std::uint32_t>(leader->GetX()) + offset[0]);
+        if (sectrees.GetMovablePosition(leader->GetMapIndex(), x, y, candidates[count]))
             ++count;
     }
     if (count == 0) {
@@ -168,13 +173,13 @@ void CParty::SummonToLeader(DWORD pid)
     }
     char source[] = "party.cpp";
     const PIXEL_POSITION& position = candidates[number_ex(0, count - 1, source, 0x46f)];
-    target->Show(map, position.x, position.y, 0x7fffffff, false);
+    target->Show(leader->GetMapIndex(), position.x, position.y, 0x7fffffff, false);
     target->Stop();
 }
 
 // 08143310. Absent member returns role0 without insertion.
 BYTE CParty::GetRole(DWORD pid) {
-    TMemberMap::iterator it=m_memberMap.find(pid);
+    TMemberMap::iterator it=m_memberMap.find(static_cast<std::uint32_t>(pid));
     return it==m_memberMap.end()?0:it->second.bRole;
 }
 // 081430f0. Preserve operator[] insertion for a missing leader; do not harden.
@@ -182,7 +187,9 @@ CHARACTER* CParty::GetLeaderCharacter() { return m_memberMap[GetLeaderPID()].pCh
 // 08144620. Unsigned comparison is observable for negative near-member counts.
 int CParty::GetExpBonusPercent() {
     if(static_cast<unsigned int>(m_iCountNearPartyMember)<2U) return 0;
-    return static_cast<int>(static_cast<unsigned int>(m_iLongTimeExpBonus)+static_cast<unsigned int>(m_iExpBonus));
+    const auto longTimeBonus = static_cast<std::uint32_t>(m_iLongTimeExpBonus);
+    const auto baseBonus = static_cast<std::uint32_t>(m_iExpBonus);
+    return static_cast<std::int32_t>(longTimeBonus + baseBonus);
 }
 // Inline callsite in08133e50 reads m_iExpBonus directly.
 int CParty::GetPartyBonusExpPercent() { return m_iExpBonus; }
@@ -218,7 +225,7 @@ void BroadcastPartyAdd(CParty::TMemberMap& members, TPacketGCPartyAdd& packet)
     }
 }
 
-CParty::TMember& PartyMemberForAdd(CParty::TMemberMap& members, DWORD pid)
+CParty::TMember& PartyMemberForAdd(CParty::TMemberMap& members, std::uint32_t pid)
 {
     CParty::TMemberMap::iterator it = members.lower_bound(pid);
     if (it == members.end() || pid < it->first) {
@@ -358,10 +365,13 @@ CHARACTER* CParty::GetNextOwnership(CHARACTER* fallback, long x, long y)
     int remaining = static_cast<int>(m_memberMap.size());
     while (remaining-- > 0) {
         CHARACTER* member = m_itNextOwner->second.pCharacter;
-        if (member && DISTANCE_APPROX(PartyCoordinateDelta(member->GetX(), x),
-                                      PartyCoordinateDelta(member->GetY(), y)) < 3000) {
-            IncreaseOwnership();
-            return member;
+        if (member) {
+            const auto dy = PartyCoordinateDelta(member->GetY(), y);
+            const auto dx = PartyCoordinateDelta(member->GetX(), x);
+            if (DISTANCE_APPROX(dx, dy) < 3000) {
+                IncreaseOwnership();
+                return member;
+            }
         }
         IncreaseOwnership();
     }
@@ -374,13 +384,20 @@ void CParty::SetDungeon(CDungeon* dungeon)
     m_map_iFlag.clear();
 }
 
+static std::int32_t PartyUpdateDelay()
+{
+    return static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 3u);
+}
+
 EVENTFUNC(party_update_event)
 {
     const auto pid = *static_cast<std::uint32_t*>(event->info);
     CHARACTER* leader = CHARACTER_MANAGER::instance().FindByPID(pid);
-    if (leader && leader->GetDesc() && leader->GetParty())
-        leader->GetParty()->Update();
-    return passes_per_sec * 3;
+    if (leader && leader->GetDesc()) {
+        if (CParty* party = leader->GetParty())
+            party->Update();
+    }
+    return PartyUpdateDelay();
 }
 
 CParty* CPartyManager::CreateParty(CHARACTER* leader)
@@ -433,6 +450,7 @@ CDungeon* CParty::GetDungeon() { return m_pkDungeon; }
 
 void CParty::P2PJoin(DWORD pid)
 {
+    pid = static_cast<std::uint32_t>(pid);
     if (m_memberMap.find(pid) == m_memberMap.end()) {
         TMember member; // The original leaves bLevel unset until a level update.
         member.pCharacter = 0;
@@ -444,7 +462,9 @@ void CParty::P2PJoin(DWORD pid)
         if (m_bPCParty) {
             CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid);
             if (character) {
-                sys_log(0, "PARTY: Join %s pid %lu leader %lu", character->GetName(), pid, m_dwLeaderPID);
+                const char* name = character->GetName();
+                const DWORD leader = m_dwLeaderPID;
+                sys_log(0, "PARTY: Join %s pid %lu leader %lu", name, pid, leader);
                 member.strName = character->GetName();
                 if (member.bRole == PARTY_ROLE_LEADER)
                     m_iLeadership = character->GetLeadershipSkillLevel();
@@ -458,8 +478,10 @@ void CParty::P2PJoin(DWORD pid)
             }
         }
 
-        const int count = GetMemberCount();
-        sys_log(2, "PARTY[%d] MemberCountChange %d -> %d", static_cast<int>(GetLeaderPID()), count, count + 1);
+        const auto count = static_cast<std::uint32_t>(GetMemberCount());
+        const auto nextCount = static_cast<std::int32_t>(count + 1u);
+        sys_log(2, "PARTY[%d] MemberCountChange %d -> %d",
+                static_cast<std::int32_t>(GetLeaderPID()), static_cast<std::int32_t>(count), nextCount);
         m_memberMap.insert(TMemberMap::value_type(pid, member));
         if (m_memberMap.size() == 1)
             m_itNextOwner = m_memberMap.begin();
@@ -499,12 +521,14 @@ void CParty::Link(CHARACTER* character)
         void* data;
         const DWORD infoId = __AllocEventInfo(sizeof(std::uint32_t), &data);
         *static_cast<std::uint32_t*>(data) = m_dwLeaderPID;
-        m_eventUpdate = event_create_ex(party_update_event, infoId, passes_per_sec * 3,
+        m_eventUpdate = event_create_ex(party_update_event, infoId, PartyUpdateDelay(),
                                         const_cast<char*>("party.cpp"), 0x222);
     }
     if (it->second.bRole == PARTY_ROLE_LEADER)
         m_pkChrLeader = character;
-    sys_log(2, "PARTY[%d] %s linked to party", static_cast<int>(GetLeaderPID()), character->GetName());
+    const char* name = character->GetName();
+    const DWORD leaderPid = GetLeaderPID();
+    sys_log(2, "PARTY[%d] %s linked to party", static_cast<int>(leaderPid), name);
     it->second.pCharacter = character;
     character->SetParty(this);
 
@@ -598,8 +622,14 @@ void CParty::SendPartyInfoAllToOne(CHARACTER* character)
     for (TMemberMap::iterator it = m_memberMap.begin(); it != m_memberMap.end(); ++it) {
         if (CHARACTER* member = it->second.pCharacter) {
             member->BuildUpdatePartyPacket(packet);
-            sys_log(2, "PARTY send info %s[%d] to %s[%d]", member->GetName(), static_cast<DWORD>(member->GetVID()),
-                    character->GetName(), static_cast<DWORD>(character->GetVID()));
+            const auto recipientVid = static_cast<std::int32_t>(static_cast<DWORD>(character->GetVID()));
+            const char* recipientName = character->GetName();
+            CHARACTER* source = it->second.pCharacter;
+            if (source) {
+                const auto sourceVid = static_cast<std::int32_t>(static_cast<DWORD>(source->GetVID()));
+                const char* sourceName = source->GetName();
+                sys_log(2, "PARTY send info %s[%d] to %s[%d]", sourceName, sourceVid, recipientName, recipientVid);
+            }
         } else {
             packet = {};
             packet.header = 79;
@@ -688,6 +718,7 @@ void CPartyManager::DeleteAllParty()
 
 void CParty::P2PQuit(DWORD pid)
 {
+    pid = static_cast<std::uint32_t>(pid);
     TMemberMap::iterator it = m_memberMap.find(pid);
     if (it == m_memberMap.end())
         return;
@@ -707,9 +738,11 @@ void CParty::P2PQuit(DWORD pid)
     if (member)
         member->SetParty(0);
 
-    const int count = GetMemberCount();
-    sys_log(2, "PARTY[%d] MemberCountChange %d -> %d", static_cast<int>(GetLeaderPID()), count, count - 1);
-    --m_anRoleCount[role];
+    const auto count = static_cast<std::uint32_t>(GetMemberCount());
+    const auto nextCount = static_cast<std::int32_t>(count - 1u);
+    sys_log(2, "PARTY[%d] MemberCountChange %d -> %d",
+            static_cast<std::int32_t>(GetLeaderPID()), static_cast<std::int32_t>(count), nextCount);
+    m_anRoleCount[role] = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_anRoleCount[role]) - 1u);
     if (CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid))
         ComputeRolePoint(character, role, false);
     if (m_bPCParty)
@@ -730,6 +763,16 @@ void CParty::Quit(DWORD pid)
     }
 }
 
+namespace {
+struct FExitDungeon
+{
+    void operator()(CHARACTER* member) const
+    {
+        member->ExitToSavedLocation();
+    }
+};
+}
+
 void CParty::Unlink(CHARACTER* character)
 {
     const DWORD key = character->GetDesc() ? character->GetPlayerID() : static_cast<DWORD>(character->GetVID());
@@ -739,20 +782,15 @@ void CParty::Unlink(CHARACTER* character)
         return;
     }
 
-    const bool leader = it->second.bRole == PARTY_ROLE_LEADER;
     if (character->GetDesc()) {
         SendPartyUnlinkOneToAll(character);
-        if (leader) {
+        if (it->second.bRole == PARTY_ROLE_LEADER) {
             RemoveBonus();
-            if (it->second.pCharacter->GetDungeon()) {
-                for (TMemberMap::iterator member = m_memberMap.begin(); member != m_memberMap.end(); ++member) {
-                    if (member->second.bNear && member->second.pCharacter)
-                        member->second.pCharacter->ExitToSavedLocation();
-                }
-            }
+            if (it->second.pCharacter->GetDungeon())
+                ForEachNearMember(FExitDungeon{});
         }
     }
-    if (leader)
+    if (it->second.bRole == PARTY_ROLE_LEADER)
         m_pkChrLeader = 0;
     it->second.pCharacter = 0;
     character->SetParty(0);
@@ -784,6 +822,7 @@ void CParty::RemoveBonus()
 
 void CParty::RemoveBonusForOne(DWORD pid)
 {
+    pid = static_cast<std::uint32_t>(pid);
     TMemberMap::iterator it = m_memberMap.find(pid);
     if (it != m_memberMap.end() && it->second.pCharacter)
         ComputeRolePoint(it->second.pCharacter, it->second.bRole, false);
@@ -794,14 +833,13 @@ void CParty::ComputeRolePoint(CHARACTER* character, BYTE role, bool add)
     if (!add) {
         const BYTE points[] = { 91, 92, 103, 104, 111, 110 };
         for (unsigned i = 0; i < sizeof(points); ++i)
-            character->PointChange(points[i], -character->GetPoint(points[i]), false, false);
+            character->PointChange(points[i], static_cast<std::int32_t>(0u - static_cast<std::uint32_t>(character->GetPoint(points[i]))), false, false);
         character->ComputePoints();
         return;
     }
 
-    const int level = std::max(0, std::min(m_iLeadership, 40));
-    const long double power = CTableBySkill::instance().GetSkillPowerByLevelFromType(
-        character->GetJob(), character->GetSkillGroup(), level, false) / 100.0L;
+    const int level = std::min(m_iLeadership, 40);
+    const long double power = character->GetSkillPowerByLevel(level, false) / 100.0L;
     BYTE point;
     long double value;
     switch (role) {
@@ -815,7 +853,7 @@ void CParty::ComputeRolePoint(CHARACTER* character, BYTE role, bool add)
     }
     const int target = static_cast<int>(value);
     if (character->GetPoint(point) != target) {
-        character->PointChange(point, target - character->GetPoint(point), false, false);
+        character->PointChange(point, static_cast<std::int32_t>(static_cast<std::uint32_t>(target) - static_cast<std::uint32_t>(character->GetPoint(point))), false, false);
         if (role != PARTY_ROLE_BUFFER)
             character->ComputePoints();
     }
@@ -879,15 +917,20 @@ void CParty::SendMessage(CHARACTER* sender, BYTE message, DWORD first, DWORD sec
 
 bool CParty::IsNearLeader(DWORD pid)
 {
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     return member != m_memberMap.end() && member->second.bNear;
 }
 
 bool CParty::IsPositionNearLeader(CHARACTER* character)
 {
-    return m_pkChrLeader &&
-           DISTANCE_APPROX(PartyCoordinateDelta(character->GetX(), m_pkChrLeader->GetX()),
-                           PartyCoordinateDelta(character->GetY(), m_pkChrLeader->GetY())) < 5000;
+    CHARACTER* leader = m_pkChrLeader;
+    if (!leader)
+        return false;
+    const auto memberY = character->GetY();
+    const auto dy = PartyCoordinateDelta(memberY, leader->GetY());
+    const auto memberX = character->GetX();
+    const auto dx = PartyCoordinateDelta(memberX, leader->GetX());
+    return DISTANCE_APPROX(dx, dy) < 5000;
 }
 
 DWORD CParty::GetNearMemberCount()
@@ -922,15 +965,19 @@ int CParty::GetFlag(const std::string& name)
 
 void CParty::SetFlag(const std::string& name, int value)
 {
-    m_map_iFlag[name] = value;
+    const auto flag = m_map_iFlag.find(name);
+    if (flag == m_map_iFlag.end())
+        m_map_iFlag.emplace(name, value);
+    else if (flag->second != value)
+        flag->second = value;
 }
 
 int CParty::ComputePartyBonusExpPercent()
 {
     if (static_cast<unsigned>(m_iCountNearPartyMember) < 2)
         return 0;
-    const int count = std::min(8, m_iCountNearPartyMember);
     CHARACTER* leader = GetLeaderCharacter();
+    const int count = std::min(8, m_iCountNearPartyMember);
     const bool unique = leader && (leader->IsEquipUniqueItem(0x11173) || leader->IsEquipUniqueItem(0x11564));
     return g_iUseLocale == 0 ? KOR_aiPartyBonusExpPercentByMemberCount[count] + (unique ? KOR_aiUniqueItemPartyBonusExpPercentByMemberCount[count] : 0)
                             : CHN_aiPartyBonusExpPercentByMemberCount[count] + (unique ? 30 : 0);
@@ -944,17 +991,17 @@ void CParty::Update()
     if (!leader)
         return;
 
-    CDungeon* dungeon = leader->GetDungeon();
     int nearCount = 0;
     for (auto& entry : m_memberMap) {
         TMember& member = entry.second;
         CHARACTER* character = member.pCharacter;
+        CDungeon* dungeon = character ? leader->GetDungeon() : nullptr;
         member.bNear = character && (dungeon ? character->GetDungeon() == dungeon :
             DISTANCE_APPROX(PartyCoordinateDelta(leader->GetX(), character->GetX()),
                             PartyCoordinateDelta(leader->GetY(), character->GetY())) < 5000);
         nearCount += member.bNear;
     }
-    if (nearCount < 2 && !dungeon) {
+    if (nearCount < 2 && !leader->GetDungeon()) {
         for (auto& entry : m_memberMap)
             entry.second.bNear = false;
         nearCount = 0;
@@ -964,13 +1011,20 @@ void CParty::Update()
     m_iCountNearPartyMember = nearCount;
     m_iLeadership = leader->GetLeadershipSkillLevel();
     const int expBonus = ComputePartyBonusExpPercent();
-    bool resendAll = nearChanged || m_iExpBonus != expBonus;
-    m_iExpBonus = expBonus;
     m_iAttBonus = 0;
     m_iDefBonus = 0;
+    bool resendAll = nearChanged;
+    if (m_iExpBonus != expBonus) {
+        m_iExpBonus = expBonus;
+        resendAll = true;
+    }
 
-    const bool gainedTimeBonus = !m_iLongTimeExpBonus &&
-        static_cast<unsigned>(get_dword_time() - m_dwPartyStartTime) > (g_iUseLocale ? 3600000U : 1800000U);
+    bool gainedTimeBonus = false;
+    if (!m_iLongTimeExpBonus) {
+        const auto now = static_cast<std::uint32_t>(get_dword_time());
+        const auto elapsed = now - static_cast<std::uint32_t>(m_dwPartyStartTime);
+        gainedTimeBonus = elapsed > (g_iUseLocale ? 3600000U : 1800000U);
+    }
     if (gainedTimeBonus) {
         m_iLongTimeExpBonus = 5;
         resendAll = true;
@@ -986,8 +1040,9 @@ void CParty::Update()
                 "\301\366\261\335\272\316\305\315\040\303\337\260\241\040\260\346\307\350\304\241\040"
                 "\272\270\263\312\275\272\270\246\040\271\336\275\300\264\317\264\331\056"));
         }
-        ComputeRolePoint(character, member.bRole, member.bNear);
-        if (member.bNear && !resendAll)
+        const bool near = member.bNear;
+        ComputeRolePoint(character, member.bRole, near);
+        if (near && !resendAll)
             SendPartyInfoOneToAll(character);
     }
 
@@ -1004,7 +1059,8 @@ void CParty::Update()
         m_bCanUsePartyHeal = m_iLeadership >= 18;
         if (m_bCanUsePartyHeal) {
             const unsigned cooldown = m_iLeadership >= 40 ? 1800000U : 3600000U;
-            if (static_cast<unsigned>(m_dwPartyHealTime + cooldown) < static_cast<unsigned>(get_dword_time()))
+            const auto now = static_cast<std::uint32_t>(get_dword_time());
+            if (static_cast<std::uint32_t>(m_dwPartyHealTime) + cooldown < now)
                 m_bPartyHealReady = true;
         }
     }
@@ -1020,7 +1076,7 @@ int CParty::GetExpDistributionMode()
 
 void CParty::SetExpCentralizeCharacter(DWORD pid)
 {
-    const auto member = m_memberMap.find(pid);
+    const auto member = m_memberMap.find(static_cast<std::uint32_t>(pid));
     if (member != m_memberMap.end())
         m_pkChrExpCentralize = member->second.pCharacter;
 }
@@ -1038,20 +1094,22 @@ void CParty::ChatPacketToAllMember(BYTE type, const char* format, ...)
     std::vsnprintf(buffer, 0x55, format, args);
     va_end(args);
 
-    ForEachOnlineMember([&](CHARACTER* member) {
-        if (member->GetDesc())
-            member->ChatPacket(type, "%s", buffer);
-    });
+    for (const auto& entry : m_memberMap) {
+        CHARACTER* member = entry.second.pCharacter;
+        if (member && member->GetDesc())
+            entry.second.pCharacter->ChatPacket(type, "%s", buffer);
+    }
 }
 
 BYTE CParty::CountMemberByVnum(DWORD vnum)
 {
     if (m_bPCParty)
         return 0;
+    const auto targetVnum = static_cast<std::uint32_t>(vnum);
     BYTE count = 0;
     for (const auto& entry : m_memberMap) {
         LPCHARACTER character = entry.second.pCharacter;
-        if (character && !character->GetDesc() && character->GetMobTable().dwVnum == vnum)
+        if (character && !character->GetDesc() && character->GetMobTable().dwVnum == targetVnum)
             ++count;
     }
     return count;

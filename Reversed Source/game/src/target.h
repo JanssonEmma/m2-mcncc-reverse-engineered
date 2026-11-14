@@ -2,6 +2,7 @@
 #define MCNCC_GAME_TARGET_H
 #include "../../common/singleton.h"
 #include "event.h"
+#include <cstdint>
 #include <list>
 #include <map>
 
@@ -17,8 +18,8 @@ enum ETargetTypes
 struct TargetInfo {
     CHARACTER* pkChr;
     int iID;
-    DWORD dwPID;
-    DWORD dwQuestIndex;
+    std::uint32_t dwPID;
+    std::uint32_t dwQuestIndex;
     char szTargetName[33];
     char szTargetDesc[33];
     int iType;
@@ -40,7 +41,7 @@ public:
     LPEVENT GetTargetEvent(DWORD pid, DWORD quest, const char* name);
     void Logout(DWORD pid);
 private:
-    std::map<DWORD, std::list<LPEVENT> > m_map_kListEvent;
+    std::map<std::uint32_t, std::list<LPEVENT> > m_map_kListEvent;
     int m_iID;
 };
 #endif

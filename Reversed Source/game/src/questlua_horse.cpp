@@ -2,8 +2,8 @@
 #include "questmanager.h"
 #include "../../libthecore/include/log.h"
 #include <algorithm>
-#include <cmath>
-#include <limits>
+#include <cfenv>
+#include <cstdint>
 
 extern "C" {
 #include "../../liblua/include/lua.h"
@@ -26,7 +26,7 @@ void SetQuestHorseLevel(LPCHARACTER character, int level)
 
 int HorsePercentage(int current, int maximum)
 {
-    return maximum > 0 ? std::max(0, std::min(current * 100 / maximum, 100)) : 0;
+    return maximum != 0 ? std::max(0, std::min(current * 100 / maximum, 100)) : 0;
 }
 }
 
@@ -35,7 +35,7 @@ int horse_is_riding(lua_State* state)
     LPCHARACTER character = CurrentHorseCharacter();
     const bool riding = character && character->IsHorseRiding();
     sys_log(1, "is_riding %d", static_cast<int>(riding));
-    lua_pushnumber(state, riding ? 1 : 0);
+    lua_pushnumber(state, character && character->IsHorseRiding() ? 1 : 0);
     return 1;
 }
 
@@ -82,9 +82,13 @@ int horse_set_level(lua_State* state)
 {
     LPCHARACTER character = CurrentHorseCharacter();
     if (character && lua_isnumber(state, 1)) {
-        const lua_Number value = std::trunc(lua_tonumber(state, 1));
-        const int level = value >= 0 && value <= std::numeric_limits<int>::max()
-            ? std::min(static_cast<int>(value), static_cast<int>(HORSE_MAX_LEVEL)) : 0;
+        const lua_Number value = lua_tonumber(state, 1);
+        std::int32_t requestedLevel = INT32_MIN;
+        if (value > -2147483649.0 && value < 2147483648.0)
+            requestedLevel = static_cast<std::int32_t>(value);
+        else
+            std::feraiseexcept(FE_INVALID);
+        const int level = std::clamp(requestedLevel, std::int32_t{0}, static_cast<std::int32_t>(HORSE_MAX_LEVEL));
         SetQuestHorseLevel(character, level);
     }
     return 0;
@@ -117,8 +121,12 @@ int horse_get_health(lua_State* state)
 int horse_get_health_pct(lua_State* state)
 {
     LPCHARACTER character = CurrentHorseCharacter();
-    const int percent = character
-        ? HorsePercentage(character->GetHorseHealth(), character->GetHorseMaxHealth()) : 0;
+    int percent = 0;
+    if (character) {
+        const short current = character->GetHorseHealth();
+        const short maximum = character->GetHorseMaxHealth();
+        percent = HorsePercentage(current, maximum);
+    }
     sys_log(1, "horse.get_health_pct %d", percent);
     lua_pushnumber(state, character && character->GetHorseLevel() ? percent : 0);
     return 1;
@@ -134,8 +142,12 @@ int horse_get_stamina(lua_State* state)
 int horse_get_stamina_pct(lua_State* state)
 {
     LPCHARACTER character = CurrentHorseCharacter();
-    const int percent = character
-        ? HorsePercentage(character->GetHorseStamina(), character->GetHorseMaxStamina()) : 0;
+    int percent = 0;
+    if (character) {
+        const short current = character->GetHorseStamina();
+        const short maximum = character->GetHorseMaxStamina();
+        percent = HorsePercentage(current, maximum);
+    }
     sys_log(1, "horse.get_stamina_pct %d", percent);
     lua_pushnumber(state, character && character->GetHorseLevel() ? percent : 0);
     return 1;

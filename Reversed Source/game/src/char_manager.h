@@ -27,6 +27,7 @@ public:
     void Destroy();
     void GracefulShutdown();
     void ProcessDelayedSave();
+    void NoticeInMap(int mapIndex, const char* text);
     void NoticeToMyEmpireInMap(int mapIndex, BYTE empire, const char* text);
     void SayInMap(int mapIndex, const std::string& script);
     void SayInMapinMyEmpire(int mapIndex, BYTE empire, const std::string& script);

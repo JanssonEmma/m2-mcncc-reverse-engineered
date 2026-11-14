@@ -5,6 +5,7 @@
 #include <utility>
 #include "text_file_loader.h"
 #include "../../libthecore/include/log.h"
+#include "../../libthecore/include/utils.h"
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -90,7 +91,8 @@ bool ITEM_MANAGER::ReadCommonDropItemFile(const char* filename)
                     case 2: levelEnd = std::atoi(field); break;
                     case 3: probability = std::atof(field); break;
                     case 4: std::strncpy(itemName, field, sizeof(itemName) - 1); break;
-                    // Columns 0 and 5 are consumed without affecting the stored record.
+                    case 5: static_cast<void>(std::atoi(field)); break;
+                    // Column 0 is consumed without conversion.
                 }
                 field = separator + 1;
             }
@@ -300,7 +302,7 @@ bool ITEM_MANAGER::ReadMonsterDropItemGroup(const char* filename)
                              item, name.c_str(), static_cast<int>(vnum), count, weight);
                     return false;
                 }
-                const int rare = std::max(0, std::min(100, std::atoi((*tokens)[3].c_str())));
+                const int rare = MINMAX(0, std::atoi((*tokens)[3].c_str()), 100);
                 sys_log(0, "        %s count %d rare %d", item, count, rare);
                 kill->AddItem(vnum, count, weight, rare);
             } else {

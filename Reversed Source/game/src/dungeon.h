@@ -2,6 +2,7 @@
 #define MCNCC_GAME_DUNGEON_H
 #include "../../common/singleton.h"
 #include "../../libthecore/include/typedef.h"
+#include <cstdint>
 #include <map>
 #include <list>
 #include <set>
@@ -81,8 +82,8 @@ protected:
     void Initialize();
 
 private:
-    DWORD m_lOrigMapIndex;
-    DWORD m_lMapIndex;
+    std::uint32_t m_lOrigMapIndex;
+    std::uint32_t m_lMapIndex;
     std::set<CHARACTER*> m_set_pkCharacter;
     std::map<std::string, int> m_map_Flag;
     std::map<CParty*, int> m_map_pkParty;
@@ -96,11 +97,12 @@ private:
     bool m_bExitAllAtEliminate;
     bool m_bWarpAtEliminate;
     int m_iWarpDelay;
-    long m_lWarpMapIndex;
-    long m_lWarpX;
-    long m_lWarpY;
+    std::int32_t m_lWarpMapIndex;
+    std::int32_t m_lWarpX;
+    std::int32_t m_lWarpY;
     std::string m_stRegenFile;
     std::list<regen*> m_regen;
+    void CheckDestroy();
     LPEVENT deadEvent;
 
     friend class CDungeonManager;
@@ -114,6 +116,6 @@ public:
     CDungeon* Find(long map);
     void Destroy(CDungeon* dungeon);
 private:
-    std::map<DWORD, CDungeon*> m_map_pkDungeon;
+    std::map<std::uint32_t, CDungeon*> m_map_pkDungeon;
 };
 #endif

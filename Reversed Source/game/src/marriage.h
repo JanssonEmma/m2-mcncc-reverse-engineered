@@ -6,13 +6,14 @@
 #include <set>
 #include <utility>
 #include "event.h"
+#include <cstdint>
 #include <ctime>
 #include <string>
 class CHARACTER;
 namespace marriage {
-struct TWeddingInfo { DWORD dwMapIndex; };
+struct TWeddingInfo { std::uint32_t dwMapIndex; };
 struct TMarriage {
-    DWORD pid1, pid2;
+    std::uint32_t pid1, pid2;
     int love_point;
     time_t marry_time;
     CHARACTER* ch1;
@@ -25,11 +26,12 @@ struct TMarriage {
     LPEVENT eventNearCheck;
 
     ~TMarriage();
-    DWORD GetOther(DWORD pid) const { return pid == pid1 ? pid2 : (pid == pid2 ? pid1 : 0); }
+    DWORD GetOther(DWORD pid) const { const auto id = static_cast<std::uint32_t>(pid); return id == pid1 ? pid2 : (id == pid2 ? pid1 : 0); }
     void SetMarried();
     void WarpToWeddingMap(DWORD pid);
     void RequestEndWedding();
     bool IsNear();
+    bool IsOnline() { return ch1 && ch2; }
     int GetMarriagePoint();
     int GetMarriageGrade();
     int GetBonus(DWORD vnum, bool share, CHARACTER* character);
@@ -64,17 +66,18 @@ public:
     void RequestAdd(DWORD first, DWORD second, const char* firstName, const char* secondName);
     void RequestRemove(DWORD first, DWORD second);
     void RequestEndWedding(DWORD first, DWORD second);
-    template <class Callback> void ForEachWedding(const Callback& callback)
+    template <class Callback> Callback for_each_wedding(Callback callback)
     {
         for (const auto& couple : m_setWedding) {
             if (TMarriage* record = Get(couple.first))
                 callback(record);
         }
+        return callback;
     }
 private:
     std::set<TMarriage*> m_Marriages;
-    std::map<DWORD, TMarriage*> m_MarriageByPID;
-    std::set<std::pair<DWORD, DWORD> > m_setWedding;
+    std::map<std::uint32_t, TMarriage*> m_MarriageByPID;
+    std::set<std::pair<std::uint32_t, std::uint32_t> > m_setWedding;
 };
 }
 #endif

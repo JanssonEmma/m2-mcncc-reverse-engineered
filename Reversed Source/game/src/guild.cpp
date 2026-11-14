@@ -62,16 +62,16 @@ void CGuild::LevelChange(DWORD pid,BYTE level) {
 // 0808f0e0
 int CGuild::GetSkillLevel(DWORD vnum)
 {
-    const DWORD index = vnum - 151;
+    const std::uint32_t index = static_cast<std::uint32_t>(vnum) - 151u;
     return index < 12 ? m_data.abySkill[index] : 0;
 }
 
-int CGuild::GetTotalLevel() const
+int CGuild::GetTotalLevel()
 {
-    int total = 0;
+    std::uint32_t total = 0;
     for (const auto& entry : m_member)
         total += entry.second.level;
-    return total;
+    return static_cast<std::int32_t>(total);
 }
 
 void CGuild::AdvanceLevel(int level)
@@ -89,7 +89,8 @@ int CGuild::GetMaxMemberCount()
 
 bool CGuild::HasLand()
 {
-    return building::CManager::instance().FindLandByGuild(GetID()) != 0;
+    const DWORD guildId = GetID();
+    return building::CManager::instance().FindLandByGuild(guildId) != nullptr;
 }
 
 void CGuild::SendAllGradePacket(CHARACTER* ch)
@@ -185,8 +186,10 @@ void CGuild::SendListPacket(CHARACTER* ch)
     {
         TGuildMember& member = it->second;
         WriteGuildMember(buffer, member);
-        if (test_server)
-            sys_log(0, "name %s job %d  ", member.name.c_str(), static_cast<int>(member.job));
+        if (test_server) {
+            const int job = member.job;
+            sys_log(0, "name %s job %d  ", member.name.c_str(), job);
+        }
     }
     const int size = buffer.size();
     const void* data = buffer.read_peek();
@@ -327,7 +330,7 @@ void CGuild::Load(DWORD guildId)
         postfix, postfix, guildId);
 }
 
-void CGuild::UpdateSkill(BYTE points, const BYTE* levels)
+void CGuild::UpdateSkill(BYTE points, BYTE* levels)
 {
     m_data.skill_point = points;
     std::memcpy(m_data.abySkill, levels, sizeof(m_data.abySkill));
@@ -337,20 +340,21 @@ void CGuild::UpdateSkill(BYTE points, const BYTE* levels)
 // 0808e900
 void CGuild::UseSkill(DWORD vnum, CHARACTER* character, DWORD targetPid)
 {
+    const auto skillVnum = static_cast<std::uint32_t>(vnum);
     if (!character || !(GetMemberAuth(character->GetPlayerID()) & 8))
         return;
 
-    sys_log(0, "GUILD_USE_SKILL : cname(%s), skill(%d)", character->GetName(), static_cast<int>(vnum));
-    if (!character->CanMove() || vnum < GUILD_SKILL_START || vnum > GUILD_SKILL_END + 1)
+    sys_log(0, "GUILD_USE_SKILL : cname(%s), skill(%d)", character->GetName(), static_cast<int>(skillVnum));
+    if (!character->CanMove() || skillVnum < GUILD_SKILL_START || skillVnum > GUILD_SKILL_END + 1)
         return;
 
-    CSkillProto* skill = CSkillManager::instance().Get(vnum);
+    CSkillProto* skill = CSkillManager::instance().Get(skillVnum);
     if (!skill) {
-        _sys_err("UseSkill", 0x4bf, "There is no such guild skill by number %u", static_cast<unsigned>(vnum));
+        _sys_err("UseSkill", 0x4bf, "There is no such guild skill by number %u", static_cast<unsigned>(skillVnum));
         return;
     }
 
-    const BYTE level = GetSkillLevel(vnum);
+    const BYTE level = GetSkillLevel(skillVnum);
     if (!level || ((skill->dwFlag & SKILL_FLAG_SELFONLY) && character->FindAffect(skill->dwVnum, 0)))
         return;
 
@@ -367,15 +371,16 @@ void CGuild::UseSkill(DWORD vnum, CHARACTER* character, DWORD targetPid)
         return static_cast<std::int32_t>(value);
     };
     const auto cost = truncate(skill->kSPCostPoly.Eval());
-    if (m_data.power < cost) {
-        character->ChatPacket(1, LC_TEXT("<\261\346\265\345> \277\353\275\305\267\302\300\314 \272\316\301\267\307\325\264\317\264\331. (%d, %d)"), m_data.power, cost);
+    const int availablePower = m_data.power;
+    if (availablePower < cost) {
+        character->ChatPacket(1, LC_TEXT("<\261\346\265\345> \277\353\275\305\267\302\300\314 \272\316\301\267\307\325\264\317\264\331. (%d, %d)"), availablePower, cost);
         return;
     }
 
     skill->kCooldownPoly.SetVar("k", k);
     const auto cooldown = truncate(skill->kCooldownPoly.Eval());
     const auto powerDelta = static_cast<std::int32_t>(0U - static_cast<std::uint32_t>(cost));
-    const auto index = vnum - GUILD_SKILL_START;
+    const auto index = skillVnum - GUILD_SKILL_START;
     if (!abSkillUsable[index]) {
         character->ChatPacket(1, "%s", LC_TEXT("<\261\346\265\345> \304\360\305\270\300\323\300\314 \263\241\263\252\301\366 \276\312\276\306 \261\346\265\345 \275\272\305\263\300\273 \273\347\277\353\307\322 \274\366 \276\370\275\300\264\317\264\331."));
         return;
@@ -386,10 +391,12 @@ void CGuild::UseSkill(DWORD vnum, CHARACTER* character, DWORD targetPid)
     };
     db_clientdesc->DBPacket(0x2f, 0, &cooldownPacket, sizeof(cooldownPacket));
     abSkillUsable[index] = false;
-    if (test_server)
-        character->ChatPacket(1, LC_TEXT("<\261\346\265\345> %d \275\272\305\263\300\273 \273\347\277\353\307\324 (%d, %d) to %lu"), static_cast<int>(vnum), m_data.power, cost, static_cast<unsigned long>(targetPid));
+    if (test_server) {
+        const int power = m_data.power;
+        character->ChatPacket(1, LC_TEXT("<\261\346\265\345> %d \275\272\305\263\300\273 \273\347\277\353\307\324 (%d, %d) to %lu"), static_cast<int>(skillVnum), power, cost, static_cast<unsigned long>(targetPid));
+    }
 
-    if (vnum == GUILD_SKILL_TELEPORT) {
+    if (skillVnum == GUILD_SKILL_TELEPORT) {
         SendDBSkillUpdate(powerDelta);
         if (CHARACTER* target = CHARACTER_MANAGER::instance().FindByPID(targetPid)) {
             character->WarpSet(target->GetX(), target->GetY(), 0);
@@ -424,16 +431,17 @@ void CGuild::UseSkill(DWORD vnum, CHARACTER* character, DWORD targetPid)
     }
     SendDBSkillUpdate(powerDelta);
     for (CHARACTER* member : m_memberOnline) {
-        member->RemoveAffect(vnum);
-        character->ComputeSkill(vnum, member, m_data.abySkill[index]);
+        member->RemoveAffect(skillVnum);
+        character->ComputeSkill(skillVnum, member, m_data.abySkill[index]);
     }
 }
 
 void CGuild::SkillUsableChange(DWORD vnum, bool usable)
 {
-    if (vnum < 151 || vnum >= 151 + sizeof(abSkillUsable) / sizeof(abSkillUsable[0]))
+    const std::uint32_t index = static_cast<std::uint32_t>(vnum) - 151u;
+    if (index >= sizeof(abSkillUsable) / sizeof(abSkillUsable[0]))
         return;
-    abSkillUsable[vnum - 151] = usable;
+    abSkillUsable[index] = usable;
     sys_log(0, "CGuild::SkillUsableChange(guild=%s, skill=%d, usable=%d)",
             GetName(), static_cast<int>(vnum), usable);
 }
@@ -469,14 +477,16 @@ void CGuild::SendDBSkillUpdate(int amount)
 
 void CGuild::SkillLevelUp(DWORD vnum)
 {
-    if (vnum < 151 || vnum >= 151 + sizeof(m_data.abySkill))
+    const auto skillVnum = static_cast<std::uint32_t>(vnum);
+    const std::uint32_t index = skillVnum - 151u;
+    if (index >= sizeof(m_data.abySkill))
         return;
-    CSkillProto* skill = CSkillManager::instance().Get(vnum);
+    CSkillProto* skill = CSkillManager::instance().Get(skillVnum);
     if (!skill) {
-        _sys_err("SkillLevelUp", 0x480, "There is no such guild skill by number %u", static_cast<unsigned>(vnum));
+        _sys_err("SkillLevelUp", 0x480, "There is no such guild skill by number %u", static_cast<unsigned>(skillVnum));
         return;
     }
-    BYTE& level = m_data.abySkill[vnum - 151];
+    BYTE& level = m_data.abySkill[index];
     if (level >= skill->bMaxLevel || !m_data.skill_point)
         return;
 
@@ -487,8 +497,10 @@ void CGuild::SkillLevelUp(DWORD vnum)
     SendDBSkillUpdate(0);
     for (CHARACTER* member : m_memberOnline)
         SendSkillInfoPacket(member);
-    sys_log(0, "Guild SkillUp: %s %d level %d type %d", m_data.name,
-            static_cast<int>(skill->dwVnum), static_cast<int>(level), static_cast<int>(skill->bType));
+    const int loggedType = skill->bType;
+    const int loggedLevel = level;
+    const int loggedVnum = static_cast<std::int32_t>(skill->dwVnum);
+    sys_log(0, "Guild SkillUp: %s %d level %d type %d", m_data.name, loggedVnum, loggedLevel, loggedType);
 }
 
 bool CGuild::OfferExp(CHARACTER* character, long amount)
@@ -568,10 +580,8 @@ void CGuild::GuildPointChange(BYTE type, int amount, bool save)
     const std::int64_t changed = static_cast<std::int64_t>(m_data.exp) + amount;
     m_data.exp = changed < 0 ? 0 : static_cast<std::uint32_t>(changed);
 
-    if (m_data.level == 0)
-        m_data.level = 1;
-    if (m_data.level > 20)
-        m_data.level = 20;
+    if (changed >= 0)
+        m_data.level = std::clamp<int>(m_data.level, 1, 20);
     while (changed >= 0 && m_data.exp >= __guild_levelup_exp(m_data.level)) {
         if (m_data.level == 20) {
             m_data.exp = 0;
@@ -588,8 +598,6 @@ void CGuild::GuildPointChange(BYTE type, int amount, bool save)
             ChangeLadderPoint(1000);
         for (CHARACTER* member : m_memberOnline)
             SendGuildInfoPacket(member);
-        if (m_data.level == 20)
-            m_data.exp = 0;
     }
 
     TPacketGCGuild header{};
@@ -610,7 +618,10 @@ void CGuild::ChangeGuildPower(int amount, bool save)
 {
     const auto power = static_cast<std::int32_t>(
         static_cast<std::uint32_t>(m_data.power) + static_cast<std::uint32_t>(amount));
-    m_data.power = std::min<std::int32_t>(m_data.max_power, power);
+    m_data.power = power;
+    const int maxPower = m_data.max_power;
+    if (power > maxPower)
+        m_data.power = maxPower;
     if (save)
         SaveSkill();
     for (CHARACTER* member : m_memberOnline)
@@ -619,9 +630,11 @@ void CGuild::ChangeGuildPower(int amount, bool save)
 
 void CGuild::ComputeGuildPoints()
 {
-    m_data.max_power = 300 + 100 * m_data.level;
-    if (m_data.power > m_data.max_power)
-        m_data.power = m_data.max_power;
+    const int maxPower = 300 + 100 * m_data.level;
+    const bool exceedsMax = m_data.power > maxPower;
+    m_data.max_power = maxPower;
+    if (exceedsMax)
+        m_data.power = maxPower;
 }
 
 void CGuild::LoadGuildData(SQLMsg* message)
@@ -741,7 +754,8 @@ BYTE CGuild::GetMemberAuth(DWORD pid)
 // 0808f930
 CHARACTER* CGuild::GetMasterCharacter()
 {
-    return CHARACTER_MANAGER::instance().FindByPID(GetMasterPID());
+    const DWORD masterPid = GetMasterPID();
+    return CHARACTER_MANAGER::instance().FindByPID(masterPid);
 }
 
 // 0808ff20
@@ -900,17 +914,23 @@ void CGuild::RefreshCommentForce(CHARACTER* ch)
 
 namespace
 {
-void RelayGuildGrade(DWORD guildId, BYTE grade)
+struct FSendChangeGrade
 {
-    const TPacketGuild packet = {static_cast<std::uint32_t>(guildId), grade};
-    db_clientdesc->DBPacket(23, 0, &packet, sizeof(packet));
-}
+    TPacketGuild p;
+
+    void operator()() const
+    {
+        db_clientdesc->DBPacket(23, 0, &p, sizeof(p));
+    }
+};
 }
 
 void CGuild::SendGradeName(BYTE grade)
 {
-    BYTE packet[14] = {75, 14, 0, 6, grade};
-    std::strncpy(reinterpret_cast<char*>(packet + 5), m_data.grade_array[grade - 1].grade_name, 8);
+    constexpr std::size_t nameSize = sizeof(TGuildGrade::grade_name);
+    static_assert(nameSize == 9, "Guild grade name wire size");
+    BYTE packet[5 + nameSize] = {75, 14, 0, 6, grade};
+    std::strncpy(reinterpret_cast<char*>(packet + 5), m_data.grade_array[grade - 1].grade_name, nameSize - 1);
     Packet(packet, sizeof(packet));
 }
 
@@ -922,13 +942,23 @@ void CGuild::SendGradeAuth(BYTE grade)
 
 void CGuild::ChangeGradeName(BYTE grade, const char* name)
 {
-    if (grade < 2 || grade > 15 || !name[0] || std::strlen(name) > 8)
+    if (grade == 1)
+        return;
+    if (grade == 0 || grade > 15) {
+        _sys_err("ChangeGradeName", 0x2fb, "Wrong guild grade value %d", static_cast<int>(grade));
+        return;
+    }
+    if (!name || !name[0])
+        return;
+    constexpr std::size_t maxLength = sizeof(TGuildGrade::grade_name) - 1;
+    const std::size_t length = std::strlen(name);
+    if (length > maxLength)
         return;
     DBManager& db = DBManager::instance();
     const DWORD guildId = GetID();
-    char escaped[17];
-    db.EscapeString(escaped, name, std::strlen(name));
-    db.FuncAfterQuery([guildId, grade]() { RelayGuildGrade(guildId, grade); },
+    char escaped[2 * maxLength + 1];
+    db.EscapeString(escaped, name, length);
+    db.FuncAfterQuery(FSendChangeGrade{{static_cast<std::uint32_t>(guildId), grade}},
         "UPDATE guild_grade%s SET name = '%s' where guild_id = %lu and grade = %d",
         get_table_postfix(), escaped, guildId, grade);
     std::strcpy(m_data.grade_array[grade - 1].grade_name, name);
@@ -937,10 +967,14 @@ void CGuild::ChangeGradeName(BYTE grade, const char* name)
 
 void CGuild::ChangeGradeAuth(BYTE grade, BYTE auth)
 {
-    if (grade < 2 || grade > 15)
+    if (grade == 1)
         return;
+    if (grade == 0 || grade > 15) {
+        _sys_err("ChangeGradeAuth", 0x32a, "Wrong guild grade value %d", static_cast<int>(grade));
+        return;
+    }
     const DWORD guildId = GetID();
-    DBManager::instance().FuncAfterQuery([guildId, grade]() { RelayGuildGrade(guildId, grade); },
+    DBManager::instance().FuncAfterQuery(FSendChangeGrade{{static_cast<std::uint32_t>(guildId), grade}},
         "UPDATE guild_grade%s SET auth = %d where guild_id = %lu and grade = %d",
         get_table_postfix(), auth, guildId, grade);
     m_data.grade_array[grade - 1].auth_flag = auth;
@@ -972,10 +1006,11 @@ void CGuild::__P2PUpdateGrade(SQLMsg* message)
     const int grade = std::atoi(row[0]);
     if (grade < 1 || grade > 15)
         return;
+    const char* name = row[1];
     const int auth = std::atoi(row[2]);
     TGuildGrade& record = m_data.grade_array[grade - 1];
-    if (std::strncmp(record.grade_name, row[1], 8)) {
-        std::strncpy(record.grade_name, row[1], 8);
+    if (std::strncmp(record.grade_name, name, 8)) {
+        std::strncpy(record.grade_name, name, 8);
         record.grade_name[8] = '\0';
         SendGradeName(static_cast<BYTE>(grade));
     }
@@ -1020,8 +1055,9 @@ bool CGuild::ChangeMemberGeneral(DWORD pid, BYTE isGeneral)
     TGuildMember* member = GetMember(pid);
     if (!member || member->is_general == isGeneral)
         return true;
+    const auto delta = isGeneral ? 1u : 0xffffffffu;
+    m_general_count = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_general_count) + delta);
     member->is_general = isGeneral;
-    m_general_count += isGeneral ? 1 : -1;
 
     BYTE packet[9] = {75, 9, 0, 13};
     const std::uint32_t wirePid = pid;
@@ -1112,7 +1148,7 @@ bool CGuild::CanJoinGuild(CHARACTER& invitee, CHARACTER& recipient)
 void CGuild::Invite(CHARACTER* inviter, CHARACTER* invitee)
 {
     const char* error = nullptr;
-    if (invitee->GetBlockMode() & 4)
+    if (invitee->IsBlockMode(4))
         error = "<\261\346\265\345> \273\363\264\353\271\346\300\314 \261\346\265\345 \303\312\264\353 \260\305\272\316 \273\363\305\302\300\324\264\317\264\331.";
     else if (!(GetMemberAuth(inviter->GetPlayerID()) & 1))
         error = "<\261\346\265\345> \261\346\265\345\277\370\300\273 \303\312\264\353\307\322 \261\307\307\321\300\314 \276\370\275\300\264\317\264\331.";
@@ -1187,7 +1223,10 @@ bool CGuild::ChargeSP(CHARACTER* ch, int amount)
 {
     if (amount < 0 || static_cast<std::int64_t>(amount) * 100 > ch->GetGold())
         return false;
-    amount = std::min(amount, std::max(0, m_data.max_power - m_data.power));
+    const std::int64_t maxPower = m_data.max_power;
+    const std::int64_t power = m_data.power;
+    const auto capacity = std::max<std::int64_t>(0, maxPower - power);
+    amount = static_cast<int>(std::min<std::int64_t>(amount, capacity));
     const int cost = amount * 100;
     ch->PointChange(POINT_GOLD, -cost, false, false);
     DBManager::instance().SendMoneyLog(5, 1, -cost);
@@ -1316,10 +1355,23 @@ void CGuild::Chat(const char* text)
     P2P_MANAGER::instance().Send(payload, sizeof(payload));
 }
 
+namespace {
+struct FGuildChat
+{
+    const char* text;
+
+    void operator()(LPCHARACTER member)
+    {
+        member->ChatPacket(4, "%s", text);
+    }
+};
+}
+
 void CGuild::P2PChat(const char* text)
 {
-    for (std::set<CHARACTER*>::iterator it=m_memberOnline.begin();it!=m_memberOnline.end();++it)
-        (*it)->ChatPacket(4,"%s",text);
+    FGuildChat send{text};
+    for (LPCHARACTER member : m_memberOnline)
+        send(member);
 }
 
 void CGuild::LogoutMember(CHARACTER* character)
@@ -1333,8 +1385,8 @@ void CGuild::LogoutMember(CHARACTER* character)
     m_memberOnline.erase(character);
     std::set<CHARACTER*>::iterator it=m_memberOnline.begin();
     while (it!=m_memberOnline.end()) {
-        CHARACTER* online=*it++;
-        SendLogoutPacket(online,character);
+        SendLogoutPacket(*it, character);
+        ++it;
     }
 }
 
@@ -1365,10 +1417,13 @@ void CGuild::AddMember(TPacketDGGuildMember* packet)
     SendListOneToAll(pid);
 
     CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid);
+    const auto offer = static_cast<unsigned long>(packet->dwOffer);
+    const auto level = static_cast<unsigned>(packet->bLevel);
+    const auto job = static_cast<unsigned>(packet->bJob);
+    const auto grade = static_cast<unsigned>(packet->bGrade);
+    const auto loggedPid = static_cast<unsigned long>(packet->dwPID);
     sys_log(0, "GUILD: AddMember PID %lu, grade %u, job %u, level %u, offer %lu, name %s ptr %p",
-            pid, static_cast<unsigned>(packet->bGrade), static_cast<unsigned>(packet->bJob),
-            static_cast<unsigned>(packet->bLevel), static_cast<unsigned long>(packet->dwOffer),
-            packet->szName, static_cast<void*>(character));
+            loggedPid, grade, job, level, offer, packet->szName, static_cast<void*>(character));
     if (character)
         LoginMember(character);
     else
@@ -1461,8 +1516,8 @@ void CGuild::ChangeMemberData(DWORD pid, DWORD offer, BYTE level, BYTE grade)
     if (!member)
         return;
 
-    member->offer_exp = offer;
     member->level = level;
+    member->offer_exp = offer;
     member->grade = grade;
     SendMemberData(*member);
 }

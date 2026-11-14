@@ -179,15 +179,40 @@ namespace {
 void AppendChatScripts(NPC::AArgQuestScriptType& states, int state,
                        std::vector<AArgScript*>& scripts)
 {
-    NPC::AArgQuestScriptType::iterator found = states.find(state);
-    if (found == states.end())
+    if (states.find(state) == states.end())
         return;
-    for (AArgScript& script : found->second) {
-        if (script.when_condition.empty() ||
-            IsScriptTrue(&script.when_condition[0], script.when_condition.size()))
-            scripts.push_back(&script);
+
+    for (std::size_t index = 0; index < states[state].size(); ++index) {
+        const auto& condition = states[state][index].when_condition;
+        if (IsScriptTrue(condition.data(), static_cast<int>(condition.size()))) {
+            auto current = states.find(state);
+            if (current != states.end() && index < current->second.size())
+                scripts.push_back(&current->second[index]);
+        }
     }
 }
+
+struct FuncMatchChatEvent
+{
+    std::vector<AArgScript*>& rAvailScript;
+
+    void operator()(PC::QuestInfoIterator& player, NPC::ArgQuestMapType::iterator& quest)
+    {
+        const int state = player->second.st;
+        AppendChatScripts(quest->second, state, rAvailScript);
+    }
+};
+
+struct FuncMissChatEvent
+{
+    std::vector<AArgScript*>& rAvailScript;
+
+    void operator()(PC::QuestInfoIterator&, NPC::ArgQuestMapType::iterator& quest)
+    {
+        if (CQuestManager::instance().CanStartQuest(quest->first))
+            AppendChatScripts(quest->second, 0, rAvailScript);
+    }
+};
 }
 
 bool NPC::OnClick(PC& pc)
@@ -218,13 +243,8 @@ bool NPC::OnChat(PC& pc)
     }
 
     std::vector<AArgScript*> scripts;
-    auto match = [&scripts](PC::QuestInfoIterator& player, ArgQuestMapType::iterator& quest) {
-        AppendChatScripts(quest->second, player->second.st, scripts);
-    };
-    auto miss = [&scripts](PC::QuestInfoIterator&, ArgQuestMapType::iterator& quest) {
-        if (CQuestManager::instance().CanStartQuest(quest->first))
-            AppendChatScripts(quest->second, 0, scripts);
-    };
+    FuncMatchChatEvent match{scripts};
+    FuncMissChatEvent miss{scripts};
     MatchingQuest(pc, m_mapOwnArgQuest[8], match, miss);
     if (scripts.empty())
         return false;

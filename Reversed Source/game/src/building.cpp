@@ -18,6 +18,7 @@
 #include "../../libthecore/include/memcpy.h"
 
 #include <algorithm>
+#include <cfenv>
 #include <cmath>
 #include <cstdint>
 #include <memory>
@@ -35,18 +36,22 @@ std::int32_t SubtractBuildingCoordinate(long origin, long offset)
     return static_cast<std::int32_t>(static_cast<std::uint32_t>(origin) - static_cast<std::uint32_t>(offset));
 }
 
-bool IsInsideLand(const TLand& land, const TMapRegion& region, long worldX, long worldY)
+bool IsInsideLand(const TLand& land, std::int32_t x, std::int32_t y)
 {
-    const auto x = SubtractBuildingCoordinate(worldX, region.sx);
-    const auto y = SubtractBuildingCoordinate(worldY, region.sy);
-    return land.x <= x && x <= AddBuildingCoordinate(land.x, land.width) &&
-           land.y <= y && y <= AddBuildingCoordinate(land.y, land.height);
+    const auto minX = land.x;
+    if (x < minX)
+        return false;
+    const auto minY = land.y;
+    return y >= minY && x <= AddBuildingCoordinate(minX, land.width) &&
+           y <= AddBuildingCoordinate(minY, land.height);
 }
 
 std::int32_t TruncateBuildingCoordinate(long double coordinate)
 {
-    if (!(coordinate > -2147483649.0L && coordinate < 2147483648.0L))
+    if (!(coordinate > -2147483649.0L && coordinate < 2147483648.0L)) {
+        std::feraiseexcept(FE_INVALID);
         return INT32_MIN;
+    }
     return static_cast<std::int32_t>(coordinate);
 }
 
@@ -110,7 +115,7 @@ void CObject::EncodeInsertPacket(LPENTITY entity)
         return;
 
     sys_log(0, "ObjectInsertPacket vid %lu vnum %lu rot %f %f %f",
-            m_dwVID, static_cast<unsigned long>(m_data.dwVnum), m_data.xRot, m_data.yRot, m_data.zRot);
+            static_cast<unsigned long>(m_dwVID), static_cast<unsigned long>(m_data.dwVnum), m_data.xRot, m_data.yRot, m_data.zRot);
     ObjectInsertPacket packet = {};
     packet.header = 1;
     packet.vid = m_dwVID;
@@ -120,15 +125,21 @@ void CObject::EncodeInsertPacket(LPENTITY entity)
     packet.z = GetZ();
     packet.type = 5;
     packet.race = m_data.dwVnum;
-    packet.affect[0] = static_cast<std::uint32_t>(static_cast<long long>(m_data.xRot));
-    packet.affect[1] = static_cast<std::uint32_t>(static_cast<long long>(m_data.yRot));
+    const auto encodeRotation = [](float rotation) -> std::uint32_t {
+        constexpr float limit = 0x1p63f;
+        if (!(rotation >= -limit && rotation < limit))
+            return 0;
+        return static_cast<std::uint32_t>(static_cast<std::int64_t>(rotation));
+    };
+    packet.affect[0] = encodeRotation(m_data.xRot);
+    packet.affect[1] = encodeRotation(m_data.yRot);
     desc->Packet(&packet, sizeof(packet));
 }
 
 void CObject::EncodeRemovePacket(LPENTITY entity)
 {
     if (LPDESC desc = entity->GetDesc()) {
-        sys_log(0, "ObjectRemovePacket vid %lu", m_dwVID);
+        sys_log(0, "ObjectRemovePacket vid %lu", static_cast<unsigned long>(m_dwVID));
         const ObjectRemovePacket packet = {2, static_cast<std::uint32_t>(m_dwVID)};
         desc->Packet(&packet, sizeof(packet));
     }
@@ -138,11 +149,14 @@ void CObject::Save() {}
 
 void CObject::SetVID(DWORD vid)
 {
-    m_dwVID = vid;
+    m_dwVID = static_cast<std::uint32_t>(vid);
 }
 
 bool CObject::Show(long map, long x, long y)
 {
+    map = static_cast<std::int32_t>(map);
+    x = static_cast<std::int32_t>(x);
+    y = static_cast<std::int32_t>(y);
     SECTREE_MANAGER& sectors = SECTREE_MANAGER::instance();
     LPSECTREE tree = sectors.Get(map, x, y);
     if (!tree) {
@@ -163,9 +177,13 @@ bool CObject::Show(long map, long x, long y)
     SetMapIndex(map);
     tree->InsertEntity(this);
     UpdateSectree();
-    sectors.ForAttrRegion(map, x + m_pProto->lRegion[0], y + m_pProto->lRegion[1],
-                          x + m_pProto->lRegion[2], y + m_pProto->lRegion[3],
-                          static_cast<long>(m_data.zRot), ATTR_OBJECT, ATTR_REGION_MODE_SET);
+    auto& regionManager = SECTREE_MANAGER::instance();
+    const auto rotation = TruncateBuildingCoordinate(m_data.zRot);
+    const auto endY = AddBuildingCoordinate(y, m_pProto->lRegion[3]);
+    const auto endX = AddBuildingCoordinate(x, m_pProto->lRegion[2]);
+    const auto startY = AddBuildingCoordinate(y, m_pProto->lRegion[1]);
+    const auto startX = AddBuildingCoordinate(x, m_pProto->lRegion[0]);
+    regionManager.ForAttrRegion(map, startX, startY, endX, endY, rotation, ATTR_OBJECT, ATTR_REGION_MODE_SET);
     return true;
 }
 
@@ -174,25 +192,27 @@ void CObject::RegenNPC()
     if (!m_pProto || !m_pProto->dwNPCVnum || !m_pkLand)
         return;
 
-    CGuild* guild = CGuildManager::instance().FindGuild(m_pkLand->GetData().dwGuildID);
+    CGuild* guild = CGuildManager::instance().FindGuild(m_pkLand->GetOwner());
     if (!guild)
         return;
 
     const float radians = static_cast<float>(
         static_cast<long double>(m_data.zRot) * 2 * 3.1419520378112793f / 360.0f);
-    const float cosAngle = std::cos(radians);
-    const float sinAngle = std::sin(radians);
     const float npcX = static_cast<float>(m_pProto->lNPCX);
     const float npcY = static_cast<float>(m_pProto->lNPCY);
-    const float cosX = cosAngle * npcX;
-    const float cosY = cosAngle * npcY;
-    const float sinX = sinAngle * npcX;
-    const auto offsetX = TruncateBuildingCoordinate(cosX + static_cast<long double>(sinAngle) * npcY);
+    const float cosX = std::cos(radians) * npcX;
+    const float sinForX = std::sin(radians);
+    const auto offsetX = TruncateBuildingCoordinate(cosX + static_cast<long double>(sinForX) * npcY);
+    const float cosY = std::cos(radians) * npcY;
+    const float sinX = std::sin(radians) * npcX;
     const auto offsetY = TruncateBuildingCoordinate(static_cast<long double>(cosY) - sinX);
-    const auto x = static_cast<std::int32_t>(static_cast<std::uint32_t>(GetX()) + offsetX);
-    const auto y = static_cast<std::int32_t>(static_cast<std::uint32_t>(GetY()) + offsetY);
-    m_chNPC = CHARACTER_MANAGER::instance().SpawnMob(m_pProto->dwNPCVnum, GetMapIndex(), x, y,
-        GetZ(), false, TruncateBuildingCoordinate(m_data.zRot), true);
+    const auto z = GetZ();
+    const auto y = AddBuildingCoordinate(GetY(), offsetY);
+    const auto x = AddBuildingCoordinate(GetX(), offsetX);
+    auto& characters = CHARACTER_MANAGER::instance();
+    const auto mapIndex = GetMapIndex();
+    const auto rotation = TruncateBuildingCoordinate(m_data.zRot);
+    m_chNPC = characters.SpawnMob(m_pProto->dwNPCVnum, mapIndex, x, y, z, false, rotation, true);
     if (!m_chNPC) {
         _sys_err("RegenNPC", 0x11e, "Cannot create guild npc");
         return;
@@ -200,8 +220,11 @@ void CObject::RegenNPC()
 
     m_chNPC->SetGuild(guild);
     if (m_pProto->dwVnum - 14061 < 3) {
-        if (quest::PC* pc = quest::CQuestManager::instance().GetPC(guild->GetMasterPID()))
-            pc->SetFlag("alter_of_power.build_level", guild->GetLevel(), false);
+        const auto masterPid = guild->GetMasterPID();
+        if (quest::PC* pc = quest::CQuestManager::instance().GetPC(masterPid)) {
+            const auto guildLevel = guild->GetLevel();
+            pc->SetFlag("alter_of_power.build_level", guildLevel, false);
+        }
     }
 }
 
@@ -210,9 +233,12 @@ void CObject::ApplySpecialEffect()
     if (!m_pProto || m_pProto->dwVnum - 14061 >= 3)
         return;
 
-    const DWORD guildId = m_pkLand ? m_pkLand->GetData().dwGuildID : 0;
-    if (CGuild* guild = CGuildManager::instance().FindGuild(guildId))
-        guild->SetMemberCountBonus(static_cast<int>(m_pProto->dwVnum - 14060) * 6);
+    const DWORD guildId = m_pkLand ? m_pkLand->GetOwner() : 0;
+    if (CGuild* guild = CGuildManager::instance().FindGuild(guildId)) {
+        const auto vnum = m_pProto->dwVnum;
+        if (vnum - 14061u < 3u)
+            guild->SetMemberCountBonus(static_cast<int>(vnum - 14060u) * 6);
+    }
 }
 
 CLand::CLand(TLand* data)
@@ -227,8 +253,11 @@ CLand::~CLand()
 
 void CLand::Destroy()
 {
-    for (const auto& entry : m_map_pkObject)
-        CManager::instance().UnregisterObject(entry.second);
+    auto it = m_map_pkObject.begin();
+    while (it != m_map_pkObject.end()) {
+        CObject* object = (it++)->second;
+        CManager::instance().UnregisterObject(object);
+    }
     for (const auto& entry : m_map_pkObject)
         delete entry.second;
     m_map_pkObject.clear();
@@ -237,16 +266,16 @@ void CLand::Destroy()
 
 CObject* CLand::FindObject(DWORD id)
 {
-    const auto found = m_map_pkObject.find(id);
+    const auto found = m_map_pkObject.find(static_cast<std::uint32_t>(id));
     return found == m_map_pkObject.end() ? nullptr : found->second;
 }
 
 CObject* CLand::FindObjectByVnum(DWORD vnum)
 {
+    const auto objectVnum = static_cast<std::uint32_t>(vnum);
     for (const auto& entry : m_map_pkObject)
     {
-        const TObjectProto* proto = entry.second->m_pProto;
-        if ((proto ? proto->dwVnum : 0) == vnum)
+        if (entry.second->GetVnum() == objectVnum)
             return entry.second;
     }
     return nullptr;
@@ -254,7 +283,7 @@ CObject* CLand::FindObjectByVnum(DWORD vnum)
 
 CObject* CLand::FindObjectByVID(DWORD vid)
 {
-    const auto found = m_map_pkObjectByVID.find(vid);
+    const auto found = m_map_pkObjectByVID.find(static_cast<std::uint32_t>(vid));
     return found == m_map_pkObjectByVID.end() ? nullptr : found->second;
 }
 
@@ -262,7 +291,7 @@ void CLand::InsertObject(CObject* object)
 {
     m_map_pkObject.insert(std::make_pair(object->GetID(), object));
     m_map_pkObjectByVID.insert(std::make_pair(object->GetVID(), object));
-    object->m_pkLand = this;
+    object->SetLand(this);
 }
 
 CManager::CManager() {}
@@ -273,8 +302,11 @@ CManager::~CManager()
 
 void CManager::Destroy()
 {
-    for (const auto& entry : m_map_pkLand)
-        delete entry.second;
+    auto it = m_map_pkLand.begin();
+    while (it != m_map_pkLand.end()) {
+        CLand* land = (it++)->second;
+        delete land;
+    }
     m_map_pkLand.clear();
 }
 
@@ -284,13 +316,13 @@ void CManager::GracefulShutdown()
 
 CLand* CManager::FindLand(DWORD id)
 {
-    const auto found = m_map_pkLand.find(id);
+    const auto found = m_map_pkLand.find(static_cast<std::uint32_t>(id));
     return found == m_map_pkLand.end() ? 0 : found->second;
 }
 
 TObjectProto* CManager::GetObjectProto(DWORD vnum)
 {
-    const auto found = m_map_pkObjectProto.find(vnum);
+    const auto found = m_map_pkObjectProto.find(static_cast<std::uint32_t>(vnum));
     return found == m_map_pkObjectProto.end() ? 0 : found->second;
 }
 
@@ -300,34 +332,44 @@ bool CManager::LoadLand(TLand* table)
         return false;
 
     std::unique_ptr<CLand> land(new CLand(table));
-    if (m_map_pkLand.insert(std::make_pair(land->GetData().dwID, land.get())).second)
+    if (m_map_pkLand.insert(std::make_pair(land->GetID(), land.get())).second)
         land.release();
-    sys_log(0, "LAND: %lu map %ld %ldx%ld w %lu h %lu",
-            static_cast<unsigned long>(table->dwID), static_cast<long>(table->lMapIndex),
-            static_cast<long>(table->x), static_cast<long>(table->y),
-            static_cast<unsigned long>(table->width), static_cast<unsigned long>(table->height));
+    const auto height = static_cast<unsigned long>(static_cast<std::uint32_t>(table->height));
+    const auto width = static_cast<unsigned long>(static_cast<std::uint32_t>(table->width));
+    const auto y = static_cast<long>(table->y);
+    const auto x = static_cast<long>(table->x);
+    const auto map = static_cast<long>(table->lMapIndex);
+    const auto id = static_cast<unsigned long>(table->dwID);
+    sys_log(0, "LAND: %lu map %ld %ldx%ld w %lu h %lu", id, map, x, y, width, height);
     return true;
 }
 
-bool CManager::LoadObjectProto(TObjectProto* table, int size)
+bool CManager::LoadObjectProto(const TObjectProto* table, int size)
 {
     m_vec_kObjectProto.resize(size);
     if (size > 0)
         thecore_memcpy(m_vec_kObjectProto.data(), table, sizeof(TObjectProto) * size);
 
     for (TObjectProto& proto : m_vec_kObjectProto) {
+        const auto npc = static_cast<unsigned long>(proto.dwNPCVnum);
+        const auto life = static_cast<long>(proto.lLife);
+        const auto upgradeTime = static_cast<unsigned long>(proto.dwUpgradeLimitTime);
+        const auto upgradeVnum = static_cast<unsigned long>(proto.dwUpgradeVnum);
+        const auto price = static_cast<unsigned long>(proto.dwPrice);
+        const auto objectVnum = static_cast<unsigned long>(proto.dwVnum);
         sys_log(0, "ObjectProto %lu price %lu upgrade %lu upg_limit %lu life %ld NPC %lu",
-                static_cast<unsigned long>(proto.dwVnum), static_cast<unsigned long>(proto.dwPrice),
-                static_cast<unsigned long>(proto.dwUpgradeVnum), static_cast<unsigned long>(proto.dwUpgradeLimitTime),
-                static_cast<long>(proto.lLife), static_cast<unsigned long>(proto.dwNPCVnum));
+                objectVnum, price, upgradeVnum, upgradeTime, life, npc);
         for (const TObjectMaterial& material : proto.kMaterials) {
-            if (!material.dwItemVnum)
+            const auto materialVnum = material.dwItemVnum;
+            if (!materialVnum)
                 break;
-            if (!ITEM_MANAGER::instance().GetTable(material.dwItemVnum)) {
+            if (!ITEM_MANAGER::instance().GetTable(materialVnum)) {
                 _sys_err("LoadObjectProto", 0x265, "          mat: ERROR!! no item by vnum %lu", static_cast<unsigned long>(material.dwItemVnum));
                 return false;
             }
-            sys_log(0, "          mat: %lu %lu", static_cast<unsigned long>(material.dwItemVnum), static_cast<unsigned long>(material.dwCount));
+            const auto count = static_cast<unsigned long>(material.dwCount);
+            const auto vnum = static_cast<unsigned long>(material.dwItemVnum);
+            sys_log(0, "          mat: %lu %lu", vnum, count);
         }
         m_map_pkObjectProto.insert(std::make_pair(proto.dwVnum, &proto));
     }
@@ -344,14 +386,18 @@ bool CManager::LoadObject(TObject* table, bool boot)
 
     TObjectProto* proto = GetObjectProto(table->dwVnum);
     if (!proto) {
-        _sys_err("LoadObject", 0x2ff, "Cannot find object %lu in prototype (id %lu)",
-                 static_cast<unsigned long>(table->dwVnum), static_cast<unsigned long>(table->dwID));
+        const auto id = static_cast<unsigned long>(table->dwID);
+        const auto vnum = static_cast<unsigned long>(table->dwVnum);
+        _sys_err("LoadObject", 0x2ff, "Cannot find object %lu in prototype (id %lu)", vnum, id);
         return false;
     }
 
-    sys_log(0, "OBJ: id %lu vnum %lu map %ld pos %ldx%ld",
-            static_cast<unsigned long>(table->dwID), static_cast<unsigned long>(table->dwVnum),
-            static_cast<long>(table->lMapIndex), static_cast<long>(table->x), static_cast<long>(table->y));
+    const auto logY = static_cast<long>(table->y);
+    const auto logX = static_cast<long>(table->x);
+    const auto logMap = static_cast<long>(table->lMapIndex);
+    const auto logVnum = static_cast<unsigned long>(table->dwVnum);
+    const auto logId = static_cast<unsigned long>(table->dwID);
+    sys_log(0, "OBJ: id %lu vnum %lu map %ld pos %ldx%ld", logId, logVnum, logMap, logX, logY);
     CObject* object = new CObject(table, proto);
     const DWORD vid = CHARACTER_MANAGER::instance().AllocVID();
     object->SetVID(vid);
@@ -363,7 +409,10 @@ bool CManager::LoadObject(TObject* table, bool boot)
         object->SetMapIndex(table->lMapIndex);
         object->SetXYZ(table->x, table->y, 0);
     } else {
-        object->Show(table->lMapIndex, table->x, table->y);
+        const auto y = table->y;
+        const auto x = table->x;
+        const auto map = table->lMapIndex;
+        object->Show(map, x, y);
         if (proto->dwNPCVnum)
             object->RegenNPC();
         object->ApplySpecialEffect();
@@ -373,17 +422,25 @@ bool CManager::LoadObject(TObject* table, bool boot)
 
 void CObject::Destroy()
 {
-    if (m_pProto) {
-        SECTREE_MANAGER::instance().ForAttrRegion(GetMapIndex(),
-            GetX() + m_pProto->lRegion[0], GetY() + m_pProto->lRegion[1],
-            GetX() + m_pProto->lRegion[2], GetY() + m_pProto->lRegion[3],
-            static_cast<long>(m_data.zRot), ATTR_OBJECT, ATTR_REGION_MODE_REMOVE);
+    if (const auto* proto = m_pProto) {
+        const auto y = GetY();
+        const auto maxY = AddBuildingCoordinate(y, proto->lRegion[3]);
+        const auto endOffsetX = proto->lRegion[2];
+        const auto x = GetX();
+        const auto maxX = AddBuildingCoordinate(x, endOffsetX);
+        const auto minY = AddBuildingCoordinate(y, proto->lRegion[1]);
+        const auto minX = AddBuildingCoordinate(x, proto->lRegion[0]);
+        auto& sectors = SECTREE_MANAGER::instance();
+        const auto mapIndex = GetMapIndex();
+        const auto rotation = TruncateBuildingCoordinate(m_data.zRot);
+        sectors.ForAttrRegion(mapIndex, minX, minY, maxX, maxY,
+            rotation, ATTR_OBJECT, ATTR_REGION_MODE_REMOVE);
     }
     CEntity::Destroy();
     if (LPSECTREE sector = GetSectree())
         sector->RemoveEntity(this);
-    if (m_chNPC)
-        CHARACTER_MANAGER::instance().DestroyCharacter(m_chNPC);
+    if (CHARACTER* npc = m_chNPC)
+        CHARACTER_MANAGER::instance().DestroyCharacter(npc);
     RemoveSpecialEffect();
 }
 
@@ -392,7 +449,7 @@ void CObject::RemoveSpecialEffect()
     if (!m_pProto || m_pProto->dwVnum - 14061 >= 3)
         return;
 
-    const DWORD guildId = m_pkLand ? m_pkLand->GetData().dwGuildID : 0;
+    const DWORD guildId = m_pkLand ? m_pkLand->GetOwner() : 0;
     if (CGuild* guild = CGuildManager::instance().FindGuild(guildId))
         guild->SetMemberCountBonus(0);
 }
@@ -402,7 +459,7 @@ const TLand& CLand::GetData()
     return m_data;
 }
 
-void CLand::PutData(TLand* data)
+void CLand::PutData(const TLand* data)
 {
     thecore_memcpy(&m_data, data, sizeof(m_data));
     if (!m_data.dwGuildID)
@@ -419,28 +476,34 @@ void CLand::PutData(TLand* data)
         if (character->GetMapIndex() != m_data.lMapIndex)
             continue;
 
-        if (IsInsideLand(m_data, *region, character->GetX(), character->GetY()))
+        const auto x = SubtractBuildingCoordinate(character->GetX(), region->sx);
+        const auto y = SubtractBuildingCoordinate(character->GetY(), region->sy);
+        const auto minX = m_data.x;
+        if (x > AddBuildingCoordinate(minX, m_data.width) || x < minX)
+            continue;
+        const auto minY = m_data.y;
+        if (y <= AddBuildingCoordinate(minY, m_data.height) && y >= minY)
             manager.DestroyCharacter(character);
     }
 }
 
 void CLand::DeleteObject(DWORD id)
 {
-    const auto found = m_map_pkObject.find(id);
-    if (found == m_map_pkObject.end())
+    const auto objectId = static_cast<std::uint32_t>(id);
+    CObject* object = FindObject(objectId);
+    if (!object)
         return;
 
-    CObject* object = found->second;
-    sys_log(0, "Land::DeleteObject %lu", id);
+    sys_log(0, "Land::DeleteObject %lu", static_cast<unsigned long>(objectId));
     CManager::instance().UnregisterObject(object);
-    m_map_pkObject.erase(id);
+    m_map_pkObject.erase(objectId);
     m_map_pkObjectByVID.erase(object->GetVID());
     delete object;
 }
 
 CObject* CManager::FindObjectByVID(DWORD vid)
 {
-    const auto object = m_map_pkObjByVID.find(vid);
+    const auto object = m_map_pkObjByVID.find(static_cast<std::uint32_t>(vid));
     return object == m_map_pkObjByVID.end() ? nullptr : object->second;
 }
 
@@ -452,10 +515,11 @@ void CManager::UnregisterObject(CObject* object)
 
 void CManager::DeleteObject(DWORD id)
 {
-    sys_log(0, "OBJ_DEL: %lu", id);
-    const auto found = m_map_pkObjByID.find(id);
+    const auto objectId = static_cast<std::uint32_t>(id);
+    sys_log(0, "OBJ_DEL: %lu", static_cast<unsigned long>(objectId));
+    const auto found = m_map_pkObjByID.find(objectId);
     if (found != m_map_pkObjByID.end())
-        found->second->GetLand()->DeleteObject(id);
+        found->second->GetLand()->DeleteObject(objectId);
 }
 
 void CManager::UpdateLand(TLand* table)
@@ -467,13 +531,16 @@ void CManager::UpdateLand(TLand* table)
     }
 
     land->PutData(table);
+    const auto& clients = DESC_MANAGER::instance().GetClientSet();
+    auto client = clients.begin();
     const LandListHeader header = {0x82, sizeof(LandListHeader) + sizeof(LandListElement)};
     const LandListElement element = MakeLandListElement(*table);
     sys_log(0, "BUILDING: UpdateLand %lu pos %dx%d guild %lu", static_cast<unsigned long>(table->dwID),
             static_cast<int>(element.x), static_cast<int>(element.y), static_cast<unsigned long>(table->dwGuildID));
-    for (DESC* desc : DESC_MANAGER::instance().GetClientSet()) {
+    while (client != clients.end()) {
+        DESC* desc = *client++;
         CHARACTER* character = desc->GetCharacter();
-        if (character && character->GetMapIndex() == table->lMapIndex) {
+        if (character && static_cast<std::int32_t>(character->GetMapIndex()) == table->lMapIndex) {
             desc->BufferedPacket(&header, sizeof(header));
             desc->Packet(&element, sizeof(element));
         }
@@ -482,15 +549,22 @@ void CManager::UpdateLand(TLand* table)
 
 CLand* CManager::FindLand(long map, long x, long y)
 {
-    sys_log(0, "BUILDING: FindLand %ld %ld %ld", map, x, y);
-    const TMapRegion* region = SECTREE_MANAGER::instance().GetMapRegion(map);
+    const long mapIndex = static_cast<std::int32_t>(map);
+    sys_log(0, "BUILDING: FindLand %ld %ld %ld", mapIndex,
+            static_cast<long>(static_cast<std::int32_t>(x)),
+            static_cast<long>(static_cast<std::int32_t>(y)));
+    const TMapRegion* region = SECTREE_MANAGER::instance().GetMapRegion(mapIndex);
     if (!region)
         return 0;
 
-    for (const auto& entry : m_map_pkLand) {
-        CLand* land = entry.second;
+    const auto relativeX = SubtractBuildingCoordinate(x, region->sx);
+    const auto relativeY = SubtractBuildingCoordinate(y, region->sy);
+
+    auto it = m_map_pkLand.begin();
+    while (it != m_map_pkLand.end()) {
+        CLand* land = (it++)->second;
         const TLand& data = land->GetData();
-        if (data.lMapIndex == map && IsInsideLand(data, *region, x, y))
+        if (data.lMapIndex == mapIndex && IsInsideLand(data, relativeX, relativeY))
             return land;
     }
     return 0;
@@ -498,11 +572,14 @@ CLand* CManager::FindLand(long map, long x, long y)
 
 void CManager::SendLandList(LPDESC desc, long map)
 {
+    const auto mapIndex = static_cast<std::int32_t>(map);
     TEMP_BUFFER buffer;
     WORD count = 0;
-    for (const auto& entry : m_map_pkLand) {
-        const TLand& data = entry.second->GetData();
-        if (data.lMapIndex != map)
+    auto it = m_map_pkLand.begin();
+    while (it != m_map_pkLand.end()) {
+        CLand* land = (it++)->second;
+        const TLand& data = land->GetData();
+        if (data.lMapIndex != mapIndex)
             continue;
 
         const LandListElement element = MakeLandListElement(data);
@@ -510,12 +587,13 @@ void CManager::SendLandList(LPDESC desc, long map)
         ++count;
     }
 
-    const int size = buffer.size();
-    sys_log(0, "SendLandList map %ld count %u elem_size: %d", map, static_cast<unsigned>(count), size);
+    const int loggedSize = buffer.size();
+    sys_log(0, "SendLandList map %ld count %u elem_size: %d", static_cast<long>(mapIndex), static_cast<unsigned>(count), loggedSize);
     if (count) {
-        const LandListHeader header = {0x82, static_cast<std::uint16_t>(sizeof(LandListHeader) + size)};
+        const LandListHeader header = {0x82, static_cast<std::uint16_t>(sizeof(LandListHeader) + buffer.size())};
         desc->BufferedPacket(&header, sizeof(header));
-        desc->Packet(buffer.read_peek(), size);
+        const int payloadSize = buffer.size();
+        desc->Packet(buffer.read_peek(), payloadSize);
     }
 }
 
@@ -523,7 +601,7 @@ void CLand::RequestUpdate(DWORD guild)
 {
     const std::uint32_t packet[] = {static_cast<std::uint32_t>(m_data.dwID), static_cast<std::uint32_t>(guild)};
     db_clientdesc->DBPacket(0x3e, 0, packet, sizeof(packet));
-    sys_log(0, "RequestUpdate id %lu guild %lu", static_cast<unsigned long>(m_data.dwID), guild);
+    sys_log(0, "RequestUpdate id %lu guild %lu", static_cast<unsigned long>(packet[0]), static_cast<unsigned long>(packet[1]));
 }
 
 void CLand::ClearLand()
@@ -532,11 +610,14 @@ void CLand::ClearLand()
         RequestDeleteObject(object.second->GetID());
     SetOwner(0);
 
-    const TMapRegion* region = SECTREE_MANAGER::instance().GetMapRegion(m_data.lMapIndex);
-    if (region)
-        CHARACTER_MANAGER::instance().SpawnMob(20040, m_data.lMapIndex,
-            m_data.x + region->sx + m_data.width / 2,
-            m_data.y + region->sy + m_data.height / 2, 0, false, -1, true);
+    const TLand& data = GetData();
+    const TMapRegion* region = SECTREE_MANAGER::instance().GetMapRegion(data.lMapIndex);
+    if (region) {
+        auto& characters = CHARACTER_MANAGER::instance();
+        const auto y = AddBuildingCoordinate(AddBuildingCoordinate(region->sy, data.y), data.height / 2);
+        const auto x = AddBuildingCoordinate(AddBuildingCoordinate(region->sx, data.x), data.width / 2);
+        characters.SpawnMob(20040, data.lMapIndex, x, y, 0, false, -1, true);
+    }
 }
 
 void CManager::ClearLandByGuildID(DWORD guild)
@@ -544,7 +625,7 @@ void CManager::ClearLandByGuildID(DWORD guild)
     if (CLand* land = FindLandByGuild(guild))
     {
         land->ClearLand();
-        sys_log(0, "LAND_CLEAR: request Land Clear. LandID: %d", static_cast<int>(land->GetData().dwID));
+        sys_log(0, "LAND_CLEAR: request Land Clear. LandID: %d", static_cast<int>(land->GetID()));
     }
     else
         sys_log(0, "LAND_CLEAR: there is no GUILD id like %d", static_cast<int>(guild));
@@ -552,17 +633,21 @@ void CManager::ClearLandByGuildID(DWORD guild)
 
 void CLand::SetOwner(DWORD guild)
 {
-    if (m_data.dwGuildID != guild) {
-        m_data.dwGuildID = guild;
-        RequestUpdate(guild);
+    const auto owner = static_cast<std::uint32_t>(guild);
+    if (m_data.dwGuildID != owner) {
+        m_data.dwGuildID = owner;
+        RequestUpdate(owner);
     }
 }
 
 CLand* CManager::FindLandByGuild(DWORD guild)
 {
-    for (const auto& entry : m_map_pkLand) {
-        if (entry.second->GetData().dwGuildID == guild)
-            return entry.second;
+    const auto guildId = static_cast<std::uint32_t>(guild);
+    auto it = m_map_pkLand.begin();
+    while (it != m_map_pkLand.end()) {
+        CLand* land = (it++)->second;
+        if (land->GetData().dwGuildID == guildId)
+            return land;
     }
     return 0;
 }
@@ -571,7 +656,7 @@ CObject* CLand::FindObjectByNPC(CHARACTER* npc)
 {
     if (npc) {
         for (const auto& entry : m_map_pkObject) {
-            if (entry.second->m_chNPC == npc)
+            if (entry.second->GetNPC() == npc)
                 return entry.second;
         }
     }
@@ -580,11 +665,11 @@ CObject* CLand::FindObjectByNPC(CHARACTER* npc)
 
 CObject* CLand::FindObjectByGroup(DWORD group)
 {
+    const auto groupId = static_cast<std::uint32_t>(group);
     for (const auto& entry : m_map_pkObject)
     {
         CObject* object = entry.second;
-        const DWORD objectGroup = object->m_pProto ? object->m_pProto->dwGroupVnum : 0;
-        if (objectGroup == group)
+        if (object->GetGroup() == groupId)
             return object;
     }
     return nullptr;
@@ -592,15 +677,16 @@ CObject* CLand::FindObjectByGroup(DWORD group)
 
 void CLand::RequestDeleteObjectByVID(DWORD vid)
 {
-    CObject* object = FindObjectByVID(vid);
+    const auto objectVid = static_cast<std::uint32_t>(vid);
+    CObject* object = FindObjectByVID(objectVid);
     if (!object)
     {
-        _sys_err("RequestDeleteObjectByVID", 0x21f, "no object by vid %lu", vid);
+        _sys_err("RequestDeleteObjectByVID", 0x21f, "no object by vid %lu", static_cast<unsigned long>(objectVid));
         return;
     }
     const std::uint32_t id = object->GetID();
     db_clientdesc->DBPacket(0x3d, 0, &id, sizeof(id));
-    sys_log(0, "RequestDeleteObject vid %lu id %lu", vid, static_cast<DWORD>(id));
+    sys_log(0, "RequestDeleteObject vid %lu id %lu", static_cast<unsigned long>(objectVid), static_cast<DWORD>(id));
 }
 
 void CManager::ClearLand(DWORD id)
@@ -609,7 +695,7 @@ void CManager::ClearLand(DWORD id)
     if (land)
     {
         land->ClearLand();
-        sys_log(0, "LAND_CLEAR: request Land Clear. LandID: %d", static_cast<int>(land->GetData().dwID));
+        sys_log(0, "LAND_CLEAR: request Land Clear. LandID: %d", static_cast<int>(land->GetID()));
     }
     else
         sys_log(0, "LAND_CLEAR: there is no LAND id like %d", static_cast<int>(id));
@@ -617,47 +703,59 @@ void CManager::ClearLand(DWORD id)
 
 bool CLand::RequestCreateWall(long map, float rotation)
 {
-    const long x = m_data.x + m_data.width / 2;
-    const long y = m_data.y + m_data.height / 2;
+    const long x = AddBuildingCoordinate(m_data.x, m_data.width / 2);
+    const long y = AddBuildingCoordinate(m_data.y, m_data.height / 2);
     constexpr long offset = 1362;
     if (rotation == 0 || rotation == 180)
     {
         const long delta = rotation == 0 ? offset : -offset;
-        RequestCreateObject(14201, map, x, y + delta, x, y + delta, rotation, false);
-        RequestCreateObject(14202, map, x, y - delta, x, y + delta, 0, false);
-        RequestCreateObject(14203, map, x - 1000, y, x, y + delta, 0, false);
-        RequestCreateObject(14204, map, x + 1000, y, x, y + delta, 0, false);
+        const auto gate = AddBuildingCoordinate(y, delta);
+        RequestCreateObject(14201, map, x, gate, x, gate, rotation == 0 ? 0.0f : 180.0f, false);
+        RequestCreateObject(14202, map, x, SubtractBuildingCoordinate(y, delta), x, gate, 0, false);
+        RequestCreateObject(14203, map, SubtractBuildingCoordinate(x, 1000), y, x, gate, 0, false);
+        RequestCreateObject(14204, map, AddBuildingCoordinate(x, 1000), y, x, gate, 0, false);
     }
     else if (rotation == 90 || rotation == 270)
     {
         const long delta = rotation == 90 ? offset : -offset;
-        RequestCreateObject(14201, map, x + delta, y, x + delta, y, 90, false);
-        RequestCreateObject(14202, map, x - delta, y, x + delta, y, 90, false);
-        RequestCreateObject(14203, map, x, y - 1000, x + delta, y, 90, false);
-        RequestCreateObject(14204, map, x, y + 1000, x + delta, y, 90, false);
+        const auto gate = AddBuildingCoordinate(x, delta);
+        RequestCreateObject(14201, map, gate, y, gate, y, 90, false);
+        RequestCreateObject(14202, map, SubtractBuildingCoordinate(x, delta), y, gate, y, 90, false);
+        RequestCreateObject(14203, map, x, SubtractBuildingCoordinate(y, 1000), gate, y, 90, false);
+        RequestCreateObject(14204, map, x, AddBuildingCoordinate(y, 1000), gate, y, 90, false);
     }
     if (test_server)
     {
-        const long left = m_data.x + 50;
-        const long right = m_data.x + m_data.width - 50;
-        const long bottom = m_data.y + 50;
-        const long top = m_data.y + m_data.height - 50;
-        RequestCreateObject(14200, map, left, bottom, 0, 0, 0, false);
-        RequestCreateObject(14200, map, right, bottom, 0, 0, 90, false);
-        RequestCreateObject(14200, map, right, top, 0, 0, 180, false);
-        RequestCreateObject(14200, map, left, top, 0, 0, 270, false);
+        const long bottomLeftY = AddBuildingCoordinate(m_data.y, 50);
+        const long bottomLeftX = AddBuildingCoordinate(m_data.x, 50);
+        RequestCreateObject(14200, map, bottomLeftX, bottomLeftY, 0, 0, 0, false);
+
+        const long bottomRightY = AddBuildingCoordinate(m_data.y, 50);
+        const long bottomRightX = AddBuildingCoordinate(m_data.x, AddBuildingCoordinate(m_data.width, -50));
+        RequestCreateObject(14200, map, bottomRightX, bottomRightY, 0, 0, 90, false);
+
+        const long topRightY = AddBuildingCoordinate(m_data.y, AddBuildingCoordinate(m_data.height, -50));
+        const long topRightX = AddBuildingCoordinate(m_data.x, AddBuildingCoordinate(m_data.width, -50));
+        RequestCreateObject(14200, map, topRightX, topRightY, 0, 0, 180, false);
+
+        const long topLeftY = AddBuildingCoordinate(m_data.y, AddBuildingCoordinate(m_data.height, -50));
+        const long topLeftX = AddBuildingCoordinate(m_data.x, 50);
+        RequestCreateObject(14200, map, topLeftX, topLeftY, 0, 0, 270, false);
     }
     return true;
 }
 
 void CLand::RequestDeleteWall()
 {
-    for (const auto& entry : m_map_pkObject)
+    for (auto it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
     {
-        const CObject* object = entry.second;
+        CObject* object = it->second;
+        const DWORD id = object->GetID();
         const DWORD vnum = object->m_pProto ? object->m_pProto->dwVnum : 0;
-        if ((vnum >= 14201 && vnum <= 14204) || (test_server && vnum == 14200))
-            RequestDeleteObject(object->GetID());
+        if (vnum >= 14201 && vnum <= 14204)
+            RequestDeleteObject(id);
+        if (test_server && vnum == 14200)
+            RequestDeleteObject(id);
     }
 }
 
@@ -673,9 +771,15 @@ void CLand::DrawWall(DWORD vnum, long map, long& x, long& y, char length, float 
         case 180: dx = 500; break;
         case 270: dy = -500; break;
     }
-    for (int block = 0; block < static_cast<std::int8_t>(length); ++block)
+    const int blockCount = static_cast<std::int8_t>(length);
+    if (blockCount <= 0)
+        return;
+    const float wallAngle = static_cast<float>(angle);
+    for (int block = 0; block < blockCount; ++block)
     {
-        RequestCreateObject(vnum, map, x, y, 0, 0, static_cast<float>(angle), false);
+        const long wallY = y;
+        const long wallX = x;
+        RequestCreateObject(vnum, map, wallX, wallY, 0, 0, wallAngle, false);
         x = AddBuildingCoordinate(x, dx);
         y = AddBuildingCoordinate(y, dy);
     }
@@ -684,6 +788,7 @@ void CLand::DrawWall(DWORD vnum, long map, long& x, long& y, char length, float 
 bool CLand::RequestCreateWallBlocks(DWORD vnum, long map, char wallSize,
                                      bool east, bool west, bool south, bool north)
 {
+    const auto baseVnum = static_cast<std::uint32_t>(vnum);
     const int size = static_cast<std::int8_t>(wallSize);
     const int offset = size * 500 + 1300;
     long x = AddBuildingCoordinate(m_data.x, m_data.width / 2 - offset);
@@ -696,18 +801,18 @@ bool CLand::RequestCreateWallBlocks(DWORD vnum, long map, char wallSize,
         const float rotation = static_cast<float>(270 - side * 90);
         const int direction = side == 0 || side == 3 ? -1 : 1;
         long& axis = side % 2 ? x : y;
-        RequestCreateObject(vnum - 4, map, x, y, 0, 0, rotation, false);
+        RequestCreateObject(baseVnum - 4u, map, x, y, 0, 0, rotation, false);
         axis = AddBuildingCoordinate(axis, direction * 700);
         if (doors[side])
         {
-            DrawWall(vnum - 3, map, x, y, static_cast<char>(blocks), rotation);
+            DrawWall(baseVnum - 3u, map, x, y, static_cast<char>(blocks), rotation);
             axis = AddBuildingCoordinate(axis, direction * 700);
-            RequestCreateObject(vnum - 1, map, x, y, 0, 0, rotation, false);
+            RequestCreateObject(baseVnum - 1u, map, x, y, 0, 0, rotation, false);
             axis = AddBuildingCoordinate(axis, direction * 1300);
-            DrawWall(vnum - 3, map, x, y, static_cast<char>(blocks), rotation);
+            DrawWall(baseVnum - 3u, map, x, y, static_cast<char>(blocks), rotation);
         }
         else
-            DrawWall(vnum - 3, map, x, y, static_cast<char>(blocks * 2 + 4), rotation);
+            DrawWall(baseVnum - 3u, map, x, y, static_cast<char>(blocks * 2 + 4), rotation);
         axis = AddBuildingCoordinate(axis, direction * 100);
     }
     return true;
@@ -715,29 +820,34 @@ bool CLand::RequestCreateWallBlocks(DWORD vnum, long map, char wallSize,
 
 void CLand::RequestDeleteWallBlocks(DWORD vnum)
 {
-    for (const auto& entry : m_map_pkObject)
+    const auto baseVnum = static_cast<std::uint32_t>(vnum);
+    for (auto it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
     {
-        const CObject* object = entry.second;
+        CObject* object = it->second;
         const DWORD objectVnum = object->m_pProto ? object->m_pProto->dwVnum : 0;
-        if (objectVnum == vnum - 4 || objectVnum == vnum - 3 || objectVnum == vnum - 1)
+        if (objectVnum == baseVnum - 4u || objectVnum == baseVnum - 3u || objectVnum == baseVnum - 1u)
             RequestDeleteObject(object->GetID());
     }
 }
 
 void CLand::RequestDeleteObject(DWORD id)
 {
-    if (!FindObject(id)) {
-        _sys_err("RequestDeleteObject", 0x211, "no object by id %lu", id);
+    const auto packet = static_cast<std::uint32_t>(id);
+    if (!FindObject(packet)) {
+        _sys_err("RequestDeleteObject", 0x211, "no object by id %lu", static_cast<unsigned long>(packet));
         return;
     }
-    const std::uint32_t packet = id;
     db_clientdesc->DBPacket(0x3d, 0, &packet, sizeof(packet));
-    sys_log(0, "RequestDeleteObject id %lu", id);
+    sys_log(0, "RequestDeleteObject id %lu", static_cast<unsigned long>(packet));
 }
 
 bool CLand::RequestCreateObject(DWORD vnum, long map, long x, long y,
                                 float xRot, float yRot, float zRot, bool checkAnother)
 {
+    vnum = static_cast<std::uint32_t>(vnum);
+    map = static_cast<std::int32_t>(map);
+    x = static_cast<std::int32_t>(x);
+    y = static_cast<std::int32_t>(y);
     SECTREE_MANAGER& sectors = SECTREE_MANAGER::instance();
     const TObjectProto* proto = CManager::instance().GetObjectProto(vnum);
     if (!proto) {
@@ -774,10 +884,11 @@ bool CLand::RequestCreateObject(DWORD vnum, long map, long x, long y,
     const long double baseX = static_cast<float>(worldX);
     const long double baseY = static_cast<float>(worldY);
 
-    if (TruncateBuildingCoordinate(baseX + minOffsetX) < landX ||
-        TruncateBuildingCoordinate(baseX + maxOffsetX) > landEndX ||
-        TruncateBuildingCoordinate(baseY + minOffsetY) < landY ||
-        TruncateBuildingCoordinate(baseY + maxOffsetY) > landEndY) {
+    const auto minX = TruncateBuildingCoordinate(baseX + minOffsetX);
+    const auto minY = TruncateBuildingCoordinate(baseY + minOffsetY);
+    const auto maxX = TruncateBuildingCoordinate(baseX + maxOffsetX);
+    const auto maxY = TruncateBuildingCoordinate(baseY + maxOffsetY);
+    if (minX < landX || maxX > landEndX || minY < landY || maxY > landEndY) {
         _sys_err("RequestCreateObject", 0x1f2,
                  "invalid position: object is outside of land region\nLAND: %d %d ~ %d %d\nOBJ: %d %d ~ %d %d",
                  static_cast<int>(landX), static_cast<int>(landY), static_cast<int>(landEndX),
@@ -805,11 +916,14 @@ void CObject::Reconstruct(DWORD vnum)
 {
     const TMapRegion* region = SECTREE_MANAGER::instance().GetMapRegion(m_data.lMapIndex);
     if (region) {
-        m_pkLand->RequestDeleteObject(m_data.dwID);
-        m_pkLand->RequestCreateObject(vnum, m_data.lMapIndex,
-                                     SubtractBuildingCoordinate(m_data.x, region->sx),
-                                     SubtractBuildingCoordinate(m_data.y, region->sy),
-                                     m_data.xRot, m_data.yRot, m_data.zRot, false);
+        CLand* land = m_pkLand;
+        land->RequestDeleteObject(m_data.dwID);
+        const float zRotation = m_data.zRot;
+        const float yRotation = m_data.yRot;
+        const float xRotation = m_data.xRot;
+        const auto y = SubtractBuildingCoordinate(m_data.y, region->sy);
+        const auto x = SubtractBuildingCoordinate(m_data.x, region->sx);
+        land->RequestCreateObject(vnum, m_data.lMapIndex, x, y, xRotation, yRotation, zRotation, false);
     }
 }
 
@@ -817,7 +931,10 @@ void CManager::FinalizeBoot()
 {
     for (auto it = m_map_pkObjByID.begin(); it != m_map_pkObjByID.end();) {
         CObject* object = (it++)->second;
-        object->Show(object->GetMapIndex(), object->GetX(), object->GetY());
+        const auto x = object->GetX();
+        const auto map = object->GetMapIndex();
+        const auto y = object->GetY();
+        object->Show(map, x, y);
         object->RegenNPC();
         object->ApplySpecialEffect();
     }
@@ -831,10 +948,10 @@ void CManager::FinalizeBoot()
             continue;
         const TMapRegion* region = SECTREE_MANAGER::instance().GetMapRegion(land.lMapIndex);
         if (region) {
-            CHARACTER_MANAGER::instance().SpawnMob(20040, land.lMapIndex,
-                AddBuildingCoordinate(AddBuildingCoordinate(region->sx, land.x), land.width / 2),
-                AddBuildingCoordinate(AddBuildingCoordinate(region->sy, land.y), land.height / 2),
-                0, false, -1, true);
+            auto& characters = CHARACTER_MANAGER::instance();
+            const auto y = AddBuildingCoordinate(AddBuildingCoordinate(region->sy, land.y), land.height / 2);
+            const auto x = AddBuildingCoordinate(AddBuildingCoordinate(region->sx, land.x), land.width / 2);
+            characters.SpawnMob(20040, land.lMapIndex, x, y, 0, false, -1, true);
         }
     }
 }

@@ -5,6 +5,7 @@
 #include "item_manager.h"
 #include "../../libthecore/include/utils.h"
 
+#include <cfenv>
 #include <cstdint>
 #include <limits>
 
@@ -26,24 +27,28 @@ static_assert(sizeof(SafeboxSizeRequest) == 5, "DB safebox size request");
 int GameSignedNumber(lua_State* state, int argument)
 {
     const lua_Number value = lua_tonumber(state, argument);
-    return value > -2147483649.0 && value < 2147483648.0
-        ? static_cast<int>(value) : std::numeric_limits<int>::min();
+    if (value > -2147483649.0 && value < 2147483648.0)
+        return static_cast<int>(value);
+    std::feraiseexcept(FE_INVALID);
+    return std::numeric_limits<int>::min();
 }
 }
 
 int game_set_event_flag(lua_State* state)
 {
+    auto& manager = CQuestManager::instance();
     if (lua_isstring(state, 1) && lua_isnumber(state, 2)) {
         const int value = GameSignedNumber(state, 2);
-        CQuestManager::instance().RequestSetEventFlag(lua_tostring(state, 1), value);
+        manager.RequestSetEventFlag(lua_tostring(state, 1), value);
     }
     return 0;
 }
 
 int game_get_event_flag(lua_State* state)
 {
+    auto& manager = CQuestManager::instance();
     const int value = lua_isstring(state, 1)
-        ? CQuestManager::instance().GetEventFlag(lua_tostring(state, 1)) : 0;
+        ? manager.GetEventFlag(lua_tostring(state, 1)) : 0;
     lua_pushnumber(state, value);
     return 1;
 }
@@ -104,15 +109,16 @@ int game_drop_item(lua_State* state)
     CQuestManager& manager = CQuestManager::instance();
     CHARACTER* character = manager.GetCurrentCharacterPtr();
     const auto vnumArg = lua_tonumber(state, 1);
-    const auto countArg = lua_tonumber(state, 2);
+    std::uint32_t vnum = 0;
+    if (vnumArg >= -9223372036854775808.0 && vnumArg < 9223372036854775808.0)
+        vnum = static_cast<std::uint32_t>(static_cast<std::int64_t>(vnumArg));
+    else
+        std::feraiseexcept(FE_INVALID);
+    const int count = GameSignedNumber(state, 2);
     if (!character)
         return 0;
 
     PIXEL_POSITION position = character->GetXYZ();
-    const auto vnum = vnumArg >= -9223372036854775808.0 && vnumArg < 9223372036854775808.0
-        ? static_cast<std::uint32_t>(static_cast<std::int64_t>(vnumArg)) : 0U;
-    const auto count = countArg > -2147483649.0 && countArg < 2147483648.0
-        ? static_cast<std::int32_t>(countArg) : INT32_MIN;
     ITEM_MANAGER& items = ITEM_MANAGER::instance();
     CItem* item = items.CreateItem(vnum, static_cast<std::uint32_t>(count), 0, false, -1);
     if (!item) {
@@ -122,10 +128,10 @@ int game_drop_item(lua_State* state)
     }
 
     const int dx = number_ex(-200, 200, const_cast<char*>("questlua_game.cpp"), 0x6b);
-    const int dy = number_ex(-200, 200, const_cast<char*>("questlua_game.cpp"), 0x6c);
     position.x = static_cast<std::int32_t>(static_cast<std::uint32_t>(position.x) + dx);
+    const int dy = number_ex(-200, 200, const_cast<char*>("questlua_game.cpp"), 0x6c);
     position.y = static_cast<std::int32_t>(static_cast<std::uint32_t>(position.y) + dy);
-    item->AddToGround(character->GetMapIndex(), position);
+    item->AddToGround(static_cast<std::int32_t>(character->GetMapIndex()), position);
     item->StartDestroyEvent();
     return 0;
 }

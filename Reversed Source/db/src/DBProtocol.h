@@ -223,12 +223,6 @@ struct TSafeboxChangePasswordPacket
 };
 static_assert(sizeof(TSafeboxChangePasswordPacket) == 18, "2009 storage request");
 
-typedef struct SPacketMyshopPricelistHeader
-{
-    std::uint32_t dwOwnerID;
-    BYTE byCount;
-} TPacketMyshopPricelistHeader;
-static_assert(sizeof(TPacketMyshopPricelistHeader) == 5, "2009 MyShop price list header");
 struct TPacketReloadAdmin
 {
     char szIP[16];

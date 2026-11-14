@@ -110,6 +110,7 @@ bool CClientManager::InitializeRefineTable()
 
 	if (m_pRefineTable)
 	{
+		sys_log(0, "RELOAD: refine_proto");
 		delete [] m_pRefineTable;
 		m_pRefineTable = NULL;
 	}
@@ -141,6 +142,10 @@ bool CClientManager::InitializeRefineTable()
 			}
 		}
 
+		sys_log(0, "REFINE: id %ld cost %d prob %d mat1 %lu cnt1 %d",
+			static_cast<long>(static_cast<std::int32_t>(prt->id)), prt->cost, prt->prob,
+			static_cast<unsigned long>(prt->materials[0].vnum),
+			static_cast<int>(prt->materials[0].count));
 		prt++;
 	}
 	return true;
@@ -221,6 +226,8 @@ bool CClientManager::InitializeShopTable()
 	while (it != map_shop.end())
 	{
 		thecore_memcpy((m_pShopTable + i), (it++)->second, sizeof(TShopTable));
+		sys_log(0, "SHOP: #%d items: %d",
+			static_cast<int>(m_pShopTable[i].dwVnum), static_cast<int>(m_pShopTable[i].byItemCount));
 		++i;
 	}
 
@@ -321,7 +328,10 @@ bool CClientManager::InitializeSkillTable()
 	}
 
 	if (!m_vec_skillTable.empty())
+	{
+		sys_log(0, "RELOAD: skill_proto");
 		m_vec_skillTable.clear();
+	}
 
 	m_vec_skillTable.reserve(pRes->iNumRows);
 
@@ -375,6 +385,9 @@ bool CClientManager::InitializeSkillTable()
 		t.bSkillAttrType = dbinput::ReadInteger<decltype(t.bSkillAttrType)>(data[col++]);
 		t.dwTargetRange = atoi(data[col++]);
 
+		sys_log(0, "SKILL: #%d %s flag %u point %s affect %u cooldown %s",
+			static_cast<int>(t.dwVnum), t.szName, t.dwFlag, t.szPointOn, t.dwAffectFlag, t.szCooldownPoly);
+
 		m_vec_skillTable.push_back(t);
 	}
 
@@ -406,6 +419,7 @@ bool CClientManager::InitializeBanwordTable()
 		}
 	}
 
+	sys_log(0, "BANWORD: total %d", static_cast<int>(m_vec_banwordTable.size()));
 	return true;
 }
 
@@ -425,7 +439,10 @@ bool CClientManager::InitializeItemAttrTable()
 	}
 
 	if (!m_vec_itemAttrTable.empty())
+	{
+		sys_log(0, "RELOAD: item_attr");
 		m_vec_itemAttrTable.clear();
+	}
 
 	m_vec_itemAttrTable.reserve(pRes->iNumRows);
 
@@ -457,6 +474,14 @@ bool CClientManager::InitializeItemAttrTable()
 		t.bMaxLevelBySet[ATTRIBUTE_SET_SHIELD] = dbinput::ReadInteger<std::remove_reference_t<decltype(t.bMaxLevelBySet[ATTRIBUTE_SET_SHIELD])>>(data[col++]);
 		t.bMaxLevelBySet[ATTRIBUTE_SET_EAR] = dbinput::ReadInteger<std::remove_reference_t<decltype(t.bMaxLevelBySet[ATTRIBUTE_SET_EAR])>>(data[col++]);
 
+		sys_log(0, "ITEM_ATTR: %-20s %4lu { %3d %3d %3d %3d %3d } { %d %d %d %d %d %d %d }",
+			t.szApply, static_cast<unsigned long>(t.dwProb),
+			t.lValues[0], t.lValues[1], t.lValues[2], t.lValues[3], t.lValues[4],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_WEAPON], t.bMaxLevelBySet[ATTRIBUTE_SET_BODY],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_WRIST], t.bMaxLevelBySet[ATTRIBUTE_SET_FOOTS],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_NECK], t.bMaxLevelBySet[ATTRIBUTE_SET_HEAD],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_SHIELD]);
+
 		m_vec_itemAttrTable.push_back(t);
 	}
 
@@ -479,7 +504,10 @@ bool CClientManager::InitializeItemRareTable()
 	}
 
 	if (!m_vec_itemRareTable.empty())
+	{
+		sys_log(0, "RELOAD: item_attr_rare");
 		m_vec_itemRareTable.clear();
+	}
 
 	m_vec_itemRareTable.reserve(pRes->iNumRows);
 
@@ -511,6 +539,14 @@ bool CClientManager::InitializeItemRareTable()
 		t.bMaxLevelBySet[ATTRIBUTE_SET_SHIELD] = dbinput::ReadInteger<std::remove_reference_t<decltype(t.bMaxLevelBySet[ATTRIBUTE_SET_SHIELD])>>(data[col++]);
 		t.bMaxLevelBySet[ATTRIBUTE_SET_EAR] = dbinput::ReadInteger<std::remove_reference_t<decltype(t.bMaxLevelBySet[ATTRIBUTE_SET_EAR])>>(data[col++]);
 
+		sys_log(0, "ITEM_RARE: %-20s %4lu { %3d %3d %3d %3d %3d } { %d %d %d %d %d %d %d }",
+			t.szApply, static_cast<unsigned long>(t.dwProb),
+			t.lValues[0], t.lValues[1], t.lValues[2], t.lValues[3], t.lValues[4],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_WEAPON], t.bMaxLevelBySet[ATTRIBUTE_SET_BODY],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_WRIST], t.bMaxLevelBySet[ATTRIBUTE_SET_FOOTS],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_NECK], t.bMaxLevelBySet[ATTRIBUTE_SET_HEAD],
+			t.bMaxLevelBySet[ATTRIBUTE_SET_SHIELD]);
+
 		m_vec_itemRareTable.push_back(t);
 	}
 
@@ -532,7 +568,10 @@ bool CClientManager::InitializeLandTable()
 	SQLResult * pRes = pkMsg->Get();
 
 	if (!m_vec_kLandTable.empty())
+	{
+		sys_log(0, "RELOAD: land");
 		m_vec_kLandTable.clear();
+	}
 
 	m_vec_kLandTable.reserve(pRes->iNumRows);
 
@@ -557,6 +596,10 @@ bool CClientManager::InitializeLandTable()
 			t.bGuildLevelLimit = dbinput::ReadInteger<decltype(t.bGuildLevelLimit)>(data[col++]);
 			t.dwPrice = atoi(data[col++]);
 
+			sys_log(0, "LAND: %lu map %-4ld %7ldx%-7ld w %-4ld h %-4ld",
+				static_cast<unsigned long>(t.dwID), static_cast<long>(t.lMapIndex),
+				static_cast<long>(t.x), static_cast<long>(t.y),
+				static_cast<long>(t.width), static_cast<long>(t.height));
 			m_vec_kLandTable.push_back(t);
 		}
 
@@ -620,7 +663,10 @@ bool CClientManager::InitializeObjectProto()
 	SQLResult * pRes = pkMsg->Get();
 
 	if (!m_vec_kObjectProto.empty())
+	{
+		sys_log(0, "RELOAD: object_proto");
 		m_vec_kObjectProto.clear();
+	}
 
 	m_vec_kObjectProto.reserve(MAX(0, pRes->iNumRows));
 
@@ -664,6 +710,10 @@ bool CClientManager::InitializeObjectProto()
 			t.lNPCX = 0;
 			t.lNPCY = MAX(t.lRegion[1], t.lRegion[3])+300;
 
+			sys_log(0, "OBJ_PROTO: vnum %lu price %lu mat %lu %lu",
+				static_cast<unsigned long>(t.dwVnum), static_cast<unsigned long>(t.dwPrice),
+				static_cast<unsigned long>(t.kMaterials[0].dwItemVnum),
+				static_cast<unsigned long>(t.kMaterials[0].dwCount));
 			m_vec_kObjectProto.push_back(t);
 		}
 
@@ -681,7 +731,10 @@ bool CClientManager::InitializeObjectTable()
 	SQLResult * pRes = pkMsg->Get();
 
 	if (!m_map_pkObjectTable.empty())
+	{
+		sys_log(0, "RELOAD: object");
 		m_map_pkObjectTable.clear();
+	}
 
 	MYSQL_ROW data;
 
@@ -705,6 +758,10 @@ bool CClientManager::InitializeObjectTable()
 			k->zRot = static_cast<float>(std::atof(data[col++]));
 			k->lLife = atoi(data[col++]);
 
+			sys_log(0, "OBJ: %lu vnum %lu map %-4ld %7ldx%-7ld life %ld",
+				static_cast<unsigned long>(k->dwID), static_cast<unsigned long>(k->dwVnum),
+				static_cast<long>(k->lMapIndex), static_cast<long>(k->x),
+				static_cast<long>(k->y), static_cast<long>(k->lLife));
 			m_map_pkObjectTable.insert(std::make_pair(k->dwID, k));
 		}
 
@@ -729,7 +786,10 @@ bool CClientManager::InitializeMobTable()
 		return true;
 
 	if (!m_vec_mobTable.empty())
+	{
+		sys_log(0, "RELOAD: mob_proto");
 		m_vec_mobTable.clear();
+	}
 
 	m_vec_mobTable.resize(result->iNumRows);
 	TMobTable* mob = &m_vec_mobTable[0];
@@ -799,6 +859,8 @@ bool CClientManager::InitializeMobTable()
 		mob->bDeathBlowPoint = dbinput::ReadInteger<decltype(mob->bDeathBlowPoint)>(row[col++]);
 		mob->bRevivePoint = dbinput::ReadInteger<decltype(mob->bRevivePoint)>(row[col++]);
 
+		sys_log(0, "MOB #%-5d %-16s empire: %d",
+			static_cast<int>(mob->dwVnum), mob->szLocaleName, static_cast<int>(mob->bEmpire));
 		++mob;
 	}
 
@@ -832,6 +894,7 @@ bool CClientManager::InitializeItemTable()
 
 	if (!m_vec_itemTable.empty())
 	{
+		sys_log(0, "RELOAD: item_proto");
 		m_vec_itemTable.clear();
 		m_map_itemTableByVnum.clear();
 	}
@@ -886,6 +949,16 @@ bool CClientManager::InitializeItemTable()
 	for (std::vector<TItemTable>::iterator it = m_vec_itemTable.begin(); it != m_vec_itemTable.end(); ++it)
 	{
 		TItemTable& entry = *it;
+		sys_log(0, "ITEM: #%-5lu %-24s VAL: %ld %ld %ld %ld %ld %ld "
+			"WEAR %lu ANTI %lu IMMUNE %lu REFINE %lu REFINE_SET %u MAGIC_PCT %u",
+			static_cast<unsigned long>(entry.dwVnum), entry.szLocaleName,
+			static_cast<long>(entry.alValues[0]), static_cast<long>(entry.alValues[1]),
+			static_cast<long>(entry.alValues[2]), static_cast<long>(entry.alValues[3]),
+			static_cast<long>(entry.alValues[4]), static_cast<long>(entry.alValues[5]),
+			static_cast<unsigned long>(entry.dwWearFlags), static_cast<unsigned long>(entry.dwAntiFlags),
+			static_cast<unsigned long>(entry.dwImmuneFlag), static_cast<unsigned long>(entry.dwRefinedVnum),
+			static_cast<unsigned>(entry.wRefineSet), static_cast<unsigned>(entry.bAlterToMagicItemPct));
+
 		m_map_itemTableByVnum.insert(std::make_pair(entry.dwVnum, &entry));
 	}
 

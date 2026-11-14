@@ -6,6 +6,7 @@
 #include "../../libthecore/include/utils.h"
 #include "../../libthecore/include/log.h"
 
+#include <cfenv>
 #include <climits>
 #include <cmath>
 #include <cstdint>
@@ -22,32 +23,35 @@ CDungeon* CurrentDungeon()
     return CQuestManager::instance().GetCurrentDungeon();
 }
 
-bool ReadInt(lua_State* state, int argument, int& value)
+bool ReadIntValue(lua_Number input, int& value)
 {
-    if (!lua_isnumber(state, argument))
-        return false;
-    const double number = std::trunc(lua_tonumber(state, argument));
+    const double number = std::trunc(input);
     if (!(number >= INT_MIN && number <= INT_MAX))
         return false;
     value = static_cast<int>(number);
     return true;
 }
 
-bool ReadDword(lua_State* state, int argument, DWORD& value)
+bool ReadInt(lua_State* state, int argument, int& value)
 {
-    if (!lua_isnumber(state, argument))
-        return false;
-    const double number = lua_tonumber(state, argument);
-    if (!(number >= -9223372036854775808.0 && number < 9223372036854775808.0))
-        value = 0;
-    else
-        value = static_cast<std::uint32_t>(static_cast<std::int64_t>(number));
-    return true;
+    return lua_isnumber(state, argument) && ReadIntValue(lua_tonumber(state, argument), value);
+}
+
+std::uint32_t DungeonDwordValue(lua_Number number)
+{
+    if (!(number >= -9223372036854775808.0 && number < 9223372036854775808.0)) {
+        std::feraiseexcept(FE_INVALID);
+        return 0;
+    }
+    return static_cast<std::uint32_t>(static_cast<std::int64_t>(number));
 }
 
 int DungeonIntValue(lua_Number value)
 {
-    return value > -2147483649.0 && value < 2147483648.0 ? static_cast<int>(value) : INT_MIN;
+    if (value > -2147483649.0 && value < 2147483648.0)
+        return static_cast<int>(value);
+    std::feraiseexcept(FE_INVALID);
+    return INT_MIN;
 }
 
 bool HasCountArguments(lua_State* state)
@@ -100,10 +104,16 @@ int dungeon_revived(lua_State* state)
 
 int dungeon_jump_all(lua_State* state)
 {
-    int x, y;
-    if (lua_gettop(state) >= 2 && ReadInt(state, 1, x) && ReadInt(state, 2, y)) {
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->JumpAll(dungeon->GetMapIndex(), x, y);
+    if (lua_gettop(state) >= 2 && lua_isnumber(state, 1) && lua_isnumber(state, 2)) {
+        if (CDungeon* dungeon = CurrentDungeon()) {
+            int x, y;
+            if (ReadIntValue(lua_tonumber(state, 2), y)) {
+                const lua_Number xValue = lua_tonumber(state, 1);
+                const auto map = static_cast<std::int32_t>(dungeon->GetMapIndex());
+                if (ReadIntValue(xValue, x))
+                    dungeon->JumpAll(map, x, y);
+            }
+        }
     }
     return 0;
 }
@@ -111,42 +121,78 @@ int dungeon_jump_all(lua_State* state)
 int dungeon_new_jump_all(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
-    int map, x, y;
-    if (!ReadInt(state, 1, map) || !ReadInt(state, 2, x) || !ReadInt(state, 3, y)) {
+    if (lua_gettop(state) < 3) {
         manager.QuestError("dungeon_new_jump_all", 0x105, "not enough argument");
         return 0;
     }
-    CHARACTER* character = manager.GetCurrentCharacterPtr();
-    if (!character)
+
+    int map;
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2) || !lua_isnumber(state, 3)
+        || !ReadIntValue(lua_tonumber(state, 1), map)) {
+        manager.QuestError("dungeon_new_jump_all", 0x105, "not enough argument");
         return 0;
-    CDungeon* dungeon = CDungeonManager::instance().Create(map);
-    if (dungeon)
-        dungeon->JumpAll(character->GetMapIndex(), x, y);
-    else
+    }
+
+    CDungeonManager& dungeons = CDungeonManager::instance();
+    CDungeon* dungeon = dungeons.Create(map);
+    if (!dungeon) {
         manager.QuestError("dungeon_new_jump_all", 0x10f, "cannot create dungeon %d", map);
+        return 0;
+    }
+
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
+    if (!character) {
+        dungeons.Destroy(dungeon);
+        return 0;
+    }
+
+    int x, y;
+    if (!ReadIntValue(lua_tonumber(state, 3), y) || !ReadIntValue(lua_tonumber(state, 2), x)) {
+        dungeons.Destroy(dungeon);
+        manager.QuestError("dungeon_new_jump_all", 0x105, "not enough argument");
+        return 0;
+    }
+
+    dungeon->JumpAll(character->GetMapIndex(), x, y);
     return 0;
 }
 
 int dungeon_new_jump(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
-    int map, x, y;
     if (lua_gettop(state) < 3) {
         manager.QuestError("dungeon_new_jump", 0xe7, "not enough argument");
         return 0;
     }
-    if (!ReadInt(state, 1, map) || !ReadInt(state, 2, x) || !ReadInt(state, 3, y)) {
+
+    int map;
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2) || !lua_isnumber(state, 3)
+        || !ReadIntValue(lua_tonumber(state, 1), map)) {
         manager.QuestError("dungeon_new_jump", 0xed, "wrong argument");
         return 0;
     }
-    CHARACTER* character = manager.GetCurrentCharacterPtr();
-    if (!character)
-        return 0;
-    CDungeon* dungeon = CDungeonManager::instance().Create(map);
-    if (dungeon)
-        character->WarpSet(dungeon->GetMapIndex(), x, y);
-    else
+
+    CDungeonManager& dungeons = CDungeonManager::instance();
+    CDungeon* dungeon = dungeons.Create(map);
+    if (!dungeon) {
         manager.QuestError("dungeon_new_jump", 0xf7, "cannot create dungeon %d", map);
+        return 0;
+    }
+
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
+    if (!character) {
+        dungeons.Destroy(dungeon);
+        return 0;
+    }
+
+    int x, y;
+    if (!ReadIntValue(lua_tonumber(state, 3), y) || !ReadIntValue(lua_tonumber(state, 2), x)) {
+        dungeons.Destroy(dungeon);
+        manager.QuestError("dungeon_new_jump", 0xed, "wrong argument");
+        return 0;
+    }
+
+    character->WarpSet(dungeon->GetMapIndex(), x, y);
     return 0;
 }
 
@@ -218,7 +264,7 @@ int dungeon_get_map_index(lua_State* state)
         CQuestManager::instance().QuestError("dungeon_get_map_index", 0x69, "no dungeon !!!");
     else
         sys_log(0, "Dungeon GetMapIndex %d", static_cast<int>(dungeon->GetMapIndex()));
-    lua_pushnumber(state, dungeon ? dungeon->GetMapIndex() : 0);
+    lua_pushnumber(state, dungeon ? static_cast<std::int32_t>(dungeon->GetMapIndex()) : 0);
     return 1;
 }
 
@@ -240,8 +286,9 @@ int dungeon_count_monster(lua_State* state)
 
 int dungeon_set_flag(lua_State* state)
 {
+    const bool valid = lua_isstring(state, 1) && lua_isnumber(state, 2);
     CQuestManager& manager = CQuestManager::instance();
-    if (!lua_isstring(state, 1) || !lua_isnumber(state, 2)) {
+    if (!valid) {
         manager.QuestError("dungeon_set_flag", 0x30, "wrong set flag");
     } else if (CDungeon* dungeon = manager.GetCurrentDungeon()) {
         const char* name = lua_tostring(state, 1);
@@ -255,8 +302,8 @@ int dungeon_set_flag(lua_State* state)
 
 int dungeon_get_flag(lua_State* state)
 {
-    CQuestManager& manager = CQuestManager::instance();
     const bool validName = lua_isstring(state, 1);
+    CQuestManager& manager = CQuestManager::instance();
     if (!validName)
         manager.QuestError("dungeon_get_flag", 0x49, "wrong get flag");
     CDungeon* dungeon = manager.GetCurrentDungeon();
@@ -268,9 +315,7 @@ int dungeon_get_flag(lua_State* state)
 
 int dungeon_select(lua_State* state)
 {
-    DWORD rawMap = 0;
-    ReadDword(state, 1, rawMap);
-    const auto map = static_cast<std::int32_t>(rawMap);
+    const auto map = static_cast<std::int32_t>(DungeonDwordValue(lua_tonumber(state, 1)));
     CDungeon* dungeon = map ? CDungeonManager::instance().Find(map) : nullptr;
     CQuestManager::instance().SelectDungeon(dungeon);
     lua_pushboolean(state, dungeon != nullptr);
@@ -286,23 +331,34 @@ int dungeon_notice(lua_State* state)
     return 0;
 }
 
+struct FSetQuestFlag
+{
+    std::string flagname;
+    int value;
+
+    void operator()(CHARACTER* character)
+    {
+        sys_log(0, "Dungeon ForEachMember %s", character->GetName());
+        if (character->GetDesc()) {
+            if (PC* pc = CQuestManager::instance().GetPCForce(character->GetPlayerID()))
+                pc->SetFlag(flagname, value, false);
+        }
+    }
+};
+
 int dungeon_set_quest_flag(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
     if (!manager.GetCurrentPC() || !lua_isstring(state, 1))
         return 0;
-    const std::string flag = manager.GetCurrentQuestName() + "." + lua_tostring(state, 1);
+    std::string flag = manager.GetCurrentQuestName();
+    flag += ".";
+    flag += lua_tostring(state, 1);
     const int value = DungeonIntValue(std::rint(lua_tonumber(state, 2)));
     CDungeon* dungeon = manager.GetCurrentDungeon();
     if (!dungeon)
         return 0;
-    dungeon->ForEachMember([&](CHARACTER* character) {
-        sys_log(0, "Dungeon ForEachMember %s", character->GetName());
-        if (character->GetDesc()) {
-            if (PC* pc = manager.GetPCForce(character->GetPlayerID()))
-                pc->SetFlag(flag, value, false);
-        }
-    });
+    dungeon->ForEachMember(FSetQuestFlag{flag, value});
     return 0;
 }
 
@@ -329,10 +385,11 @@ int dungeon_exit_all_to_start_position(lua_State*)
 
 int dungeon_set_unique(lua_State* state)
 {
-    DWORD vid;
-    if (lua_isstring(state, 1) && ReadDword(state, 2, vid)) {
-        if (CDungeon* dungeon = CurrentDungeon())
+    if (lua_isstring(state, 1) && lua_isnumber(state, 2)) {
+        if (CDungeon* dungeon = CurrentDungeon()) {
+            const DWORD vid = DungeonDwordValue(lua_tonumber(state, 2));
             dungeon->SetUnique(lua_tostring(state, 1), vid);
+        }
     }
     return 0;
 }
@@ -343,7 +400,7 @@ int dungeon_purge_unique(lua_State* state)
         const char* key = lua_tostring(state, 1);
         sys_log(0, "QUEST_DUNGEON_PURGE_UNIQUE %s", key);
         if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->PurgeUnique(key);
+            dungeon->PurgeUnique(lua_tostring(state, 1));
     }
     return 0;
 }
@@ -354,7 +411,7 @@ int dungeon_kill_unique(lua_State* state)
         const char* key = lua_tostring(state, 1);
         sys_log(0, "QUEST_DUNGEON_KILL_UNIQUE %s", key);
         if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->KillUnique(key);
+            dungeon->KillUnique(lua_tostring(state, 1));
     }
     return 0;
 }
@@ -375,30 +432,36 @@ int dungeon_unique_get_hp_perc(lua_State* state)
 
 int dungeon_unique_set_def_grade(lua_State* state)
 {
-    int grade;
-    if (lua_isstring(state, 1) && ReadInt(state, 2, grade)) {
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->UniqueSetDefGrade(lua_tostring(state, 1), grade);
+    if (lua_isstring(state, 1) && lua_isnumber(state, 2)) {
+        if (CDungeon* dungeon = CurrentDungeon()) {
+            int grade;
+            if (ReadIntValue(lua_tonumber(state, 2), grade))
+                dungeon->UniqueSetDefGrade(lua_tostring(state, 1), grade);
+        }
     }
     return 0;
 }
 
 int dungeon_unique_set_hp(lua_State* state)
 {
-    int hp;
-    if (lua_isstring(state, 1) && ReadInt(state, 2, hp)) {
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->UniqueSetHP(lua_tostring(state, 1), hp);
+    if (lua_isstring(state, 1) && lua_isnumber(state, 2)) {
+        if (CDungeon* dungeon = CurrentDungeon()) {
+            int hp;
+            if (ReadIntValue(lua_tonumber(state, 2), hp))
+                dungeon->UniqueSetHP(lua_tostring(state, 1), hp);
+        }
     }
     return 0;
 }
 
 int dungeon_unique_set_maxhp(lua_State* state)
 {
-    int maxHP;
-    if (lua_isstring(state, 1) && ReadInt(state, 2, maxHP)) {
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->UniqueSetMaxHP(lua_tostring(state, 1), maxHP);
+    if (lua_isstring(state, 1) && lua_isnumber(state, 2)) {
+        if (CDungeon* dungeon = CurrentDungeon()) {
+            int maxHP;
+            if (ReadIntValue(lua_tonumber(state, 2), maxHP))
+                dungeon->UniqueSetMaxHP(lua_tostring(state, 1), maxHP);
+        }
     }
     return 0;
 }
@@ -406,68 +469,90 @@ int dungeon_unique_set_maxhp(lua_State* state)
 int dungeon_join(lua_State* state)
 {
     int map;
-    if (!ReadInt(state, 1, map))
-        return 0;
-    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
-    if (!character)
-        return 0;
-    CParty* party = character->GetParty();
-    if (party && party->GetLeaderPID() != character->GetPlayerID())
+    if (lua_gettop(state) < 1 || !ReadInt(state, 1, map))
         return 0;
 
-    if (CDungeon* dungeon = CDungeonManager::instance().Create(map)) {
-        if (party)
-            dungeon->JoinParty(party);
-        else
-            dungeon->Join(character);
+    CDungeon* dungeon = CDungeonManager::instance().Create(map);
+    if (!dungeon)
+        return 0;
+
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    if (!character) {
+        CDungeonManager::instance().Destroy(dungeon);
+        return 0;
     }
+
+    if (CParty* party = character->GetParty()) {
+        const auto leaderId = static_cast<std::uint32_t>(party->GetLeaderPID());
+        const auto playerId = static_cast<std::uint32_t>(character->GetPlayerID());
+        if (leaderId == playerId) {
+            dungeon->JoinParty(character->GetParty());
+            return 0;
+        }
+        if (character->GetParty())
+            return 0;
+    }
+    dungeon->Join(character);
     return 0;
 }
 
 int dungeon_set_dest(lua_State* state)
 {
-    int x, y;
-    if (!ReadInt(state, 1, x) || !ReadInt(state, 2, y))
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2))
         return 0;
+
     CQuestManager& manager = CQuestManager::instance();
-    CDungeon* dungeon = manager.GetCurrentDungeon();
     CHARACTER* character = manager.GetCurrentCharacterPtr();
     CParty* party = character ? character->GetParty() : nullptr;
-    if (dungeon && party)
+    CDungeon* dungeon = manager.GetCurrentDungeon();
+    int x, y;
+    if (dungeon && party && ReadIntValue(lua_tonumber(state, 2), y) && ReadIntValue(lua_tonumber(state, 1), x))
         dungeon->SendDestPositionToParty(party, x, y);
     return 0;
 }
 
 int dungeon_spawn(lua_State* state)
 {
-    DWORD vnum;
-    if (ReadDword(state, 1, vnum) && lua_isstring(state, 2)) {
-        sys_log(0, "QUEST_DUNGEON_SPAWN %d %s", static_cast<int>(vnum), lua_tostring(state, 2));
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->Spawn(vnum, lua_tostring(state, 2));
+    if (!lua_isnumber(state, 1) || !lua_isstring(state, 2))
+        return 0;
+
+    const char* loggedArea = lua_tostring(state, 2);
+    const int loggedVnum = DungeonIntValue(lua_tonumber(state, 1));
+    sys_log(0, "QUEST_DUNGEON_SPAWN %d %s", loggedVnum, loggedArea);
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const char* area = lua_tostring(state, 2);
+        const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 1));
+        dungeon->Spawn(vnum, area);
     }
     return 0;
 }
 
 int dungeon_spawn_mob(lua_State* state)
 {
-    DWORD vnum;
-    int x, y;
     CQuestManager& manager = CQuestManager::instance();
-    if (!ReadDword(state, 1, vnum) || !ReadInt(state, 2, x) || !ReadInt(state, 3, y)) {
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2) || !lua_isnumber(state, 3)) {
         manager.QuestError("dungeon_spawn_mob", 0x26d, "invalid argument");
         return 0;
     }
 
     DWORD first = 0;
     if (CDungeon* dungeon = manager.GetCurrentDungeon()) {
-        const float radius = static_cast<float>(lua_tonumber(state, 4));
-        int count = 1;
-        if (lua_isnumber(state, 5) && !ReadInt(state, 5, count))
+        const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 1));
+        const double xValue = std::trunc(lua_tonumber(state, 2));
+        const double yValue = std::trunc(lua_tonumber(state, 3));
+        if (!(xValue >= INT_MIN && xValue <= INT_MAX && yValue >= INT_MIN && yValue <= INT_MAX)) {
+            manager.QuestError("dungeon_spawn_mob", 0x26d, "invalid argument");
             return 0;
-        if (!count)
-            count = 1;
+        }
+        const int x = static_cast<int>(xValue);
+        const int y = static_cast<int>(yValue);
+        const float radius = lua_isnumber(state, 4) ? static_cast<float>(lua_tonumber(state, 4)) : 0.0f;
+        const double countValue = lua_isnumber(state, 5) ? std::trunc(lua_tonumber(state, 5)) : 1.0;
+        if (!(countValue >= INT_MIN && countValue <= INT_MAX))
+            return 0;
         sys_log(0, "dungeon_spawn_mob %lu %d %d", vnum, x, y);
+        const int count = countValue == 0 ? 1 : static_cast<int>(countValue);
         for (int index = 0; index < count; ++index) {
             std::int64_t nx = x, ny = y;
             if (radius >= 1.0f && radius <= INT_MAX / 100) {
@@ -492,109 +577,173 @@ int dungeon_spawn_mob(lua_State* state)
 
 int dungeon_spawn_group(lua_State* state)
 {
-    DWORD vnum, count;
-    int x, y;
-    const float radius = static_cast<float>(lua_tonumber(state, 4)) * 100.0f;
     CQuestManager& manager = CQuestManager::instance();
-    if (!ReadDword(state, 1, vnum) || !ReadInt(state, 2, x) || !ReadInt(state, 3, y)
-        || x < INT_MIN / 100 || x > INT_MAX / 100 || y < INT_MIN / 100 || y > INT_MAX / 100
-        || !lua_isnumber(state, 4) || !(radius > -INT_MAX / 2 && radius < INT_MAX / 2)
-        || !ReadDword(state, 6, count)) {
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2) || !lua_isnumber(state, 3)
+        || !lua_isnumber(state, 4) || !lua_isnumber(state, 6)) {
+        manager.QuestError("dungeon_spawn_group", 0x2ca, "invalid argument");
+        return 0;
+    }
+
+    CDungeon* dungeon = manager.GetCurrentDungeon();
+    if (!dungeon) {
+        lua_pushnumber(state, 0);
+        return 1;
+    }
+    const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 1));
+    const double x = std::trunc(lua_tonumber(state, 2));
+    const double y = std::trunc(lua_tonumber(state, 3));
+    const float radius = static_cast<float>(lua_tonumber(state, 4)) * 100.0f;
+    const bool aggressive = lua_toboolean(state, 5) != 0;
+    const auto count = DungeonDwordValue(lua_tonumber(state, 6));
+    if (!(x >= INT_MIN / 100 && x <= INT_MAX / 100 && y >= INT_MIN / 100 && y <= INT_MAX / 100
+          && radius > -INT_MAX / 2 && radius < INT_MAX / 2)) {
         manager.QuestError("dungeon_spawn_group", 0x2ca, "invalid argument");
         return 0;
     }
 
     CHARACTER* leader = nullptr;
-    if (count <= INT_MAX) {
-        if (CDungeon* dungeon = manager.GetCurrentDungeon())
-            leader = dungeon->SpawnGroup(vnum, x * 100, y * 100, radius,
-                                         lua_toboolean(state, 5), static_cast<int>(count));
-    }
+    if (count <= INT_MAX)
+        leader = dungeon->SpawnGroup(vnum, static_cast<int>(x) * 100, static_cast<int>(y) * 100,
+                                     radius, aggressive, static_cast<int>(count));
     lua_pushnumber(state, leader ? static_cast<DWORD>(leader->GetVID()) : 0);
     return 1;
 }
 
 int dungeon_spawn_unique(lua_State* state)
 {
-    DWORD vnum;
-    if (lua_isstring(state, 1) && ReadDword(state, 2, vnum) && lua_isstring(state, 3)) {
-        sys_log(0, "QUEST_DUNGEON_SPAWN_UNIQUE %s %d %s",
-                lua_tostring(state, 1), static_cast<int>(vnum), lua_tostring(state, 3));
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnUnique(lua_tostring(state, 1), vnum, lua_tostring(state, 3));
+    if (!lua_isstring(state, 1) || !lua_isnumber(state, 2) || !lua_isstring(state, 3))
+        return 0;
+
+    const char* loggedArea = lua_tostring(state, 3);
+    const int loggedVnum = DungeonIntValue(lua_tonumber(state, 2));
+    const char* loggedKey = lua_tostring(state, 1);
+    sys_log(0, "QUEST_DUNGEON_SPAWN_UNIQUE %s %d %s", loggedKey, loggedVnum, loggedArea);
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const char* area = lua_tostring(state, 3);
+        const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 2));
+        const char* key = lua_tostring(state, 1);
+        if (key && area)
+            dungeon->SpawnUnique(key, vnum, area);
     }
     return 0;
 }
 
 int dungeon_spawn_stone_door(lua_State* state)
 {
-    if (lua_isstring(state, 1) && lua_isstring(state, 2)) {
-        sys_log(0, "QUEST_DUNGEON_SPAWN_STONE_DOOR %s %s", lua_tostring(state, 1), lua_tostring(state, 2));
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnStoneDoor(lua_tostring(state, 1), lua_tostring(state, 2));
+    if (!lua_isstring(state, 1) || !lua_isstring(state, 2))
+        return 0;
+
+    const char* loggedArea = lua_tostring(state, 2);
+    const char* loggedKey = lua_tostring(state, 1);
+    sys_log(0, "QUEST_DUNGEON_SPAWN_STONE_DOOR %s %s", loggedKey, loggedArea);
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const char* area = lua_tostring(state, 2);
+        const char* key = lua_tostring(state, 1);
+        dungeon->SpawnStoneDoor(key, area);
     }
     return 0;
 }
 
 int dungeon_spawn_wooden_door(lua_State* state)
 {
-    if (lua_isstring(state, 1) && lua_isstring(state, 2)) {
-        sys_log(0, "QUEST_DUNGEON_SPAWN_WOODEN_DOOR %s %s", lua_tostring(state, 1), lua_tostring(state, 2));
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnWoodenDoor(lua_tostring(state, 1), lua_tostring(state, 2));
+    if (!lua_isstring(state, 1) || !lua_isstring(state, 2))
+        return 0;
+
+    const char* loggedArea = lua_tostring(state, 2);
+    const char* loggedKey = lua_tostring(state, 1);
+    sys_log(0, "QUEST_DUNGEON_SPAWN_WOODEN_DOOR %s %s", loggedKey, loggedArea);
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const char* area = lua_tostring(state, 2);
+        const char* key = lua_tostring(state, 1);
+        dungeon->SpawnWoodenDoor(key, area);
     }
     return 0;
 }
 
 int dungeon_spawn_name_mob(lua_State* state)
 {
-    DWORD vnum;
-    int x, y;
-    if (ReadDword(state, 1, vnum) && ReadInt(state, 2, x) && ReadInt(state, 3, y) && lua_isstring(state, 4)) {
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnNameMob(vnum, x, y, lua_tostring(state, 4));
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2)
+        || !lua_isnumber(state, 3) || !lua_isstring(state, 4))
+        return 0;
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 1));
+        const double x = std::trunc(lua_tonumber(state, 2));
+        const double y = std::trunc(lua_tonumber(state, 3));
+        if (x >= INT_MIN && x <= INT_MAX && y >= INT_MIN && y <= INT_MAX)
+            dungeon->SpawnNameMob(vnum, static_cast<int>(x), static_cast<int>(y), lua_tostring(state, 4));
     }
     return 0;
 }
 
 int dungeon_spawn_goto_mob(lua_State* state)
 {
-    int fromX, fromY, toX, toY;
-    if (ReadInt(state, 1, fromX) && ReadInt(state, 2, fromY) &&
-        ReadInt(state, 3, toX) && ReadInt(state, 4, toY) &&
-        fromX >= INT_MIN / 100 && fromX <= INT_MAX / 100 && fromY >= INT_MIN / 100 && fromY <= INT_MAX / 100) {
+    if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2)
+        || !lua_isnumber(state, 3) || !lua_isnumber(state, 4))
+        return 0;
+
+    const double fromX = std::trunc(lua_tonumber(state, 1));
+    const double fromY = std::trunc(lua_tonumber(state, 2));
+    const double toX = std::trunc(lua_tonumber(state, 3));
+    const double toY = std::trunc(lua_tonumber(state, 4));
+    if (fromX >= INT_MIN / 100 && fromX <= INT_MAX / 100
+        && fromY >= INT_MIN / 100 && fromY <= INT_MAX / 100
+        && toX >= INT_MIN && toX <= INT_MAX && toY >= INT_MIN && toY <= INT_MAX) {
         if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnGotoMob(fromX, fromY, toX, toY);
+            dungeon->SpawnGotoMob(static_cast<int>(fromX), static_cast<int>(fromY),
+                                  static_cast<int>(toX), static_cast<int>(toY));
     }
     return 0;
 }
 
 int dungeon_spawn_move_unique(lua_State* state)
 {
-    DWORD vnum;
-    if (lua_isstring(state, 1) && ReadDword(state, 2, vnum) &&
-        lua_isstring(state, 3) && lua_isstring(state, 4)) {
-        sys_log(0, "QUEST_DUNGEON_SPAWN_MOVE_UNIQUE %s %d %s %s",
-                lua_tostring(state, 1), static_cast<int>(vnum), lua_tostring(state, 3), lua_tostring(state, 4));
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnMoveUnique(lua_tostring(state, 1), vnum, lua_tostring(state, 3), lua_tostring(state, 4));
+    if (!lua_isstring(state, 1) || !lua_isnumber(state, 2)
+        || !lua_isstring(state, 3) || !lua_isstring(state, 4))
+        return 0;
+
+    const char* loggedDestination = lua_tostring(state, 4);
+    const char* loggedArea = lua_tostring(state, 3);
+    const int loggedVnum = DungeonIntValue(lua_tonumber(state, 2));
+    const char* loggedKey = lua_tostring(state, 1);
+    sys_log(0, "QUEST_DUNGEON_SPAWN_MOVE_UNIQUE %s %d %s %s",
+            loggedKey, loggedVnum, loggedArea, loggedDestination);
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const char* destination = lua_tostring(state, 4);
+        const char* area = lua_tostring(state, 3);
+        const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 2));
+        const char* key = lua_tostring(state, 1);
+        if (key && area && destination)
+            dungeon->SpawnMoveUnique(key, vnum, area, destination);
     }
     return 0;
 }
 
 int dungeon_spawn_move_group(lua_State* state)
 {
-    DWORD vnum;
-    if (ReadDword(state, 1, vnum) && lua_isstring(state, 2) && lua_isstring(state, 3)) {
-        sys_log(0, "QUEST_DUNGEON_SPAWN_MOVE_GROUP %d %s %s",
-                static_cast<int>(vnum), lua_tostring(state, 2), lua_tostring(state, 3));
-        if (CDungeon* dungeon = CurrentDungeon())
-            dungeon->SpawnMoveGroup(vnum, lua_tostring(state, 2), lua_tostring(state, 3), 1);
+    if (!lua_isnumber(state, 1) || !lua_isstring(state, 2) || !lua_isstring(state, 3))
+        return 0;
+
+    const char* loggedDestination = lua_tostring(state, 3);
+    const char* loggedArea = lua_tostring(state, 2);
+    const int loggedVnum = DungeonIntValue(lua_tonumber(state, 1));
+    sys_log(0, "QUEST_DUNGEON_SPAWN_MOVE_GROUP %d %s %s", loggedVnum, loggedArea, loggedDestination);
+
+    if (CDungeon* dungeon = CurrentDungeon()) {
+        const char* destination = lua_tostring(state, 3);
+        const char* area = lua_tostring(state, 2);
+        const DWORD vnum = DungeonDwordValue(lua_tonumber(state, 1));
+        if (area && destination)
+            dungeon->SpawnMoveGroup(vnum, area, destination, 1);
     }
     return 0;
 }
 
-// 0x08096920, verified subset in original relative order at 0x081fdc2c.
+// 0x08096920, all 45 entries in original order at 0x081fdc2c.
 void RegisterDungeonFunctionTable()
 {
     luaL_reg functions[] = {

@@ -39,15 +39,15 @@ void ITEM_MANAGER::Destroy() {
     m_VIDMap.clear();
 }
 CItem* ITEM_MANAGER::Find(DWORD id) {
-    std::map<DWORD,CItem*>::iterator it=m_map_pkItemByID.find(id);
+    std::map<DWORD,CItem*>::iterator it=m_map_pkItemByID.find(static_cast<unsigned int>(id));
     return it==m_map_pkItemByID.end() ? 0 : it->second;
 }
 CItem* ITEM_MANAGER::FindByVID(DWORD vid) {
-    std::map<DWORD,CItem*>::iterator it=m_VIDMap.find(vid);
+    std::map<DWORD,CItem*>::iterator it=m_VIDMap.find(static_cast<unsigned int>(vid));
     return it==m_VIDMap.end() ? 0 : it->second;
 }
 DWORD ITEM_MANAGER::GetRefineFromVnum(DWORD vnum) {
-    std::map<DWORD,DWORD>::iterator it=m_map_ItemRefineFrom.find(vnum);
+    std::map<DWORD,DWORD>::iterator it=m_map_ItemRefineFrom.find(static_cast<unsigned int>(vnum));
     return it==m_map_ItemRefineFrom.end() ? 0 : it->second;
 }
 void ITEM_MANAGER::DelayedSave(CItem* item) {
@@ -61,7 +61,8 @@ void ITEM_MANAGER::FlushDelayedSave(CItem* item) {
     }
 }
 void ITEM_MANAGER::SaveSingleItem(CItem* item) {
-    if(!item->GetOwner()) {
+    CHARACTER* owner = item->GetOwner();
+    if (!owner) {
         const auto id = static_cast<std::uint32_t>(item->GetID());
         const auto owner = static_cast<std::uint32_t>(item->GetLastOwnerPID());
         db_clientdesc->DBPacketHeader(31, 0, sizeof(id) + sizeof(owner));
@@ -69,16 +70,29 @@ void ITEM_MANAGER::SaveSingleItem(CItem* item) {
         db_clientdesc->Packet(&owner,sizeof(owner));
         sys_log(0,"ITEM_DELETE %s:%lu",item->GetName(),static_cast<unsigned long>(id));
     } else {
-        sys_log(0,"ITEM_SAVE %s:%d in %s window %d",item->GetName(),static_cast<std::int32_t>(item->GetID()),item->GetOwner()->GetName(),static_cast<int>(item->GetWindow()));
+        const int window = item->GetWindow();
+        const char* ownerName = owner->GetName();
+        const char* itemName = item->GetName();
+        const auto id = static_cast<std::int32_t>(item->GetID());
+        sys_log(0, "ITEM_SAVE %s:%d in %s window %d", itemName, id, ownerName, window);
         TPlayerItem packet;
         packet.id=item->GetID(); packet.window=item->GetWindow();
         packet.pos=packet.window==2 ? item->GetCell()-90 : static_cast<WORD>(item->GetCell());
         packet.count=item->GetCount(); packet.vnum=item->GetVnum();
         if(packet.window==3 || packet.window==4) packet.owner=item->GetOwner()->GetDesc()->GetAccountTable().id;
         else packet.owner=item->GetOwner()->GetPlayerID();
-        for (std::size_t index = 0; index < sizeof(packet.alSockets) / sizeof(packet.alSockets[0]); ++index)
-            packet.alSockets[index] = static_cast<std::int32_t>(item->GetSockets()[index]);
-        std::memcpy(packet.aAttr,item->GetAttributes(),sizeof(packet.aAttr));
+        const long* sockets = item->GetSockets();
+        if (sizeof(long) == sizeof(std::int32_t)) {
+            thecore_memcpy(packet.alSockets, sockets, sizeof(packet.alSockets));
+        } else {
+            const std::int32_t packedSockets[] = {
+                static_cast<std::int32_t>(sockets[0]),
+                static_cast<std::int32_t>(sockets[1]),
+                static_cast<std::int32_t>(sockets[2]),
+            };
+            thecore_memcpy(packet.alSockets, packedSockets, sizeof(packet.alSockets));
+        }
+        thecore_memcpy(packet.aAttr, item->GetAttributes(), sizeof(packet.aAttr));
         db_clientdesc->DBPacketHeader(30,0,sizeof(packet));
         db_clientdesc->Packet(&packet,sizeof(packet));
     }
@@ -115,15 +129,23 @@ TItemTable* ITEM_MANAGER::GetTable(DWORD vnum) {
 }
 //081930c0: unsigned prototype-vnum compare, signed interval and SAR midpoint.
 int ITEM_MANAGER::RealNumber(DWORD vnum) {
+    const auto itemVnum = static_cast<std::uint32_t>(vnum);
     int bottom=0;
-    int top=static_cast<int>(m_vec_prototype.size());
-    for(;;) {
-        int middle=item_lookup_detail::half_arithmetic(item_lookup_detail::add(top,bottom));
-        DWORD current=m_vec_prototype[middle].dwVnum;
-        if(current==vnum) return middle;
-        if(bottom>=top) return -1;
-        if(current>vnum) top=item_lookup_detail::sub(middle,1);
-        else bottom=item_lookup_detail::add(middle,1);
+    const auto size = m_vec_prototype.size();
+    int top = static_cast<int>(size);
+    for (;;) {
+        const int middle = item_lookup_detail::half_arithmetic(item_lookup_detail::add(top, bottom));
+        if (middle < 0 || static_cast<std::size_t>(middle) >= size)
+            return -1;
+        const auto current = m_vec_prototype[middle].dwVnum;
+        if (current == itemVnum)
+            return middle;
+        if (bottom >= top)
+            return -1;
+        if (current > itemVnum)
+            top = item_lookup_detail::sub(middle, 1);
+        else
+            bottom = item_lookup_detail::add(middle, 1);
     }
 }
 
@@ -219,7 +241,11 @@ void ITEM_MANAGER::DestroyItem(LPITEM item)
         db_clientdesc->DBPacketHeader(31, 0, sizeof(wireID) + sizeof(ownerID));
         db_clientdesc->Packet(&wireID, sizeof(wireID));
         db_clientdesc->Packet(&ownerID, sizeof(ownerID));
-    } else sys_log(0,"ITEM_DESTROY_SKIP %s:%lu (skip=%d)",item->GetName(),id,(unsigned int)item->GetSkipSave());
+    } else {
+        const int skip = item->GetSkipSave();
+        const char* name = item->GetName();
+        sys_log(0, "ITEM_DESTROY_SKIP %s:%lu (skip=%d)", name, id, skip);
+    }
     if(id!=0) m_map_pkItemByID.erase(id);
     m_VIDMap.erase(item->GetVID());
     delete item;
@@ -231,6 +257,8 @@ static int signed32(unsigned int v) { return v <= 0x7fffffffU ? (int)v : -1-(int
 
 LPITEM ITEM_MANAGER::CreateItem(DWORD vnum,DWORD count,DWORD id,bool tryMagic,int rarePct)
 {
+    vnum = static_cast<std::uint32_t>(vnum);
+    id = static_cast<unsigned int>(id);
     if(!vnum) return 0;
     if((LC_IsKorea() || LC_IsYMIR()) && vnum==50300 && tryMagic) {
         DWORD skill;
@@ -242,7 +270,9 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum,DWORD count,DWORD id,bool tryMagic,in
     if(!table) return 0;
     if(m_map_pkItemByID.find(id)!=m_map_pkItemByID.end()) {
         LPITEM duplicate=m_map_pkItemByID[id];
-        _sys_err("CreateItem",272,"ITEM_ID_DUP: %lu %s owner %p",id,duplicate->GetName(),duplicate->GetOwner());
+        auto* owner = duplicate->GetOwner();
+        const char* name = duplicate->GetName();
+        _sys_err("CreateItem", 272, "ITEM_ID_DUP: %lu %s owner %p", id, name, static_cast<void*>(owner));
         return 0;
     }
     LPITEM item=new CItem;
@@ -266,13 +296,14 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum,DWORD count,DWORD id,bool tryMagic,in
         }
     } else item->SetSkipSave(true);
     if(item->GetType()!=9) {
-        if(!(item->GetFlag() & 4)) count=1;
+        if(!item->IsStackable()) count=1;
         else {
             count=(DWORD)MINMAX(1,auto_give_detail::signed32(count),200);
             if(tryMagic && count<2 && (item->GetFlag() & 128)) count=item->GetValue(1);
         }
     }
-    const DWORD vid=++m_dwVIDCount;
+    m_dwVIDCount = static_cast<std::uint32_t>(m_dwVIDCount + 1u);
+    const DWORD vid = m_dwVIDCount;
     item->SetVID(vid);
     m_VIDMap.insert(std::make_pair(vid,item));
     if(item->GetID()!=0) m_map_pkItemByID.insert(std::make_pair(item->GetID(),item));
@@ -284,12 +315,16 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum,DWORD count,DWORD id,bool tryMagic,in
             Blend_Item_set_value(item);
             return item;
         }
-        if(table->sAddonType!=0) item->ApplyAddon((int)table->sAddonType);
+        const auto addonType = table->sAddonType;
+        if (addonType != 0)
+            item->ApplyAddon(addonType);
         if(tryMagic) {
             if(rarePct==-1) rarePct=table->bAlterToMagicItemPct;
             if(number_ex(1,100,"item_manager.cpp",361)<=rarePct) item->AlterToMagicItem();
         }
-        if(table->bGainSocketPct!=0) item->AlterToSocketItem((int)table->bGainSocketPct);
+        const BYTE socketCount = table->bGainSocketPct;
+        if (socketCount != 0)
+            item->AlterToSocketItem(socketCount);
         if(vnum==50300 || vnum==70037) {
             DWORD skill;
             do { skill=number_ex(1,120,"item_manager.cpp",375); }
@@ -306,9 +341,15 @@ void ITEM_MANAGER::RemoveItem(LPITEM item, const char* reason)
     CHARACTER* owner = item->GetOwner();
     if (owner) {
         char hint[64];
-        snprintf(hint, sizeof(hint), "%s %lu ", item->GetName(), item->GetCount());
-        LogManager::instance().ItemLog(owner->GetPlayerID(), owner->GetX(), owner->GetY(),
-                                       item->GetID(), reason ? reason : "REMOVE", hint);
+        const char* name = item->GetName();
+        const auto count = static_cast<unsigned int>(item->GetCount());
+        snprintf(hint, sizeof(hint), "%s %lu ", name, static_cast<unsigned long>(count));
+        const auto y = owner->GetY();
+        auto& logs = LogManager::instance();
+        const auto id = item->GetID();
+        const auto x = owner->GetX();
+        const auto pid = owner->GetPlayerID();
+        logs.ItemLog(pid, x, y, id, reason ? reason : "REMOVE", hint);
         const BYTE window = item->GetWindow();
         if (window == 3 || window == 4) {
             CSafebox* box = window == 4 ? owner->GetMall() : owner->GetSafebox();
@@ -341,9 +382,11 @@ bool ITEM_MANAGER::Initialize(TItemTable* table, int size)
             m_map_ItemRefineFrom.insert(std::make_pair(static_cast<DWORD>(row.dwRefinedVnum), vnum));
         if (row.bType == 18 || (row.dwFlags & 0xc00))
             quest::CQuestManager::instance().RegisterNPCVnum(vnum);
-        m_map_vid.insert(std::make_pair(vnum, row));
+        const TItemTable& registeredRow = m_vec_prototype[i];
+        const DWORD registeredVnum = registeredRow.dwVnum;
+        m_map_vid.insert(std::make_pair(registeredVnum, registeredRow));
         if (test_server)
-            sys_log(0, "ITEM_INFO %d %s ", static_cast<int>(vnum), row.szName);
+            sys_log(0, "ITEM_INFO %d %s ", static_cast<int>(registeredVnum), registeredRow.szName);
     }
 
     char line[512] = {};
@@ -401,28 +444,34 @@ bool ITEM_MANAGER::GetVnumByOriginalName(const char* name, DWORD& vnum)
     return false;
 }
 
-const CSpecialItemGroup::CSpecialItemInfo* CSpecialItemGroup::SelectItem() const
+int CSpecialItemGroup::GetOneIndex() const
 {
-    if (m_vecProbs.empty())
+    if (IsEmpty())
         return 0;
     const int roll = number_ex(1, m_vecProbs.back(), const_cast<char*>("item_manager.h"), 0x33);
-    const std::vector<int>::const_iterator selected = std::lower_bound(m_vecProbs.begin(), m_vecProbs.end(), roll);
-    return selected == m_vecProbs.end() ? 0 : &m_vecItems[selected - m_vecProbs.begin()];
+    const auto selected = std::lower_bound(m_vecProbs.begin(), m_vecProbs.end(), roll);
+    return static_cast<int>(selected - m_vecProbs.begin());
 }
 
-CSpecialItemGroup* ITEM_MANAGER::GetSpecialItemGroup(DWORD vnum)
+const CSpecialItemGroup* ITEM_MANAGER::GetSpecialItemGroup(DWORD vnum)
 {
-    std::map<DWORD, CSpecialItemGroup*>::iterator it = m_map_pkSpecialItemGroup.find(vnum);
+    std::map<DWORD, CSpecialItemGroup*>::iterator it = m_map_pkSpecialItemGroup.find(static_cast<unsigned int>(vnum));
     return it != m_map_pkSpecialItemGroup.end() ? it->second : 0;
+}
+
+int CMobItemGroup::GetOneIndex() const
+{
+    if (IsEmpty())
+        return 0;
+    const int roll = number_ex(1, m_vecProbs.back(), const_cast<char*>("item_manager.h"), 0x84);
+    const auto selected = std::lower_bound(m_vecProbs.begin(), m_vecProbs.end(), roll);
+    return static_cast<int>(selected - m_vecProbs.begin());
 }
 
 const CMobItemGroup::SMobItemGroupInfo* CMobItemGroup::SelectItem() const
 {
-    if (m_vecProbs.empty())
-        return 0;
-    const int roll = number_ex(1, m_vecProbs.back(), const_cast<char*>("item_manager.h"), 0x84);
-    const std::vector<int>::const_iterator selected = std::lower_bound(m_vecProbs.begin(), m_vecProbs.end(), roll);
-    return selected == m_vecProbs.end() ? 0 : &m_vecItems[selected - m_vecProbs.begin()];
+    const auto index = static_cast<std::vector<int>::size_type>(GetOneIndex());
+    return index < m_vecProbs.size() && index < m_vecItems.size() ? &m_vecItems[index] : nullptr;
 }
 
 std::set<DWORD> g_set_lotto;
@@ -488,21 +537,24 @@ bool ITEM_MANAGER::CreateDropItem(CHARACTER* mob, CHARACTER* killer, std::vector
 {
     char source[] = "item_manager.cpp";
     const int level = killer->GetLevel();
-    const BYTE rank = mob->GetMobRank();
-    const bool stone = mob->GetCharType() == 2;
-    const int index = MINMAX(0, mob->GetLevel() - level + 15, 30);
-    const int* rates = !stone && rank > 3 ? aiPercentByDeltaLevForBoss : aiPercentByDeltaLev;
+    const bool stone = mob->IsStone();
+    const bool bossRates = !stone && mob->GetMobRank() > 3;
+    const int mobLevel = mob->GetLevel();
+    const int killerLevel = killer->GetLevel();
+    const int index = MINMAX(0, mobLevel - killerLevel + 15, 30);
+    const int* rates = bossRates ? aiPercentByDeltaLevForBoss : aiPercentByDeltaLev;
     int delta = rates[index];
+    const BYTE rank = mob->GetMobRank();
     if (number_ex(1, 50000, source, 0x2e7) == 1)
-        delta += 1000;
+        delta = static_cast<int>(static_cast<unsigned>(delta) + 1000u);
     else if (number_ex(1, 10000, source, 0x2e9) == 1)
-        delta += 500;
+        delta = static_cast<int>(static_cast<unsigned>(delta) + 500u);
     sys_log(3, "CreateDropItem for level: %d rank: %u pct: %d", level, static_cast<unsigned>(rank), delta);
 
     delta = DropProbabilityProduct(delta, CHARACTER_MANAGER::instance().GetMobItemRate(killer)) / 100;
     if (killer->GetPremiumRemainSeconds(1) > 0 || killer->IsEquipUniqueGroup(10002))
         delta = DropProbabilityProduct(delta, 2);
-    if (killer->GetPoint(126) > 0 && killer->m_isinPCBang) {
+    if (killer->GetPoint(126) > 0 && killer->IsPCBang()) {
         const int cafeBonus = killer->GetPoint(126);
         const int bonus = DropProbabilityProduct(delta, cafeBonus) / 100;
         delta = static_cast<int>(static_cast<unsigned>(delta) + static_cast<unsigned>(bonus));
@@ -521,7 +573,9 @@ bool ITEM_MANAGER::CreateDropItem(CHARACTER* mob, CHARACTER* killer, std::vector
         return static_cast<int>(static_cast<unsigned int>(probability) * static_cast<unsigned int>(delta) / 100);
     };
 
-    for (const CItemDropInfo& row : g_vec_pkCommonDropItem[rank]) {
+    const auto& commonDrops = g_vec_pkCommonDropItem[rank];
+    for (std::size_t index = 0; index < commonDrops.size(); ++index) {
+        const CItemDropInfo& row = commonDrops[index];
         if (level < row.m_iLevelStart || level > row.m_iLevelEnd)
             continue;
         const int probability = DropProbabilityProduct(delta, row.m_iPercent) / 100;
@@ -544,48 +598,74 @@ bool ITEM_MANAGER::CreateDropItem(CHARACTER* mob, CHARACTER* killer, std::vector
         }
     }
 
-    const DWORD race = mob->GetRaceNum();
-    std::map<DWORD, CDropItemGroup*>::iterator drop = m_map_pkDropItemGroup.find(race);
+    std::map<DWORD, CDropItemGroup*>::iterator drop = m_map_pkDropItemGroup.find(mob->GetRaceNum());
     if (drop != m_map_pkDropItemGroup.end()) {
-        for (const auto& row : drop->second->GetVector()) {
-            if (number_ex(1, range, source, 0x33d) <= scaled(row.dwPct))
-                create(row.dwVnum, row.iCount);
+        const auto rows = drop->second->GetVector();
+        for (const auto& row : rows) {
+            const int probability = scaled(row.dwPct);
+            if (number_ex(1, range, source, 0x33d) <= probability) {
+                const DWORD vnum = row.dwVnum;
+                const int count = row.iCount;
+                create(vnum, count);
+            }
         }
     }
-    std::map<DWORD, CMobItemGroup*>::iterator kill = m_map_pkMobItemGroup.find(race);
-    if (kill != m_map_pkMobItemGroup.end()) {
+    std::map<DWORD, CMobItemGroup*>::iterator kill = m_map_pkMobItemGroup.find(mob->GetRaceNum());
+    if (kill != m_map_pkMobItemGroup.end() && kill->second) {
         CMobItemGroup* group = kill->second;
-        if (!group->IsEmpty() && number_ex(1, range, source, 0x355) <= DropProbabilityProduct(delta, 40000) / group->GetKillPerDrop()) {
-            if (const CMobItemGroup::SMobItemGroupInfo* row = group->SelectItem())
-                create(row->dwItemVnum, row->iCount, row->iRarePct);
+        if (!group->IsEmpty()) {
+            const int probability = DropProbabilityProduct(delta, 40000) / group->GetKillPerDrop();
+            if (number_ex(1, range, source, 0x355) <= probability) {
+                if (const CMobItemGroup::SMobItemGroupInfo* row = group->SelectItem()) {
+                    const int rarePercent = row->iRarePct;
+                    const int count = row->iCount;
+                    const DWORD vnum = row->dwItemVnum;
+                    create(vnum, count, rarePercent);
+                }
+            }
         }
     }
-    std::map<DWORD, CLevelItemGroup*>::iterator limit = m_map_pkLevelItemGroup.find(race);
+    std::map<DWORD, CLevelItemGroup*>::iterator limit = m_map_pkLevelItemGroup.find(mob->GetRaceNum());
     if (limit != m_map_pkLevelItemGroup.end() && limit->second->GetLevelLimit() <= static_cast<DWORD>(level)) {
-        for (const auto& row : limit->second->GetVector()) {
-            if (static_cast<DWORD>(number_ex(1, 1000000, source, 0x36e)) <= row.dwPct)
-                create(row.dwVNum, row.iCount);
+        const auto rows = limit->second->GetVector();
+        for (const auto& row : rows) {
+            if (static_cast<DWORD>(number_ex(1, 1000000, source, 0x36e)) <= row.dwPct) {
+                const DWORD vnum = row.dwVNum;
+                const int count = row.iCount;
+                create(vnum, count);
+            }
         }
     }
     if (LC_IsJapan() || killer->GetPremiumRemainSeconds(1) > 0 || killer->IsEquipUniqueGroup(10002)) {
-        std::map<DWORD, CBuyerThiefGlovesItemGroup*>::iterator glove = m_map_pkGloveItemGroup.find(race);
+        std::map<DWORD, CBuyerThiefGlovesItemGroup*>::iterator glove = m_map_pkGloveItemGroup.find(mob->GetRaceNum());
         if (glove != m_map_pkGloveItemGroup.end()) {
-            for (const auto& row : glove->second->GetVector()) {
-                if (number_ex(1, range, source, 0x38a) <= scaled(row.dwPct))
-                    create(row.dwVnum, row.iCount);
+            const auto rows = glove->second->GetVector();
+            for (const auto& row : rows) {
+                const int probability = scaled(row.dwPct);
+                if (number_ex(1, range, source, 0x38a) <= probability) {
+                    const DWORD vnum = row.dwVnum;
+                    const int count = row.iCount;
+                    create(vnum, count);
+                }
             }
         }
     }
 
     const DWORD etcVnum = mob->GetMobDropItemVnum();
     if (etcVnum) {
-        std::map<DWORD, DWORD>::iterator etc = m_map_dwEtcItemDropProb.find(etcVnum);
-        if (etc != m_map_dwEtcItemDropProb.end() && number_ex(1, range, source, 0x39e) <= scaled(etc->second))
-            create(etcVnum, 1);
+        std::map<DWORD, DWORD>::iterator etc = m_map_dwEtcItemDropProb.find(mob->GetMobDropItemVnum());
+        if (etc != m_map_dwEtcItemDropProb.end()) {
+            const int probability = scaled(etc->second);
+            if (number_ex(1, range, source, 0x39e) <= probability)
+                create(mob->GetMobDropItemVnum(), 1);
+        }
     }
-    if (stone && mob->m_dwDropMetinStone &&
-        number_ex(1, range, source, 0x3ac) <= mob->m_bDropMetinStonePct * delta * 400)
-        create(mob->m_dwDropMetinStone, 1);
+    if (mob->IsStone() && mob->GetDropMetinStoneVnum()) {
+        const int scaledChance = DropProbabilityProduct(mob->GetDropMetinStonePct(), delta);
+        const int roll = number_ex(1, range, source, 0x3ac);
+        if (roll <= DropProbabilityProduct(scaledChance, 400))
+            create(mob->GetDropMetinStoneVnum(), 1);
+    }
 
     if (killer->IsHorseRiding()) {
         const int probability = GetDropPerKillPct(1000, 1000000, delta, "horse_skill_book_drop");
@@ -632,20 +712,29 @@ void __DropEvent_CharStone_DropItem(CHARACTER* killer, CHARACTER* victim, ITEM_M
         return;
 
     const int logLevel = test_server || killer->GetGMLevel() ? 0 : 1;
-    const int difference = victim->GetLevel() - level;
+    const int victimLevel = victim->GetLevel();
+    const int difference = victimLevel - level;
     if (difference >= gs_dropEvent_charStone.level_range || difference <= -gs_dropEvent_charStone.level_range) {
+        const char* victimName = victim->GetName();
+        const int killerLevel = killer->GetLevel();
+        const char* killerName = killer->GetName();
         sys_log(logLevel,
                 "dropevent.drop_char_stone.level_range_over: killer(%s: lv%d), victim(%s: lv:%d), level_diff(%d)",
-                killer->GetName(), level, victim->GetName(), victim->GetLevel(), difference);
+                killerName, killerLevel, victimName, victimLevel, difference);
         return;
     }
 
     const DWORD vnum = number_ex(0x7602, 0x760b, source, 0x42b);
     if (CItem* item = items.CreateItem(vnum, 1, 0, true, -1)) {
         drops.push_back(item);
+        const char* itemName = item->GetName();
+        const int victimLevel = victim->GetLevel();
+        const char* victimName = victim->GetName();
+        const int killerLevel = killer->GetLevel();
+        const char* killerName = killer->GetName();
         sys_log(logLevel,
                 "dropevent.drop_char_stone.item_drop: killer(%s: lv%d), victim(%s: lv:%d), item_name(%s)",
-                killer->GetName(), level, victim->GetName(), victim->GetLevel(), item->GetName());
+                killerName, killerLevel, victimName, victimLevel, itemName);
     }
 }
 }
@@ -665,7 +754,9 @@ void ITEM_MANAGER::CreateQuestDropItem(CHARACTER* mob, CHARACTER* killer, std::v
     if (!mob || !killer)
         return;
 
-    sys_log(0, "CreateQuestDropItem victim(%s), killer(%s)", mob->GetName(), killer->GetName());
+    const char* killerName = killer->GetName();
+    const char* victimName = mob->GetName();
+    sys_log(0, "CreateQuestDropItem victim(%s), killer(%s)", victimName, killerName);
     __DropEvent_CharStone_DropItem(killer, mob, *this, drops);
 
     quest::CQuestManager& quests = quest::CQuestManager::instance();
@@ -680,27 +771,27 @@ void ITEM_MANAGER::CreateQuestDropItem(CHARACTER* mob, CHARACTER* killer, std::v
         return roll(line) <= probability;
     };
 
-    const int rank = mob->GetMobRank();
     const int seasonalDivisor[] = { 2000, 1000, 300, 50, 0, 0 };
-    if (quests.GetEventFlag("xmas_sock") && seasonalDivisor[rank]) {
-        int probability = delta * 40000 / seasonalDivisor[rank];
+    if (quests.GetEventFlag("xmas_sock") && seasonalDivisor[mob->GetMobRank()]) {
+        int probability = DropProbabilityProduct(delta, 40000) / seasonalDivisor[mob->GetMobRank()];
         if (LC_IsHongKong())
             probability *= 10;
         sys_log(0, "SOCK DROP %d %d", probability, range);
         if (roll(0x48f) <= probability)
             create(0xc35a);
     }
-    if (quests.GetEventFlag("drop_moon") && seasonalDivisor[rank] &&
-        roll(0x4aa) <= delta * 40000 / seasonalDivisor[rank])
-        create(0xc35b);
+    if (quests.GetEventFlag("drop_moon") && seasonalDivisor[mob->GetMobRank()]) {
+        const int probability = DropProbabilityProduct(delta, 40000) / seasonalDivisor[mob->GetMobRank()];
+        if (roll(0x4aa) <= probability)
+            create(0xc35b);
+    }
 
-    const int festivalDefault = g_iUseLocale ? 2000 : 800;
     const char* anniversaryLog = "\300\260\260\242\272\270\307\325 DROP EVENT ";
-    if (flagRoll(100, festivalDefault, "2006_drop", 0x4b2)) {
+    if (flagRoll(100, g_iUseLocale ? 2000 : 800, "2006_drop", 0x4b2)) {
         sys_log(0, "%s", anniversaryLog);
         create(0xc375);
     }
-    if (flagRoll(100, festivalDefault, "2007_drop", 0x4be)) {
+    if (flagRoll(100, g_iUseLocale ? 2000 : 800, "2007_drop", 0x4be)) {
         sys_log(0, "%s", anniversaryLog);
         create(0xc37b);
     }
@@ -711,11 +802,11 @@ void ITEM_MANAGER::CreateQuestDropItem(CHARACTER* mob, CHARACTER* killer, std::v
         sys_log(0, "EVENT NEWYEAR_MOON DROP");
         create(vnums[number_ex(0, 5, source, 0x4f5)]);
     }
-    if (flagRoll(100, festivalDefault, "valentine_drop", 0x4fc)) {
+    if (flagRoll(100, g_iUseLocale ? 2000 : 800, "valentine_drop", 0x4fc)) {
         sys_log(0, "EVENT VALENTINE_DROP");
         create(50024 + number_ex(0, 1, source, 0x501));
     }
-    if (flagRoll(100, festivalDefault, "whiteday_drop", 0x508)) {
+    if (flagRoll(100, g_iUseLocale ? 2000 : 800, "whiteday_drop", 0x508)) {
         sys_log(0, "EVENT WHITEDAY_DROP");
         create(50031 + number_ex(0, 1, source, 0x50c));
     }
@@ -724,18 +815,21 @@ void ITEM_MANAGER::CreateQuestDropItem(CHARACTER* mob, CHARACTER* killer, std::v
     const bool highLevel = killerLevel >= 50;
     if (flagRoll(100, 1000, highLevel ? "kids_day_drop_high" : "kids_day_drop", highLevel ? 0x515 : 0x51f))
         create(0xc372);
-    if (mob->GetLevel() >= 40 && rank > 3) {
+    if (mob->GetLevel() >= 40 && mob->GetMobRank() > 3) {
         const int probability = GetDropPerKillPct(1, 1000, delta, "three_skill_item");
-        if (roll(0x52a) <= probability / GetThreeSkillLevelAdjust(mob->GetLevel()))
+        const int adjustedProbability = probability / GetThreeSkillLevelAdjust(mob->GetLevel());
+        if (roll(0x52a) <= adjustedProbability)
             create(0xc551);
     }
     if (flagRoll(100, 1000, "dragon_boat_festival_drop", 0x536))
         create(0xc3a5);
 
     const int marsMultiplier[] = { 50, 30, 5, 1, 0, 0 };
-    if (killerLevel > 14 && quests.GetEventFlag("mars_drop") && marsMultiplier[rank]) {
+    if (killer->GetLevel() > 14 && quests.GetEventFlag("mars_drop") && marsMultiplier[mob->GetMobRank()]) {
         const int probability = GetDropPerKillPct(1000, 1500, delta, "mars_drop");
-        if (roll(0x54d) * marsMultiplier[rank] <= probability)
+        const int draw = roll(0x54d);
+        const int adjustedDraw = DropProbabilityProduct(draw, marsMultiplier[mob->GetMobRank()]);
+        if (adjustedDraw <= probability)
             create(0x11193);
     }
 }

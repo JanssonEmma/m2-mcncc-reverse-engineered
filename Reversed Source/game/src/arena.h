@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <list>
 #include <map>
+#include "char_manager.h"
 #include "event.h"
 #include "typedef.h"
 #include "../../common/singleton.h"
@@ -29,13 +30,22 @@ public:
     void SendChatPacketToObserver(BYTE type, const char* format, ...);
     bool IsMyObserver(WORD x, WORD y);
     bool RegisterObserverPtr(CHARACTER* character);
+    DWORD GetPlayerAPID() { return m_dwPIDA; }
+    DWORD GetPlayerBPID() { return m_dwPIDB; }
+    CHARACTER* GetPlayerA() { return CHARACTER_MANAGER::instance().FindByPID(m_dwPIDA); }
+    CHARACTER* GetPlayerB() { return CHARACTER_MANAGER::instance().FindByPID(m_dwPIDB); }
+    PIXEL_POSITION GetStartPointA() { return m_StartPointA; }
+    PIXEL_POSITION GetStartPointB() { return m_StartPointB; }
+    PIXEL_POSITION GetObserverPoint() { return m_ObserverPoint; }
+    void ClearEvent() { m_pEvent = nullptr; }
 private:
     friend long ready_to_start_event(LPEVENT event);
     friend long duel_time_out(LPEVENT event);
+    bool IsEmpty() { return m_dwPIDA == 0 && m_dwPIDB == 0; }
     long HandleTimeout(BYTE& state);
     long HandleReadyEvent(BYTE& state);
-    DWORD m_dwPIDA;
-    DWORD m_dwPIDB;
+    std::uint32_t m_dwPIDA;
+    std::uint32_t m_dwPIDB;
     LPEVENT m_pEvent;
     LPEVENT m_pTimeOutEvent;
     PIXEL_POSITION m_StartPointA;
@@ -44,7 +54,7 @@ private:
     std::uint32_t m_dwSetCount;
     std::uint32_t m_dwSetPointOfA;
     std::uint32_t m_dwSetPointOfB;
-    std::map<DWORD, CHARACTER*> m_mapObserver;
+    std::map<std::uint32_t, CHARACTER*> m_mapObserver;
 };
 
 class CArenaMap {
@@ -62,7 +72,7 @@ public:
     bool CanAttack(CHARACTER* attacker, CHARACTER* victim);
     bool OnDead(CHARACTER* killer, CHARACTER* victim);
 private:
-    DWORD m_dwMapIndex;
+    std::uint32_t m_dwMapIndex;
     std::list<CArena*> m_listArena;
 };
 
@@ -82,6 +92,6 @@ public:
     bool CanAttack(CHARACTER* attacker, CHARACTER* victim);
     bool OnDead(CHARACTER* killer, CHARACTER* victim);
 private:
-    std::map<DWORD, CArenaMap*> m_mapArenaMap;
+    std::map<std::uint32_t, CArenaMap*> m_mapArenaMap;
 };
 #endif

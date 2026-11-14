@@ -97,25 +97,32 @@ void CItem::PutAttributeWithLevel(BYTE bLevel) {
     unsigned int prob=static_cast<unsigned int>(number_ex(1,total,const_cast<char*>("item_attribute.cpp"),139));
     int attr_idx=0;
     for(DWORD i=0;i<avail.size();++i) {
-        const TItemAttrTable& r=g_map_itemAttr[avail[i]];
-        if(prob<=r.dwProb) { attr_idx=avail[i];break; }
-        prob-=static_cast<unsigned int>(r.dwProb);
+        const auto weight = static_cast<unsigned int>(g_map_itemAttr[avail[i]].dwProb);
+        if (prob <= weight) {
+            attr_idx = avail[i];
+            break;
+        }
+        prob -= weight;
     }
     if(!attr_idx) {
-        _sys_err("PutAttributeWithLevel",157,"Cannot put item attribute %d %d",set,static_cast<unsigned int>(bLevel));
+        _sys_err("PutAttributeWithLevel",157,"Cannot put item attribute %d %d",set,static_cast<int>(bLevel));
         return;
     }
     const TItemAttrTable& r=g_map_itemAttr[attr_idx];
-    if(bLevel>r.bMaxLevelBySet[set]) bLevel=r.bMaxLevelBySet[set];
+    const BYTE cap = r.bMaxLevelBySet[set];
+    if (bLevel > cap)
+        bLevel = cap;
     AddAttr(static_cast<BYTE>(attr_idx),bLevel);
 }
 // 081874d0. Supplied weights need not sum100; leftoverlevel6 goes through guard.
-void CItem::PutAttribute(int* aiAttrPercentTable) {
+void CItem::PutAttribute(const int* aiAttrPercentTable) {
     int percent=number_ex(1,100,const_cast<char*>("item_attribute.cpp"),172);
     int i;
     for(i=0;i<5;++i) {
-        if(percent<=aiAttrPercentTable[i]) break;
-        percent=AttrSub32(percent,aiAttrPercentTable[i]);
+        const int weight = aiAttrPercentTable[i];
+        if (percent <= weight)
+            break;
+        percent = AttrSub32(percent, weight);
     }
     PutAttributeWithLevel(static_cast<BYTE>(i+1));
 }
@@ -123,16 +130,17 @@ void CItem::PutAttribute(int* aiAttrPercentTable) {
 #include "../../libthecore/include/memcpy.h"
 
 // Complete original item_attribute.cpp tail. Unsafe original domains retained.
-// 08187540. Original const int* ABI; old PutAttribute ABI is int*, read-only.
+// 08187540. The original PutAttribute takes const int* weights.
 void CItem::ChangeAttribute(const int* aiChangeProb) {
     int count=GetAttributeCount();
     ClearAttribute();
     if(count==0) return;
     const TItemTable* proto=m_pProto;
-    if(proto && proto->sAddonType) ApplyAddon(proto->sAddonType);
+    const int addonType = proto ? proto->sAddonType : 0;
+    if (addonType) ApplyAddon(addonType);
     int tmp[5]={0,10,40,35,15};
     if(!aiChangeProb) aiChangeProb=tmp;
-    for(int i=GetAttributeCount();i<count;++i) PutAttribute(const_cast<int*>(aiChangeProb));
+    for(int i=GetAttributeCount();i<count;++i) PutAttribute(aiChangeProb);
 }
 // 08187610. Local original array, not an invented global probability table.
 void CItem::AddAttribute() {
@@ -146,7 +154,11 @@ void CItem::ClearAttribute() {
 // 081876f0. Only upper-count check, no new negative-index guard.
 bool CItem::RemoveAttributeAt(int index) {
     if(GetAttributeCount()<=index) return false;
-    for(int i=index;i<4;++i) SetAttribute(i,m_aAttr[i+1].bType,m_aAttr[i+1].sValue);
+    for (int i = index; i < 4; ++i) {
+        const short value = m_aAttr[i + 1].sValue;
+        const BYTE type = m_aAttr[i + 1].bType;
+        SetAttribute(i, type, value);
+    }
     SetAttribute(4,0,0);
     return true;
 }
@@ -192,11 +204,17 @@ bool CItem::AddRareAttribute() {
     }
     const TItemAttrTable& r=g_map_itemRare[avail[number_ex(0,static_cast<int>(avail.size())-1,const_cast<char*>("item_attribute.cpp"),366)]];
     int level=5;
-    if(level>r.bMaxLevelBySet[set]) level=r.bMaxLevelBySet[set];
+    const BYTE cap = r.bMaxLevelBySet[set];
+    if (level > cap)
+        level = cap;
     attr.bType=static_cast<BYTE>(r.dwApplyIndex);
     attr.sValue=static_cast<short>(r.lValues[level-1]);
     UpdatePacket();
     Save();
-    LogManager::instance().ItemLog(pos,attr.bType,attr.sValue,m_dwID,"SET_RARE","");
+    auto& logs = LogManager::instance();
+    const DWORD itemId = m_dwID;
+    const short value = attr.sValue;
+    const BYTE type = attr.bType;
+    logs.ItemLog(pos, type, value, itemId, "SET_RARE", "");
     return true;
 }

@@ -16,8 +16,10 @@ extern "C" {
 // 080bc300
 bool CArena::CanAttack(DWORD attacker, DWORD victim)
 {
-    return (m_dwPIDA == attacker && m_dwPIDB == victim) ||
-           (m_dwPIDA == victim && m_dwPIDB == attacker);
+    const auto attackerId = static_cast<std::uint32_t>(attacker);
+    const auto victimId = static_cast<std::uint32_t>(victim);
+    return (m_dwPIDA == attackerId && m_dwPIDB == victimId) ||
+           (m_dwPIDA == victimId && m_dwPIDB == attackerId);
 }
 
 // 080bc280
@@ -26,7 +28,7 @@ bool CArenaMap::CanAttack(CHARACTER* attacker, CHARACTER* victim)
     if (!attacker || !victim)
         return false;
     const DWORD attackerPID = attacker->GetPlayerID();
-    const DWORD victimPID = victim->GetPlayerID();
+    const auto victimPID = static_cast<std::uint32_t>(victim->GetPlayerID());
     for (std::list<CArena*>::iterator it = m_listArena.begin(); it != m_listArena.end(); ++it)
         if ((*it)->CanAttack(attackerPID, victimPID))
             return true;
@@ -36,18 +38,22 @@ bool CArenaMap::CanAttack(CHARACTER* attacker, CHARACTER* victim)
 // 080bc1f0
 bool CArenaManager::CanAttack(CHARACTER* attacker, CHARACTER* victim)
 {
-    if (!attacker || !victim || attacker == victim ||
-        attacker->GetMapIndex() != victim->GetMapIndex())
+    if (!attacker || !victim || attacker == victim)
         return false;
-    std::map<DWORD, CArenaMap*>::iterator it = m_mapArenaMap.find(attacker->GetMapIndex());
+    const auto mapIndex = static_cast<std::uint32_t>(attacker->GetMapIndex());
+    if (mapIndex != static_cast<std::uint32_t>(victim->GetMapIndex()))
+        return false;
+    const auto it = m_mapArenaMap.find(mapIndex);
     return it != m_mapArenaMap.end() && it->second->CanAttack(attacker, victim);
 }
 
 void CArena::Clear()
 {
-    m_dwPIDA=0;
-    m_dwPIDB=0;
-    if (m_pEvent) event_cancel(&m_pEvent);
+    const bool hasReadyEvent = static_cast<bool>(m_pEvent);
+    m_dwPIDA = 0;
+    m_dwPIDB = 0;
+    if (hasReadyEvent)
+        event_cancel(&m_pEvent);
     if (m_pTimeOutEvent) event_cancel(&m_pTimeOutEvent);
     m_dwSetCount=0;
     m_dwSetPointOfA=0;
@@ -55,11 +61,12 @@ void CArena::Clear()
 }
 
 namespace {
-void WarpFromArena(CHARACTER* character)
+void WarpFromArena(CHARACTER* character, BYTE empire)
 {
-    const BYTE empire=character->GetEmpire();
-    const long* position=arena_return_position[empire>=1 && empire<=3 ? empire : 0];
-    character->WarpSet(position[0],position[1],0);
+    const bool validEmpire = empire >= 1 && empire <= 3;
+    const auto y = validEmpire ? static_cast<std::int32_t>(arena_return_position[empire][1]) : 0;
+    const auto x = validEmpire ? static_cast<std::int32_t>(arena_return_position[empire][0]) : 0;
+    character->WarpSet(x, y, 0);
 }
 
 std::int32_t ArenaDelay(unsigned int seconds)
@@ -78,22 +85,24 @@ int ArenaPointDelta(int maximum, int current)
 
 void CArena::EndDuel()
 {
-    CHARACTER_MANAGER& manager=CHARACTER_MANAGER::instance();
-    CHARACTER* players[2]={manager.FindByPID(m_dwPIDA),manager.FindByPID(m_dwPIDB)};
+    CHARACTER* players[2]={GetPlayerA(),GetPlayerB()};
     for (int slot=0;slot<2;++slot) {
         CHARACTER* player=players[slot];
         if (!player) continue;
         player->SetPKMode(0);
         player->StartRecoveryEvent();
         player->SetPosition(7);
-        player->PointChange(5,ArenaPointDelta(player->m_pointsInstant.iMaxHP,player->m_points.hp),false,false);
-        player->PointChange(7,ArenaPointDelta(player->m_pointsInstant.iMaxSP,player->m_points.sp),false,false);
-        player->m_pArena=0;
-        WarpFromArena(player);
+        const auto hp = player->m_points.hp;
+        player->PointChange(POINT_HP, ArenaPointDelta(player->m_pointsInstant.iMaxHP, hp), false, false);
+        const auto sp = player->m_points.sp;
+        player->PointChange(POINT_SP, ArenaPointDelta(player->m_pointsInstant.iMaxSP, sp), false, false);
+        const BYTE empire = player->GetEmpire();
+        player->m_pArena = nullptr;
+        WarpFromArena(player, empire);
     }
-    for (std::map<DWORD,CHARACTER*>::iterator it=m_mapObserver.begin();it!=m_mapObserver.end();++it) {
-        CHARACTER* observer=manager.FindByPID(it->first);
-        if (observer) WarpFromArena(observer);
+    for (auto it=m_mapObserver.begin();it!=m_mapObserver.end();++it) {
+        CHARACTER* observer = CHARACTER_MANAGER::instance().FindByPID(it->first);
+        if (observer) WarpFromArena(observer, observer->GetEmpire());
     }
     m_mapObserver.clear();
     sys_log(0,"ARENA : End Duel PID_A(%d) vs PID_B(%d)",m_dwPIDA,m_dwPIDB);
@@ -102,8 +111,9 @@ void CArena::EndDuel()
 
 void CArena::OnDisconnect(DWORD pid)
 {
-    if (pid!=m_dwPIDA && pid!=m_dwPIDB) return;
-    const bool first=pid==m_dwPIDA;
+    const auto playerId = static_cast<std::uint32_t>(pid);
+    if (playerId!=m_dwPIDA && playerId!=m_dwPIDB) return;
+    const bool first=playerId==m_dwPIDA;
     CHARACTER_MANAGER& manager=CHARACTER_MANAGER::instance();
     if (manager.FindByPID(first ? m_dwPIDB : m_dwPIDA)) {
         const char* text=locale_find("\273\363\264\353\271\346\040\304\263\270\257\305\315\260\241\040\301\242\274\323\300\273\040\301\276\267\341\307\317\277\251\040\264\353\267\303\300\273\040\301\337\301\366\307\325\264\317\264\331\056",g_iUseLocale);
@@ -135,21 +145,23 @@ bool CArena::IsMyObserver(WORD x, WORD y)
 
 bool CArena::RegisterObserverPtr(CHARACTER* character)
 {
-    const auto found = m_mapObserver.find(character->GetPlayerID());
-    if (found == m_mapObserver.end()) {
+    const auto pid = static_cast<std::uint32_t>(character->GetPlayerID());
+    if (m_mapObserver.find(pid) == m_mapObserver.end()) {
         sys_log(0, "ARENA : not in ob list");
         return false;
     }
-    found->second = character;
+    m_mapObserver[pid] = character;
     return true;
 }
 
 int CArenaMap::IsMember(DWORD pid)
 {
+    const auto playerId = static_cast<std::uint32_t>(pid);
     for (CArena* arena : m_listArena) {
-        if (arena->IsObserver(pid))
+        if (arena->IsObserver(playerId))
             return 2;
-        if (arena->m_dwPIDA == pid || arena->m_dwPIDB == pid)
+        if (static_cast<std::uint32_t>(arena->GetPlayerAPID()) == playerId ||
+            static_cast<std::uint32_t>(arena->GetPlayerBPID()) == playerId)
             return 1;
     }
     return 0;
@@ -166,12 +178,12 @@ bool CArenaMap::RegisterObserverPtr(CHARACTER* character, DWORD, WORD x, WORD y)
 
 bool CArenaManager::IsArenaMap(DWORD map)
 {
-    return m_mapArenaMap.find(map) != m_mapArenaMap.end();
+    return m_mapArenaMap.find(static_cast<std::uint32_t>(map)) != m_mapArenaMap.end();
 }
 
 int CArenaManager::IsMember(DWORD map, DWORD pid)
 {
-    const auto found = m_mapArenaMap.find(map);
+    const auto found = m_mapArenaMap.find(static_cast<std::uint32_t>(map));
     return found != m_mapArenaMap.end() ? found->second->IsMember(pid) : 0;
 }
 
@@ -180,7 +192,7 @@ bool CArenaManager::RegisterObserverPtr(CHARACTER* character, DWORD map, WORD x,
     if (!character)
         return false;
 
-    const auto found = m_mapArenaMap.find(map);
+    const auto found = m_mapArenaMap.find(static_cast<std::uint32_t>(map));
     if (found == m_mapArenaMap.end()) {
         sys_log(0, "ARENA : Cannot find ArenaMap. %d %d %d",
                 static_cast<int>(map), static_cast<int>(x), static_cast<int>(y));
@@ -249,27 +261,23 @@ void CArena::SendChatPacketToObserver(BYTE, const char*, ...) {}
 
 long CArena::HandleTimeout(BYTE& state)
 {
-    CHARACTER_MANAGER& chars = CHARACTER_MANAGER::instance();
-    CHARACTER* first = chars.FindByPID(m_dwPIDA);
-    CHARACTER* second = chars.FindByPID(m_dwPIDB);
+    CHARACTER* first = GetPlayerA();
+    CHARACTER* second = GetPlayerB();
     if (first && second)
     {
         if (state == 0)
         {
-            const char* notice = locale_find(timeoutNotice, g_iUseLocale);
-            const char* exit = locale_find(timeoutExit, g_iUseLocale);
-            SendChatPacketToObserver(2, notice);
-            SendChatPacketToObserver(2, exit);
-            first->ChatPacket(2, notice);
-            first->ChatPacket(2, exit);
-            second->ChatPacket(2, notice);
-            second->ChatPacket(2, exit);
+            SendChatPacketToObserver(2, locale_find(timeoutNotice, g_iUseLocale));
+            SendChatPacketToObserver(2, locale_find(timeoutExit, g_iUseLocale));
+            first->ChatPacket(2, locale_find(timeoutNotice, g_iUseLocale));
+            first->ChatPacket(2, locale_find(timeoutExit, g_iUseLocale));
+            second->ChatPacket(2, locale_find(timeoutNotice, g_iUseLocale));
+            second->ChatPacket(2, locale_find(timeoutExit, g_iUseLocale));
+            const BYTE packet[] = {40, 3, 0};
             if (DESC* desc = first->GetDesc())
-            {
-                const BYTE packet[] = {40, 3, 0};
                 desc->Packet(packet, sizeof(packet));
+            if (DESC* desc = first->GetDesc())
                 desc->Packet(packet, sizeof(packet));
-            }
             ++state;
             sys_log(0, "ARENA : Because of time over, duel is end. PIDA(%d) vs PIDB(%d)",
                 static_cast<int>(m_dwPIDA), static_cast<int>(m_dwPIDB));
@@ -280,31 +288,30 @@ long CArena::HandleTimeout(BYTE& state)
     }
     else
     {
-        const char* message = locale_find(timeoutMissing, g_iUseLocale);
         if (first)
         {
-            first->ChatPacket(1, message);
+            first->ChatPacket(1, locale_find(timeoutMissing, g_iUseLocale));
             sys_log(0, "ARENA : Oppernent is disappered. MyPID(%d) OppPID(%d)",
                 static_cast<int>(m_dwPIDA), static_cast<int>(m_dwPIDB));
         }
         if (second)
         {
-            second->ChatPacket(1, message);
+            second->ChatPacket(1, locale_find(timeoutMissing, g_iUseLocale));
             sys_log(0, "ARENA : Oppernent is disappered. MyPID(%d) OppPID(%d)",
                 static_cast<int>(m_dwPIDB), static_cast<int>(m_dwPIDA));
         }
-        SendChatPacketToObserver(1, message);
+        SendChatPacketToObserver(1, locale_find(timeoutMissing, g_iUseLocale));
     }
     EndDuel();
     return 0;
 }
 
 CArena::CArena(WORD startAX, WORD startAY, WORD startBX, WORD startBY)
-    : m_dwPIDA(0), m_dwPIDB(0), m_pEvent(nullptr), m_pTimeOutEvent(nullptr),
+    : m_pEvent(nullptr), m_pTimeOutEvent(nullptr),
       m_StartPointA{startAX, startAY, 0}, m_StartPointB{startBX, startBY, 0},
-      m_ObserverPoint{(startAX + startBX) / 2, (startAY + startBY) / 2, 0},
-      m_dwSetCount(0), m_dwSetPointOfA(0), m_dwSetPointOfB(0)
+      m_ObserverPoint{(startAX + startBX) / 2, (startAY + startBY) / 2, 0}
 {
+    Clear();
 }
 
 bool CArena::CheckArea(WORD startAX, WORD startAY, WORD startBX, WORD startBY)
@@ -315,11 +322,15 @@ bool CArena::CheckArea(WORD startAX, WORD startAY, WORD startBX, WORD startBY)
 
 bool CArena::StartDuel(CHARACTER* first, CHARACTER* second, int sets)
 {
-    m_dwPIDA = first->GetPlayerID();
-    m_dwPIDB = second->GetPlayerID();
+    m_dwPIDA = static_cast<std::uint32_t>(first->GetPlayerID());
+    m_dwPIDB = static_cast<std::uint32_t>(second->GetPlayerID());
     m_dwSetCount = static_cast<std::uint32_t>(sets);
-    first->WarpSet(m_StartPointA.x * 100, m_StartPointA.y * 100, 0);
-    second->WarpSet(m_StartPointB.x * 100, m_StartPointB.y * 100, 0);
+    const auto yA = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointA.y) * 100u);
+    const auto xA = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointA.x) * 100u);
+    first->WarpSet(xA, yA, 0);
+    const auto yB = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointB.y) * 100u);
+    const auto xB = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointB.x) * 100u);
+    second->WarpSet(xB, yB, 0);
 
     void* raw = nullptr;
     DWORD id = __AllocEventInfo(sizeof(ArenaReadyEventInfo), &raw);
@@ -330,8 +341,10 @@ bool CArena::StartDuel(CHARACTER* first, CHARACTER* second, int sets)
         const_cast<char*>("arena.cpp"), 0x1cd);
     for (CHARACTER* player : {first, second})
     {
-        player->PointChange(5, ArenaPointDelta(player->m_pointsInstant.iMaxHP, player->m_points.hp), false, false);
-        player->PointChange(7, ArenaPointDelta(player->m_pointsInstant.iMaxSP, player->m_points.sp), false, false);
+        const auto hp = player->m_points.hp;
+        player->PointChange(5, ArenaPointDelta(player->m_pointsInstant.iMaxHP, hp), false, false);
+        const auto sp = player->m_points.sp;
+        player->PointChange(7, ArenaPointDelta(player->m_pointsInstant.iMaxSP, sp), false, false);
     }
 
     id = __AllocEventInfo(sizeof(ArenaReadyEventInfo), &raw);
@@ -349,7 +362,9 @@ bool CArena::AddObserver(CHARACTER* observer)
 {
     m_mapObserver.emplace(observer->GetPlayerID(), nullptr);
     observer->SaveExitLocation();
-    observer->WarpSet(m_ObserverPoint.x * 100, m_ObserverPoint.y * 100, 0);
+    const auto y = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_ObserverPoint.y) * 100u);
+    const auto x = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_ObserverPoint.x) * 100u);
+    observer->WarpSet(x, y, 0);
     return true;
 }
 
@@ -362,7 +377,7 @@ bool CArenaMap::AddArena(DWORD map, WORD startAX, WORD startAY, WORD startBX, WO
                 startAX, startAY, startBX, startBY);
             return false;
         }
-    m_dwMapIndex = map;
+    m_dwMapIndex = static_cast<std::uint32_t>(map);
     std::unique_ptr<CArena> arena(new CArena(startAX, startAY, startBX, startBY));
     m_listArena.push_back(arena.get());
     arena.release();
@@ -372,7 +387,7 @@ bool CArenaMap::AddArena(DWORD map, WORD startAX, WORD startAY, WORD startBX, WO
 bool CArenaMap::StartDuel(CHARACTER* first, CHARACTER* second, int sets)
 {
     for (CArena* arena : m_listArena)
-        if (arena->m_dwPIDA == 0 && arena->m_dwPIDB == 0)
+        if (arena->IsEmpty())
             return arena->StartDuel(first, second, sets);
     return false;
 }
@@ -387,13 +402,15 @@ bool CArenaMap::AddObserver(CHARACTER* observer, WORD x, WORD y)
 
 int CArenaMap::GetDuelList(lua_State* state, int index)
 {
-    CHARACTER_MANAGER& chars = CHARACTER_MANAGER::instance();
     for (CArena* arena : m_listArena)
     {
-        if (!arena || (arena->m_dwPIDA == 0 && arena->m_dwPIDB == 0))
+        if (!arena)
             continue;
-        CHARACTER* first = chars.FindByPID(arena->m_dwPIDA);
-        CHARACTER* second = chars.FindByPID(arena->m_dwPIDB);
+        const DWORD pidA = arena->GetPlayerAPID();
+        if (!pidA && !arena->GetPlayerBPID())
+            continue;
+        CHARACTER* first = CHARACTER_MANAGER::instance().FindByPID(pidA);
+        CHARACTER* second = arena->GetPlayerB();
         if (!first || !second)
             continue;
         lua_newtable(state);
@@ -403,9 +420,9 @@ int CArenaMap::GetDuelList(lua_State* state, int index)
         lua_rawseti(state, -2, 2);
         lua_pushnumber(state, m_dwMapIndex);
         lua_rawseti(state, -2, 3);
-        lua_pushnumber(state, arena->m_ObserverPoint.x);
+        lua_pushnumber(state, arena->GetObserverPoint().x);
         lua_rawseti(state, -2, 4);
-        lua_pushnumber(state, arena->m_ObserverPoint.y);
+        lua_pushnumber(state, arena->GetObserverPoint().y);
         lua_rawseti(state, -2, 5);
         lua_rawseti(state, -2, index++);
     }
@@ -422,12 +439,15 @@ void CArenaMap::SendArenaMapListTo(CHARACTER* character, DWORD map)
 {
     if (!character)
         return;
-    for (const CArena* arena : m_listArena)
+    for (auto it = m_listArena.begin(); it != m_listArena.end(); ++it)
     {
+        CArena* arena = *it;
+        const int by = static_cast<int>(arena->GetStartPointB().y);
+        const int bx = static_cast<int>(arena->GetStartPointB().x);
+        const int ay = static_cast<int>(arena->GetStartPointA().y);
+        const int ax = static_cast<int>(arena->GetStartPointA().x);
         character->ChatPacket(1, "ArenaMapInfo Map: %d stA(%d, %d) stB(%d, %d)",
-            static_cast<int>(map), static_cast<int>(arena->m_StartPointA.x),
-            static_cast<int>(arena->m_StartPointA.y), static_cast<int>(arena->m_StartPointB.x),
-            static_cast<int>(arena->m_StartPointB.y));
+            static_cast<int>(map), ax, ay, bx, by);
     }
 }
 
@@ -455,9 +475,11 @@ bool CArenaManager::EndDuel(DWORD pid)
 
 bool CArenaMap::EndDuel(DWORD pid)
 {
+    const auto playerId = static_cast<std::uint32_t>(pid);
     for (CArena* arena : m_listArena)
     {
-        if (arena->m_dwPIDA == pid || arena->m_dwPIDB == pid)
+        if (static_cast<std::uint32_t>(arena->GetPlayerAPID()) == playerId ||
+            static_cast<std::uint32_t>(arena->GetPlayerBPID()) == playerId)
         {
             arena->EndDuel();
             return true;
@@ -479,7 +501,7 @@ void CArenaMap::Destroy()
 
 bool CArenaManager::AddArena(DWORD map, WORD startAX, WORD startAY, WORD startBX, WORD startBY)
 {
-    const auto found = m_mapArenaMap.find(map);
+    const auto found = m_mapArenaMap.find(static_cast<std::uint32_t>(map));
     if (found != m_mapArenaMap.end())
     {
         if (found->second->AddArena(map, startAX, startAY, startBX, startBY))
@@ -489,7 +511,7 @@ bool CArenaManager::AddArena(DWORD map, WORD startAX, WORD startAY, WORD startBX
     }
 
     std::unique_ptr<CArenaMap> entry(new CArenaMap);
-    const auto inserted = m_mapArenaMap.emplace(map, entry.get());
+    const auto inserted = m_mapArenaMap.emplace(static_cast<std::uint32_t>(map), entry.get());
     try
     {
         entry->AddArena(map, startAX, startAY, startBX, startBY);
@@ -515,7 +537,7 @@ bool CArenaManager::StartDuel(CHARACTER* first, CHARACTER* second, int sets)
 
 bool CArenaManager::AddObserver(CHARACTER* observer, DWORD map, WORD x, WORD y)
 {
-    const auto found = m_mapArenaMap.find(map);
+    const auto found = m_mapArenaMap.find(static_cast<std::uint32_t>(map));
     return observer && found != m_mapArenaMap.end() && found->second->AddObserver(observer, x, y);
 }
 
@@ -552,23 +574,21 @@ EVENTFUNC(ready_to_start_event)
 
 long CArena::HandleReadyEvent(BYTE& state)
 {
-    auto& manager = CHARACTER_MANAGER::instance();
-    CHARACTER* playerA = manager.FindByPID(m_dwPIDA);
-    CHARACTER* playerB = manager.FindByPID(m_dwPIDB);
+    CHARACTER* playerA = GetPlayerA();
+    CHARACTER* playerB = GetPlayerB();
     if (!playerA || !playerB || !playerA->GetDesc() || !playerB->GetDesc()) {
         _sys_err("ready_to_start_event", 0xda, "ARENA : Player err in event func ready_start_event");
-        const char* message = locale_find(opponentMissing, g_iUseLocale);
         if (playerA) {
-            playerA->ChatPacket(1, message);
+            playerA->ChatPacket(1, locale_find(opponentMissing, g_iUseLocale));
             sys_log(0, "ARENA : Oppernent is disappered. MyPID(%d) OppPID(%d)",
                     static_cast<int>(m_dwPIDA), static_cast<int>(m_dwPIDB));
         }
         if (playerB) {
-            playerB->ChatPacket(1, message);
+            playerB->ChatPacket(1, locale_find(opponentMissing, g_iUseLocale));
             sys_log(0, "ARENA : Oppernent is disappered. MyPID(%d) OppPID(%d)",
                     static_cast<int>(m_dwPIDB), static_cast<int>(m_dwPIDA));
         }
-        SendChatPacketToObserver(2, message);
+        SendChatPacketToObserver(2, locale_find(opponentMissing, g_iUseLocale));
     } else {
         switch (state) {
         case 0: {
@@ -576,111 +596,123 @@ long CArena::HandleReadyEvent(BYTE& state)
             playerB->m_pArena = this;
             const int count = quest::CQuestManager::instance().GetEventFlag("arena_potion_limit_count");
             if (count < 10001) {
-                playerA->m_nPotionLimit = count;
-                playerB->m_nPotionLimit = count;
-                const char* message = locale_find(potionLimit, g_iUseLocale);
-                playerA->ChatPacket(1, message, count);
-                playerB->ChatPacket(1, message, count);
+                playerA->SetPotionLimit(count);
+                playerB->SetPotionLimit(count);
+                const int limitA = playerA->GetPotionLimit();
+                playerA->ChatPacket(1, locale_find(potionLimit, g_iUseLocale), limitA);
+                const int limitB = playerB->GetPotionLimit();
+                playerB->ChatPacket(1, locale_find(potionLimit, g_iUseLocale), limitB);
             } else {
-                const char* message = locale_find(noPotionLimit, g_iUseLocale);
-                playerA->ChatPacket(1, message);
-                playerB->ChatPacket(1, message);
+                playerA->ChatPacket(1, locale_find(noPotionLimit, g_iUseLocale));
+                playerB->ChatPacket(1, locale_find(noPotionLimit, g_iUseLocale));
             }
-            const char* message = locale_find(duelCountdown, g_iUseLocale);
-            playerA->ChatPacket(1, message);
-            playerB->ChatPacket(1, message);
-            SendChatPacketToObserver(1, message);
+            playerA->ChatPacket(1, locale_find(duelCountdown, g_iUseLocale));
+            playerB->ChatPacket(1, locale_find(duelCountdown, g_iUseLocale));
+            SendChatPacketToObserver(1, locale_find(duelCountdown, g_iUseLocale));
             ++state;
             return ArenaDelay(10);
         }
         case 1: {
-            const char* message = locale_find(duelStarted, g_iUseLocale);
-            playerA->ChatPacket(1, message);
-            playerB->ChatPacket(1, message);
-            SendChatPacketToObserver(1, message);
+            playerA->ChatPacket(1, locale_find(duelStarted, g_iUseLocale));
+            playerB->ChatPacket(1, locale_find(duelStarted, g_iUseLocale));
+            SendChatPacketToObserver(1, locale_find(duelStarted, g_iUseLocale));
             SendArenaOpponent(playerA, playerB);
             SendArenaOpponent(playerB, playerA);
-            m_pEvent = 0;
+            ClearEvent();
             return 0;
         }
         case 2:
             break;
         case 3: {
-            playerA->Show(playerA->GetMapIndex(), m_StartPointA.x * 100, m_StartPointA.y * 100,
-                          0x7fffffff, false);
-            playerB->Show(playerB->GetMapIndex(), m_StartPointB.x * 100, m_StartPointB.y * 100,
-                          0x7fffffff, false);
+            const auto yA = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointA.y) * 100u);
+            const auto xA = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointA.x) * 100u);
+            const long mapA = playerA->GetMapIndex();
+            playerA->Show(mapA, xA, yA, 0x7fffffff, false);
+            const auto yB = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointB.y) * 100u);
+            const auto xB = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_StartPointB.x) * 100u);
+            const long mapB = playerB->GetMapIndex();
+            playerB->Show(mapB, xB, yB, 0x7fffffff, false);
             for (CHARACTER* player : {playerA, playerB}) {
                 player->GetDesc()->SetPhase(5);
                 player->StartRecoveryEvent();
                 player->SetPosition(POS_STANDING);
-                player->PointChange(POINT_HP, ArenaPointDelta(player->m_pointsInstant.iMaxHP, player->m_points.hp),
+                const auto currentHP = player->m_points.hp;
+                player->PointChange(POINT_HP, ArenaPointDelta(player->m_pointsInstant.iMaxHP, currentHP),
                                     false, false);
-                player->PointChange(POINT_SP, ArenaPointDelta(player->m_pointsInstant.iMaxSP, player->m_points.sp),
+                const auto currentSP = player->m_points.sp;
+                player->PointChange(POINT_SP, ArenaPointDelta(player->m_pointsInstant.iMaxSP, currentSP),
                                     false, false);
                 player->ViewReencode();
             }
             SendArenaOpponent(playerA, playerB);
             SendArenaOpponent(playerB, playerA);
-            const char* message = locale_find(duelStarted, g_iUseLocale);
-            playerA->ChatPacket(1, message);
-            playerB->ChatPacket(1, message);
-            SendChatPacketToObserver(1, message);
-            m_pEvent = 0;
+            playerA->ChatPacket(1, locale_find(duelStarted, g_iUseLocale));
+            playerB->ChatPacket(1, locale_find(duelStarted, g_iUseLocale));
+            SendChatPacketToObserver(1, locale_find(duelStarted, g_iUseLocale));
+            ClearEvent();
             return 0;
         }
         default: {
-            const char* message = locale_find(duelStateInvalid, g_iUseLocale);
-            playerA->ChatPacket(1, message);
-            playerB->ChatPacket(1, message);
-            SendChatPacketToObserver(1, message);
+            playerA->ChatPacket(1, locale_find(duelStateInvalid, g_iUseLocale));
+            playerB->ChatPacket(1, locale_find(duelStateInvalid, g_iUseLocale));
+            SendChatPacketToObserver(1, locale_find(duelStateInvalid, g_iUseLocale));
             sys_log(0, "ARENA : Something wrong in event func. info->state(%d)", state);
             break;
         }
         }
     }
-    m_pEvent = 0;
+    ClearEvent();
     EndDuel();
     return 0;
 }
 
 bool CArena::OnDead(DWORD killerPID, DWORD victimPID)
 {
-    auto& manager = CHARACTER_MANAGER::instance();
-    CHARACTER* playerA = manager.FindByPID(m_dwPIDA);
-    CHARACTER* playerB = manager.FindByPID(m_dwPIDB);
+    const auto killerId = static_cast<std::uint32_t>(killerPID);
+    const auto victimId = static_cast<std::uint32_t>(victimPID);
+    CHARACTER* playerA = GetPlayerA();
+    CHARACTER* playerB = GetPlayerB();
     bool restart = false;
     if (playerA && playerB) {
-        if (killerPID == m_dwPIDA || killerPID == m_dwPIDB) {
-            const bool firstWon = killerPID == m_dwPIDA;
+        if (killerId == m_dwPIDA || killerId == m_dwPIDB) {
+            const bool firstWon = killerId == m_dwPIDA;
             auto& score = firstWon ? m_dwSetPointOfA : m_dwSetPointOfB;
             restart = ++score < m_dwSetCount;
-            const char* winner = (firstWon ? playerA : playerB)->GetName();
-            const char* message = locale_find(restart ? roundWinner : duelWinner, g_iUseLocale);
+            CHARACTER* winner = firstWon ? playerA : playerB;
+            const auto sendScore = [&](CHARACTER* player) {
+                const char* nameB = playerB->GetName();
+                const char* nameA = playerA->GetName();
+                const int scoreB = static_cast<int>(m_dwSetPointOfB);
+                const int scoreA = static_cast<int>(m_dwSetPointOfA);
+                if (player)
+                    player->ChatPacket(2, "%s %d : %d %s", nameA, scoreA, scoreB, nameB);
+                else
+                    SendChatPacketToObserver(2, "%s %d : %d %s", nameA, scoreA, scoreB, nameB);
+            };
             for (CHARACTER* player : {playerA, playerB}) {
-                player->ChatPacket(restart ? 1 : 2, message, winner);
+                const char* name = winner->GetName();
+                const char* message = locale_find(restart ? roundWinner : duelWinner, g_iUseLocale);
+                player->ChatPacket(restart ? 1 : 2, message, name);
                 if (restart)
-                    player->ChatPacket(2, "%s %d : %d %s", playerA->GetName(),
-                                       static_cast<int>(m_dwSetPointOfA), static_cast<int>(m_dwSetPointOfB),
-                                       playerB->GetName());
+                    sendScore(player);
             }
             if (restart)
-                SendChatPacketToObserver(2, "%s %d : %d %s", playerA->GetName(),
-                                         static_cast<int>(m_dwSetPointOfA), static_cast<int>(m_dwSetPointOfB),
-                                         playerB->GetName());
-            else
-                SendChatPacketToObserver(2, message, winner);
+                sendScore(nullptr);
+            else {
+                const char* name = winner->GetName();
+                SendChatPacketToObserver(2, locale_find(duelWinner, g_iUseLocale), name);
+            }
             sys_log(0, restart ? "ARENA : PID(%d) won a round. Opp(%d)" :
                                  "ARENA : Duel is end. Winner(%d) Loser(%d)",
-                    static_cast<int>(killerPID), static_cast<int>(firstWon ? m_dwPIDB : m_dwPIDA));
+                    static_cast<int>(killerId), static_cast<int>(firstWon ? m_dwPIDB : m_dwPIDA));
         } else {
             sys_log(0, "ARENA : OnDead Error (%d, %d) (%d,%d)",
                     static_cast<int>(m_dwPIDA), static_cast<int>(m_dwPIDB),
-                    static_cast<int>(killerPID), static_cast<int>(victimPID));
+                    static_cast<int>(killerId), static_cast<int>(victimId));
         }
         const int count = quest::CQuestManager::instance().GetEventFlag("arena_potion_limit_count");
-        playerA->m_nPotionLimit = count;
-        playerB->m_nPotionLimit = count;
+        playerA->SetPotionLimit(count);
+        playerB->SetPotionLimit(count);
     } else if (CHARACTER* remaining = playerA ? playerA : playerB) {
         remaining->ChatPacket(2, locale_find(opponentInvalid, g_iUseLocale));
         static constexpr char observerOpponentInvalid[] =
@@ -688,12 +720,12 @@ bool CArena::OnDead(DWORD killerPID, DWORD victimPID)
         SendChatPacketToObserver(2, locale_find(observerOpponentInvalid, g_iUseLocale));
     }
 
-    const char* message = locale_find(restart ? nextRound : returnToTown, g_iUseLocale);
+    const char* messageKey = restart ? nextRound : returnToTown;
     if (playerA)
-        playerA->ChatPacket(1, message);
+        playerA->ChatPacket(1, locale_find(messageKey, g_iUseLocale));
     if (playerB)
-        playerB->ChatPacket(1, message);
-    SendChatPacketToObserver(1, message);
+        playerB->ChatPacket(1, locale_find(messageKey, g_iUseLocale));
+    SendChatPacketToObserver(1, locale_find(messageKey, g_iUseLocale));
 
     event_cancel(&m_pEvent);
     void* raw = 0;
@@ -708,11 +740,11 @@ bool CArena::OnDead(DWORD killerPID, DWORD victimPID)
 
 bool CArenaMap::OnDead(CHARACTER* killer, CHARACTER* victim)
 {
-    const DWORD killerPID = killer->GetPlayerID();
-    const DWORD victimPID = victim->GetPlayerID();
+    const auto killerPID = static_cast<std::uint32_t>(killer->GetPlayerID());
+    const auto victimPID = static_cast<std::uint32_t>(victim->GetPlayerID());
     for (CArena* arena : m_listArena) {
-        if ((arena->m_dwPIDA == killerPID || arena->m_dwPIDB == killerPID) &&
-            (arena->m_dwPIDA == victimPID || arena->m_dwPIDB == victimPID)) {
+        if ((arena->GetPlayerAPID() == killerPID || arena->GetPlayerBPID() == killerPID) &&
+            (arena->GetPlayerAPID() == victimPID || arena->GetPlayerBPID() == victimPID)) {
             arena->OnDead(killerPID, victimPID);
             return true;
         }
@@ -722,8 +754,11 @@ bool CArenaMap::OnDead(CHARACTER* killer, CHARACTER* victim)
 
 bool CArenaManager::OnDead(CHARACTER* killer, CHARACTER* victim)
 {
-    if (!killer || !victim || killer->GetMapIndex() != victim->GetMapIndex())
+    if (!killer || !victim)
         return false;
-    const auto arena = m_mapArenaMap.find(killer->GetMapIndex());
+    const auto mapIndex = static_cast<std::uint32_t>(killer->GetMapIndex());
+    if (mapIndex != static_cast<std::uint32_t>(victim->GetMapIndex()))
+        return false;
+    const auto arena = m_mapArenaMap.find(mapIndex);
     return arena != m_mapArenaMap.end() && arena->second->OnDead(killer, victim);
 }

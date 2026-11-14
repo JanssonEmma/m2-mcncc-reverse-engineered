@@ -334,15 +334,16 @@ void LoadCommandPrivileges()
         return;
     char line[256];
     while (std::fgets(line, sizeof(line), file)) {
-        std::istringstream fields(line);
-        std::string command, privilege;
-        if (!(fields >> command >> privilege))
+        char command[256];
+        char privilege[256];
+        two_arguments(line, command, privilege);
+        if (!command[0] || !privilege[0])
             ConfigError("CMD syntax error: <cmd> <DISABLE | LOW_WIZARD | WIZARD | HIGH_WIZARD | GOD>");
         const char* names[] = {"LOW_WIZARD", "WIZARD", "HIGH_WIZARD", "GOD", "IMPLEMENTOR", "DISABLE"};
         bool matched = false;
         for (int i = 0; i < 6; ++i) {
-            if (strcasecmp(privilege.c_str(), names[i]) == 0) {
-                interpreter_set_privilege(command.c_str(), i + 1);
+            if (strcasecmp(privilege, names[i]) == 0) {
+                interpreter_set_privilege(command, i + 1);
                 matched = true;
                 break;
             }
@@ -515,11 +516,11 @@ void config_init(const std::string& localeServiceName)
         else if (key == "hostname") g_stHostname = value;
         else if (key == "skill_disable") g_bSkillDisable = numeric != 0;
         else if (key == "auth_server") {
-            std::istringstream fields(value);
-            std::string host, port;
-            fields >> host >> port;
-            const bool master = strcasecmp(host.c_str(), "master") == 0;
-            if (host.empty() || (!master && port.empty()))
+            char host[256];
+            char port[256];
+            two_arguments(value.data(), host, port);
+            const bool master = strcasecmp(host, "master") == 0;
+            if (!host[0] || (!master && !port[0]))
                 ConfigError("invalid auth_master syntax");
             g_bAuthServer = true;
             LoadBanIP("BANIP");
@@ -527,8 +528,8 @@ void config_init(const std::string& localeServiceName)
                 std::fprintf(stderr, "AUTH_SERVER: I am the master\n");
             } else {
                 g_stAuthMasterIP = host;
-                g_wAuthMasterPort = static_cast<WORD>(std::atoi(port.c_str()));
-                std::fprintf(stderr, "AUTH_SERVER: master %s %u\n", host.c_str(),
+                g_wAuthMasterPort = static_cast<WORD>(std::atoi(port));
+                std::fprintf(stderr, "AUTH_SERVER: master %s %u\n", host,
                              static_cast<unsigned>(g_wAuthMasterPort));
             }
         } else if (key == "billing") g_bBilling = true;

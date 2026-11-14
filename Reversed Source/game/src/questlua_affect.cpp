@@ -4,6 +4,7 @@
 #include "questpc.h"
 #include "../../libthecore/include/log.h"
 
+#include <cfenv>
 #include <cstdint>
 
 extern "C" {
@@ -28,16 +29,20 @@ int ReturnLegacyValue(lua_State* state)
 std::int32_t AffectSignedNumber(lua_State* state, int argument)
 {
     const lua_Number value = lua_tonumber(state, argument);
-    if (!(value > -2147483649.0 && value < 2147483648.0))
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
         return INT32_MIN;
+    }
     return static_cast<std::int32_t>(value);
 }
 
 BYTE AffectSlot(lua_State* state)
 {
     const lua_Number value = lua_tonumber(state, 1);
-    if (!(value > -32769.0 && value < 32768.0))
+    if (!(value > -32769.0 && value < 32768.0)) {
+        std::feraiseexcept(FE_INVALID);
         return 0;
+    }
     return static_cast<BYTE>(static_cast<std::int16_t>(value));
 }
 
@@ -48,15 +53,15 @@ int AddAffect(lua_State* state, DWORD type, bool usePoint, const char* function,
         return 0;
     }
     const BYTE slot = AffectSlot(state);
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     const char* label = usePoint ? "POINTON" : "APPLYON";
-    const int limit = usePoint ? static_cast<int>(POINT_MAX_NUM) : static_cast<int>(MAX_APPLY_NUM);
+    const int limit = usePoint ? static_cast<int>(POINT_MAX_NUM) : APPLY_RESIST_SHAMAN + 1;
     sys_log(0, "%s %d value %d", label, slot, AffectSignedNumber(state, 2));
-    if (slot < 1 || slot >= limit) {
+    if (slot == 0 || slot >= limit) {
         _sys_err(function, line + 13, "%s is out of range : %d", usePoint ? "point" : "apply", slot);
         return 0;
     }
 
-    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     if (!character || (type == questAffect && character->FindAffect(type, slot)))
         return 0;
     const auto value = AffectSignedNumber(state, 2);
@@ -76,10 +81,6 @@ int affect_add(lua_State* state)
 int affect_remove(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
-    CHARACTER* character = manager.GetCurrentCharacterPtr();
-    if (!character)
-        return 0;
-
     DWORD type = lua_isnumber(state, 1)
         ? static_cast<std::uint32_t>(AffectSignedNumber(state, 1)) : 0;
     if (!type) {
@@ -89,6 +90,9 @@ int affect_remove(lua_State* state)
         type = questAffect + pc->GetCurrentQuestIndex();
     }
 
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
+    if (!character)
+        return 0;
     character->RemoveAffect(type);
     return ReturnLegacyValue(state);
 }

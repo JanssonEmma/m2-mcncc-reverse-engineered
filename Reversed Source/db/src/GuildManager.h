@@ -3,6 +3,7 @@
 #define __INC_GUILD_MANAGER_H
 
 #include "Peer.h"
+#include <cstdint>
 #include <functional>
 #include <map>
 #include <queue>
@@ -79,8 +80,8 @@ struct TGuildWarPQElement
     bool    bEnd;
     BYTE    bType;
     DWORD   GID[2];
-    DWORD   iScore[2];
-    DWORD   iBetScore[2];
+    std::uint32_t iScore[2];
+    std::uint32_t iBetScore[2];
 
     TGuildWarPQElement(BYTE _bType, DWORD GID1, DWORD GID2) : bEnd(false), bType(_bType)
     {
@@ -121,7 +122,7 @@ struct TGuild
 
 typedef struct SGuildWarInfo
 {
-    time_t      tEndTime;
+    std::int32_t tEndTime;
     TGuildWarPQElement * pElement;
     CGuildWarReserve * pkReserve;
 
@@ -236,9 +237,9 @@ class CGuildManager : public singleton<CGuildManager>
     std::set<TGuildDeclareInfo>             m_DeclareMap;
     std::map<DWORD, std::map<DWORD, TGuildWarInfo> >    m_WarMap;
 
-    typedef std::pair<time_t, TGuildWarPQElement *> stPairGuildWar;
-    typedef std::pair<time_t, TGuildSkillUsed>  stPairSkillUsed;
-    typedef std::pair<time_t, TGuildWaitStartInfo>  stPairWaitStart;
+    typedef std::pair<std::int32_t, TGuildWarPQElement *> stPairGuildWar;
+    typedef std::pair<std::int32_t, TGuildSkillUsed>  stPairSkillUsed;
+    typedef std::pair<std::int32_t, TGuildWaitStartInfo>  stPairWaitStart;
 
     std::priority_queue<stPairGuildWar, std::vector<stPairGuildWar>, std::greater<stPairGuildWar> > m_pqOnWar;
     std::priority_queue<stPairWaitStart, std::vector<stPairWaitStart>, std::greater<stPairWaitStart> > m_pqWaitStart;

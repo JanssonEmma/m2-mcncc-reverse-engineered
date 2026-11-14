@@ -7,6 +7,13 @@ class CHARACTER;
 class CItem;
 class CMob;
 
+enum POLYMORPH_BONUS_TYPE {
+    POLYMORPH_NO_BONUS = 0,
+    POLYMORPH_ATK_BONUS = 1,
+    POLYMORPH_DEF_BONUS = 2,
+    POLYMORPH_SPD_BONUS = 3,
+};
+
 class CPolymorphUtils : public singleton<CPolymorphUtils> {
 public:
     bool GiveBook(CHARACTER* ch, DWORD mobVnum, DWORD practice, BYTE bookLevel, BYTE levelLimit);
@@ -14,9 +21,8 @@ public:
     bool Initialize();
     bool PolymorphCharacter(CHARACTER* ch, CItem* item, const CMob* mob);
     bool UpdateBookPracticeGrade(CHARACTER* ch, CItem* item);
+    POLYMORPH_BONUS_TYPE GetBonusType(DWORD race);
 private:
-    enum class BonusType { None, Attack, Defense, Speed };
-    BonusType GetBonusType(DWORD race);
     __gnu_cxx::hash_map<DWORD, DWORD> m_mapSPDType;
     __gnu_cxx::hash_map<DWORD, DWORD> m_mapATKType;
     __gnu_cxx::hash_map<DWORD, DWORD> m_mapDEFType;

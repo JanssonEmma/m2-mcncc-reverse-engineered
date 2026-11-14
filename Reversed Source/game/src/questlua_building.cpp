@@ -5,6 +5,7 @@
 #include "guild.h"
 #include "questmanager.h"
 #include "../../libthecore/include/log.h"
+#include <cfenv>
 #include <cstdint>
 #include <cstdlib>
 #include <memory>
@@ -19,16 +20,20 @@ namespace {
 std::int32_t LandCoordinate(lua_State* state, int index)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value > -2147483649.0 && value < 2147483648.0))
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
         return INT32_MIN;
+    }
     return static_cast<std::int32_t>(value);
 }
 
 std::uint32_t LandID(lua_State* state, int index)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value >= -9223372036854775808.0 && value < 9223372036854775808.0))
+    if (!(value >= -9223372036854775808.0 && value < 9223372036854775808.0)) {
+        std::feraiseexcept(FE_INVALID);
         return 0;
+    }
     return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
 }
 }
@@ -45,14 +50,14 @@ int building_get_land_id(lua_State* state)
     const auto x = LandCoordinate(state, 2);
     const auto map = LandCoordinate(state, 1);
     building::CLand* land = building::CManager::instance().FindLand(map, x, y);
-    lua_pushnumber(state, land ? land->GetData().dwID : 0);
+    lua_pushnumber(state, land ? static_cast<std::uint32_t>(land->GetID()) : 0u);
     return 1;
 }
 
 int building_get_land_info(lua_State* state)
 {
-    int price = 1000000000;
-    int owner = 1000000000;
+    std::int32_t price = 1000000000;
+    std::int32_t owner = 1000000000;
     int levelLimit = 1000000000;
     if (!lua_isnumber(state, 1)) {
         _sys_err("building_get_land_info", 0x35, "invalid argument");
@@ -60,8 +65,8 @@ int building_get_land_info(lua_State* state)
         const std::uint32_t id = LandID(state, 1);
         if (building::CLand* land = building::CManager::instance().FindLand(id)) {
             const building::TLand& data = land->GetData();
-            price = data.dwPrice;
-            owner = data.dwGuildID;
+            price = static_cast<std::int32_t>(data.dwPrice);
+            owner = static_cast<std::int32_t>(data.dwGuildID);
             levelLimit = data.bGuildLevelLimit;
         }
     }
@@ -115,8 +120,9 @@ int building_reconstruct(lua_State* state)
 {
     const std::uint32_t vnum = LandID(state, 1);
     CHARACTER* npc = CQuestManager::instance().GetCurrentNPCCharacterPtr();
-    if (npc && npc->GetGuild()) {
-        if (building::CLand* land = building::CManager::instance().FindLandByGuild(npc->GetGuild()->GetID())) {
+    if (auto* guild = npc ? npc->GetGuild() : nullptr) {
+        const auto guildId = static_cast<std::uint32_t>(guild->GetID());
+        if (building::CLand* land = building::CManager::instance().FindLandByGuild(guildId)) {
             if (building::CObject* object = land->FindObjectByNPC(npc))
                 object->Reconstruct(vnum);
         }

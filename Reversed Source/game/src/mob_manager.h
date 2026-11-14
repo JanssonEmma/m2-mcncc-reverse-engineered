@@ -41,6 +41,16 @@ class CMobGroup {
     friend class CMobManager;
 public:
     const std::vector<DWORD>& GetMemberVector() { return m_vec_dwMemberVnum; }
+    int GetMemberCount() { return static_cast<int>(m_vec_dwMemberVnum.size()); }
+    void Create(DWORD vnum, std::string& name)
+    {
+        m_dwVnum = static_cast<unsigned int>(vnum);
+        m_stName = name;
+    }
+    void AddMember(DWORD vnum)
+    {
+        m_vec_dwMemberVnum.push_back(static_cast<unsigned int>(vnum));
+    }
 protected:
     DWORD m_dwVnum;
     std::string m_stName;
@@ -49,6 +59,10 @@ protected:
 
 class CMobGroupGroup {
     friend class CMobManager;
+public:
+    CMobGroupGroup(DWORD vnum) : m_dwVnum(static_cast<unsigned int>(vnum)) {}
+    void AddMember(DWORD vnum, int probability = 1);
+    DWORD GetMember();
 protected:
     DWORD m_dwVnum;
     std::vector<DWORD> m_vec_dwMemberVnum;
@@ -63,6 +77,7 @@ public:
     const iterator end() { return m_map_pkMobByVnum.end(); }
     CMobManager();
     virtual ~CMobManager();
+    void Destroy();
     bool Initialize(TMobTable* table, int size);
     const CMob* Get(DWORD vnum);
     const CMob* Get(const char* name,bool abbreviation);
@@ -72,8 +87,8 @@ public:
     DWORD GetGroupFromGroupGroup(DWORD vnum);
     void IncRegenCount(BYTE type, DWORD vnum, int count, int seconds);
     void DumpRegenCount(const char* filename);
-private:
     void RebindMobProto(CHARACTER* character);
+private:
     std::map<DWORD,CMob*> m_map_pkMobByVnum;
     std::map<std::string,CMob*> m_map_pkMobByName;
     std::map<DWORD,CMobGroup*> m_map_pkMobGroup;

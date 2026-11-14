@@ -287,7 +287,7 @@ DWORD CHARACTER::GetMCLTime(MONARCH_INDEX index) {
 
 //08136790: use the actual quest flag lookup; do not assume a default configuration.
 void CHARACTER::ClearKillCount() {
-    m_iKillCount=quest::CQuestManager::instance().GetEventFlag("threeway_war_dead_count");
+    SetKillCount(quest::CQuestManager::instance().GetEventFlag("threeway_war_dead_count"));
 }
 //08138640: evidenced empty virtual end-state handler.
 void CHARACTER::EndStateEmpty() {}
@@ -380,7 +380,7 @@ void CHARACTER::Initialize() {
     m_pkTimedEvent=0; m_pkMobData=0; m_pkMobInst=0; m_pkShop=0;
     m_pkFishingEvent=0; m_pkChrTarget=0; m_pkWarpEvent=0; m_pkMuyeongEvent=0;
     m_pkWarpNPCEvent=0; m_pkDeadEvent=0; m_pkMiningEvent=0;
-    m_afAffectFlag.bits[0]=m_afAffectFlag.bits[1]=0;
+    m_afAffectFlag = TAffectFlag(0, 0);
     m_pkCheckSpeedHackEvent=0; m_pkPoisonEvent=0; m_speed_hack_count=0;
     m_pkChrSyncOwner=0; m_pkFireEvent=0; m_pkAffectEvent=0;
     std::memset(&m_points,0,sizeof m_points);
@@ -400,7 +400,7 @@ void CHARACTER::Initialize() {
     m_iEventAttr=0; m_kAttackLog.dwVID=0; m_kAttackLog.dwTime=0;
     m_bSkipSave=false; m_bItemLoaded=false; m_bHasPoisoned=false;
     m_bWalking=false; m_bNowWalking=false; m_bDetailLog=false;
-    m_dwLastChangeAttackPositionTime=static_cast<std::uint32_t>(get_dword_time()-10000UL);
+    ResetChangeAttackPositionTime();
     m_iAlignment=0; m_iRealAlignment=0; m_iKillerModePulse=0;
     m_dwQuestNPCVID=0; m_pQuestItem=0; m_bMonsterLog=false; m_bDisableCooltime=false;
     m_bComboIndex=0; m_bPKMode=0; m_dwQuestByVnum=0; m_szMobileAuth[0]=0;
@@ -417,15 +417,14 @@ void CHARACTER::Initialize() {
     m_dwLastSkillTime=get_dword_time();
     for(unsigned i=0;i<5;++i) m_adwMobSkillCooltime[i]=0;
     m_isinPCBang=false; m_pArena=0;
-    m_nPotionLimit=quest::CQuestManager::instance().GetEventFlag("arena_potion_limit_count");
+    SetPotionLimit(quest::CQuestManager::instance().GetEventFlag("arena_potion_limit_count"));
     m_isOpenSafebox=false; m_iSeedTime=0; m_iRefineTime=0; m_iExchangeTime=0;
-    m_iSafeboxLoadTime=0; ClearKillCount(); m_iKillingCount=0; m_iMyShopTime=0;
+    m_iSafeboxLoadTime=0; ClearKillCount(); ClearKillingCount(); m_iMyShopTime=0;
     InitMC(); m_eOverTime=OT_NONE; m_deposit_pulse=0; m_strNewName="";
 }
 
 //08124f20/08125770: ordinary bases/containers/VIDs plus the old explicit bindings.
 CHARACTER::CHARACTER() {
-    m_afAffectFlag.bits[0]=m_afAffectFlag.bits[1]=0;
     m_triggerOnClick.bType=0; m_triggerOnClick.pFunc=0;
     m_stateIdle.Set(this,&CHARACTER::BeginStateEmpty,&CHARACTER::StateIdle,&CHARACTER::EndStateEmpty);
     m_stateMove.Set(this,&CHARACTER::BeginStateEmpty,&CHARACTER::StateMove,&CHARACTER::EndStateEmpty);
@@ -440,8 +439,7 @@ long CHARACTER::GetPoint(BYTE type) {
     int maximum=(type==63 || type==64) ? 50 : 0x7fffffff;
     int value=m_pointsInstant.points[type];
     if(value>maximum)
-        // Original call omits the type argument despite the format; preserve its three supplied values.
-        _sys_err("GetPoint",2738,"POINT_ERROR: %s type %d val %d (max: %d)",GetName(),value,maximum);
+        _sys_err("GetPoint",2738,"POINT_ERROR: %s type %d val %d (max: %d)",GetName(),static_cast<int>(type),value,maximum);
     return value;
 }
 long CHARACTER::GetLimitPoint(BYTE type) {
@@ -452,7 +450,7 @@ long CHARACTER::GetLimitPoint(BYTE type) {
     else if(type==63 || type==64) { limit=50; diagnosticMaximum=50; }
     else if(type==114 || type==115) { limit=13; diagnosticMaximum=50; }
     if(value>diagnosticMaximum)
-        _sys_err("GetLimitPoint",2784,"POINT_ERROR: %s type %d val %d (max: %d)",GetName(),value,diagnosticMaximum);
+        _sys_err("GetLimitPoint",2784,"POINT_ERROR: %s type %d val %d (max: %d)",GetName(),static_cast<int>(type),value,diagnosticMaximum);
     if(value>limit) value=limit;
     if(value<minimum) value=minimum;
     return value;
@@ -482,19 +480,26 @@ float CHARACTER::GetMoveMotionSpeed()
 
 long double CHARACTER::GetMoveMotionSpeedPrecise() {
     DWORD mode=GetMotionMode();
-    bool run=(!m_bNowWalking && m_points.stamina>0) || !GetDesc();
-    DWORD index=run ? 0x300 : 0x200;
-    const CMotion* motion=0;
-    if(m_dwMountVnum) motion=CMotionManager::instance().GetMotion(m_dwMountVnum,index);
-    if(!motion) {
-        DWORD key=(m_dwMountVnum ? 7 : mode)<<24 | index;
+    const auto moveIndex = [this]() -> DWORD {
+        return !IsWalking() || !GetDesc() ? 0x300 : 0x200;
+    };
+    const DWORD mountVnum = m_dwMountVnum;
+    const CMotion* motion = mountVnum
+        ? CMotionManager::instance().GetMotion(mountVnum, moveIndex()) : nullptr;
+    if (!motion) {
+        const DWORD key = ((mountVnum ? 7 : mode) << 24) | moveIndex();
         motion=CMotionManager::instance().GetMotion(GetRaceNum(),key);
     }
     if(!motion) {
-        _sys_err("GetMoveMotionSpeed",2601,"cannot find motion (name %s race %d mode %d)",GetName(),static_cast<std::int32_t>(GetRaceNum()),static_cast<std::int32_t>(mode));
+        const auto race = static_cast<std::int32_t>(GetRaceNum());
+        const char* name = GetName();
+        _sys_err("GetMoveMotionSpeed", 2601, "cannot find motion (name %s race %d mode %d)",
+                 name, race, static_cast<std::int32_t>(mode));
         return 300.0f;
     }
-    return -static_cast<long double>(motion->GetAccumVector().y) / motion->GetDuration();
+    const float displacement = -motion->GetAccumVector().y;
+    const float duration = motion->GetDuration();
+    return static_cast<long double>(displacement) / duration;
 }
 static int MotionTruncate32(long double value) {
     // x87 FISTP with truncation control yields integer-indefinite for NaN/overflow.
@@ -502,16 +507,32 @@ static int MotionTruncate32(long double value) {
     return static_cast<int>(value);
 }
 void CHARACTER::CalculateMoveDuration() {
-    m_posStart.x=GetX(); m_posStart.y=GetY();
-    unsigned int dx=static_cast<unsigned int>(GetX())-static_cast<unsigned int>(m_posDest.x);
-    unsigned int dy=static_cast<unsigned int>(GetY())-static_cast<unsigned int>(m_posDest.y);
+    const long destinationY = m_posDest.y;
+    const long currentX = GetX();
+    const long currentY = GetY();
+    const long destinationX = m_posDest.x;
+    m_posStart.x = currentX;
+    m_posStart.y = currentY;
+    const auto dx = static_cast<std::uint32_t>(currentX) - static_cast<std::uint32_t>(destinationX);
+    const auto dy = static_cast<std::uint32_t>(currentY) - static_cast<std::uint32_t>(destinationY);
     int square=static_cast<int>(dx*dx+dy*dy);
     float distance=static_cast<float>(std::sqrt(static_cast<double>(square)));
     float motionSpeed=GetMoveMotionSpeed();
+    const int moveSpeed=GetLimitPoint(19);
     int baseDuration=MotionTruncate32(static_cast<long double>(distance)/motionSpeed*1000.0L);
-    m_dwMoveDuration=static_cast<std::uint32_t>(CalculateDuration(GetLimitPoint(19),baseDuration));
-    if(m_bCharType!=6)
-        sys_log(1,"%s: GOTO: distance %f, spd %u, duration %u, motion speed %f pos %d %d -> %d %d",GetName(),static_cast<double>(distance),static_cast<std::uint32_t>(GetLimitPoint(19)),static_cast<std::uint32_t>(m_dwMoveDuration),static_cast<double>(motionSpeed),static_cast<std::int32_t>(m_posStart.x),static_cast<std::int32_t>(m_posStart.y),static_cast<std::int32_t>(m_posDest.x),static_cast<std::int32_t>(m_posDest.y));
+    m_dwMoveDuration=static_cast<std::uint32_t>(CalculateDuration(moveSpeed,baseDuration));
+    if (m_bCharType != 6) {
+        const auto loggedSpeed = static_cast<std::uint32_t>(GetLimitPoint(19));
+        const char* name = GetName();
+        const auto destY = static_cast<std::int32_t>(m_posDest.y);
+        const auto destX = static_cast<std::int32_t>(m_posDest.x);
+        const auto startY = static_cast<std::int32_t>(m_posStart.y);
+        const auto startX = static_cast<std::int32_t>(m_posStart.x);
+        const auto duration = static_cast<std::uint32_t>(m_dwMoveDuration);
+        sys_log(1, "%s: GOTO: distance %f, spd %u, duration %u, motion speed %f pos %d %d -> %d %d",
+                name, static_cast<double>(distance), loggedSpeed, duration,
+                static_cast<double>(motionSpeed), startX, startY, destX, destY);
+    }
     m_dwMoveStartTime=get_dword_time();
 }
 void CHARACTER::SetPoint(BYTE type,long value) {
@@ -656,8 +677,9 @@ WORD CHARACTER::GetMobAttackRange()
     if (!m_pkMobData)
         return 0;
     const BYTE type = GetMobBattleType();
+    const TMobTable& table = GetMobTable();
     const int distance = type == 1 || type == 2 ? static_cast<short>(GetPoint(POINT_BOW_DISTANCE)) : 0;
-    return static_cast<WORD>(GetMobTable().wAttackRange + distance);
+    return static_cast<WORD>(table.wAttackRange + distance);
 }
 
 DWORD CHARACTER::GetMobDamageMin() { return GetMobTable().dwDamageRange[0]; }
@@ -744,7 +766,10 @@ void CHARACTER::EncodeInsertPacket(CEntity* entity)
 
     std::uint32_t remaining = 0;
     if (m_posDest.x != packet.x || m_posDest.y != packet.y) {
-        remaining = static_cast<std::uint32_t>(m_dwMoveStartTime + m_dwMoveDuration - get_dword_time());
+        const auto duration = static_cast<std::uint32_t>(m_dwMoveDuration);
+        const auto start = static_cast<std::uint32_t>(m_dwMoveStartTime);
+        const std::uint32_t deadline = duration + start;
+        remaining = deadline - static_cast<std::uint32_t>(get_dword_time());
         if (static_cast<std::int32_t>(remaining) <= 0) {
             packet.x = m_posDest.x;
             packet.y = m_posDest.y;
@@ -780,7 +805,7 @@ void CHARACTER::EncodeInsertPacket(CEntity* entity)
     }
 
     CHARACTER* viewer = entity->IsType(0) ? static_cast<CHARACTER*>(entity) : nullptr;
-    if (viewer && GetDesc() && (viewer->m_bNowWalking || viewer->m_points.stamina <= 0)) {
+    if (viewer && GetDesc() && viewer->IsWalking()) {
         const TPacketGCWalkMode walk{0x6f, static_cast<std::uint32_t>(viewer->GetVID()),
                                     static_cast<BYTE>(viewer->m_bNowWalking)};
         GetDesc()->Packet(&walk, sizeof(walk));
@@ -932,6 +957,13 @@ void CHARACTER::SetExchange(CExchange* exchange) {
     m_pkExchange = exchange;
 }
 
+void CHARACTER::SetUseSeedOrMoonBottleTime() { m_iSeedTime = thecore_pulse(); }
+
+void CHARACTER::SetSafeboxLoadTime() { m_iSafeboxLoadTime = thecore_pulse(); }
+
+void CHARACTER::SetRefineTime() { m_iRefineTime = thecore_pulse(); }
+void CHARACTER::SetExchangeTime() { m_iExchangeTime = thecore_pulse(); }
+
 void CHARACTER::SetMyShopTime() { m_iMyShopTime = thecore_pulse(); }
 
 namespace point_change_detail {
@@ -983,7 +1015,7 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
         }
         if(amount<0 && previous<neg(amount)) {
             sys_log(1,"%s AMOUNT < 0 %ld, CUR EXP: %ld",GetName(),static_cast<long>(neg(amount)),static_cast<long>(previous));
-            amount=neg(previous);m_points.exp=0;val=0;
+            amount=neg(previous);SetExp(0);val=0;
         } else {
             if(m_points.level>98)return;
             if(test_server)ChatPacket(1,"You have gained %d exp.",amount);
@@ -991,9 +1023,9 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
             int exp=add(previous,amount);
             int excess=sub(exp,next);
             sys_log(1,"PRE EXP: %d + %d >= %d (%d)",previous,amount,next,excess);
-            if(exp<next)m_points.exp=static_cast<DWORD>(static_cast<unsigned int>(exp));
+            if(exp<next)SetExp(static_cast<DWORD>(static_cast<unsigned int>(exp)));
             else {
-                amount=sub(next,previous);m_points.exp=0;exp=next;balance=excess;
+                amount=sub(next,previous);SetExp(0);exp=next;balance=excess;
             }
             // Only three format operands are stored for this call in assembly;
             // Ghidra's extra operand is a stale priorPRE-log stack slot.
@@ -1048,7 +1080,7 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
     case 7: {
         if(IsDead() || IsStun())return;
         amount=MIN(sub(m_pointsInstant.iMaxSP,m_points.sp),amount);
-        val=add(amount,m_points.sp);m_points.sp=static_cast<int>(val);break;
+        val=add(amount,m_points.sp);SetSP(static_cast<int>(val));break;
     }
     case 8: {
         SetPoint(type,add(static_cast<int>(GetPoint(type)),amount));
@@ -1056,19 +1088,19 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
         int bonus=MIN(800,mul(static_cast<int>(percent),static_cast<int>(base))/100);
         long point=GetPoint(8);long party=GetPoint(104);
         val=add(add(add(static_cast<int>(base),bonus),static_cast<int>(point)),static_cast<int>(party));
-        m_pointsInstant.iMaxSP=static_cast<int>(val);break;
+        SetMaxSP(static_cast<int>(val));break;
     }
     case 9: {
         if(IsDead() || IsStun())return;
-        int previous=m_points.stamina;
-        amount=MIN(sub(m_pointsInstant.iMaxStamina,previous),amount);
-        val=add(amount,m_points.stamina);m_points.stamina=static_cast<int>(val);
+        int previous=GetStamina();
+        amount=MIN(sub(GetMaxStamina(),previous),amount);
+        val=add(amount,GetStamina());SetStamina(static_cast<int>(val));
         if(!val)SetNowWalking(true);
-        else if(!previous)SetNowWalking(m_bWalking);
+        else if(!previous)ResetWalking();
         if(amount<0 && val!=0)return;
         break;
     }
-    case 10:val=add(amount,m_pointsInstant.iMaxStamina);m_pointsInstant.iMaxStamina=static_cast<int>(val);break;
+    case 10:val=add(amount,GetMaxStamina());SetMaxStamina(static_cast<int>(val));break;
     case 11: {
         if(add(amount,static_cast<int>(m_points.gold))<2000000000) {
             if(LC_IsNewCIBN() && amount>0) {
@@ -1079,7 +1111,7 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
                 default:break;
                 }
             }
-            val=add(amount,static_cast<int>(m_points.gold));m_points.gold=val;
+            val=add(amount,static_cast<int>(m_points.gold));SetGold(val);
         } else {
             const char* name=GetName();
             _sys_err("PointChange",3181,"[OVERFLOW_GOLD] OriGold %ld AddedGold %ld id %lu Name %s ",m_points.gold,static_cast<long>(amount),m_dwPlayerID,name);
@@ -1104,7 +1136,7 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
             int hp=number_ex(JobInitialPoints[lowerJob].hp_per_lv_begin,JobInitialPoints[upperJob].hp_per_lv_end,"char.cpp",3023);
             upperJob=GetJob();lowerJob=GetJob();
             int sp=number_ex(JobInitialPoints[lowerJob].sp_per_lv_begin,JobInitialPoints[upperJob].sp_per_lv_end,"char.cpp",3024);
-            m_points.iRandomSP=add(m_points.iRandomSP,sp);m_points.iRandomHP=add(m_points.iRandomHP,hp);
+            SetRandomSP(add(GetRandomSP(), sp)); SetRandomHP(add(GetRandomHP(), hp));
             if(m_points.skill_group) {
                 level=m_points.level;
                 if(level>4){PointChange(28,1,false,false);level=m_points.level;}
@@ -1118,7 +1150,7 @@ void CHARACTER::PointChange(BYTE type,int amount,bool bAmount,bool bBroadcast) {
         AutoGiveItem(item,static_cast<BYTE>(2),-1,true);
         PointChange(5,sub(m_pointsInstant.iMaxHP,m_points.hp),false,false);
         PointChange(7,sub(m_pointsInstant.iMaxSP,m_points.sp),false,false);
-        PointChange(9,sub(m_pointsInstant.iMaxStamina,m_points.stamina),false,false);
+        PointChange(9,sub(GetMaxStamina(),GetStamina()),false,false);
         SetPoint(25,step);SetRealPoint(25,step);Save();val=step;break;
     }
     case 26:case 27:case 28:case 112:case 113:
@@ -1387,7 +1419,11 @@ void CHARACTER::ComputeBattlePoints() {
             }
         }
     }
-    if(m_dwMountVnum && armor<c_aHorseStat[GetHorseLevel()].iArmor)armor=c_aHorseStat[GetHorseLevel()].iArmor;
+    if (m_dwMountVnum) {
+        const int horseArmor = c_aHorseStat[GetHorseLevel()].iArmor;
+        if (armor < horseArmor)
+            armor = horseArmor;
+    }
     if(LC_IsYMIR())PointChange(16,add(showDefense,armor),false,false);
     else PointChange(16,add(defense,armor),false,false);
     PointChange(20,sub(add(showDefense,armor),static_cast<int>(GetPoint(16))),false,false);
@@ -1449,13 +1485,13 @@ void CHARACTER::ComputePoints() {
         value=m_pkMobData->m_table.sAttackSpeed;
     } else {
         BYTE job=GetJob();
-        int random=m_points.iRandomHP;
+        int random=GetRandomHP();
         int base=JobInitialPoints[job].max_hp;
         value=GetPoint(13);
         job=GetJob();
         maxHP=static_cast<int>(Add(Add(random,base),Mul(value,JobInitialPoints[job].hp_per_ht)));
         job=GetJob();
-        random=m_points.iRandomSP;
+        random=GetRandomSP();
         base=JobInitialPoints[job].max_sp;
         value=GetPoint(15);
         job=GetJob();
@@ -1499,7 +1535,7 @@ void CHARACTER::ComputePoints() {
     PointChange(6,0,false,false);
     if(maxSP!=m_pointsInstant.iMaxSP) SetRealPoint(8,maxSP);
     PointChange(8,0,false,false);
-    m_pointsInstant.iMaxStamina=maxStamina;
+    SetMaxStamina(maxStamina);
     m_pointsInstant.dwImmuneFlag=0;
     for(int cell=0;cell<19;++cell) {
         BYTE slot=static_cast<BYTE>(cell);
@@ -1531,6 +1567,7 @@ void CHARACTER::CheckMaximumPoints()
 }
 //08135b10
 void CHARACTER::SetPolymorph(DWORD race,bool maintain) {
+    race = static_cast<std::uint32_t>(race);
     if(race<4) { race=0; maintain=false; }
     if(m_dwPolymorphRace==race) return;
     m_dwPolymorphRace=race;
@@ -1551,6 +1588,7 @@ void CHARACTER::SetPolymorph(DWORD race,bool maintain) {
 }
 //08136010
 void CHARACTER::MountVnum(DWORD vnum) {
+    vnum = static_cast<std::uint32_t>(vnum);
     if(m_dwMountVnum==vnum) return;
     m_dwMountVnum=vnum;
     ViewReencode();
@@ -1568,7 +1606,7 @@ bool CHARACTER::Show(long map,long x,long y,long z,bool spawnMotion) {
     if(changed) { if(previous) previous->RemoveEntity(this);ViewCleanup(); }
     if(m_bCharType==6) {
         sys_log(0,"SHOW: %s %dx%dx%d",GetName(),x,y,z);
-        if(m_points.stamina<m_pointsInstant.iMaxStamina) StartAffectEvent();
+        if(GetStamina()<GetMaxStamina()) StartAffectEvent();
     } else if(m_pkMobData) {
         m_pkMobInst->m_posLastAttacked.x=x;
         m_pkMobInst->m_posLastAttacked.y=y;
@@ -1590,9 +1628,12 @@ bool CHARACTER::Show(long map,long x,long y,long z,bool spawnMotion) {
 }
 //0812d810. Existing destination x/y affects whether duration is recomputed.
 bool CHARACTER::Goto(long x,long y) {
-    if(GetX()!=x || GetY()!=y) {
-        if(m_posDest.x!=x || m_posDest.y!=y) {
-            m_posDest.x=x;m_posDest.y=y;
+    const auto destX = static_cast<std::int32_t>(x);
+    const auto destY = static_cast<std::int32_t>(y);
+    if (static_cast<std::int32_t>(GetX()) != destX || static_cast<std::int32_t>(GetY()) != destY) {
+        if (static_cast<std::int32_t>(m_posDest.x) != destX || static_cast<std::int32_t>(m_posDest.y) != destY) {
+            m_posDest.x = destX;
+            m_posDest.y = destY;
             CalculateMoveDuration();
             m_dwStateDuration=4;
             if(!IsState(m_stateMove)) {
@@ -1626,10 +1667,10 @@ BOOL CHARACTER::IsHack(bool sendMessage, bool checkShopOwner, int limitTime)
     int pulse=thecore_pulse();
     const int limit = mount_polymorph_detail::Mul(passes_per_sec, limitTime);
     if (test_server) sendMessage=true;
-    if (mount_polymorph_detail::Sub(pulse,m_iSafeboxLoadTime)<limit) {
+    if (mount_polymorph_detail::Sub(pulse,GetSafeboxLoadTime())<limit) {
         if (sendMessage) ChatPacket(1,locale_find("\303\242\260\355\270\246\040\277\254\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\264\331\270\245\260\367\300\270\267\316\040\300\314\265\277\307\322\274\366\040\276\370\275\300\264\317\264\331\056",g_iUseLocale),limitTime);
         if (test_server)
-            ChatPacket(1,"[TestOnly]Pulse %d LoadTime %d PASS %d",pulse,m_iSafeboxLoadTime,limit);
+            ChatPacket(1,"[TestOnly]Pulse %d LoadTime %d PASS %d",pulse,GetSafeboxLoadTime(),limit);
         return 1;
     }
     if (m_pkExchange || m_pkMyShop || (checkShopOwner && m_pkChrShopOwner) ||
@@ -1638,9 +1679,9 @@ BOOL CHARACTER::IsHack(bool sendMessage, bool checkShopOwner, int limitTime)
         return 1;
     }
     const char* message;
-    if (mount_polymorph_detail::Sub(pulse,m_iExchangeTime)<limit || mount_polymorph_detail::Sub(pulse,m_iMyShopTime)<limit)
+    if (mount_polymorph_detail::Sub(pulse,GetExchangeTime())<limit || mount_polymorph_detail::Sub(pulse,GetMyShopTime())<limit)
         message="\260\305\267\241\040\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\264\331\270\245\301\366\277\252\300\270\267\316\040\300\314\265\277\040\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056";
-    else if (mount_polymorph_detail::Sub(pulse,m_iRefineTime)<limit) message="\276\306\300\314\305\333\040\260\263\267\256\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\261\315\310\257\272\316\054\261\315\310\257\261\342\276\357\272\316\270\246\040\273\347\277\353\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056";
+    else if (mount_polymorph_detail::Sub(pulse,GetRefineTime())<limit) message="\276\306\300\314\305\333\040\260\263\267\256\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\261\315\310\257\272\316\054\261\315\310\257\261\342\276\357\272\316\270\246\040\273\347\277\353\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056";
     else return 0;
     if (sendMessage) ChatPacket(1,locale_find(message,g_iUseLocale),limitTime);
     return 1;
@@ -1652,8 +1693,10 @@ void CHARACTER::StartStaminaConsume()
         return;
     PointChange(POINT_STAMINA, 0, false, false);
     m_bStaminaConsume = true;
-    ChatPacket(5, "StartStaminaConsume %d %d",
-               IsStaminaHalfConsume() ? passes_per_sec / 2 : passes_per_sec, m_points.stamina);
+    const bool halfConsume = IsStaminaHalfConsume();
+    const int stamina = GetStamina();
+    const int rate = halfConsume ? passes_per_sec / 2 : passes_per_sec;
+    ChatPacket(5, "StartStaminaConsume %d %d", rate, stamina);
 }
 
 bool CHARACTER::IsStaminaConsume()
@@ -1677,9 +1720,13 @@ bool CHARACTER::IsChangeAttackPosition(LPCHARACTER target)
 {
     if (GetCharType() == CHAR_TYPE_PC)
         return true;
-    const int distance = DISTANCE_APPROX(GetX() - target->GetX(), GetY() - target->GetY());
+    using mount_polymorph_detail::Sub;
+    const int dx = Sub(GetX(), target->GetX());
+    const int dy = Sub(GetY(), target->GetY());
+    const int distance = DISTANCE_APPROX(dx, dy);
     const DWORD interval = distance > GetMobAttackRange() + 100 ? 1000 : 10000;
-    return interval < static_cast<std::uint32_t>(get_dword_time() - m_dwLastChangeAttackPositionTime);
+    const auto now = get_dword_time();
+    return interval < static_cast<std::uint32_t>(now - m_dwLastChangeAttackPositionTime);
 }
 
 bool CHARACTER::Return()
@@ -1721,15 +1768,19 @@ bool CHARACTER::Follow(LPCHARACTER target, float minDistance)
     };
     long x = target->GetX();
     long y = target->GetY();
-    const bool noMove = (m_pointsInstant.dwAIFlag & 2u) != 0;
+    const bool noMove = (GetAIFlag() & 2u) != 0;
     if (target->GetDesc() && (!m_pkParty || !m_pkParty->GetLeader() || m_pkParty->GetLeader() == this)) {
-        const DWORD elapsed = static_cast<std::uint32_t>(get_dword_time() - m_pkMobInst->m_dwLastAttackedTime);
-        const int distance = noMove ? DISTANCE_APPROX(x - startX, y - startY) :
-            DISTANCE_APPROX(m_pkMobInst->m_posLastAttacked.x - startX,
-                            m_pkMobInst->m_posLastAttacked.y - startY);
-        const int limit = noMove ? GetMobTable().wAttackRange : 5000;
-        if (elapsed >= 15000 && distance > limit && Return())
-            return true;
+        const auto now = get_dword_time();
+        const DWORD elapsed = static_cast<std::uint32_t>(now - m_pkMobInst->m_dwLastAttackedTime);
+        if (elapsed >= 15000) {
+            const int limit = noMove ? GetMobTable().wAttackRange : 5000;
+            const int distance = noMove
+                ? DISTANCE_APPROX(Sub(target->GetX(), GetX()), Sub(target->GetY(), GetY()))
+                : DISTANCE_APPROX(Sub(m_pkMobInst->m_posLastAttacked.x, GetX()),
+                                  Sub(m_pkMobInst->m_posLastAttacked.y, GetY()));
+            if (distance > limit && Return())
+                return true;
+        }
     }
     if (noMove)
         return false;
@@ -1761,13 +1812,17 @@ bool CHARACTER::Follow(LPCHARACTER target, float minDistance)
                 GetDeltaByDegree(target->GetRotation(), lead, &dx, &dy);
                 x = Add(x, MotionTruncate32(dx));
                 y = Add(y, MotionTruncate32(dy));
-                const long double projectedX = static_cast<long double>(x) - startX;
-                const long double projectedY = static_cast<long double>(y) - startY;
+                const long projectionBaseX = GetX();
+                const long projectionBaseY = GetY();
+                const long double projectedX = static_cast<long double>(x) - projectionBaseX;
+                const long double projectedY = static_cast<long double>(y) - projectionBaseY;
                 const float predicted = static_cast<float>(std::sqrt(static_cast<double>(
-                    Sub(x, startX) * projectedX + Sub(y, startY) * projectedY)));
+                    Sub(x, projectionBaseX) * projectedX + Sub(y, projectionBaseY) * projectedY)));
                 if (predicted > distance) {
-                    x = MotionTruncate32(startX + static_cast<long double>(Sub(x, startX)) * distance / predicted);
-                    y = MotionTruncate32(startY + static_cast<long double>(Sub(y, startY)) * distance / predicted);
+                    const long clampBaseX = GetX();
+                    const long clampBaseY = GetY();
+                    x = MotionTruncate32(clampBaseX + static_cast<long double>(Sub(x, clampBaseX)) * distance / predicted);
+                    y = MotionTruncate32(clampBaseY + static_cast<long double>(Sub(y, clampBaseY)) * distance / predicted);
                 }
             }
         }
@@ -1781,7 +1836,7 @@ bool CHARACTER::Follow(LPCHARACTER target, float minDistance)
     float dx, dy;
     float travel;
     if (IsChangeAttackPosition(target) && GetMobRank() < 4) {
-        m_dwLastChangeAttackPositionTime = get_dword_time();
+        SetChangeAttackPositionTime();
         int rotation = number_ex(0, 359, const_cast<char*>("char.cpp"), 0x140d);
         if (distance < 500.0f) {
             rotation = MotionTruncate32(GetDegreeFromPositionXY(x, y, startX, startY));
@@ -1843,20 +1898,20 @@ void CHARACTER::SetProto(const CMob* mob)
     m_bCharType = table.bType;
     SetLevel(table.bLevel);
     SetEmpire(table.bEmpire);
-    m_points.exp = table.dwExp;
+    SetExp(table.dwExp);
     SetRealPoint(12, table.bStr);
     SetRealPoint(14, table.bDex);
     SetRealPoint(13, table.bCon);
     SetRealPoint(15, table.bInt);
     ComputePoints();
     m_points.hp = m_pointsInstant.iMaxHP;
-    m_points.sp = m_pointsInstant.iMaxSP;
+    SetSP(GetMaxSP());
     m_pointsInstant.dwAIFlag = table.dwAIFlag;
     m_pointsInstant.dwImmuneFlag = table.dwImmuneFlag;
     AssignTriggers(&table);
     ApplyMobAttribute(&table);
 
-    if (m_bCharType == 2)
+    if (IsStone())
         DetermineDropMetinStone();
     if (m_bCharType == 3 || m_bCharType == 9)
         StartWarpNPCEvent();
@@ -1923,7 +1978,7 @@ public:
         m_lTargetX=mount_polymorph_detail::Mul(m_lTargetX,100);
         m_lTargetY=mount_polymorph_detail::Mul(m_lTargetY,100);
         m_bEmpire=warp->GetEmpire();
-        m_bUseWarp=warp->GetCharType()!=CHAR_TYPE_GOTO;
+        m_bUseWarp=!warp->IsGoto();
         if (!m_bUseWarp) {
             SECTREE_MAP* map=SECTREE_MANAGER::instance().GetMap(warp->GetMapIndex());
             m_lTargetX=mount_polymorph_detail::Add(m_lTargetX,map->m_setting.iBaseX);
@@ -1968,7 +2023,7 @@ long warp_npc_event(LPEVENT event)
 void CHARACTER::StartWarpNPCEvent()
 {
     if (!m_pkWarpNPCEvent &&
-        (m_bCharType == CHAR_TYPE_WARP || m_bCharType == CHAR_TYPE_GOTO)) {
+        (IsWarp() || IsGoto())) {
         void* rawInfo = nullptr;
         const DWORD id = __AllocEventInfo(sizeof(WarpEventInfo), &rawInfo);
         static_cast<WarpEventInfo*>(rawInfo)->character = this;
@@ -1980,13 +2035,16 @@ void CHARACTER::StartWarpNPCEvent()
 int CHARACTER::GetPremiumRemainSeconds(BYTE type)
 {
     if (type>=9) return 0;
-    return mount_polymorph_detail::Sub(m_aiPremiumTimes[type],get_global_time());
+    const time_t now = get_global_time();
+    return mount_polymorph_detail::Sub(m_aiPremiumTimes[type], now);
 }
 
 void CHARACTER::ResetPoint(int level)
 {
+    using namespace mount_polymorph_detail;
+
     const TJobInitialPoints& job = JobInitialPoints[GetJob()];
-    PointChange(POINT_LEVEL, level - GetLevel(), false, false);
+    PointChange(POINT_LEVEL, Sub(level, GetLevel()), false, false);
 
     const int base[] = {job.st, job.ht, job.dx, job.iq};
     for (BYTE point = POINT_ST; point <= POINT_IQ; ++point)
@@ -1994,12 +2052,19 @@ void CHARACTER::ResetPoint(int level)
         SetRealPoint(point, base[point - POINT_ST]);
         SetPoint(point, GetRealPoint(point));
     }
-    m_points.iRandomHP = number_ex(job.hp_per_lv_begin, job.hp_per_lv_end, "char.cpp", 0x159c) * (level - 1);
-    m_points.iRandomSP = number_ex(job.sp_per_lv_begin, job.sp_per_lv_end, "char.cpp", 0x159d) * (level - 1);
-    PointChange(POINT_STAT, GetPoint(POINT_LEVEL_STEP) + level * 3 - GetPoint(POINT_STAT) - 3, false, false);
+    const int hpUpper = JobInitialPoints[GetJob()].hp_per_lv_end;
+    const int hpLower = JobInitialPoints[GetJob()].hp_per_lv_begin;
+    SetRandomHP(Mul(number_ex(hpLower, hpUpper, "char.cpp", 0x159c), Sub(level, 1)));
+
+    const int spUpper = JobInitialPoints[GetJob()].sp_per_lv_end;
+    const int spLower = JobInitialPoints[GetJob()].sp_per_lv_begin;
+    SetRandomSP(Mul(number_ex(spLower, spUpper, "char.cpp", 0x159d), Sub(level, 1)));
+    const long levelStep = GetPoint(POINT_LEVEL_STEP);
+    const long currentStat = GetPoint(POINT_STAT);
+    PointChange(POINT_STAT, Sub(Sub(Add(Mul(level, 3), levelStep), currentStat), 3), false, false);
     ComputePoints();
-    PointChange(POINT_HP, GetMaxHP() - GetHP(), false, false);
-    PointChange(POINT_SP, GetMaxSP() - GetSP(), false, false);
+    PointChange(POINT_HP, Sub(GetMaxHP(), GetHP()), false, false);
+    PointChange(POINT_SP, Sub(GetMaxSP(), GetSP()), false, false);
     PointsPacket();
     LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), 0, "RESET_POINT", "");
 }
@@ -2007,7 +2072,7 @@ void CHARACTER::ResetPoint(int level)
 void CHARACTER::SetWalkingMode(bool walking)
 {
     SetNowWalking(walking);
-    m_bWalking = walking;
+    SetWalking(walking);
 }
 
 void CHARACTER::SetBlockMode(BYTE mode)
@@ -2153,7 +2218,7 @@ void CHARACTER::MonsterChat(BYTE type)
         return;
 
     char script[256];
-    if (m_bCharType == 0) {
+    if (IsMonster()) {
         if (number_ex(0, 60, "char.cpp", 0x1629) != 0)
             return;
         const int index = type * 3 + number_ex(1, 3, "char.cpp", 0x162e);
@@ -2381,12 +2446,15 @@ void CHARACTER::SetNextStatePulse(int nextPulse)
 // 08131c70
 bool CHARACTER::Move(long x, long y)
 {
-    if (GetX() == x && GetY() == y)
+    const auto destX = static_cast<std::int32_t>(x);
+    const auto destY = static_cast<std::int32_t>(y);
+    if (static_cast<std::int32_t>(GetX()) == destX && static_cast<std::int32_t>(GetY()) == destY)
         return true;
     if (test_server && m_bDetailLog)
-        sys_log(0, "%s position %lu %lu", GetName(), static_cast<unsigned long>(x), static_cast<unsigned long>(y));
+        sys_log(0, "%s position %lu %lu", GetName(), static_cast<unsigned long>(static_cast<std::uint32_t>(destX)),
+                static_cast<unsigned long>(static_cast<std::uint32_t>(destY)));
     OnMove(false);
-    return Sync(x, y);
+    return Sync(destX, destY);
 }
 
 void CHARACTER::StopStaminaConsume()
@@ -2395,7 +2463,7 @@ void CHARACTER::StopStaminaConsume()
         return;
     PointChange(9, 0, false, false);
     m_bStaminaConsume = false;
-    ChatPacket(5, "StopStaminaConsume %d", m_points.stamina);
+    ChatPacket(5, "StopStaminaConsume %d", GetStamina());
 }
 
 void CHARACTER::SetSpeedHackMultipler(float factor)
@@ -2415,7 +2483,7 @@ void CHARACTER::OnMove(bool isAttack)
             RemoveAffect(34);
             SetAffectedEunhyung();
         } else {
-            m_dwAffectedEunhyungLevel = 0;
+            ClearAffectedEunhyung();
         }
     }
     mining_cancel();
@@ -2429,7 +2497,9 @@ BYTE CHARACTER::GetMobRank()
 
 void CHARACTER::SetRotationToXY(long x, long y)
 {
-    SetRotation(GetDegreeFromPositionXY(GetX(), GetY(), x, y));
+    const long currentY = GetY();
+    const long currentX = GetX();
+    SetRotation(GetDegreeFromPositionXY(currentX, currentY, x, y));
 }
 
 // 0812d450
@@ -2530,7 +2600,7 @@ void CHARACTER::ReqSafeboxLoad(const char* password)
             sys_log(0, "Overlapped safebox load request from %s", GetName());
             return;
         }
-        m_iSafeboxLoadTime = thecore_pulse();
+        SetSafeboxLoadTime();
         TAccountTable& account = GetDesc()->GetAccountTable();
         m_bOpeningSafebox = true;
         TSafeboxLoadPacket packet;
@@ -2550,7 +2620,7 @@ void CHARACTER::ReqSafeboxLoad(const char* password)
 // 081337f0
 void CHARACTER::LoadSafebox(int size, DWORD gold, int count, TPlayerItem* items)
 {
-    m_isOpenSafebox = true;
+    SetOpenSafebox(true);
     const bool wasLoaded = m_pkSafebox != 0;
     if (wasLoaded)
         m_pkSafebox->ChangeSize(size);
@@ -2601,13 +2671,13 @@ void CHARACTER::CloseSafebox()
 {
     if (!m_pkSafebox)
         return;
-    m_isOpenSafebox = false;
+    SetOpenSafebox(false);
     m_pkSafebox->Save();
     delete m_pkSafebox;
     m_pkSafebox = 0;
     ChatPacket(5, "CloseSafebox");
-    m_iSafeboxLoadTime = thecore_pulse();
-    m_bOpeningSafebox = false;
+    SetSafeboxLoadTime();
+    CancelSafeboxLoad();
     Save();
 }
 
@@ -2721,7 +2791,7 @@ void CHARACTER::ReqMallLoad(const char* password)
         notice = "\074\303\242\260\355\076\040\303\242\260\355\260\241\040\300\314\271\314\040\277\255\267\301\300\326\275\300\264\317\264\331\056";
     } else {
         const int pulse = thecore_pulse();
-        if (pulse - m_iMallLoadTime < passes_per_sec * 10) {
+        if (pulse - GetMallLoadTime() < passes_per_sec * 10) {
             notice = "\074\303\242\260\355\076\040\303\242\260\355\270\246\040\264\335\300\272\301\366\040\061\060\303\312\040\276\310\277\241\264\302\040\277\255\040\274\366\040\276\370\275\300\264\317\264\331\056";
         } else if (GetDistanceFromSafeboxOpen() > 1000.0f) {
             notice = "\074\303\242\260\355\076\040\260\305\270\256\260\241\040\270\326\276\356\274\255\040\303\242\260\355\270\246\040\277\255\040\274\366\040\276\370\275\300\264\317\264\331\056";
@@ -2729,7 +2799,7 @@ void CHARACTER::ReqMallLoad(const char* password)
             DESC* desc = GetDesc();
             if (!desc || !db_clientdesc)
                 return;
-            m_iMallLoadTime = pulse;
+            SetMallLoadTime(pulse);
             const TAccountTable& account = desc->GetAccountTable();
             TSafeboxLoadPacket packet{};
             packet.dwID = account.id;
@@ -2746,7 +2816,7 @@ void CHARACTER::CloseMallFromClient()
 {
     if (!m_pkMall)
         return;
-    m_iMallLoadTime = thecore_pulse();
+    SetMallLoadTime(thecore_pulse());
     CloseMall();
     Save();
 }
@@ -2817,7 +2887,7 @@ void CHARACTER::Disconnect()
     }
 
     if (m_pWarMap) SetWarMap(0);
-    if (m_pWeddingMap) SetWeddingMap(0);
+    if (GetWeddingMap()) SetWeddingMap(0);
     if (m_pGuild) m_pGuild->LogoutMember(this);
     if (m_pkParty) m_pkParty->Unlink(this);
     if (IsStun() || IsDead()) {
@@ -2867,23 +2937,23 @@ void CHARACTER::ResetPlayTime(DWORD remaining)
     m_dwPlayStartTime=static_cast<std::uint32_t>(get_dword_time()-remaining);
 }
 
-void CHARACTER::CreatePlayerProto(TPlayerTable* table)
+void CHARACTER::CreatePlayerProto(TPlayerTable& table)
 {
-    std::memset(table,0,0x71a);
+    std::memset(&table,0,0x71a);
     const char* name=m_strNewName.empty() ? GetName() : m_strNewName.c_str();
-    std::strncpy(table->name,name,24);
-    table->name[24]=0;
-    std::strncpy(table->ip,GetDesc()->GetHostName(),15);
-    table->ip[15]=0;
-    table->id=m_dwPlayerID;
-    table->voice=GetPoint(2);
-    table->level=m_points.level;
-    table->level_step=GetPoint(25);
-    table->exp=m_points.exp;
-    table->gold=m_points.gold;
-    table->job=m_points.job;
-    table->part_base=m_pointsInstant.bBasePart;
-    table->skill_group=m_points.skill_group;
+    std::strncpy(table.name,name,24);
+    table.name[24]=0;
+    std::strncpy(table.ip,GetDesc()->GetHostName(),15);
+    table.ip[15]=0;
+    table.id=m_dwPlayerID;
+    table.voice=GetPoint(2);
+    table.level=m_points.level;
+    table.level_step=GetPoint(25);
+    table.exp=m_points.exp;
+    table.gold=m_points.gold;
+    table.job=m_points.job;
+    table.part_base=m_pointsInstant.bBasePart;
+    table.skill_group=m_points.skill_group;
     const unsigned int elapsed=get_dword_time()-m_dwPlayStartTime;
     if (elapsed>60000) {
         SECTREE* tree=GetSectree();
@@ -2895,51 +2965,51 @@ void CHARACTER::CreatePlayerProto(TPlayerTable* table)
         SetRealPoint(31,mount_polymorph_detail::Add(GetRealPoint(31),elapsed/60000));
         ResetPlayTime(elapsed%60000);
     }
-    table->playtime=GetRealPoint(31);
-    table->lAlignment=m_iRealAlignment;
+    table.playtime=GetRealPoint(31);
+    table.lAlignment=m_iRealAlignment;
     if (!m_posWarp.x && !m_posWarp.y) {
-        table->x=GetX();
-        table->y=GetY();
-        table->z=GetZ();
-        table->lMapIndex=GetMapIndex();
+        table.x=GetX();
+        table.y=GetY();
+        table.z=GetZ();
+        table.lMapIndex=GetMapIndex();
     } else {
-        table->x=m_posWarp.x;
-        table->y=m_posWarp.y;
-        table->z=0;
-        table->lMapIndex=m_lWarpMapIndex;
+        table.x=m_posWarp.x;
+        table.y=m_posWarp.y;
+        table.z=0;
+        table.lMapIndex=m_lWarpMapIndex;
     }
     if (!m_lExitMapIndex) {
-        table->lExitMapIndex=table->lMapIndex;
-        table->lExitX=table->x;
-        table->lExitY=table->y;
+        table.lExitMapIndex=table.lMapIndex;
+        table.lExitX=table.x;
+        table.lExitY=table.y;
     } else {
-        table->lExitMapIndex=m_lExitMapIndex;
-        table->lExitX=m_posExit.x;
-        table->lExitY=m_posExit.y;
+        table.lExitMapIndex=m_lExitMapIndex;
+        table.lExitX=m_posExit.x;
+        table.lExitY=m_posExit.y;
     }
-    sys_log(0,"SAVE: %s %dx%d",GetName(),table->x,table->y);
-    table->st=GetRealPoint(12);
-    table->ht=GetRealPoint(13);
-    table->dx=GetRealPoint(14);
-    table->iq=GetRealPoint(15);
-    table->stat_point=GetPoint(26);
-    table->skill_point=GetPoint(28);
-    table->sub_skill_point=GetPoint(27);
-    table->horse_skill_point=GetPoint(113);
-    table->stat_reset_count=GetPoint(112);
-    table->hp=m_points.hp;
-    table->sp=m_points.sp;
-    table->stamina=m_points.stamina;
-    table->sRandomHP=m_points.iRandomHP;
-    table->sRandomSP=m_points.iRandomSP;
-    for (int i=0;i<36;++i) table->quickslot[i]=m_quickslot[i];
+    sys_log(0,"SAVE: %s %dx%d",GetName(),table.x,table.y);
+    table.st=GetRealPoint(12);
+    table.ht=GetRealPoint(13);
+    table.dx=GetRealPoint(14);
+    table.iq=GetRealPoint(15);
+    table.stat_point=GetPoint(26);
+    table.skill_point=GetPoint(28);
+    table.sub_skill_point=GetPoint(27);
+    table.horse_skill_point=GetPoint(113);
+    table.stat_reset_count=GetPoint(112);
+    table.hp=m_points.hp;
+    table.sp=m_points.sp;
+    table.stamina=GetStamina();
+    table.sRandomHP=GetRandomHP();
+    table.sRandomSP=GetRandomSP();
+    for (int i=0;i<36;++i) table.quickslot[i]=m_quickslot[i];
     if (!m_stMobile.empty() && !m_szMobileAuth[0]) {
-        std::strncpy(table->szMobile,m_stMobile.c_str(),32);
-        table->szMobile[32]=0;
+        std::strncpy(table.szMobile,m_stMobile.c_str(),32);
+        table.szMobile[32]=0;
     }
-    thecore_memcpy(table->parts,m_pointsInstant.parts,8);
-    thecore_memcpy(table->skills,m_pSkillLevels,0x5fa);
-    table->horse=GetHorseData();
+    thecore_memcpy(table.parts,m_pointsInstant.parts,8);
+    thecore_memcpy(table.skills,m_pSkillLevels,0x5fa);
+    table.horse=GetHorseData();
 }
 
 void CHARACTER::SaveReal()
@@ -2950,7 +3020,7 @@ void CHARACTER::SaveReal()
         return;
     }
     TPlayerTable table;
-    CreatePlayerProto(&table);
+    CreatePlayerProto(table);
     db_clientdesc->DBPacket(4,GetDesc()->GetHandle(),&table,0x71a);
     quest::PC* pc=quest::CQuestManager::instance().GetPCForce(m_dwPlayerID);
     if (pc) pc->Save();
@@ -2964,13 +3034,11 @@ void CHARACTER::SaveReal()
 void CHARACTER::GiveRandomSkillBook()
 {
     CSkillManager& skills = CSkillManager::instance();
-    const DWORD ownJob = GetJob() + 1;
     bool hasSkill = false;
-    bool hasOwnSkill = false;
     for (DWORD vnum = 1; vnum <= 120; ++vnum) {
-        if (const CSkillProto* proto = skills.Get(vnum)) {
+        if (skills.Get(vnum)) {
             hasSkill = true;
-            hasOwnSkill = hasOwnSkill || proto->bType == ownJob;
+            break;
         }
     }
     // A partially loaded skill table may have no eligible entry for the original reroll loop.
@@ -2981,11 +3049,22 @@ void CHARACTER::GiveRandomSkillBook()
         return;
 
     char* const source = const_cast<char*>("char.cpp");
-    const bool restrictJob = number_ex(0, 1, source, 0x15ca) == 0 && hasOwnSkill;
+    DWORD jobFilter = 0;
+    if (number_ex(0, 1, source, 0x15ca) == 0) {
+        const BYTE ownJob = static_cast<BYTE>(GetJob() + 1);
+        for (DWORD vnum = 1; vnum <= 120; ++vnum) {
+            const CSkillProto* proto = skills.Get(vnum);
+            if (proto && proto->bType == ownJob) {
+                jobFilter = ownJob;
+                break;
+            }
+        }
+    }
+
     for (;;) {
         const DWORD vnum = number_ex(1, 120, source, 0x15d1);
         const CSkillProto* proto = skills.Get(vnum);
-        if (proto && (!restrictJob || proto->bType == ownJob)) {
+        if (proto && (!jobFilter || proto->bType == jobFilter)) {
             book->SetSocket(0, vnum);
             return;
         }
@@ -3009,9 +3088,11 @@ long recovery_event(LPEVENT event)
     if (!ch->GetDesc()) {
         if (!ch->IsAffectFlag(4)) {
             if (ch->m_bCharType!=4) {
-                int amount=MAX(1,Mul(ch->m_pointsInstant.iMaxHP,ch->GetMobTable().bRegenPercent)/100);
+                const int loggedMaxHP=ch->m_pointsInstant.iMaxHP;
+                int amount=MAX(1,Mul(loggedMaxHP,ch->GetMobTable().bRegenPercent)/100);
                 ch->MonsterLog("HP_REGEN +%d",amount);
-                amount=MAX(1,Mul(ch->m_pointsInstant.iMaxHP,ch->GetMobTable().bRegenPercent)/100);
+                const int appliedMaxHP=ch->m_pointsInstant.iMaxHP;
+                amount=MAX(1,Mul(appliedMaxHP,ch->GetMobTable().bRegenPercent)/100);
                 ch->PointChange(5,amount,false,false);
             }
             if (ch->m_points.hp>=ch->m_pointsInstant.iMaxHP) {
@@ -3025,11 +3106,12 @@ long recovery_event(LPEVENT event)
     ch->UpdateSectree();
     ch->UpdateKillerMode();
     if (ch->IsAffectFlag(4)) return 3;
-    unsigned int now=get_dword_time();
-    unsigned int lastMove=ch->m_dwLastMoveTime;
+    const auto now = static_cast<std::uint32_t>(get_dword_time());
+    const auto lastMove = static_cast<std::uint32_t>(ch->GetLastMoveTime());
+    const auto periods = (now - lastMove) / 3000u;
     ch->DistributeSP(ch,0);
     if (ch->m_points.hp<ch->m_pointsInstant.iMaxHP) {
-        int percent=aiRecoveryPercents[MIN(9,(now-lastMove)/3000)];
+        int percent=aiRecoveryPercents[MIN(9, periods)];
         int amount=Add(Mul(percent,ch->m_pointsInstant.iMaxHP)/100,15);
         amount=Add(amount,Mul(ch->GetPoint(32),amount)/100);
         const int regen = ch->GetPoint(32);
@@ -3150,7 +3232,7 @@ void CHARACTER::UpdateStateMachine(DWORD pulse)
         CFSM::Update();
         // Horse expiry and local Santa warps can destroy the character in its state callback.
         if (CHARACTER_MANAGER::instance().Find(vid) == this)
-            m_dwNextStatePulse = currentPulse + static_cast<std::uint32_t>(m_dwStateDuration);
+            m_dwNextStatePulse = currentPulse + static_cast<std::uint32_t>(GetStateDuration());
     }
 }
 
@@ -3238,16 +3320,26 @@ void CHARACTER::SetTarget(CHARACTER* target)
 
 void CHARACTER::SetWarMap(CWarMap* map)
 {
-    if (m_pWarMap)
-        m_pWarMap->DecMember(this);
+    if (CWarMap* previous = m_pWarMap)
+        previous->DecMember(this);
     m_pWarMap = map;
-    if (m_pWarMap)
-        m_pWarMap->IncMember(this);
+    if (map)
+        map->IncMember(this);
+}
+
+void CHARACTER::ResetChangeAttackPositionTime()
+{
+    m_dwLastChangeAttackPositionTime = static_cast<std::uint32_t>(get_dword_time() - 10000UL);
+}
+
+void CHARACTER::SetChangeAttackPositionTime()
+{
+    m_dwLastChangeAttackPositionTime = get_dword_time();
 }
 
 void CHARACTER::SetWeddingMap(marriage::WeddingMap* map)
 {
-    if (m_pWeddingMap) m_pWeddingMap->DecMember(this);
+    if (marriage::WeddingMap* previous = GetWeddingMap()) previous->DecMember(this);
     m_pWeddingMap=map;
     if (map) map->IncMember(this);
 }
@@ -3286,14 +3378,13 @@ void CHARACTER::SetDungeon(CDungeon* dungeon)
         _sys_err("SetDungeon", 0x1130, "%s is trying to reassigning dungeon (current %p, new party %p)",
                  GetName(), static_cast<void*>(m_pkDungeon), static_cast<void*>(dungeon));
 
-    const bool monster = m_bCharType == CHAR_TYPE_MONSTER || m_bCharType == CHAR_TYPE_STONE;
     if (m_pkDungeon) {
         if (GetDesc()) {
             if (m_pkParty)
                 m_pkDungeon->DecPartyMember(m_pkParty, this);
             else
                 m_pkDungeon->DecMember(this);
-        } else if (monster) {
+        } else if (IsMonster() || IsStone()) {
             m_pkDungeon->DecMonster();
         }
     }
@@ -3304,11 +3395,11 @@ void CHARACTER::SetDungeon(CDungeon* dungeon)
                 static_cast<void*>(dungeon), static_cast<void*>(m_pkParty));
         if (GetDesc()) {
             if (m_pkParty)
-                dungeon->IncPartyMember(m_pkParty, this);
+                m_pkDungeon->IncPartyMember(m_pkParty, this);
             else
-                dungeon->IncMember(this);
-        } else if (monster) {
-            dungeon->IncMonster();
+                m_pkDungeon->IncMember(this);
+        } else if (IsMonster() || IsStone()) {
+            m_pkDungeon->IncMonster();
         }
     }
 }
@@ -3422,7 +3513,7 @@ long party_request_event(LPEVENT event)
     {
         sys_log(0, "PartyRequestEvent %s", guest->GetName());
         guest->ChatPacket(5, "PartyRequestDenied");
-        guest->m_pkPartyRequestEvent = nullptr;
+        guest->SetPartyRequestEvent(nullptr);
     }
     return 0;
 }
@@ -3436,7 +3527,7 @@ bool CHARACTER::RequestToParty(CHARACTER* leader)
         ChatPacket(1, "%s", locale_find("\306\304\306\274\300\345\300\314 \301\242\274\323 \273\363\305\302\260\241 \276\306\264\317\266\363\274\255 \277\344\303\273\300\273 \307\322 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
         return false;
     }
-    if (leader == this || m_pkPartyRequestEvent || !GetDesc() || !leader->GetDesc() || (leader->GetBlockMode() & 32))
+    if (leader == this || m_pkPartyRequestEvent || !GetDesc() || !leader->GetDesc() || leader->IsBlockMode(32))
         return false;
 
     const PartyJoinError error = IsPartyJoinableCondition(leader, this);
@@ -3458,8 +3549,8 @@ bool CHARACTER::RequestToParty(CHARACTER* leader)
     auto* info = static_cast<TPartyJoinEventInfo*>(data);
     info->guestPid = GetPlayerID();
     info->leaderPid = leader->GetPlayerID();
-    m_pkPartyRequestEvent = event_create_ex(party_request_event, id, passes_per_sec * 10,
-                                          const_cast<char*>("char.cpp"), 0x101f);
+    SetPartyRequestEvent(event_create_ex(party_request_event, id, passes_per_sec * 10,
+                                          const_cast<char*>("char.cpp"), 0x101f));
     if (!m_pkPartyRequestEvent)
         return false;
     leader->ChatPacket(5, "PartyRequest %lu", static_cast<unsigned long>(static_cast<DWORD>(GetVID())));
@@ -3524,7 +3615,7 @@ void CHARACTER::PartyInvite(CHARACTER* guest)
         ChatPacket(1, "%s", LC_TEXT("<\306\304\306\274> \306\304\306\274\277\370\300\273 \303\312\264\353\307\322 \274\366 \300\326\264\302 \261\307\307\321\300\314 \276\370\275\300\264\317\264\331."));
         return;
     }
-    if (guest->GetBlockMode() & 2) {
+    if (guest->IsBlockMode(2)) {
         ChatPacket(1, LC_TEXT("<\306\304\306\274> %s \264\324\300\314 \306\304\306\274 \260\305\272\316 \273\363\305\302\300\324\264\317\264\331."), guest->GetName());
         return;
     }
@@ -3667,7 +3758,7 @@ void CHARACTER::SetRace(BYTE race)
         _sys_err("SetRace", 0x613, "CHARACTER::SetRace(name=%s, race=%d).OUT_OF_RACE_RANGE", GetName(), race);
 }
 
-void CHARACTER::SetPlayerProto(TPlayerTable* table)
+void CHARACTER::SetPlayerProto(const TPlayerTable* table)
 {
     if (GetDesc() && GetDesc()->GetHostName()[0])
         SetGMLevel();
@@ -3681,13 +3772,13 @@ void CHARACTER::SetPlayerProto(TPlayerTable* table)
     m_points.skill_group = table->skill_group;
     m_pointsInstant.bBasePart = table->part_base;
     SetPart(3, table->parts[3]);
-    m_points.iRandomHP = table->sRandomHP;
-    m_points.iRandomSP = table->sRandomSP;
+    SetRandomHP(table->sRandomHP);
+    SetRandomSP(table->sRandomSP);
 
     TPlayerSkill* skills = new TPlayerSkill[255];
-    thecore_memcpy(skills, table->skills, sizeof(table->skills));
     delete[] m_pSkillLevels;
     m_pSkillLevels = skills;
+    thecore_memcpy(m_pSkillLevels, table->skills, sizeof(table->skills));
     if (table->lMapIndex > 9999) {
         m_posWarp.x = table->lExitX;
         m_posWarp.y = table->lExitY;
@@ -3712,14 +3803,14 @@ void CHARACTER::SetPlayerProto(TPlayerTable* table)
     SetRealPoint(25, table->level_step);
     SetRace(static_cast<BYTE>(table->job));
     SetLevel(table->level);
-    m_points.exp = table->exp;
-    m_points.gold = table->gold;
+    SetExp(table->exp);
+    SetGold(table->gold);
     SetMapIndex(table->lMapIndex);
     SetXYZ(table->x, table->y, table->z);
     ComputePoints();
     m_points.hp = table->hp;
-    m_points.sp = table->sp;
-    m_points.stamina = table->stamina;
+    SetSP(table->sp);
+    SetStamina(table->stamina);
     if (!test_server && GetGMLevel() > 1) {
         m_afAffectFlag.bits[0] |= 1;
         m_bPKMode = 3;
@@ -3778,36 +3869,49 @@ void CHARACTER::MainCharacterPacket()
 {
     const auto mapIndex = static_cast<unsigned>(GetMapIndex());
     const BGMInfo& bgm = CHARACTER_GetBGMInfo(mapIndex);
-    DESC* desc = GetDesc();
-    const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(m_vid));
-    const WORD race = GetRaceNum();
-    const auto x = static_cast<std::int32_t>(GetX());
-    const auto y = static_cast<std::int32_t>(GetY());
-    const auto z = static_cast<std::int32_t>(GetZ());
-    const BYTE empire = desc->GetEmpire();
-    const BYTE skillGroup = m_points.skill_group;
 
     if (bgm.name.empty()) {
         sys_log(0, "bgm_info.play(%d, DEFAULT_BGM_NAME)", static_cast<int>(mapIndex));
+        const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(m_vid));
+        const WORD race = GetRaceNum();
+        const auto x = static_cast<std::int32_t>(GetX());
+        const auto y = static_cast<std::int32_t>(GetY());
+        const auto z = static_cast<std::int32_t>(GetZ());
+        const BYTE empire = GetDesc()->GetEmpire();
+        const BYTE skillGroup = m_points.skill_group;
         TPacketGCMainCharacter packet = {0x71, vid, race, {}, x, y, z, empire, skillGroup};
         std::strncpy(packet.szName, GetName(), sizeof(packet.szName) - 1);
-        desc->Packet(&packet, sizeof(packet));
+        GetDesc()->Packet(&packet, sizeof(packet));
         if (!m_stMobile.empty())
             ChatPacket(5, "sms");
     } else if (CHARACTER_IsBGMVolumeEnable()) {
         sys_log(0, "bgm_info.play_bgm_vol(%d, name='%s', vol=%f)",
                 static_cast<int>(mapIndex), bgm.name.c_str(), bgm.vol);
+        const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(m_vid));
+        const WORD race = GetRaceNum();
+        const auto x = static_cast<std::int32_t>(GetX());
+        const auto y = static_cast<std::int32_t>(GetY());
+        const auto z = static_cast<std::int32_t>(GetZ());
+        const BYTE empire = GetDesc()->GetEmpire();
+        const BYTE skillGroup = m_points.skill_group;
         TPacketGCMainCharacter4_BGM_VOL packet = {0x8a, vid, race, {}, {}, bgm.vol, x, y, z, empire, skillGroup};
         std::strncpy(packet.szChrName, GetName(), sizeof(packet.szChrName) - 1);
         std::strncpy(packet.szBGMName, bgm.name.c_str(), sizeof(packet.szBGMName) - 1);
         sys_log(0, "bgm_info.packet_size[%d]", static_cast<int>(sizeof(packet)));
-        desc->Packet(&packet, sizeof(packet));
+        GetDesc()->Packet(&packet, sizeof(packet));
     } else {
         sys_log(0, "bgm_info.play(%d, '%s')", static_cast<int>(mapIndex), bgm.name.c_str());
+        const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(m_vid));
+        const WORD race = GetRaceNum();
+        const auto x = static_cast<std::int32_t>(GetX());
+        const auto y = static_cast<std::int32_t>(GetY());
+        const auto z = static_cast<std::int32_t>(GetZ());
+        const BYTE empire = GetDesc()->GetEmpire();
+        const BYTE skillGroup = m_points.skill_group;
         TPacketGCMainCharacter3_BGM packet = {0x89, vid, race, {}, {}, x, y, z, empire, skillGroup};
         std::strncpy(packet.szChrName, GetName(), sizeof(packet.szChrName) - 1);
         std::strncpy(packet.szBGMName, bgm.name.c_str(), sizeof(packet.szBGMName) - 1);
-        desc->Packet(&packet, sizeof(packet));
+        GetDesc()->Packet(&packet, sizeof(packet));
     }
 }
 
@@ -3826,8 +3930,8 @@ void CHARACTER::PointsPacket()
     packet.points[6] = m_pointsInstant.iMaxHP;
     packet.points[7] = m_points.sp;
     packet.points[8] = m_pointsInstant.iMaxSP;
-    packet.points[9] = m_points.stamina;
-    packet.points[10] = m_pointsInstant.iMaxStamina;
+    packet.points[9] = GetStamina();
+    packet.points[10] = GetMaxStamina();
     packet.points[11] = m_points.gold;
     for (int i = 12; i < POINT_MAX_NUM; ++i)
         packet.points[i] = GetPoint(static_cast<BYTE>(i));
@@ -3857,12 +3961,12 @@ void CHARACTER::SendEquipment(CHARACTER* viewer)
         entry[4] = static_cast<BYTE>(item->GetCount());
         for (unsigned socket = 0; socket < 3; ++socket)
         {
-            const std::int32_t value = item->GetSockets()[socket];
+            const std::int32_t value = item->GetSocket(socket);
             std::memcpy(entry + 5 + socket * 4, &value, sizeof(value));
         }
         for (unsigned index = 0; index < 7; ++index)
         {
-            const auto& attr = item->GetAttributes()[index];
+            const auto& attr = item->GetAttribute(index);
             BYTE* attribute = entry + 17 + index * 3;
             attribute[0] = attr.bType;
             const std::int16_t value = attr.sValue;
@@ -4002,7 +4106,7 @@ LPCHARACTER CHARACTER::GetMarryPartner()
 
 int CHARACTER::GetMarriageBonus(DWORD itemVnum, bool sum)
 {
-    if (GetCharType() != CHAR_TYPE_PC)
+    if (IsNPC())
         return 0;
     marriage::TMarriage* record = marriage::CManager::instance().Get(GetPlayerID());
     return record ? record->GetBonus(itemVnum, sum, this) : 0;
@@ -4012,16 +4116,20 @@ namespace {
 struct FFindReviver
 {
     LPCHARACTER reviver;
+    bool hasReviver;
 
     void operator()(LPCHARACTER member)
     {
-        if (!member || member->GetCharType() != CHAR_TYPE_MONSTER || !member->IsReviver() ||
+        if (!member || !member->IsMonster() || !member->IsReviver() ||
             member == reviver || member->IsDead())
             return;
 
         char source[] = "char.cpp";
-        if (number_ex(1, 100, source, 0x19f4) <= member->GetMobTable().bRevivePoint)
+        const int roll = number_ex(1, 100, source, 0x19f4);
+        if (roll <= member->GetMobTable().bRevivePoint) {
+            hasReviver = true;
             reviver = member;
+        }
     }
 };
 }
@@ -4032,7 +4140,7 @@ bool CHARACTER::HasReviverInParty()
     CParty* party = GetParty();
     if (!party || party->GetMemberCount() == 1)
         return false;
-    return party->ForEachMemberPtr(FFindReviver{}).reviver != nullptr;
+    return party->ForEachMemberPtr(FFindReviver{}).hasReviver;
 }
 
 bool CHARACTER::IsRevive()
@@ -4055,7 +4163,7 @@ bool CHARACTER::IsSyncOwner(LPCHARACTER owner)
 // 08130640: link the owner and victim, then broadcast the original ownership packet.
 bool CHARACTER::SetSyncOwner(LPCHARACTER owner, bool removeFromList)
 {
-    if (m_pointsInstant.dwAIFlag & 2)
+    if (GetAIFlag() & 2)
         return false;
     if (owner == this) {
         _sys_err("SetSyncOwner", 0xf61, "SetSyncOwner owner == this (%p)", static_cast<void*>(this));
@@ -4105,23 +4213,44 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER owner, bool removeFromList)
 }
 
 // 081308e0: release our owner, then release the characters owned by us.
+namespace {
+struct FuncClearSync
+{
+    void operator()(LPCHARACTER character)
+    {
+        assert(character);
+        character->SetSyncOwner(nullptr, false);
+    }
+};
+}
+
 void CHARACTER::ClearSync()
 {
-    SetSyncOwner(0, true);
-    for (LPCHARACTER character : m_kLst_pkChrSyncOwned) {
-        assert(character);
-        character->SetSyncOwner(0, false);
-    }
+    SetSyncOwner(nullptr, true);
+    FuncClearSync clear;
+    for (LPCHARACTER character : m_kLst_pkChrSyncOwned)
+        clear(character);
     m_kLst_pkChrSyncOwned.clear();
 }
 
 // 081322a0: kill stone-spawned characters and unlink from our parent stone.
+namespace {
+struct FuncDeadSpawnedByStone
+{
+    void operator()(LPCHARACTER child)
+    {
+        child->Dead(nullptr, false);
+        child->SetStone(nullptr);
+    }
+};
+}
+
 void CHARACTER::ClearStone()
 {
+    FuncDeadSpawnedByStone cleanup;
     while (!m_set_pkChrSpawnedBy.empty()) {
         LPCHARACTER child = *m_set_pkChrSpawnedBy.begin();
-        child->Dead(0, false);
-        child->SetStone(0);
+        cleanup(child);
         m_set_pkChrSpawnedBy.erase(child);
     }
     if (m_pkChrStone) {
@@ -4240,7 +4369,7 @@ void CHARACTER::fishing()
         ChatPacket(1, locale_find("\263\254\275\303\264\353\270\246 \300\345\302\370 \307\317\274\274\277\344.", g_iUseLocale));
         return;
     }
-    if (!rod->GetSockets()[2]) {
+    if (!static_cast<std::uint32_t>(rod->GetSocket(2))) {
         ChatPacket(1, locale_find("\271\314\263\242\270\246 \263\242\260\355 \264\370\301\256 \301\326\274\274\277\344.", g_iUseLocale));
         return;
     }
@@ -4310,8 +4439,8 @@ void CHARACTER::OnClick(LPCHARACTER causer)
         return;
     }
 
-    if (LC_IsNewCIBN() && (causer->m_eOverTime == OT_3HOUR || causer->m_eOverTime == OT_5HOUR)) {
-        const int hours = causer->m_eOverTime == OT_3HOUR ? 3 : 5;
+    if (LC_IsNewCIBN() && (causer->IsOverTime(OT_3HOUR) || causer->IsOverTime(OT_5HOUR))) {
+        const int hours = causer->IsOverTime(OT_3HOUR) ? 3 : 5;
         sys_log(0, "Teen OverTime : name = %s, hour = %d)", causer->GetName(), hours);
         return;
     }

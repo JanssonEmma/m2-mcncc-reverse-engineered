@@ -10,12 +10,40 @@
 
 #include <cmath>
 #include <cstdint>
+#include <limits>
 #include <memory>
 
 extern std::string g_stLocale;
 
 namespace
 {
+    std::int32_t ConvertGuildWarScore(double score)
+    {
+        constexpr auto minimum = (std::numeric_limits<std::int32_t>::min)();
+        constexpr auto maximum = (std::numeric_limits<std::int32_t>::max)();
+        const double truncated = std::trunc(score);
+        // The original x87 FISTP returns the integer-indefinite value on overflow.
+        if (!(truncated >= minimum && truncated <= maximum))
+            return minimum;
+        return static_cast<std::int32_t>(truncated);
+    }
+
+    std::int32_t GuildSigned32(std::uint32_t bits)
+    {
+        if (bits <= 0x7fffffffu)
+            return static_cast<std::int32_t>(bits);
+        return -1 - static_cast<std::int32_t>(0xffffffffu - bits);
+    }
+
+    std::int32_t GuildWarScoreDifference(int lhs, int rhs)
+    {
+        return GuildSigned32(static_cast<std::uint32_t>(lhs) - static_cast<std::uint32_t>(rhs));
+    }
+
+    std::int32_t GuildDeadline(time_t now, DWORD seconds)
+    {
+        return GuildSigned32(static_cast<std::uint32_t>(now) + static_cast<std::uint32_t>(seconds));
+    }
     const int GUILD_RANK_MAX_NUM = 20;
     const BYTE GUILD_LADDER_HEADER = 101;
     const BYTE GUILD_MONEY_HEADER = 103;
@@ -187,12 +215,16 @@ void CGuildManager::Initialize()
 
     if (!polyPower.Analyze(str))
         sys_err("cannot set power poly: %s", str);
+    else
+        sys_log(0, "POWER_POLY: %s", str);
 
     if (!CConfig::instance().GetValue("POLY_HANDICAP", str, 128))
         *str = '\0';
 
     if (!polyHandicap.Analyze(str))
         sys_err("cannot set handicap poly: %s", str);
+    else
+        sys_log(0, "HANDICAP_POLY: %s", str);
 
     QueryRanking();
 }
@@ -240,12 +272,13 @@ void CGuildManager::ResultRanking(MYSQL_RES * pRes)
 
     while ((row = mysql_fetch_row(pRes)))
     {
-        DWORD dwGID = static_cast<DWORD>(atoi(row[0]));
+        const DWORD dwGID = static_cast<std::uint32_t>(atoi(row[0]));
         int iLadderPoint = atoi(row[2]);
 
         if (iLadderPoint != iLastLadderPoint)
             ++iRank;
 
+        sys_log(0, "GUILD_RANK: %-24s %2d %d", row[1], iRank, iLadderPoint);
         map_kLadderPointRankingByGID.insert(std::make_pair(dwGID, iRank));
     }
 }
@@ -350,8 +383,8 @@ void CGuildWarReserve::Initialize()
         {
             strncpy(szLogin, row[0], 30);
             szLogin[30] = '\0';
-            dwGuild = static_cast<DWORD>(atoi(row[1]));
-            dwGold = static_cast<DWORD>(atoi(row[2]));
+            dwGuild = static_cast<std::uint32_t>(atoi(row[1]));
+            dwGold = static_cast<std::uint32_t>(atoi(row[2]));
 
             mapBet.insert(std::make_pair(szLogin, std::make_pair(dwGuild, dwGold)));
         }
@@ -420,7 +453,7 @@ void CGuildManager::GuildWarWin(DWORD GID)
     if (it == m_map_kGuild.end())
         return;
 
-    ++it->second.win;
+    it->second.win = GuildSigned32(static_cast<std::uint32_t>(it->second.win) + 1);
 
     char buf[1024];
     dbsql::snprintf(buf, sizeof(buf), "UPDATE guild%s SET win=%d WHERE id=%lu", GetTablePostfix(), it->second.win, GID);
@@ -434,7 +467,7 @@ void CGuildManager::GuildWarLose(DWORD GID)
     if (it == m_map_kGuild.end())
         return;
 
-    ++it->second.loss;
+    it->second.loss = GuildSigned32(static_cast<std::uint32_t>(it->second.loss) + 1);
 
     char buf[1024];
     dbsql::snprintf(buf, sizeof(buf), "UPDATE guild%s SET loss=%d WHERE id=%lu", GetTablePostfix(), it->second.loss, GID);
@@ -448,7 +481,7 @@ void CGuildManager::GuildWarDraw(DWORD GID)
     if (it == m_map_kGuild.end())
         return;
 
-    ++it->second.draw;
+    it->second.draw = GuildSigned32(static_cast<std::uint32_t>(it->second.draw) + 1);
 
     char buf[1024];
     dbsql::snprintf(buf, sizeof(buf), "UPDATE guild%s SET draw=%d WHERE id=%lu", GetTablePostfix(), it->second.draw, GID);
@@ -466,7 +499,8 @@ bool CGuildManager::IsHalfWinLadderPoint(DWORD dwGuildWinner, DWORD dwGuildLoser
     std::map<DWORD, time_t>::iterator it = m_mapGuildWarEndTime[GID1].find(GID2);
 
     if (it != m_mapGuildWarEndTime[GID1].end() &&
-            it->second + (12 * 60 * 60) > CClientManager::instance().GetCurrentTime())
+            GuildDeadline(it->second, 12 * 60 * 60) >
+                    GuildDeadline(CClientManager::instance().GetCurrentTime(), 0))
         return true;
 
     return false;
@@ -491,8 +525,9 @@ void CGuildManager::ProcessWinLose(DWORD dwGuildWinner, DWORD dwGuildLoser)
     sys_log(0, "GuildWar: \tWinner : %d Loser : %d", static_cast<int>(dwGuildWinner), static_cast<int>(dwGuildLoser));
 
     int iPoint = GetLadderPoint(dwGuildLoser);
-    int gain = (int)(iPoint * 0.05);
-    int loss = (int)(iPoint * 0.07);
+    // The original multiplies the binary64 percentages on the x87 stack before truncating.
+    int gain = static_cast<int>(static_cast<long double>(iPoint) * 0.05);
+    int loss = static_cast<int>(static_cast<long double>(iPoint) * 0.07);
 
     if (IsHalfWinLadderPoint(dwGuildWinner, dwGuildLoser))
         gain /= 2;
@@ -514,10 +549,9 @@ void CGuildManager::ChangeLadderPoint(DWORD GID, int change)
 
     TGuild & r = it->second;
 
-    r.ladder_point += change;
-
-    if (r.ladder_point < 0)
-        r.ladder_point = 0;
+    const auto sum = static_cast<std::uint32_t>(r.ladder_point) + static_cast<std::uint32_t>(change);
+    // The original 32-bit addition clamps the result when its sign bit is set.
+    r.ladder_point = (sum & 0x80000000u) ? 0 : static_cast<int>(sum);
 
     sys_log(0, "GuildManager::ChangeLadderPoint %lu %d", GID, r.ladder_point);
 
@@ -542,8 +576,8 @@ void CGuildManager::UseSkill(DWORD GID, DWORD dwSkillVnum, DWORD dwCooltime)
 {
 
     sys_log(0, "UseSkill(gid=%d, skill=%d) CoolTime(%d:%d)", static_cast<int>(GID), static_cast<int>(dwSkillVnum), static_cast<int>(dwCooltime),
-            static_cast<int>(CClientManager::instance().GetCurrentTime() + dwCooltime));
-    m_pqSkill.push(std::make_pair(CClientManager::instance().GetCurrentTime() + dwCooltime, TGuildSkillUsed(GID, dwSkillVnum)));
+            GuildDeadline(CClientManager::instance().GetCurrentTime(), dwCooltime));
+    m_pqSkill.push(std::make_pair(GuildDeadline(CClientManager::instance().GetCurrentTime(), dwCooltime), TGuildSkillUsed(GID, dwSkillVnum)));
 
 }
 
@@ -557,7 +591,8 @@ void CGuildManager::MoneyChange(DWORD dwGuild, DWORD dwGold)
     CClientManager::instance().ForwardPacket(GUILD_MONEY_HEADER, &p, sizeof(p));
 
     char buf[1024];
-    dbsql::snprintf(buf, sizeof(buf), "UPDATE guild%s SET gold=%lu WHERE id = %lu", GetTablePostfix(), dwGold, dwGuild);
+    dbsql::snprintf(buf, sizeof(buf), "UPDATE guild%s SET gold=%lu WHERE id = %lu", GetTablePostfix(),
+            static_cast<unsigned long>(static_cast<std::uint32_t>(dwGold)), dwGuild);
     CDBManager::instance().AsyncQuery(buf);
 }
 
@@ -574,7 +609,8 @@ void CGuildManager::DepositMoney(DWORD dwGuild, long lGold)
         return;
     }
 
-    it->second.gold += lGold;
+    it->second.gold = GuildSigned32(static_cast<std::uint32_t>(it->second.gold) +
+                                    static_cast<std::uint32_t>(lGold));
     sys_log(0, "GUILD: %lu Deposit %lu Total %d", dwGuild, static_cast<unsigned long>(lGold), it->second.gold);
 
     MoneyChange(dwGuild, it->second.gold);
@@ -592,7 +628,8 @@ void CGuildManager::WithdrawMoney(CPeer* peer, DWORD dwGuild, long lGold)
 
     if (it->second.gold >= lGold)
     {
-        it->second.gold -= lGold;
+        it->second.gold = GuildSigned32(static_cast<std::uint32_t>(it->second.gold) -
+                                        static_cast<std::uint32_t>(lGold));
         sys_log(0, "GUILD: %lu Withdraw %d Total %d", dwGuild, static_cast<int>(lGold), it->second.gold);
 
         TPacketDGGuildMoneyWithdraw p;
@@ -614,7 +651,8 @@ void CGuildManager::WithdrawMoneyReply(DWORD dwGuild, BYTE bGiveSuccess, long lG
     sys_log(0, "GuildManager::WithdrawMoneyReply : guild %lu success %d gold %d", dwGuild, bGiveSuccess, static_cast<int>(lGold));
 
     if (!bGiveSuccess)
-        it->second.gold += lGold;
+        it->second.gold = GuildSigned32(static_cast<std::uint32_t>(it->second.gold) +
+                                        static_cast<std::uint32_t>(lGold));
     else
         MoneyChange(dwGuild, it->second.gold);
 }
@@ -623,7 +661,7 @@ void CGuildManager::Update()
 {
     ProcessReserveWar();
 
-    time_t now = CClientManager::instance().GetCurrentTime();
+    const auto now = GuildDeadline(CClientManager::instance().GetCurrentTime(), 0);
 
     if (!m_pqOnWar.empty())
     {
@@ -653,7 +691,7 @@ void CGuildManager::Update()
 
     while (!m_pqWaitStart.empty() && m_pqWaitStart.top().first <= now)
     {
-        const TGuildWaitStartInfo & ws = m_pqWaitStart.top().second;
+        const TGuildWaitStartInfo ws = m_pqWaitStart.top().second;
         m_pqWaitStart.pop();
 
         StartWar(ws.bType, ws.GID[0], ws.GID[1], ws.pkReserve);
@@ -664,7 +702,7 @@ void CGuildManager::Update()
             UpdateScore(ws.GID[1], ws.GID[0], ws.lInitialScore, 0);
         }
 
-        TPacketGuildWar p;
+        TPacketGuildWar p{};
 
         p.bType     = ws.bType;
         p.bWar      = WAR_STATE_ON_WAR;
@@ -846,9 +884,9 @@ void CGuildManager::StartWar(BYTE bType, DWORD GID1, DWORD GID2, CGuildWarReserv
     TGuildWarInfo & gw = m_WarMap[GID1][GID2];
 
     if (bType == WAR_TYPE_FIELD)
-        gw.tEndTime = CClientManager::instance().GetCurrentTime() + 1800;
+        gw.tEndTime = GuildDeadline(CClientManager::instance().GetCurrentTime(), 1800);
     else
-        gw.tEndTime = CClientManager::instance().GetCurrentTime() + 172800;
+        gw.tEndTime = GuildDeadline(CClientManager::instance().GetCurrentTime(), 172800);
 
     gw.pElement = new TGuildWarPQElement(bType, GID1, GID2);
     gw.pkReserve = pkReserve;
@@ -884,21 +922,22 @@ void CGuildManager::UpdateScore(DWORD dwGainGID, DWORD dwOppGID, int iScoreDelta
             p->iScore[0] += iScoreDelta;
             p->iBetScore[0] += iBetScoreDelta;
 
-            iNewScore = p->iScore[0];
-            iNewBetScore = p->iBetScore[0];
+            iNewScore = GuildSigned32(p->iScore[0]);
+            iNewBetScore = GuildSigned32(p->iBetScore[0]);
         }
         else
         {
             p->iScore[1] += iScoreDelta;
             p->iBetScore[1] += iBetScoreDelta;
 
-            iNewScore = p->iScore[1];
-            iNewBetScore = p->iBetScore[1];
+            iNewScore = GuildSigned32(p->iScore[1]);
+            iNewBetScore = GuildSigned32(p->iBetScore[1]);
         }
 
         sys_log(0, "GuildWar: SendGuildWarScore guild %lu wartype %u score_delta %d betscore_delta %d result %lu, %lu",
                 dwGainGID, static_cast<unsigned>(p->bType), iScoreDelta, iBetScoreDelta,
-                static_cast<unsigned long>(iNewScore), static_cast<unsigned long>(iNewBetScore));
+                static_cast<unsigned long>(static_cast<std::uint32_t>(iNewScore)),
+                static_cast<unsigned long>(static_cast<std::uint32_t>(iNewBetScore)));
 
         CClientManager::instance().for_each_peer(FSendGuildWarScore(dwGainGID, dwOppGID, iNewScore, iNewBetScore));
     }
@@ -962,17 +1001,17 @@ bool CGuildManager::WaitStart(TPacketGuildWar * p)
         if (!TakeBetPrice(p->dwGuildFrom, p->dwGuildTo, p->lWarPrice))
             return false;
 
-    DWORD dwCurTime = CClientManager::instance().GetCurrentTime();
+    const std::uint32_t startTime = static_cast<std::uint32_t>(CClientManager::instance().GetCurrentTime()) + 5;
 
     TGuildWaitStartInfo info(p->bType, p->dwGuildFrom, p->dwGuildTo, p->lWarPrice, p->lInitialScore, NULL);
-    m_pqWaitStart.push(std::make_pair(dwCurTime + 5, info));
+    m_pqWaitStart.push(std::make_pair(GuildSigned32(startTime), info));
 
     sys_log(0,
             "GuildWar: WaitStart g1 %d g2 %d price %d start at %lu",
             static_cast<int>(p->dwGuildFrom),
             static_cast<int>(p->dwGuildTo),
             static_cast<int>(p->lWarPrice),
-            dwCurTime + 5);
+            static_cast<unsigned long>(startTime));
 
     return true;
 }
@@ -1049,7 +1088,7 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
     polyPower.SetVar("alv", alv);
     polyPower.SetVar("mc", mc);
 
-    t.lPowerFrom = (long) polyPower.Eval();
+    t.lPowerFrom = ConvertGuildWarScore(polyPower.Eval());
     sys_log(0, "GuildWar: %lu lvp %d rkp %d alv %d mc %d power %ld", GID1, lvp, rkp, alv, mc, static_cast<long>(t.lPowerFrom));
 
     TGuild & k2 = TouchGuild(GID2);
@@ -1064,7 +1103,7 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
     polyPower.SetVar("alv", alv);
     polyPower.SetVar("mc", mc);
 
-    t.lPowerTo = (long) polyPower.Eval();
+    t.lPowerTo = ConvertGuildWarScore(polyPower.Eval());
     sys_log(0, "GuildWar: %lu lvp %d rkp %d alv %d mc %d power %ld", GID2, lvp, rkp, alv, mc, static_cast<long>(t.lPowerTo));
 
     if (t.lPowerTo > t.lPowerFrom)
@@ -1078,7 +1117,7 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
         polyHandicap.SetVar("pB", t.lPowerTo);
     }
 
-    t.lHandicap = (long) polyHandicap.Eval();
+    t.lHandicap = ConvertGuildWarScore(polyHandicap.Eval());
     sys_log(0, "GuildWar: handicap %ld", static_cast<long>(t.lHandicap));
 
     char szQuery[513];
@@ -1107,7 +1146,7 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
 
 void CGuildManager::ProcessReserveWar()
 {
-    DWORD dwCurTime = CClientManager::instance().GetCurrentTime();
+    const auto dwCurTime = static_cast<std::uint32_t>(CClientManager::instance().GetCurrentTime());
 
     std::map<DWORD, CGuildWarReserve*>::iterator it = m_map_kWarReserve.begin();
 
@@ -1120,7 +1159,8 @@ void CGuildManager::ProcessReserveWar()
 
         if (!r.bStarted && r.dwTime - 1800 <= dwCurTime)
         {
-            int iMin = static_cast<int>(std::ceil(static_cast<float>(static_cast<int>(r.dwTime - dwCurTime)) / 60.0f));
+            const auto seconds = static_cast<std::int32_t>(r.dwTime - dwCurTime);
+            const int iMin = static_cast<int>(std::ceil(static_cast<double>(seconds) / 60.0));
 
             TGuild & r_1 = m_map_kGuild[r.dwGuildFrom];
             TGuild & r_2 = m_map_kGuild[r.dwGuildTo];
@@ -1138,7 +1178,7 @@ void CGuildManager::ProcessReserveWar()
                 r.bStarted = true;
 
                 TGuildWaitStartInfo info(r.bType, r.dwGuildFrom, r.dwGuildTo, r.lWarPrice, r.lInitialScore, pk);
-                m_pqWaitStart.push(std::make_pair(dwCurTime + 5, info));
+                m_pqWaitStart.push(std::make_pair(GuildSigned32(dwCurTime + 5), info));
 
                 TPacketGuildWar pck;
 
@@ -1311,7 +1351,7 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
 
     if (m_data.lPowerFrom > m_data.lPowerTo)
     {
-        if (m_data.lHandicap > iScoreFrom - iScoreTo)
+        if (m_data.lHandicap > GuildWarScoreDifference(iScoreFrom, iScoreTo))
         {
             sys_log(0, "WAR_REWARD: End: failed to overcome handicap, From is strong but To won");
             dwWinner = m_data.dwGuildTo;
@@ -1324,7 +1364,7 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
     }
     else
     {
-        if (m_data.lHandicap > iScoreTo - iScoreFrom)
+        if (m_data.lHandicap > GuildWarScoreDifference(iScoreTo, iScoreFrom))
         {
             sys_log(0, "WAR_REWARD: End: failed to overcome handicap, To is strong but From won");
             dwWinner = m_data.dwGuildFrom;
@@ -1344,7 +1384,7 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
     if (mapBet.empty())
         return;
 
-    DWORD dwTotalBet = m_data.dwBetFrom + m_data.dwBetTo;
+    const DWORD dwTotalBet = static_cast<std::uint32_t>(m_data.dwBetFrom + m_data.dwBetTo);
     DWORD dwWinnerBet = 0;
 
     if (dwWinner == m_data.dwGuildFrom)
@@ -1382,11 +1422,12 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
                 continue;
             }
 
-            double ratio = (double) it->second.second / dwWinnerBet;
+            const double ratio = static_cast<double>(static_cast<long double>(static_cast<std::uint32_t>(it->second.second)) / dwWinnerBet);
 
             sys_log(0, "WAR_REWARD: %s %lu ratio %f", it->first.c_str(), it->second.second, ratio);
 
-            DWORD dwGold = (DWORD) (dwTotalBet * ratio * 0.9);
+            // The original reloads the double ratio and multiplies on the x87 stack.
+            const DWORD dwGold = static_cast<DWORD>(static_cast<long double>(dwTotalBet) * ratio * 0.9);
 
             const auto login = it->first.size() <= LOGIN_MAX_LEN ? dbsql::EscapeLiteral(it->first) : std::nullopt;
             if (!login)

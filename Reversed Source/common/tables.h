@@ -718,6 +718,15 @@ struct TPacketGDGuildWarBet {
 static_assert(sizeof(TGuildWarReserve) == 46, "Guild war reserve packet layout");
 static_assert(sizeof(TPacketGDGuildWarBet) == 43, "Guild war bet packet layout");
 
+#pragma pack(push, 1)
+typedef struct SPacketMyshopPricelistHeader
+{
+    std::uint32_t dwOwnerID;
+    BYTE byCount;
+} TPacketMyshopPricelistHeader;
+static_assert(sizeof(TPacketMyshopPricelistHeader) == 5, "2009 MyShop price list header");
+#pragma pack(pop)
+
 static_assert(sizeof(TPacketGDBoot) == 24, "DB boot request size");
 static_assert(sizeof(TPacketGDSetup) == 58, "DB setup size");
 static_assert(sizeof(TPacketLoginOnSetup) == 90, "DB setup login size");

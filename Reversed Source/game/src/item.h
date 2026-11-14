@@ -18,6 +18,7 @@ public:
     void Save();
     void UpdatePacket();
     long GetValue(DWORD idx);
+    void SetValue(DWORD idx, long value);
     bool IsPCBangItem();
     int GetRefineLevel();
     DWORD GetRefineFromVnum();
@@ -26,6 +27,7 @@ public:
     bool IsPolymorphItem();
     long FindApplyValue(BYTE type);
     void SetSockets(const long* sockets);
+    void SetPackedSockets(const void* sockets);
     void SetSocket(int index,long value);
     void ApplyAddon(int iAddonType);
     bool RemoveAttributeType(BYTE bType);
@@ -69,11 +71,12 @@ void SetAccessorySocketDownGradeTime(DWORD time);
     BYTE GetWindow() { return m_bWindow; }
     void SetWindow(BYTE value) { m_bWindow=value; }
     DWORD GetID() { return m_dwID; }
-    void SetID(DWORD value) { m_dwID=value; }
+    void SetID(DWORD value) { m_dwID = static_cast<unsigned int>(value); }
     DWORD GetVID() { return m_dwVID; }
-    void SetVID(DWORD value) { m_dwVID=value; }
+    void SetVID(DWORD value) { m_dwVID = static_cast<unsigned int>(value); }
     BYTE GetCell() { return m_bCell; }
-    bool IsEquipped() const { return m_bEquipped; }
+    bool IsEquipped() { return m_bEquipped; }
+    bool IsTwohanded();
     bool CanUsedBy(CHARACTER* character);
     bool CheckItemUseLevel(int level);
     bool IsExchanging() { return m_bExchanging; }
@@ -85,13 +88,24 @@ void SetAccessorySocketDownGradeTime(DWORD time);
     DWORD GetVnum() { return m_pProto ? m_pProto->dwVnum : 0; }
     int GetSpecialGroup();
     const long* GetSockets() { return m_alSockets; }
+    long GetSocket(int index) { return m_alSockets[index]; }
     const TPlayerItemAttribute* GetAttributes() { return m_aAttr; }
+    const TPlayerItemAttribute& GetAttribute(int index) { return m_aAttr[index]; }
+    BYTE GetAttributeType(int index) { return m_aAttr[index].bType; }
+    short GetAttributeValue(int index) { return m_aAttr[index].sValue; }
     bool GetSkipSave() { return m_bSkipSave; }
     void SetSkipSave(bool value) { m_bSkipSave=value; }
     DWORD GetLastOwnerPID() { return m_dwLastOwnerPID; }
     void AddFlag(long bit);
     void RemoveFlag(long bit);
     long GetFlag() { return m_lFlag; }
+    void SetFlag(long flag) { m_lFlag = static_cast<int>(flag); }
+    bool IsStackable() { return (GetFlag() & 4) != 0; }
+    DWORD GetWearFlag() { return m_pProto ? m_pProto->dwWearFlags : 0; }
+    DWORD GetAntiFlag() { return m_pProto ? m_pProto->dwAntiFlags : 0; }
+    DWORD GetImmuneFlag() { return m_pProto ? m_pProto->dwImmuneFlag : 0; }
+    DWORD GetRefinedVnum() { return m_pProto ? m_pProto->dwRefinedVnum : 0; }
+    WORD GetRefineSet() { return m_pProto ? m_pProto->wRefineSet : 0; }
     int GetGold();
     int GetShopBuyPrice();
     void ModifyPoints(bool add);
@@ -106,7 +120,7 @@ void SetAccessorySocketDownGradeTime(DWORD time);
     void AccessorySocketDegrade();
     void AddAttr(BYTE bApply,BYTE bLevel);
     void PutAttributeWithLevel(BYTE bLevel);
-    void PutAttribute(int* aiAttrPercentTable);
+    void PutAttribute(const int* aiAttrPercentTable);
     void AlterToMagicItem();
     void ChangeAttribute(const int* aiChangeProb = 0);
     void AddAttribute();
@@ -118,6 +132,9 @@ void SetAccessorySocketDownGradeTime(DWORD time);
     int GetRareAttrCount();
     bool ChangeRareAttribute();
     bool AddRareAttribute();
+
+protected:
+    bool EquipEx(bool isEquip);
 
 private:
     const TItemTable * m_pProto;

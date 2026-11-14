@@ -177,7 +177,7 @@ int pc_get_vid(lua_State* state)
 int pc_get_playtime(lua_State* state)
 {
     CHARACTER& ch = CurrentPC();
-    lua_pushnumber(state, ch.GetRealPoint(POINT_PLAYTIME));
+    lua_pushnumber(state, static_cast<std::int32_t>(ch.GetRealPoint(POINT_PLAYTIME)));
     return 1;
 }
 
@@ -191,21 +191,21 @@ int pc_get_leadership(lua_State* state)
 int pc_get_x(lua_State* state)
 {
     CHARACTER& ch = CurrentPC();
-    lua_pushnumber(state, ch.GetX() / 100);
+    lua_pushnumber(state, static_cast<std::int32_t>(ch.GetX()) / 100);
     return 1;
 }
 
 int pc_get_y(lua_State* state)
 {
     CHARACTER& ch = CurrentPC();
-    lua_pushnumber(state, ch.GetY() / 100);
+    lua_pushnumber(state, static_cast<std::int32_t>(ch.GetY()) / 100);
     return 1;
 }
 
 int pc_get_current_map_index(lua_State* state)
 {
     CHARACTER& ch = CurrentPC();
-    lua_pushnumber(state, ch.GetMapIndex());
+    lua_pushnumber(state, static_cast<std::int32_t>(ch.GetMapIndex()));
     return 1;
 }
 
@@ -317,7 +317,8 @@ int pc_get_local_x(lua_State* state)
 {
     CHARACTER& ch = CurrentPC();
     const SECTREE_MAP* map = SECTREE_MANAGER::instance().GetMap(ch.GetMapIndex());
-    lua_pushnumber(state, LocalCell(ch.GetX(), map ? map->m_setting.iBaseX : 0));
+    const long coordinate = ch.GetX();
+    lua_pushnumber(state, LocalCell(coordinate, map ? map->m_setting.iBaseX : 0));
     return 1;
 }
 
@@ -325,7 +326,8 @@ int pc_get_local_y(lua_State* state)
 {
     CHARACTER& ch = CurrentPC();
     const SECTREE_MAP* map = SECTREE_MANAGER::instance().GetMap(ch.GetMapIndex());
-    lua_pushnumber(state, LocalCell(ch.GetY(), map ? map->m_setting.iBaseY : 0));
+    const long coordinate = ch.GetY();
+    lua_pushnumber(state, LocalCell(coordinate, map ? map->m_setting.iBaseY : 0));
     return 1;
 }
 
@@ -346,8 +348,9 @@ int pc_isguildmaster(lua_State* state)
 
 int pc_get_part(lua_State* state)
 {
-    lua_pushnumber(state, lua_isnumber(state, 1)
-        ? CurrentPC().GetPart(static_cast<BYTE>(PCSignedNumber(state, 1))) : 0);
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    lua_pushnumber(state, lua_isnumber(state, 1) && character
+        ? character->GetPart(static_cast<BYTE>(PCSignedNumber(state, 1))) : 0);
     return 1;
 }
 
@@ -370,24 +373,28 @@ int pc_get_sex(lua_State* state)
 
 int pc_is_married(lua_State* state)
 {
-    lua_pushboolean(state, marriage::CManager::instance().IsMarried(CurrentPC().GetPlayerID()));
+    const DWORD playerId = CurrentPC().GetPlayerID();
+    lua_pushboolean(state, marriage::CManager::instance().IsMarried(playerId));
     return 1;
 }
 
 int pc_is_engaged(lua_State* state)
 {
-    lua_pushboolean(state, marriage::CManager::instance().IsEngaged(CurrentPC().GetPlayerID()));
+    const DWORD playerId = CurrentPC().GetPlayerID();
+    lua_pushboolean(state, marriage::CManager::instance().IsEngaged(playerId));
     return 1;
 }
 
 int pc_is_engaged_or_married(lua_State* state)
 {
-    lua_pushboolean(state, marriage::CManager::instance().IsEngagedOrMarried(CurrentPC().GetPlayerID()));
+    const DWORD playerId = CurrentPC().GetPlayerID();
+    lua_pushboolean(state, marriage::CManager::instance().IsEngagedOrMarried(playerId));
     return 1;
 }
 
 int pc_get_premium_remain_sec(lua_State* state)
 {
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     if (!lua_isnumber(state, 1))
     {
         CQuestManager::instance().QuestError("pc_get_premium_remain_sec", 0x716, "wrong premium index (is not number)");
@@ -399,7 +406,7 @@ int pc_get_premium_remain_sec(lua_State* state)
         CQuestManager::instance().QuestError("pc_get_premium_remain_sec", 0x727, "wrong premium index %d", index);
         return 0;
     }
-    lua_pushnumber(state, CurrentPC().GetPremiumRemainSeconds(static_cast<BYTE>(index)));
+    lua_pushnumber(state, character ? character->GetPremiumRemainSeconds(static_cast<BYTE>(index)) : 0);
     return 1;
 }
 
@@ -410,11 +417,13 @@ int pc_change_sp(lua_State* state)
         CQuestManager::instance().QuestError("pc_change_sp", 0x2d6, "invalid argument");
     else
     {
-        CHARACTER& ch = CurrentPC();
         const int amount = PCSignedNumber(state, 1);
-        changed = amount != 0 && (amount > 0 || ch.GetSP() >= -static_cast<std::int64_t>(amount));
-        if (changed)
-            ch.PointChange(POINT_SP, amount, false, false);
+        if (amount != 0) {
+            CHARACTER& ch = CurrentPC();
+            changed = amount > 0 || ch.GetSP() >= -static_cast<std::int64_t>(amount);
+            if (changed)
+                ch.PointChange(POINT_SP, amount, false, false);
+        }
     }
     lua_pushboolean(state, changed);
     return 1;
@@ -422,8 +431,8 @@ int pc_change_sp(lua_State* state)
 
 int pc_change_money(lua_State* state)
 {
-    CHARACTER& ch = CurrentPC();
     const int amount = PCSignedNumber(state, -1);
+    CHARACTER& ch = CurrentPC();
     const std::int64_t total = static_cast<std::int64_t>(ch.GetGold()) + amount;
     if (total < 0 || total > INT_MAX)
         CQuestManager::instance().QuestError("pc_change_money", 0x343,
@@ -438,7 +447,9 @@ int pc_change_money(lua_State* state)
 
 int pc_change_alignment(lua_State* state)
 {
-    CurrentPC().UpdateAlignment(PCTruncate(10.0L * static_cast<long double>(lua_tonumber(state, 1))));
+    const long double amount = 10.0L * static_cast<long double>(lua_tonumber(state, 1));
+    const int delta = PCTruncate(amount);
+    CurrentPC().UpdateAlignment(delta);
     return 0;
 }
 
@@ -449,7 +460,8 @@ int pc_get_flag(lua_State* state)
         quests.QuestError("pc_get_flag", 0x37f, "QUEST wrong get flag");
         return 0;
     }
-    lua_pushnumber(state, quests.GetCurrentPC()->GetFlag(lua_tostring(state, -1)));
+    const char* flag = lua_tostring(state, -1);
+    lua_pushnumber(state, quests.GetCurrentPC()->GetFlag(flag));
     return 1;
 }
 
@@ -460,8 +472,10 @@ int pc_set_flag(lua_State* state)
         quests.QuestError("pc_set_flag", 0x3a6, "QUEST wrong set flag");
         return 0;
     }
+    const char* key = lua_tostring(state, 1);
+    PC* pc = quests.GetCurrentPC();
     const int value = PCTruncate(std::rint(lua_tonumber(state, 2)));
-    quests.GetCurrentPC()->SetFlag(lua_tostring(state, 1), value, false);
+    pc->SetFlag(key, value, false);
     return 0;
 }
 
@@ -474,8 +488,8 @@ int pc_get_quest_flag(lua_State* state)
         return 0;
     }
 
-    PC& pc = *manager.GetCurrentPC();
     const char* flag = lua_tostring(state, -1);
+    PC& pc = *manager.GetCurrentPC();
     lua_pushnumber(state, pc.GetFlag(PCFlagName(pc.GetCurrentQuestName(), flag)));
     if (test_server)
         sys_log(0, "GetQF ( %s . %s )", pc.GetCurrentQuestName().c_str(), flag);
@@ -489,9 +503,10 @@ int pc_set_quest_flag(lua_State* state)
         manager.QuestError("pc_set_quest_flag", 0x3b8, "QUEST wrong set flag");
     else
     {
+        const char* key = lua_tostring(state, 1);
         PC& pc = *manager.GetCurrentPC();
         const int value = PCTruncate(std::rint(lua_tonumber(state, 2)));
-        pc.SetFlag(PCFlagName(pc.GetCurrentQuestName(), lua_tostring(state, 1)), value, false);
+        pc.SetFlag(PCFlagName(pc.GetCurrentQuestName(), key), value, false);
     }
     return 0;
 }
@@ -505,8 +520,9 @@ int pc_del_quest_flag(lua_State* state)
         return 0;
     }
 
+    const char* key = lua_tostring(state, 1);
     PC& pc = *manager.GetCurrentPC();
-    pc.DeleteFlag(PCFlagName(pc.GetCurrentQuestName(), lua_tostring(state, 1)));
+    pc.DeleteFlag(PCFlagName(pc.GetCurrentQuestName(), key));
     return 1;
 }
 
@@ -519,11 +535,11 @@ int pc_get_another_quest_flag(lua_State* state)
         return 0;
     }
 
+    const char* flag = lua_tostring(state, 2);
+    const char* quest = lua_tostring(state, 1);
     PC* pc = manager.GetCurrentPC();
     if (!pc)
         return 0;
-    const char* quest = lua_tostring(state, 1);
-    const char* flag = lua_tostring(state, 2);
     lua_pushnumber(state, pc->GetFlag(PCFlagName(quest, flag)));
     return 1;
 }
@@ -537,19 +553,22 @@ int pc_set_another_quest_flag(lua_State* state)
     {
         const char* quest = lua_tostring(state, 1);
         const char* flag = lua_tostring(state, 2);
+        PC* pc = manager.GetCurrentPC();
         const int value = PCTruncate(std::rint(lua_tonumber(state, 3)));
-        manager.GetCurrentPC()->SetFlag(PCFlagName(quest, flag), value, false);
+        pc->SetFlag(PCFlagName(quest, flag), value, false);
     }
     return 0;
 }
 
 int pc_set_part(lua_State* state)
 {
-    if (lua_isnumber(state, 1) && lua_isnumber(state, 2))
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    if (lua_isnumber(state, 1) && lua_isnumber(state, 2) && character)
     {
-        CHARACTER& ch = CurrentPC();
-        ch.SetPart(static_cast<BYTE>(PCSignedNumber(state, 1)),
-            static_cast<WORD>(PCSignedNumber(state, 2)));
+        CHARACTER& ch = *character;
+        const BYTE part = static_cast<BYTE>(PCSignedNumber(state, 1));
+        const WORD value = static_cast<WORD>(PCSignedNumber(state, 2));
+        ch.SetPart(part, value);
         ch.UpdatePacket();
     }
     return 0;
@@ -561,10 +580,11 @@ int pc_set_skillgroup(lua_State* state)
         CQuestManager::instance().QuestError("pc_set_skillgroup", 0x447, "QUEST wrong skillgroup number");
     else
     {
+        CHARACTER& ch = CurrentPC();
         const auto rounded = std::rint(lua_tonumber(state, 1));
         const BYTE group = rounded >= -32768.0 && rounded <= 32767.0
             ? static_cast<BYTE>(static_cast<short>(rounded)) : 0;
-        CurrentPC().SetSkillGroup(group);
+        ch.SetSkillGroup(group);
     }
     return 0;
 }
@@ -597,9 +617,11 @@ int pc_remove_polymorph(lua_State*)
 
 int pc_polymorph(lua_State* state)
 {
+    auto& character = CurrentPC();
     const std::uint32_t race = PCUnsignedNumber(state, 1);
-    CurrentPC().AddAffect(220, POINT_POLYMORPH, static_cast<std::int32_t>(race), 35,
-        PCSignedNumber(state, 2), 0, true, false);
+    const int duration = PCSignedNumber(state, 2);
+    character.AddAffect(220, POINT_POLYMORPH, static_cast<std::int32_t>(race), 35,
+        duration, 0, true, false);
     return 0;
 }
 
@@ -608,9 +630,9 @@ int pc_mount(lua_State* state)
     if (!lua_isnumber(state, 1))
         return 0;
     int duration = lua_isnumber(state, 2) ? PCSignedNumber(state, 2) : 60;
+    const std::uint32_t vnum = PCUnsignedNumber(state, 1);
     if (duration < 0)
         duration = 60;
-    const std::uint32_t vnum = PCUnsignedNumber(state, 1);
     CHARACTER& ch = CurrentPC();
     ch.RemoveAffect(221);
     if (vnum)
@@ -738,18 +760,21 @@ int pc_set_warp_location_local(lua_State* state)
 
 int pc_get_start_location(lua_State* state)
 {
-    const BYTE empire = CurrentPC().GetEmpire();
-    const BYTE index = empire < 4 ? empire : 0;
-    lua_pushnumber(state, g_start_map[index]);
-    lua_pushnumber(state, static_cast<std::uint32_t>(g_start_position[index][0]) / 100);
-    lua_pushnumber(state, static_cast<std::uint32_t>(g_start_position[index][1]) / 100);
+    CHARACTER& character = CurrentPC();
+    const auto startIndex = [&character]() {
+        const BYTE empire = character.GetEmpire();
+        return empire < 4 ? empire : 0;
+    };
+    lua_pushnumber(state, static_cast<std::int32_t>(g_start_map[startIndex()]));
+    lua_pushnumber(state, static_cast<std::uint32_t>(g_start_position[startIndex()][0]) / 100);
+    lua_pushnumber(state, static_cast<std::uint32_t>(g_start_position[startIndex()][1]) / 100);
     return 3;
 }
 
 int pc_get_war_map(lua_State* state)
 {
     CWarMap* map = CurrentPC().GetWarMap();
-    lua_pushnumber(state, map ? map->GetMapIndex() : 0);
+    lua_pushnumber(state, map ? static_cast<std::int32_t>(map->GetMapIndex()) : 0);
     return 1;
 }
 
@@ -852,12 +877,15 @@ std::uint32_t PCRewardBits(long double value)
     return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
 }
 
-void LogQuestReward(CHARACTER& ch, int kind, DWORD reward, int count)
+void LogQuestReward(CHARACTER& ch, int kind, DWORD reward, int count, PC* player = nullptr)
 {
-    const auto& questName = CQuestManager::instance().GetCurrentQuestName();
+    const int level = static_cast<BYTE>(ch.GetLevel());
+    const DWORD playerId = ch.GetPlayerID();
+    const auto& questName = player ? player->GetCurrentQuestName() : CQuestManager::instance().GetCurrentQuestName();
+    const char* postfix = get_table_postfix();
     LogManager::instance().Query("INSERT INTO quest_reward_log%s VALUES('%s',%lu,%d,%d,%lu,%d,NOW())",
-        get_table_postfix(), questName.c_str(), ch.GetPlayerID(),
-        static_cast<int>(static_cast<BYTE>(ch.GetLevel())), kind, reward, count);
+        postfix, questName.c_str(), playerId,
+        level, kind, reward, count);
 }
 
 bool PCItemVnum(lua_State* state, int index, DWORD& vnum, bool reward = false)
@@ -885,12 +913,14 @@ int pc_give_exp(lua_State* state)
     if (lua_isstring(state, 1) && lua_isnumber(state, 2))
     {
         CHARACTER& ch = CurrentPC();
+        const auto loggedAmount = std::rint(lua_tonumber(state, 2));
         const char* label = lua_tostring(state, 1);
-        const auto rounded = std::rint(lua_tonumber(state, 2));
-        sys_log(0, "QUEST [REWARD] %s give exp %s %d", ch.GetName(), label, PCTruncate(rounded));
-        const DWORD exp = PCRewardBits(rounded);
+        sys_log(0, "QUEST [REWARD] %s give exp %s %d", ch.GetName(), label, PCTruncate(loggedAmount));
+        const DWORD exp = PCRewardBits(std::rint(lua_tonumber(state, 2)));
+        PC* player = CQuestManager::instance().GetCurrentPC();
         LogQuestReward(ch, 1, exp, 0);
-        CQuestManager::instance().GetCurrentPC()->GiveExp(label, exp);
+        const char* rewardLabel = lua_tostring(state, 1);
+        player->GiveExp(rewardLabel, exp);
     }
     return 0;
 }
@@ -902,7 +932,7 @@ int pc_give_exp2(lua_State* state)
         CHARACTER& ch = CurrentPC();
         const auto rounded = std::rint(lua_tonumber(state, 1));
         sys_log(0, "QUEST [REWARD] %s give exp2 %d", ch.GetName(), PCTruncate(rounded));
-        const std::uint32_t exp = PCRewardBits(rounded);
+        const std::uint32_t exp = PCRewardBits(std::rint(lua_tonumber(state, 1)));
         LogQuestReward(ch, 1, exp, 0);
         ch.PointChange(POINT_EXP, static_cast<std::int32_t>(exp), false, false);
     }
@@ -915,15 +945,17 @@ int pc_give_exp_perc(lua_State* state)
     CHARACTER* ch = manager.GetCurrentCharacterPtr();
     if (ch && lua_isstring(state, 1) && lua_isnumber(state, 2) && lua_isnumber(state, 3))
     {
-        const char* label = lua_tostring(state, 1);
         const int level = PCTruncate(std::rint(lua_tonumber(state, 2)));
         const lua_Number percent = lua_tonumber(state, 3);
+        const char* label = lua_tostring(state, 1);
         sys_log(0, "QUEST [REWARD] %s give exp %s lev %d percent %g%%",
             ch->GetName(), label, level, percent);
         const int index = std::max(0, std::min(level, 98));
         const DWORD exp = PCRewardBits(static_cast<long double>(static_cast<std::uint32_t>(exp_table[index])) * percent / 100.0L);
+        PC* player = manager.GetCurrentPC();
         LogQuestReward(*ch, 1, exp, 0);
-        manager.GetCurrentPC()->GiveExp(label, exp);
+        const char* rewardLabel = lua_tostring(state, 1);
+        player->GiveExp(rewardLabel, exp);
     }
     return 0;
 }
@@ -931,6 +963,8 @@ int pc_give_exp_perc(lua_State* state)
 int pc_give_item(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
+    PC* player = manager.GetCurrentPC();
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
     if (!lua_isstring(state, 1) || (!lua_isstring(state, 2) && !lua_isnumber(state, 2)))
     {
         manager.QuestError("pc_give_item", 0x1aa, "QUEST : wrong argument");
@@ -951,16 +985,21 @@ int pc_give_item(lua_State* state)
         return 0;
     }
 
-    CHARACTER& ch = CurrentPC();
-    sys_log(0, "QUEST [REWARD] item %s to %s", lua_tostring(state, 2), ch.GetName());
-    manager.GetCurrentPC()->GiveItem(lua_tostring(state, 1), vnum, count);
-    LogQuestReward(ch, 2, vnum, count);
+    if (!character || !player)
+        return 0;
+    CHARACTER& ch = *character;
+    const char* characterName = ch.GetName();
+    const char* itemLabel = lua_tostring(state, 2);
+    sys_log(0, "QUEST [REWARD] item %s to %s", itemLabel, characterName);
+    player->GiveItem(lua_tostring(state, 1), vnum, count);
+    LogQuestReward(ch, 2, vnum, count, player);
     return 0;
 }
 
 int pc_give_or_drop_item(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
+    CHARACTER* character = manager.GetCurrentCharacterPtr();
     if (!lua_isstring(state, 1) && !lua_isnumber(state, 1))
     {
         manager.QuestError("pc_give_or_drop_item", 0x1d9, "QUEST Make item call error : wrong argument");
@@ -981,12 +1020,20 @@ int pc_give_or_drop_item(lua_State* state)
         return 0;
     }
 
-    CHARACTER& ch = CurrentPC();
-    sys_log(0, "QUEST [REWARD] item %s to %s", lua_tostring(state, 1), ch.GetName());
+    if (!character)
+        return 0;
+    CHARACTER& ch = *character;
+    const char* characterName = ch.GetName();
+    const char* itemLabel = lua_tostring(state, 1);
+    sys_log(0, "QUEST [REWARD] item %s to %s", itemLabel, characterName);
     LogQuestReward(ch, 2, vnum, count);
     CItem* item = ch.AutoGiveItem(vnum, static_cast<BYTE>(count), -1, true);
-    if (item && vnum >= 80003 && vnum <= 80007)
-        LogManager::instance().GoldBarLog(ch.GetPlayerID(), item->GetID(), QUEST, "quest: give_item2");
+    if (item && vnum >= 80003 && vnum <= 80007) {
+        const DWORD itemId = item->GetID();
+        auto& logger = LogManager::instance();
+        const DWORD playerId = ch.GetPlayerID();
+        logger.GoldBarLog(playerId, itemId, QUEST, "quest: give_item2");
+    }
     return 0;
 }
 
@@ -994,16 +1041,20 @@ int pc_count_item(lua_State* state)
 {
     DWORD vnum;
     int count = 0;
-    if (lua_isnumber(state, -1))
-        count = CurrentPC().CountSpecifyItem(PCUnsignedNumber(state, -1));
+    if (lua_isnumber(state, -1)) {
+        const DWORD itemVnum = PCUnsignedNumber(state, -1);
+        count = CurrentPC().CountSpecifyItem(itemVnum);
+    }
     else if (lua_isstring(state, -1))
     {
         const char* name = lua_tostring(state, 1);
         if (name && ITEM_MANAGER::instance().GetVnum(name, vnum))
             count = CurrentPC().CountSpecifyItem(vnum);
-        else
+        else {
+            const char* loggedName = lua_tostring(state, 1);
             CQuestManager::instance().QuestError("pc_count_item", 0x240,
-                "QUEST count_item call error : wrong item name : %s", name ? name : "");
+                "QUEST count_item call error : wrong item name : %s", loggedName ? loggedName : "");
+        }
     }
     lua_pushnumber(state, count);
     return 1;
@@ -1028,23 +1079,29 @@ int pc_remove_item(lua_State* state)
         return 0;
     }
 
-    CHARACTER& ch = CurrentPC();
     const DWORD count = arguments == 1 ? 1 : PCUnsignedNumber(state, 2);
+    CHARACTER& ch = CurrentPC();
+    const int playerId = static_cast<int>(ch.GetPlayerID());
+    const char* characterName = ch.GetName();
     if (arguments == 1)
         sys_log(0, "QUEST remove a item vnum %d of %s[%d]", static_cast<int>(vnum),
-            ch.GetName(), static_cast<int>(ch.GetPlayerID()));
+            characterName, playerId);
     else
         sys_log(0, "QUEST remove items(vnum %d) count %d of %s[%d]", static_cast<int>(vnum),
-            static_cast<int>(count), ch.GetName(), static_cast<int>(ch.GetPlayerID()));
+            static_cast<int>(count), characterName, playerId);
     ch.RemoveSpecifyItem(vnum, count);
     return 0;
 }
 
 int pc_enough_inventory(lua_State* state)
 {
-    const TItemTable* item = lua_isnumber(state, 1)
-        ? ITEM_MANAGER::instance().GetTable(PCUnsignedNumber(state, 1)) : nullptr;
-    lua_pushboolean(state, item && CurrentPC().GetEmptyInventory(item->bSize) != -1);
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+    const TItemTable* item = nullptr;
+    if (lua_isnumber(state, 1)) {
+        const DWORD itemVnum = PCUnsignedNumber(state, 1);
+        item = ITEM_MANAGER::instance().GetTable(itemVnum);
+    }
+    lua_pushboolean(state, item && character && character->GetEmptyInventory(item->bSize) != -1);
     return 1;
 }
 
@@ -1056,7 +1113,8 @@ const char groupExperienceAmount[] = "\045\144\300\307\040\260\346\307\350\304\2
 bool IsPositionScroll(CItem* item)
 {
     return item && item->GetType() == 3 && item->GetSubType() == 1 &&
-        (item->GetValue(0) == 1 || item->GetValue(0) == 2);
+        (static_cast<std::int32_t>(item->GetValue(0)) == 1 ||
+         static_cast<std::int32_t>(item->GetValue(0)) == 2);
 }
 
 const int teleportTowns[][2] = {
@@ -1148,7 +1206,8 @@ int pc_have_map_scroll(lua_State* state)
     bool found = false;
     if (lua_isstring(state, 1))
     {
-        const auto* region = SECTREE_MANAGER::instance().FindRegionByPartialName(lua_tostring(state, 1));
+        const char* mapName = lua_tostring(state, 1);
+        const auto* region = SECTREE_MANAGER::instance().FindRegionByPartialName(mapName);
         if (region)
         {
             CHARACTER& ch = CurrentPC();
@@ -1158,8 +1217,9 @@ int pc_have_map_scroll(lua_State* state)
                 if (!IsPositionScroll(item))
                     continue;
                 const long* sockets = item->GetSockets();
-                if (region->sx <= sockets[0] && sockets[0] <= region->ex &&
-                    region->sy <= sockets[1] && sockets[1] <= region->ey)
+                const auto x = static_cast<std::int32_t>(sockets[0]);
+                const auto y = static_cast<std::int32_t>(sockets[1]);
+                if (region->sx <= x && region->sy <= y && x <= region->ex && y <= region->ey)
                 {
                     found = true;
                     break;
@@ -1173,12 +1233,13 @@ int pc_have_map_scroll(lua_State* state)
 
 int pc_have_pos_scroll(lua_State* state)
 {
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     bool found = false;
     if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2))
         CQuestManager::instance().QuestError("pc_have_pos_scroll", 0x4f9, "invalid x y position");
-    else
+    else if (character)
     {
-        CHARACTER& ch = CurrentPC();
+        CHARACTER& ch = *character;
         const auto x = static_cast<std::uint32_t>(PCSignedNumber(state, 1));
         const auto y = static_cast<std::uint32_t>(PCSignedNumber(state, 2));
         const auto radius = static_cast<float>(lua_tonumber(state, 3));
@@ -1204,11 +1265,13 @@ int pc_have_pos_scroll(lua_State* state)
 
 int pc_get_equip_refine_level(lua_State* state)
 {
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     const int cell = PCSignedNumber(state, 1);
     int level = 0;
     if (static_cast<unsigned int>(cell) < 19)
     {
-        if (CItem* item = CurrentPC().GetWear(static_cast<BYTE>(cell)))
+        CItem* item = character ? character->GetWear(static_cast<BYTE>(cell)) : nullptr;
+        if (item)
             level = item->GetRefineLevel();
     }
     else
@@ -1228,11 +1291,15 @@ int pc_give_item_from_special_item_group(lua_State* state)
     if (!item)
     {
         if (vnum == 1)
-            ch.ChatPacket(1, locale_find(groupGold, g_iUseLocale), static_cast<std::int32_t>(count));
+        {
+            const char* format = locale_find(groupGold, g_iUseLocale);
+            ch.ChatPacket(1, format, static_cast<std::int32_t>(count));
+        }
         else if (vnum == 2)
         {
             ch.ChatPacket(1, locale_find(groupExperienceNotice, g_iUseLocale));
-            ch.ChatPacket(1, locale_find(groupExperienceAmount, g_iUseLocale), static_cast<std::int32_t>(count));
+            const char* format = locale_find(groupExperienceAmount, g_iUseLocale);
+            ch.ChatPacket(1, format, static_cast<std::int32_t>(count));
         }
     }
     return 0;
@@ -1298,8 +1365,8 @@ int pc_teleport(lua_State* state)
 
 int pc_reset_point(lua_State*)
 {
-    CHARACTER& ch = CurrentPC();
-    ch.ResetPoint(ch.GetLevel());
+    const int level = CurrentPC().GetLevel();
+    CurrentPC().ResetPoint(level);
     return 0;
 }
 
@@ -1328,27 +1395,31 @@ int pc_give_lotto(lua_State*)
     reward[0] = 50001;
     reward[1] = 1;
     reward[2] = manager.GetEventFlag("lotto_round");
-    DBManager::instance().ReturnQuery(3, pid, reward,
-        "INSERT INTO lotto_list VALUES(0, 'server%s', %lu, NOW())", get_table_postfix(), pid);
+    const DWORD sqlPlayerId = CurrentPC().GetPlayerID();
+    const char* postfix = get_table_postfix();
+    auto& database = DBManager::instance();
+    const DWORD queryPlayerId = CurrentPC().GetPlayerID();
+    database.ReturnQuery(3, queryPlayerId, reward,
+        "INSERT INTO lotto_list VALUES(0, 'server%s', %lu, NOW())", postfix, sqlPlayerId);
     return 0;
 }
 
 int pc_give_polymorph_book(lua_State* state)
 {
-    CQuestManager& manager = CQuestManager::instance();
     if (!lua_isnumber(state, 1) && !lua_isnumber(state, 2) &&
         !lua_isnumber(state, 3) && !lua_isnumber(state, 4))
     {
-        manager.QuestError("pc_give_polymorph_book", 0x6f7,
+        CQuestManager::instance().QuestError("pc_give_polymorph_book", 0x6f7,
             "Wrong Quest Function Arguments: pc_give_polymorph_book");
         return 0;
     }
 
+    LPCHARACTER character = CQuestManager::instance().GetCurrentCharacterPtr();
     const BYTE levelLimit = PCShortByte(state, 4);
     const BYTE bookLevel = PCShortByte(state, 3);
     const DWORD practice = PCUnsignedNumber(state, 2);
     const DWORD mobVnum = PCUnsignedNumber(state, 1);
-    CPolymorphUtils::instance().GiveBook(manager.GetCurrentCharacterPtr(),
+    CPolymorphUtils::instance().GiveBook(character,
         mobVnum, practice, bookLevel, levelLimit);
     return 1;
 }
@@ -1356,15 +1427,18 @@ int pc_give_polymorph_book(lua_State* state)
 int pc_upgrade_polymorph_book(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
-    lua_pushboolean(state, CPolymorphUtils::instance().BookUpgrade(
-        manager.GetCurrentCharacterPtr(), manager.GetCurrentItem()));
+    LPCHARACTER character = manager.GetCurrentCharacterPtr();
+    LPITEM item = manager.GetCurrentItem();
+    const bool upgraded = CPolymorphUtils::instance().BookUpgrade(character, item);
+    lua_pushboolean(state, upgraded);
     return 1;
 }
 
 int pc_change_empire(lua_State* state)
 {
+    CHARACTER& character = CurrentPC();
     const BYTE empire = PCShortByte(state, 1);
-    lua_pushnumber(state, CurrentPC().ChangeEmpire(empire));
+    lua_pushnumber(state, character.ChangeEmpire(empire));
     return 1;
 }
 
@@ -1445,6 +1519,7 @@ int pc_attract_ranger(lua_State*)
 
 int pc_refine_equip(lua_State* state)
 {
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2))
     {
         CQuestManager::instance().QuestError("pc_refine_equip", 0x53d, "invalid argument");
@@ -1452,7 +1527,11 @@ int pc_refine_equip(lua_State* state)
         return 1;
     }
 
-    CHARACTER& ch = CurrentPC();
+    if (!character) {
+        lua_pushboolean(state, false);
+        return 1;
+    }
+    CHARACTER& ch = *character;
     const BYTE slot = static_cast<BYTE>(PCSignedNumber(state, 1));
     const int levelLimit = PCSignedNumber(state, 2);
     const int chance = lua_isnumber(state, 3) ? PCSignedNumber(state, 3) : 100;
@@ -1534,12 +1613,14 @@ int pc_diamond_refine(lua_State* state)
 
 int pc_learn_grand_master_skill(lua_State* state)
 {
+    CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     if (!lua_isnumber(state, 1))
     {
         CQuestManager::instance().QuestError("pc_learn_grand_master_skill", 0x43, "wrong skill index");
         return 0;
     }
-    lua_pushboolean(state, CurrentPC().LearnGrandMasterSkill(static_cast<DWORD>(PCSignedNumber(state, 1))));
+    const auto skill = static_cast<DWORD>(PCSignedNumber(state, 1));
+    lua_pushboolean(state, character && character->LearnGrandMasterSkill(skill));
     return 1;
 }
 

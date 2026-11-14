@@ -23,7 +23,7 @@ CRoulette::~CRoulette() = default;
 bool CRoulette::LoadRouletteTableData(const char*)
 {
     constexpr int levels = 14;
-    const auto& items = ITEM_MANAGER::instance().m_map_vid;
+    const auto& items = ITEM_MANAGER::instance().GetVIDMap();
     sys_log(0, "[CRoulette] AllItemSize [%d] ", static_cast<int>(items.size()));
 
     struct RouletteItem {

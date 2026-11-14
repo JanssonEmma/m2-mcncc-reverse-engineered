@@ -3,6 +3,7 @@
 #include "char_manager.h"
 #include "questmanager.h"
 #include "../../libthecore/include/log.h"
+#include <cfenv>
 #include <climits>
 #include <cstdint>
 
@@ -16,8 +17,10 @@ namespace {
 int ArenaNumber(lua_State* state, int index)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value > -2147483649.0 && value < 2147483648.0))
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
         return INT_MIN;
+    }
     return static_cast<int>(value);
 }
 }
@@ -38,11 +41,17 @@ int arena_start_duel(lua_State* state)
                 player->HorseSummon(false, false);
             }
         CArenaManager& manager = CArenaManager::instance();
-        if (manager.IsMember(first->GetMapIndex(), first->GetPlayerID()) ||
-            manager.IsMember(second->GetMapIndex(), second->GetPlayerID()))
+        const auto firstMap = first->GetMapIndex();
+        const auto firstPlayerID = first->GetPlayerID();
+        const auto secondIsMember = [second]() {
+            const auto map = second->GetMapIndex();
+            const auto playerID = second->GetPlayerID();
+            return CArenaManager::instance().IsMember(map, playerID);
+        };
+        if (manager.IsMember(firstMap, firstPlayerID) || secondIsMember())
             result = 2;
         else
-            result = manager.StartDuel(first, second, sets) ? 1 : 3;
+            result = CArenaManager::instance().StartDuel(first, second, sets) ? 1 : 3;
     }
     lua_pushnumber(state, result);
     return 1;
@@ -81,11 +90,19 @@ int arena_add_observer(lua_State* state)
 int arena_is_in_arena(lua_State* state)
 {
     const lua_Number value = lua_tonumber(state, 1);
-    const std::uint32_t pid = value >= -9223372036854775808.0 && value < 9223372036854775808.0
-        ? static_cast<std::uint32_t>(static_cast<std::int64_t>(value)) : 0;
+    std::uint32_t pid = 0;
+    if (value >= -9223372036854775808.0 && value < 9223372036854775808.0)
+        pid = static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
+    else
+        std::feraiseexcept(FE_INVALID);
     CHARACTER* ch = CHARACTER_MANAGER::instance().FindByPID(pid);
-    const bool result = !ch || ((!ch->GetArena() || ch->GetArenaObserverMode()) &&
-        CArenaManager::instance().IsMember(ch->GetMapIndex(), ch->GetPlayerID()) == 1);
+    bool result = !ch;
+    if (ch && (!ch->GetArena() || ch->GetArenaObserverMode()))
+    {
+        const auto playerID = ch->GetPlayerID();
+        const auto map = ch->GetMapIndex();
+        result = CArenaManager::instance().IsMember(map, playerID) == 1;
+    }
     lua_pushnumber(state, result);
     return 1;
 }

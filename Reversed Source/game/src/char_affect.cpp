@@ -1,6 +1,7 @@
 #include "battle.h"
 #include "arena.h"
 #include "char_manager.h"
+#include <cstdint>
 #include <limits>
 #include "locale_service.h"
 #include "utils.h"
@@ -13,11 +14,13 @@
 #include "char.h"
 #include "affect.h"
 CAffect* CHARACTER::FindAffect(DWORD type,BYTE apply) {
-    for(std::list<CAffect*>::iterator it=m_list_pkAffect.begin();it!=m_list_pkAffect.end();++it) {
-        CAffect* affect=*it;
-        if(affect->dwType==type && (!apply || affect->bApplyOn==apply)) return affect;
+    const auto affectType = static_cast<std::uint32_t>(type);
+    for (auto it = m_list_pkAffect.begin(); it != m_list_pkAffect.end();) {
+        CAffect* affect = *it++;
+        if (static_cast<std::uint32_t>(affect->dwType) == affectType && (!apply || affect->bApplyOn == apply))
+            return affect;
     }
-    return 0;
+    return nullptr;
 }
 
 #include "desc.h"
@@ -35,8 +38,7 @@ void SendAffectRemovePacket(LPDESC d,DWORD pid,DWORD type,BYTE point)
 }
 bool CHARACTER::IsAffectFlag(DWORD flag)
 {
-    int shifted=static_cast<int>(static_cast<unsigned int>(flag)-1u);
-    return ((m_afAffectFlag.bits[shifted>>5]>>(static_cast<unsigned int>(shifted)&31u))&1u)!=0;
+    return m_afAffectFlag.IsSet(static_cast<std::int32_t>(flag));
 }
 
 #include <cstring>
@@ -55,14 +57,11 @@ void CHARACTER::ComputeAffect(CAffect* affect,bool add) {
     using namespace mount_polymorph_detail;
     if(add && affect->dwType>=151 && affect->dwType<=162 &&
        (!m_pGuild || !m_pGuild->UnderAnyWar(3))) return;
-    DWORD flag=affect->dwFlag;
-    if(flag) {
-        unsigned int shifted=static_cast<unsigned int>(flag)-1U;
-        int index=static_cast<int>(Signed(shifted))>>5;
-        unsigned int mask=1U<<(shifted&31U);
-        if(add) m_afAffectFlag.bits[index]|=mask;
-        else m_afAffectFlag.bits[index]&=static_cast<DWORD>(~mask);
-    }
+    const auto flag = static_cast<std::int32_t>(affect->dwFlag);
+    if (add)
+        m_afAffectFlag.Set(flag);
+    else
+        m_afAffectFlag.Reset(flag);
     int amount=static_cast<int>(add?Signed(static_cast<unsigned int>(affect->lApplyValue)):
                                      Sub(0,affect->lApplyValue));
     PointChange(affect->bApplyOn,amount,false,false);
@@ -73,16 +72,16 @@ void CHARACTER::ComputeAffect(CAffect* affect,bool add) {
 
 // Full saved auxiliary body, STILL SCC-dependent; no app substitute.
 void CHARACTER::RefreshAffect() {
-    DWORD oldHigh=m_afAffectFlag.bits[1];
+    const DWORD oldHigh = m_afAffectFlag.bits[1];
     std::list<CAffect*>::iterator it=m_list_pkAffect.begin();
-    DWORD oldLow=m_afAffectFlag.bits[0];
+    const TAffectFlag oldFlags(m_afAffectFlag.bits[0], oldHigh);
     long move=GetPoint(19);
     long attack=GetPoint(17);
     while(it!=m_list_pkAffect.end()) {
         CAffect* affect=*it++;
         ComputeAffect(affect,true);
     }
-    if(oldLow!=m_afAffectFlag.bits[0] || oldHigh!=m_afAffectFlag.bits[1] ||
+    if(oldFlags != m_afAffectFlag ||
        move!=GetPoint(19) || attack!=GetPoint(17)) UpdatePacket();
 }
 
@@ -102,8 +101,9 @@ bool CHARACTER::RemoveAffect(CAffect* affect)
 }
 bool CHARACTER::RemoveAffect(DWORD type)
 {
-    if (type==512) sys_log(0,"XXX RemoveAffect SKILL_BOOK_BONUS from %s",GetName());
-    if (type==223) ChatPacket(1,locale_find("\xc3\xa4\xc6\xc3\x20\xb1\xdd\xc1\xf6\xb0\xa1\x20\xc7\xae\xb7\xc8\xbd\xc0\xb4\xcf\xb4\xd9\x2e",g_iUseLocale));
+    type = static_cast<std::uint32_t>(type);
+    if (type == AFFECT_SKILL_BOOK_BONUS) sys_log(0,"XXX RemoveAffect SKILL_BOOK_BONUS from %s",GetName());
+    if (type == AFFECT_BLOCK_CHAT) ChatPacket(1,locale_find("\xc3\xa4\xc6\xc3\x20\xb1\xdd\xc1\xf6\xb0\xa1\x20\xc7\xae\xb7\xc8\xbd\xc0\xb4\xcf\xb4\xd9\x2e",g_iUseLocale));
     bool flag=false;
     for (;;) {
         CAffect* affect=FindAffect(type,0);
@@ -155,23 +155,24 @@ bool CHARACTER::UpdateAffect()
         PointChange(35,Sub(0,value),false,false);
     }
     if (GetPoint(36)>0) {
-        int maximum=m_pointsInstant.iMaxSP;
-        int value=GetPoint(36);
+        const int maximum=m_pointsInstant.iMaxSP;
+        int value;
         if (m_points.sp<maximum) {
-            value=MIN(value,Mul(maximum,7)/100);
+            const int rate=Mul(maximum,7)/100;
+            value=MIN(GetPoint(36),rate);
             PointChange(7,value,false,false);
-        }
+        } else value=GetPoint(36);
         PointChange(36,Sub(0,value),false,false);
     }
     if (GetPoint(105)>0) PointChange(5,GetPoint(105),false,false);
     if (GetPoint(106)>0) PointChange(7,GetPoint(106),false,false);
-    if (m_points.stamina<m_pointsInstant.iMaxStamina) {
+    if (GetStamina()<GetMaxStamina()) {
         DWORD now=get_dword_time();
         if (static_cast<unsigned int>(now-GetStopTime())/3000)
-            PointChange(9,m_pointsInstant.iMaxStamina,false,false);
+            PointChange(9,GetMaxStamina(),false,false);
     }
     if (ProcessAffect() && !GetPoint(35) && !GetPoint(36) &&
-        m_points.stamina==m_pointsInstant.iMaxStamina) {
+        GetStamina()==GetMaxStamina()) {
         m_pkAffectEvent=0;
         return false;
     }
@@ -183,31 +184,35 @@ int CHARACTER::ProcessAffect()
     using namespace mount_polymorph_detail;
     bool changed=false;
     for (BYTE i=0;i<10;++i) {
-        CAffect* affect=FindAffect(500+i,0);
+        CAffect* affect=FindAffect(AFFECT_PREMIUM_START + i, 0);
         if (!affect) continue;
         int remaining=GetPremiumRemainSeconds(i);
         if (remaining<0) {
-            RemoveAffect(500+i);
+            RemoveAffect(AFFECT_PREMIUM_START + i);
             changed=true;
         } else affect->lDuration=Add(remaining,1);
     }
-    CAffect* hair=FindAffect(514,0);
+    CAffect* hair=FindAffect(AFFECT_HAIR, 0);
     if (hair) {
         int limit=GetQuestFlag("hair.limit_time");
-        if (limit<get_global_time()) {
+        if (limit < static_cast<std::int32_t>(get_global_time())) {
             SetPart(3,0);
-            RemoveAffect(514);
+            RemoveAffect(AFFECT_HAIR);
         } else hair->lDuration=Add(hair->lDuration,1);
     }
-    DWORD high=m_afAffectFlag.bits[1], low=m_afAffectFlag.bits[0];
+    const DWORD high = m_afAffectFlag.bits[1];
+    const TAffectFlag oldFlags(m_afAffectFlag.bits[0], high);
     long move=GetPoint(19), attack=GetPoint(17);
     std::list<CAffect*>::iterator it=m_list_pkAffect.begin();
     while (it!=m_list_pkAffect.end()) {
         CAffect* affect=*it;
         bool end=affect->dwType>=151 && affect->dwType<=162 && (!m_pGuild || !m_pGuild->UnderAnyWar(3));
-        if (affect->lSPCost>0) {
-            if (m_points.sp<affect->lSPCost) end=true;
-            else PointChange(7,Sub(0,affect->lSPCost),false,false);
+        const auto spCost = static_cast<std::int32_t>(affect->lSPCost);
+        if (spCost > 0) {
+            if (m_points.sp < spCost)
+                end = true;
+            else
+                PointChange(POINT_SP, Sub(0, affect->lSPCost), false, false);
         }
         affect->lDuration=Sub(affect->lDuration,1);
         if (end || affect->lDuration<1) {
@@ -220,7 +225,7 @@ int CHARACTER::ProcessAffect()
         } else ++it;
     }
     if (changed) {
-        if (low!=m_afAffectFlag.bits[0] || high!=m_afAffectFlag.bits[1] ||
+        if (oldFlags != m_afAffectFlag ||
             move!=GetPoint(19) || attack!=GetPoint(17)) UpdatePacket();
         CheckMaximumPoints();
     }
@@ -254,23 +259,28 @@ void SendAffectAddPacket(LPDESC desc, CAffect* affect)
 bool CHARACTER::AddAffect(DWORD type, BYTE point, long value, DWORD flag, long duration,
                           long spCost, bool overrideExisting, bool isCube)
 {
-    if (type == 223 && duration > 1)
+    type = static_cast<std::uint32_t>(type);
+    value = static_cast<std::int32_t>(value);
+    duration = static_cast<std::int32_t>(duration);
+    flag = static_cast<std::uint32_t>(flag);
+    spCost = static_cast<std::int32_t>(spCost);
+    if (type == AFFECT_BLOCK_CHAT && duration > 1)
         ChatPacket(1, locale_find("\277\356\277\265\300\332\040\301\246\301\246\267\316\040\303\244\306\303\300\314\040\261\335\301\366\040\265\307\276\372\275\300\264\317\264\331\056", g_iUseLocale));
     if (duration == 0) {
         duration = 1;
         // The old call supplies a leading zero before the type.
         _sys_err("AddAffect", 543, "Character::AddAffect lDuration == 0 type %d", 0, type);
     }
-    if (type == 512)
+    if (type == AFFECT_SKILL_BOOK_BONUS)
         sys_log(0, "XXX AddAffect SKILL_BOOK_BONUS from %s", GetName());
     if (test_server)
         sys_log(0, "AddAffect %s type %d apply %d %d flag %u duration %d",
-                GetName(), type, static_cast<unsigned int>(point), value, flag, duration);
+                GetName(), static_cast<int>(type), static_cast<int>(point), static_cast<int>(value), static_cast<unsigned int>(flag), static_cast<int>(duration));
     sys_log(1, "AddAffect %s type %d apply %d %d flag %u duration %d",
-            GetName(), type, static_cast<unsigned int>(point), value, flag, duration);
+            GetName(), static_cast<int>(type), static_cast<int>(point), static_cast<int>(value), static_cast<unsigned int>(flag), static_cast<int>(duration));
 
     CAffect* affect = FindAffect(type, isCube ? point : 0);
-    if (flag == 6) {
+    if (flag == AFF_STUN) {
         const long x = GetX();
         const long y = GetY();
         if (m_posDest.x != x || m_posDest.y != y) {
@@ -307,7 +317,7 @@ bool CHARACTER::AddAffect(DWORD type, BYTE point, long value, DWORD flag, long d
     if (desc) {
         SendAffectAddPacket(desc, affect);
         const DWORD currentType = affect->dwType;
-        if (currentType != 222 && currentType != 215 && currentType - 500 > 9) {
+        if (currentType != AFFECT_WAR_FLAG && currentType != AFFECT_REVIVE_INVISIBLE && currentType - AFFECT_PREMIUM_START > 9) {
             TPacketGDAddAffect packet;
             packet.dwPID = m_dwPlayerID;
             packet.elem = MakeAffectElement(*affect);
@@ -360,12 +370,12 @@ void CHARACTER::SaveAffect()
     while (it!=m_list_pkAffect.end()) {
         CAffect* affect=*it++;
         DWORD type=affect->dwType;
-        if (type==222 || type==215 || (type>=500 && type<=509)) continue;
-        sys_log(0,"AFFECT_SAVE: %lu %u %ld %ld",type,static_cast<unsigned int>(affect->bApplyOn),
+        if (type == AFFECT_WAR_FLAG || type == AFFECT_REVIVE_INVISIBLE || (type >= AFFECT_PREMIUM_START && type <= AFFECT_PREMIUM_END)) continue;
+        sys_log(0,"AFFECT_SAVE: %lu %u %ld %ld",affect->dwType,static_cast<unsigned int>(affect->bApplyOn),
                 affect->lApplyValue,affect->lDuration);
         TPacketGDAddAffect packet;
         packet.dwPID=m_dwPlayerID;
-        packet.elem.dwType=type;
+        packet.elem.dwType=affect->dwType;
         packet.elem.bApplyOn=affect->bApplyOn;
         packet.elem.lApplyValue=affect->lApplyValue;
         packet.elem.dwFlag=affect->dwFlag;
@@ -384,16 +394,20 @@ void CHARACTER::ClearAffect(bool save)
         auto current = it++;
         CAffect* affect = *current;
         const DWORD type = affect->dwType;
-        if (save && (type == 215 || type == 222 || type == 223 ||
-                     (type >= 500 && type < 600)))
+        if (save && (type == AFFECT_REVIVE_INVISIBLE || type == AFFECT_WAR_FLAG || type == AFFECT_BLOCK_CHAT ||
+                     (type >= AFFECT_PREMIUM_START && type < 600)))
             continue;
-        if (save && GetDesc())
-            SendAffectRemovePacket(GetDesc(), GetPlayerID(), type, affect->bApplyOn);
+        if (auto* desc = save ? GetDesc() : nullptr) {
+            const BYTE point = affect->bApplyOn;
+            const DWORD pid = GetPlayerID();
+            const DWORD currentType = affect->dwType;
+            SendAffectRemovePacket(desc, pid, currentType, point);
+        }
         ComputeAffect(affect, false);
         m_list_pkAffect.erase(current);
         delete affect;
     }
-    if (oldFlags.bits[0] != m_afAffectFlag.bits[0] || oldFlags.bits[1] != m_afAffectFlag.bits[1] ||
+    if (oldFlags != m_afAffectFlag ||
         oldMove != GetPoint(POINT_MOV_SPEED) || oldAttack != GetPoint(POINT_ATT_SPEED))
         UpdatePacket();
     CheckMaximumPoints();
@@ -402,7 +416,7 @@ void CHARACTER::ClearAffect(bool save)
 }
 
 namespace {
-struct LoadAffectLoginInfo {
+struct load_affect_login_event_info {
     DWORD pid;
     DWORD handle;
     DWORD count;
@@ -412,7 +426,7 @@ struct LoadAffectLoginInfo {
 // 0813dea0
 long load_affect_login_event(LPEVENT event)
 {
-    auto* info = static_cast<LoadAffectLoginInfo*>(event->info);
+    auto* info = static_cast<load_affect_login_event_info*>(event->info);
     CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(info->pid);
     DESC* desc = character ? character->GetDesc() : nullptr;
     if (!desc || desc->GetHandle() != info->handle || desc->IsPhase(0))
@@ -441,11 +455,11 @@ void CHARACTER::LoadAffect(DWORD count, TPacketAffectElement* elements)
         sys_log(test_server ? 0 : 1,
                 test_server ? "Load Affect :Create event for load affect" : "Create event for load affect");
         constexpr auto elementSize = sizeof(TPacketAffectElement);
-        if (count > (std::numeric_limits<int>::max() - sizeof(LoadAffectLoginInfo)) / elementSize)
+        if (count > (std::numeric_limits<int>::max() - sizeof(load_affect_login_event_info)) / elementSize)
             return;
         void* raw;
-        const DWORD id = __AllocEventInfo(sizeof(LoadAffectLoginInfo) + count * elementSize, &raw);
-        auto* info = static_cast<LoadAffectLoginInfo*>(raw);
+        const DWORD id = __AllocEventInfo(sizeof(load_affect_login_event_info) + count * elementSize, &raw);
+        auto* info = static_cast<load_affect_login_event_info*>(raw);
         info->pid = GetPlayerID();
         info->handle = desc->GetHandle();
         info->count = count;
@@ -480,13 +494,14 @@ void CHARACTER::LoadAffect(DWORD count, TPacketAffectElement* elements)
         auto* affect = new CAffect{element.dwType, element.bApplyOn, element.lApplyValue,
                                    element.dwFlag, element.lDuration, element.lSPCost};
         m_list_pkAffect.push_back(affect);
-        SendAffectAddPacket(desc, affect);
+        if (DESC* current = GetDesc())
+            SendAffectAddPacket(current, affect);
         ComputeAffect(affect, true);
     }
     if (CArenaManager::instance().IsArenaMap(GetMapIndex()))
         RemoveGoodAffect();
 
-    if (oldFlags.bits[0] != m_afAffectFlag.bits[0] || oldFlags.bits[1] != m_afAffectFlag.bits[1] ||
+    if (oldFlags != m_afAffectFlag ||
         moveSpeed != GetPoint(POINT_MOV_SPEED) || attackSpeed != GetPoint(POINT_ATT_SPEED))
         UpdatePacket();
     StartAffectEvent();

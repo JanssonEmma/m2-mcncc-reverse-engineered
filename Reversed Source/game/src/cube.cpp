@@ -204,10 +204,12 @@ void Cube_clean_item(CHARACTER* character)
 namespace {
 int CubeNpcDistance(CHARACTER* character, CHARACTER* npc)
 {
-    const auto dx = static_cast<std::int32_t>(
-        static_cast<std::uint32_t>(character->GetX()) - static_cast<std::uint32_t>(npc->GetX()));
-    const auto dy = static_cast<std::int32_t>(
-        static_cast<std::uint32_t>(character->GetY()) - static_cast<std::uint32_t>(npc->GetY()));
+    const auto npcY = static_cast<std::uint32_t>(npc->GetY());
+    const auto characterY = static_cast<std::uint32_t>(character->GetY());
+    const auto characterX = static_cast<std::uint32_t>(character->GetX());
+    const auto npcX = static_cast<std::uint32_t>(npc->GetX());
+    const auto dy = static_cast<std::int32_t>(characterY - npcY);
+    const auto dx = static_cast<std::int32_t>(characterX - npcX);
     return DISTANCE_APPROX(dx, dy);
 }
 }
@@ -233,9 +235,8 @@ void Cube_open(CHARACTER* character)
         sys_log(1, "CUBE: TOO_FAR: %s distance %d", character->GetName(), distance);
         return;
     }
-    auto& state = character->m_pointsInstant;
     Cube_clean_item(character);
-    state.pCubeNpc = npc;
+    character->SetCubeNpc(npc);
     character->ChatPacket(5, "cube open");
 }
 
@@ -243,9 +244,8 @@ void Cube_close(CHARACTER* character)
 {
     if (!character->IsCubeOpen())
         return;
-    auto& state = character->m_pointsInstant;
     Cube_clean_item(character);
-    state.pCubeNpc = nullptr;
+    character->SetCubeNpc(nullptr);
     character->ChatPacket(5, "cube close");
     dev_log("cube.cpp", 0x100, "Cube_close", 0x800, const_cast<char*>("<CUBE> close (%s)"), character->GetName());
 }
@@ -278,8 +278,11 @@ void Cube_delete_item(CHARACTER* character, int cube)
     if (!item)
         return;
     selected = nullptr;
-    if (test_server)
-        character->ChatPacket(1, "cube[%d]: cube[%d]: %s deleted", cube, item->GetCell(), item->GetName());
+    if (test_server) {
+        const char* name = item->GetName();
+        const auto cell = item->GetCell();
+        character->ChatPacket(1, "cube[%d]: cube[%d]: %s deleted", cube, cell, name);
+    }
 }
 
 void Cube_show_list(CHARACTER* character)
@@ -288,8 +291,11 @@ void Cube_show_list(CHARACTER* character)
         return;
     const auto& items = character->m_pointsInstant.pCubeItems;
     for (int i = 0; i < 15; ++i) {
-        if (CItem* item = items[i])
-            character->ChatPacket(1, "cube[%d]: inventory[%d]: %s", i, item->GetCell(), item->GetName());
+        if (CItem* item = items[i]) {
+            const char* name = item->GetName();
+            const auto cell = item->GetCell();
+            character->ChatPacket(1, "cube[%d]: inventory[%d]: %s", i, cell, name);
+        }
     }
 }
 
@@ -336,10 +342,14 @@ bool Cube_make(CHARACTER* character)
             return false;
         recipe->remove_material(character);
 
-        if (recipe->percent < number_ex(1, 100, file, 0x1ad)) {
+        const int roll = number_ex(1, 100, file, 0x1ad);
+        if (roll > recipe->percent) {
             character->ChatPacket(5, "cube fail");
-            LogManager::instance().CubeLog(character->GetPlayerID(), character->GetX(), character->GetY(),
-                                           reward.vnum, 0, 0, false);
+            auto& logger = LogManager::instance();
+            const auto x = character->GetX();
+            const auto y = character->GetY();
+            const auto playerId = character->GetPlayerID();
+            logger.CubeLog(playerId, x, y, reward.vnum, 0, 0, false);
             return false;
         }
         character->ChatPacket(5, "cube success %d %d", static_cast<int>(reward.vnum), reward.count);
@@ -348,8 +358,12 @@ bool Cube_make(CHARACTER* character)
             character->ChatPacket(5, "cube fail");
             return false;
         }
-        LogManager::instance().CubeLog(character->GetPlayerID(), character->GetX(), character->GetY(),
-                                       reward.vnum, item->GetID(), reward.count, true);
+        const auto itemId = item->GetID();
+        const auto y = character->GetY();
+        auto& logger = LogManager::instance();
+        const auto x = character->GetX();
+        const auto playerId = character->GetPlayerID();
+        logger.CubeLog(playerId, x, y, reward.vnum, itemId, reward.count, true);
         return true;
     }
     character->ChatPacket(1, "%s", locale_find("\301\246\301\266\040\300\347\267\341\260\241\040\272\316\301\267\307\325\264\317\264\331", g_iUseLocale));

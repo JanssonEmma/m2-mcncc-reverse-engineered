@@ -32,18 +32,32 @@ void DESC_MANAGER::DestroyDesc(DESC* desc, bool eraseFromSet)
     --m_iSocketsConnected;
 }
 
+namespace {
+struct FuncWho
+{
+    int& localUserCount;
+    int* empireUserCount;
+
+    void operator()(LPDESC desc)
+    {
+        if (!desc->GetCharacter())
+            return;
+
+        ++localUserCount;
+        const BYTE empire = desc->GetEmpire();
+        if (empire < 4)
+            ++empireUserCount[empire];
+    }
+};
+}
+
 void DESC_MANAGER::UpdateLocalUserCount()
 {
     m_iLocalUserCount = 0;
     std::fill_n(m_aiEmpireUserCount, 4, 0);
-    for (DESC* desc : GetClientSet()) {
-        if (!desc->GetCharacter())
-            continue;
-        ++m_iLocalUserCount;
-        const BYTE empire = desc->GetEmpire();
-        if (empire < 4)
-            ++m_aiEmpireUserCount[empire];
-    }
+    FuncWho count{m_iLocalUserCount, m_aiEmpireUserCount};
+    for (DESC* desc : GetClientSet())
+        count(desc);
     for (int empire = 1; empire <= 3; ++empire)
         m_aiEmpireUserCount[empire] += P2P_MANAGER::instance().GetEmpireUserCount(empire);
 }

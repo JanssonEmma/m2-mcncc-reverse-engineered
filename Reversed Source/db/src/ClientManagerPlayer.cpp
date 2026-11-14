@@ -343,7 +343,8 @@ void CClientManager::RESULT_ITEM_LOAD(CPeer * peer, MYSQL_RES * pRes, DWORD dwHa
 void CClientManager::RESULT_AFFECT_LOAD(CPeer * peer, MYSQL_RES * pRes, DWORD dwHandle)
 {
 	const auto rowCount = mysql_num_rows(pRes);
-	constexpr auto maxRows = ((std::numeric_limits<DWORD>::max)() - 2 * sizeof(DWORD)) / sizeof(TPacketAffectElement);
+	constexpr auto maxRows = ((std::numeric_limits<std::uint32_t>::max)() - 2 * sizeof(std::uint32_t)) /
+	                         sizeof(TPacketAffectElement);
 	if (rowCount > maxRows)
 	{
 		sys_err("SQL result exceeds the packet row limit");
@@ -621,13 +622,13 @@ void CClientManager::InsertLogoutPlayer(int pid)
         if (g_log)
             sys_log(0, "LOGOUT : Update player time pid(%d)", pid);
 
-        it->second->time = time(NULL);
+        it->second->time = static_cast<std::int32_t>(time(NULL));
         return;
     }
 
     tag_LogoutPlayerInfo* entry = new tag_LogoutPlayerInfo;
     entry->pid = pid;
-    entry->time = time(NULL);
+    entry->time = static_cast<std::int32_t>(time(NULL));
     m_map_logout.insert(std::make_pair(pid, entry));
 
     if (g_log)
@@ -651,14 +652,15 @@ void CClientManager::DeleteLogoutPlayer(int pid)
 void CClientManager::UpdateLogoutPlayer()
 {
     std::map<int, tag_LogoutPlayerInfo*>::iterator it = m_map_logout.begin();
-    time_t now = time(NULL);
+    const auto cutoff = static_cast<std::int32_t>(
+        static_cast<std::uint32_t>(time(NULL)) - static_cast<std::uint32_t>(g_iLogoutSeconds));
 
     while (it != m_map_logout.end())
     {
         tag_LogoutPlayerInfo* entry = (it++)->second;
-        if (entry->time < now - g_iLogoutSeconds)
+        if (entry->time < cutoff)
         {
-            FlushItemCacheSet(entry->pid);
+            FlushItemCacheSet(static_cast<std::uint32_t>(entry->pid));
             FlushPlayerCacheSet(entry->pid);
             DeleteLogoutPlayer(entry->pid);
         }
@@ -667,7 +669,7 @@ void CClientManager::UpdateLogoutPlayer()
 
 void CClientManager::FlushPlayerCacheSet(int pid)
 {
-    TPlayerTableCacheMap::iterator it = m_map_playerCache.find(pid);
+    TPlayerTableCacheMap::iterator it = m_map_playerCache.find(static_cast<std::uint32_t>(pid));
     if (it == m_map_playerCache.end())
         return;
 

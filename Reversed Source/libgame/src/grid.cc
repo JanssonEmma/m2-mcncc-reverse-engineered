@@ -118,7 +118,7 @@ void CGrid::Print()
     for (int y = 0; y < m_iHeight; ++y)
     {
 	for (int x = 0; x < m_iWidth; ++x)
-	    printf("%d", m_pGrid[y * m_iWidth + x]);
+	    printf("%d", static_cast<signed char>(m_pGrid[y * m_iWidth + x]));
 
 	printf("\n");
     }

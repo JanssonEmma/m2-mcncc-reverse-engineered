@@ -1,3 +1,5 @@
+#include <cfenv>
+#include <utility>
 #include "cstdio"
 #include "char_manager.h"
 #include "cmd.h"
@@ -383,8 +385,10 @@ namespace {
 DWORD ReadLuaDword(lua_State* state, int index = 1)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value >= -9223372036854775808.0 && value < 9223372036854775808.0))
+    if (!(value >= -9223372036854775808.0 && value < 9223372036854775808.0)) {
+        std::feraiseexcept(FE_INVALID);
         return 0;
+    }
     return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
 }
 }
@@ -401,7 +405,7 @@ int _add_bgm_info(lua_State* state)
         const auto map = static_cast<std::uint32_t>(LuaTruncateInt(lua_tonumber(state, 1)));
         const char* name = lua_tostring(state, 2);
         if (name) {
-            const float volume = lua_isnumber(state, 3) ? static_cast<float>(lua_tonumber(state, 3)) : 0.02f;
+            const float volume = lua_isnumber(state, 3) ? static_cast<float>(lua_tonumber(state, 3)) : 0x1.47ae16p-6f;
             CHARACTER_AddBGMInfo(map, name, volume);
         }
     }
@@ -423,9 +427,10 @@ int _add_ox_quiz(lua_State* state)
 int _find_pc(lua_State* state)
 {
     CHARACTER* found = nullptr;
-    if (lua_isstring(state, 1))
-        found = CHARACTER_MANAGER::instance().FindPC(lua_tostring(state, 1));
-    else
+    if (lua_isstring(state, 1)) {
+        const char* name = lua_tostring(state, 1);
+        found = CHARACTER_MANAGER::instance().FindPC(name);
+    } else
         CQuestManager::instance().QuestError("_find_pc", 0x214, "invalid argument");
 
     const auto vid = found ? static_cast<std::int32_t>(static_cast<DWORD>(found->GetVID())) : 0;
@@ -436,9 +441,10 @@ int _find_pc(lua_State* state)
 int _pc_name(lua_State* state)
 {
     CHARACTER* found = nullptr;
-    if (lua_isnumber(state, 1))
-        found = CHARACTER_MANAGER::instance().Find(ReadLuaDword(state));
-    else
+    if (lua_isnumber(state, 1)) {
+        const DWORD vid = ReadLuaDword(state);
+        found = CHARACTER_MANAGER::instance().Find(vid);
+    } else
         CQuestManager::instance().QuestError("_pc_name", 0x245, "invalid argument");
 
     lua_pushstring(state, found ? found->GetName() : "");
@@ -452,9 +458,11 @@ int _find_npc_by_vnum(lua_State* state)
     if (!lua_isnumber(state, 1)) {
         quests.QuestError("_find_npc_by_vnum", 600, "invalid argument");
     } else if (CHARACTER* character = quests.GetCurrentCharacterPtr()) {
-        const auto* candidates = CHARACTER_MANAGER::instance().GetCharacterSetByRaceNum(ReadLuaDword(state));
+        const DWORD vnum = ReadLuaDword(state);
+        const auto* candidates = CHARACTER_MANAGER::instance().GetCharacterSetByRaceNum(vnum);
         for (CHARACTER* candidate : *candidates) {
-            if (candidate->GetMapIndex() == character->GetMapIndex()) {
+            const auto playerMap = static_cast<std::int32_t>(character->GetMapIndex());
+            if (static_cast<std::int32_t>(candidate->GetMapIndex()) == playerMap) {
                 vid = static_cast<DWORD>(candidate->GetVID());
                 break;
             }
@@ -507,9 +515,10 @@ int _under_han(lua_State* state)
 int _get_guildid_byname(lua_State* state)
 {
     CGuild* guild = nullptr;
-    if (lua_isstring(state, 1))
-        guild = CGuildManager::instance().FindGuildByName(lua_tostring(state, 1));
-    else
+    if (lua_isstring(state, 1)) {
+        std::string guildName = lua_tostring(state, 1);
+        guild = CGuildManager::instance().FindGuildByName(std::move(guildName));
+    } else
         CQuestManager::instance().QuestError("_get_guildid_byname", 0x1f8,
                                              "_get_guildid_byname() - invalud argument");
     lua_pushnumber(state, guild ? guild->GetID() : 0);
@@ -552,15 +561,12 @@ int _block_chat(lua_State* state)
 int _add_goto_info(lua_State* state)
 {
     const char* name = lua_tostring(state, 1);
-    const auto empire = lua_tonumber(state, 2);
-    const auto map = lua_tonumber(state, 3);
-    const auto x = lua_tonumber(state, 4);
-    const auto y = lua_tonumber(state, 5);
-    if (name) {
-        CHARACTER_AddGotoInfo(name, static_cast<BYTE>(LuaTruncateInt(empire)), LuaTruncateInt(map),
-                              static_cast<std::uint32_t>(LuaTruncateInt(x)),
-                              static_cast<std::uint32_t>(LuaTruncateInt(y)));
-    }
+    const auto empire = static_cast<BYTE>(LuaTruncateInt(lua_tonumber(state, 2)));
+    const int map = LuaTruncateInt(lua_tonumber(state, 3));
+    const auto x = static_cast<std::uint32_t>(LuaTruncateInt(lua_tonumber(state, 4)));
+    const auto y = static_cast<std::uint32_t>(LuaTruncateInt(lua_tonumber(state, 5)));
+    if (name)
+        CHARACTER_AddGotoInfo(name, empire, map, x, y);
     return 0;
 }
 
@@ -571,13 +577,16 @@ int _find_pc_cond(lua_State* state)
     if (!lua_isnumber(state, 1) || !lua_isnumber(state, 2) || !lua_isnumber(state, 3)) {
         quests.QuestError("_find_pc_cond", 0x223, "invalid argument");
     } else {
+        const int minimum = LuaTruncateInt(lua_tonumber(state, 1));
+        const int maximum = LuaTruncateInt(lua_tonumber(state, 2));
+        const auto jobs = static_cast<unsigned>(ReadLuaDword(state, 3));
         if (CHARACTER* current = quests.GetCurrentCharacterPtr()) {
-            const int minimum = LuaTruncateInt(lua_tonumber(state, 1));
-            const int maximum = LuaTruncateInt(lua_tonumber(state, 2));
-            const auto jobs = static_cast<unsigned>(ReadLuaDword(state, 3));
-            const long map = current->GetMapIndex();
-            if (test_server)
-                sys_log(0, "find_pc_cond map=%ld, job=%u, level=%d~%d", map, jobs, minimum, maximum);
+            if (test_server) {
+                const auto loggedMap = static_cast<std::int32_t>(current->GetMapIndex());
+                sys_log(0, "find_pc_cond map=%ld, job=%u, level=%d~%d",
+                        static_cast<long>(loggedMap), jobs, minimum, maximum);
+            }
+            const auto map = static_cast<std::int32_t>(current->GetMapIndex());
             found = CHARACTER_MANAGER::instance().FindSpecifyPC(jobs, map, current, minimum, maximum);
         }
     }
@@ -588,31 +597,40 @@ int _find_pc_cond(lua_State* state)
 
 int _item_name(lua_State* state)
 {
-    const TItemTable* item = lua_isnumber(state, 1)
-        ? ITEM_MANAGER::instance().GetTable(ReadLuaDword(state)) : nullptr;
+    const TItemTable* item = nullptr;
+    if (lua_isnumber(state, 1)) {
+        const DWORD vnum = ReadLuaDword(state);
+        item = ITEM_MANAGER::instance().GetTable(vnum);
+    }
     lua_pushstring(state, item ? item->szLocaleName : "");
     return 1;
 }
 
 int _mob_name(lua_State* state)
 {
-    const CMob* mob = lua_isnumber(state, 1)
-        ? CMobManager::instance().Get(ReadLuaDword(state)) : nullptr;
+    const CMob* mob = nullptr;
+    if (lua_isnumber(state, 1)) {
+        const DWORD vnum = ReadLuaDword(state);
+        mob = CMobManager::instance().Get(vnum);
+    }
     lua_pushstring(state, mob ? mob->m_table.szLocaleName : "");
     return 1;
 }
 
 int _mob_vnum(lua_State* state)
 {
-    const CMob* mob = lua_isstring(state, 1)
-        ? CMobManager::instance().Get(lua_tostring(state, 1), false) : nullptr;
+    const CMob* mob = nullptr;
+    if (lua_isstring(state, 1)) {
+        const char* name = lua_tostring(state, 1);
+        mob = CMobManager::instance().Get(name, false);
+    }
     lua_pushnumber(state, mob ? mob->m_table.dwVnum : 0);
     return 1;
 }
 
 int _get_global_time(lua_State* state)
 {
-    lua_pushnumber(state, get_global_time());
+    lua_pushnumber(state, static_cast<std::int32_t>(static_cast<std::uint32_t>(get_global_time())));
     return 1;
 }
 
@@ -640,9 +658,10 @@ int _set_server_loop_timer(lua_State* state) { return SetServerTimer(state, true
 
 int _clear_server_timer(lua_State* state)
 {
+    auto& quests = CQuestManager::instance();
     if (const char* name = lua_tostring(state, 1)) {
-        CQuestManager::instance().ClearServerTimer(name,
-            ReadLuaDword(state, 2));
+        const DWORD argument = ReadLuaDword(state, 2);
+        quests.ClearServerTimer(name, argument);
     }
     return 0;
 }
@@ -656,14 +675,21 @@ static int SetNamedTimer(lua_State* state, bool loop)
         return 0;
     }
 
+    const char* name = lua_tostring(state, -2);
+    const lua_Number seconds = lua_tonumber(state, -1);
+    if (!quests.GetCurrentCharacterPtr() || !quests.GetCurrentPC())
+        return 0;
+
+    const auto npc = quests.LoadTimerScript(name);
     CHARACTER* character = quests.GetCurrentCharacterPtr();
-    PC* player = quests.GetCurrentPC();
-    if (character && player) {
-        const char* name = lua_tostring(state, -2);
-        const lua_Number seconds = lua_tonumber(state, -1);
-        const auto npc = quests.LoadTimerScript(name);
-        player->AddTimer(name, quest_create_timer_event(name, character->GetPlayerID(), seconds, npc, loop));
-    }
+    if (!character)
+        return 0;
+
+    LPEVENT event = quest_create_timer_event(name, character->GetPlayerID(), seconds, npc, loop);
+    if (PC* player = quests.GetCurrentPC())
+        player->AddTimer(name, event);
+    else
+        event_cancel(&event);
     return 0;
 }
 
@@ -672,8 +698,10 @@ int _set_timer(lua_State* state)
     auto& quests = CQuestManager::instance();
     if (lua_gettop(state) != 1 || !lua_isnumber(state, 1)) {
         quests.QuestError("_set_timer", 0x2ec, "QUEST invalid argument.");
-    } else if (CHARACTER* character = quests.GetCurrentCharacterPtr()) {
-        quest_create_timer_event("", character->GetPlayerID(), lua_tonumber(state, 1), 0, false);
+    } else {
+        const auto seconds = lua_tonumber(state, 1);
+        if (CHARACTER* character = quests.GetCurrentCharacterPtr())
+            quest_create_timer_event("", character->GetPlayerID(), seconds, 0, false);
     }
     return 0;
 }
@@ -692,8 +720,11 @@ int _clear_named_timer(lua_State* state)
     auto& quests = CQuestManager::instance();
     if (lua_gettop(state) != 1 || !lua_isstring(state, 1))
         quests.QuestError("_clear_named_timer", 0x366, "QUEST set_timer argument count wrong.");
-    else if (PC* player = quests.GetCurrentPC())
-        player->RemoveTimer(lua_tostring(state, 1));
+    else {
+        const std::string name = lua_tostring(state, 1);
+        if (PC* player = quests.GetCurrentPC())
+            player->RemoveTimer(name);
+    }
     return 0;
 }
 
@@ -717,8 +748,9 @@ int _set_quest_state(lua_State* state)
             const char* stateName = lua_tostring(state, -1);
             if (!stateName)
                 return 0;
-            running->st = quests.GetQuestStateIndex(name, stateName);
-            player->SetCurrentQuestStateName(stateName);
+            running->st = quests.GetQuestStateIndex(player->GetCurrentQuestName(), stateName);
+            if (const char* currentStateName = lua_tostring(state, -1))
+                player->SetCurrentQuestStateName(currentStateName);
         } else {
             player->SetQuestState(name, next);
         }
@@ -777,47 +809,105 @@ struct warp_all_to_map_empire_event_info {
     int empire, fromMap, toMap, x, y;
 };
 
-void WarpQuestMapToVillage(int fromMap, WarpFilter filter, int ownEmpire)
+struct FWarpAllToVillage
 {
-    ForEachQuestMapCharacter(fromMap, [&](CHARACTER* character) {
-        if (!character->GetDesc())
+    void operator()(CHARACTER* character)
+    {
+        if (!character->IsPC())
             return;
+
         const BYTE empire = character->GetEmpire();
         if (empire < 1 || empire > 3) {
-            const bool all = filter == WarpFilter::All;
-            CQuestManager::instance().QuestError("operator()", all ? 0x477 : 0x4d3,
-                all ? "Unkonwn Empire %s %d " : "[WARP_TO_VILLAGE]Unkonwn Empire %s %d ",
-                character->GetName(), static_cast<int>(character->GetMapIndex()));
-        } else if (filter == WarpFilter::OtherEmpire && empire == ownEmpire) {
-            if (test_server)
-                sys_log(0, "[WARP_TO_VILLAGE]My Empire %s %d ",
-                        character->GetName(), static_cast<int>(character->GetMapIndex()));
-        } else {
-            character->WarpSet(g_start_position[empire][0], g_start_position[empire][1], 0);
+            const int mapIndex = static_cast<int>(character->GetMapIndex());
+            const char* name = character->GetName();
+            CQuestManager::instance().QuestError("operator()", 0x477, "Unkonwn Empire %s %d ", name, mapIndex);
+            return;
         }
-    });
+        const auto y = static_cast<std::int32_t>(g_start_position[empire][1]);
+        const auto x = static_cast<std::int32_t>(g_start_position[empire][0]);
+        character->WarpSet(x, y, 0);
+    }
+};
+
+struct FWarpAllToVillageExceptMyEmpire
+{
+    int MyEmpire;
+
+    void operator()(CHARACTER* character)
+    {
+        if (!character->IsPC())
+            return;
+
+        const BYTE empire = character->GetEmpire();
+        if (empire < 1 || empire > 3) {
+            const int mapIndex = static_cast<int>(character->GetMapIndex());
+            const char* name = character->GetName();
+            CQuestManager::instance().QuestError("operator()", 0x4d3,
+                "[WARP_TO_VILLAGE]Unkonwn Empire %s %d ", name, mapIndex);
+        } else if (empire == MyEmpire) {
+            if (test_server) {
+                const int mapIndex = static_cast<int>(character->GetMapIndex());
+                const char* name = character->GetName();
+                sys_log(0, "[WARP_TO_VILLAGE]My Empire %s %d ", name, mapIndex);
+            }
+        } else {
+            const auto y = static_cast<std::int32_t>(g_start_position[empire][1]);
+            const auto x = static_cast<std::int32_t>(g_start_position[empire][0]);
+            character->WarpSet(x, y, 0);
+        }
+    }
+};
+
+struct FWarpInMap
+{
+    int m_iMapIndexTo, m_x, m_y;
+
+    void operator()(CHARACTER* character)
+    {
+        if (!character->IsPC())
+            return;
+        if (test_server) {
+            const int loggedMap = m_iMapIndexTo;
+            const int loggedY = m_y;
+            const int loggedX = m_x;
+            sys_log(0, "Warp_All_to_Map_1 x %d y %d mapindex %d ", loggedX, loggedY, loggedMap);
+        }
+        const int map = m_iMapIndexTo;
+        const int y = m_y;
+        const int x = m_x;
+        character->WarpSet(x, y, map);
+    }
+};
+
+void WarpQuestMapToVillage(int fromMap, WarpFilter filter, int ownEmpire)
+{
+    if (filter == WarpFilter::All)
+        ForEachQuestMapCharacter(fromMap, FWarpAllToVillage{});
+    else
+        ForEachQuestMapCharacter(fromMap, FWarpAllToVillageExceptMyEmpire{ownEmpire});
     if (test_server)
         sys_log(0, "Warp All to Village");
 }
 
 void WarpQuestMap(int fromMap, int toMap, int x, int y, WarpFilter filter, int ownEmpire)
 {
-    if (filter == WarpFilter::All)
+    if (filter == WarpFilter::All) {
         sys_log(0, "Warp_All_to_Map_1 x %d y %d mapindex %d ", x, y, toMap);
-    else if (filter == WarpFilter::OtherEmpire)
-        sys_log(0, "Warp_All_to_Map_1");
+        ForEachQuestMapCharacter(fromMap, FWarpInMap{toMap, x, y});
+    } else {
+        if (filter == WarpFilter::OtherEmpire)
+            sys_log(0, "Warp_All_to_Map_1");
 
-    ForEachQuestMapCharacter(fromMap, [&](CHARACTER* character) {
-        if (!character->GetDesc())
-            return;
-        const BYTE empire = character->GetEmpire();
-        if ((filter == WarpFilter::OtherEmpire && empire == ownEmpire)
-            || (filter == WarpFilter::OwnEmpire && empire != ownEmpire))
-            return;
-        if (test_server && filter == WarpFilter::All)
-            sys_log(0, "Warp_All_to_Map_1 x %d y %d mapindex %d ", x, y, toMap);
-        character->WarpSet(x, y, toMap);
-    });
+        ForEachQuestMapCharacter(fromMap, [&](CHARACTER* character) {
+            if (!character->GetDesc())
+                return;
+            const BYTE empire = character->GetEmpire();
+            if ((filter == WarpFilter::OtherEmpire && empire == ownEmpire)
+                || (filter == WarpFilter::OwnEmpire && empire != ownEmpire))
+                return;
+            character->WarpSet(x, y, toMap);
+        });
+    }
     if (test_server && filter != WarpFilter::OwnEmpire)
         sys_log(0, "Warp_All_to_Map");
 }
@@ -949,7 +1039,9 @@ int _warp_to_village(lua_State* state)
     if (CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr()) {
         const BYTE empire = character->GetEmpire();
         const long* position = g_start_position[empire < 4 ? empire : 0];
-        character->WarpSet(position[0], position[1], 0);
+        const auto y = static_cast<std::int32_t>(position[1]);
+        const auto x = static_cast<std::int32_t>(position[0]);
+        character->WarpSet(x, y, 0);
     }
     if (!lua_gettop(state))
         lua_pushnil(state);
@@ -1005,7 +1097,9 @@ int _regen_in_map(lua_State* state)
         return 0;
     if (SECTREE_MAP* map = SECTREE_MANAGER::instance().GetMap(mapIndex)) {
         sys_log(0, "[REGEN_LOAD_IN_MAP] Map %d File %s ", mapIndex, path);
-        regen_load_in_file(path, mapIndex, map->m_setting.iBaseX, map->m_setting.iBaseY);
+        const auto baseY = map->m_setting.iBaseY;
+        const auto baseX = map->m_setting.iBaseX;
+        regen_load_in_file(path, mapIndex, baseX, baseY);
     } else {
         sys_log(0, "[REGEN_LOAD_IN_MAP]not open map %d ", mapIndex);
     }
@@ -1031,19 +1125,21 @@ static unsigned CurrentQuestEmpire()
 
 int _get_start_mapindex(lua_State* state)
 {
-    lua_pushnumber(state, g_start_map[CurrentQuestEmpire()]);
+    lua_pushnumber(state, static_cast<std::uint32_t>(g_start_map[CurrentQuestEmpire()]));
     return 1;
 }
 
 int _get_start_pos_X(lua_State* state)
 {
-    lua_pushnumber(state, g_start_position[CurrentQuestEmpire()][0]);
+    const auto empire = CurrentQuestEmpire();
+    lua_pushnumber(state, empire ? static_cast<std::uint32_t>(g_start_position[empire][0]) : 0u);
     return 1;
 }
 
 int _get_start_pos_Y(lua_State* state)
 {
-    lua_pushnumber(state, g_start_position[CurrentQuestEmpire()][1]);
+    const auto empire = CurrentQuestEmpire();
+    lua_pushnumber(state, empire ? static_cast<std::uint32_t>(g_start_position[empire][1]) : 0u);
     return 1;
 }
 
@@ -1158,24 +1254,28 @@ namespace {
 BYTE QuestRefinementCell(lua_State* state)
 {
     const auto value = std::trunc(lua_tonumber(state, -1));
-    if (value < -32768.0 || value > 32767.0 || !std::isfinite(value))
+    if (value < -32768.0 || value > 32767.0 || !std::isfinite(value)) {
+        std::feraiseexcept(FE_INVALID);
         return 0;
+    }
     return static_cast<BYTE>(static_cast<short>(value));
 }
 }
 
 int _refine_pick(lua_State* state)
 {
+    const BYTE cell = QuestRefinementCell(state);
     LPCHARACTER character = CQuestManager::instance().GetCurrentCharacterPtr();
-    LPITEM pick = character ? character->GetItem(QuestRefinementCell(state)) : nullptr;
+    LPITEM pick = character ? character->GetItem(cell) : nullptr;
     lua_pushnumber(state, mining::RealRefinePick(character, pick));
     return 1;
 }
 
 int _fish_real_refine_rod(lua_State* state)
 {
+    const BYTE cell = QuestRefinementCell(state);
     LPCHARACTER character = CQuestManager::instance().GetCurrentCharacterPtr();
-    LPITEM rod = character ? character->GetItem(QuestRefinementCell(state)) : nullptr;
+    LPITEM rod = character ? character->GetItem(cell) : nullptr;
     lua_pushnumber(state, fishing::RealRefineRod(character, rod));
     return 1;
 }
@@ -1245,7 +1345,7 @@ int SpawnQuestMob(lua_State* state, bool group)
                     continue;
                 if (!group && aggressive)
                     mob->SetAggressive();
-                mob->SetQuestByVnum(questIndex);
+                mob->SetQuestBy(questIndex);
                 if (!spawned) {
                     spawned = true;
                     lua_pushnumber(state, static_cast<DWORD>(mob->GetVID()));

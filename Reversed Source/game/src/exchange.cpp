@@ -30,8 +30,17 @@ void exchange_packet(CHARACTER* ch, BYTE subheader, bool own, DWORD a, DWORD b, 
     packet.arg3=static_cast<std::uint32_t>(c);
     if (subheader==1 && data) {
         CItem* item=static_cast<CItem*>(data);
-        for (int i = 0; i < 3; ++i)
-            packet.alSockets[i] = static_cast<std::int32_t>(item->GetSockets()[i]);
+        const long* sockets = item->GetSockets();
+        if (sizeof(long) == sizeof(std::int32_t)) {
+            thecore_memcpy(packet.alSockets, sockets, sizeof(packet.alSockets));
+        } else {
+            const std::int32_t packedSockets[] = {
+                static_cast<std::int32_t>(sockets[0]),
+                static_cast<std::int32_t>(sockets[1]),
+                static_cast<std::int32_t>(sockets[2]),
+            };
+            thecore_memcpy(packet.alSockets, packedSockets, sizeof(packet.alSockets));
+        }
         thecore_memcpy(packet.aAttr,item->GetAttributes(),sizeof(packet.aAttr));
         desc=ch->GetDesc();
     }
@@ -233,8 +242,8 @@ bool CExchange::Accept(bool accept)
 
     CHARACTER* owner=m_pOwner;
     CHARACTER* recipient=m_pCompany->m_pOwner;
-    owner->m_iExchangeTime=thecore_pulse();
-    recipient->m_iExchangeTime=thecore_pulse();
+    owner->SetExchangeTime();
+    recipient->SetExchangeTime();
     int count;
     if (!Check(&count)) {
         owner->ChatPacket(1,locale_find("\265\267\300\314\040\272\316\301\267\307\317\260\305\263\252\040\276\306\300\314\305\333\300\314\040\301\246\300\332\270\256\277\241\040\276\370\275\300\264\317\264\331\056",g_iUseLocale));
@@ -287,7 +296,7 @@ bool CHARACTER::ExchangeStart(CHARACTER* victim)
         exchange_packet(this,6,false,0,0,0,0);
         return false;
     }
-    if (victim->m_pointsInstant.bBlockMode&1) {
+    if (victim->IsBlockMode(1)) {
         ChatPacket(1,locale_find("\273\363\264\353\271\346\300\314\040\261\263\310\257\040\260\305\272\316\040\273\363\305\302\300\324\264\317\264\331\056",g_iUseLocale));
         return false;
     }
@@ -295,8 +304,8 @@ bool CHARACTER::ExchangeStart(CHARACTER* victim)
     victim->SetExchange(new CExchange(victim));
     victim->m_pkExchange->SetCompany(m_pkExchange);
     m_pkExchange->SetCompany(victim->m_pkExchange);
-    m_iExchangeTime=thecore_pulse();
-    victim->m_iExchangeTime=thecore_pulse();
+    SetExchangeTime();
+    victim->SetExchangeTime();
     exchange_packet(victim,0,false,GetVID(),0,0,0);
     exchange_packet(this,0,false,victim->GetVID(),0,0,0);
     return true;

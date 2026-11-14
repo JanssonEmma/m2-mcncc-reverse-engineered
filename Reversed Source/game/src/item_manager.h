@@ -49,7 +49,28 @@ public:
     };
 
     explicit CSpecialItemGroup(DWORD vnum) : m_dwVnum(vnum) {}
-    const CSpecialItemInfo* SelectItem() const;
+    bool IsEmpty() const { return m_vecProbs.empty(); }
+    int GetOneIndex() const;
+    bool IsValidIndex(int index) const
+    {
+        const auto offset = static_cast<std::vector<int>::size_type>(index);
+        return index >= 0 && offset < m_vecProbs.size() && offset < m_vecItems.size();
+    }
+    int GetVnum(int index) const
+    {
+        return static_cast<std::int32_t>(static_cast<std::uint32_t>(m_vecItems.at(index).vnum));
+    }
+    int GetCount(int index) const { return m_vecItems.at(index).count; }
+    int GetRarePct(int index) const { return m_vecItems.at(index).rare; }
+    bool Contains(DWORD vnum) const
+    {
+        const auto key = static_cast<std::uint32_t>(vnum);
+        for (const auto& item : m_vecItems) {
+            if (static_cast<std::uint32_t>(item.vnum) == key)
+                return true;
+        }
+        return false;
+    }
 
     void AddItem(DWORD vnum, int count, int weight, int rare)
     {
@@ -85,6 +106,8 @@ public:
         m_vecItems.push_back(item);
     }
 
+    int GetOneIndex() const;
+    const SMobItemGroupInfo& GetOne() const { return m_vecItems.at(GetOneIndex()); }
     const SMobItemGroupInfo* SelectItem() const;
     int GetKillPerDrop() const { return m_iKillDrop; }
     bool IsEmpty() const { return m_vecProbs.empty(); }
@@ -165,6 +188,9 @@ public:
     CItem* FindByVID(DWORD vid);
     DWORD GetRefineFromVnum(DWORD vnum);
     TItemTable* GetTable(DWORD vnum);
+    const std::vector<TItemTable>& GetTable() { return m_vec_prototype; }
+    std::map<DWORD, TItemTable>& GetVIDMap() { return m_map_vid; }
+    std::vector<TItemTable>& GetVecProto() { return m_vec_prototype; }
     DWORD GetNewID();
     bool SetMaxItemID(DWORD id);
     bool CreateDropItem(CHARACTER* mob, CHARACTER* killer, std::vector<CItem*>& drops);
@@ -172,8 +198,13 @@ public:
     bool ReadEtcDropItemFile(const char* filename);
     bool ReadDropItemGroup(const char* filename);
     bool ReadSpecialDropItemFile(const char* filename);
-    CSpecialItemGroup* GetSpecialItemGroup(DWORD vnum);
+    const CSpecialItemGroup* GetSpecialItemGroup(DWORD vnum);
     bool ReadMonsterDropItemGroup(const char* filename);
+    int GetSpecialGroupFromItem(DWORD vnum)
+    {
+        const auto it = m_ItemToSpecialGroup.find(vnum);
+        return it == m_ItemToSpecialGroup.end() ? 0 : it->second;
+    }
 protected:
     void CreateQuestDropItem(CHARACTER* mob, CHARACTER* killer, std::vector<CItem*>& drops, int delta, int range);
     int RealNumber(DWORD vnum);
@@ -182,7 +213,7 @@ private:
     std::map<DWORD,DWORD> m_map_ItemRefineFrom;
     int m_iTopOfTable;
     std::map<DWORD,CItem*> m_VIDMap;
-    std::uint32_t m_dwVIDCount;
+    DWORD m_dwVIDCount;
     DWORD m_dwCurrentID;
     std::set<CItem*> m_set_pkItemForDelayedSave;
     std::map<DWORD,CItem*> m_map_pkItemByID;

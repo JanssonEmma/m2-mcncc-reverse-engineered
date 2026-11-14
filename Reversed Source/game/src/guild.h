@@ -55,7 +55,7 @@ public:
     void SkillLevelUp(DWORD vnum);
     void SendDBSkillUpdate(int amount);
     int GetMemberCount() { return static_cast<int>(m_member.size()); }
-    int GetTotalLevel() const;
+    int GetTotalLevel();
     void GuildWarEntryAccept(DWORD opponent, CHARACTER* ch);
     DWORD GetMasterPID() { return m_data.master_pid; }
     BYTE GetLevel() const { return m_data.level; }
@@ -117,7 +117,7 @@ public:
     void SetGuildWarMapIndex(DWORD opponent, long mapIndex);
     int GetSkillLevel(DWORD vnum);
     void RestoreGuildPower() { m_data.power = m_data.max_power; }
-    void UpdateSkill(BYTE points, const BYTE* levels);
+    void UpdateSkill(BYTE points, BYTE* levels);
     void UseSkill(DWORD vnum, CHARACTER* character, DWORD targetPid);
     void SkillUsableChange(DWORD vnum, bool usable);
     void GuildPointChange(BYTE type, int amount, bool save);

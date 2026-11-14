@@ -24,6 +24,19 @@
 #endif
 #include <utility>
 
+CPacketInfo g_query_info;
+CPacketInfo g_item_info;
+
+void CPacketInfo::Add(int header)
+{
+    ++m_map_info[header];
+}
+
+void CPacketInfo::Reset()
+{
+    m_map_info.clear();
+}
+
 namespace
 {
 bool IsIPv4Address(const char* text)
@@ -40,6 +53,7 @@ bool IsIPv4Address(const char* text)
 void CClientManager::SetCacheFlushCountLimit(int limit)
 {
     m_iCacheFlushCountLimit = MAX(10, limit);
+    sys_log(0, "CACHE_FLUSH_LIMIT_PER_SECOND: %d", m_iCacheFlushCountLimit);
 }
 
 CPeer* CClientManager::GetAnyPeer()
@@ -265,6 +279,9 @@ bool CClientManager::InitializeNowItemID()
         return false;
     }
 
+    sys_log(0, "ItemRange From File %d ,%d ",
+            static_cast<int>(m_dwItemIDStart), static_cast<int>(m_dwItemIDStop));
+
     char query[256];
     dbsql::snprintf(query, sizeof(query), "SELECT MAX(id) from item%s WHERE id >= %lu AND id <= %lu", GetTablePostfix(), m_dwItemIDStart, m_dwItemIDStop);
     SQLMsg* message = CDBManager::instance().DirectQuery(query);
@@ -276,7 +293,7 @@ bool CClientManager::InitializeNowItemID()
     }
 
     MYSQL_ROW row = mysql_fetch_row(message->Get()->pSQLResult);
-    const DWORD lastID = row[0] ? static_cast<DWORD>(atoi(row[0])) : m_dwItemIDStart;
+    const DWORD lastID = row[0] ? static_cast<std::uint32_t>(atoi(row[0])) : m_dwItemIDStart;
     if (lastID == m_dwItemIDStop)
     {
         sys_err("Clientmanager::InitializeNowItemID() : Not Enough ID ");
@@ -287,6 +304,8 @@ bool CClientManager::InitializeNowItemID()
     m_dwNowItemID = lastID + 1;
     delete message;
 
+    sys_log(0, " Init Success Start %lu End %lu Now %lu\n",
+            m_dwItemIDStart, m_dwItemIDStop, m_dwNowItemID);
     return true;
 }
 
@@ -312,6 +331,7 @@ void CClientManager::MainLoop()
         log_rotate();
     }
 
+    sys_log(0, "MainLoop exited, Starting cache flushing");
     signal_timer_disable();
 
     for (TPlayerTableCacheMap::iterator it = m_map_playerCache.begin(); it != m_map_playerCache.end(); ++it)
@@ -387,6 +407,7 @@ bool CClientManager::InitializeLocalization()
         delete message;
         return false;
     }
+    sys_log(0, "InitializeLocalization() - LoadLocaleTable(count:%d)", static_cast<int>(message->Get()->iNumRows));
 
     m_vec_Locale.clear();
 
@@ -410,6 +431,7 @@ bool CClientManager::InitializeLocalization()
                 exit(0);
             }
 
+            sys_log(0, "locale[LOCALE] = %s", locale.szValue);
             g_stLocale = rule->charset;
             g_stLocaleNameColumn = rule->nameColumn;
             if (!CDBManager::instance().SetLocale(g_stLocale.c_str()))
@@ -427,6 +449,7 @@ bool CClientManager::InitializeLocalization()
                 return false;
             }
             g_stLocaleNameColumn = locale.szValue;
+            sys_log(0, "locale[DB_NAME_COLUMN] = %s", g_stLocaleNameColumn.c_str());
         }
 
         m_vec_Locale.push_back(locale);
@@ -452,6 +475,8 @@ void CClientManager::CreateItemCacheSet(DWORD owner)
         return;
 
     m_map_pkItemCacheSetPtr.insert(std::make_pair(owner, new TItemCacheSet));
+    if (g_log)
+        sys_log(0, "ITEM_CACHE: new cache %lu", owner);
 }
 
 CItemCache* CClientManager::GetItemCache(DWORD id)
@@ -465,16 +490,26 @@ void CClientManager::PutItemCache(TPlayerItem* item, bool skipQuery)
     CItemCache* entry = GetItemCache(item->id);
     if (!entry)
     {
+        if (g_log)
+            sys_log(0, "ITEM_CACHE: PutItemCache ==> New CItemCache id%d ,vnum %d new owner %d",
+                    static_cast<int>(item->id), static_cast<int>(item->vnum), static_cast<int>(item->owner));
         entry = new CItemCache;
         m_map_itemCache.insert(std::make_pair(item->id, entry));
     }
     else
     {
+        if (g_log)
+            sys_log(0, "ITEM_CACHE: PutItemCache ==> Have Cache");
         if (item->owner != entry->Get()->owner)
         {
             TItemCacheSet* previous = GetItemCacheSet(entry->Get()->owner);
             if (previous)
+            {
+                if (g_log)
+                    sys_log(0, "ITEM_CACHE: delete owner %lu id %lu new owner %lu",
+                            static_cast<DWORD>(entry->Get()->owner), static_cast<DWORD>(entry->Get()->id), static_cast<DWORD>(item->owner));
                 previous->erase(entry);
+            }
         }
     }
 
@@ -483,9 +518,15 @@ void CClientManager::PutItemCache(TPlayerItem* item, bool skipQuery)
     const DWORD id = entry->Get()->id;
     const DWORD owner = entry->Get()->owner;
     if (ownerSet)
+    {
+        sys_log(g_log ? 0 : 1, "ITEM_CACHE: save %lu id %lu", owner, id);
         ownerSet->insert(entry);
+    }
     else
+    {
+        sys_log(g_log ? 0 : 1, "ITEM_CACHE: direct save %lu id %lu", owner, id);
         entry->OnFlush();
+    }
 }
 
 int CClientManager::AnalyzeQueryResult(SQLMsg* message)
@@ -578,8 +619,8 @@ int CClientManager::AnalyzeQueryResult(SQLMsg* message)
     return 1;
 }
 
-DWORD g_dwUsageMax = 0;
-DWORD g_dwUsageAvg = 0;
+std::uint32_t g_dwUsageMax = 0;
+std::uint32_t g_dwUsageAvg = 0;
 
 void UsageLog()
 {
@@ -632,7 +673,7 @@ int CClientManager::Process()
                    static_cast<int>(db.CountAsyncCopiedQuery(SQL_PLAYER)));
 
             db.ResetCounter();
-            const DWORD userCount = CClientManager::instance().GetUserCount();
+            const auto userCount = static_cast<std::uint32_t>(CClientManager::instance().GetUserCount());
             g_dwUsageAvg += userCount;
             g_dwUsageMax = MAX(g_dwUsageMax, userCount);
             memset(thecore_profiler, 0, sizeof(thecore_profiler));
@@ -817,7 +858,10 @@ void CClientManager::FlushItemCacheSet(DWORD owner)
 {
     TItemCacheSetPtrMap::iterator it = m_map_pkItemCacheSetPtr.find(owner);
     if (it == m_map_pkItemCacheSetPtr.end())
+    {
+        sys_log(0, "FLUSH_ITEMCACHESET : No ItemCacheSet pid(%d)", static_cast<int>(owner));
         return;
+    }
 
     TItemCacheSet* set = it->second;
     for (TItemCacheSet::iterator item = set->begin(); item != set->end();)
@@ -830,11 +874,13 @@ void CClientManager::FlushItemCacheSet(DWORD owner)
 
     delete set;
     m_map_pkItemCacheSetPtr.erase(it);
+    if (g_log)
+        sys_log(0, "FLUSH_ITEMCACHESET : Deleted pid(%d)", static_cast<int>(owner));
 }
 
 void CClientManager::UpdateItemCacheSet(int pid)
 {
-    TItemCacheSet* set = GetItemCacheSet(pid);
+    TItemCacheSet* set = GetItemCacheSet(static_cast<std::uint32_t>(pid));
     if (!set)
         return;
 
@@ -850,6 +896,12 @@ void CClientManager::UpdatePlayerCache()
         CPlayerTableCache* cache = (it++)->second;
         if (cache->CheckTimeout())
         {
+            if (g_log)
+            {
+                const auto* player = cache->Get(false);
+                sys_log(0, "UPDATE : UpdatePlayerCache() ==> FlushPlayerCache %d %s ",
+                        static_cast<int>(player->id), player->name);
+            }
             cache->Flush();
             UpdateItemCacheSet(cache->Get()->id);
         }
@@ -874,6 +926,7 @@ void CClientManager::UpdateItemCache()
             const int owner = static_cast<int>(cache->Get()->owner);
             const int id = static_cast<int>(cache->Get()->id);
             const int vnum = static_cast<int>(cache->Get()->vnum);
+            sys_log(0, "UpdateItemCache ==> Flush() vnum %d id owner %d", vnum, id, owner);
         }
 
         cache->Flush();
@@ -1156,16 +1209,24 @@ void CClientManager::ProcessPackets(CPeer* peer)
                 QUERY_LOGOUT(peer, handle, data);
                 break;
             case 3:
+                sys_log(1, "HEADER_GD_PLAYER_LOAD (handle: %d length: %d)",
+                        static_cast<int>(handle), static_cast<int>(length));
                 QUERY_PLAYER_LOAD(peer, handle, reinterpret_cast<TPlayerLoadPacket*>(data));
                 break;
             case 4:
+                sys_log(1, "HEADER_GD_PLAYER_SAVE (handle: %d length: %d)",
+                        static_cast<int>(handle), static_cast<int>(length));
                 QUERY_PLAYER_SAVE(peer, handle, reinterpret_cast<TPlayerTable*>(data));
                 break;
             case 5:
+                sys_log(0, "HEADER_GD_PLAYER_CREATE (handle: %d length: %d)",
+                        static_cast<int>(handle), static_cast<int>(length));
                 __QUERY_PLAYER_CREATE(peer, handle, reinterpret_cast<TPlayerCreatePacket*>(data));
                 sys_log(0, "END");
                 break;
             case 6:
+                sys_log(1, "HEADER_GD_PLAYER_DELETE (handle: %d length: %d)",
+                        static_cast<int>(handle), static_cast<int>(length));
                 __QUERY_PLAYER_DELETE(peer, handle, reinterpret_cast<TPlayerDeletePacket*>(data));
                 break;
             case 9:
@@ -1552,6 +1613,9 @@ void CClientManager::QUERY_ITEM_SAVE(CPeer* peer, const char* data)
     TPlayerItem* item = reinterpret_cast<TPlayerItem*>(const_cast<char*>(data));
     if (item->window != SAFEBOX && item->window != MALL)
     {
+        if (g_test_server)
+            sys_log(0, "QUERY_ITEM_SAVE => PutItemCache() owner %d id %d vnum %d ",
+                    static_cast<int>(item->owner), static_cast<int>(item->id), static_cast<int>(item->vnum));
         PutItemCache(item, false);
         return;
     }
@@ -1855,7 +1919,7 @@ void CClientManager::QUERY_EMPIRE_SELECT(CPeer* peer, DWORD handle, TEmpireSelec
 
             dbsql::snprintf(query, sizeof(query), "UPDATE player%s SET map_index=%ld,x=%lu,y=%lu WHERE id=%lu",
                      GetTablePostfix(), maps[empire], positions[empire][0], positions[empire][1],
-                     static_cast<DWORD>(pid));
+                     static_cast<unsigned long>(static_cast<std::uint32_t>(pid)));
             delete db.DirectQuery(query);
         }
     }
@@ -1999,6 +2063,8 @@ void CClientManager::RESULT_SAFEBOX_LOAD(CPeer* peer, SQLMsg* message)
             safebox->bSize = dbinput::ReadInteger<decltype(safebox->bSize)>(row[1]);
             if (mall)
                 safebox->bSize = 1;
+            sys_log(0, mall ? "MALL id[%d] size[%d]" : "SAFEBOX id[%d] size[%d]",
+                    static_cast<int>(safebox->dwID), static_cast<int>(safebox->bSize));
         }
 
         if (!safebox->dwID)
@@ -2093,7 +2159,9 @@ void CClientManager::RESULT_SAFEBOX_LOAD(CPeer* peer, SQLMsg* message)
                         "INSERT INTO item%s (id, owner_id, `window`, pos, vnum, count, socket0, socket1, socket2) "
                         "VALUES(%lu, %lu, '%s', %d, %lu, %lu, %lu, %lu, %lu)",
                         GetTablePostfix(), GainItemID(), info->account_id, window, pos, award->dwVnum,
-                        award->dwCount, award->dwSocket0, award->dwSocket1, socket2);
+                        award->dwCount, static_cast<unsigned long>(static_cast<std::uint32_t>(award->dwSocket0)),
+                        static_cast<unsigned long>(static_cast<std::uint32_t>(award->dwSocket1)),
+                        static_cast<unsigned long>(static_cast<std::uint32_t>(socket2)));
                 std::unique_ptr<SQLMsg> inserted(CDBManager::instance().DirectQuery(query));
                 SQLResult* result = inserted->Get();
                 if (result->iAffectedRows <= 0 || result->iInsertID <= 0)
@@ -2263,6 +2331,9 @@ void CClientManager::RESULT_PRICELIST_LOAD(CPeer* peer, SQLMsg* message)
     peer->Encode(&header, sizeof(header));
     peer->Encode(table.aPriceInfo, priceSize);
 
+    sys_log(0, "Load MyShopPricelist handle[%d] pid[%d] count[%d]",
+            static_cast<int>(request->first), static_cast<int>(request->second), table.byCount);
+
     delete request;
 }
 
@@ -2336,6 +2407,8 @@ void CClientManager::MyshopPricelistRequest(CPeer* peer, DWORD handle, DWORD pla
     CItemPriceListTableCache* cache = GetItemPriceListCache(playerID);
     if (cache)
     {
+        sys_log(0, "Cache MyShopPricelist handle[%d] pid[%d]",
+                static_cast<int>(handle), static_cast<int>(playerID));
         const TItemPriceListTable* table = cache->Get(false);
         TPacketMyshopPricelistHeader header;
         header.dwOwnerID = table->dwOwnerID;
@@ -2347,6 +2420,8 @@ void CClientManager::MyshopPricelistRequest(CPeer* peer, DWORD handle, DWORD pla
     }
     else
     {
+        sys_log(0, "Query MyShopPricelist handle[%d] pid[%d]",
+                static_cast<int>(handle), static_cast<int>(playerID));
         char query[8193];
         dbsql::snprintf(query, 8192, "SELECT item_vnum, price FROM myshop_pricelist%s WHERE owner_id=%lu", GetTablePostfix(), playerID);
         TItemPricelistReqInfo* request = new TItemPricelistReqInfo(handle, playerID);
@@ -2588,6 +2663,20 @@ void CClientManager::QUERY_BOOT(CPeer* peer, TPacketGDBoot* packet)
         + 16 * hosts.size()
         + sizeof(tAdminInfo) * admins.size();
 
+    sys_log(0, "BOOT: PACKET: %d", static_cast<int>(packetSize));
+    sys_log(0, "BOOT: VERSION: %d", packetVersion);
+    sys_log(0, "sizeof(TMobTable) = %d", static_cast<int>(sizeof(TMobTable)));
+    sys_log(0, "sizeof(TItemTable) = %d", static_cast<int>(sizeof(TItemTable)));
+    sys_log(0, "sizeof(TItemAttrTable) = %d", static_cast<int>(sizeof(TItemAttrTable)));
+    sys_log(0, "sizeof(TShopTable) = %d", static_cast<int>(sizeof(TShopTable)));
+    sys_log(0, "sizeof(TSkillTable) = %d", static_cast<int>(sizeof(TSkillTable)));
+    sys_log(0, "sizeof(TRefineTable) = %d", static_cast<int>(sizeof(TRefineTable)));
+    sys_log(0, "sizeof(TItemRareTable) = %d", static_cast<int>(sizeof(TItemAttrTable)));
+    sys_log(0, "sizeof(TBanwordTable) = %d", static_cast<int>(sizeof(TBanwordTable)));
+    sys_log(0, "sizeof(TLand) = %d", static_cast<int>(sizeof(building::TLand)));
+    sys_log(0, "sizeof(TObjectProto) = %d", static_cast<int>(sizeof(building::TObjectProto)));
+    sys_log(0, "sizeof(TObject) = %d", static_cast<int>(sizeof(building::TObject)));
+
     peer->EncodeHeader(43, 0, packetSize);
     peer->Encode(&packetSize, sizeof(packetSize));
     peer->Encode(&packetVersion, sizeof(packetVersion));
@@ -2668,7 +2757,7 @@ DWORD CClientManager::__GetMaxItemID(CPeer* current, DWORD start, DWORD end)
     }
 
     MYSQL_ROW row = mysql_fetch_row(result->Get()->pSQLResult);
-    const DWORD maximum = row[0] ? static_cast<DWORD>(atoi(row[0])) : start;
+    const DWORD maximum = row[0] ? static_cast<std::uint32_t>(atoi(row[0])) : start;
     if (maximum == end)
     {
         sys_err("Range not enough between %lu ~ %lu\n", start, end);
@@ -2703,6 +2792,8 @@ DWORD CClientManager::__GetMaxItemID(CPeer* current, DWORD start, DWORD end)
     }
 
     result.reset();
+    sys_log(0, "ITEM_ID_RANGE: [UsingMax ~ End] %lu ~%lu (Remained count: %d)\n",
+            next, end, static_cast<int>(static_cast<std::uint32_t>(end - next)));
     return next;
 }
 

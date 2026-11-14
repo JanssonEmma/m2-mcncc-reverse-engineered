@@ -1,4 +1,5 @@
 // Complete 2009 blend module, including original parser failure behavior.
+#include <cstdint>
 #include "blend_item.h"
 #include "item.h"
 #include "locale_service.h"
@@ -11,7 +12,7 @@
 #include <cstring>
 #include <strings.h>
 struct BLEND_ITEM_INFO {
-    DWORD item_vnum;
+    std::uint32_t item_vnum;
     int apply_type;
     int apply_value[MAX_BLEND_ITEM_VALUE];
     int apply_duration[MAX_BLEND_ITEM_VALUE];
@@ -173,7 +174,7 @@ static int FN_random_index() {
 bool Blend_Item_set_value(CItem* item) {
     for(T_BLEND_ITEM_INFO::iterator it=s_blend_info.begin();it!=s_blend_info.end();++it) {
         BLEND_ITEM_INFO* blend_info=*it;
-        if(blend_info->item_vnum==item->GetVnum()) {
+        if(blend_info->item_vnum==static_cast<std::uint32_t>(item->GetVnum())) {
             int apply_type=blend_info->apply_type;
             int apply_value=blend_info->apply_value[FN_random_index()];
             int apply_duration=blend_info->apply_duration[FN_random_index()];
@@ -187,7 +188,8 @@ bool Blend_Item_set_value(CItem* item) {
 }
 // 080e64e0
 bool Blend_Item_find(DWORD item_vnum) {
+    const auto vnum = static_cast<std::uint32_t>(item_vnum);
     for(T_BLEND_ITEM_INFO::iterator it=s_blend_info.begin();it!=s_blend_info.end();++it)
-        if((*it)->item_vnum==item_vnum) return true;
+        if((*it)->item_vnum==vnum) return true;
     return false;
 }

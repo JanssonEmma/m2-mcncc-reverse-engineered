@@ -22,6 +22,15 @@ class CPlayerTableCache;
 class CItemCache;
 class CItemPriceListTableCache;
 
+class CPacketInfo
+{
+public:
+    void Add(int header);
+    void Reset();
+
+    std::map<int, int> m_map_info;
+};
+
 class CClientManager : public CNetBase, public singleton<CClientManager>
 {
 public:
@@ -103,7 +112,7 @@ private:
     struct tag_LogoutPlayerInfo
     {
         int pid;
-        time_t time;
+        std::int32_t time;
     };
 
     typedef std::map<DWORD, TPartyInfo> TPartyMember;

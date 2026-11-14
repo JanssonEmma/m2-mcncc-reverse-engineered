@@ -239,7 +239,11 @@ int CHARACTER::CountMobSkill()
 
 const SMobSkillInfo* CHARACTER::GetMobSkill(int index)
 {
-    return index >= 0 && index < CountMobSkill() ? &m_pkMobData->m_mobSkillInfo[index] : nullptr;
+    const CMob* mob = m_pkMobData;
+    if (!mob)
+        return nullptr;
+    const int count = CountMobSkill();
+    return index >= 0 && index < count ? &mob->m_mobSkillInfo[index] : nullptr;
 }
 
 bool CHARACTER::CanUseMobSkill(int index)
@@ -254,9 +258,11 @@ bool CHARACTER::CanUseMobSkill(int index)
         _sys_err("CanUseMobSkill", 0xadf, "no mob skill info");
         return false;
     }
-    if (get_dword_time() < m_adwMobSkillCooltime[index])
+    const auto now = get_dword_time();
+    if (now < m_adwMobSkillCooltime[index])
         return false;
-    sys_log(0, "MOB_SKILL now %lu cooltime %lu", static_cast<unsigned long>(get_dword_time()),
+    const auto logTime = get_dword_time();
+    sys_log(0, "MOB_SKILL now %lu cooltime %lu", static_cast<unsigned long>(logTime),
             static_cast<unsigned long>(m_adwMobSkillCooltime[index]));
     return number_ex(0, 1, const_cast<char*>("char_skill.cpp"), 0xae8) == 0;
 }
@@ -332,7 +338,9 @@ bool CHARACTER::UseMobSkill(int index)
     if (!skill)
         return false;
 
-    const float power = static_cast<float>(skill->bMaxLevel) * GetSkillPower(skill->dwVnum, level) / 100.0f;
+    const int skillPower = GetSkillPower(skill->dwVnum, level);
+    const float power = static_cast<float>(
+        static_cast<long double>(skill->bMaxLevel) * skillPower / 100.0L);
     skill->kCooldownPoly.SetVar("k", power);
     const int cooldown = TruncateSkill(skill->kCooldownPoly.Eval() * 1000.0L);
     m_adwMobSkillCooltime[index] = static_cast<std::uint32_t>(get_dword_time() + cooldown);
@@ -355,7 +363,7 @@ bool CHARACTER::UseMobSkill(int index)
         if (!splash.dwTiming) {
             if (test_server)
                 sys_log(0, "Use Normal Skill from Mob [%s]", GetName());
-            ComputeSkillAtPosition(vnum, position, level);
+            ComputeSkillAtPosition(vnum, position, info->bSkillLevel);
             continue;
         }
 
@@ -406,7 +414,10 @@ void CHARACTER::ResetOneSkill(DWORD vnum)
     const int refund = skill.bLevel < 17 ? skill.bLevel : 17;
     skill = {};
     PointChange(POINT_SKILL, refund, false, false);
-    LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), vnum, "ONE_SKILL_RESET_BY_SCROLL", "");
+    const auto x = GetX();
+    const DWORD pid = GetPlayerID();
+    const auto y = GetY();
+    LogManager::instance().CharLog(pid, x, y, vnum, "ONE_SKILL_RESET_BY_SCROLL", "");
     ComputePoints();
     SkillLevelPacket();
 }
@@ -436,16 +447,16 @@ void CHARACTER::ComputePassiveSkill(DWORD vnum)
 {
     if (g_bSkillDisable)
         return;
-    const int level = GetSkillLevel(vnum);
-    if (!level)
+    if (!GetSkillLevel(vnum))
         return;
     CSkillProto* skill = CSkillManager::instance().Get(vnum);
     if (!skill)
         return;
 
-    skill->SetPointVar("k", level);
+    skill->SetPointVar("k", GetSkillLevel(vnum));
     const int amount = TruncateSkill(skill->kPointPoly.Eval());
-    sys_log(2, "%s passive #%d on %d amount %d", GetName(), static_cast<int>(vnum),
+    const char* name = GetName();
+    sys_log(2, "%s passive #%d on %d amount %d", name, static_cast<int>(vnum),
             skill->bPointOn, amount);
     PointChange(skill->bPointOn, amount, false, false);
 }
@@ -516,10 +527,10 @@ time_t CHARACTER::GetSkillNextReadTime(DWORD vnum)
     return m_pSkillLevels && vnum < 255 ? m_pSkillLevels[vnum].tNextRead : 0;
 }
 
-void CHARACTER::SetSkillNextReadTime(DWORD vnum, int time)
+void CHARACTER::SetSkillNextReadTime(DWORD vnum, time_t time)
 {
     if (m_pSkillLevels && vnum < 255)
-        m_pSkillLevels[vnum].tNextRead = time;
+        m_pSkillLevels[vnum].tNextRead = static_cast<std::int32_t>(time);
 }
 
 bool CHARACTER::IsLearnableSkill(DWORD vnum)
@@ -531,7 +542,7 @@ bool CHARACTER::IsLearnableSkill(DWORD vnum)
     if (level >= 40)
         return false;
     if (skill->bType == 0)
-        return level < skill->bMaxLevel;
+        return GetSkillLevel(vnum) < skill->bMaxLevel;
     if (skill->bType == 5)
         return vnum != 140 || GetJob() == 1;
     return GetSkillGroup() != 0 && skill->bType - 1 == GetJob();
@@ -556,17 +567,21 @@ void CHARACTER::SkillLevelUp(DWORD vnum, BYTE method)
     if (!IsLearnableSkill(vnum) || skill->dwVnum >= 255)
         return;
     const DWORD id = skill->dwVnum;
-    const int mastery = GetSkillMasterType(id);
-    if (skill->bType && ((mastery == 2 && method != 3) || mastery == 3))
+    if (skill->bType) {
+        const int mastery = GetSkillMasterType(skill->dwVnum);
+        if ((mastery == 2 && method != 3) || mastery == 3)
+            return;
+    }
+    if (method == 0 && (GetSkillMasterType(skill->dwVnum) != 0 || (skill->dwFlag & 0x400000)))
         return;
-    if (method == 0 && (mastery != 0 || (skill->dwFlag & 0x400000)))
+    if (method == 1 && skill->bType && GetSkillMasterType(skill->dwVnum) != 1)
         return;
-    if (method == 1 && skill->bType && mastery != 1)
-        return;
-    if (GetLevel() < skill->bLevelLimit || !GetSkillGroup())
+    if (GetLevel() < skill->bLevelLimit)
         return;
     if (skill->preSkillVnum && GetSkillMasterType(skill->preSkillVnum) == 0 &&
         GetSkillLevel(skill->preSkillVnum) < skill->preSkillLevel)
+        return;
+    if (!GetSkillGroup())
         return;
 
     if (method == 0)
@@ -591,26 +606,30 @@ void CHARACTER::SkillLevelUp(DWORD vnum, BYTE method)
     SetSkillLevel(id, m_pSkillLevels[id].bLevel + 1);
     if (skill->bType)
     {
-        const int level = GetSkillLevel(id);
         const int newMastery = GetSkillMasterType(id);
         if (newMastery == 0)
         {
             const char* flag = "reset_scroll.force_to_master_skill";
-            if (level >= 17 && GetQuestFlag(flag) > 0)
+            if (GetSkillLevel(id) >= 17)
             {
-                SetSkillLevel(id, 20);
-                SetQuestFlag(flag, 0);
+                if (GetQuestFlag(flag) > 0)
+                {
+                    SetSkillLevel(id, 20);
+                    SetQuestFlag(flag, 0);
+                }
+                else if (number_ex(1, 21 - std::min(20, GetSkillLevel(id)), const_cast<char*>("char_skill.cpp"), 0x2b5) == 1)
+                    SetSkillLevel(id, 20);
             }
-            else if (level >= 17 &&
-                number_ex(1, 21 - std::min(20, level), const_cast<char*>("char_skill.cpp"), 0x2b5) == 1)
+            else if (GetSkillLevel(id) >= 20 &&
+                     number_ex(1, 21 - std::min(20, GetSkillLevel(id)), const_cast<char*>("char_skill.cpp"), 0x2d0) == 1)
                 SetSkillLevel(id, 20);
         }
-        else if (newMastery == 1 && level >= 30)
+        else if (newMastery == 1 && GetSkillLevel(id) >= 30)
         {
-            if (number_ex(1, 31 - std::min(30, level), const_cast<char*>("char_skill.cpp"), 0x2d9) == 1)
+            if (number_ex(1, 31 - std::min(30, GetSkillLevel(id)), const_cast<char*>("char_skill.cpp"), 0x2d9) == 1)
                 SetSkillLevel(id, 30);
         }
-        else if (newMastery == 2 && level >= 40)
+        else if (newMastery == 2 && GetSkillLevel(id) >= 40)
             SetSkillLevel(id, 40);
     }
 
@@ -626,21 +645,21 @@ void CHARACTER::SkillLevelUp(DWORD vnum, BYTE method)
 }
 
 namespace {
-const char bookUnlearnable[] = "@3";
-const char bookNeedsExp[] = "@4";
-const char bookDelayRemoved[] = "@5";
-const char bookNeedsMaster[] = "@6";
-const char bookAlreadyGrand[] = "@7";
-const char bookProgressTalk[] = "@8";
-const char bookProgressTalkAlt[] = "@9";
-const char bookProgressTalkThird[] = "@10";
-const char bookProgressInfo[] = "@11";
-const char bookTestSuccess[] = "@12";
-const char bookFailTalk[] = "@13";
-const char bookFailInfo[] = "@14";
-const char bookSuccessTalk1[] = "@15";
-const char bookSuccessTalk2[] = "@16";
-const char bookSuccessInfo[] = "@17";
+const char bookUnlearnable[] = "\274\366\267\303\307\322 \274\366 \276\370\264\302 \275\272\305\263\300\324\264\317\264\331.";
+const char bookNeedsExp[] = "\260\346\307\350\304\241\260\241 \272\316\301\267\307\317\277\251 \303\245\300\273 \300\320\300\273 \274\366 \276\370\275\300\264\317\264\331.";
+const char bookDelayRemoved[] = "\301\326\276\310\274\372\274\255\270\246 \305\353\307\330 \301\326\310\255\300\324\270\266\277\241\274\255 \272\374\301\256\263\252\277\324\275\300\264\317\264\331.";
+const char bookNeedsMaster[] = "\300\314 \275\272\305\263\300\272 \276\306\301\367 \303\245\300\270\267\316 \274\366\267\303\307\322 \260\346\301\366\277\241 \300\314\270\243\301\366 \276\312\276\322\275\300\264\317\264\331.";
+const char bookAlreadyGrand[] = "\300\314 \275\272\305\263\300\272 \303\245\300\270\267\316 \264\365\300\314\273\363 \274\366\267\303\307\322 \274\366 \276\370\275\300\264\317\264\331.";
+const char bookProgressTalk[] = "\265\345\265\360\276\356 \263\241\300\314 \272\270\300\314\264\302 \260\307\260\241...  \300\314 \261\342\274\372\300\272 \300\314\307\330\307\317\261\342\260\241 \263\312\271\253 \310\373\265\351\276\356..";
+const char bookProgressTalkAlt[] = "\276\356\264\300\301\244\265\265 \300\314 \261\342\274\372\277\241 \264\353\307\330 \300\314\307\330\260\241 \265\307\276\372\301\366\270\270 \301\266\261\335 \272\316\301\267\307\321\265\355 \307\321\265\245..";
+const char bookProgressTalkThird[] = "\277\255\275\311\310\367 \307\317\264\302 \271\350\277\362\300\273 \260\241\301\366\264\302 \260\315\270\270\300\314 \261\342\274\372\300\273 \271\350\277\357\274\366 \300\326\264\302 \300\257\300\317\307\321 \261\346\300\314\264\331..";
+const char bookProgressInfo[] = "%d \261\307\300\273 \264\365 \300\320\276\356\276\337 \274\366\267\303\300\273 \277\317\267\341 \307\322 \274\366 \300\326\275\300\264\317\264\331.";
+const char bookTestSuccess[] = "SUCC";
+const char bookFailTalk[] = "\305\251\300\271, \261\342\260\241 \277\252\267\371\307\317\260\355 \300\326\276\356! \300\314\260\305 \274\263\270\266 \301\326\310\255\300\324\270\266\300\316\260\241!? \301\250\300\345!";
+const char bookFailInfo[] = "\274\366\267\303\300\314 \275\307\306\320\267\316 \263\241\263\265\275\300\264\317\264\331. \264\331\275\303 \265\265\300\374\307\330\301\326\275\303\261\342 \271\331\266\370\264\317\264\331.";
+const char bookSuccessTalk1[] = "\270\366\277\241\274\255 \271\272\260\241 \310\373\300\314 \305\315\301\256 \263\252\277\300\264\302 \261\342\272\320\300\314\276\337!";
+const char bookSuccessTalk2[] = "\266\337\260\305\277\356 \271\253\276\371\300\314 \260\350\274\323 \277\353\274\332\300\275\304\241\260\355 \300\326\276\356! \300\314\260\307, \300\314\260\315\300\272!";
+const char bookSuccessInfo[] = "\303\245\300\270\267\316 \264\365 \263\364\300\272 \260\346\301\366\300\307 \274\366\267\303\300\273 \274\272\260\370\300\373\300\270\267\316 \263\241\263\273\274\314\275\300\264\317\264\331.";
 struct BookWaitMessage
 {
     DWORD until;
@@ -648,16 +667,16 @@ struct BookWaitMessage
     const char* last;
 };
 const BookWaitMessage bookWaitMessages[] = {
-    {180, nullptr, "@18"},
-    {300, nullptr, "@19"},
-    {600, nullptr, "@20"},
-    {1800, "@21", "@22"},
-    {3600, nullptr, "@23"},
-    {7200, nullptr, "@24"},
-    {10800, nullptr, "@25"},
-    {21600, "@26", "@27"},
-    {43200, "@28", "@29"},
-    {64800, "@30", "@31"},
+    {180, nullptr, "\270\366 \274\323\300\314 \266\337\260\314\261\272. \307\317\301\366\270\270 \276\306\301\326 \306\355\276\310\307\330. \300\314\264\353\267\316 \261\342\270\246 \276\310\301\244\275\303\305\260\300\332."},
+    {300, nullptr, "\261\327\267\241, \303\265\303\265\310\367. \301\273\264\365 \303\265\303\265\310\367, \261\327\267\257\263\252 \270\267\310\373 \276\370\300\314 \272\374\270\243\260\324!"},
+    {600, nullptr, "\261\327\267\241, \300\314 \264\300\263\246\300\314\276\337. \303\274\263\273\277\241 \261\342\260\241 \276\306\301\326 \303\346\270\270\307\330."},
+    {1800, "\264\331 \300\320\276\372\264\331! \300\314\301\246 \272\361\261\336\277\241 \300\373\307\364\300\326\264\302 \264\353\267\316 \300\374\275\305\277\241 \261\342\270\246 \265\271\270\256\261\342\270\270 \307\317\270\351,", "\261\327\260\315\300\270\267\316 \274\366\267\303\300\272 \263\241\263\255 \260\305\276\337!"},
+    {3600, nullptr, "\300\314\301\246 \303\245\300\307 \270\266\301\366\270\267 \300\345\300\314\276\337! \274\366\267\303\300\307 \263\241\300\314 \264\253\277\241 \272\270\300\314\260\355 \300\326\276\356!"},
+    {7200, nullptr, "\276\363\270\266 \276\310 \263\262\276\322\276\356! \301\266\261\335\270\270 \264\365!"},
+    {10800, nullptr, "\301\301\276\322\276\356! \301\266\261\335\270\270 \264\365 \300\320\300\270\270\351 \263\241\300\314\264\331!"},
+    {21600, "\303\245\300\345\265\265 \300\314\301\246 \276\363\270\266 \263\262\301\366 \276\312\276\322\261\272.", "\271\272\260\241 \270\366 \276\310\277\241 \310\373\300\314 \273\375\261\342\264\302 \261\342\272\320\300\316 \260\311."},
+    {43200, "\300\314\301\246 \301\273 \275\275\275\275 \260\241\264\332\300\314 \300\342\310\367\264\302 \260\315 \260\260\300\272\265\245.", "\301\301\276\306, \300\314 \261\342\274\274\267\316 \260\350\274\323 \263\252\260\243\264\331!"},
+    {64800, "\276\306\264\317 \276\356\266\273\260\324 \265\310 \260\324 \301\276\300\317 \300\320\276\356\265\265 \270\323\270\256\277\241 \276\310 \265\351\276\356\277\300\263\304.", "\260\370\272\316\307\317\261\342 \275\310\276\356\301\366\263\327."},
 };
 }
 
@@ -672,8 +691,8 @@ void CHARACTER::SkillLearnWaitMoreTimeMessage(DWORD seconds)
         ChatPacket(0, "%s", locale_find(message.last, g_iUseLocale));
         return;
     }
-    ChatPacket(0, "%s", locale_find("@32", g_iUseLocale));
-    ChatPacket(0, "%s", locale_find("@33", g_iUseLocale));
+    ChatPacket(0, "%s", locale_find("\273\375\260\242\270\270\305\255 \300\320\261\342\260\241 \275\261\301\366\260\241 \276\312\261\272. \300\314\307\330\265\265 \276\356\267\306\260\355 \263\273\277\353\265\265 \263\255\307\330\307\330.", g_iUseLocale));
+    ChatPacket(0, "%s", locale_find("\300\314\267\241\274\255\276\337 \260\370\272\316\260\241 \276\310\265\310\264\331\261\270.", g_iUseLocale));
 }
 
 bool CHARACTER::SkillLevelDown(DWORD vnum)
@@ -686,8 +705,10 @@ bool CHARACTER::SkillLevelDown(DWORD vnum)
         _sys_err("SkillLevelDown", 0x208, "There is no such skill by number %u", static_cast<unsigned>(vnum));
         return false;
     }
+    if (!IsLearnableSkill(vnum))
+        return false;
     const DWORD id = skill->dwVnum;
-    if (!IsLearnableSkill(vnum) || id >= 255 || GetSkillMasterType(id) || !GetSkillGroup() ||
+    if (id >= 255 || GetSkillMasterType(id) || !GetSkillGroup() ||
         !m_pSkillLevels[id].bLevel)
         return false;
 
@@ -703,10 +724,16 @@ bool CHARACTER::SkillLevelDown(DWORD vnum)
         return false;
     }
     PointChange(point, 1, false, false);
-    SetSkillLevel(id, m_pSkillLevels[id].bLevel - 1);
-    sys_log(0, "SkillDown: %s %d %d %d type %d", GetName(), static_cast<int>(id),
-        static_cast<int>(m_pSkillLevels[id].bMasterType), static_cast<int>(m_pSkillLevels[id].bLevel),
-        static_cast<int>(skill->bType));
+    const DWORD currentId = skill->dwVnum;
+    if (m_pSkillLevels && currentId < 255)
+        SetSkillLevel(currentId, m_pSkillLevels[currentId].bLevel - 1);
+
+    const char* name = GetName();
+    const DWORD logId = skill->dwVnum;
+    if (m_pSkillLevels && logId < 255)
+        sys_log(0, "SkillDown: %s %d %d %d type %d", name, static_cast<int>(logId),
+            static_cast<int>(m_pSkillLevels[logId].bMasterType), static_cast<int>(m_pSkillLevels[logId].bLevel),
+            static_cast<int>(skill->bType));
     Save();
     ComputePoints();
     SkillLevelPacket();
@@ -723,8 +750,7 @@ bool CHARACTER::LearnSkillByBook(DWORD vnum, BYTE probability)
         ChatPacket(1, locale_find(bookUnlearnable, g_iUseLocale));
         return false;
     }
-    const bool regional = LC_IsYMIR() || LC_IsCIBN();
-    if (!regional && GetExp() < 20000)
+    if (!LC_IsYMIR() && !LC_IsCIBN() && GetExp() < 20000)
     {
         ChatPacket(1, locale_find(bookNeedsExp, g_iUseLocale));
         return false;
@@ -773,7 +799,7 @@ bool CHARACTER::LearnSkillByBook(DWORD vnum, BYTE probability)
         const int index = std::max(0, std::min(9, GetSkillLevel(vnum) - 20));
         int chance = aiSkillBookCountForLevelUp[index];
         sys_log(0, "LearnSkillByBook %s table idx %d value %d", GetName(), index, chance);
-        if (regional)
+        if (LC_IsYMIR() || LC_IsCIBN())
         {
             if (FindAffect(512, 0))
             {
@@ -825,13 +851,13 @@ bool CHARACTER::LearnSkillByBook(DWORD vnum, BYTE probability)
             ChatPacket(0, locale_find(bookSuccessTalk2, g_iUseLocale));
         }
         ChatPacket(1, locale_find(bookSuccessInfo, g_iUseLocale));
-        LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), vnum, "READ_SUCCESS", "");
+        LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), vnum, "GM_READ_SUCCESS", "");
     }
     else
     {
         ChatPacket(0, locale_find(bookFailTalk, g_iUseLocale));
         ChatPacket(1, locale_find(bookFailInfo, g_iUseLocale));
-        LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), vnum, "READ_FAIL", "");
+        LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), vnum, "GM_READ_FAIL", "");
     }
     return true;
 }
@@ -1016,6 +1042,14 @@ int CHARACTER::GetUsedSkillMasterType(DWORD vnum)
     return MIN(GetSkillMasterType(vnum), 1);
 }
 
+int CHARACTER::GetSkillPowerByLevel(int level, bool mob)
+{
+    const int clampedLevel = MINMAX(0, level, 40);
+    const BYTE skillGroup = m_points.skill_group;
+    const BYTE job = GetJob();
+    return CTableBySkill::instance().GetSkillPowerByLevelFromType(job, skillGroup, clampedLevel, mob);
+}
+
 // 08073350
 int CHARACTER::GetSkillPower(DWORD vnum, BYTE requestedLevel)
 {
@@ -1027,10 +1061,7 @@ int CHARACTER::GetSkillPower(DWORD vnum, BYTE requestedLevel)
         _sys_err("GetSkillPower", 2600, "%s skill vnum overflow %lu", GetName(), vnum);
         return 0;
     }
-    const int level = MINMAX(0, requestedLevel ? requestedLevel : GetSkillLevel(vnum), 40);
-    const BYTE skillGroup = m_points.skill_group;
-    const BYTE job = GetJob();
-    return CTableBySkill::instance().GetSkillPowerByLevelFromType(job, skillGroup, level, requestedLevel != 0);
+    return GetSkillPowerByLevel(requestedLevel ? requestedLevel : GetSkillLevel(vnum), requestedLevel != 0);
 }
 
 // 0806acd0
@@ -1043,9 +1074,12 @@ bool TSkillUseInfo::HitOnce(DWORD vnum)
     const int hitCount = iHitCount;
     const DWORD next = dwNextSkillUsableTime;
     sys_log(1, "__HitOnce NextUse %lu current %lu count %d scount %d", next, now, hitCount, splashCount);
-    if (dwNextSkillUsableTime && get_dword_time() > dwNextSkillUsableTime && vnum != 78 && vnum != 137) {
-        sys_log(1, "__HitOnce can't hit");
-        return false;
+    if (dwNextSkillUsableTime) {
+        const DWORD expiryCheckTime = get_dword_time();
+        if (expiryCheckTime > dwNextSkillUsableTime && vnum != 78 && vnum != 137) {
+            sys_log(1, "__HitOnce can't hit");
+            return false;
+        }
     }
     if (iHitCount == 0)
         return false;
@@ -1227,13 +1261,13 @@ long ChainLightningEvent(LPEVENT event)
     if (party) {
         target = party->GetNextOwnership(0, victim->GetX(), victim->GetY());
         if (target == victim || number_ex(0, 2, "char_skill.cpp", 898) == 0 ||
-            attacker->m_setExceptChainLighting.find(target) != attacker->m_setExceptChainLighting.end())
+            attacker->GetChainLightingExcept().find(target) != attacker->GetChainLightingExcept().end())
             target = 0;
     }
     if (!target) {
-        FFindNearVictim find(victim, attacker, attacker->m_setExceptChainLighting);
-        if (victim->GetSectree()) {
-            victim->GetSectree()->ForEachAround(find);
+        FFindNearVictim find(victim, attacker, attacker->GetChainLightingExcept());
+        if (SECTREE* tree = victim->GetSectree()) {
+            tree->ForEachAround(find);
             target = find.m_pkChrNextTarget;
         }
         if (!target) {
@@ -1244,7 +1278,7 @@ long ChainLightningEvent(LPEVENT event)
     }
     victim->CreateFly(14, target);
     attacker->ComputeSkill(108, target, 0);
-    attacker->m_setExceptChainLighting.insert(target);
+    attacker->AddChainLightningExcept(target);
     return 0;
 }
 
@@ -1318,9 +1352,9 @@ void FuncSplashDamage::operator()(LPENTITY entity)
         m_pkSk->kPointPoly.SetVar("maxv", victim->GetLimitPoint(19));
     m_pkSk->SetPointVar("maxhp", victim->m_pointsInstant.iMaxHP);
     m_pkSk->SetPointVar("maxsp", victim->m_pointsInstant.iMaxSP);
-    m_pkSk->SetPointVar("chain", m_pkChr->m_iChainLightingIndex);
-    const bool underEunhyung = m_pkChr->m_dwAffectedEunhyungLevel != 0;
-    m_pkChr->m_iChainLightingIndex = add(m_pkChr->m_iChainLightingIndex, 1);
+    m_pkSk->SetPointVar("chain", m_pkChr->GetChainLightningIndex());
+    const bool underEunhyung = m_pkChr->GetAffectedEunhyung();
+    m_pkChr->IncChainLightningIndex();
     m_pkSk->SetPointVar("ek", underEunhyung ? 1.0L / 100.0L : 0.0L);
     SetPolyVarForAttack(m_pkChr, m_pkSk, m_pkWeapon);
 
@@ -1408,7 +1442,7 @@ void FuncSplashDamage::operator()(LPENTITY entity)
     if (victim->CanBeginFight())
         victim->BeginFight(m_pkChr);
     if (m_pkSk->dwVnum == 108) {
-        const int index = sub(m_pkChr->m_iChainLightingIndex, 1);
+        const int index = sub(m_pkChr->GetChainLightningIndex(), 1);
         sys_log(0, "%s CHAIN INDEX %d DAM %d DT %d", m_pkChr->GetName(), index, damage, damageType);
     }
 
@@ -1443,7 +1477,7 @@ void FuncSplashDamage::operator()(LPENTITY entity)
             }
         }
 
-        if ((m_pkSk->dwFlag & 0x880000) && !(victim->m_pointsInstant.dwAIFlag & 2)) {
+        if ((m_pkSk->dwFlag & 0x880000) && !(victim->GetAIFlag() & 2)) {
             float slideLength = m_pkChr->GetCharType() == 6 ? 200.0f : 400.0f;
             if (m_pkSk->dwFlag & 0x800000)
                 slideLength += slideLength;
@@ -1491,7 +1525,7 @@ void FuncSplashDamage::operator()(LPENTITY entity)
     if (m_pkSk->dwFlag & 0x8000)
         m_pkChr->PointChange(7, mul(damage, TruncateSkill(m_pkSk->kPointPoly2.Eval())) / 100, false, false);
     if (m_pkSk->dwVnum == 108) {
-        const int chainIndex = m_pkChr->m_iChainLightingIndex;
+        const int chainIndex = m_pkChr->GetChainLightningIndex();
         if (chainIndex < m_pkChr->GetChainLightningMaxCount()) {
             void* rawInfo = nullptr;
             const DWORD id = __AllocEventInfo(sizeof(chain_lightning_event_info), &rawInfo);
@@ -1526,7 +1560,7 @@ int CHARACTER::ComputeSkill(DWORD vnum, LPCHARACTER victim, BYTE skillLevel)
         const int dy = sub(GetY(), victim->GetY());
         const float distance = std::sqrt(static_cast<double>(add(mul(dx, dx), mul(dy, dy))));
         const auto limit = static_cast<std::uint32_t>(skill->dwTargetRange) + 50U;
-        if (distance >= static_cast<double>(limit)) {
+        if (distance >= static_cast<float>(limit)) {
             _sys_err("ComputeSkill", 0x77c,
                      "Victim Too Far skill %d : %s to %s (distance %lu limit %lu)",
                      static_cast<int>(vnum), GetName(), victim->GetName(),
@@ -1543,11 +1577,13 @@ int CHARACTER::ComputeSkill(DWORD vnum, LPCHARACTER victim, BYTE skillLevel)
     if (victim->IsAffectFlag(33) && victim->IsGoodAffect(static_cast<BYTE>(vnum)))
         return 0;
 
-    const float k = static_cast<float>(skill->bMaxLevel) * GetSkillPower(skill->dwVnum, skillLevel) / 100.0f;
-    skill->SetPointVar("k", static_cast<double>(skill->bMaxLevel) * GetSkillPower(skill->dwVnum, skillLevel) / 100.0);
+    const int powerForDuration = GetSkillPower(skill->dwVnum, skillLevel);
+    const float k = static_cast<float>(static_cast<double>(skill->bMaxLevel) * powerForDuration / 100.0);
+    const int powerForPoint = GetSkillPower(skill->dwVnum, skillLevel);
+    skill->SetPointVar("k", static_cast<double>(skill->bMaxLevel) * powerForPoint / 100.0);
     skill->kSplashAroundDamageAdjustPoly.SetVar("k", k);
     LPITEM bow, arrow;
-    if (riding) {
+    if (skill->bType == 5) {
         const int attack = GetArrowAndBow(&bow, &arrow, 1) == 1
             ? CalcArrowDamage(this, victim, bow, arrow, true)
             : CalcMeleeDamage(this, victim, true, false);
@@ -1682,12 +1718,14 @@ int CHARACTER::ComputeSkill(DWORD vnum, LPCHARACTER victim, BYTE skillLevel)
                     victim->PointChange(skill->bPointOn2, amount2, false, false);
                 }
                 flag = skill->dwAffectFlag;
+                const int requiredMastery = LC_IsYMIR() ? 1 : 2;
                 if (skill->dwVnum == SKILL_CHUNKEON &&
-                    GetUsedSkillMasterType(SKILL_CHUNKEON) < (LC_IsYMIR() ? 1 : 2))
+                    GetUsedSkillMasterType(SKILL_CHUNKEON) < requiredMastery)
                     flag = 34;
             }
+            const int spCost = TruncateSkill(skill->kDurationSPCostPoly.Eval());
             victim->AddAffect(skill->dwVnum, skill->bPointOn, amount, flag, primaryDuration,
-                              TruncateSkill(skill->kDurationSPCostPoly.Eval()), !hasSecondary, false);
+                              spCost, !hasSecondary, false);
             added = true;
         } else {
             if (!skill->IsChargeSkill())
@@ -1739,8 +1777,10 @@ int CHARACTER::ComputeSkillAtPosition(DWORD vnum, const PIXEL_POSITION& position
             return 0;
     }
 
-    const float k = static_cast<float>(skill->bMaxLevel) * GetSkillPower(skill->dwVnum, skillLevel) / 100.0f;
-    skill->SetPointVar("k", static_cast<double>(skill->bMaxLevel) * GetSkillPower(skill->dwVnum, skillLevel) / 100.0);
+    const int powerForDuration = GetSkillPower(skill->dwVnum, skillLevel);
+    const float k = static_cast<float>(static_cast<double>(skill->bMaxLevel) * powerForDuration / 100.0);
+    const int powerForPoint = GetSkillPower(skill->dwVnum, skillLevel);
+    skill->SetPointVar("k", static_cast<double>(skill->bMaxLevel) * powerForPoint / 100.0);
     skill->kSplashAroundDamageAdjustPoly.SetVar("k", k);
     LPITEM bow, arrow;
     if (skill->dwFlag & SKILL_FLAG_USE_MELEE_DAMAGE) {
@@ -1947,9 +1987,10 @@ bool CHARACTER::UseSkill(DWORD vnum, LPCHARACTER victim, bool useGrandMaster)
     if (IsAffectFlag(reviveInvisibleFlag))
         RemoveAffect(reviveInvisibleAffect);
 
-    const int scaledPower = skill->bMaxLevel * GetSkillPower(skill->dwVnum);
-    const float k = static_cast<float>(scaledPower) / 100.0f;
-    skill->SetPointVar("k", static_cast<double>(scaledPower) / 100.0);
+    const int power = GetSkillPower(skill->dwVnum);
+    const float k = static_cast<float>(static_cast<double>(skill->bMaxLevel) * power / 100.0);
+    const int pointPower = GetSkillPower(skill->dwVnum);
+    skill->SetPointVar("k", static_cast<double>(skill->bMaxLevel) * pointPower / 100.0);
     skill->kSplashAroundDamageAdjustPoly.SetVar("k", k);
     skill->kCooldownPoly.SetVar("k", k);
     const int cooldown = TruncateSkill(skill->kCooldownPoly.Eval());
@@ -1988,9 +2029,11 @@ bool CHARACTER::UseSkill(DWORD vnum, LPCHARACTER victim, bool useGrandMaster)
         bool used = true;
         if (vnum == SKILL_HORSE_WILDATTACK)
             used = m_SkillUseInfo[vnum].UseSkill(useGrandMaster, 0, ComputeCooltime(muyeong_detail::mul(cooldown, 1000)), 1, maxHit);
-        if (used && victim)
-            used = m_SkillUseInfo[vnum].UseSkill(useGrandMaster, victim->GetVID(),
-                                               ComputeCooltime(muyeong_detail::mul(cooldown, 1000)), 1, maxHit);
+        if (used && victim) {
+            const int computedCooldown = ComputeCooltime(muyeong_detail::mul(cooldown, 1000));
+            const DWORD victimVID = victim->GetVID();
+            used = m_SkillUseInfo[vnum].UseSkill(useGrandMaster, victimVID, computedCooldown, 1, maxHit);
+        }
         if (!used) {
             if (test_server)
                 ChatPacket(2, "cooltime not finished %s %d", skill->szName, cooldown);
@@ -1999,9 +2042,8 @@ bool CHARACTER::UseSkill(DWORD vnum, LPCHARACTER victim, bool useGrandMaster)
     }
 
     if (vnum == SKILL_CHAIN) {
-        m_iChainLightingIndex = 0;
-        m_setExceptChainLighting.clear();
-        m_setExceptChainLighting.insert(victim);
+        ResetChainLightningIndex();
+        AddChainLightningExcept(victim);
     }
     if (selfOnly || !(skill->dwFlag & SKILL_FLAG_ATTACK) || vnum == SKILL_BYEURAK ||
         vnum == SKILL_MUYEONG || charge)

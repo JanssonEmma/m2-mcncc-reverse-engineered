@@ -3,6 +3,7 @@
 #include "config.h"
 #include "locale_service.h"
 #include <cstdio>
+#include <cfenv>
 #include <cstdint>
 extern "C" {
 #include "../../liblua/include/lua.h"
@@ -14,8 +15,10 @@ namespace {
 std::int32_t OXNumber(lua_State* state, int index)
 {
     const lua_Number value = lua_tonumber(state, index);
-    if (!(value > -2147483649.0 && value < 2147483648.0))
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
         return INT32_MIN;
+    }
     return static_cast<std::int32_t>(value);
 }
 }
@@ -28,14 +31,13 @@ int oxevent_get_status(lua_State* state)
 
 int oxevent_open(lua_State* state)
 {
-    auto& manager = COXEventManager::instance();
-    manager.ClearQuiz();
+    COXEventManager::instance().ClearQuiz();
     char script[256];
     std::snprintf(script, 255, "%s/oxquiz.lua", LocaleService_GetBasePath().c_str());
     const bool loaded = lua_dofile(CQuestManager::instance().GetLuaState(), script) == 0;
     lua_pushnumber(state, loaded);
     if (loaded)
-        manager.SetStatus(OXEVENT_OPEN);
+        COXEventManager::instance().SetStatus(OXEVENT_OPEN);
     return 1;
 }
 
@@ -80,9 +82,8 @@ int oxevent_end_event(lua_State*)
 
 int oxevent_end_event_force(lua_State*)
 {
-    auto& manager = COXEventManager::instance();
-    manager.CloseEvent();
-    manager.SetStatus(OXEVENT_FINISH);
+    COXEventManager::instance().CloseEvent();
+    COXEventManager::instance().SetStatus(OXEVENT_FINISH);
     return 1;
 }
 

@@ -25,16 +25,25 @@
 #include "../../libthecore/include/log.h"
 
 namespace {
-bool GuildRankOrder(const CGuild* first, const CGuild* second)
+struct FGuildCompare
 {
-    if (first->GetLadderPoint() != second->GetLadderPoint())
-        return first->GetLadderPoint() < second->GetLadderPoint();
-    if (first->GetGuildWarWinCount() != second->GetGuildWarWinCount())
-        return first->GetGuildWarWinCount() < second->GetGuildWarWinCount();
-    if (first->GetGuildWarLossCount() != second->GetGuildWarLossCount())
-        return first->GetGuildWarLossCount() < second->GetGuildWarLossCount();
-    return std::strcmp(first->GetName(), second->GetName()) > 0;
-}
+    bool operator()(CGuild* first, CGuild* second)
+    {
+        const int secondPoints = second->GetLadderPoint();
+        const int firstPoints = first->GetLadderPoint();
+        if (firstPoints != secondPoints)
+            return firstPoints < secondPoints;
+        const int firstWins = first->GetGuildWarWinCount();
+        const int secondWins = second->GetGuildWarWinCount();
+        if (firstWins != secondWins)
+            return firstWins < secondWins;
+        const int firstLosses = first->GetGuildWarLossCount();
+        const int secondLosses = second->GetGuildWarLossCount();
+        if (firstLosses != secondLosses)
+            return firstLosses < secondLosses;
+        return std::strcmp(first->GetName(), second->GetName()) > 0;
+    }
+};
 
 std::vector<CGuild*> SortedGuilds(const std::map<DWORD, CGuild*>& guilds)
 {
@@ -42,7 +51,7 @@ std::vector<CGuild*> SortedGuilds(const std::map<DWORD, CGuild*>& guilds)
     for (const auto& entry : guilds)
         if (entry.second)
             sorted.push_back(entry.second);
-    std::sort(sorted.begin(), sorted.end(), GuildRankOrder);
+    std::sort(sorted.begin(), sorted.end(), FGuildCompare{});
     return sorted;
 }
 
@@ -213,19 +222,26 @@ std::pair<DWORD, DWORD> WarPair(DWORD first, DWORD second)
     return first < second ? std::make_pair(first, second) : std::make_pair(second, first);
 }
 
+struct FSendWarList
+{
+    std::uint32_t gid1, gid2;
+    TPacketGCGuild p;
+
+    void operator()(LPCHARACTER ch)
+    {
+        if (DESC* desc = ch->GetDesc()) {
+            desc->BufferedPacket(&p, sizeof(p));
+            desc->BufferedPacket(&gid1, sizeof(gid1));
+            desc->Packet(&gid2, sizeof(gid2));
+        }
+    }
+};
+
 void SendWarListUpdate(const std::pair<DWORD, DWORD>& guilds, BYTE subheader)
 {
-    const TPacketGCGuild packet = {0x4b, 12, subheader};
-    const std::uint32_t first = guilds.first;
-    const std::uint32_t second = guilds.second;
-    CHARACTER_MANAGER::instance().for_each_pc([&](CHARACTER* ch) {
-        if (DESC* desc = ch->GetDesc())
-        {
-            desc->BufferedPacket(&packet, sizeof(packet));
-            desc->BufferedPacket(&first, sizeof(first));
-            desc->Packet(&second, sizeof(second));
-        }
-    });
+    CHARACTER_MANAGER::instance().for_each_pc(FSendWarList{
+        static_cast<std::uint32_t>(guilds.first), static_cast<std::uint32_t>(guilds.second),
+        {0x4b, 12, subheader}});
 }
 }
 
@@ -410,6 +426,24 @@ void CGuildManager::SendGuildWar(CHARACTER* ch)
     desc->Packet(buffer.read_peek(), buffer.size());
 }
 
+namespace {
+struct FGuildNameSender
+{
+    std::uint32_t id;
+    const char* name;
+    TPacketGCGuild p;
+
+    void operator()(LPCHARACTER ch)
+    {
+        if (DESC* desc = ch->GetDesc()) {
+            desc->BufferedPacket(&p, sizeof(p));
+            desc->BufferedPacket(&id, sizeof(id));
+            desc->Packet(name, GUILD_NAME_MAX_LEN);
+        }
+    }
+};
+}
+
 CGuild* CGuildManager::TouchGuild(DWORD guildId)
 {
     TGuildMap::iterator it = m_mapGuild.find(guildId);
@@ -418,16 +452,8 @@ CGuild* CGuildManager::TouchGuild(DWORD guildId)
 
     CGuild* guild = new CGuild(guildId);
     m_mapGuild.insert(std::make_pair(guildId, guild));
-    const TPacketGCGuild packet = {0x4b, 0x14, 0x10};
-    const std::uint32_t id = guildId;
-    CHARACTER_MANAGER::instance().for_each_pc([&](CHARACTER* ch) {
-        if (DESC* desc = ch->GetDesc())
-        {
-            desc->BufferedPacket(&packet, sizeof(packet));
-            desc->BufferedPacket(&id, sizeof(id));
-            desc->Packet(guild->GetName(), GUILD_NAME_MAX_LEN);
-        }
-    });
+    CHARACTER_MANAGER::instance().for_each_pc(
+        FGuildNameSender{static_cast<std::uint32_t>(guildId), guild->GetName(), {0x4b, 0x14, 0x10}});
     return guild;
 }
 

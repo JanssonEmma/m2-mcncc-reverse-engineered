@@ -16,7 +16,7 @@ CTargetManager::~CTargetManager() {}
 
 TargetInfo* CTargetManager::GetTargetInfo(DWORD pid, int type, int argument)
 {
-    std::map<DWORD,std::list<LPEVENT> >::iterator found=m_map_kListEvent.find(pid);
+    const auto found = m_map_kListEvent.find(static_cast<std::uint32_t>(pid));
     if (found==m_map_kListEvent.end()) return 0;
     std::list<LPEVENT>::iterator it=found->second.begin();
     while (it!=found->second.end()) {
@@ -79,7 +79,7 @@ long target_event(LPEVENT event)
     TargetInfo* info=static_cast<TargetInfo*>(event->info);
     CHARACTER* owner=info->pkChr;
     int distance=5000;
-    if (info->iMapIndex!=owner->GetMapIndex()) return TargetDelay(distance);
+    if (info->iMapIndex != static_cast<std::int32_t>(owner->GetMapIndex())) return TargetDelay(distance);
     int x=0,y=0;
     CHARACTER* target=0;
     if (info->iType==TARGET_TYPE_POS) {
@@ -88,18 +88,27 @@ long target_event(LPEVENT event)
         distance=TargetDistance(owner,x,y);
     } else if (info->iType==TARGET_TYPE_VID) {
         target=CHARACTER_MANAGER::instance().Find(static_cast<std::uint32_t>(info->iArg1));
-        if (target && target->GetMapIndex()==owner->GetMapIndex()) {
-            x=target->GetX();
-            y=target->GetY();
-            distance=TargetDistance(owner,x,y);
+        if (target) {
+            const auto ownerMap = static_cast<std::uint32_t>(owner->GetMapIndex());
+            if (static_cast<std::uint32_t>(target->GetMapIndex()) == ownerMap) {
+                x = target->GetX();
+                y = target->GetY();
+                distance = TargetDistance(owner, x, y);
+            }
         }
     }
     bool result=true;
-    if (distance<501)
-        result=quest::CQuestManager::instance().Target(owner->GetPlayerID(),info->dwQuestIndex,info->szTargetName,"arrive");
+    if (distance < 501) {
+        auto& manager = quest::CQuestManager::instance();
+        const DWORD ownerId = owner->GetPlayerID();
+        const auto questIndex = info->dwQuestIndex;
+        result = manager.Target(ownerId, questIndex, info->szTargetName, "arrive");
+    }
     if (!target && info->iType==TARGET_TYPE_VID) {
-        quest::CQuestManager::instance().Target(owner->GetPlayerID(),info->dwQuestIndex,info->szTargetName,"die");
-        CTargetManager::instance().DeleteTarget(owner->GetPlayerID(),info->dwQuestIndex,info->szTargetName);
+        const DWORD deadOwnerId = owner->GetPlayerID();
+        quest::CQuestManager::instance().Target(deadOwnerId,info->dwQuestIndex,info->szTargetName,"die");
+        const DWORD deleteOwnerId = owner->GetPlayerID();
+        CTargetManager::instance().DeleteTarget(deleteOwnerId,info->dwQuestIndex,info->szTargetName);
     }
     if (event->is_force_to_end) {
         sys_log(0,"target_event: event canceled");
@@ -115,13 +124,13 @@ long target_event(LPEVENT event)
 
 LPEVENT CTargetManager::GetTargetEvent(DWORD pid, DWORD quest, const char* name)
 {
-    std::map<DWORD,std::list<LPEVENT> >::iterator found=m_map_kListEvent.find(pid);
+    const auto found = m_map_kListEvent.find(static_cast<std::uint32_t>(pid));
     if (found==m_map_kListEvent.end()) return 0;
     std::list<LPEVENT>::iterator it=found->second.begin();
     while (it!=found->second.end()) {
         LPEVENT event=*it++;
         TargetInfo* info=static_cast<TargetInfo*>(event_info(event));
-        if (info->dwQuestIndex==quest && std::strcmp(info->szTargetName,name)==0) return event;
+        if (info->dwQuestIndex == static_cast<std::uint32_t>(quest) && std::strcmp(info->szTargetName,name)==0) return event;
     }
     return 0;
 }
@@ -135,21 +144,25 @@ void CTargetManager::CreateTarget(DWORD pid, DWORD quest, const char* name, int 
         _sys_err("CreateTarget",0xb0,"Cannot find character ptr by PID %lu",pid);
         return;
     }
-    if (owner->GetMapIndex()!=map) return;
+    if (static_cast<std::int32_t>(owner->GetMapIndex()) != map) return;
     LPEVENT existing=GetTargetEvent(pid,quest,name);
     TargetInfo* info;
     DWORD infoID=0;
     if (existing) {
         info=static_cast<TargetInfo*>(event_info(existing));
         sys_log(0,"CreateTarget : same target will be replaced");
-        if (info->bSendToClient) SendTargetDeletePacket(owner->GetDesc(),info->iID);
+        if (info->bSendToClient) {
+            const int id = info->iID;
+            DESC* desc = owner->GetDesc();
+            SendTargetDeletePacket(desc, id);
+        }
     } else {
         void* rawInfo = nullptr;
         infoID = __AllocEventInfo(sizeof(TargetInfo), &rawInfo);
         info = static_cast<TargetInfo*>(rawInfo);
         info->pkChr=owner;
-        info->dwQuestIndex=quest;
-        info->dwPID=pid;
+        info->dwQuestIndex = static_cast<std::uint32_t>(quest);
+        info->dwPID = static_cast<std::uint32_t>(pid);
         std::strncpy(info->szTargetName,name,32);
         info->szTargetName[32]=0;
         info->iMapIndex=map;
@@ -158,14 +171,15 @@ void CTargetManager::CreateTarget(DWORD pid, DWORD quest, const char* name, int 
         std::strncpy(info->szTargetDesc,description,32);
         info->szTargetDesc[32]=0;
     } else info->szTargetDesc[0]=0;
-    info->iID=++m_iID;
+    m_iID = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_iID) + 1u);
+    info->iID = m_iID;
     info->iType=type;
     info->iArg1=arg1;
     info->iArg2=arg2;
     info->bSendToClient=send!=0;
     info->iOldX=info->iOldY=0;
     if (!existing) {
-        std::list<LPEVENT>& events=m_map_kListEvent[pid];
+        std::list<LPEVENT>& events=m_map_kListEvent[static_cast<std::uint32_t>(pid)];
         events.push_back(event_create_ex(target_event,infoID,passes_per_sec,const_cast<char*>("target.cpp"),0xf6));
     }
     SendTargetCreatePacket(owner->GetDesc(),info);
@@ -173,17 +187,21 @@ void CTargetManager::CreateTarget(DWORD pid, DWORD quest, const char* name, int 
 
 void CTargetManager::DeleteTarget(DWORD pid, DWORD quest, const char* name)
 {
-    std::map<DWORD,std::list<LPEVENT> >::iterator found=m_map_kListEvent.find(pid);
+    const auto found = m_map_kListEvent.find(static_cast<std::uint32_t>(pid));
     if (found==m_map_kListEvent.end()) return;
     std::list<LPEVENT>& events=found->second;
     for (std::list<LPEVENT>::iterator it=events.begin();it!=events.end();) {
         LPEVENT event=*it;
         TargetInfo* info=static_cast<TargetInfo*>(event_info(event));
-        if (info->dwQuestIndex!=quest || (name && std::strcmp(info->szTargetName,name)!=0)) {
+        if (info->dwQuestIndex != static_cast<std::uint32_t>(quest) || (name && std::strcmp(info->szTargetName,name)!=0)) {
             ++it;
             continue;
         }
-        if (info->bSendToClient) SendTargetDeletePacket(info->pkChr->GetDesc(),info->iID);
+        if (info->bSendToClient) {
+            DESC* desc = info->pkChr->GetDesc();
+            const int id = info->iID;
+            SendTargetDeletePacket(desc, id);
+        }
         event_cancel(&event);
         it=events.erase(it);
     }
@@ -191,7 +209,7 @@ void CTargetManager::DeleteTarget(DWORD pid, DWORD quest, const char* name)
 
 void CTargetManager::Logout(DWORD pid)
 {
-    std::map<DWORD,std::list<LPEVENT> >::iterator found=m_map_kListEvent.find(pid);
+    const auto found = m_map_kListEvent.find(static_cast<std::uint32_t>(pid));
     if (found==m_map_kListEvent.end()) return;
     std::list<LPEVENT>::iterator it=found->second.begin();
     while (it!=found->second.end()) {

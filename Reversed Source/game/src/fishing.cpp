@@ -3,6 +3,7 @@
 #include "desc.h"
 #include "desc_client.h"
 #include "packet.h"
+#include <cfenv>
 #include <cmath>
 #include "locale_service.h"
 #include "locale.hpp"
@@ -17,20 +18,23 @@
 #include <map>
 #include <string>
 
-void SendLog(const char* text);
+#include "cmd.h"
 #include "char.h"
 #include "config.h"
 #include "item.h"
 #include "item_manager.h"
 #include "log.h"
 #include "../../libthecore/include/log.h"
+#include "../../libthecore/include/memcpy.h"
 #include "../../libthecore/include/utils.h"
 
 namespace fishing {
 bool RefinableRod(LPITEM rod)
 {
-    return rod && rod->GetType() == 13 && !rod->IsEquipped() &&
-           rod->GetSockets()[0] == rod->GetValue(2);
+    if (!rod || rod->GetType() != 13 || rod->IsEquipped())
+        return false;
+    const auto practice = static_cast<std::int32_t>(rod->GetSocket(0));
+    return practice == static_cast<std::int32_t>(rod->GetValue(2));
 }
 
 int RealRefineRod(LPCHARACTER character, LPITEM rod)
@@ -39,8 +43,8 @@ int RealRefineRod(LPCHARACTER character, LPITEM rod)
         return 2;
 
     auto& logs = LogManager::instance();
-    const char* name = rod->GetName();
     if (!RefinableRod(rod)) {
+        const char* name = rod->GetName();
         _sys_err("RealRefineRod", 0x351, "REFINE_ROD_HACK pid(%lu) item(%s:%d)",
                  character->GetPlayerID(), name ? name : "", static_cast<int>(rod->GetID()));
         logs.Query("INSERT INTO refinelog%s VALUES(%lu, '%s', %lu, %d, NOW(), 1, 'ROD_HACK')",
@@ -48,22 +52,34 @@ int RealRefineRod(LPCHARACTER character, LPITEM rod)
         return 2;
     }
 
-    const int stage = static_cast<int>(rod->GetValue(0) / 10);
+    const int stage = static_cast<std::int32_t>(rod->GetValue(0)) / 10;
     const int roll = number_ex(1, 100, const_cast<char*>("fishing.cpp"), 0x35c);
-    const bool success = roll <= rod->GetValue(3);
-    logs.Query("INSERT INTO refinelog%s VALUES(%lu, '%s', %lu, %d, NOW(), %d, 'ROD')",
-               get_table_postfix(), character->GetPlayerID(), name, rod->GetID(), stage, success);
-    const DWORD replacementVnum = success ? rod->GetProto()->dwRefinedVnum : rod->GetValue(4);
-    auto& items = ITEM_MANAGER::instance();
-    LPITEM replacement = items.CreateItem(replacementVnum, 1, 0, false, -1);
+    const bool success = roll <= static_cast<std::int32_t>(rod->GetValue(3));
+    const char* name = success ? rod->GetName() : nullptr;
+    const auto rodId = rod->GetID();
+    if (!success)
+        name = rod->GetName();
+    const auto playerId = character->GetPlayerID();
+    const auto postfix = get_table_postfix();
+    LogManager::instance().Query("INSERT INTO refinelog%s VALUES(%lu, '%s', %lu, %d, NOW(), %d, 'ROD')",
+               postfix, playerId, name, rodId, stage, success);
+    const auto replacementVnum = success
+        ? static_cast<std::uint32_t>(rod->GetRefinedVnum())
+        : static_cast<std::uint32_t>(rod->GetValue(4));
+    LPITEM replacement = ITEM_MANAGER::instance().CreateItem(replacementVnum, 1, 0, false, -1);
     if (!replacement)
         return 2;
 
     const BYTE cell = rod->GetCell();
-    items.RemoveItem(rod, "REMOVE (REFINE FISH_ROD)");
+    ITEM_MANAGER::instance().RemoveItem(rod, "REMOVE (REFINE FISH_ROD)");
     replacement->AddToCharacter(character, cell);
-    logs.ItemLog(character->GetPlayerID(), character->GetX(), character->GetY(), replacement->GetID(),
-                 success ? "REFINE FISH_ROD SUCCESS" : "REFINE FISH_ROD FAIL", replacement->GetName());
+    const char* replacementName = replacement->GetName();
+    const auto replacementId = replacement->GetID();
+    const auto x = character->GetX();
+    const auto y = character->GetY();
+    const auto logPlayerId = character->GetPlayerID();
+    LogManager::instance().ItemLog(logPlayerId, x, y, replacementId,
+                 success ? "REFINE FISH_ROD SUCCESS" : "REFINE FISH_ROD FAIL", replacementName);
     return success ? 1 : 0;
 }
 }
@@ -92,7 +108,8 @@ int g_prob_accumulate[probabilityCount][fishCount];
 
 bool operator<(const SFishInfo& lhs, const SFishInfo& rhs)
 {
-    return lhs.vnum < rhs.vnum;
+    const auto rightVnum = rhs.vnum;
+    return lhs.vnum < rightVnum;
 }
 
 namespace {
@@ -141,7 +158,7 @@ void ReadFishingColumn(SFishInfo& fish, int index, const std::string& field)
 
 int SelectFish(int probability, int minimum, int sourceLine)
 {
-    if (probability < 0 || probability >= probabilityCount || g_prob_sum[probability] <= 0)
+    if (probability < 0 || probability >= probabilityCount)
         return 0;
     const int roll = number_ex(minimum, g_prob_sum[probability],
                                const_cast<char*>("fishing.cpp"), sourceLine);
@@ -166,15 +183,19 @@ int SelectFish(int probability, int minimum, int sourceLine)
 // 080821e0
 void Initialize()
 {
-    const bool reload = fish_info[0].name[0] != '\0';
+    SFishInfo backup[fishCount];
+    thecore_memcpy(backup, fish_info, sizeof(backup));
+    const bool reload = backup[0].name[0] != '\0';
     const std::string path = LocaleService_GetBasePath() + "/fishing.txt";
     std::ifstream input(path);
     if (reload)
         SendLog("Reloading fish table.");
     if (!input) {
         SendLog("error! cannot open fishing.txt");
-        if (reload)
+        if (reload) {
+            thecore_memcpy(fish_info, backup, sizeof(backup));
             SendLog("  restoring to backup");
+        }
         return;
     }
 
@@ -190,8 +211,10 @@ void Initialize()
             std::printf("Tab error on line: %s\n", line.c_str());
             SendLog("error! parsing fishing.txt");
             parseError = true;
-            if (reload)
+            if (reload) {
+                thecore_memcpy(fish_info, backup, sizeof(backup));
                 SendLog("  restoring to backup");
+            }
             break;
         }
 
@@ -256,17 +279,22 @@ int DetermineFish(LPCHARACTER character)
 
     int adjust = 0;
     if (quests.GetEventFlag("fish_miss_pct") != 0) {
-        const int miss = std::max(0, std::min(quests.GetEventFlag("fish_miss_pct"), 200));
+        const int miss = MINMAX(0, quests.GetEventFlag("fish_miss_pct"), 200);
         const auto scaled = static_cast<std::int32_t>(
             static_cast<std::uint32_t>(100 - miss) * fish_info[0].prob[probability]);
         adjust = scaled / 100;
     }
     const int selected = SelectFish(probability, adjust + 1, 0x17f);
-    const std::uint32_t vnum = fish_info[selected].vnum;
-    if (LC_IsYMIR() && vnum - 0x11198U <= 12)
-        return 0;
-    if (g_iUseLocale && (vnum - 0xc358U < 2 || vnum == 0x13888U))
-        return 0;
+    if (LC_IsYMIR()) {
+        const std::uint32_t vnum = fish_info[selected].vnum;
+        if (vnum - 0x11198U <= 12)
+            return 0;
+    }
+    if (g_iUseLocale) {
+        const std::uint32_t vnum = fish_info[selected].vnum;
+        if (vnum - 0xc358U < 2 || vnum == 0x13888U)
+            return 0;
+    }
     return selected;
 }
 }
@@ -308,10 +336,10 @@ struct FishingHighscorePacket
 #pragma pack(pop)
 static_assert(sizeof(FishingHighscorePacket) == 30, "fishing highscore wire size");
 
-void SendFishingAround(LPCHARACTER character, BYTE subheader, BYTE direction = 0)
+void SendFishingAround(LPCHARACTER character, BYTE subheader)
 {
     const TPacketGCFishing packet = {89, subheader, static_cast<std::uint32_t>(
-        static_cast<DWORD>(character->GetVID())), direction};
+        static_cast<DWORD>(character->GetVID())), 0};
     character->PacketAround(&packet, sizeof(packet));
 }
 
@@ -349,17 +377,20 @@ void FishingPractice(LPCHARACTER character)
     LPITEM rod = character->GetWear(4);
     if (!rod)
         return;
-    if (rod->GetType() == 13 && rod->GetProto()->dwRefinedVnum &&
-        static_cast<std::int32_t>(rod->GetSockets()[0]) < rod->GetValue(2) &&
-        FishingRandom(1, rod->GetValue(1), 0x1b7) == 1) {
-        const auto next = static_cast<std::int32_t>(static_cast<std::uint32_t>(rod->GetSockets()[0]) + 1u);
-        rod->SetSocket(0, next);
-        const int progress = static_cast<int>(rod->GetSockets()[0]);
-        const int maximum = static_cast<int>(rod->GetValue(2));
-        character->ChatPacket(1, locale_find(practiceProgress, g_iUseLocale), progress, maximum);
-        if (static_cast<std::int32_t>(rod->GetSockets()[0]) == rod->GetValue(2)) {
-            character->ChatPacket(1, locale_find(practiceComplete, g_iUseLocale));
-            character->ChatPacket(1, locale_find(practiceRefine, g_iUseLocale));
+    if (rod->GetType() == 13 && rod->GetProto()->dwRefinedVnum) {
+        const auto currentProgress = static_cast<std::int32_t>(rod->GetSockets()[0]);
+        if (currentProgress < rod->GetValue(2) &&
+            FishingRandom(1, rod->GetValue(1), 0x1b7) == 1) {
+            const auto next = static_cast<std::int32_t>(static_cast<std::uint32_t>(rod->GetSockets()[0]) + 1u);
+            rod->SetSocket(0, next);
+            const int maximum = static_cast<int>(rod->GetValue(2));
+            const int progress = static_cast<int>(rod->GetSockets()[0]);
+            character->ChatPacket(1, locale_find(practiceProgress, g_iUseLocale), progress, maximum);
+            const auto completedProgress = static_cast<std::int32_t>(rod->GetSockets()[0]);
+            if (completedProgress == rod->GetValue(2)) {
+                character->ChatPacket(1, locale_find(practiceComplete, g_iUseLocale));
+                character->ChatPacket(1, locale_find(practiceRefine, g_iUseLocale));
+            }
         }
     }
     rod->SetSocket(2, 0);
@@ -384,7 +415,8 @@ EVENTFUNC(fishing_event)
         return 0;
     }
     if (info->step != 0) {
-        info->step = std::min(info->step + 1, 5);
+        const auto nextStep = static_cast<std::int32_t>(static_cast<std::uint32_t>(info->step) + 1u);
+        info->step = std::min(nextStep, std::int32_t{5});
         character->m_pkFishingEvent = nullptr;
         FishingFail(character);
         rod->SetSocket(2, 0);
@@ -408,11 +440,13 @@ LPEVENT CreateFishingEvent(LPCHARACTER character)
         static_cast<std::uint32_t>(character->GetPlayerID()), 0, 0, 0,
     };
     const int seconds = FishingRandom(10, 40, 0x20c);
+    const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(character->GetVID()));
     const long double angle = static_cast<long double>(character->GetRotation()) / 5.0L;
     const BYTE direction = angle > -32769.0L && angle < 32768.0L
         ? static_cast<BYTE>(static_cast<std::int16_t>(angle))
         : BYTE{0};
-    SendFishingAround(character, 0, direction);
+    const TPacketGCFishing packet = {89, 0, vid, direction};
+    character->PacketAround(&packet, sizeof(packet));
     const auto delay = static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * seconds);
     return event_create_ex(fishing_event, id, delay,
                             const_cast<char*>("fishing.cpp"), 0x215);
@@ -423,12 +457,15 @@ int GetFishingLevel(LPCHARACTER character)
     LPITEM rod = character->GetWear(4);
     if (!rod || rod->GetType() != 13)
         return 0;
-    return static_cast<std::int32_t>(
-        static_cast<std::uint32_t>(rod->GetValue(0)) + static_cast<std::uint32_t>(rod->GetSockets()[2]));
+    const auto bait = static_cast<std::uint32_t>(rod->GetSocket(2));
+    const auto rodLevel = static_cast<std::uint32_t>(rod->GetValue(0));
+    return static_cast<std::int32_t>(rodLevel + bait);
 }
 
 int Compute(DWORD fishId, DWORD milliseconds, DWORD* item, int level)
 {
+    fishId = static_cast<std::uint32_t>(fishId);
+    milliseconds = static_cast<std::uint32_t>(milliseconds);
     if (!fishId)
         return -2;
     if (fishId >= fishCount) {
@@ -436,10 +473,12 @@ int Compute(DWORD fishId, DWORD milliseconds, DWORD* item, int level)
         return -2;
     }
     const auto& fish = fish_info[fishId];
-    if (milliseconds > 6000 || fish.time_type < 0 || fish.time_type >= 5)
+    if (milliseconds > 6000)
         return -1;
-    const DWORD step = std::min((milliseconds + 99) / 200, static_cast<DWORD>(30));
-    if (aFishingTime[fish.time_type][step] < FishingRandom(1, 100, 0x232))
+    const int step = MINMAX(0, static_cast<int>((milliseconds + 99) / 200), 30);
+    const int timingRoll = FishingRandom(1, 100, 0x232);
+    const int timeType = fish.time_type;
+    if (timeType < 0 || timeType >= 5 || aFishingTime[timeType][step] < timingRoll)
         return -1;
     if (FishingRandom(1, fish.difficulty, 0x234) > level)
         return -3;
@@ -465,8 +504,12 @@ void Simulation(int level, int count, int probability, CHARACTER* character)
             ++total;
         }
     }
-    for (const auto& entry : catches)
-        character->ChatPacket(1, LC_TEXT("%s : %d \270\266\270\256"), entry.first.c_str(), entry.second);
+    for (const auto& entry : catches) {
+        const char* name = entry.first.c_str();
+        const char* format = LC_TEXT("%s : %d \270\266\270\256");
+        const int caught = entry.second;
+        character->ChatPacket(1, format, name, caught);
+    }
     character->ChatPacket(1, LC_TEXT("%d \301\276\267\371 %d \270\266\270\256 \263\254\300\275"), static_cast<int>(catches.size()), total);
 }
 
@@ -474,56 +517,70 @@ int GetFishLength(int fishId)
 {
     const auto& range = fish_info[fishId].length_range;
     if (FishingRandom(0, 99, 0x241) == 0) {
-        const double angle = std::asin(FishingRandom(0, 10000, 0x24d) / 10000.0);
+        const int base = range[1];
         const auto span = static_cast<std::int32_t>(
-            (static_cast<std::uint32_t>(range[2]) - range[1]) * 2u);
+            (static_cast<std::uint32_t>(range[2]) - base) * 2u);
+        const double angle = std::asin(FishingRandom(0, 10000, 0x24d) / 10000.0);
         const double extra = static_cast<double>(static_cast<long double>(angle) * span / 3.1415926535);
-        const long double length = range[1] + static_cast<long double>(extra);
-        if (length <= -2147483649.0L || length >= 2147483648.0L)
+        const long double length = base + static_cast<long double>(extra);
+        if (!(length > -2147483649.0L && length < 2147483648.0L)) {
+            std::feraiseexcept(FE_INVALID);
             return std::numeric_limits<std::int32_t>::min();
+        }
         return static_cast<std::int32_t>(length);
     }
 
+    const auto upper = static_cast<std::uint32_t>(range[1]);
+    const auto lower = static_cast<std::uint32_t>(range[0]);
+    const auto span = upper - lower;
     int roll = 0;
     for (int index = 0; index < 5; ++index)
         roll += FishingRandom(0, 2000, 0x246);
-    const auto scaled = static_cast<std::int32_t>(
-        (static_cast<std::uint32_t>(range[1]) - range[0]) * roll);
+    const auto scaled = static_cast<std::int32_t>(span * roll);
     return static_cast<std::int32_t>(static_cast<std::uint32_t>(range[0]) + scaled / 10000);
 }
 
 void Take(fishing_event_info* info, LPCHARACTER character)
 {
-    if (info->step <= 0) {
+    const int step = info->step;
+    if (step <= 0) {
         SendFishingAround(character, 1);
         if (info->step != 0)
             FishingPractice(character);
         return;
     }
 
-    const DWORD milliseconds = info->step == 1
-        ? static_cast<std::uint32_t>(get_dword_time()) - info->hangTime : 7000;
     DWORD vnum = 0;
-    const int status = info->step == 1 ? Compute(info->fishId, milliseconds, &vnum, GetFishingLevel(character)) : -1;
+    int status = -1;
+    DWORD milliseconds = 7000;
+    if (step == 1) {
+        const auto now = static_cast<std::uint32_t>(get_dword_time());
+        milliseconds = now - info->hangTime;
+        const int level = GetFishingLevel(character);
+        status = Compute(info->fishId, milliseconds, &vnum, level);
+    }
     if (status < -3 || status > 0) {
-        FishingPractice(character);
+        if (info->step != 0)
+            FishingPractice(character);
         return;
     }
     const bool caught = status == 0 && vnum != 0;
-    int length = 0;
+    LPITEM fish = nullptr;
     if (caught) {
         FishingSuccess(character);
         SendFishingItem(character, vnum);
-        if (LPITEM fish = character->AutoGiveItem(vnum, 1, -1, false)) {
+        fish = character->AutoGiveItem(vnum, 1, -1, false);
+        if (fish) {
             fish->SetSocket(0, GetFishLength(info->fishId));
-            length = fish->GetSockets()[0];
-            if (test_server)
-                character->ChatPacket(1, locale_find(fishLengthNotice, g_iUseLocale),
-                                      static_cast<double>(static_cast<float>(length) / 100.0f));
+            if (test_server) {
+                const auto length = static_cast<std::int32_t>(fish->GetSockets()[0]);
+                const float centimeters = static_cast<float>(static_cast<long double>(length) / 100.0L);
+                character->ChatPacket(1, locale_find(fishLengthNotice, g_iUseLocale), static_cast<double>(centimeters));
+            }
             if (quest::CQuestManager::instance().GetEventFlag("fishevent") > 0 &&
                 (info->fishId == 5 || info->fishId == 6)) {
                 FishingHighscorePacket packet = {
-                    static_cast<std::uint32_t>(character->GetPlayerID()), length, 0, {},
+                    static_cast<std::uint32_t>(character->GetPlayerID()), static_cast<std::int32_t>(fish->GetSockets()[0]), 0, {},
                 };
                 const char* board = locale_find(info->fishId == 5 ? fishBoardFive : fishBoardSix, g_iUseLocale);
                 std::strncpy(packet.board, board, sizeof(packet.board) - 1);
@@ -532,20 +589,27 @@ void Take(fishing_event_info* info, LPCHARACTER character)
         }
     }
 
+    const int probabilityIndex = GetProbIndexByMapIndex(character->GetMapIndex());
+    const auto length = fish ? static_cast<std::int32_t>(fish->GetSockets()[0]) : 0;
+    const int fishingLevel = GetFishingLevel(character);
+    const auto playerId = character->GetPlayerID();
+    const char* tablePostfix = get_table_postfix();
     LogManager::instance().Query("INSERT INTO fish_log%s VALUES(NOW(), %lu, %d, %lu, %d, %d, %d, %d)",
-        get_table_postfix(), character->GetPlayerID(), GetProbIndexByMapIndex(character->GetMapIndex()),
-        static_cast<unsigned long>(info->fishId), GetFishingLevel(character),
+        tablePostfix, playerId, probabilityIndex,
+        static_cast<unsigned long>(info->fishId), fishingLevel,
         static_cast<int>(milliseconds), caught, length);
     if (!caught)
         FishingFail(character);
-    FishingPractice(character);
+    if (info->step != 0)
+        FishingPractice(character);
 }
 }
 
 namespace fishing {
 void UseFish(LPCHARACTER character, LPITEM item)
 {
-    const std::uint32_t offset = static_cast<std::uint32_t>(item->GetVnum()) - fish_info[2].vnum;
+    const auto vnum = static_cast<std::uint32_t>(item->GetVnum());
+    const std::uint32_t offset = vnum - fish_info[2].vnum;
     if (offset >= 35)
         return;
 
@@ -582,7 +646,8 @@ void UseFish(LPCHARACTER character, LPITEM item)
 
 void Grill(LPCHARACTER character, LPITEM item)
 {
-    const auto vnum = static_cast<std::uint32_t>(item->GetVnum());
+    const auto* proto = item->GetProto();
+    const auto vnum = proto ? static_cast<std::uint32_t>(proto->dwVnum) : 0u;
     int index;
     if (vnum - 27803U < 28)
         index = vnum - 27800U;
@@ -591,8 +656,9 @@ void Grill(LPCHARACTER character, LPITEM item)
     else
         return;
 
+    const char* name = proto->szLocaleName;
     const BYTE count = static_cast<BYTE>(item->GetCount());
-    character->ChatPacket(1, locale_find("%s\270\246 \261\270\277\374\275\300\264\317\264\331.", g_iUseLocale), item->GetName());
+    character->ChatPacket(1, locale_find("%s\270\246 \261\270\277\374\275\300\264\317\264\331.", g_iUseLocale), name);
     item->SetCount(0);
     character->AutoGiveItem(fish_info[index].grill_vnum, count, -1, true);
 }

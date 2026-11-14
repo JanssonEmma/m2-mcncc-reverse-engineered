@@ -2,6 +2,7 @@
 // Historical GCC3 STL layout: class160/member12; native STL ABI may differ.
 #ifndef MCNCC_GAME_PARTY_H
 #define MCNCC_GAME_PARTY_H
+#include <cstdint>
 #include <map>
 #include <set>
 #include "../../common/singleton.h"
@@ -35,7 +36,7 @@ enum EPartyMessages {
 class CParty;
 class CPartyManager : public singleton<CPartyManager> {
 public:
-    typedef std::map<DWORD, CParty*> TPartyMap;
+    typedef std::map<std::uint32_t, CParty*> TPartyMap;
     typedef std::set<CParty*> TPCPartySet;
 
     CPartyManager();
@@ -74,7 +75,7 @@ public:
         std::string strName;  // +8 (historical4-byte COW string)
     };
     typedef SMember TMember;
-    typedef std::map<DWORD,TMember> TMemberMap;
+    typedef std::map<std::uint32_t,TMember> TMemberMap;
     typedef std::map<std::string,int> TFlagMap;
 public:
     // Template shape proved by emitted return-T/argument-T instantiation.
@@ -173,7 +174,7 @@ protected:
     void SendParameterToAll();
 protected:
     TMemberMap m_memberMap; // +4
-    DWORD m_dwLeaderPID; // +16
+    std::uint32_t m_dwLeaderPID; // +16
     CHARACTER* m_pkChrLeader; // +20
     LPEVENT m_eventUpdate; // +24
     TMemberMap::iterator m_itNextOwner; // +28

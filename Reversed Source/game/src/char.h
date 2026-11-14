@@ -266,6 +266,7 @@ struct TSkillUseInfo {
     // The 2009 insertion path initializes only bUsed.
     TSkillUseInfo() : bUsed(false) {}
     bool HitOnce(DWORD vnum = 0);
+    void ResetHitCount();
     bool UseSkill(bool grandMaster, DWORD vid, DWORD cooldown, int splashCount = 1, int hitCount = -1, int range = -1);
 };
 enum class PartyJoinError {
@@ -281,12 +282,13 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider {
     friend class CExchange;
     friend class CArena;
     friend class CInputMain;
+    friend struct FuncForgetMyAttacker;
 public:
     void SetQuestNPCID(DWORD vid);
     void OnClick(LPCHARACTER causer);
-    DWORD GetQuestNPCID() const { return m_dwQuestNPCVID; }
-    DWORD GetQuestByVnum() const { return m_dwQuestByVnum; }
-    void SetQuestByVnum(DWORD index) { m_dwQuestByVnum = index; }
+    DWORD GetQuestNPCID() { return m_dwQuestNPCVID; }
+    DWORD GetQuestBy() { return m_dwQuestByVnum; }
+    void SetQuestBy(DWORD index) { m_dwQuestByVnum = index; }
     LPCHARACTER GetQuestNPC();
     LPCHARACTER FindCharacterInView(const char* name, bool pcOnly);
     CItem* GetQuestItemPtr();
@@ -325,7 +327,15 @@ const TMobTable& GetMobTable();
 
 // Insert in game/src/char.h; original non-const methods.
 void BroadcastTargetPacket();
-void SetNowWalking(bool bWalkFlag);
+    void SetStamina(int stamina) { m_points.stamina = stamina; }
+    int GetStamina() { return m_points.stamina; }
+    void SetMaxStamina(int stamina) { m_pointsInstant.iMaxStamina = stamina; }
+    int GetMaxStamina() { return m_pointsInstant.iMaxStamina; }
+
+    bool IsWalking() { return m_bNowWalking || GetStamina() <= 0; }
+    void SetWalking(bool walking) { m_bWalking = walking; }
+    void SetNowWalking(bool bWalkFlag);
+    void ResetWalking() { SetNowWalking(m_bWalking); }
 void SetWalkingMode(bool walking);
 
 void SetLevel(BYTE level);
@@ -335,6 +345,7 @@ void SetPKMode(BYTE bPKMode);
 // Insert in game/src/char.h. Old methods are NON-CONST; verify linkage in metadata.
 BYTE GetJob();
 bool IsDead();
+    bool IsAlive() { return m_pointsInstant.position != POS_DEAD; }
 bool IsStun();
 
 protected:
@@ -358,7 +369,7 @@ protected:
     CStateTemplate<CHARACTER> m_stateBattle;
     CStateTemplate<CHARACTER> m_stateIdle;
     DWORD m_dwStateDuration;
-    DWORD m_dwPolymorphRace;
+    std::uint32_t m_dwPolymorphRace;
     bool m_bPolyMaintainStat;
     DWORD m_dwLoginPlayTime;
     DWORD m_dwPlayerID;
@@ -395,9 +406,11 @@ protected:
     TQuickslot m_quickslot[36];
     TAffectFlag m_afAffectFlag;
     std::list<CAffect* > m_list_pkAffect;
+    const std::list<CAffect*>& GetAffectContainer() { return m_list_pkAffect; }
     CParty *m_pkParty;
     DWORD m_dwLastDeadTime;
     LPEVENT m_pkPartyRequestEvent;
+    void SetPartyRequestEvent(LPEVENT event) { m_pkPartyRequestEvent = event; }
     std::map<long unsigned int, event* > m_PartyInviteEventMap;
     CDungeon *m_pkDungeon;
     int m_iEventAttr;
@@ -406,6 +419,8 @@ protected:
     CWarMap *m_pWarMap;
     bool m_bNoOpenedShop;
     bool m_bItemLoaded;
+    bool IsItemLoaded() { return m_bItemLoaded; }
+    void SetItemLoaded() { m_bItemLoaded = true; }
     int m_iRefineAdditionalCell;
     bool m_bUnderRefine;
     DWORD m_dwRefineNPCVID;
@@ -461,7 +476,7 @@ protected:
     PIXEL_POSITION m_posSafeboxOpen;
     LPCHARACTER m_chHorse;
     LPCHARACTER m_chRider;
-    DWORD m_dwMountVnum;
+    std::uint32_t m_dwMountVnum;
     BYTE m_bSendHorseLevel;
     BYTE m_bSendHorseHealthGrade;
     BYTE m_bSendHorseStaminaGrade;
@@ -497,6 +512,7 @@ public:
     LPEVENT m_pkWarpNPCEvent;
     LPEVENT m_pkMiningEvent;
     LPEVENT m_pkWarpEvent;
+    bool IsWarping() { return m_pkWarpEvent != nullptr; }
     LPEVENT m_pkCheckSpeedHackEvent;
     bool m_bHasPoisoned;
     const CMob *m_pkMobData;
@@ -507,14 +523,19 @@ private:
     CArena *m_pArena;
     bool m_ArenaObserver;
     int m_nPotionLimit;
+    void SetPotionLimit(int count) { m_nPotionLimit = count; }
+    int GetPotionLimit() { return m_nPotionLimit; }
     bool m_isOpenSafebox;
 public:
     int m_iRefineTime;
     int m_iSeedTime;
+    int GetUseSeedOrMoonBottleTime() { return m_iSeedTime; }
+    void SetUseSeedOrMoonBottleTime();
     int m_iExchangeTime;
     int m_iKillCount;
     int m_iKillingCount;
     int m_iMyShopTime;
+    int GetMyShopTime() { return m_iMyShopTime; }
     DWORD m_dwMonarchCooltime[5];
     DWORD m_dwMonarchCooltimelimit[5];
 private:
@@ -541,7 +562,7 @@ public:
     virtual ~CHARACTER();
     void Destroy();
     void SetRotation(float rotation);
-    float GetRotation() const { return m_pointsInstant.fRot; }
+    float GetRotation() { return m_pointsInstant.fRot; }
     void fishing();
     void fishing_take();
     bool UseItem(BYTE cell, int destination = -1);
@@ -573,9 +594,14 @@ public:
     void OpenMyShop(const char* sign, TShopItemTable* table, BYTE count);
     void SetShopOwner(CHARACTER* owner) { m_pkChrShopOwner = owner; }
     void SetMyShopTime();
+    int GetRefineTime() { return m_iRefineTime; }
+    void SetRefineTime();
+    int GetExchangeTime() { return m_iExchangeTime; }
+    void SetExchangeTime();
     CHARACTER* GetShopOwner() const { return m_pkChrShopOwner; }
     long GetAllowedGold();
-    int GetGold() const { return m_points.gold; }
+    void SetGold(long gold) { m_points.gold = gold; }
+    int GetGold() { return m_points.gold; }
     bool CanHandleItem(bool skipRefine = false, bool skipObserver = false);
     void PointChange(BYTE type, int amount, bool amountFlag = false, bool broadcast = false);
     void ApplyPoint(BYTE type, long value);
@@ -589,15 +615,22 @@ public:
     void SetPolymorph(DWORD vnum, bool maintainStat);
     LPITEM AutoGiveItem(DWORD vnum, BYTE count, int rarePercent, bool message);
     bool GiveItemFromSpecialItemGroup(DWORD groupVnum, DWORD& itemVnum, DWORD& itemCount, LPITEM& item);
+    void CancelSafeboxLoad() { m_bOpeningSafebox = false; }
+    void SetOpenSafebox(bool open) { m_isOpenSafebox = open; }
+    int GetSafeboxLoadTime() { return m_iSafeboxLoadTime; }
+    void SetSafeboxLoadTime();
+    int GetMallLoadTime() { return m_iMallLoadTime; }
+    void SetMallLoadTime(int pulse) { m_iMallLoadTime = pulse; }
     bool IsOpenSafebox() const { return m_isOpenSafebox; }
     LPITEM* GetCubeItem() { return m_pointsInstant.pCubeItems; }
+    void SetCubeNpc(LPCHARACTER npc) { m_pointsInstant.pCubeNpc = npc; }
     bool IsCubeOpen() const { return m_pointsInstant.pCubeNpc != 0; }
     int ChangeEmpire(BYTE empire);
     int GetChangeEmpireCount();
     void SetChangeEmpireCount();
     DWORD GetAID();
-    BYTE GetEmpire() const { return m_bEmpire; }
-    CGuild* GetGuild() const { return m_pGuild; }
+    BYTE GetEmpire() { return m_bEmpire; }
+    CGuild* GetGuild() { return m_pGuild; }
     void SetGuild(CGuild* guild);
     BYTE GetPKMode();
     int GetAlignment();
@@ -614,12 +647,12 @@ public:
     static PartyJoinError IsPartyJoinableCondition(CHARACTER* leader, CHARACTER* guest);
     static PartyJoinError IsPartyJoinableMutableCondition(CHARACTER* leader, CHARACTER* guest);
     bool CanSummon(int leadership);
-    CParty* GetParty() const { return m_pkParty; }
+    CParty* GetParty() { return m_pkParty; }
     void SetParty(CParty* party);
-    DWORD GetMountVnum() const { return m_dwMountVnum; }
-    bool IsPolymorphed() const { return m_dwPolymorphRace != 0; }
-    DWORD GetPolymorphVnum() const { return m_dwPolymorphRace; }
-    bool IsPolyMaintainStat() const { return m_bPolyMaintainStat; }
+    DWORD GetMountVnum() { return m_dwMountVnum; }
+    bool IsPolymorphed() { return m_dwPolymorphRace != 0; }
+    DWORD GetPolymorphVnum() { return m_dwPolymorphRace; }
+    bool IsPolyMaintainStat() { return m_bPolyMaintainStat; }
     bool IsRaceFlag(DWORD bit);
     bool IsBerserk();
     float GetMobDamageMultiply();
@@ -631,7 +664,7 @@ public:
     bool ExchangeStart(CHARACTER* victim);
     LPCHARACTER GetVictim();
     void ChangeVictimByAggro(int aggro, LPCHARACTER attacker);
-    void UpdateAggrPointEx(LPCHARACTER attacker, EDamageType type, int damage, TBattleInfo* info);
+    void UpdateAggrPointEx(LPCHARACTER attacker, EDamageType type, int damage, TBattleInfo& info);
     void UpdateAggrPoint(LPCHARACTER attacker, EDamageType type, int damage);
     void SetRider(LPCHARACTER rider);
     void Motion(BYTE motion, LPCHARACTER victim);
@@ -649,7 +682,7 @@ public:
     bool DelQuickslot(BYTE pos);
     void SyncQuickslot(BYTE type,BYTE oldPos,BYTE newPos);
     void ChainQuickslotItem(LPITEM item,BYTE type,BYTE oldPos);
-    void SetImmuneFlag(DWORD value) { m_pointsInstant.dwImmuneFlag=value; }
+    void SetImmuneFlag(DWORD value) { m_pointsInstant.dwImmuneFlag = static_cast<std::uint32_t>(value); }
     void Disconnect();
     void SetWarMap(CWarMap* map);
     CWarMap* GetWarMap() const { return m_pWarMap; }
@@ -658,8 +691,10 @@ public:
     bool GetArenaObserverMode() const { return m_ArenaObserver; }
     void SetArenaObserverMode(bool enabled) { m_ArenaObserver = enabled; }
     void SetWeddingMap(marriage::WeddingMap* map);
+    marriage::WeddingMap* GetWeddingMap() { return m_pWeddingMap; }
     void SetMarryPartner(CHARACTER* partner);
     LPCHARACTER GetMarryPartner();
+    bool IsPCBang() { return m_isinPCBang; }
     bool IsInPCBang() const { return m_isinPCBang; }
     void DeathPenalty(BYTE penalty);
     void ItemDropPenalty(LPCHARACTER killer);
@@ -686,8 +721,8 @@ public:
     void ClearSync();
     void SetAggressive();
     void SetCoward();
-    void CreatePlayerProto(TPlayerTable* table);
-    void SetPlayerProto(TPlayerTable* table);
+    void CreatePlayerProto(TPlayerTable& table);
+    void SetPlayerProto(const TPlayerTable* table);
     void SetGMLevel();
     void SetRace(BYTE race);
     void ResetPlayTime(DWORD remaining);
@@ -711,7 +746,15 @@ public:
     void SetItem(BYTE cell,LPITEM item);
     LPITEM FindSpecifyItem(DWORD vnum);
     void ClearKillCount();
+    void SetKillCount(int count) { m_iKillCount = count; }
+    int GetKillCount() { return m_iKillCount; }
+    void DecKillCount();
+    void ClearKillingCount() { m_iKillingCount = 0; }
+    void IncKillingCount();
+    int GetKillingCount() { return m_iKillingCount; }
     void ResetStopTime();
+    void ResetChangeAttackPositionTime();
+    void SetChangeAttackPositionTime();
     DWORD GetStopTime();
     void InitMC();
     DWORD GetMC(MONARCH_INDEX index);
@@ -742,18 +785,25 @@ public:
     void DetermineDropMetinStone();
     // Player-ID load corroborated in DestroyCharacter0818c490.
     DWORD GetPlayerID() { return m_dwPlayerID; }
-    int GetHP() const { return m_points.hp; }
-    int GetMaxHP() const { return m_pointsInstant.iMaxHP; }
+    void SetRandomHP(int hp) { m_points.iRandomHP = hp; }
+    void SetRandomSP(int sp) { m_points.iRandomSP = sp; }
+    int GetRandomHP() { return m_points.iRandomHP; }
+    int GetRandomSP() { return m_points.iRandomSP; }
+    int GetHP() { return m_points.hp; }
+    int GetMaxHP() { return m_pointsInstant.iMaxHP; }
     void SetHP(int hp) { m_points.hp = hp; }
     void SetMaxHP(int hp) { m_pointsInstant.iMaxHP = hp; }
-    int GetSP() const { return m_points.sp; }
-    int GetMaxSP() const { return m_pointsInstant.iMaxSP; }
-    DWORD GetExp() const { return m_points.exp; }
+    void SetSP(int sp) { m_points.sp = sp; }
+    int GetSP() { return m_points.sp; }
+    void SetMaxSP(int sp) { m_pointsInstant.iMaxSP = sp; }
+    int GetMaxSP() { return m_pointsInstant.iMaxSP; }
+    void SetExp(DWORD exp) { m_points.exp = exp; }
+    DWORD GetExp() { return m_points.exp; }
     void ResetPoint(int level);
     int GetLevel() { return m_points.level; }
     bool ChangeSex();
     void SetSkillGroup(BYTE group);
-    BYTE GetSkillGroup() const { return m_points.skill_group; }
+    BYTE GetSkillGroup() { return m_points.skill_group; }
 // Add #include "constants.h" outside the class in char.h.
 // Original inline char.h584; nonconstDWORD GetNextExp(), no extra NULL guard.
 DWORD GetNextExp() {
@@ -770,11 +820,19 @@ DWORD GetNextExp() {
     void PointsPacket();
     void SkillLevelPacket();
     BYTE GetCharType();
+    bool IsWarp() { return m_bCharType == CHAR_TYPE_WARP; }
+    bool IsGoto() { return m_bCharType == CHAR_TYPE_GOTO; }
+    bool IsPC() { return GetDesc() != nullptr; }
+    bool IsNPC() { return m_bCharType != CHAR_TYPE_PC; }
+    bool IsDoor() { return m_bCharType == CHAR_TYPE_DOOR; }
+    bool IsBuilding() { return m_bCharType == CHAR_TYPE_BUILDING; }
+    bool IsMonster() { return m_bCharType == CHAR_TYPE_MONSTER; }
+    bool IsStone() { return m_bCharType == CHAR_TYPE_STONE; }
     void StartStateMachine(int nextPulse = 1);
     void StopStateMachine();
     void Command(const char* argument);
     void ChatPacket(BYTE type,const char* format,...);
-    void ToggleDetailLog() { m_bDetailLog = !m_bDetailLog; }
+    void DetailLog() { m_bDetailLog = !m_bDetailLog; }
     void ToggleMonsterLog();
     void MonsterLog(const char* format,...);
     void OnMove(bool isAttack = false);
@@ -785,6 +843,10 @@ DWORD GetNextExp() {
     void StopStaminaConsume();
     void SetSpeedHackMultipler(float factor);
     DWORD GetMoveDuration() const { return m_dwMoveDuration; }
+    DWORD GetCurrentMoveDuration() { return m_dwMoveDuration; }
+    DWORD GetWalkStartTime() { return m_dwWalkStartTime; }
+    DWORD GetLastMoveTime() { return m_dwLastMoveTime; }
+    DWORD GetLastAttackTime() { return m_dwLastAttackTime; }
     bool IsUsableSkillMotion(DWORD motion);
     void mining(CHARACTER* vein);
     void mining_take();
@@ -817,16 +879,20 @@ DWORD GetNextExp() {
     void BeginFight(LPCHARACTER victim);
     void SetVictim(LPCHARACTER victim);
     void SetNextStatePulse(int nextPulse);
+    DWORD GetStateDuration() { return m_dwStateDuration; }
     void SetAffectedEunhyung();
+    void ClearAffectedEunhyung() { m_dwAffectedEunhyungLevel = 0; }
+    bool GetAffectedEunhyung() { return m_dwAffectedEunhyungLevel != 0; }
     void SetPosition(int position);
     void Sitdown(int isGround);
     void Standup();
     BYTE IncreaseChatCounter() { return ++m_bChatCounter; }
     void ResetChatCounter() { m_bChatCounter = 0; }
-    DWORD GetLastShoutPulse() const { return m_pointsInstant.dwLastShoutPulse; }
+    DWORD GetLastShoutPulse() { return m_pointsInstant.dwLastShoutPulse; }
     void SetLastShoutPulse(DWORD pulse) { m_pointsInstant.dwLastShoutPulse = pulse; }
     void UpdateStateMachine(DWORD pulse);
-    int GetPosition() const { return m_pointsInstant.position; }
+    int GetPosition() { return m_pointsInstant.position; }
+    bool IsPosition(int position) { return m_pointsInstant.position == position; }
     void SyncPacket();
     bool IsGoodAffect(BYTE type);
     void RemoveBadAffect();
@@ -852,15 +918,31 @@ DWORD GetNextExp() {
     bool EquipItem(CItem* item);
     bool UnequipItem(CItem* item);
     DWORD GetMobDropItemVnum();
+    DWORD GetDropMetinStoneVnum() { return m_dwDropMetinStone; }
+    BYTE GetDropMetinStonePct() { return m_bDropMetinStonePct; }
     DWORD GetPolymorphItemVnum();
+    bool IsOverTime(e_overtime value) { return m_eOverTime == value; }
     e_overtime GetOverTime() const { return m_eOverTime; }
     void SetOverTime(e_overtime value) { m_eOverTime = value; }
+    int GetChainLightningIndex() { return m_iChainLightingIndex; }
+    void IncChainLightningIndex()
+    {
+        m_iChainLightingIndex = static_cast<int>(static_cast<unsigned int>(m_iChainLightingIndex) + 1u);
+    }
+    void AddChainLightningExcept(LPCHARACTER character) { m_setExceptChainLighting.insert(character); }
+    void ResetChainLightningIndex()
+    {
+        m_iChainLightingIndex = 0;
+        m_setExceptChainLighting.clear();
+    }
     int GetChainLightningMaxCount();
+    const std::set<CHARACTER*>& GetChainLightingExcept() { return m_setExceptChainLighting; }
     bool Damage(LPCHARACTER attacker, int amount, EDamageType type = DAMAGE_TYPE_NORMAL);
     bool __Profile__Damage(LPCHARACTER attacker, int amount, EDamageType type = DAMAGE_TYPE_NORMAL);
     void SendDamagePacket(LPCHARACTER attacker, int amount, BYTE flag);
     void SetLastAttacked(DWORD time);
     int GetHPPct();
+    DWORD GetAIFlag() { return m_pointsInstant.dwAIFlag; }
     bool IsDeathBlower();
     bool IsDeathBlow();
     bool IsStoneSkinner();
@@ -917,6 +999,7 @@ DWORD GetNextExp() {
     friend long recovery_event(LPEVENT event);
     void CheckTarget();
     void SetTarget(CHARACTER* target);
+    LPCHARACTER GetTarget() { return m_pkChrTarget; }
     void ClearTarget();
     BOOL IsGM();
     void UpdateKillerMode();
@@ -924,6 +1007,7 @@ DWORD GetNextExp() {
     void SetBlockMode(BYTE mode);
     void SetBlockModeForce(BYTE mode);
     BYTE GetBlockMode() const { return m_pointsInstant.bBlockMode; }
+    bool IsBlockMode(BYTE mask) { return (m_pointsInstant.bBlockMode & mask) != 0; }
     void ReviveInvisible(int duration);
     void EffectPacket(int effect);
     bool AddAffect(DWORD type, BYTE point, long value, DWORD flag, long duration,
@@ -969,7 +1053,7 @@ DWORD GetNextExp() {
     void ResetOneSkill(DWORD vnum);
     bool UseSkillBookItem(CItem* item);
     void UseSilkBotary();
-    void UseSilkBotaryReal(const char* entries, BYTE count);
+    void UseSilkBotaryReal(const TPacketMyshopPricelistHeader* packet);
     void __OpenPrivateShop();
     void SendMyShopPriceListCmd(DWORD vnum, DWORD price);
     bool LearnSkillByBook(DWORD vnum, BYTE probability = 0);
@@ -980,10 +1064,11 @@ DWORD GetNextExp() {
     bool IsLearnableSkill(DWORD vnum);
     void SkillLevelUp(DWORD vnum, BYTE method);
     time_t GetSkillNextReadTime(DWORD vnum);
-    void SetSkillNextReadTime(DWORD vnum, int time);
+    void SetSkillNextReadTime(DWORD vnum, time_t time);
     int GetSkillMasterType(DWORD vnum);
     int GetUsedSkillMasterType(DWORD vnum);
     int GetSkillPower(DWORD vnum, BYTE requestedLevel = 0);
+    int GetSkillPowerByLevel(int level, bool mob = false);
     bool IsEquipUniqueGroup(DWORD group);
     int GetArrowAndBow(LPITEM* bow, LPITEM* arrow, int count);
     void UseArrow(LPITEM arrow, DWORD count);

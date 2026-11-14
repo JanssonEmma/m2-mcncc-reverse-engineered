@@ -3,7 +3,7 @@
 #include "config.h"
 #include <cstdio>
 #include <cstring>
-extern void SendLog(const char*);
+#include "cmd.h"
 CBanwordManager::CBanwordManager() {}
 CBanwordManager::~CBanwordManager() {}
 bool CBanwordManager::Initialize(TBanwordTable* p,WORD wSize)

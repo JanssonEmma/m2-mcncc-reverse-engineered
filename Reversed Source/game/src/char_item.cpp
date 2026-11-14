@@ -16,6 +16,7 @@
 #include "constants.h"
 #include "vector.h"
 #include <cstdint>
+#include "../../libthecore/include/memcpy.h"
 #include "char_manager.h"
 #include "../../libthecore/include/utils.h"
 #include "db.h"
@@ -42,6 +43,7 @@
 #include <cassert>
 #include <utility>
 #include <cstring>
+#include <string>
 
 bool IsPCBangIP(const char* ip);
 
@@ -72,6 +74,17 @@ void TransformRefineItem(CItem* source, CItem* result)
 
 namespace
 {
+bool IsRefineCooldownActive()
+{
+    if (!quest::CQuestManager::instance().GetEventFlag("update_refine_time"))
+        return false;
+
+    const auto now = static_cast<std::int32_t>(get_global_time());
+    const auto updated = static_cast<std::uint32_t>(quest::CQuestManager::instance().GetEventFlag("update_refine_time"));
+    const auto deadline = static_cast<std::int32_t>(updated + 300U);
+    return now < deadline;
+}
+
 void LogRefineResult(CHARACTER& character, CItem& item, const char* method, int success)
 {
     const int step = item.GetRefineLevel();
@@ -105,8 +118,7 @@ bool CHARACTER::DoRefine(CItem* item, bool moneyOnly)
         return false;
     }
 
-    const int lastUpdate = quest::CQuestManager::instance().GetEventFlag("update_refine_time");
-    if (lastUpdate && get_global_time() < static_cast<std::int32_t>(static_cast<std::uint32_t>(lastUpdate) + 300U))
+    if (IsRefineCooldownActive())
     {
         sys_log(0, "can't refine %d %s", static_cast<int>(GetPlayerID()), GetName());
         return false;
@@ -205,15 +217,13 @@ bool CHARACTER::DoRefine(CItem* item, bool moneyOnly)
     }
 
     int roll = number_ex(1, 100, const_cast<char*>("char_item.cpp"), 0x297);
-    const bool guild = IsRefineThroughGuild();
-    if (guild || moneyOnly)
+    if (IsRefineThroughGuild() || moneyOnly)
         roll -= 10;
-    const char* const method = guild ? "GUILD" : "POWER";
 
     if (recipe->prob < roll)
     {
         DBManager::instance().SendMoneyLog(3, source->dwVnum, static_cast<std::int32_t>(0U - static_cast<std::uint32_t>(cost)));
-        NotifyRefineFail(this, item, method, 0);
+        NotifyRefineFail(this, item, IsRefineThroughGuild() ? "GUILD" : "POWER", 0);
         items.RemoveItem(item, "REMOVE (REFINE FAIL)");
         PayRefineFee(cost);
         return true;
@@ -223,18 +233,18 @@ bool CHARACTER::DoRefine(CItem* item, bool moneyOnly)
     if (!replacement)
     {
         _sys_err("DoRefine", 0x2be, "cannot create item %lu", static_cast<unsigned long>(resultVnum));
-        NotifyRefineFail(this, item, method, 0);
+        NotifyRefineFail(this, item, IsRefineThroughGuild() ? "GUILD" : "POWER", 0);
         return true;
     }
     const BYTE cell = item->GetCell();
     if (!IsEmptyItemGrid(cell, replacement->GetSize(), cell))
     {
         items.DestroyItem(replacement);
-        NotifyRefineFail(this, item, method, 0);
+        NotifyRefineFail(this, item, IsRefineThroughGuild() ? "GUILD" : "POWER", 0);
         return true;
     }
     TransformRefineItem(item, replacement);
-    NotifyRefineSuccess(this, item, method);
+    NotifyRefineSuccess(this, item, IsRefineThroughGuild() ? "GUILD" : "POWER");
     DBManager::instance().SendMoneyLog(3, source->dwVnum, static_cast<std::int32_t>(0U - static_cast<std::uint32_t>(cost)));
     items.RemoveItem(item, "REMOVE (REFINE SUCCESS)");
     replacement->AddToCharacter(this, cell);
@@ -256,8 +266,7 @@ bool CHARACTER::DoRefineWithScroll(CItem* item)
     if (!canRefine || !item)
         return false;
 
-    const int updateTime = quest::CQuestManager::instance().GetEventFlag("update_refine_time");
-    if (updateTime && get_global_time() < static_cast<std::int32_t>(static_cast<std::uint32_t>(updateTime) + 300U)) {
+    if (IsRefineCooldownActive()) {
         sys_log(0, "can't refine %d %s", static_cast<int>(GetPlayerID()), GetName());
         return false;
     }
@@ -346,26 +355,26 @@ bool CHARACTER::DoRefineWithScroll(CItem* item)
     const int roll = number_ex(1, 100, const_cast<char*>("char_item.cpp"), 0x363);
     int successChance = recipe->prob;
     const char* method = "SCROLL";
-    const bool cibn = LC_IsCIBN();
     if (scrollType == 1 || scrollType == 2 || scrollType == 4) {
+        const bool cibn = LC_IsCIBN();
         static constexpr int hyunironCibn[] = {100, 90, 80, 70, 35, 20, 7, 5, 0};
         static constexpr int yongsinCibn[] = {100, 90, 80, 70, 40, 25, 8, 2, 1};
         static constexpr int hyunironEucKr[] = {85, 75, 65, 55, 45, 40, 35, 25, 20};
         static constexpr int yagong[] = {100, 100, 90, 80, 70, 60, 50, 30, 20};
-        const int level = std::min(8, std::max(0, refineLevel));
+        const auto rollLevel = [&] { return std::min(8, std::max(0, item->GetRefineLevel())); };
         if (cibn && scrollType == 1)
-            successChance = hyunironCibn[level];
+            successChance = hyunironCibn[rollLevel()];
         else if (cibn && scrollType == 2)
-            successChance = yongsinCibn[level];
+            successChance = yongsinCibn[rollLevel()];
         else if (!cibn && scrollType == 2)
-            successChance = hyunironEucKr[level];
+            successChance = hyunironEucKr[rollLevel()];
         else if (!cibn && scrollType == 4)
-            successChance = yagong[level];
+            successChance = yagong[rollLevel()];
         else
             _sys_err("DoRefineWithScroll", cibn ? 0x37d : 0x38b,
                      "REFINE : Unknown refine scroll item. Value0: %d", static_cast<int>(scrollType));
         if (test_server)
-            ChatPacket(1, "[Only Test] Success_Prob %d , RefineLevel %d ", successChance, refineLevel);
+            ChatPacket(1, "[Only Test] Success_Prob %d , RefineLevel %d ", successChance, item->GetRefineLevel());
         method = scrollType == 1 ? "HYUNIRON" : scrollType == 2 ? "GOD_SCROLL" : "YAGONG_SCROLL";
     } else if (scrollType == 3) {
         successChance = 100;
@@ -381,6 +390,7 @@ bool CHARACTER::DoRefineWithScroll(CItem* item)
     scroll->SetCount(scroll->GetCount() - 1);
     const bool success = roll <= successChance;
     if (!success && (scrollType == 1 || !downgradeVnum)) {
+        const bool cibn = LC_IsCIBN();
         if (cibn)
             DBManager::instance().SendMoneyLog(3, source->dwVnum, static_cast<std::int32_t>(0U - static_cast<std::uint32_t>(cost)));
         NotifyRefineFail(this, item, method, 0);
@@ -422,12 +432,13 @@ bool CHARACTER::DoRefineWithScroll(CItem* item)
 
 int CHARACTER::CountSpecifyItem(DWORD vnum)
 {
-    DWORD total = 0;
+    const auto key = static_cast<std::uint32_t>(vnum);
+    std::uint32_t total = 0;
     for (BYTE cell = 0; cell < INVENTORY_MAX_NUM; ++cell)
     {
         CItem* item = GetItem(cell);
-        if (item && item->GetVnum() == vnum)
-            total += item->GetCount();
+        if (item && static_cast<std::uint32_t>(item->GetVnum()) == key)
+            total += static_cast<std::uint32_t>(item->GetCount());
     }
     return static_cast<std::int32_t>(total);
 }
@@ -440,7 +451,12 @@ void CHARACTER::RemoveSpecifyItem(DWORD vnum, DWORD count)
         if (!item || item->GetVnum() != vnum)
             continue;
         if (vnum >= 80003 && vnum <= 80007)
+        {
             LogManager::instance().GoldBarLog(GetPlayerID(), item->GetID(), QUEST, "RemoveSpecifyItem");
+            item = GetItem(cell);
+            if (!item || item->GetVnum() != vnum)
+                continue;
+        }
 
         const DWORD available = item->GetCount();
         if (count < available)
@@ -521,49 +537,54 @@ SpecialBookResult UseSpecialSkillBook(CHARACTER& character, CItem& item)
             : "\272\257\275\305\301\337\277\241\264\302 \303\245\300\273 \300\320\300\273\274\366 \276\370\275\300\264\317\264\331.");
 
     const DWORD skill = rule->fixedSkill ? rule->fixedSkill : static_cast<DWORD>(item.GetValue(0));
-    const int skillLevel = character.GetSkillLevel(skill);
     const char* const tooAdvanced = "\264\365 \300\314\273\363 \274\366\267\303\307\322 \274\366 \276\370\275\300\264\317\264\331.";
     const char* const tooDifficult = "\300\314 \303\245\300\272 \263\312\271\253 \276\356\267\301\277\366 \300\314\307\330\307\317\261\342\260\241 \310\373\265\354\264\317\264\331.";
     BYTE chance = 0;
     switch (kind)
     {
-        case SpecialBookKind::Leadership:
+        case SpecialBookKind::Leadership: {
+            const int skillLevel = character.GetSkillLevel(skill);
             if (skillLevel < item.GetValue(0))
                 return RejectSpecialBook(character, tooDifficult);
             if (skillLevel >= item.GetValue(1))
                 return RejectSpecialBook(character, "\300\314 \303\245\300\272 \276\306\271\253\270\256 \272\301\265\265 \265\265\277\362\300\314 \265\311 \260\315 \260\260\301\366 \276\312\275\300\264\317\264\331.");
             break;
+        }
         case SpecialBookKind::Combo:
-            if (skillLevel == 0 && character.GetLevel() < 30)
+            if (character.GetSkillLevel(skill) == 0 && character.GetLevel() < 30)
                 return RejectSpecialBook(character, "\267\271\272\247 30\300\314 \265\307\261\342 \300\374\277\241\264\302 \275\300\265\346\307\322 \274\366 \300\326\300\273 \260\315 \260\260\301\366 \276\312\275\300\264\317\264\331.");
-            if (skillLevel == 1 && character.GetLevel() < 50)
+            if (character.GetSkillLevel(skill) == 1 && character.GetLevel() < 50)
                 return RejectSpecialBook(character, "\267\271\272\247 50\300\314 \265\307\261\342 \300\374\277\241\264\302 \275\300\265\346\307\322 \274\366 \300\326\300\273 \260\315 \260\260\301\366 \276\312\275\300\264\317\264\331.");
-            if (skillLevel > 1)
+            if (character.GetSkillLevel(skill) > 1)
                 return RejectSpecialBook(character, "\277\254\260\350\261\342\264\302 \264\365\300\314\273\363 \274\366\267\303\307\322 \274\366 \276\370\275\300\264\317\264\331.");
             chance = static_cast<BYTE>(item.GetValue(0));
             break;
         case SpecialBookKind::Language:
-            if (skillLevel >= 20 || static_cast<std::uint32_t>(skill) - 125u == character.GetEmpire())
-                return RejectSpecialBook(character, "\300\314\271\314 \277\317\272\256\307\317\260\324 \276\313\276\306\265\351\300\273 \274\366 \300\326\264\302 \276\360\276\356\300\314\264\331.");
             chance = static_cast<BYTE>(MINMAX(0, static_cast<int>(item.GetValue(1)), 100));
+            if (character.GetSkillLevel(skill) >= 20 || static_cast<std::uint32_t>(skill) - 125u == character.GetEmpire())
+                return RejectSpecialBook(character, "\300\314\271\314 \277\317\272\256\307\317\260\324 \276\313\276\306\265\351\300\273 \274\366 \300\326\264\302 \276\360\276\356\300\314\264\331.");
             break;
-        case SpecialBookKind::Mining:
-            if (character.GetLevel() < item.GetValue(3))
-                return RejectSpecialBook(character, "\300\314 \303\245\300\273 \300\320\300\270\267\301\270\351 \267\271\272\247\300\273 \264\365 \277\303\267\301\276\337 \307\325\264\317\264\331.");
-            if (skillLevel > 39)
-                return RejectSpecialBook(character, tooAdvanced);
-            if (skillLevel < item.GetValue(0))
-                return RejectSpecialBook(character, tooDifficult);
-            if (skillLevel >= item.GetValue(1))
-                return RejectSpecialBook(character, "\300\314 \303\245\300\270\267\316\264\302 \264\365 \300\314\273\363 \274\366\267\303\307\322 \274\366 \276\370\275\300\264\317\264\331.");
+        case SpecialBookKind::Mining: {
+            const auto minimum = static_cast<std::int32_t>(item.GetValue(0));
+            const auto maximum = static_cast<std::int32_t>(item.GetValue(1));
             chance = static_cast<BYTE>(MINMAX(0, static_cast<int>(item.GetValue(2)), 100));
+            const auto requiredLevel = static_cast<std::int32_t>(item.GetValue(3));
+            if (character.GetLevel() < requiredLevel)
+                return RejectSpecialBook(character, "\300\314 \303\245\300\273 \300\320\300\270\267\301\270\351 \267\271\272\247\300\273 \264\365 \277\303\267\301\276\337 \307\325\264\317\264\331.");
+            if (character.GetSkillLevel(skill) > 39)
+                return RejectSpecialBook(character, tooAdvanced);
+            if (character.GetSkillLevel(skill) < minimum)
+                return RejectSpecialBook(character, tooDifficult);
+            if (character.GetSkillLevel(skill) >= maximum)
+                return RejectSpecialBook(character, "\300\314 \303\245\300\270\267\316\264\302 \264\365 \300\314\273\363 \274\366\267\303\307\322 \274\366 \276\370\275\300\264\317\264\331.");
             break;
+        }
         case SpecialBookKind::ValueSkill:
         case SpecialBookKind::FixedSkill:
         case SpecialBookKind::TestSkill:
-            if (skillLevel >= (kind == SpecialBookKind::ValueSkill ? 10 : 40))
-                return RejectSpecialBook(character, tooAdvanced);
             chance = static_cast<BYTE>(MINMAX(0, static_cast<int>(item.GetValue(1)), 100));
+            if (character.GetSkillLevel(skill) >= (kind == SpecialBookKind::ValueSkill ? 10 : 40))
+                return RejectSpecialBook(character, tooAdvanced);
             break;
     }
 
@@ -604,13 +625,14 @@ void CHARACTER::UseSilkBotary()
     m_bNoOpenedShop = false;
 }
 
-void CHARACTER::UseSilkBotaryReal(const char* entries, BYTE count)
+void CHARACTER::UseSilkBotaryReal(const TPacketMyshopPricelistHeader* packet)
 {
-    if (count == 0)
+    const char* entries = reinterpret_cast<const char*>(packet + 1);
+    if (packet->byCount == 0)
         SendMyShopPriceListCmd(1, 0);
     else
     {
-        for (unsigned index = 0; index < count; ++index)
+        for (unsigned index = 0; index < packet->byCount; ++index)
         {
             std::uint32_t vnum, price;
             std::memcpy(&vnum, entries, sizeof(vnum));
@@ -626,7 +648,8 @@ void CHARACTER::SendMyShopPriceListCmd(DWORD vnum, DWORD price)
 {
     char line[256];
     std::snprintf(line, sizeof(line) - 1, "MyShopPriceList %lu %lu",
-                  static_cast<unsigned long>(vnum), static_cast<unsigned long>(price));
+                  static_cast<unsigned long>(static_cast<std::uint32_t>(vnum)),
+                  static_cast<unsigned long>(static_cast<std::uint32_t>(price)));
     ChatPacket(5, "%s", line);
     sys_log(0, "%s", line);
 }
@@ -641,9 +664,9 @@ bool CHARACTER::UseSkillBookItem(CItem* item)
     }
     const bool forget = type == 22;
     const bool standard = item->GetVnum() == 50300;
-    const DWORD vnum = forget || standard ? item->GetSockets()[0] : item->GetValue(0);
+    const DWORD vnum = forget || standard ? item->GetSocket(0) : item->GetValue(0);
     ITEM_MANAGER& manager = ITEM_MANAGER::instance();
-    if (!vnum)
+    if ((forget || standard) && !vnum)
     {
         manager.RemoveItem(item, nullptr);
         return false;
@@ -671,12 +694,13 @@ bool CHARACTER::UseSkillBookItem(CItem* item)
 
 bool CHARACTER::IsEquipUniqueItem(DWORD vnum)
 {
+    const auto key = static_cast<std::uint32_t>(vnum);
     for (BYTE slot = 7; slot <= 8; ++slot) {
         CItem* item = GetWear(slot);
-        if (item && item->GetVnum() == vnum)
+        if (item && static_cast<std::uint32_t>(item->GetVnum()) == key)
             return true;
     }
-    return vnum == 0x11176 && IsEquipUniqueItem(0x1119f);
+    return key == 0x11176 && IsEquipUniqueItem(0x1119f);
 }
 
 // 081713d0
@@ -737,6 +761,20 @@ void CHARACTER::SetItem(BYTE cell,LPITEM item) {
     }
     m_pointsInstant.pItems[cell]=item;
     if(GetDesc()) {
+        const auto copyItemFields = [item](auto& packet) {
+            const long* sockets = item->GetSockets();
+            if (sizeof(long) == sizeof(std::int32_t)) {
+                thecore_memcpy(packet.alSockets, sockets, sizeof(packet.alSockets));
+            } else {
+                const std::int32_t packedSockets[] = {
+                    static_cast<std::int32_t>(sockets[0]),
+                    static_cast<std::int32_t>(sockets[1]),
+                    static_cast<std::int32_t>(sockets[2]),
+                };
+                thecore_memcpy(packet.alSockets, packedSockets, sizeof(packet.alSockets));
+            }
+            thecore_memcpy(packet.aAttr, item->GetAttributes(), sizeof(packet.aAttr));
+        };
         // The target compares signed flag magnitude; it does not test a flag bit here.
         if(!item || item->GetFlag()<0x4000) {
             TPacketGCItemSet packet;
@@ -747,18 +785,14 @@ void CHARACTER::SetItem(BYTE cell,LPITEM item) {
                 std::memset(packet.aAttr,0,sizeof(packet.aAttr));
             } else {
                 packet.vnum=item->GetVnum(); packet.count=static_cast<BYTE>(item->GetCount());
-                for (int i = 0; i < 3; ++i)
-                    packet.alSockets[i] = static_cast<std::int32_t>(item->GetSockets()[i]);
-                std::memcpy(packet.aAttr,item->GetAttributes(),sizeof(packet.aAttr));
+                copyItemFields(packet);
             }
             GetDesc()->Packet(&packet,sizeof(packet));
         } else {
             TPacketGCItemSet2 packet;
             packet.header=21; packet.pos=cell; packet.vnum=item->GetVnum();
             packet.count=static_cast<BYTE>(item->GetCount()); packet.flags=item->GetFlag();
-            for (int i = 0; i < 3; ++i)
-                packet.alSockets[i] = static_cast<std::int32_t>(item->GetSockets()[i]);
-            std::memcpy(packet.aAttr,item->GetAttributes(),sizeof(packet.aAttr));
+            copyItemFields(packet);
             GetDesc()->Packet(&packet,sizeof(packet));
         }
     }
@@ -768,9 +802,11 @@ void CHARACTER::SetItem(BYTE cell,LPITEM item) {
     }
 }
 LPITEM CHARACTER::FindSpecifyItem(DWORD vnum) {
+    const auto key = static_cast<std::uint32_t>(vnum);
     for(int cell=0;cell<90;++cell) {
         LPITEM item=GetItem(static_cast<BYTE>(cell));
-        if(item && item->GetVnum()==vnum) return item;
+        if (item && static_cast<std::uint32_t>(item->GetVnum()) == key)
+            return item;
     }
     return 0;
 }
@@ -798,6 +834,8 @@ int CHARACTER::CountEmptyInventory()
 {
     int occupied = 0;
     for (BYTE cell = 0; cell < INVENTORY_MAX_NUM; ++cell) {
+        if (!GetItem(cell))
+            continue;
         if (CItem* item = GetItem(cell)) {
             if (const TItemTable* proto = item->GetProto())
                 occupied += proto->bSize;
@@ -819,7 +857,7 @@ bool CHARACTER::CanHandleItem(bool skipRefine, bool skipObserver) {
     if ((!skipObserver && IsObserverMode()) || m_pkMyShop ||
         (!skipRefine && m_bUnderRefine) || m_pointsInstant.pCubeNpc)
         return false;
-    if (!m_pkWarpEvent)
+    if (!IsWarping())
         return true;
     if (test_server)
         sys_log(0, "[WARP] Warping.");
@@ -939,56 +977,74 @@ int pulse_delta(int a, int b)
 // 08180970
 bool CHARACTER::IsEquipUniqueGroup(DWORD group)
 {
+    const auto key = static_cast<std::uint32_t>(group);
     LPITEM item = GetWear(7);
-    if (item && static_cast<DWORD>(item->GetSpecialGroup()) == group)
+    if (item && static_cast<std::uint32_t>(item->GetSpecialGroup()) == key)
         return true;
     item = GetWear(8);
-    return item && static_cast<DWORD>(item->GetSpecialGroup()) == group;
+    return item && static_cast<std::uint32_t>(item->GetSpecialGroup()) == key;
 }
 
 bool CHARACTER::GiveItemFromSpecialItemGroup(DWORD groupVnum, DWORD& itemVnum, DWORD& itemCount, LPITEM& item)
 {
-    CSpecialItemGroup* group = ITEM_MANAGER::instance().GetSpecialItemGroup(groupVnum);
+    const CSpecialItemGroup* group = ITEM_MANAGER::instance().GetSpecialItemGroup(groupVnum);
     if (!group) {
         _sys_err("GiveItemFromSpecialItemGroup", 0x172b, "cannot find special item group %d",
                  static_cast<int>(groupVnum));
         return false;
     }
-    const CSpecialItemGroup::CSpecialItemInfo* reward = group->SelectItem();
-    if (!reward)
+    const int index = group->GetOneIndex();
+    if (!group->IsValidIndex(index))
         return false;
 
-    const DWORD vnum = reward->vnum;
-    const DWORD count = static_cast<unsigned int>(reward->count);
+    const DWORD vnum = static_cast<std::uint32_t>(group->GetVnum(index));
+    const DWORD count = static_cast<std::uint32_t>(group->GetCount(index));
+    const int rare = group->GetRarePct(index);
     switch (vnum) {
-        case CSpecialItemGroup::GOLD:
+        case CSpecialItemGroup::GOLD: {
             PointChange(11, count, false, false);
-            LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), count, "TREASURE_GOLD", "");
+            const long x = GetX();
+            const long y = GetY();
+            const DWORD pid = GetPlayerID();
+            LogManager::instance().CharLog(pid, x, y, count, "TREASURE_GOLD", "");
             break;
-        case CSpecialItemGroup::EXP:
+        }
+        case CSpecialItemGroup::EXP: {
             PointChange(3, count, false, false);
-            LogManager::instance().CharLog(GetPlayerID(), GetX(), GetY(), count, "TREASURE_EXP", "");
+            const long x = GetX();
+            const long y = GetY();
+            const DWORD pid = GetPlayerID();
+            LogManager::instance().CharLog(pid, x, y, count, "TREASURE_EXP", "");
             break;
+        }
         case CSpecialItemGroup::MOB: {
             sys_log(0, "CSpecialItemGroup::MOB %ld", static_cast<long>(count));
-            const long x = GetX() + number_ex(-500, 500, const_cast<char*>("char_item.cpp"), 0x1749);
-            const long y = GetY() + number_ex(-500, 500, const_cast<char*>("char_item.cpp"), 0x174a);
+            const auto xBase = static_cast<std::uint32_t>(GetX());
+            const auto xOffset = static_cast<std::uint32_t>(number_ex(-500, 500, const_cast<char*>("char_item.cpp"), 0x1749));
+            const auto x = static_cast<std::int32_t>(xBase + xOffset);
+            const auto yBase = static_cast<std::uint32_t>(GetY());
+            const auto yOffset = static_cast<std::uint32_t>(number_ex(-500, 500, const_cast<char*>("char_item.cpp"), 0x174a));
+            const auto y = static_cast<std::int32_t>(yBase + yOffset);
             CHARACTER* mob = CHARACTER_MANAGER::instance().SpawnMob(count, GetMapIndex(), x, y, 0, true, -1, true);
             if (mob)
                 mob->SetAggressive();
             break;
         }
-        case CSpecialItemGroup::SLOW:
-            sys_log(0, "CSpecialItemGroup::SLOW %d", -reward->count);
-            AddAffect(0xd3, 19, -reward->count, 5, 300, 0, true, false);
+        case CSpecialItemGroup::SLOW: {
+            const auto slow = static_cast<std::int32_t>(0u - static_cast<std::uint32_t>(count));
+            sys_log(0, "CSpecialItemGroup::SLOW %d", slow);
+            AddAffect(0xd3, 19, slow, 5, 300, 0, true, false);
             break;
+        }
         case CSpecialItemGroup::DRAIN_HP: {
-            const unsigned amount = static_cast<unsigned>(m_pointsInstant.iMaxHP) *
-                                    static_cast<unsigned>(count) / 100;
+            const auto amount = static_cast<std::uint32_t>(m_pointsInstant.iMaxHP) *
+                                static_cast<std::uint32_t>(count) / 100u;
             sys_log(0, "CSpecialItemGroup::DRAIN_HP %d", -static_cast<int>(amount));
-            const int drain = MIN(static_cast<int>(amount), m_points.hp - 1);
-            sys_log(0, "CSpecialItemGroup::DRAIN_HP %d", -drain);
-            PointChange(5, -drain, false, false);
+            const auto hpLimit = static_cast<std::int32_t>(static_cast<std::uint32_t>(m_points.hp) - 1u);
+            const int drain = MIN(static_cast<int>(amount), hpLimit);
+            const auto hpChange = static_cast<std::int32_t>(0u - static_cast<std::uint32_t>(drain));
+            sys_log(0, "CSpecialItemGroup::DRAIN_HP %d", hpChange);
+            PointChange(5, hpChange, false, false);
             break;
         }
         case CSpecialItemGroup::POISON:
@@ -996,15 +1052,23 @@ bool CHARACTER::GiveItemFromSpecialItemGroup(DWORD groupVnum, DWORD& itemVnum, D
             break;
         case CSpecialItemGroup::MOB_GROUP: {
             char source[] = "char_item.cpp";
-            const long sx = GetX() - number_ex(300, 500, source, 0x176c);
-            const long sy = GetY() - number_ex(300, 500, source, 0x176d);
-            const long ex = GetX() + number_ex(300, 500, source, 0x176e);
-            const long ey = GetY() + number_ex(300, 500, source, 5999);
+            const auto sxBase = static_cast<std::uint32_t>(GetX());
+            const auto sxOffset = static_cast<std::uint32_t>(number_ex(300, 500, source, 0x176c));
+            const auto sx = static_cast<std::int32_t>(sxBase - sxOffset);
+            const auto syBase = static_cast<std::uint32_t>(GetY());
+            const auto syOffset = static_cast<std::uint32_t>(number_ex(300, 500, source, 0x176d));
+            const auto sy = static_cast<std::int32_t>(syBase - syOffset);
+            const auto exBase = static_cast<std::uint32_t>(GetX());
+            const auto exOffset = static_cast<std::uint32_t>(number_ex(300, 500, source, 0x176e));
+            const auto ex = static_cast<std::int32_t>(exBase + exOffset);
+            const auto eyBase = static_cast<std::uint32_t>(GetY());
+            const auto eyOffset = static_cast<std::uint32_t>(number_ex(300, 500, source, 5999));
+            const auto ey = static_cast<std::int32_t>(eyBase + eyOffset);
             CHARACTER_MANAGER::instance().SpawnGroup(count, GetMapIndex(), sx, sy, ex, ey, 0, true, 0);
             break;
         }
         default:
-            item = AutoGiveItem(vnum, static_cast<BYTE>(count), reward->rare, true);
+            item = AutoGiveItem(vnum, static_cast<BYTE>(count), rare, true);
             if (!item)
                 return false;
             break;
@@ -1036,10 +1100,26 @@ bool CanSplitStack(DWORD vnum)
 
 void LogGroundItem(CHARACTER& character, CItem& item, const char* operation)
 {
+    const auto* proto = item.GetProto();
+    const auto vnum = static_cast<unsigned long>(proto ? proto->dwVnum : 0u);
+    const char* name = proto ? proto->szLocaleName : "";
+    const auto count = item.GetCount();
     char hint[32];
-    std::snprintf(hint, sizeof(hint), "%s %lu %lu", item.GetName(), item.GetCount(), item.GetVnum());
-    LogManager::instance().ItemLog(character.GetPlayerID(), character.GetX(), character.GetY(),
-                                  item.GetID(), operation, hint);
+    std::snprintf(hint, sizeof(hint), "%s %lu %lu", name, count, vnum);
+    if (std::strcmp(operation, "GET") == 0) {
+        const auto itemId = item.GetID();
+        const auto x = character.GetX();
+        const auto y = character.GetY();
+        const auto playerId = character.GetPlayerID();
+        LogManager::instance().ItemLog(playerId, x, y, itemId, operation, hint);
+    } else {
+        auto& logs = LogManager::instance();
+        const auto x = character.GetX();
+        const auto y = character.GetY();
+        const auto itemId = item.GetID();
+        const auto playerId = character.GetPlayerID();
+        logs.ItemLog(playerId, x, y, itemId, operation, hint);
+    }
 }
 }
 
@@ -1115,7 +1195,7 @@ bool CHARACTER::EquipItem(CItem* item)
         return false;
     }
     const DWORD now = get_dword_time();
-    if (wear != 9 && (static_cast<unsigned>(now - m_dwLastAttackTime) <= 1500 ||
+    if (wear != 9 && (static_cast<unsigned>(now - GetLastAttackTime()) <= 1500 ||
                       static_cast<unsigned>(now - m_dwLastSkillTime) <= 1500)) {
         ChatPacket(1, LC_TEXT(
             "\260\241\270\270\310\367\040\300\326\300\273\040\266\247\270\270\040\302\370\277\353\307\322\040"
@@ -1125,6 +1205,8 @@ bool CHARACTER::EquipItem(CItem* item)
 
     const BYTE slot = static_cast<BYTE>(wear);
     CItem* existing = GetWear(slot);
+    if (existing)
+        existing = GetWear(slot);
     if (!existing || (existing->GetFlag() & 0x100)) {
         const BYTE oldCell = item->GetCell();
         if (item->EquipTo(this, slot)) {
@@ -1158,7 +1240,7 @@ bool CHARACTER::UnequipItem(CItem* item)
 static void FN_copy_item_socket(CItem* destination, CItem* source)
 {
     for (int slot = 0; slot < 3; ++slot)
-        destination->SetSocket(slot, source->GetSockets()[slot]);
+        destination->SetSocket(slot, source->GetSocket(slot));
 }
 
 bool CHARACTER::MoveItem(BYTE cell, BYTE destination, BYTE count)
@@ -1178,29 +1260,37 @@ bool CHARACTER::MoveItem(BYTE cell, BYTE destination, BYTE count)
         return true;
     }
     const DWORD available = item->GetCount();
-    if (target && target != item && (target->GetFlag() & 4) &&
+    if (target && target != item && target->IsStackable() &&
         target->GetProto() && !(target->GetProto()->dwAntiFlags & 0x8000) &&
         target->GetVnum() == item->GetVnum()) {
         if (!HaveSameItemSockets(target->GetSockets(), item->GetSockets()))
             return false;
         const DWORD requested = count ? count : available;
-        sys_log(0, "%s: ITEM_STACK %s %d -> %d count %d", GetName(), item->GetName(),
-                static_cast<int>(cell), static_cast<int>(destination), static_cast<int>(requested));
+        const int loggedCount = count ? count : static_cast<BYTE>(item->GetCount());
+        const char* itemName = item->GetName();
+        const char* characterName = GetName();
+        sys_log(0, "%s: ITEM_STACK %s %d -> %d count %d", characterName, itemName,
+                static_cast<int>(cell), static_cast<int>(destination), loggedCount);
         if (target->GetCount() > 200)
             return true;
         const DWORD transferred = MIN(200 - target->GetCount(), requested);
-        item->SetCount(available - transferred);
+        const DWORD currentCount = item->GetCount();
+        if (transferred > currentCount)
+            return false;
+        item->SetCount(currentCount - transferred);
         target->SetCount(target->GetCount() + transferred);
         return true;
     }
 
     if (!IsEmptyItemGrid(destination, item->GetSize(), cell))
         return false;
-    if (count && count < available && (item->GetFlag() & 4) &&
+    if (count && count < available && item->IsStackable() &&
         item->GetProto() && !(item->GetProto()->dwAntiFlags & 0x8000)) {
         if (!CanSplitStack(item->GetVnum()) || !IsEmptyItemGrid(destination, item->GetSize(), -1))
             return false;
-        sys_log(0, "%s: ITEM_SPLIT %s %d -> %d count %d", GetName(), item->GetName(),
+        const char* itemName = item->GetName();
+        const char* characterName = GetName();
+        sys_log(0, "%s: ITEM_SPLIT %s %d -> %d count %d", characterName, itemName,
                 static_cast<int>(cell), static_cast<int>(destination), static_cast<int>(count));
         ITEM_MANAGER& items = ITEM_MANAGER::instance();
         CItem* split = items.CreateItem(item->GetVnum(), count, 0, false, -1);
@@ -1214,14 +1304,26 @@ bool CHARACTER::MoveItem(BYTE cell, BYTE destination, BYTE count)
             return false;
         }
 
-        char hint[52];
-        std::snprintf(hint, sizeof(hint), "%lu %lu %lu %lu ", split->GetID(), split->GetCount(),
-                      item->GetCount(), split->GetCount() + item->GetCount());
-        LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), item->GetID(), "ITEM_SPLIT", hint);
+        const auto sourceCount = static_cast<std::uint32_t>(item->GetCount());
+        const auto splitCount = static_cast<std::uint32_t>(split->GetCount());
+        const auto splitId = split->GetID();
+        const auto totalCount = static_cast<std::uint32_t>(sourceCount + splitCount);
+        char hint[51];
+        std::snprintf(hint, sizeof(hint), "%lu %lu %lu %lu ", splitId,
+                      static_cast<unsigned long>(splitCount), static_cast<unsigned long>(sourceCount),
+                      static_cast<unsigned long>(totalCount));
+        auto& logs = LogManager::instance();
+        const auto x = GetX();
+        const auto sourceId = item->GetID();
+        const auto y = GetY();
+        const auto playerId = GetPlayerID();
+        logs.ItemLog(playerId, x, y, sourceId, "ITEM_SPLIT", hint);
         return true;
     }
 
-    sys_log(0, "%s: ITEM_MOVE %s %d -> %d count %d", GetName(), item->GetName(),
+    const char* itemName = item->GetName();
+    const char* characterName = GetName();
+    sys_log(0, "%s: ITEM_MOVE %s %d -> %d count %d", characterName, itemName,
             static_cast<int>(cell), static_cast<int>(destination), static_cast<int>(count));
     item->RemoveFromCharacter();
     SetItem(destination, item);
@@ -1256,7 +1358,9 @@ bool CHARACTER::DropItem(BYTE cell, BYTE count)
     if (quantity == available) {
         SyncQuickslot(1, cell, 255);
         item->RemoveFromCharacter();
-        if (!item->AddToGround(map, position)) {
+        const PIXEL_POSITION dropPosition = GetXYZ();
+        const long dropMap = GetMapIndex();
+        if (!item->AddToGround(dropMap, dropPosition)) {
             item->AddToCharacter(this, cell);
             return false;
         }
@@ -1268,16 +1372,24 @@ bool CHARACTER::DropItem(BYTE cell, BYTE count)
         item->SetCount(available - quantity);
         items.FlushDelayedSave(item);
         FN_copy_item_socket(dropped, item);
-        if (!dropped->AddToGround(map, position)) {
+        const PIXEL_POSITION dropPosition = GetXYZ();
+        const long dropMap = GetMapIndex();
+        if (!dropped->AddToGround(dropMap, dropPosition)) {
             item->SetCount(available);
             items.FlushDelayedSave(item);
             items.DestroyItem(dropped);
             return false;
         }
 
-        char hint[52];
-        std::snprintf(hint, sizeof(hint), "%lu %lu", dropped->GetID(), dropped->GetCount());
-        LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), item->GetID(), "ITEM_SPLIT", hint);
+        const auto droppedCount = dropped->GetCount();
+        const auto droppedId = dropped->GetID();
+        char hint[51];
+        std::snprintf(hint, sizeof(hint), "%lu %lu", droppedId, droppedCount);
+        const auto y = GetY();
+        const auto x = GetX();
+        const auto sourceId = item->GetID();
+        const auto playerId = GetPlayerID();
+        LogManager::instance().ItemLog(playerId, x, y, sourceId, "ITEM_SPLIT", hint);
     }
     ChatPacket(1, LC_TEXT(dropTimeout));
     dropped->StartDestroyEvent();
@@ -1306,6 +1418,61 @@ bool CHARACTER::DropGold(long gold)
     return true;
 }
 
+namespace NPartyPickupDistribute {
+static bool IsNear(CHARACTER* member, std::uint32_t x, std::uint32_t y)
+{
+    const auto dy = static_cast<std::int32_t>(static_cast<std::uint32_t>(member->GetY()) - y);
+    const auto dx = static_cast<std::int32_t>(static_cast<std::uint32_t>(member->GetX()) - x);
+    return DISTANCE_APPROX(dx, dy) <= 5000;
+}
+
+struct FPartyFindOwnership
+{
+    LPITEM item;
+    LPCHARACTER owner;
+
+    void operator()(LPCHARACTER member)
+    {
+        if (item->IsOwnership(member))
+            owner = member;
+    }
+};
+
+struct FPartyMoneyTotaler
+{
+    int total;
+    std::uint32_t x, y;
+
+    void operator()(LPCHARACTER member)
+    {
+        if (IsNear(member, x, y))
+            ++total;
+    }
+};
+
+struct FPartyMoneyDistributor
+{
+    int total;
+    LPCHARACTER c;
+    std::uint32_t x, y;
+    int iMoney;
+
+    void operator()(LPCHARACTER member)
+    {
+        if (member == c || !IsNear(member, x, y))
+            return;
+
+        member->PointChange(POINT_GOLD, iMoney, true, false);
+        if (iMoney > 1000) {
+            const auto y = member->GetY();
+            const auto x = member->GetX();
+            const auto pid = member->GetPlayerID();
+            LogManager::instance().CharLog(pid, x, y, iMoney, "GET_GOLD", "");
+        }
+    }
+};
+}
+
 bool CHARACTER::PickupItem(DWORD vid)
 {
     ITEM_MANAGER& items = ITEM_MANAGER::instance();
@@ -1323,7 +1490,7 @@ bool CHARACTER::PickupItem(DWORD vid)
             return true;
         }
 
-        if ((item->GetFlag() & 4) && item->GetProto() && !(item->GetProto()->dwAntiFlags & 0x8000)) {
+        if (item->IsStackable() && item->GetProto() && !(item->GetProto()->dwAntiFlags & 0x8000)) {
             DWORD remaining = item->GetCount();
             for (BYTE slot = 0; slot < 90; ++slot) {
                 CItem* stack = GetItem(slot);
@@ -1334,7 +1501,8 @@ bool CHARACTER::PickupItem(DWORD vid)
                 stack->SetCount(stack->GetCount() + transferred);
                 remaining -= transferred;
                 if (!remaining) {
-                    ChatPacket(1, LC_TEXT(pickupNotice), stack->GetName());
+                    const char* name = stack->GetName();
+                    ChatPacket(1, LC_TEXT(pickupNotice), name);
                     items.DestroyItem(item);
                     return true;
                 }
@@ -1344,26 +1512,26 @@ bool CHARACTER::PickupItem(DWORD vid)
 
         const int slot = GetEmptyInventory(item->GetSize());
         if (slot < 0) {
-            sys_log(0, "No empty inventory pid %lu size %lud itemid %lu", GetPlayerID(),
-                    static_cast<unsigned long>(item->GetSize()), item->GetID());
+            const auto* proto = item->GetProto();
+            const auto itemId = item->GetID();
+            const auto size = static_cast<unsigned long>(proto ? proto->bSize : 0);
+            const auto playerId = GetPlayerID();
+            sys_log(0, "No empty inventory pid %lu size %lud itemid %lu", playerId, size, itemId);
             ChatPacket(1, LC_TEXT(inventoryFull));
             return false;
         }
         item->RemoveFromGround();
         item->AddToCharacter(this, static_cast<BYTE>(slot));
         LogGroundItem(*this, *item, "GET");
-        ChatPacket(1, LC_TEXT(pickupNotice), item->GetName());
+        const char* name = item->GetName();
+        ChatPacket(1, LC_TEXT(pickupNotice), name);
         return true;
     }
 
     CParty* party = GetParty();
     if (!party)
         return false;
-    CHARACTER* owner = nullptr;
-    party->ForEachOnlineMember([&](CHARACTER* member) {
-        if (item->IsOwnership(member))
-            owner = member;
-    });
+    CHARACTER* owner = party->ForEachOnlineMember(NPartyPickupDistribute::FPartyFindOwnership{item, nullptr}).owner;
     // 0817f27e: use the picker if the ownership search finds no linked member
     // or the owner cannot hold the item.
     int slot = owner ? owner->GetEmptyInventory(item->GetSize()) : -1;
@@ -1380,10 +1548,17 @@ bool CHARACTER::PickupItem(DWORD vid)
     item->AddToCharacter(owner, static_cast<BYTE>(slot));
     LogGroundItem(*owner, *item, "GET");
     if (owner == this) {
-        ChatPacket(1, LC_TEXT(pickupNotice), item->GetName());
+        const char* name = item->GetName();
+        ChatPacket(1, LC_TEXT(pickupNotice), name);
     } else {
-        owner->ChatPacket(1, LC_TEXT(pickupForOwner), GetName(), item->GetName());
-        ChatPacket(1, LC_TEXT(pickupForParty), owner->GetName(), item->GetName());
+        const char* ownerItemName = item->GetName();
+        const char* pickerName = GetName();
+        const char* ownerFormat = LC_TEXT(pickupForOwner);
+        owner->ChatPacket(1, ownerFormat, pickerName, ownerItemName);
+        const char* pickerItemName = item->GetName();
+        const char* ownerName = owner->GetName();
+        const char* pickerFormat = LC_TEXT(pickupForParty);
+        ChatPacket(1, pickerFormat, ownerName, pickerItemName);
     }
     return false;
 }
@@ -1398,27 +1573,13 @@ void CHARACTER::GiveGold(int amount)
     if (CParty* party = GetParty()) {
         const auto x = static_cast<std::uint32_t>(GetX());
         const auto y = static_cast<std::uint32_t>(GetY());
-        const auto isNear = [x, y](CHARACTER* member) {
-            const auto dx = static_cast<std::int32_t>(static_cast<std::uint32_t>(member->GetX()) - x);
-            const auto dy = static_cast<std::int32_t>(static_cast<std::uint32_t>(member->GetY()) - y);
-            return DISTANCE_APPROX(dx, dy) <= 5000;
-        };
-        int nearCount = 0;
-        party->ForEachOnlineMember([&](CHARACTER* member) {
-            if (isNear(member))
-                ++nearCount;
-        });
+        const int nearCount = party->ForEachOnlineMember(NPartyPickupDistribute::FPartyMoneyTotaler{0, x, y}).total;
         if (nearCount > 1) {
             const int share = amount / nearCount;
+            const auto distributeY = static_cast<std::uint32_t>(GetY());
             ownAmount -= share * (nearCount - 1);
-            party->ForEachOnlineMember([&](CHARACTER* member) {
-                if (member != this && isNear(member)) {
-                    member->PointChange(POINT_GOLD, share, true, false);
-                    if (share > 1000)
-                        LogManager::instance().CharLog(member->GetPlayerID(), member->GetX(), member->GetY(),
-                                                       share, "GET_GOLD", "");
-                }
-            });
+            const auto distributeX = static_cast<std::uint32_t>(GetX());
+            party->ForEachOnlineMember(NPartyPickupDistribute::FPartyMoneyDistributor{nearCount, this, distributeX, distributeY, share});
         }
     }
 
@@ -1507,11 +1668,11 @@ bool CHARACTER::UseItem(BYTE cell, int destination)
             ChatPacket(1, "%s", locale_find("\260\305\267\241\303\242\054\303\242\260\355\040\265\356\300\273\040\277\254\040\273\363\305\302\277\241\274\255\264\302\040\261\315\310\257\272\316\054\261\315\310\257\261\342\276\357\272\316\040\270\246\040\273\347\277\353\307\322\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale));
             return false;
         }
-        if (pulse_delta(pulse, m_iRefineTime) < limit) {
+        if (pulse_delta(pulse, GetRefineTime()) < limit) {
             ChatPacket(1, locale_find("\276\306\300\314\305\333\040\260\263\267\256\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\261\315\310\257\272\316\054\261\315\310\257\261\342\276\357\272\316\270\246\040\273\347\277\353\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale), g_nPortalLimitTime);
             return false;
         }
-        if (pulse_delta(pulse, m_iMyShopTime) < limit) {
+        if (pulse_delta(pulse, GetMyShopTime()) < limit) {
             ChatPacket(1, locale_find("\260\263\300\316\273\363\301\241\040\273\347\277\353\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\261\315\310\257\272\316\054\261\315\310\257\261\342\276\357\272\316\270\246\040\273\347\277\353\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale), g_nPortalLimitTime);
             return false;
         }
@@ -1538,7 +1699,7 @@ bool CHARACTER::UseItem(BYTE cell, int destination)
                 return false;
             }
         }
-        if (pulse_delta(pulse, m_iExchangeTime) < limit) {
+        if (pulse_delta(pulse, GetExchangeTime()) < limit) {
             ChatPacket(1, locale_find("\260\305\267\241\040\310\304\040\045\144\303\312\040\300\314\263\273\277\241\264\302\040\261\315\310\257\272\316\054\261\315\310\257\261\342\276\357\272\316\265\356\300\273\040\273\347\277\353\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale), g_nPortalLimitTime);
             return false;
         }
@@ -1688,9 +1849,10 @@ EVENTFUNC(delayed_timewarp_event)
 
 void CHARACTER::ProcessRecallItem(CItem* item)
 {
-    const long x = item->GetSockets()[0];
-    const long y = item->GetSockets()[1];
-    const int map = SECTREE_MANAGER::instance().GetMapIndex(x, y);
+    auto& sectors = SECTREE_MANAGER::instance();
+    const auto y = static_cast<std::int32_t>(item->GetSockets()[1]);
+    const auto x = static_cast<std::int32_t>(item->GetSockets()[0]);
+    const int map = sectors.GetMapIndex(x, y);
     if (!map)
         return;
     const int empire = RecallMapEmpire(map);
@@ -1700,10 +1862,15 @@ void CHARACTER::ProcessRecallItem(CItem* item)
         item->SetSocket(1, 0);
         return;
     }
-    sys_log(1, "Recall: %s %d %d -> %d %d", GetName(),
-            static_cast<std::int32_t>(GetX()), static_cast<std::int32_t>(GetY()),
-            static_cast<std::int32_t>(x), static_cast<std::int32_t>(y));
-    WarpSet(item->GetSockets()[0], item->GetSockets()[1], 0);
+    const auto currentX = static_cast<std::int32_t>(GetX());
+    const auto logY = static_cast<std::int32_t>(item->GetSockets()[1]);
+    const auto logX = static_cast<std::int32_t>(item->GetSockets()[0]);
+    const auto currentY = static_cast<std::int32_t>(GetY());
+    const char* name = GetName();
+    sys_log(1, "Recall: %s %d %d -> %d %d", name, currentX, currentY, logX, logY);
+    const long warpY = item->GetSockets()[1];
+    const long warpX = item->GetSockets()[0];
+    WarpSet(warpX, warpY, 0);
     item->SetCount(item->GetCount() - 1);
 }
 
@@ -1747,7 +1914,7 @@ bool CHARACTER::UseRecallItem(CItem* item)
         ChatPacket(1, "%s", locale_find("\264\353\267\303\040\301\337\277\241\264\302\040\300\314\277\353\307\322\040\274\366\040\276\370\264\302\040\271\260\307\260\300\324\264\317\264\331\056", g_iUseLocale));
         return false;
     }
-    if (m_pkWarpEvent) {
+    if (IsWarping()) {
         ChatPacket(1, "%s", locale_find("\300\314\265\277\307\322\040\301\330\272\361\260\241\040\265\307\276\356\300\326\300\275\300\270\267\316\040\261\315\310\257\272\316\270\246\040\273\347\277\353\307\322\274\366\040\276\370\275\300\264\317\264\331", g_iUseLocale));
         return false;
     }
@@ -1817,26 +1984,30 @@ bool CHARACTER::UseMetinStone(CItem* item, int destination)
         }
     }
 
-    const DWORD wear = item->GetProto()->dwWearFlags;
-    if (targetType == 2 && !(wear & 1)) {
+    const BYTE wearTargetType = target->GetType();
+    if (wearTargetType == 2 && !(item->GetWearFlag() & 1)) {
         ChatPacket(1, "%s", locale_find("\300\314\040\270\336\306\276\274\256\300\272\040\300\345\272\361\277\241\040\272\316\302\370\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale));
         return false;
     }
-    if (targetType == 1 && !(wear & 0x10)) {
+    if (wearTargetType == 1 && !(item->GetWearFlag() & 0x10)) {
         ChatPacket(1, "%s", locale_find("\300\314\040\270\336\306\276\274\256\300\272\040\271\253\261\342\277\241\040\272\316\302\370\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale));
         return false;
     }
 
     for (int index = 0; index < 3; ++index) {
-        const long socket = sockets[index];
-        if (socket < 1 || socket > 2 || item->GetValue(2) > socket)
+        const auto socket = static_cast<std::int32_t>(sockets[index]);
+        if (socket < 1 || socket > 2 || static_cast<std::int32_t>(item->GetValue(2)) > socket)
             continue;
         const bool success = number_ex(1, 100, const_cast<char*>("char_item.cpp"), 0x11d3) <= 30;
         ChatPacket(1, "%s", locale_find(success ? "\270\336\306\276\274\256\040\272\316\302\370\277\241\040\274\272\260\370\307\317\277\264\275\300\264\317\264\331\056" : "\270\336\306\276\274\256\040\272\316\302\370\277\241\040\275\307\306\320\307\317\277\264\275\300\264\317\264\331\056", g_iUseLocale));
         target->SetSocket(index, success ? item->GetVnum() : 0x7120);
-        LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), target->GetID(),
-                                       "SOCKET", item->GetName());
-        items.RemoveItem(item, "REMOVE (METIN)");
+        const auto targetId = target->GetID();
+        const char* stoneName = item->GetName();
+        const auto y = GetY();
+        const auto playerId = GetPlayerID();
+        const auto x = GetX();
+        LogManager::instance().ItemLog(playerId, x, y, targetId, "SOCKET", stoneName);
+        ITEM_MANAGER::instance().RemoveItem(item, "REMOVE (METIN)");
         return true;
     }
     ChatPacket(1, "%s", locale_find("\272\316\302\370\307\322\040\274\366\040\300\326\264\302\040\275\275\267\324\300\314\040\276\370\275\300\264\317\264\331\056", g_iUseLocale));
@@ -1851,10 +2022,11 @@ bool CHARACTER::ItemProcess_Hair(CItem* item, int /*destination*/)
     }
 
     static const DWORD jobBase[] = {72000, 71250, 70500, 69750};
+    const auto vnum = static_cast<WORD>(item->GetVnum());
     const BYTE job = GetJob();
     if (job >= sizeof(jobBase) / sizeof(jobBase[0]))
         return false;
-    const WORD hair = static_cast<WORD>(item->GetVnum() - jobBase[job]);
+    const WORD hair = static_cast<WORD>(vnum - jobBase[job]);
     if (GetPart(3) == hair) {
         ChatPacket(1, "%s", locale_find("\265\277\300\317\307\321\040\270\323\270\256\040\275\272\305\270\300\317\267\316\264\302\040\261\263\303\274\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056", g_iUseLocale));
         return true;
@@ -1874,7 +2046,7 @@ bool CHARACTER::ItemProcess_Polymorph(CItem* item)
         return false;
     }
 
-    const DWORD race = item->GetSockets()[0];
+    const auto race = static_cast<std::uint32_t>(item->GetSockets()[0]);
     const CMob* mob = race ? CMobManager::instance().Get(race) : nullptr;
     if (!mob) {
         ChatPacket(1, "%s", LC_TEXT("\300\337\270\370\265\310\040\265\320\260\251\040\276\306\300\314\305\333\300\324\264\317\264\331\056"));
@@ -1887,7 +2059,7 @@ bool CHARACTER::ItemProcess_Polymorph(CItem* item)
         sys_log(0, "USE_POLYMORPH_BOOK PID(%d) vnum(%d)", static_cast<int>(GetPlayerID()), static_cast<int>(race));
         CPolymorphUtils& polymorph = CPolymorphUtils::instance();
         if (polymorph.PolymorphCharacter(this, item, mob))
-            polymorph.UpdateBookPracticeGrade(this, item);
+            CPolymorphUtils::instance().UpdateBookPracticeGrade(this, item);
         return true;
     }
     if ((vnum < 70104 || vnum > 70107) && vnum != 71093) {
@@ -1898,14 +2070,17 @@ bool CHARACTER::ItemProcess_Polymorph(CItem* item)
 
     sys_log(0, "USE_POLYMORPH_BALL PID(%d) vnum(%d)", static_cast<int>(GetPlayerID()), static_cast<int>(race));
     const int level = GetLevel();
-    const int allowance = level * 3 / 10 < 20 ? 20 - level * 3 / 10 : 0;
-    if (mob->m_table.bLevel >= level + allowance) {
+    const int allowance = MAX(0, 20 - level * 3 / 10);
+    const int currentLevel = GetLevel();
+    const int mobLevel = mob->m_table.bLevel;
+    if (mobLevel >= currentLevel + allowance) {
         ChatPacket(1, "%s", LC_TEXT("\263\252\272\270\264\331\040\263\312\271\253\040\263\364\300\272\040\267\271\272\247\300\307\040\270\363\275\272\305\315\267\316\264\302\040\272\257\275\305\040\307\322\040\274\366\040\276\370\275\300\264\317\264\331\056"));
         return false;
     }
 
-    const int skill = GetSkillLevel(SKILL_POLYMORPH);
-    const int duration = (skill ? 10 + skill / 40 * 25 : 5) * 60;
+    const int minutes = GetSkillLevel(SKILL_POLYMORPH)
+        ? 10 + GetSkillLevel(SKILL_POLYMORPH) / 40 * 25 : 5;
+    const int duration = minutes * 60;
     const int bonus = GetSkillLevel(SKILL_POLYMORPH) / 40 * 100 + 200;
     AddAffect(220, POINT_POLYMORPH, race, 35, duration, 0, true, false);
     AddAffect(220, POINT_ATT_BONUS, bonus, 35, duration, 0, false, false);
@@ -1937,12 +2112,16 @@ void SendTreasureRewardNotice(CHARACTER& character, DWORD rewardVnum, DWORD rewa
     case CSpecialItemGroup::POISON:
         character.ChatPacket(1, "%s", LC_TEXT("\273\363\300\332\277\241\274\255 \263\252\277\302 \263\354\273\366 \277\254\261\342\270\246 \265\351\300\314\270\266\275\303\300\332 \265\266\300\314 \277\302\270\366\300\270\267\316 \306\333\301\375\264\317\264\331!"));
         break;
-    default:
-        if (reward && rewardCount < 2)
-            character.ChatPacket(1, LC_TEXT("\273\363\300\332\277\241\274\255 %s \260\241 \263\252\277\324\275\300\264\317\264\331."), reward->GetName());
-        else if (reward)
-            character.ChatPacket(1, LC_TEXT("\273\363\300\332\277\241\274\255 %s \260\241 %d \260\263 \263\252\277\324\275\300\264\317\264\331."), reward->GetName(), static_cast<int>(rewardCount));
+    default: {
+        if (!reward)
+            break;
+        const char* name = reward->GetName();
+        if (rewardCount < 2)
+            character.ChatPacket(1, LC_TEXT("\273\363\300\332\277\241\274\255 %s \260\241 \263\252\277\324\275\300\264\317\264\331."), name);
+        else
+            character.ChatPacket(1, LC_TEXT("\273\363\300\332\277\241\274\255 %s \260\241 %d \260\263 \263\252\277\324\275\300\264\317\264\331."), name, static_cast<int>(rewardCount));
         break;
+    }
     }
 }
 } // namespace
@@ -1959,20 +2138,30 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             return false;
         }
     }
-    if (LC_IsCIBN() && (proto->dwVnum == 50085 || proto->dwVnum == 50086)) {
-        const int limit = passes_per_sec * 5;
-        if (pulse_delta(thecore_pulse(), m_iSeedTime) < limit) {
+    const DWORD localeVnum = LC_IsCIBN() ? item->GetVnum() : 0;
+    if (localeVnum == 50085 || localeVnum == 50086) {
+        const auto pulse = thecore_pulse();
+        const auto savedPulse = GetUseSeedOrMoonBottleTime();
+        const auto limit = auto_give_detail::signed32(static_cast<std::uint32_t>(passes_per_sec) * 5u);
+        if (pulse_delta(pulse, savedPulse) < limit) {
             ChatPacket(1, "%s", locale_find("\277\371\272\264\054\301\276\300\332\040\273\347\277\353\310\304\040\065\303\312\265\277\276\310\040\273\347\277\353\307\322\274\366\040\276\370\275\300\264\317\264\331\056\040", g_iUseLocale));
-            if (test_server)
-                ChatPacket(1, "Now %d Limit%d", pulse_delta(thecore_pulse(), m_iSeedTime), limit);
+            if (test_server) {
+                const auto debugPulse = thecore_pulse();
+                const auto debugSavedPulse = GetUseSeedOrMoonBottleTime();
+                const auto debugLimit = auto_give_detail::signed32(static_cast<std::uint32_t>(passes_per_sec) * 5u);
+                ChatPacket(1, "Now %d Limit%d", pulse_delta(debugPulse, debugSavedPulse), debugLimit);
+            }
             return false;
         }
     }
 
-    const BYTE type = item->GetType();
-    if (test_server)
+    if (test_server) {
+        const BYTE subtype = item->GetSubType();
+        const BYTE type = item->GetType();
         sys_log(0, "USE_ITEM %s , Cell %d , ItemType %d , SubType %d",
-                item->GetName(), destination, type, item->GetSubType());
+                item->GetName(), destination, type, subtype);
+    }
+    const BYTE type = item->GetType();
     if (type == 3) {
         const BYTE subtype = item->GetSubType();
         const DWORD vnum = item->GetVnum();
@@ -2015,7 +2204,6 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
              static_cast<std::uint32_t>(item->GetValue(2))},
             {FindSpecifyItem(static_cast<DWORD>(item->GetValue(3))),
              static_cast<std::uint32_t>(item->GetValue(4))},
-            {nullptr, 1},
         };
         for (unsigned index = 0; index < 2; ++index)
         {
@@ -2026,54 +2214,47 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             }
         }
 
-        materials[2].stack = FindSpecifyItem(50901);
-        for (unsigned index = 0; index < 3; ++index)
+        for (unsigned index = 0; index < 2; ++index)
         {
             const Material& current = materials[index];
-            if (!current.count)
+            if (!current.stack)
                 continue;
-            std::uint64_t required = current.count;
-            if (current.stack)
+            const auto available = static_cast<std::uint32_t>(current.stack->GetCount());
+            const auto required = current.count + (current.stack == item ? 1u : 0u);
+            if (available < required)
             {
-                // Keep the recipe item itself, including when a material shares its stack.
-                if (current.stack == item)
-                    ++required;
-                for (unsigned previous = 0; previous < index; ++previous)
-                {
-                    if (materials[previous].stack == current.stack)
-                        required += materials[previous].count;
-                }
-            }
-            if (current.stack && current.stack->GetCount() >= required)
-                continue;
-            if (index == 2)
-                ChatPacket(1, "%s", locale_find("\272\363 \272\264\300\314 \270\360\300\332\270\250\264\317\264\331.", g_iUseLocale));
-            else
                 ChatPacket(1, locale_find("\300\347\267\341(%s)\260\241 \272\316\301\267\307\325\264\317\264\331.", g_iUseLocale), current.stack->GetName());
-            return false;
+                return false;
+            }
+            const auto remaining = available - static_cast<std::uint32_t>(current.count);
+            if (!remaining && index == 0 && materials[1].stack == current.stack)
+            {
+                if (materials[1].count)
+                {
+                    const char* name = current.stack->GetName();
+                    const bool hasName = name != nullptr;
+                    const std::string materialName = hasName ? name : "";
+                    current.stack->SetCount(remaining);
+                    ChatPacket(1, locale_find("\300\347\267\341(%s)\260\241 \272\316\301\267\307\325\264\317\264\331.", g_iUseLocale), hasName ? materialName.c_str() : nullptr);
+                    return false;
+                }
+                materials[1].stack = nullptr;
+            }
+            current.stack->SetCount(remaining);
         }
 
-        const DWORD reward = static_cast<DWORD>(item->GetValue(0));
-        const long chance = item->GetValue(5);
-        for (unsigned index = 0; index < 3; ++index)
+        LPITEM bottle = FindSpecifyItem(50901);
+        const auto bottleCount = bottle ? static_cast<std::uint32_t>(bottle->GetCount()) : 0u;
+        if (bottleCount <= (bottle == item ? 1u : 0u))
         {
-            const Material& material = materials[index];
-            if (!material.stack)
-                continue;
-            const DWORD remaining = material.stack->GetCount() - static_cast<DWORD>(material.count);
-            if (!remaining)
-            {
-                for (unsigned next = index + 1; next < 3; ++next)
-                {
-                    if (materials[next].stack == material.stack)
-                        materials[next].stack = nullptr;
-                }
-            }
-            material.stack->SetCount(remaining);
+            ChatPacket(1, "%s", locale_find("\272\363 \272\264\300\314 \270\360\300\332\270\250\264\317\264\331.", g_iUseLocale));
+            return false;
         }
-        if (number_ex(1, 100, const_cast<char*>("char_item.cpp"), 0x118f) <= chance)
+        bottle->SetCount(bottleCount - 1u);
+        const int roll = number_ex(1, 100, const_cast<char*>("char_item.cpp"), 0x118f);
+        if (roll <= static_cast<std::int32_t>(item->GetValue(5)))
         {
-            AutoGiveItem(reward, 1, -1, true);
+            AutoGiveItem(static_cast<std::uint32_t>(item->GetValue(0)), 1, -1, true);
             return true;
         }
         ChatPacket(1, "%s", locale_find("\271\260\276\340 \301\246\301\266\277\241 \275\307\306\320\307\337\275\300\264\317\264\331.", g_iUseLocale));
@@ -2092,12 +2273,14 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             if (quest::PC* pc = quest::CQuestManager::instance().GetPC(GetPlayerID()))
             {
                 const char* const flag = "mirror_of_disapper.last_use_time";
-                if (get_global_time() - pc->GetFlag(flag) < 600)
+                const auto lastUse = static_cast<std::uint32_t>(pc->GetFlag(flag));
+                const auto now = static_cast<std::uint32_t>(get_global_time());
+                if (static_cast<std::int32_t>(now - lastUse) < 600)
                 {
                     ChatPacket(1, "%s", locale_find("\276\306\301\367 \273\347\277\353\307\322 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
                     return false;
                 }
-                pc->SetFlag(flag, get_global_time(), false);
+                pc->SetFlag(flag, static_cast<std::int32_t>(get_global_time()), false);
             }
         }
         AddAffect(203, 0, 0, 2, 300, 0, true, false);
@@ -2160,18 +2343,30 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             case 27996:
                 item->SetCount(item->GetCount() - 1);
                 return true;
-            case 50020:
-                PointChange(POINT_HP, GetMaxHP() - GetHP(), false, false);
+            case 50020: {
+                const auto maximum = static_cast<std::uint32_t>(GetMaxHP());
+                const auto current = static_cast<std::uint32_t>(GetHP());
+                const auto amount = auto_give_detail::signed32(maximum - current);
+                PointChange(POINT_HP, amount, false, false);
                 item->SetCount(item->GetCount() - 1);
                 return true;
-            case 50021:
-                PointChange(POINT_SP, GetMaxSP() - GetSP(), false, false);
+            }
+            case 50021: {
+                const auto current = static_cast<std::uint32_t>(GetSP());
+                const auto maximum = static_cast<std::uint32_t>(GetMaxSP());
+                const auto amount = auto_give_detail::signed32(maximum - current);
+                PointChange(POINT_SP, amount, false, false);
                 item->SetCount(item->GetCount() - 1);
                 return true;
-            case 50022:
-                PointChange(POINT_STAMINA, m_pointsInstant.iMaxStamina - m_points.stamina, false, false);
+            }
+            case 50022: {
+                const auto maximum = static_cast<std::uint32_t>(GetMaxStamina());
+                const auto current = static_cast<std::uint32_t>(GetStamina());
+                const auto amount = auto_give_detail::signed32(maximum - current);
+                PointChange(POINT_STAMINA, amount, false, false);
                 item->SetCount(item->GetCount() - 1);
                 return true;
+            }
             case 50100: case 50101: case 50102: case 50103:
             case 50104: case 50105: case 50106:
                 CreateFly(static_cast<BYTE>(vnum - 50100 + 7), this);
@@ -2197,10 +2392,12 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                 return true;
             case 70102:
             case 70103: {
-                const int alignment = GetAlignment();
-                if (alignment >= (LC_IsJapan() ? 200000 : 0))
+                const int threshold = LC_IsJapan() ? 200000 : 0;
+                if (GetAlignment() >= threshold)
                     return false;
-                const int delta = MIN(-alignment, static_cast<int>(item->GetValue(0)));
+                const int itemValue = static_cast<std::int32_t>(item->GetValue(0));
+                const auto alignment = static_cast<std::uint32_t>(GetAlignment());
+                const int delta = MIN(auto_give_detail::signed32(0u - alignment), itemValue);
                 sys_log(0, "%s ALIGNMENT ITEM %d", GetName(), delta);
                 UpdateAlignment(delta);
                 item->SetCount(item->GetCount() - 1);
@@ -2222,9 +2419,10 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                     return true;
                 const char* const flag = "dyeing_hair.last_dye_level";
                 const int lastDye = pc->GetFlag(flag);
-                if (vnum != 70201 && lastDye && GetLevel() < lastDye + 3)
+                const int requiredLevel = auto_give_detail::signed32(static_cast<std::uint32_t>(lastDye) + 3u);
+                if (lastDye && GetLevel() < requiredLevel && item->GetVnum() != 70201)
                 {
-                    ChatPacket(1, locale_find("%d \267\271\272\247\300\314 \265\307\276\356\276\337 \264\331\275\303 \277\260\273\366\307\317\275\307 \274\366 \300\326\275\300\264\317\264\331.", g_iUseLocale), lastDye + 3);
+                    ChatPacket(1, locale_find("%d \267\271\272\247\300\314 \265\307\276\356\276\337 \264\331\275\303 \277\260\273\366\307\317\275\307 \274\366 \300\326\275\300\264\317\264\331.", g_iUseLocale), requiredLevel);
                     return true;
                 }
                 SetPart(3, static_cast<WORD>(vnum - 70201));
@@ -2257,16 +2455,22 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                 const DWORD sourceID = item->GetID();
                 item->SetCount(item->GetCount() - 1);
                 char hint[20];
-                std::snprintf(hint, sizeof(hint), "%lu", static_cast<unsigned long>(target->GetID()));
                 if (add)
                 {
                     ChatPacket(1, "%s", locale_find("\274\272\260\370\300\373\300\270\267\316 \274\323\274\272\300\314 \303\337\260\241 \265\307\276\372\275\300\264\317\264\331", g_iUseLocale));
-                    const auto& attribute = target->GetAttributes()[target->GetRareAttrCount() + 4];
-                    LogManager::instance().ItemLog(GetPlayerID(), attribute.bType, attribute.sValue,
+                    const int attributeIndex = target->GetRareAttrCount() + 4;
+                    
+std::snprintf(hint, sizeof(hint), "%lu", static_cast<unsigned long>(target->GetID()));
+                    const auto& attribute = target->GetAttributes()[attributeIndex];
+                    const BYTE type = attribute.bType;
+                    const DWORD pid = GetPlayerID();
+                    const short value = attribute.sValue;
+                    LogManager::instance().ItemLog(pid, type, value,
                                                   sourceID, "ADD_RARE_ATTR", hint);
                 }
                 else
                 {
+                    std::snprintf(hint, sizeof(hint), "%lu", static_cast<unsigned long>(target->GetID()));
                     LogManager::instance().ItemLog(GetPlayerID(), 0, 0, sourceID, "CHANGE_RARE_ATTR", hint);
                 }
                 return true;
@@ -2298,7 +2502,11 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                 char hint[50];
                 std::snprintf(hint, sizeof(hint), "%lu %lu", static_cast<unsigned long>(rewardVnum),
                               static_cast<unsigned long>(rewardCount));
-                LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), item->GetID(), "MOONLIGHT_GET", hint);
+                const auto y = GetY();
+                const DWORD pid = GetPlayerID();
+                const DWORD itemId = item->GetID();
+                const auto x = GetX();
+                LogManager::instance().ItemLog(pid, x, y, itemId, "MOONLIGHT_GET", hint);
                 item->SetCount(item->GetCount() - 1);
                 SendTreasureRewardNotice(*this, rewardVnum, rewardCount, reward);
                 return true;
@@ -2317,22 +2525,29 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                 }
                 if (!test_server)
                 {
-                    const auto now = get_global_time();
-                    const auto next = GetSkillNextReadTime(SKILL_HORSE);
+                    const auto now = static_cast<std::int32_t>(get_global_time());
+                    const auto next = static_cast<std::int32_t>(GetSkillNextReadTime(SKILL_HORSE));
                     if (now < next)
                     {
                         if (!FindAffect(513))
                         {
-                            SkillLearnWaitMoreTimeMessage(next - now);
+                            const auto waitUntil = static_cast<std::uint32_t>(GetSkillNextReadTime(SKILL_HORSE));
+                            const auto waitNow = static_cast<std::uint32_t>(get_global_time());
+                            SkillLearnWaitMoreTimeMessage(static_cast<std::int32_t>(waitUntil - waitNow));
                             return false;
                         }
                         RemoveAffect(513);
                         ChatPacket(1, "%s", locale_find("\301\326\276\310\274\372\274\255\270\246 \305\353\307\330 \301\326\310\255\300\324\270\266\277\241\274\255 \272\374\301\256\263\252\277\324\275\300\264\317\264\331.", g_iUseLocale));
                     }
                 }
-                const int shared = GetSkillLevel(SKILL_HORSE_CHARGE) + GetSkillLevel(SKILL_HORSE_ESCAPE);
-                if (GetPoint(POINT_HORSE_SKILL) >= 20 || shared + GetSkillLevel(SKILL_HORSE_WILDATTACK) >= 60 ||
-                    shared + GetSkillLevel(SKILL_HORSE_WILDATTACK_RANGE) >= 60)
+                const auto skillTotal = [this](DWORD attackSkill) {
+                    const int attack = GetSkillLevel(attackSkill);
+                    const int charge = GetSkillLevel(SKILL_HORSE_CHARGE);
+                    const int escape = GetSkillLevel(SKILL_HORSE_ESCAPE);
+                    return attack + charge + escape;
+                };
+                if (GetPoint(POINT_HORSE_SKILL) >= 20 || skillTotal(SKILL_HORSE_WILDATTACK) >= 60 ||
+                    skillTotal(SKILL_HORSE_WILDATTACK_RANGE) >= 60)
                 {
                     ChatPacket(1, "%s", locale_find("\264\365 \300\314\273\363 \275\302\270\266 \274\366\267\303\274\255\270\246 \300\320\300\273 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
                     return false;
@@ -2414,9 +2629,7 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             case 27989:
             case 50004: {
                 const bool eventMap = vnum == 50004;
-                long attempt = item->GetSockets()[0];
-                long targetX = item->GetSockets()[1];
-                long targetY = item->GetSockets()[2];
+                const auto attempt = static_cast<std::uint32_t>(item->GetSockets()[0]);
                 if (!attempt)
                 {
                     PIXEL_POSITION location;
@@ -2425,15 +2638,12 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                         ChatPacket(1, "%s", locale_find(eventMap ? "\300\314 \260\367\277\241\274\261 \300\314\272\245\306\256\277\353 \260\250\301\366\261\342\260\241 \265\277\300\333\307\317\301\366 \276\312\264\302\260\315 \260\260\275\300\264\317\264\331." : "\300\314 \260\367\277\241\274\255 \277\265\274\256 \260\250\301\366\261\342\260\241 \265\277\300\333\307\317\301\366 \276\312\264\302\260\315 \260\260\275\300\264\317\264\331.", g_iUseLocale));
                         return false;
                     }
-                    attempt = 1;
-                    targetX = location.x;
-                    targetY = location.y;
-                    item->SetSocket(0, attempt);
-                    item->SetSocket(1, targetX);
-                    item->SetSocket(2, targetY);
+                    item->SetSocket(0, 1);
+                    item->SetSocket(1, location.x);
+                    item->SetSocket(2, location.y);
                 }
                 else
-                    item->SetSocket(0, ++attempt);
+                    item->SetSocket(0, auto_give_detail::signed32(attempt + 1u));
 
                 const auto sendDirection = [this](int distanceCode, int direction) {
                     constexpr int headerSize = 9;
@@ -2452,17 +2662,24 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                     PacketAround(packet, size);
                 };
 
-                const auto dx = static_cast<std::uint32_t>(GetX()) - static_cast<std::uint32_t>(targetX);
-                const auto dy = static_cast<std::uint32_t>(GetY()) - static_cast<std::uint32_t>(targetY);
+                const auto x = static_cast<std::uint32_t>(GetX());
+                const auto targetX = static_cast<std::uint32_t>(item->GetSockets()[1]);
+                const auto targetY = static_cast<std::uint32_t>(item->GetSockets()[2]);
+                const auto dx = x - targetX;
+                const auto dy = static_cast<std::uint32_t>(GetY()) - targetY;
                 const int squaredDistance = auto_give_detail::signed32(dx * dx + dy * dy);
                 const float distance = static_cast<float>(std::sqrt(static_cast<double>(squaredDistance)));
                 // The original treats an unordered distance as the farthest bucket.
                 if (!(distance < 1000))
                 {
-                    if (attempt < (eventMap ? 10 : 6))
+                    if (static_cast<std::int32_t>(item->GetSockets()[0]) < (eventMap ? 10 : 6))
                     {
                         const int distanceCode = distance < 20000 ? 1 : distance < 70000 ? 2 : 3;
-                        const long double heading = GetDegreeFromPositionXY(GetX(), targetY, targetX, GetY());
+                        const long headingY = GetY();
+                        const auto headingTargetX = static_cast<std::int32_t>(item->GetSockets()[1]);
+                        const long headingX = GetX();
+                        const auto headingTargetY = static_cast<std::int32_t>(item->GetSockets()[2]);
+                        const long double heading = GetDegreeFromPositionXY(headingX, headingTargetY, headingTargetX, headingY);
                         const int angle = std::isfinite(heading) ? static_cast<int>(heading) : INT32_MIN;
                         sendDirection(distanceCode, angle);
                     }
@@ -2598,7 +2815,9 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
                 return true;
             }
             case 71092: {
-                CHARACTER* target = m_pkChrTarget ? m_pkChrTarget : this;
+                CHARACTER* target = GetTarget();
+                if (!target)
+                    target = this;
                 if (target->IsPolymorphed())
                 {
                     target->SetPolymorph(0, false);
@@ -2662,7 +2881,9 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
         if (!Blend_Item_find(item->GetVnum()))
             return true;
         const long* sockets = item->GetSockets();
-        const long apply = sockets[0];
+        const auto apply = static_cast<std::int32_t>(sockets[0]);
+        const auto duration = static_cast<std::int32_t>(sockets[2]);
+        const auto value = static_cast<std::int32_t>(sockets[1]);
         if (apply < 0 || apply >= MAX_APPLY_NUM)
             return false;
         const BYTE point = aApplyInfo[apply].bPointType;
@@ -2670,7 +2891,7 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             ChatPacket(1, "%s", locale_find("\300\314\271\314\040\310\277\260\372\260\241\040\260\311\267\301\040\300\326\275\300\264\317\264\331\056", g_iUseLocale));
             return true;
         }
-        AddAffect(0x213, point, sockets[1], 0, sockets[2], 0, false, false);
+        AddAffect(0x213, point, value, 0, duration, 0, false, false);
         item->SetCount(item->GetCount() - 1);
         return true;
     }
@@ -2691,7 +2912,9 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
         }
 
         const char* wrongKey = "\277\255\274\350\260\241 \270\302\301\366 \276\312\264\302 \260\315 \260\260\264\331.";
-        if (item->GetValue(0) != box->GetValue(0)) {
+        const long keyValue = item->GetValue(0);
+        const long chestValue = box->GetValue(0);
+        if (keyValue != chestValue) {
             ChatPacket(0, "%s", LC_TEXT(wrongKey));
             return false;
         }
@@ -2747,8 +2970,9 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
         LPITEM rod = GetWear(4);
         if (!rod || rod->GetType() != 13)
             return false;
-        const char* notice = rod->GetSockets()[2] ? "\300\314\271\314 \262\310\307\364\300\326\264\370 \271\314\263\242\270\246 \273\251\260\355 %s\270\246 \263\242\277\363\264\317\264\331." : "\263\254\275\303\264\353\277\241 %s\270\246 \271\314\263\242\267\316 \263\242\277\363\264\317\264\331.";
-        ChatPacket(1, locale_find(notice, g_iUseLocale), item->GetName());
+        const char* notice = static_cast<std::uint32_t>(rod->GetSocket(2)) ? "\300\314\271\314 \262\310\307\364\300\326\264\370 \271\314\263\242\270\246 \273\251\260\355 %s\270\246 \263\242\277\363\264\317\264\331." : "\263\254\275\303\264\353\277\241 %s\270\246 \271\314\263\242\267\316 \263\242\277\363\264\317\264\331.";
+        const char* baitName = item->GetName();
+        ChatPacket(1, locale_find(notice, g_iUseLocale), baitName);
         rod->SetSocket(2, item->GetValue(0));
         item->SetCount(item->GetCount() - 1);
         return true;
@@ -2773,28 +2997,34 @@ bool CHARACTER::UseItemEx(CItem* item, int destination)
             return INT32_MIN;
         return static_cast<std::int32_t>(value);
     };
-    const auto x = campfireCoordinate(GetX(), dx);
     const auto y = campfireCoordinate(GetY(), dy);
+    const auto x = campfireCoordinate(GetX(), dx);
     const long map = GetMapIndex();
     LPSECTREE sector = SECTREE_MANAGER::instance().Get(map, x, y);
     if (!sector) {
         ChatPacket(1, locale_find("\270\360\264\332\272\322\300\273 \307\307\277\357 \274\366 \276\370\264\302 \301\366\301\241\300\324\264\317\264\331.", g_iUseLocale));
         return false;
     }
-    if (sector->IsAttr(x, y, ATTR_WATER)) {
+    const auto waterY = campfireCoordinate(GetY(), dy);
+    const auto waterX = campfireCoordinate(GetX(), dx);
+    if (sector->IsAttr(waterX, waterY, ATTR_WATER)) {
         ChatPacket(1, locale_find("\271\260 \274\323\277\241 \270\360\264\332\272\322\300\273 \307\307\277\357 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
         return false;
     }
 
     const int rotation = number_ex(0, 359, const_cast<char*>("char_item.cpp"), 0x68e);
-    LPCHARACTER campfire = CHARACTER_MANAGER::instance().SpawnMob(12000, map, x, y, 0, false, rotation, true);
+    const auto spawnY = campfireCoordinate(GetY(), dy);
+    const auto spawnX = campfireCoordinate(GetX(), dx);
+    const long spawnMap = GetMapIndex();
+    LPCHARACTER campfire = CHARACTER_MANAGER::instance().SpawnMob(12000, spawnMap, spawnX, spawnY, 0, false, rotation, true);
     if (!campfire)
         return false;
     void* raw = nullptr;
     const DWORD id = __AllocEventInfo(sizeof(std::uint32_t), &raw);
     *static_cast<std::uint32_t*>(raw) = static_cast<std::uint32_t>(static_cast<DWORD>(campfire->GetVID()));
-    event_create_ex(kill_campfire_event, id, passes_per_sec * 40, const_cast<char*>("char_item.cpp"), 0x694);
-    item->SetCount(item->GetCount() - 1);
+    const auto delay = static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 40u);
+    event_create_ex(kill_campfire_event, id, delay, const_cast<char*>("char_item.cpp"), 0x694);
+    item->SetCount(static_cast<std::uint32_t>(item->GetCount()) - 1u);
     return true;
 }
 
@@ -2926,66 +3156,76 @@ bool CHARACTER::UsePotionItem(CItem* item, BYTE subtype)
             ChatPacket(1, "%s", locale_find("\264\353\267\303\300\345\277\241\274\255 \273\347\277\353\307\317\275\307 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
             return false;
         }
-        if (quests.GetEventFlag("arena_potion_limit_count") < 10000 && m_nPotionLimit <= 0) {
+        if (quests.GetEventFlag("arena_potion_limit_count") < 10000 && GetPotionLimit() <= 0) {
             ChatPacket(1, "%s", locale_find("\273\347\277\353 \301\246\307\321\267\256\300\273 \303\312\260\372\307\317\277\264\275\300\264\317\264\331.", g_iUseLocale));
             return false;
         }
     }
 
-    const long hp = item->GetValue(0);
-    const long sp = item->GetValue(1);
     if (subtype == recovery) {
-        if (sp) {
-            if (GetPoint(POINT_SP_RECOVERY) + GetSP() >= GetMaxSP())
+        if (item->GetValue(1)) {
+            const int recoverySP = GetPoint(POINT_SP_RECOVERY);
+            if (auto_give_detail::signed32(static_cast<unsigned>(recoverySP) +
+                                           static_cast<unsigned>(GetSP())) >= GetMaxSP())
                 return false;
+            const long sp = item->GetValue(1);
             PointChange(POINT_SP_RECOVERY, scale(sp, std::min(200, potionRate())));
             StartAffectEvent();
             EffectPacket(2);
         }
-        if (hp) {
-            if (GetPoint(POINT_HP_RECOVERY) + GetHP() >= GetMaxHP())
+        if (item->GetValue(0)) {
+            const int recoveryHP = GetPoint(POINT_HP_RECOVERY);
+            if (auto_give_detail::signed32(static_cast<unsigned>(recoveryHP) +
+                                           static_cast<unsigned>(GetHP())) >= GetMaxHP())
                 return false;
+            const long hp = item->GetValue(0);
             PointChange(POINT_HP_RECOVERY, scale(hp, std::min(200, potionRate())));
             StartAffectEvent();
             EffectPacket(1);
         }
     } else if (subtype == continuous) {
-        if (hp)
-            AddAffect(218, POINT_HP_RECOVER_CONTINUE, hp, 0, item->GetValue(2), 0, true, false);
-        else if (sp)
-            AddAffect(219, POINT_SP_RECOVER_CONTINUE, sp, 0, item->GetValue(2), 0, true, false);
-        else
+        if (item->GetValue(0)) {
+            const long duration = item->GetValue(2);
+            AddAffect(218, POINT_HP_RECOVER_CONTINUE, item->GetValue(0), 0, duration, 0, true, false);
+        } else if (item->GetValue(1)) {
+            const long duration = item->GetValue(2);
+            AddAffect(219, POINT_SP_RECOVER_CONTINUE, item->GetValue(1), 0, duration, 0, true, false);
+        } else {
             return false;
+        }
     } else {
         bool used = false;
-        if (hp && GetHP() < GetMaxHP()) {
-            PointChange(POINT_HP, scale(hp, potionRate()));
+        if (item->GetValue(0) && GetHP() < GetMaxHP()) {
+            const long amount = item->GetValue(0);
+            PointChange(POINT_HP, scale(amount, potionRate()));
             EffectPacket(1);
             used = true;
         }
-        if (sp && GetSP() < GetMaxSP()) {
-            PointChange(POINT_SP, scale(sp, potionRate()));
+        if (item->GetValue(1) && GetSP() < GetMaxSP()) {
+            const long amount = item->GetValue(1);
+            PointChange(POINT_SP, scale(amount, potionRate()));
             EffectPacket(2);
             used = true;
         }
-        const long hpPercent = item->GetValue(3);
-        if (hpPercent && GetHP() < GetMaxHP()) {
-            PointChange(POINT_HP, scale(hpPercent, GetMaxHP()));
+        if (item->GetValue(3) && GetHP() < GetMaxHP()) {
+            const long amount = item->GetValue(3);
+            PointChange(POINT_HP, scale(amount, GetMaxHP()));
             EffectPacket(1);
             used = true;
         }
-        const long spPercent = item->GetValue(4);
-        if (spPercent && GetSP() < GetMaxSP()) {
-            PointChange(POINT_SP, scale(spPercent, GetMaxSP()));
+        if (item->GetValue(4) && GetSP() < GetMaxSP()) {
+            const long amount = item->GetValue(4);
+            PointChange(POINT_SP, scale(amount, GetMaxSP()));
             EffectPacket(2);
             used = true;
         }
         if (!used)
             return true;
-        if (vnum == 50085 || vnum == 50086) {
+        const DWORD usedVnum = item->GetVnum();
+        if (usedVnum == 50085 || usedVnum == 50086) {
             if (test_server)
                 ChatPacket(1, "%s", locale_find("\277\371\272\264 \266\307\264\302 \301\276\300\332 \270\246 \273\347\277\353\307\317\277\264\275\300\264\317\264\331", g_iUseLocale));
-            m_iSeedTime = thecore_pulse();
+            SetUseSeedOrMoonBottleTime();
         }
     }
 
@@ -2994,11 +3234,12 @@ bool CHARACTER::UsePotionItem(CItem* item, BYTE subtype)
     if (m_pWarMap)
         m_pWarMap->UsePotion(this, item);
 
+    const auto count = item->GetCount();
     if (subtype == immediate)
-        --m_nPotionLimit;
-    item->SetCount(item->GetCount() - 1);
+        m_nPotionLimit = auto_give_detail::signed32(static_cast<std::uint32_t>(m_nPotionLimit) - 1u);
+    item->SetCount(count - 1);
     if (subtype == recovery)
-        --m_nPotionLimit;
+        m_nPotionLimit = auto_give_detail::signed32(static_cast<std::uint32_t>(m_nPotionLimit) - 1u);
     return true;
 }
 
@@ -3025,7 +3266,14 @@ bool CHARACTER::UseConsumableItem(CItem* item, BYTE subtype)
             ChatPacket(1, "%s", locale_find("\300\314 \276\306\300\314\305\333\300\272 PC\271\346\277\241\274\255\270\270 \273\347\277\353\307\322 \274\366 \300\326\275\300\264\317\264\331.", g_iUseLocale));
             return false;
         }
-        AddAffect(affect, point, item->GetValue(2), 0, item->GetValue(3), 0, false, additionalEffect);
+        const long duration = item->GetValue(3);
+        const long amount = item->GetValue(2);
+        const long currentApply = item->GetValue(1);
+        if (currentApply < 0 || currentApply >= MAX_APPLY_NUM)
+            return false;
+        const BYTE currentPoint = aApplyInfo[currentApply].bPointType;
+        const DWORD currentAffect = additionalEffect ? 0x204 : item->GetValue(0);
+        AddAffect(currentAffect, currentPoint, amount, 0, duration, 0, false, additionalEffect);
         item->SetCount(item->GetCount() - 1);
         return true;
     }
@@ -3063,8 +3311,10 @@ bool CHARACTER::UseAbilityItem(CItem* item, DWORD sharedAffect)
     const long apply = item->GetValue(0);
     for (const auto& ability : abilities) {
         if (ability.apply == apply && (ability.affect || sharedAffect)) {
-            AddAffect(sharedAffect ? sharedAffect : ability.affect, ability.point, item->GetValue(2),
-                      ability.flag, item->GetValue(1), 0, true, sharedAffect != 0);
+            const int duration = item->GetValue(1);
+            const long amount = item->GetValue(2);
+            AddAffect(sharedAffect ? sharedAffect : ability.affect, ability.point, amount,
+                      ability.flag, duration, 0, true, sharedAffect != 0);
             break;
         }
     }
@@ -3094,30 +3344,34 @@ bool CHARACTER::UseItemModification(CItem* item, int destination, BYTE subtype)
     const DWORD sourceId = item->GetID();
 
     if (subtype == 17) {
-        constexpr long brokenStone = 28960;
+        constexpr std::int32_t brokenStone = 28960;
         const long* sockets = target->GetSockets();
-        if (sockets[0] != brokenStone && sockets[1] != brokenStone && sockets[2] != brokenStone) {
+        if (static_cast<std::int32_t>(sockets[0]) != brokenStone && static_cast<std::int32_t>(sockets[1]) != brokenStone && static_cast<std::int32_t>(sockets[2]) != brokenStone) {
             ChatPacket(1, "%s", LC_TEXT("\303\273\274\322\307\322 \274\256\300\314 \271\332\307\364\300\326\301\366 \276\312\275\300\264\317\264\331."));
             return false;
         }
         int destinationSocket = 0;
         for (int index = 0; index < 3; ++index) {
-            const long socket = sockets[index];
+            const auto socket = static_cast<std::int32_t>(sockets[index]);
             if (socket != brokenStone && socket != 0)
                 target->SetSocket(destinationSocket++, socket);
         }
         for (; destinationSocket < 3; ++destinationSocket) {
-            if (sockets[destinationSocket] > 0)
+            if (static_cast<std::int32_t>(sockets[destinationSocket]) > 0)
                 target->SetSocket(destinationSocket, 1);
         }
-        item->SetCount(item->GetCount() - 1);
-        std::snprintf(targetId, sizeof(targetId), "%lu", target->GetID());
-        LogManager::instance().ItemLog(GetPlayerID(), 0, 0, sourceId, "CLEAN_SOCKET", targetId);
+        const bool sourceSurvives = item->SetCount(item->GetCount() - 1);
+        const auto targetItemId = static_cast<std::uint32_t>(target->GetID());
+        std::snprintf(targetId, sizeof(targetId), "%lu", static_cast<unsigned long>(targetItemId));
+        const auto pid = GetPlayerID();
+        auto& logs = LogManager::instance();
+        const auto logItemId = static_cast<std::uint32_t>(sourceSurvives ? item->GetID() : sourceId);
+        logs.ItemLog(pid, 0, 0, logItemId, "CLEAN_SOCKET", targetId);
         return true;
     }
 
     if (subtype == 20) {
-        std::snprintf(targetId, sizeof(targetId), "%lu", target->GetID());
+        std::snprintf(targetId, sizeof(targetId), "%lu", static_cast<unsigned long>(static_cast<std::uint32_t>(target->GetID())));
         if (!target->GetProto() || !target->IsAccessoryForSocket()) {
             ChatPacket(1, "%s", LC_TEXT("\300\314 \276\306\300\314\305\333\300\270\267\316 \274\322\304\317\300\273 \303\337\260\241\307\322 \274\366 \276\370\264\302 \276\306\300\314\305\333\300\324\264\317\264\331."));
             return true;
@@ -3129,10 +3383,17 @@ bool CHARACTER::UseItemModification(CItem* item, int destination, BYTE subtype)
         }
         const bool success = number_ex(1, 100, source, 0x10bd) <= 50;
         if (success)
-            target->SetAccessorySocketMaxGrade(capacity + 1);
+            target->SetAccessorySocketMaxGrade(static_cast<std::int32_t>(
+                static_cast<std::uint32_t>(target->GetAccessorySocketMaxGrade()) + 1U));
         ChatPacket(1, "%s", LC_TEXT(success ? "\274\322\304\317\300\314 \274\272\260\370\300\373\300\270\267\316 \303\337\260\241\265\307\276\372\275\300\264\317\264\331." : "\274\322\304\317 \303\337\260\241\277\241 \275\307\306\320\307\317\277\264\275\300\264\317\264\331."));
-        LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), sourceId,
-                                       success ? "ADD_SOCKET_SUCCESS" : "ADD_SOCKET_FAIL", targetId);
+        const auto pid = GetPlayerID();
+        auto* logger = !success ? &LogManager::instance() : nullptr;
+        const auto logItemId = item->GetID();
+        const auto y = GetY();
+        const auto x = GetX();
+        if (!logger)
+            logger = &LogManager::instance();
+        logger->ItemLog(pid, x, y, logItemId, success ? "ADD_SOCKET_SUCCESS" : "ADD_SOCKET_FAIL", targetId);
         item->SetCount(item->GetCount() - 1);
         return true;
     }
@@ -3142,17 +3403,25 @@ bool CHARACTER::UseItemModification(CItem* item, int destination, BYTE subtype)
             ChatPacket(1, "%s", LC_TEXT("\300\314 \276\306\300\314\305\333\300\273 \300\345\302\370\307\322 \274\366 \276\370\275\300\264\317\264\331."));
             return true;
         }
-        std::snprintf(targetId, sizeof(targetId), "%lu", target->GetID());
+        std::snprintf(targetId, sizeof(targetId), "%lu", static_cast<unsigned long>(static_cast<std::uint32_t>(target->GetID())));
         const int capacity = target->GetAccessorySocketMaxGrade();
         const int grade = target->GetAccessorySocketGrade();
         if (grade < capacity) {
             const int roll = number_ex(1, 100, source, 0x10e4);
-            const bool success = grade >= 0 && grade < 4 && roll <= aiAccessorySocketPutPct[grade];
+            const int rolledGrade = target->GetAccessorySocketGrade();
+            const bool success = rolledGrade >= 0 && rolledGrade < 4 &&
+                                 roll <= aiAccessorySocketPutPct[rolledGrade];
             if (success)
-                target->SetAccessorySocketGrade(grade + 1);
+                target->SetAccessorySocketGrade(rolledGrade + 1);
             ChatPacket(1, "%s", LC_TEXT(success ? "\300\345\302\370\277\241 \274\272\260\370\307\317\277\264\275\300\264\317\264\331." : "\300\345\302\370\277\241 \275\307\306\320\307\317\277\264\275\300\264\317\264\331."));
-            LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), sourceId,
-                                           success ? "PUT_SOCKET_SUCCESS" : "PUT_SOCKET_FAIL", targetId);
+            const auto pid = GetPlayerID();
+            auto* logger = success ? &LogManager::instance() : nullptr;
+            const auto logItemId = item->GetID();
+            const auto y = GetY();
+            const auto x = GetX();
+            if (!logger)
+                logger = &LogManager::instance();
+            logger->ItemLog(pid, x, y, logItemId, success ? "PUT_SOCKET_SUCCESS" : "PUT_SOCKET_FAIL", targetId);
             item->SetCount(item->GetCount() - 1);
         } else if (!capacity) {
             ChatPacket(1, "%s", LC_TEXT("\270\325\300\372 \264\331\300\314\276\306\270\363\265\345\267\316 \276\307\274\274\274\255\270\256\277\241 \274\322\304\317\300\273 \303\337\260\241\307\330\276\337\307\325\264\317\264\331."));
@@ -3181,7 +3450,7 @@ bool CHARACTER::UseItemModification(CItem* item, int destination, BYTE subtype)
             if (cycle < 10)
                 cycle = 0;
             if (quest::PC* player = quests.GetPC(GetPlayerID())) {
-                const auto now = static_cast<std::uint32_t>(get_global_time() / 60);
+                const auto now = static_cast<std::uint32_t>(static_cast<std::int32_t>(get_global_time()) / 60);
                 const auto last = static_cast<std::uint32_t>(player->GetFlag("Item.LastChangeItemAttr"));
                 sys_log(0, "UseChangeAttribute cycle=%ld, now=%ld, last=%ld",
                         static_cast<long>(auto_give_detail::signed32(cycle)),
@@ -3218,7 +3487,11 @@ bool CHARACTER::UseItemModification(CItem* item, int destination, BYTE subtype)
         return true;
     }
     std::snprintf(targetId, sizeof(targetId), "%lu", target->GetID());
-    const bool success = number_ex(1, 100, source, fifth ? 0x1094 : 0x106e) <= aiItemAttributeAddPercent[count];
+    const int roll = number_ex(1, 100, source, fifth ? 0x1094 : 0x106e);
+    const int rolledCount = target->GetAttributeCount();
+    const bool success = rolledCount >= 0 &&
+                         rolledCount < static_cast<int>(sizeof(aiItemAttributeAddPercent) / sizeof(aiItemAttributeAddPercent[0])) &&
+                         roll <= aiItemAttributeAddPercent[rolledCount];
     DWORD attrType = 0;
     DWORD attrValue = 0;
     const char* action;
@@ -3227,9 +3500,8 @@ bool CHARACTER::UseItemModification(CItem* item, int destination, BYTE subtype)
         ChatPacket(1, "%s", LC_TEXT("\274\323\274\272 \303\337\260\241\277\241 \274\272\260\370\307\317\277\264\275\300\264\317\264\331."));
         const int addedIndex = target->GetAttributeCount() - 1;
         if (addedIndex >= 0) {
-            const auto& attribute = target->GetAttributes()[addedIndex];
-            attrType = attribute.bType;
-            attrValue = attribute.sValue;
+            attrType = target->GetAttributeType(addedIndex);
+            attrValue = target->GetAttributeValue(addedIndex);
         }
         action = fifth ? "ADD_ATTRIBUTE2_SUCCESS" : "ADD_ATTRIBUTE_SUCCESS";
     } else {
@@ -3252,7 +3524,7 @@ bool CHARACTER::UseRefineItem(CItem* item, int destination)
 
     const DWORD targetVnum = target->GetVnum();
     if (targetVnum >= 28330 && targetVnum <= 28343) {
-        ChatPacket(1, "%s", locale_find("+3 \277\265\274\256\300\272 \276\306\300\314\305\333\300\270\267\316 \260\263\267\256\307\322 \274\366 \276\370\275\300\264\317\264\331", g_iUseLocale));
+        ChatPacket(1, "%s", locale_find("+3 \277\265\274\256\300\272 \300\314 \276\306\300\314\305\333\300\270\267\316 \260\263\267\256\307\322 \274\366 \276\370\275\300\264\317\264\331", g_iUseLocale));
         return false;
     }
     if (targetVnum >= 28430 && targetVnum <= 28443 && vnum != 71056) {
@@ -3283,20 +3555,30 @@ bool CHARACTER::RefineItem(CItem* item, CItem* target)
     if (item->GetSubType() != 14 || !(target->GetFlag() & 1))
         return false;
 
-    LogManager::instance().ItemLog(GetPlayerID(), GetX(), GetY(), target->GetID(),
-                                  "USE_DETACHMENT", target->GetName());
-    bool detached = false;
+    const char* targetName = target->GetName();
+    const auto targetId = target->GetID();
+    const auto x = GetX();
+    const auto playerId = GetPlayerID();
+    const auto y = GetY();
+    LogManager::instance().ItemLog(playerId, x, y, targetId, "USE_DETACHMENT", targetName);
+    bool hasStone = false;
     for (int i = 0; i < 3; ++i) {
-        const long stone = target->GetSockets()[i];
+        const auto stone = static_cast<std::int32_t>(target->GetSockets()[i]);
+        if (stone > 2 && stone != brokenStone) {
+            hasStone = true;
+            break;
+        }
+    }
+    if (!hasStone) {
+        ChatPacket(1, "%s", locale_find("\273\251\263\276 \274\366 \300\326\264\302 \270\336\306\276\274\256\300\314 \276\370\275\300\264\317\264\331.", g_iUseLocale));
+        return false;
+    }
+    for (int i = 0; i < 3; ++i) {
+        const auto stone = static_cast<std::int32_t>(target->GetSockets()[i]);
         if (stone > 2 && stone != brokenStone) {
             AutoGiveItem(stone, 1, -1, true);
             target->SetSocket(i, brokenStone);
-            detached = true;
         }
-    }
-    if (!detached) {
-        ChatPacket(1, "%s", locale_find("\273\251\263\276 \274\366 \300\326\264\302 \270\336\306\276\274\256\300\314 \276\370\275\300\264\317\264\331.", g_iUseLocale));
-        return false;
     }
     item->SetCount(item->GetCount() - 1);
     return true;
@@ -3331,33 +3613,36 @@ bool CHARACTER::RefineInformation(BYTE cell, BYTE type, int additionalCell)
 
     TPacketGCRefineInformation packet{};
     packet.header = 0x77;
-    packet.type = type;
     packet.pos = cell;
-    packet.src_vnum = item->GetVnum();
-    const TItemTable* proto = item->GetProto();
+    const auto* proto = item->GetProto();
+    packet.src_vnum = proto ? proto->dwVnum : 0;
     packet.result_vnum = proto ? proto->dwRefinedVnum : 0;
+    packet.type = type;
     if (!packet.result_vnum) {
         _sys_err("RefineInformation", 0x42a, "RefineInformation p.result_vnum == 0");
         ChatPacket(1, "%s", locale_find("\300\314 \276\306\300\314\305\333\300\272 \260\263\267\256\307\322 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
         return false;
     }
 
-    if (item->GetType() == 3 && item->GetSubType() == 2) {
+    const auto* refineProto = item->GetProto();
+    if (refineProto && refineProto->bType == 3 && refineProto->bSubType == 2) {
         if (!type) {
             ChatPacket(1, "%s", locale_find("\300\314 \276\306\300\314\305\333\300\272 \300\314 \271\346\275\304\300\270\267\316\264\302 \260\263\267\256\307\322 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
             return false;
         }
         CItem* scroll = GetItem(static_cast<BYTE>(additionalCell));
-        if (!scroll || scroll->GetVnum() == item->GetVnum()) {
+        if (scroll)
+            refineProto = item->GetProto();
+        if (!scroll || (refineProto ? refineProto->dwVnum : 0u) == scroll->GetVnum()) {
             ChatPacket(1, "%s", locale_find("\260\260\300\272 \260\263\267\256\274\255\270\246 \307\325\304\245 \274\366\264\302 \276\370\275\300\264\317\264\331.", g_iUseLocale));
             ChatPacket(1, "%s", locale_find("\303\340\272\271\300\307 \274\255\277\315 \307\366\303\266\300\273 \307\325\304\245 \274\366 \300\326\275\300\264\317\264\331.", g_iUseLocale));
             return false;
         }
     }
 
-    const auto* recipe = CRefineManager::instance().GetRefineRecipe(proto->wRefineSet);
+    const auto* recipe = CRefineManager::instance().GetRefineRecipe(refineProto ? refineProto->wRefineSet : 0u);
     if (!recipe) {
-        _sys_err("RefineInformation", 0x448, "RefineInformation NOT GET REFINE SET %d", proto->wRefineSet);
+        _sys_err("RefineInformation", 0x448, "RefineInformation NOT GET REFINE SET %d", item->GetRefineSet());
         ChatPacket(1, "%s", locale_find("\300\314 \276\306\300\314\305\333\300\272 \260\263\267\256\307\322 \274\366 \276\370\275\300\264\317\264\331.", g_iUseLocale));
         return false;
     }
@@ -3374,7 +3659,7 @@ bool CHARACTER::RefineInformation(BYTE cell, BYTE type, int additionalCell)
     if (type != 4) {
         packet.material_count = recipe->material_count;
         static_assert(sizeof(packet.materials) == sizeof(recipe->materials));
-        std::memcpy(packet.materials, recipe->materials, sizeof(packet.materials));
+        thecore_memcpy(packet.materials, recipe->materials, sizeof(packet.materials));
     }
 
     GetDesc()->Packet(&packet, sizeof(packet));
@@ -3384,5 +3669,5 @@ bool CHARACTER::RefineInformation(BYTE cell, BYTE type, int additionalCell)
 
 bool CHARACTER::CanDoCube()
 {
-    return !IsObserverMode() && !m_pkShop && !m_pkMyShop && !m_bUnderRefine && !m_pkWarpEvent;
+    return !IsObserverMode() && !m_pkShop && !m_pkMyShop && !m_bUnderRefine && !IsWarping();
 }

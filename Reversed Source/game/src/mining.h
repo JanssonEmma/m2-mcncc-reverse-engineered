@@ -8,6 +8,7 @@ class CItem;
 
 namespace mining {
 DWORD GetRawOreFromLoad(DWORD vein);
+int GetFractionCount();
 LPEVENT CreateMiningEvent(CHARACTER* ch, CHARACTER* vein, int count);
 bool OreRefine(CHARACTER* ch, CHARACTER* npc, CItem* ore, int cost, int chance, CItem* stone);
 bool Pick_Check(CItem& pick);

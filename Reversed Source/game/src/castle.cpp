@@ -36,7 +36,7 @@ static bool FN_is_castle_map(int map)
 // 0811a210
 bool castle_is_tower_vnum(DWORD vnum)
 {
-    return vnum - static_cast<DWORD>(11506) < 5;
+    return static_cast<std::uint32_t>(vnum) - 11506u < 5u;
 }
 
 // 0811a010
@@ -46,9 +46,11 @@ bool castle_can_attack(CHARACTER* attacker, CHARACTER* victim)
         return false;
     if (attacker->GetDesc() && victim->GetDesc())
         return true;
-    if (s_siege_state == CASTLE_SIEGE_END && castle_is_tower_vnum(victim->GetRaceNum()))
-        return attacker->GetEmpire() == victim->GetEmpire();
-    return attacker->GetEmpire() != victim->GetEmpire();
+    const bool sameEmpireRequired =
+        s_siege_state == CASTLE_SIEGE_END && castle_is_tower_vnum(victim->GetRaceNum());
+    const auto victimEmpire = victim->GetEmpire();
+    const auto attackerEmpire = attacker->GetEmpire();
+    return sameEmpireRequired ? victimEmpire == attackerEmpire : victimEmpire != attackerEmpire;
 }
 
 namespace {
@@ -194,14 +196,43 @@ int FN_empty_guard_pos(int empire, int region)
 }
 }
 
+// 0811a1c0
+bool castle_is_my_castle(int empire, int mapIndex)
+{
+    return IsCastleEmpire(empire) && mapIndex == FN_castle_map_index(empire);
+}
+
 CHARACTER* castle_spawn_frog(int empire)
 {
     if (!IsCastleEmpire(empire))
         return nullptr;
+
+    const int mapIndex = FN_castle_map_index(empire);
     const CastlePoint* position = FN_empty_frog_pos(empire);
     if (!position)
         return nullptr;
-    return castle_spawn_frog_force(empire, static_cast<int>(position - frogPositions[empire]));
+    const auto* map = SECTREE_MANAGER::instance().GetMap(mapIndex);
+    if (!map)
+        return nullptr;
+
+    const auto x = static_cast<std::int32_t>(static_cast<std::uint32_t>(map->m_setting.iBaseX) +
+                                             static_cast<std::uint32_t>(position->x) * 100u);
+    const auto y = static_cast<std::int32_t>(static_cast<std::uint32_t>(map->m_setting.iBaseY) +
+                                             static_cast<std::uint32_t>(position->y) * 100u);
+    auto& characters = CHARACTER_MANAGER::instance();
+    CHARACTER* frog = characters.SpawnMob(frogVnum, mapIndex, x, y, 0, false, 1, true);
+    if (!frog)
+        return nullptr;
+
+    frog->SetEmpire(static_cast<BYTE>(empire));
+    const int slot = FN_empty_frog_index(empire);
+    if (slot < 0) {
+        characters.DestroyCharacter(frog);
+        return nullptr;
+    }
+
+    residents[empire].frogs[slot] = frog;
+    return frog;
 }
 
 CHARACTER* castle_spawn_frog_force(int empire, int slot)
@@ -215,9 +246,11 @@ CHARACTER* castle_spawn_frog_force(int empire, int slot)
         return nullptr;
 
     const auto& position = frogPositions[empire][slot];
-    CHARACTER* frog = CHARACTER_MANAGER::instance().SpawnMob(frogVnum, mapIndex,
-        map->m_setting.iBaseX + position.x * 100, map->m_setting.iBaseY + position.y * 100,
-        0, false, 1, true);
+    const auto x = static_cast<std::int32_t>(static_cast<std::uint32_t>(map->m_setting.iBaseX) +
+                                             static_cast<std::uint32_t>(position.x) * 100u);
+    const auto y = static_cast<std::int32_t>(static_cast<std::uint32_t>(map->m_setting.iBaseY) +
+                                             static_cast<std::uint32_t>(position.y) * 100u);
+    CHARACTER* frog = CHARACTER_MANAGER::instance().SpawnMob(frogVnum, mapIndex, x, y, 0, false, 1, true);
     if (frog) {
         frog->SetEmpire(static_cast<BYTE>(empire));
         residents[empire].frogs[slot] = frog;
@@ -241,15 +274,19 @@ CHARACTER* castle_spawn_guard(int empire, DWORD group, int region)
         return nullptr;
 
     const auto& bounds = guardBounds[empire][region];
-    const int x = map->m_setting.iBaseX;
-    const int y = map->m_setting.iBaseY;
-    CHARACTER* guard = CHARACTER_MANAGER::instance().SpawnGroup(group, mapIndex,
-        x + bounds.sx * 100, y + bounds.sy * 100, x + bounds.ex * 100, y + bounds.ey * 100,
-        nullptr, false, nullptr);
+    const auto baseX = static_cast<std::uint32_t>(map->m_setting.iBaseX);
+    const auto baseY = static_cast<std::uint32_t>(map->m_setting.iBaseY);
+    const auto startX = static_cast<std::int32_t>(baseX + static_cast<std::uint32_t>(bounds.sx) * 100u);
+    const auto startY = static_cast<std::int32_t>(baseY + static_cast<std::uint32_t>(bounds.sy) * 100u);
+    const auto endX = static_cast<std::int32_t>(baseX + static_cast<std::uint32_t>(bounds.ex) * 100u);
+    const auto endY = static_cast<std::int32_t>(baseY + static_cast<std::uint32_t>(bounds.ey) * 100u);
+    const auto groupVnum = static_cast<std::uint32_t>(group);
+    CHARACTER* guard = CHARACTER_MANAGER::instance().SpawnGroup(groupVnum, mapIndex,
+        startX, startY, endX, endY, nullptr, false, nullptr);
     if (guard) {
         guard->SetEmpire(static_cast<BYTE>(empire));
         record.guards[region][slot] = guard;
-        record.guardGroups[region][slot] = group;
+        record.guardGroups[region][slot] = groupVnum;
     }
     return guard;
 }
@@ -347,7 +384,31 @@ void castle_save()
 
 bool castle_is_guard_vnum(DWORD vnum)
 {
-    return vnum - static_cast<DWORD>(11100) < 18;
+    return static_cast<std::uint32_t>(vnum) - 11100u < 18u;
+}
+
+// 08119fd0
+int castle_cost_of_hiring_guard(DWORD groupVnum)
+{
+    switch (static_cast<std::uint32_t>(groupVnum)) {
+        case 9501: case 9502:
+        case 9511: case 9512:
+        case 9521: case 9522:
+            return 1000000;
+
+        case 9503: case 9504:
+        case 9513: case 9514:
+        case 9523: case 9524:
+            return 3000000;
+
+        case 9505: case 9506:
+        case 9515: case 9516:
+        case 9525: case 9526:
+            return 10000000;
+
+        default:
+            return 0;
+    }
 }
 
 void castle_guard_die(CHARACTER* character, CHARACTER*)
@@ -437,7 +498,7 @@ void SendCastleEmpireNotice(const char* key, int empire)
     SendCastleNotice(notice);
 }
 
-CHARACTER* SpawnSiegeMob(DWORD vnum, int empire, const SECTREE_MAP& map)
+CHARACTER* SpawnSiegeMob(DWORD (*randomVnum)(), int empire, const SECTREE_MAP& map)
 {
     const auto& bounds = siegeBounds[empire];
     const int x = map.m_setting.iBaseX;
@@ -446,9 +507,14 @@ CHARACTER* SpawnSiegeMob(DWORD vnum, int empire, const SECTREE_MAP& map)
         return static_cast<std::int32_t>(
             static_cast<std::uint32_t>(base) + static_cast<std::uint32_t>(tile) * 100u);
     };
-    return CHARACTER_MANAGER::instance().SpawnMobRange(vnum, FN_castle_map_index(empire),
-        world(x, bounds.sx), world(y, bounds.sy), world(x, bounds.ex), world(y, bounds.ey),
-        false, false, false);
+    const auto startX = world(x, bounds.sx);
+    const auto startY = world(y, bounds.sy);
+    const auto endX = world(x, bounds.ex);
+    const auto endY = world(y, bounds.ey);
+    const auto mapIndex = FN_castle_map_index(empire);
+    const DWORD vnum = randomVnum();
+    return CHARACTER_MANAGER::instance().SpawnMobRange(vnum, mapIndex,
+        startX, startY, endX, endY, false, false, false);
 }
 
 // 081189e0
@@ -471,14 +537,16 @@ static void FN_warp_to_village(int empire)
     auto* map = SECTREE_MANAGER::instance().GetMap(FN_castle_map_index(siegeEmpire));
     if (!map)
         return;
+    const auto destinationMap = static_cast<std::int32_t>(g_start_map[empire]);
+    const auto destinationX = static_cast<std::int32_t>(g_start_position[empire][0]);
+    const auto destinationY = static_cast<std::int32_t>(g_start_position[empire][1]);
     for (const auto& entry : *map) {
         entry.second->ForEachEntity([&](LPENTITY entity) {
             if (!entity->IsType(0) || !entity->GetDesc())
                 return;
             auto* player = static_cast<CHARACTER*>(entity);
             if (player->GetEmpire() == empire)
-                player->WarpSet(g_start_position[empire][0], g_start_position[empire][1],
-                                g_start_map[empire]);
+                player->WarpSet(destinationX, destinationY, destinationMap);
         });
     }
 }
@@ -513,18 +581,20 @@ void castle_end_siege()
 EVENTFUNC(castle_siege_event)
 {
     auto* info = static_cast<CastleSiegeEventInfo*>(event->info);
-    info->pulse += passes_per_sec * 300;
-    if (info->pulse < passes_per_sec * 1800) {
+    const auto pulseRate = static_cast<std::uint32_t>(passes_per_sec);
+    info->pulse = static_cast<std::int32_t>(static_cast<std::uint32_t>(info->pulse) + pulseRate * 300u);
+    const auto defenseDuration = static_cast<std::int32_t>(pulseRate * 1800u);
+    if (info->pulse < defenseDuration) {
         SendCastleEmpireNotice(defenseContinues, siegeEmpire);
-        return passes_per_sec * 300;
+        return static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 300u);
     }
     if (s_siege_state == CASTLE_SIEGE_START) {
-        SendCastleEmpireNotice(defenseSucceeded, siegeEmpire);
-        SendCastleEmpireNotice(rewardWindow, siegeEmpire);
+        SendCastleEmpireNotice(defenseSucceeded, static_cast<BYTE>(siegeEmpire));
+        SendCastleEmpireNotice(rewardWindow, static_cast<BYTE>(siegeEmpire));
         s_siege_state = CASTLE_SIEGE_END;
         if (LC_IsJapan())
             FN_warp_losers(siegeEmpire);
-        return passes_per_sec * 1800;
+        return static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 1800u);
     }
     sieges[info->empire].siegeEvent = nullptr;
     if (s_siege_state == CASTLE_SIEGE_END) {
@@ -540,10 +610,12 @@ EVENTFUNC(castle_stone_event)
     const auto* map = SECTREE_MANAGER::instance().GetMap(FN_castle_map_index(siegeEmpire));
     if (map && info->spawnCount < 30) {
         for (int count = 0; count < 15; ++count)
-            SpawnSiegeMob(FN_random_stone(), info->empire, *map);
-        info->spawnCount += 15;
+            SpawnSiegeMob(FN_random_stone, info->empire, *map);
+        const auto pulseRate = static_cast<std::uint32_t>(passes_per_sec);
+        const auto nextDelay = static_cast<std::int32_t>(pulseRate * 1800u);
+        info->spawnCount = static_cast<std::int32_t>(static_cast<std::uint32_t>(info->spawnCount) + 15u);
         if (info->spawnCount < 30)
-            return passes_per_sec * 1800;
+            return nextDelay;
     }
     sieges[info->empire].stoneEvent = nullptr;
     return 0;
@@ -555,7 +627,7 @@ static void FN_spawn_tower(int empire, SECTREE_MAP* map)
     for (CHARACTER*& tower : sieges[empire].towers) {
         if (tower)
             continue;
-        tower = SpawnSiegeMob(FN_random_tower(), empire, *map);
+        tower = SpawnSiegeMob(FN_random_tower, empire, *map);
         if (tower)
             tower->SetEmpire(static_cast<BYTE>(empire));
         return;
@@ -597,44 +669,54 @@ void castle_start_siege(int empire)
     void* raw = nullptr;
     const DWORD siegeId = __AllocEventInfo(sizeof(CastleSiegeEventInfo), &raw);
     *static_cast<CastleSiegeEventInfo*>(raw) = {empire, 0};
-    sieges[empire].siegeEvent = event_create_ex(castle_siege_event, siegeId, passes_per_sec * 300,
+    const auto siegeDelay = static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 300u);
+    sieges[empire].siegeEvent = event_create_ex(castle_siege_event, siegeId, siegeDelay,
                                               const_cast<char*>("castle.cpp"), 0x25d);
 
     const DWORD stoneId = __AllocEventInfo(sizeof(CastleStoneEventInfo), &raw);
-    *static_cast<CastleStoneEventInfo*>(raw) = {empire, 0};
+    auto* stoneInfo = static_cast<CastleStoneEventInfo*>(raw);
+    stoneInfo->spawnCount = 0;
+    stoneInfo->empire = empire;
     sieges[empire].stoneEvent = event_create_ex(castle_stone_event, stoneId, passes_per_sec,
                                               const_cast<char*>("castle.cpp"), 0x267);
 }
 
 void castle_siege(int empire)
 {
-    auto& maps = SECTREE_MANAGER::instance();
-    if (!maps.GetMap(181) || !maps.GetMap(182) || !maps.GetMap(183))
+    if (!SECTREE_MANAGER::instance().GetMap(181) ||
+        !SECTREE_MANAGER::instance().GetMap(182) ||
+        !SECTREE_MANAGER::instance().GetMap(183))
         return;
     if (s_siege_state == CASTLE_SIEGE_NONE)
         castle_start_siege(empire);
-    else
+    else if (s_siege_state == CASTLE_SIEGE_START || s_siege_state == CASTLE_SIEGE_END)
         castle_end_siege();
 }
 
 void castle_tower_die(CHARACTER* character, CHARACTER* killer)
 {
-    if (!character || !killer || !IsCastleEmpire(siegeEmpire) ||
-        s_siege_state == CASTLE_SIEGE_NONE)
+    if (!character || !killer)
         return;
 
     const int killerEmpire = killer->GetEmpire();
+    const auto phase = s_siege_state;
+    if ((phase != CASTLE_SIEGE_START && phase != CASTLE_SIEGE_END) || !IsCastleEmpire(siegeEmpire))
+        return;
+
     SendCastleEmpireNotice(towerDestroyed, IsCastleEmpire(killerEmpire) ? killerEmpire : 0);
-    bool anyRemaining = false;
-    for (CHARACTER*& tower : sieges[siegeEmpire].towers) {
+    auto& towers = sieges[siegeEmpire].towers;
+    for (CHARACTER*& tower : towers) {
         if (tower == character)
             tower = nullptr;
-        anyRemaining |= tower != nullptr;
     }
+
+    bool anyRemaining = false;
+    for (const CHARACTER* tower : towers)
+        anyRemaining |= tower != nullptr;
     if (anyRemaining)
         return;
 
     SendCastleEmpireNotice(s_siege_state == CASTLE_SIEGE_START ? failedDefense : allTowersDestroyed,
-                           siegeEmpire);
+                           static_cast<BYTE>(siegeEmpire));
     castle_end_siege();
 }

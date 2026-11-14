@@ -712,7 +712,7 @@ void CQuestManager::QuestButton(unsigned int pid, unsigned int index)
 {
     PC* player = GetPC(pid);
     if (!player) {
-        _sys_err("QuestButton", 0x25d, "QUEST CLICK_EVENT no such pc id : %u", pid);
+        _sys_err("QuestButton", 0x25d, "QUEST CLICK_EVENT no such pc id : %d", static_cast<int>(pid));
     } else if (player->IsLoaded()) {
         m_mapNPC[0].OnButton(*player, index);
     } else if (CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid)) {
@@ -724,7 +724,7 @@ void CQuestManager::QuestInfo(unsigned int pid, unsigned int index)
 {
     PC* player = GetPC(pid);
     if (!player) {
-        _sys_err("QuestInfo", 0x245, "QUEST INFO_EVENT no such pc id : %u", pid);
+        _sys_err("QuestInfo", 0x245, "QUEST INFO_EVENT no such pc id : %d", static_cast<int>(pid));
     } else if (player->IsLoaded()) {
         m_mapNPC[0].OnInfo(*player, index);
     } else if (CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid)) {
@@ -915,10 +915,9 @@ void CQuestManager::DisconnectPC(CHARACTER* character)
 namespace quest {
 void CQuestManager::SetEventFlag(const std::string& name, int value)
 {
-    int& flag = m_mapEventFlag[name];
-    const int previous = flag;
+    const int previous = m_mapEventFlag[name];
     sys_log(0, "QUEST eventflag %s %d prev_value %d", name.c_str(), value, previous);
-    flag = value;
+    m_mapEventFlag[name] = value;
 
     typedef int CHARACTER_MANAGER::*Rate;
     static const struct {

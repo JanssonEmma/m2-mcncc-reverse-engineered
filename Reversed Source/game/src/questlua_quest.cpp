@@ -3,8 +3,10 @@
 #include "config.h"
 #include "../../libthecore/include/log.h"
 
+#include <cfenv>
 #include <cmath>
 #include <cstdint>
+#include <string>
 
 extern "C" {
 #include "../../liblua/include/lua.h"
@@ -19,14 +21,12 @@ PC* RunningPC()
     return pc && pc->GetRunningQuestState() ? pc : nullptr;
 }
 
-bool ReadRoundedValue(lua_State* state, int& value)
+std::int32_t ConvertRoundedValue(double rounded)
 {
-    if (!lua_isnumber(state, -1))
-        return false;
-    const double rounded = std::rint(lua_tonumber(state, -1));
-    value = rounded >= -2147483648.0 && rounded < 2147483648.0
-        ? static_cast<std::int32_t>(rounded) : INT32_MIN;
-    return true;
+    if (rounded >= -2147483648.0 && rounded < 2147483648.0)
+        return static_cast<std::int32_t>(rounded);
+    std::feraiseexcept(FE_INVALID);
+    return INT32_MIN;
 }
 }
 
@@ -46,79 +46,94 @@ int quest_done(lua_State*)
 
 int quest_set_title(lua_State* state)
 {
-    PC* pc = RunningPC();
-    if (pc && lua_isstring(state, -1))
-        pc->SetCurrentQuestTitle(lua_tostring(state, -1));
+    if (!lua_isstring(state, -1))
+        return 0;
+    const std::string value = lua_tostring(state, -1);
+    if (PC* pc = RunningPC())
+        pc->SetCurrentQuestTitle(value);
     return 0;
 }
 
 int quest_set_another_title(lua_State* state)
 {
-    PC* pc = CQuestManager::instance().GetCurrentPC();
-    if (pc && lua_isstring(state, 1) && lua_isstring(state, 2)) {
+    if (lua_isstring(state, 1) && lua_isstring(state, 2)) {
         const std::string title = lua_tostring(state, 2);
         const std::string name = lua_tostring(state, 1);
-        pc->SetQuestTitle(name, title);
+        if (PC* pc = CQuestManager::instance().GetCurrentPC())
+            pc->SetQuestTitle(name, title);
     }
     return 0;
 }
 
 int quest_set_clock_name(lua_State* state)
 {
-    PC* pc = RunningPC();
-    if (pc && lua_isstring(state, -1))
-        pc->SetCurrentQuestClockName(lua_tostring(state, -1));
+    if (!lua_isstring(state, -1))
+        return 0;
+    const std::string value = lua_tostring(state, -1);
+    if (PC* pc = RunningPC())
+        pc->SetCurrentQuestClockName(value);
     return 0;
 }
 
 int quest_set_clock_value(lua_State* state)
 {
+    if (!lua_isnumber(state, -1))
+        return 0;
+    const double rounded = std::rint(lua_tonumber(state, -1));
     PC* pc = RunningPC();
-    int value;
-    if (pc && ReadRoundedValue(state, value))
+    const auto value = ConvertRoundedValue(rounded);
+    if (pc)
         pc->SetCurrentQuestClockValue(value);
     return 0;
 }
 
 int quest_set_counter_name(lua_State* state)
 {
-    PC* pc = RunningPC();
-    if (pc && lua_isstring(state, -1))
-        pc->SetCurrentQuestCounterName(lua_tostring(state, -1));
+    if (!lua_isstring(state, -1))
+        return 0;
+    const std::string value = lua_tostring(state, -1);
+    if (PC* pc = RunningPC())
+        pc->SetCurrentQuestCounterName(value);
     return 0;
 }
 
 int quest_set_counter_value(lua_State* state)
 {
+    if (!lua_isnumber(state, -1))
+        return 0;
+    const double rounded = std::rint(lua_tonumber(state, -1));
     PC* pc = RunningPC();
-    int value;
-    if (pc && ReadRoundedValue(state, value))
+    const auto value = ConvertRoundedValue(rounded);
+    if (pc)
         pc->SetCurrentQuestCounterValue(value);
     return 0;
 }
 
 int quest_set_icon_file(lua_State* state)
 {
-    PC* pc = RunningPC();
-    if (pc && lua_isstring(state, -1))
-        pc->SetCurrentQuestIconFile(lua_tostring(state, -1));
+    if (!lua_isstring(state, -1))
+        return 0;
+    const std::string value = lua_tostring(state, -1);
+    if (PC* pc = RunningPC())
+        pc->SetCurrentQuestIconFile(value);
     return 0;
 }
 
 int quest_setstate(lua_State* state)
 {
-    CQuestManager& manager = CQuestManager::instance();
     const char* next = lua_tostring(state, -1);
+    CQuestManager& manager = CQuestManager::instance();
     if (!next) {
         manager.QuestError("quest_setstate", 0x70, "state name is empty");
         return 0;
     }
 
     QuestState* running = manager.GetCurrentState();
+    PC* pc = manager.GetCurrentPC();
     if (!running || running->co != state)
         return luaL_error(state, "running thread != current thread???");
 
-    if (PC* pc = manager.GetCurrentPC()) {
+    if (pc) {
         const std::string nextState = lua_tostring(state, -1);
         if (test_server)
             sys_log(0, "questlua->setstate( %s , %s )", pc->GetCurrentQuestName().c_str(), nextState.c_str());

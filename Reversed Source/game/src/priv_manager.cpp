@@ -11,7 +11,7 @@
 #include <cstdint>
 #include <cstdio>
 
-void SendLog(const char* text);
+#include "cmd.h"
 void SendNotice(const char* text);
 #include <algorithm>
 

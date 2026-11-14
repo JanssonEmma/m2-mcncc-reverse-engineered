@@ -77,6 +77,8 @@ typedef DWORD MOTION_KEY;
 class CMotionSet {
 public:
     typedef std::map<DWORD,CMotion*> TContainer;
+    typedef TContainer::iterator iterator;
+    typedef TContainer::const_iterator const_iterator;
     CMotionSet();
     ~CMotionSet();
     void Insert(DWORD key,CMotion* motion);
@@ -88,6 +90,7 @@ protected:
 class CMotionManager : public singleton<CMotionManager> {
 public:
     typedef std::map<DWORD,CMotionSet*> TContainer;
+    typedef TContainer::iterator iterator;
     CMotionManager();
     virtual ~CMotionManager();
     bool Build();

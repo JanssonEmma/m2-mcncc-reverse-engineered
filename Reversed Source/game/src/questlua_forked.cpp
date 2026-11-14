@@ -5,8 +5,7 @@
 #include "p2p.h"
 #include "questmanager.h"
 #include "../../libthecore/include/utils.h"
-#include <cmath>
-#include <limits>
+#include <cfenv>
 #include <cstdint>
 #include <map>
 
@@ -367,9 +366,12 @@ BYTE CurrentForkedEmpire()
 
 int ForkedLuaNumber(lua_State* state)
 {
-    const auto value = std::trunc(lua_tonumber(state, 1));
-    return value >= std::numeric_limits<int>::min() && value <= std::numeric_limits<int>::max()
-        ? static_cast<int>(value) : std::numeric_limits<int>::min();
+    const lua_Number value = lua_tonumber(state, 1);
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
+        return INT32_MIN;
+    }
+    return static_cast<std::int32_t>(value);
 }
 
 int PushForkedNumber(lua_State* state, int value)
@@ -391,10 +393,12 @@ int ForkedDeadLimit()
     return CQuestManager::instance().GetEventFlag("threeway_war_dead_count");
 }
 
-void LogForkedDeadCount(LPCHARACTER character, const char* operation)
+void LogForkedDeadCount(LPCHARACTER character, const char* format)
 {
-    if (test_server)
-        character->ChatPacket(1, "%s DeadCount %d %d", operation, character->m_iKillCount, ForkedDeadLimit());
+    if (test_server) {
+        const int limit = ForkedDeadLimit();
+        character->ChatPacket(1, format, character->GetKillCount(), limit);
+    }
 }
 
 int PushForkedPassPath(lua_State* state, int empire)
@@ -409,7 +413,7 @@ int PushForkedPassPath(lua_State* state, int empire)
 int forked_dec_dead_count(lua_State*)
 {
     if (LPCHARACTER character = CurrentForkedCharacter())
-        AddForkedKillCount(character->m_iKillCount, -1);
+        character->DecKillCount();
     return 0;
 }
 
@@ -417,7 +421,7 @@ int forked_clear_dead_count(lua_State*)
 {
     if (LPCHARACTER character = CurrentForkedCharacter()) {
         character->ClearKillCount();
-        LogForkedDeadCount(character, "clear");
+        LogForkedDeadCount(character, "clear DeadCount %d %d");
     }
     return 0;
 }
@@ -425,8 +429,8 @@ int forked_clear_dead_count(lua_State*)
 int forked_set_dead_count(lua_State*)
 {
     if (LPCHARACTER character = CurrentForkedCharacter()) {
-        character->m_iKillCount = ForkedDeadLimit();
-        LogForkedDeadCount(character, "set");
+        character->SetKillCount(ForkedDeadLimit());
+        LogForkedDeadCount(character, "set DeadCount %d %d");
     }
     return 0;
 }
@@ -435,10 +439,10 @@ int forked_get_dead_count(lua_State* state)
 {
     LPCHARACTER character = CurrentForkedCharacter();
     if (character)
-        LogForkedDeadCount(character, "get");
-    lua_pushnumber(state, character ? character->m_iKillCount : 0);
+        LogForkedDeadCount(character, "get DeadCount %d %d");
+    lua_pushnumber(state, character ? character->GetKillCount() : 0);
     if (character)
-        LogForkedDeadCount(character, "get");
+        LogForkedDeadCount(character, "get DeadCount %d %d");
     return 1;
 }
 
@@ -532,7 +536,7 @@ int forked_sungzi_mapindex(lua_State* state)
     const int map = GetSungziMapIndex();
     lua_pushnumber(state, map);
     if (test_server)
-        sys_log(0, "forked_sungzi_map_index_by_empire %d", map);
+        sys_log(0, "forked_sungzi_map_index_by_empire %d", GetSungziMapIndex());
     return 1;
 }
 
@@ -543,10 +547,11 @@ int forked_pass_mapindex(lua_State* state)
 
 int forked_pass_mapindex_by_empire(lua_State* state)
 {
-    const int map = GetPassMapIndex(static_cast<BYTE>(ForkedLuaNumber(state)));
+    const auto empire = static_cast<BYTE>(ForkedLuaNumber(state));
+    const int map = GetPassMapIndex(empire);
     lua_pushnumber(state, map);
     if (test_server)
-        sys_log(0, "forked_pass_map_index_by_empire %d", map);
+        sys_log(0, "forked_pass_map_index_by_empire %d", GetPassMapIndex(empire));
     return 1;
 }
 
@@ -554,7 +559,8 @@ int forked_get_sungzi_path(lua_State* state)
 {
     const char* path = GetSungziMapPath();
     lua_pushstring(state, path);
-    sys_log(0, "[SUNGZI_PATH] Sungzi %s", path ? path : "");
+    const char* logPath = GetSungziMapPath();
+    sys_log(0, "[SUNGZI_PATH] Sungzi %s", logPath ? logPath : "");
     return 1;
 }
 

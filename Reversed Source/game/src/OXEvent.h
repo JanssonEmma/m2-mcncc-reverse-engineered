@@ -2,6 +2,7 @@
 #define MCNCC_GAME_OXEVENT_H
 #include "../../common/singleton.h"
 #include "event.h"
+#include <cstdint>
 #include <map>
 #include <set>
 #include <vector>
@@ -41,9 +42,9 @@ public:
     bool EnterAttender(CHARACTER* character);
     bool EnterAudience(CHARACTER* character);
 private:
-    std::map<DWORD, DWORD> m_map_char;
-    std::map<DWORD, DWORD> m_map_attender;
-    std::map<DWORD, DWORD> m_map_miss;
+    std::map<std::uint32_t, std::uint32_t> m_map_char;
+    std::map<std::uint32_t, std::uint32_t> m_map_attender;
+    std::map<std::uint32_t, std::uint32_t> m_map_miss;
     std::vector<std::vector<tag_Quiz> > m_vec_quiz;
     std::set<LPEVENT> m_timedEvents;
 };

@@ -35,6 +35,6 @@ inline int DISTANCE_APPROX(int dx,int dy) {
 void str_lower(const char* src,char* dest,int len);
 
 float gauss_random(float avg,float sigma);
-double gauss_random_extended(float avg,float sigma);
+long double gauss_random_extended(float avg,float sigma);
 
 #endif

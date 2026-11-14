@@ -6,6 +6,7 @@
 #include "questpc.h"
 #include "../../libthecore/include/log.h"
 
+#include <cfenv>
 #include <cmath>
 #include <cstdint>
 #include <limits>
@@ -22,8 +23,10 @@ void combine_lua_string(lua_State* state, std::ostringstream& output);
 namespace {
 std::int32_t PartyFlagValue(lua_Number value)
 {
-    if (!(value > -2147483649.0 && value < 2147483648.0))
+    if (!(value > -2147483649.0 && value < 2147483648.0)) {
+        std::feraiseexcept(FE_INVALID);
         return INT32_MIN;
+    }
     return static_cast<std::int32_t>(value);
 }
 
@@ -33,34 +36,84 @@ CParty* CurrentParty()
     return character ? character->GetParty() : nullptr;
 }
 
-void SendCinematic(CParty& party, const std::string& script)
+void SendCinematicPacket(CHARACTER* character, const packet_script& packet, const char* data, std::size_t len)
+{
+    DESC* desc = character->GetDesc();
+    sys_log(0, "CINEMASEND_TRY %s %p", character->GetName(), static_cast<void*>(desc));
+    if (desc) {
+        sys_log(0, "CINEMASEND %s", character->GetName());
+        desc->BufferedPacket(&packet, sizeof(packet));
+        desc->Packet(data, len);
+    }
+}
+}
+
+struct FCinematicSender
+{
+    const char* str;
+    packet_script packet;
+    std::size_t len;
+
+    void operator()(CHARACTER* character)
+    {
+        SendCinematicPacket(character, packet, str, len);
+    }
+};
+
+struct FRunCinematicSender
+{
+    std::string data;
+    packet_script packet;
+
+    void operator()(CHARACTER* character)
+    {
+        SendCinematicPacket(character, packet, data.data(), data.size());
+    }
+};
+
+namespace {
+void SendCinematic(CParty& party, const std::string& script, bool run)
 {
     if (script.size() > std::numeric_limits<WORD>::max() - sizeof(packet_script))
         return;
-    packet_script packet = {
+    const packet_script packet = {
         0x2d, static_cast<WORD>(script.size() + sizeof(packet_script)), 5,
         static_cast<WORD>(script.size())
     };
-    party.ForEachNearMember([&](CHARACTER* character) {
-        DESC* desc = character->GetDesc();
-        sys_log(0, "CINEMASEND_TRY %s %p", character->GetName(), static_cast<void*>(desc));
-        if (desc) {
-            sys_log(0, "CINEMASEND %s", character->GetName());
-            desc->BufferedPacket(&packet, sizeof(packet));
-            desc->Packet(script.data(), script.size());
-        }
-    });
+    if (run)
+        party.ForEachNearMember(FRunCinematicSender{script, packet});
+    else
+        party.ForEachNearMember(FCinematicSender{script.data(), packet, script.size()});
+}
 }
 
+struct FPartyChat
+{
+    int iChatType;
+    const char* str;
+
+    void operator()(CHARACTER* character)
+    {
+        character->ChatPacket(static_cast<BYTE>(iChatType), "%s", str);
+    }
+};
+
+struct FPartyClearReady
+{
+    void operator()(CHARACTER* character)
+    {
+        character->RemoveAffect(212);
+    }
+};
+
+namespace {
 int PartyChat(lua_State* state, BYTE type)
 {
     std::ostringstream message;
     combine_lua_string(state, message);
     if (CParty* party = CurrentParty()) {
         const std::string text = message.str();
-        party->ForEachOnlineMember([&](CHARACTER* character) {
-            character->ChatPacket(type, "%s", text.c_str());
-        });
+        party->ForEachOnlineMember(FPartyChat{type, text.c_str()});
     }
     return 0;
 }
@@ -70,7 +123,13 @@ int party_is_leader(lua_State* state)
 {
     CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
     CParty* party = character ? character->GetParty() : nullptr;
-    lua_pushboolean(state, party && party->GetLeaderPID() == character->GetPlayerID());
+    bool isLeader = false;
+    if (party) {
+        const auto leaderId = static_cast<std::uint32_t>(party->GetLeaderPID());
+        const auto playerId = static_cast<std::uint32_t>(character->GetPlayerID());
+        isLeader = leaderId == playerId;
+    }
+    lua_pushboolean(state, isLeader);
     return 1;
 }
 
@@ -97,6 +156,23 @@ int party_get_flag(lua_State* state)
     return 1;
 }
 
+namespace {
+struct FSetQuestFlag
+{
+    std::string flagname;
+    int value;
+
+    void operator()(CHARACTER* member)
+    {
+        if (member->GetDesc()) {
+            if (PC* pc = CQuestManager::instance().GetPCForce(member->GetPlayerID()))
+                pc->SetFlag(flagname, value, false);
+        }
+    }
+};
+}
+
+
 int party_set_quest_flag(lua_State* state)
 {
     CQuestManager& manager = CQuestManager::instance();
@@ -104,14 +180,11 @@ int party_set_quest_flag(lua_State* state)
     if (!character || !manager.GetCurrentPC() || !lua_isstring(state, 1))
         return 0;
 
-    const std::string name = manager.GetCurrentQuestName() + "." + lua_tostring(state, 1);
+    std::string name = manager.GetCurrentQuestName();
+    name += '.';
+    name += lua_tostring(state, 1);
     const auto value = PartyFlagValue(std::rint(lua_tonumber(state, 2)));
-    const auto apply = [&](CHARACTER* member) {
-        if (member->GetDesc()) {
-            if (PC* pc = manager.GetPCForce(member->GetPlayerID()))
-                pc->SetFlag(name, value, false);
-        }
-    };
+    FSetQuestFlag apply{name, value};
     if (CParty* party = character->GetParty())
         party->ForEachOnlineMember(apply);
     else
@@ -125,7 +198,7 @@ int party_syschat(lua_State* state) { return PartyChat(state, 1); }
 int party_get_near_count(lua_State* state)
 {
     CParty* party = CurrentParty();
-    lua_pushnumber(state, party ? party->GetNearMemberCount() : 0);
+    lua_pushnumber(state, party ? static_cast<std::uint32_t>(party->GetNearMemberCount()) : 0u);
     return 1;
 }
 
@@ -134,9 +207,13 @@ int party_show_cinematic(lua_State* state)
     if (lua_isstring(state, 1)) {
         const char* script = lua_tostring(state, 1);
         sys_log(0, "CINEMA %s", script);
-        if (CParty* party = CurrentParty()) {
+        CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+        CParty* party = character ? character->GetParty() : nullptr;
+        if (party) {
             party->Update();
-            SendCinematic(*party, lua_tostring(state, 1));
+            const char* payload = lua_tostring(state, 1);
+            if (CParty* updatedParty = character->GetParty())
+                SendCinematic(*updatedParty, payload, false);
         }
     }
     return 0;
@@ -147,9 +224,14 @@ int party_run_cinematic(lua_State* state)
     if (lua_isstring(state, 1)) {
         const char* script = lua_tostring(state, 1);
         sys_log(0, "RUN_CINEMA %s", script);
-        if (CParty* party = CurrentParty()) {
+        CHARACTER* character = CQuestManager::instance().GetCurrentCharacterPtr();
+        CParty* party = character ? character->GetParty() : nullptr;
+        if (party) {
             party->Update();
-            SendCinematic(*party, std::string("[RUN_CINEMA value;") + lua_tostring(state, 1) + "]");
+            const char* payload = lua_tostring(state, 1);
+            const std::string command = std::string("[RUN_CINEMA value;") + payload + "]";
+            if (CParty* updatedParty = character->GetParty())
+                SendCinematic(*updatedParty, command, true);
         }
     }
     return 0;
@@ -165,7 +247,7 @@ int party_get_max_level(lua_State* state)
 int party_clear_ready(lua_State*)
 {
     if (CParty* party = CurrentParty())
-        party->ForEachNearMember([](CHARACTER* character) { character->RemoveAffect(212); });
+        party->ForEachNearMember(FPartyClearReady{});
     return 0;
 }
 

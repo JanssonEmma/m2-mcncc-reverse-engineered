@@ -1,7 +1,6 @@
 #include "char_manager.h"
 #include "db.h"
 #include "locale.hpp"
-#include <algorithm>
 #include <cstdint>
 #include "mining.h"
 #include "char.h"
@@ -52,17 +51,22 @@ int GetFractionCount()
     int roll = number_ex(1, 100, const_cast<char*>("mining.cpp"), 0x61);
     for (const auto& fraction : fraction_info)
     {
-        if (roll <= fraction[0])
-            return number_ex(fraction[1], fraction[2], const_cast<char*>("mining.cpp"), 0x65);
-        roll -= fraction[0];
+        const int weight = fraction[0];
+        if (roll <= weight) {
+            const int upper = fraction[2];
+            const int lower = fraction[1];
+            return number_ex(lower, upper, const_cast<char*>("mining.cpp"), 0x65);
+        }
+        roll -= weight;
     }
     return 0;
 }
 
 DWORD GetRefineFromRawOre(DWORD raw)
 {
+    const auto vnum = static_cast<std::uint32_t>(raw);
     for (const OreInfo& ore : info)
-        if (ore.raw == raw)
+        if (ore.raw == vnum)
             return ore.refined;
     return 0;
 }
@@ -73,9 +77,12 @@ int GetOrePct(CHARACTER* character)
     if (!pick || !Pick_Check(*pick))
         return 0;
 
-    const int grade = std::clamp(pick->GetRefineLevel(), 0, 9);
     // The 2009 executable passes zero as the mining skill level.
-    return 30 + SkillLevelAddPct[0] + PickGradeAddPct[grade];
+    const int skillBonus = SkillLevelAddPct[MINMAX(0, 0, 40)];
+    const int refineLevel = pick->GetRefineLevel();
+    const auto baseChance = 30u + static_cast<std::uint32_t>(skillBonus);
+    const int grade = MINMAX(0, refineLevel, 9);
+    return static_cast<std::int32_t>(baseChance + static_cast<std::uint32_t>(PickGradeAddPct[grade]));
 }
 
 void Pick_IncCurExp(CItem& pick)
@@ -109,15 +116,20 @@ void OreDrop(CHARACTER* ch, DWORD vein)
         return;
     }
 
-    const auto x = static_cast<std::uint32_t>(ch->GetX()) +
-        number_ex(-200, 200, const_cast<char*>("mining.cpp"), 0x80);
-    const auto y = static_cast<std::uint32_t>(ch->GetY()) +
-        number_ex(-200, 200, const_cast<char*>("mining.cpp"), 0x81);
+    const auto baseX = static_cast<std::uint32_t>(ch->GetX());
+    const int offsetX = number_ex(-200, 200, const_cast<char*>("mining.cpp"), 0x80);
+    const auto x = baseX + offsetX;
+    const auto baseY = static_cast<std::uint32_t>(ch->GetY());
+    const int offsetY = number_ex(-200, 200, const_cast<char*>("mining.cpp"), 0x81);
+    const auto y = baseY + offsetY;
     const PIXEL_POSITION position = {static_cast<std::int32_t>(x), static_cast<std::int32_t>(y), 0};
-    item->AddToGround(ch->GetMapIndex(), position);
+    item->AddToGround(static_cast<std::int32_t>(ch->GetMapIndex()), position);
     item->StartDestroyEvent();
     item->SetOwnership(ch, 15);
-    DBManager::instance().SendMoneyLog(8, item->GetVnum(), item->GetCount());
+    const auto* proto = item->GetProto();
+    const int count = static_cast<std::int32_t>(item->GetCount());
+    const DWORD vnum = proto ? proto->dwVnum : 0;
+    DBManager::instance().SendMoneyLog(8, vnum, count);
 }
 
 void PracticePick(CHARACTER* character, CItem* item)
@@ -133,8 +145,10 @@ void PracticePick(CHARACTER* character, CItem* item)
     if (!Pick_Refinable(pick))
     {
         Pick_IncCurExp(pick);
-        ch.ChatPacket(1, locale_find("\260\356\261\252\300\314\300\307\040\274\366\267\303\265\265\260\241\040\301\365\260\241\307\317\277\264\275\300\264\317\264\331\041\040\050\045\144\057\045\144\051", g_iUseLocale),
-            Pick_GetCurExp(pick), Pick_GetMaxExp(pick));
+        const int maxExp = Pick_GetMaxExp(pick);
+        const int currentExp = Pick_GetCurExp(pick);
+        const char* message = locale_find("\260\356\261\252\300\314\300\307\040\274\366\267\303\265\265\260\241\040\301\365\260\241\307\317\277\264\275\300\264\317\264\331\041\040\050\045\144\057\045\144\051", g_iUseLocale);
+        ch.ChatPacket(1, message, currentExp, maxExp);
         if (!Pick_Refinable(pick))
             return;
     }
@@ -150,9 +164,8 @@ struct MiningInfo { std::uint32_t pid, vein; };
 long mining_event(LPEVENT event)
 {
     const auto* info = static_cast<const MiningInfo*>(event->info);
-    CHARACTER_MANAGER& chars = CHARACTER_MANAGER::instance();
-    CHARACTER* ch = chars.FindByPID(info->pid);
-    CHARACTER* vein = chars.Find(info->vein);
+    CHARACTER* ch = CHARACTER_MANAGER::instance().FindByPID(info->pid);
+    CHARACTER* vein = CHARACTER_MANAGER::instance().Find(info->vein);
     if (!ch)
         return 0;
 
@@ -179,8 +192,9 @@ long mining_event(LPEVENT event)
 
 DWORD GetRawOreFromLoad(DWORD vein)
 {
+    const auto vnum = static_cast<std::uint32_t>(vein);
     for (const OreInfo& ore : info)
-        if (ore.vein == vein)
+        if (ore.vein == vnum)
             return ore.raw;
     return 0;
 }
@@ -247,13 +261,15 @@ int Pick_GetMaxExp(CItem& pick)
 
 bool Pick_Refinable(CItem& pick)
 {
-    return Pick_GetCurExp(pick) >= Pick_GetMaxExp(pick);
+    const int currentExp = Pick_GetCurExp(pick);
+    const int maxExp = Pick_GetMaxExp(pick);
+    return currentExp >= maxExp;
 }
 
 bool Pick_IsRefineSuccess(CItem& pick)
 {
     const int roll = number_ex(1, 100, const_cast<char*>("mining.cpp"), 0xc4);
-    return roll <= pick.GetValue(3);
+    return roll <= static_cast<std::int32_t>(pick.GetValue(3));
 }
 
 void CHEAT_MAX_PICK(CHARACTER* character, CItem* pick)
@@ -261,7 +277,9 @@ void CHEAT_MAX_PICK(CHARACTER* character, CItem* pick)
     if (!pick || !Pick_Check(*pick))
         return;
     Pick_MaxCurExp(*pick);
-    character->ChatPacket(1, LC_TEXT("\260\356\261\252\300\314 \274\366\267\303\265\265\260\241 \303\326\264\353(%d)\260\241 \265\307\276\372\275\300\264\317\264\331."), Pick_GetCurExp(*pick));
+    const int currentExp = Pick_GetCurExp(*pick);
+    const char* message = LC_TEXT("\260\356\261\252\300\314 \274\366\267\303\265\265\260\241 \303\326\264\353(%d)\260\241 \265\307\276\372\275\300\264\317\264\331.");
+    character->ChatPacket(1, message, currentExp);
 }
 
 int RealRefinePick(LPCHARACTER character, LPITEM pick)
@@ -270,8 +288,9 @@ int RealRefinePick(LPCHARACTER character, LPITEM pick)
         return 2;
 
     auto& logs = LogManager::instance();
-    const char* name = pick->GetName();
+    auto& items = ITEM_MANAGER::instance();
     if (!Pick_Check(*pick)) {
+        const char* name = pick->GetName();
         _sys_err("RealRefinePick", 0xd0, "REFINE_PICK_HACK pid(%lu) item(%s:%d) type(%d)",
                  character->GetPlayerID(), name ? name : "", static_cast<int>(pick->GetID()), pick->GetType());
         logs.Query("INSERT INTO refinelog%s VALUES(%lu, '%s', %lu, %d, NOW(), 1, 'PICK_HACK')",
@@ -281,21 +300,38 @@ int RealRefinePick(LPCHARACTER character, LPITEM pick)
     if (!Pick_Refinable(*pick))
         return 2;
 
-    const int stage = static_cast<int>(pick->GetValue(0) / 10);
+    const auto stage = static_cast<std::int32_t>(pick->GetValue(0)) / 10;
     const bool success = Pick_IsRefineSuccess(*pick);
+    const auto itemId = pick->GetID();
+    const char* name = pick->GetName();
+    const auto playerId = character->GetPlayerID();
+    const char* tablePostfix = get_table_postfix();
     logs.Query("INSERT INTO refinelog%s VALUES(%lu, '%s', %lu, %d, NOW(), %d, 'PICK')",
-               get_table_postfix(), character->GetPlayerID(), name, pick->GetID(), stage, success);
-    const DWORD replacementVnum = success ? pick->GetProto()->dwRefinedVnum : pick->GetValue(4);
-    auto& items = ITEM_MANAGER::instance();
-    LPITEM replacement = items.CreateItem(replacementVnum, 1, 0, false, -1);
+               tablePostfix, playerId, name, itemId, stage, success);
+    const auto replacementVnum = success
+        ? static_cast<std::uint32_t>(pick->GetRefinedVnum())
+        : static_cast<std::uint32_t>(pick->GetValue(4));
+    LPITEM replacement = ITEM_MANAGER::instance().CreateItem(replacementVnum, 1, 0, false, -1);
     if (!replacement)
         return 2;
 
     const BYTE cell = pick->GetCell();
     items.RemoveItem(pick, "REMOVE (REFINE PICK)");
     replacement->AddToCharacter(character, cell);
-    logs.ItemLog(character->GetPlayerID(), character->GetX(), character->GetY(), replacement->GetID(),
-                 success ? "REFINE PICK SUCCESS" : "REFINE PICK FAIL", replacement->GetName());
-    return success ? 1 : 0;
+    const char* replacementName = replacement->GetName();
+    if (success) {
+        const auto replacementId = replacement->GetID();
+        const auto x = character->GetX();
+        const auto y = character->GetY();
+        const auto pid = character->GetPlayerID();
+        logs.ItemLog(pid, x, y, replacementId, "REFINE PICK SUCCESS", replacementName);
+        return 1;
+    }
+    const auto y = character->GetY();
+    const auto replacementId = replacement->GetID();
+    const auto pid = character->GetPlayerID();
+    const auto x = character->GetX();
+    logs.ItemLog(pid, x, y, replacementId, "REFINE PICK FAIL", replacementName);
+    return 0;
 }
 }

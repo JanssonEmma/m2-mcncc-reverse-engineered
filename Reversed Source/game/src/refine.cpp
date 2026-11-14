@@ -10,8 +10,10 @@ bool CRefineManager::Initialize(TRefineTable* table, int size)
 {
     for (int i = 0; i < size; ++i) {
         const TRefineTable& row = table[i];
-        sys_log(0, "REFINE %d prob %d cost %d", static_cast<int>(row.id),
-                static_cast<int>(row.prob), static_cast<int>(row.cost));
+        const int cost = static_cast<int>(row.cost);
+        const int probability = static_cast<int>(row.prob);
+        const int id = static_cast<int>(row.id);
+        sys_log(0, "REFINE %d prob %d cost %d", id, probability, cost);
         m_map_RefineRecipe.insert(std::make_pair(static_cast<DWORD>(row.id), row));
     }
     sys_log(0, "REFINE: COUNT %d", static_cast<int>(m_map_RefineRecipe.size()));

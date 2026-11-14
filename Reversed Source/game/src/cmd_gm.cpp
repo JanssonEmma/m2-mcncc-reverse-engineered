@@ -327,16 +327,22 @@ void do_duel(CHARACTER* character, char* argument, int, int)
 
 void do_horse_state(CHARACTER* character, char*, int, int)
 {
-    const int health = character->GetHorseHealth();
-    const int maxHealth = character->GetHorseMaxHealth();
-    const int stamina = character->GetHorseStamina();
-    const int maxStamina = character->GetHorseMaxStamina();
     character->ChatPacket(1, "Horse Information:");
     character->ChatPacket(1, "    Level  %d", character->GetHorseLevel());
-    character->ChatPacket(1, "    Health %d/%d (%d%%)", health, maxHealth,
-                          maxHealth ? health * 100 / maxHealth : 0);
-    character->ChatPacket(1, "    Stam   %d/%d (%d%%)", stamina, maxStamina,
-                          maxStamina ? stamina * 100 / maxStamina : 0);
+
+    const int healthForPercent = character->GetHorseHealth();
+    const int healthDivisor = character->GetHorseMaxHealth();
+    const int healthPercent = healthDivisor ? healthForPercent * 100 / healthDivisor : 0;
+    const int maxHealth = character->GetHorseMaxHealth();
+    const int health = character->GetHorseHealth();
+    character->ChatPacket(1, "    Health %d/%d (%d%%)", health, maxHealth, healthPercent);
+
+    const int staminaForPercent = character->GetHorseStamina();
+    const int staminaDivisor = character->GetHorseMaxStamina();
+    const int staminaPercent = staminaDivisor ? staminaForPercent * 100 / staminaDivisor : 0;
+    const int maxStamina = character->GetHorseMaxStamina();
+    const int stamina = character->GetHorseStamina();
+    character->ChatPacket(1, "    Stam   %d/%d (%d%%)", stamina, maxStamina, staminaPercent);
 }
 
 void do_horse_level(CHARACTER* character, char* argument, int, int)
@@ -389,12 +395,15 @@ void do_horse_set_stat(CHARACTER* character, char* argument, int, int)
         character->ChatPacket(1, "Usage : /horse_set_stat <hp> <stamina>");
         return;
     }
-    const int health = std::clamp(std::strtol(hp, nullptr, 10), 0L,
-                                  static_cast<long>(character->GetHorseMaxHealth()));
-    const int stamina = std::clamp(std::strtol(sp, nullptr, 10), 0L,
-                                   static_cast<long>(character->GetHorseMaxStamina()));
-    character->UpdateHorseHealth(health - character->GetHorseHealth(), true);
-    character->UpdateHorseStamina(stamina - character->GetHorseStamina(), true);
+
+    const auto health = std::clamp(std::strtoll(hp, nullptr, 10), -2147483648LL, 2147483647LL);
+    const auto stamina = std::clamp(std::strtoll(sp, nullptr, 10), -2147483648LL, 2147483647LL);
+    const auto healthDelta = static_cast<unsigned int>(health) -
+                             static_cast<unsigned int>(character->GetHorseHealth());
+    character->UpdateHorseHealth(static_cast<int>(healthDelta), true);
+    const auto staminaDelta = static_cast<unsigned int>(stamina) -
+                              static_cast<unsigned int>(character->GetHorseStamina());
+    character->UpdateHorseStamina(static_cast<int>(staminaDelta), true);
 }
 
 void PrintItemLog();
@@ -797,6 +806,29 @@ int GMTargetDistance(CHARACTER& target, CHARACTER& origin)
 }
 }
 
+namespace {
+struct FuncWeaken
+{
+    CHARACTER* character;
+    bool all;
+
+    void operator()(LPENTITY entity)
+    {
+        if (!entity->IsType(0))
+            return;
+        auto* target = static_cast<CHARACTER*>(entity);
+        if (!target->IsNPC())
+            return;
+
+        const int distance = GMTargetDistance(*target, *character);
+        if (distance < 1000 || all) {
+            const auto delta = static_cast<std::int32_t>(10U - static_cast<std::uint32_t>(target->GetHP()));
+            target->PointChange(POINT_HP, delta, false, false);
+        }
+    }
+};
+}
+
 void do_weaken(CHARACTER* character, char* argument, int, int)
 {
     SECTREE* tree = character->GetSectree();
@@ -805,15 +837,7 @@ void do_weaken(CHARACTER* character, char* argument, int, int)
     char arg[256];
     one_argument(argument, arg);
     const bool all = std::strcmp(arg, "all") == 0;
-    auto weaken = [character, all](LPENTITY entity) {
-        if (!entity->IsType(0))
-            return;
-        auto* target = static_cast<CHARACTER*>(entity);
-        if (target->GetCharType() != CHAR_TYPE_PC && (all || GMTargetDistance(*target, *character) < 1000)) {
-            const auto delta = static_cast<std::int32_t>(10U - static_cast<std::uint32_t>(target->GetHP()));
-            target->PointChange(POINT_HP, delta, false, false);
-        }
-    };
+    FuncWeaken weaken{character, all};
     tree->ForEachAround(weaken);
 }
 
@@ -1171,7 +1195,7 @@ void do_threeway_war_regen(CHARACTER* character, char*, int, int)
 void do_threeway_war_myinfo(CHARACTER* character, char*, int, int)
 {
     character->ChatPacket(1, "%s", LC_TEXT("\263\252\300\307 \273\357\260\305\270\256 \301\370\307\340\301\244\272\270"));
-    character->ChatPacket(1, "Deadcount %d KillingCount %d", character->m_iKillCount, character->m_iKillingCount);
+    character->ChatPacket(1, "Deadcount %d KillingCount %d", character->GetKillCount(), character->GetKillingCount());
 }
 
 void do_siege(CHARACTER*, char*, int, int)
@@ -1257,7 +1281,7 @@ void do_test(CHARACTER* character, char*, int, int)
 
 void do_detaillog(CHARACTER* character, char*, int, int)
 {
-    character->ToggleDetailLog();
+    character->DetailLog();
 }
 
 void do_monsterlog(CHARACTER* character, char*, int, int)
@@ -1837,6 +1861,27 @@ void do_mob_map(CHARACTER* character, char* argument, int, int)
         character->ChatPacket(1, "Spawn failed.");
 }
 
+namespace {
+struct FuncPurge
+{
+    LPCHARACTER m_pkGM;
+    bool m_bAll;
+
+    void operator()(LPENTITY entity)
+    {
+        if (!entity->IsType(0))
+            return;
+        auto* target = static_cast<CHARACTER*>(entity);
+        const int distance = GMTargetDistance(*target, *m_pkGM);
+        if (!m_bAll && distance >= 1000)
+            return;
+        sys_log(0, "PURGE: %s %d", target->GetName(), distance);
+        if (target->IsNPC())
+            CHARACTER_MANAGER::instance().DestroyCharacter(target);
+    }
+};
+}
+
 void do_purge(CHARACTER* character, char* argument, int, int)
 {
     char option[256];
@@ -1845,17 +1890,7 @@ void do_purge(CHARACTER* character, char* argument, int, int)
     SECTREE* sector = character->GetSectree();
     if (!sector)
         return;
-    auto purge = [character, all](CEntity* entity) {
-        if (!entity->IsType(0))
-            return;
-        CHARACTER* target = static_cast<CHARACTER*>(entity);
-        const int distance = GMTargetDistance(*target, *character);
-        if (!all && distance >= 1000)
-            return;
-        sys_log(0, "PURGE: %s %d", target->GetName(), distance);
-        if (target->GetCharType() != CHAR_TYPE_PC)
-            CHARACTER_MANAGER::instance().DestroyCharacter(target);
-    };
+    FuncPurge purge{character, all};
     sector->ForEachAround(purge);
 }
 

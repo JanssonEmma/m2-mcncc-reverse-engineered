@@ -2,6 +2,7 @@
 #define MCNCC_GAME_WEDDING_H
 #include "../../common/singleton.h"
 #include "../../libthecore/include/typedef.h"
+#include <cstdint>
 #include <map>
 #include "event.h"
 #include <set>
@@ -27,11 +28,11 @@ public:
 private:
     const char* __BuildCommandPlayMusic(char* command, int length, BYTE enabled, const char* filename);
 
-    DWORD m_dwMapIndex;
+    std::uint32_t m_dwMapIndex;
     LPEVENT m_pEndEvent;
     std::set<CHARACTER*> m_set_pkChr;
     bool m_isDark, m_isSnow, m_isMusic;
-    DWORD dwPID1, dwPID2;
+    std::uint32_t dwPID1, dwPID2;
     std::string m_stMusicFileName;
 };
 class WeddingManager : public singleton<WeddingManager> {
@@ -45,7 +46,7 @@ public:
     void DestroyWeddingMap(WeddingMap* map);
 private:
     DWORD __CreateWeddingMap(DWORD first, DWORD second);
-    std::map<DWORD, WeddingMap*> m_mapWedding;
+    std::map<std::uint32_t, WeddingMap*> m_mapWedding;
 };
 }
 #endif

@@ -41,8 +41,9 @@ bool COXEventManager::ShowQuizList(CHARACTER* character)
     {
         for (const auto& quiz : quizzes)
         {
-            character->ChatPacket(1, "%d %s %s", static_cast<int>(static_cast<std::int8_t>(quiz.level)), quiz.Quiz,
-                                  LC_TEXT(quiz.answer ? "\302\374" : "\260\305\301\376"));
+            const char* answer = LC_TEXT(quiz.answer ? "\302\374" : "\260\305\301\376");
+            const int level = static_cast<std::int8_t>(quiz.level);
+            character->ChatPacket(1, "%d %s %s", level, quiz.Quiz, answer);
             ++count;
         }
     }
@@ -88,8 +89,10 @@ bool COXEventManager::CloseEvent()
             continue;
 
         const BYTE empire = character->GetEmpire();
-        const long* start = g_start_position[empire < 4 ? empire : 0];
-        character->WarpSet(start[0], start[1], 0);
+        const bool validEmpire = empire >= 1 && empire <= 3;
+        const std::int32_t y = validEmpire ? static_cast<std::int32_t>(g_start_position[empire][1]) : 0;
+        const std::int32_t x = validEmpire ? static_cast<std::int32_t>(g_start_position[empire][0]) : 0;
+        character->WarpSet(x, y, 0);
     }
     m_map_char.clear();
     return true;
@@ -131,53 +134,55 @@ bool COXEventManager::Quiz(unsigned char level, int timeLimit)
     if (timeLimit < 0)
         timeLimit = 30;
 
+    const int initialDelay = timeLimit - 15;
+
     const int index = number_ex(0, entries.size() - 1, "OXEvent.cpp", 0xe7);
-    const tag_Quiz& quiz = entries[index];
     OXNotice("\271\256\301\246\040\300\324\264\317\264\331\056");
-    SendNoticeMap(quiz.Quiz, oxMap, true);
+    SendNoticeMap(m_vec_quiz[level][index].Quiz, oxMap, true);
     OXNotice("\270\302\300\270\270\351\040\117\054\040\306\262\270\256\270\351\040\130\267\316\040\300\314\265\277\307\330\301\326\274\274\277\344");
     OXTimerInfo* info;
     const DWORD id = __AllocEventInfo(4, reinterpret_cast<void**>(&info));
-    info->answer = quiz.answer;
+    info->answer = m_vec_quiz[level][index].answer;
     const std::uint32_t delayBits =
-        static_cast<std::uint32_t>(timeLimit - 15) * static_cast<std::uint32_t>(passes_per_sec);
+        static_cast<std::uint32_t>(initialDelay) * static_cast<std::uint32_t>(passes_per_sec);
     std::int32_t delay;
     std::memcpy(&delay, &delayBits, sizeof(delay));
     m_timedEvents.insert(event_create_ex(oxevent_timer, id, delay,
                                         const_cast<char*>("OXEvent.cpp"), 0xf3));
     SetStatus(OXEVENT_QUIZ);
-    entries.erase(entries.begin() + index);
+    auto& activeEntries = m_vec_quiz[level];
+    activeEntries.erase(activeEntries.begin() + index);
     return true;
 }
 
 // 08087bc0
 EVENTFUNC(oxevent_timer)
 {
-    auto& manager = COXEventManager::instance();
     auto* info = static_cast<OXTimerInfo*>(event->info);
     static BYTE flag = 0;
     if (flag == 0) {
         OXNotice("\061\060\303\312\265\332\040\306\307\301\244\307\317\260\332\275\300\264\317\264\331\056");
         ++flag;
-        return passes_per_sec * 10;
+        return static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 10u);
     }
     if (flag == 1) {
         OXNotice("\301\244\264\344\300\272");
-        manager.CheckAnswer(info->answer);
-        OXNotice(info->answer ? "\117\040\300\324\264\317\264\331" : "\130\040\300\324\264\317\264\331");
+        const bool answer = info->answer;
+        COXEventManager::instance().CheckAnswer(answer);
+        OXNotice(answer ? "\117\040\300\324\264\317\264\331" : "\130\040\300\324\264\317\264\331");
         if (LC_IsJapan())
             SendNoticeMap("\212\324\210\341\202\246\202\275\225\373\201\130\202\360\212\117\202\311\210\332\223\256\202\263\202\271\202\334\202\267\201\102", oxMap, true);
         else
             OXNotice("\065\303\312\040\265\332\040\306\262\270\256\275\305\040\272\320\265\351\300\273\040\271\331\261\371\300\270\267\316\040\300\314\265\277\040\275\303\305\260\260\332\275\300\264\317\264\331\056");
         ++flag;
-        return passes_per_sec * 5;
+        return static_cast<std::int32_t>(static_cast<std::uint32_t>(passes_per_sec) * 5u);
     }
-    manager.m_timedEvents.erase(event);
+    COXEventManager::instance().m_timedEvents.erase(event);
     if (flag != 2)
         return 0;
 
-    manager.WarpToAudience();
-    manager.SetStatus(OXEVENT_CLOSE);
+    COXEventManager::instance().WarpToAudience();
+    COXEventManager::instance().SetStatus(OXEVENT_CLOSE);
     OXNotice("\264\331\300\275\040\271\256\301\246\040\301\330\272\361\307\330\301\326\274\274\277\344\056");
     flag = 0;
     return 0;
@@ -188,37 +193,39 @@ bool COXEventManager::CheckAnswer(bool answer)
     if (m_map_attender.empty())
         return true;
     m_map_miss.clear();
-    const long minX = answer ? 0xdae58 : 0xd9eb8;
-    const long maxX = answer ? 0xdbccc : 0xdad2c;
+    const std::int32_t minX = answer ? 0xdae58 : 0xd9eb8;
+    const std::int32_t maxX = answer ? 0xdbccc : 0xdad2c;
     for (auto it = m_map_attender.begin(); it != m_map_attender.end(); ) {
-        const auto entry = it++;
-        const DWORD pid = entry->second;
+        const DWORD pid = it->second;
         CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(pid);
         if (!character) {
-            m_map_char.erase(pid);
-            m_map_attender.erase(entry);
+            m_map_char.erase(it->first);
+            m_map_miss.erase(it->first);
+            it = m_map_attender.erase(it);
             continue;
         }
 
-        const long x = character->GetX();
-        const long y = character->GetY();
+        const auto x = static_cast<std::int32_t>(character->GetX());
+        const auto y = static_cast<std::int32_t>(character->GetY());
         if (x < minX || x > maxX || y < 0x5974 || y > 0x6720) {
             character->EffectPacket(12);
-            m_map_attender.erase(entry);
-            m_map_miss.emplace(pid, pid);
+            it = m_map_attender.erase(it);
+            const auto missedPid = static_cast<std::uint32_t>(character->GetPlayerID());
+            m_map_miss.emplace(missedPid, missedPid);
             continue;
         }
 
         character->ChatPacket(1, "%s", locale_find("\301\244\264\344\300\324\264\317\264\331\041", g_iUseLocale));
+        const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(character->GetVID()));
         const char* cheer = number_ex(0, 1, "OXEvent.cpp", 299) == 1 ? "cheer1" : "cheer2";
         BYTE packet[9 + 254] = {4, 0, 0, 5};
-        const auto vid = static_cast<std::uint32_t>(static_cast<DWORD>(character->GetVID()));
         const int length = std::snprintf(reinterpret_cast<char*>(packet + 9), 254, "%s %lu %lu",
                                          cheer, static_cast<unsigned long>(vid), 0ul);
         const auto size = static_cast<std::uint16_t>(9 + length);
         std::memcpy(packet + 1, &size, sizeof(size));
         character->PacketAround(packet, size);
         character->EffectPacket(11);
+        ++it;
     }
     return true;
 }
@@ -234,10 +241,11 @@ void COXEventManager::WarpToAudience()
 
 bool COXEventManager::GiveItemToAttender(DWORD vnum, unsigned char count)
 {
+    const std::uint32_t rewardVnum = static_cast<std::uint32_t>(vnum);
     for (const auto& entry : m_map_attender) {
         if (CHARACTER* character = CHARACTER_MANAGER::instance().FindByPID(entry.second)) {
-            character->AutoGiveItem(vnum, count, -1, true);
-            LogManager::instance().ItemLog(character->GetPlayerID(), 0, count, vnum, "OXEVENT_REWARD", "");
+            character->AutoGiveItem(rewardVnum, count, -1, true);
+            LogManager::instance().ItemLog(character->GetPlayerID(), 0, count, rewardVnum, "OXEVENT_REWARD", "");
         }
     }
     return true;
@@ -250,8 +258,8 @@ bool COXEventManager::Enter(CHARACTER* character)
         return false;
     }
 
-    const long x = character->GetX();
-    const long y = character->GetY();
+    const long x = static_cast<std::int32_t>(character->GetX());
+    const long y = static_cast<std::int32_t>(character->GetY());
     if (x == 0xdadf4 && y == 0x6018)
         return EnterAttender(character);
     if (x == 0xdad2c && y == 0x70e4)

@@ -38,7 +38,7 @@
 #include "pvp.h"
 #include "shop_manager.h"
 
-void SendAffectAddPacket(LPDESC descriptor, CAffect* affect);
+#include "affect.h"
 #include <cstdio>
 
 void SendNotice(const char* text);
@@ -47,7 +47,7 @@ void SendNotice(const char* text);
 // Requires char.h's complete old EPositions and existing CHARACTER records.
 // 081485e0: load32 CHARACTER+0x92c, compare zero.
 bool CHARACTER::IsDead() {
-    return m_pointsInstant.position==POS_DEAD;
+    return IsPosition(POS_DEAD);
 }
 // 08148080: bit3 test CHARACTER+0x930; no HP/position/affect condition.
 bool CHARACTER::IsStun() {
@@ -108,7 +108,7 @@ void CHARACTER::ChangeVictimByAggro(int aggro, LPCHARACTER attacker)
     m_dwStateDuration = 1;
 }
 
-void CHARACTER::UpdateAggrPointEx(LPCHARACTER attacker, EDamageType type, int damage, TBattleInfo* info)
+void CHARACTER::UpdateAggrPointEx(LPCHARACTER attacker, EDamageType type, int damage, TBattleInfo& info)
 {
     const auto scale = [](int value, float multiplier) {
         const long double scaled = static_cast<long double>(value) * multiplier;
@@ -123,13 +123,13 @@ void CHARACTER::UpdateAggrPointEx(LPCHARACTER attacker, EDamageType type, int da
     if (attacker == GetVictim())
         damage = scale(damage, 1.2f);
 
-    const auto sum = static_cast<std::uint32_t>(info->iAggro) + static_cast<std::uint32_t>(damage);
-    info->iAggro = std::max(0, static_cast<std::int32_t>(sum));
+    const auto sum = static_cast<std::uint32_t>(info.iAggro) + static_cast<std::uint32_t>(damage);
+    info.iAggro = std::max(0, static_cast<std::int32_t>(sum));
     if (m_pkParty && damage > 0 && type != DAMAGE_TYPE_SPECIAL) {
         const int distributed = damage / (m_pkParty->GetLeaderPID() == static_cast<DWORD>(GetVID()) ? 2 : 3);
         m_pkParty->SendMessage(this, 3, distributed, static_cast<DWORD>(attacker->GetVID()));
     }
-    ChangeVictimByAggro(info->iAggro, attacker);
+    ChangeVictimByAggro(info.iAggro, attacker);
 }
 
 void CHARACTER::UpdateAggrPoint(LPCHARACTER attacker, EDamageType type, int damage)
@@ -141,7 +141,7 @@ void CHARACTER::UpdateAggrPoint(LPCHARACTER attacker, EDamageType type, int dama
     initial.iAggro = damage;
     initial.iTotalDamage = 0;
     const auto entry = m_map_kDamage.emplace(attacker->GetVID(), initial).first;
-    UpdateAggrPointEx(attacker, type, damage, &entry->second);
+    UpdateAggrPointEx(attacker, type, damage, entry->second);
 }
 
 LPCHARACTER CHARACTER::GetVictim() { return CHARACTER_MANAGER::instance().Find(m_kVIDVictim); }
@@ -191,6 +191,30 @@ int CHARACTER::GetArrowAndBow(LPITEM* bow, LPITEM* arrow, int count)
     return arrows;
 }
 
+namespace {
+struct FuncAggregateMonster
+{
+    CHARACTER* character;
+
+    void operator()(LPENTITY entity)
+    {
+        if (!entity->IsType(0) || entity->GetDesc())
+            return;
+        auto* monster = static_cast<CHARACTER*>(entity);
+        if (!monster->IsMonster() || monster->GetVictim())
+            return;
+        if (number_ex(1, 100, "char_battle.cpp", 0x103d) > 50)
+            return;
+        const auto dx = static_cast<std::int32_t>(
+            static_cast<std::uint32_t>(monster->GetX()) - static_cast<std::uint32_t>(character->GetX()));
+        const auto dy = static_cast<std::int32_t>(
+            static_cast<std::uint32_t>(monster->GetY()) - static_cast<std::uint32_t>(character->GetY()));
+        if (DISTANCE_APPROX(dx, dy) < 5000 && monster->CanBeginFight())
+            monster->BeginFight(character);
+    }
+};
+}
+
 // 08147670
 void CHARACTER::AggregateMonster()
 {
@@ -198,60 +222,54 @@ void CHARACTER::AggregateMonster()
     if (!tree)
         return;
 
-    auto aggregate = [this](LPENTITY entity) {
+    FuncAggregateMonster callback{this};
+    tree->ForEachAround(callback);
+}
+
+struct FuncForgetMyAttacker
+{
+    LPCHARACTER m_ch;
+
+    void operator()(LPENTITY entity)
+    {
         if (!entity->IsType(0) || entity->GetDesc())
             return;
-        auto* monster = static_cast<CHARACTER*>(entity);
-        if (monster->m_bCharType != 0 || monster->GetVictim())
-            return;
-        if (number_ex(1, 100, "char_battle.cpp", 0x103d) > 50)
-            return;
-        const auto dx = static_cast<std::int32_t>(
-            static_cast<std::uint32_t>(monster->GetX()) - static_cast<std::uint32_t>(GetX()));
-        const auto dy = static_cast<std::int32_t>(
-            static_cast<std::uint32_t>(monster->GetY()) - static_cast<std::uint32_t>(GetY()));
-        if (DISTANCE_APPROX(dx, dy) < 5000 && monster->CanBeginFight())
-            monster->BeginFight(this);
-    };
-    tree->ForEachAround(aggregate);
-}
+        auto* ch = static_cast<CHARACTER*>(entity);
+        if (ch->m_kVIDVictim == m_ch->GetVID())
+            ch->SetVictim(nullptr);
+    }
+};
 
 void CHARACTER::ForgetMyAttacker()
 {
-    if (SECTREE* tree = GetSectree())
-    {
-        auto forget = [this](LPENTITY entity) {
-            if (!entity->IsType(0) || entity->GetDesc())
-                return;
-            auto* ch = static_cast<CHARACTER*>(entity);
-            if (ch->m_kVIDVictim == m_vid)
-                ch->SetVictim(nullptr);
-        };
+    if (SECTREE* tree = GetSectree()) {
+        FuncForgetMyAttacker forget{this};
         tree->ForEachAround(forget);
     }
     ReviveInvisible(5);
 }
 
-void CHARACTER::PullMonster()
+namespace {
+struct FuncPullMonster
 {
-    SECTREE* tree = GetSectree();
-    if (!tree)
-        return;
-    auto pull = [this](LPENTITY entity) {
+    CHARACTER* character;
+
+    void operator()(LPENTITY entity)
+    {
         if (!entity->IsType(0) || entity->GetDesc())
             return;
         auto* monster = static_cast<CHARACTER*>(entity);
-        if (monster->m_bCharType != 0)
+        if (!monster->IsMonster())
             return;
         const auto deltaX = static_cast<std::int32_t>(
-            static_cast<std::uint32_t>(GetX()) - static_cast<std::uint32_t>(monster->GetX()));
+            static_cast<std::uint32_t>(character->GetX()) - static_cast<std::uint32_t>(monster->GetX()));
         const auto deltaY = static_cast<std::int32_t>(
-            static_cast<std::uint32_t>(GetY()) - static_cast<std::uint32_t>(monster->GetY()));
+            static_cast<std::uint32_t>(character->GetY()) - static_cast<std::uint32_t>(monster->GetY()));
         const int distance = DISTANCE_APPROX(deltaX, deltaY);
         if (distance < 100 || distance > 3000)
             return;
         const int remaining = std::max(100, distance - 300);
-        const float degree = GetDegreeFromPositionXY(monster->GetX(), monster->GetY(), GetX(), GetY());
+        const float degree = GetDegreeFromPositionXY(monster->GetX(), monster->GetY(), character->GetX(), character->GetY());
         float dx, dy;
         GetDeltaByDegree(degree, distance - remaining, &dx, &dy);
         const auto applyOffset = [](long position, float offset) {
@@ -267,8 +285,37 @@ void CHARACTER::PullMonster()
         monster->Goto(x, y);
         monster->CalculateMoveDuration();
         monster->SyncPacket();
-    };
-    tree->ForEachAround(pull);
+    }
+};
+}
+
+void CHARACTER::PullMonster()
+{
+    SECTREE* tree = GetSectree();
+    if (!tree)
+        return;
+    FuncPullMonster callback{this};
+    tree->ForEachAround(callback);
+}
+
+namespace {
+struct FuncAttractRanger
+{
+    CHARACTER* character;
+
+    void operator()(LPENTITY entity)
+    {
+        if (!entity->IsType(0) || entity->GetDesc())
+            return;
+        auto* monster = static_cast<CHARACTER*>(entity);
+        if (!monster->IsMonster())
+            return;
+        if (monster->GetVictim() && monster->GetVictim() != character)
+            return;
+        if (monster->GetMobAttackRange() > 150)
+            monster->AddAffect(225, POINT_BOW_DISTANCE, 150 - monster->GetMobAttackRange(), 0, 180, 0, false, false);
+    }
+};
 }
 
 void CHARACTER::AttractRanger()
@@ -277,20 +324,8 @@ void CHARACTER::AttractRanger()
     if (!tree)
         return;
 
-    auto attract = [this](LPENTITY entity) {
-        if (!entity->IsType(0) || entity->GetDesc())
-            return;
-        auto* monster = static_cast<CHARACTER*>(entity);
-        if (monster->m_bCharType != 0)
-            return;
-        CHARACTER* victim = monster->GetVictim();
-        if (victim && victim != this)
-            return;
-        const WORD range = monster->GetMobAttackRange();
-        if (range > 150)
-            monster->AddAffect(225, POINT_BOW_DISTANCE, 150 - range, 0, 180, 0, false, false);
-    };
-    tree->ForEachAround(attract);
+    FuncAttractRanger callback{this};
+    tree->ForEachAround(callback);
 }
 
 bool CHARACTER::Attack(LPCHARACTER victim, BYTE type)
@@ -366,7 +401,10 @@ LPCHARACTER CHARACTER::GetNearestVictim(LPCHARACTER origin)
         origin = this;
     LPCHARACTER nearest = nullptr;
     float nearestDistance = 99999.0f;
-    for (const auto& entry : m_map_kDamage) {
+    for (auto it = m_map_kDamage.begin(); it != m_map_kDamage.end();) {
+        const auto& entry = *it;
+        const int damage = entry.second.iTotalDamage;
+        ++it;
         LPCHARACTER attacker = CHARACTER_MANAGER::instance().Find(entry.first);
         if (!attacker || attacker->IsAffectFlag(19) ||
             attacker->IsAffectFlag(2) || attacker->IsAffectFlag(28))
@@ -389,7 +427,7 @@ bool CHARACTER::CanFight() const
 
 bool CHARACTER::CanBeginFight()
 {
-    return CanMove() && m_pointsInstant.position == POS_STANDING && !IsDead() && !IsStun();
+    return CanMove() && IsPosition(POS_STANDING) && !IsDead() && !IsStun();
 }
 
 // 081476d0
@@ -428,7 +466,7 @@ void CHARACTER::SetLastAttacked(DWORD time)
 void CHARACTER::SendDamagePacket(LPCHARACTER attacker, int amount, BYTE flag)
 {
     DESC* desc = GetDesc();
-    if (!desc && (!attacker->GetDesc() || attacker->m_pkChrTarget != this))
+    if (!desc && (!attacker->GetDesc() || attacker->GetTarget() != this))
         return;
     TPacketGCDamageInfo packet;
     packet.header = 135;
@@ -468,8 +506,10 @@ void CHARACTER::UpdateKillerMode()
 void CHARACTER::DistributeSP(CHARACTER* recipient, int method)
 {
     if (recipient->m_pointsInstant.iMaxSP<=recipient->m_points.sp) return;
-    bool attacking=static_cast<unsigned int>(get_dword_time()-m_dwLastAttackTime)<3000;
-    bool moving=static_cast<unsigned int>(get_dword_time()-m_dwLastMoveTime)<3000;
+    const auto attackNow = get_dword_time();
+    const bool attacking = static_cast<unsigned int>(attackNow - GetLastAttackTime()) < 3000;
+    const auto moveNow = get_dword_time();
+    const bool moving = static_cast<unsigned int>(moveNow - GetLastMoveTime()) < 3000;
     int amount;
     if (method==1) {
         if (number_ex(0,3,"char_battle.cpp",0x66)!=0) return;
@@ -482,17 +522,19 @@ void CHARACTER::DistributeSP(CHARACTER* recipient, int method)
         return;
     }
 
-    int maximum=m_pointsInstant.iMaxSP;
     if (LC_IsJapan()) {
         if (!LC_IsJapan()) return;
-        if (recipient->GetJob()==3)
+        const bool shaman = recipient->GetJob() == 3;
+        const int maximum = m_pointsInstant.iMaxSP;
+        if (shaman)
             amount=attacking ? maximum/100 : moving ? SPProduct(maximum,15)/1000 : maximum/50;
         else amount=attacking ? maximum/200 : maximum/100;
     } else if (recipient->GetJob()==3 ||
                (recipient->GetJob()==2 && recipient->m_points.skill_group==2)) {
+        const int maximum = m_pointsInstant.iMaxSP;
         amount=attacking ? maximum/100+2 : moving ? maximum/50+3 : SPProduct(maximum,3)/100+10;
     } else {
-        maximum=recipient->m_pointsInstant.iMaxSP;
+        const int maximum = recipient->m_pointsInstant.iMaxSP;
         if (attacking) amount=maximum/200+2;
         else if (moving || recipient->m_points.hp<recipient->m_pointsInstant.iMaxHP) amount=maximum/100+2;
         else amount=maximum/100+9;
@@ -509,8 +551,13 @@ void CHARACTER::RewardGold(LPCHARACTER attacker)
         autoLoot = true;
 
     PIXEL_POSITION position = GetXYZ();
-    if (!autoLoot && !SECTREE_MANAGER::instance().GetMovablePosition(GetMapIndex(), GetX(), GetY(), position))
-        return;
+    if (!autoLoot) {
+        const long y = GetY();
+        const long x = GetX();
+        const long mapIndex = GetMapIndex();
+        if (!SECTREE_MANAGER::instance().GetMovablePosition(mapIndex, x, y, position))
+            return;
+    }
 
     int chance = MobRankStats[GetMobRank()].iGoldPercent;
     const auto add = [](int left, int right) {
@@ -556,17 +603,20 @@ void CHARACTER::RewardGold(LPCHARACTER attacker)
     const int jackpotRange = 10000 / privilegeBase;
 
     const auto rollGold = [&](int line) {
-        const TMobTable& mob = GetMobTable();
-        return number_ex(mob.dwGoldMin, mob.dwGoldMax, source, line);
+        const TMobTable& maxTable = GetMobTable();
+        const TMobTable& minTable = GetMobTable();
+        const auto maximum = maxTable.dwGoldMax;
+        const auto minimum = minTable.dwGoldMin;
+        return number_ex(minimum, maximum, source, line);
     };
     const auto scaleGold = [&](int gold) {
         return SPProduct(SPProduct(characters.GetMobGoldAmountRate(attacker), gold) / 100, multiplier);
     };
     const auto scatter = [&](int xLine, int yLine) {
-        const int dx = number_ex(-7, 7, source, xLine);
-        const int dy = number_ex(-7, 7, source, yLine);
-        position.x = GetX() + dx * 20;
-        position.y = GetY() + dy * 20;
+        position.x = number_ex(-7, 7, source, xLine) * 20;
+        const int dy = number_ex(-7, 7, source, yLine) * 20;
+        position.x = add(static_cast<int>(GetX()), position.x);
+        position.y = add(static_cast<int>(GetY()), dy);
     };
     const auto putOnGround = [&](CItem* item) {
         item->AddToGround(GetMapIndex(), position);
@@ -575,7 +625,7 @@ void CHARACTER::RewardGold(LPCHARACTER attacker)
 
     int totalGold = 0;
     ITEM_MANAGER& items = ITEM_MANAGER::instance();
-    if (GetMobRank() >= 4 && GetCharType() != CHAR_TYPE_STONE) {
+    if (GetMobRank() >= 4 && !IsStone()) {
         if (number_ex(1, jackpotRange, source, 0x232) == 1)
             multiplier *= 10;
         const int piles = number_ex(25, 35, source, 0x235);
@@ -588,16 +638,20 @@ void CHARACTER::RewardGold(LPCHARACTER attacker)
                 amount = 1;
             if (test_server) {
                 sys_log(0, "Drop Moeny MobGoldAmountRate %d %d", characters.GetMobGoldAmountRate(attacker), multiplier);
-                const int maximum = static_cast<int>(GetMobTable().dwGoldMax);
-                sys_log(0, "Drop Money gold %d GoldMin %d GoldMax %d", static_cast<int>(amount), maximum, maximum);
+                const TMobTable& maxTable = GetMobTable();
+                const TMobTable& minTable = GetMobTable();
+                const int maximum = static_cast<int>(maxTable.dwGoldMax);
+                const int minimumForLog = static_cast<int>(minTable.dwGoldMax);
+                sys_log(0, "Drop Money gold %d GoldMin %d GoldMax %d", amount, minimumForLog, maximum);
             }
             if (CItem* item = items.CreateItem(1, static_cast<std::uint32_t>(amount), 0, false, -1)) {
                 const int dx1 = number_ex(-14, 14, source, 0x24e);
                 const int dx2 = number_ex(-14, 14, source, 0x24e);
+                position.x = (dx1 + dx2) * 23;
                 const int dy1 = number_ex(-14, 14, source, 0x24f);
                 const int dy2 = number_ex(-14, 14, source, 0x24f);
-                position.x = GetX() + (dx1 + dx2) * 23;
-                position.y = GetY() + (dy1 + dy2) * 23;
+                position.x = add(static_cast<int>(GetX()), static_cast<int>(position.x));
+                position.y = add(static_cast<int>(GetY()), (dy1 + dy2) * 23);
                 putOnGround(item);
                 totalGold = add(totalGold, amount);
             }
@@ -663,9 +717,11 @@ static void GiveExp(LPCHARACTER from, LPCHARACTER to, int experience)
         experience = add(experience, experience / 5);
 
     char source[] = "char_battle.cpp";
-    const long doubleBonus = to->GetPoint(POINT_EXP_DOUBLE_BONUS);
-    if (doubleBonus && number_ex(1, 100, source, 0xc31) <= doubleBonus)
-        experience = add(experience, SPProduct(experience, 30) / 100);
+    if (to->GetPoint(POINT_EXP_DOUBLE_BONUS)) {
+        const int roll = number_ex(1, 100, source, 0xc31);
+        if (roll <= to->GetPoint(POINT_EXP_DOUBLE_BONUS))
+            experience = add(experience, SPProduct(experience, 30) / 100);
+    }
     if (to->IsEquipUniqueItem(0x11175))
         experience = add(experience, experience / 2);
 
@@ -684,22 +740,26 @@ static void GiveExp(LPCHARACTER from, LPCHARACTER to, int experience)
     else
         applyExpBoost(5);
 
-    const int pcBangBonus = to->GetPoint(POINT_PC_BANG_EXP_BONUS);
-    if (pcBangBonus > 0 && to->IsInPCBang())
+    if (to->GetPoint(POINT_PC_BANG_EXP_BONUS) > 0 && to->IsPCBang()) {
+        const int pcBangBonus = to->GetPoint(POINT_PC_BANG_EXP_BONUS);
         experience = add(experience, SPProduct(pcBangBonus, experience) / 100);
+    }
     const int marriageBonus = to->GetMarriageBonus(0x1159e, true);
     experience = add(experience, SPProduct(marriageBonus, experience) / 100);
     const int rate = CHARACTER_MANAGER::instance().GetMobExpRate(to);
-    experience = MIN(to->GetNextExp() / 10, SPProduct(rate, experience) / 100);
+    const int scaledExp = SPProduct(rate, experience) / 100;
+    const int cap = to->GetNextExp() / 10;
+    experience = MIN(cap, scaledExp);
 
     if (test_server && quests.GetEventFlag("exp_bonus_log") && base > 0)
         to->ChatPacket(1, "exp bonus %d%%", SPProduct(add(experience, -base), 100) / base);
     to->PointChange(POINT_EXP, experience, true, false);
     from->CreateFly(1, to);
 
-    LPCHARACTER partner = to->GetMarryPartner();
-    const int marriageLevel = to->GetLevel();
-    if (partner && marriageLevel > 0) {
+    if (LPCHARACTER partner = to->GetMarryPartner()) {
+        const int marriageLevel = to->GetLevel();
+        if (marriageLevel <= 0)
+            return;
         std::uint32_t points = SPProduct(experience, 2000) / marriageLevel / marriageLevel / 3;
         if (to->GetPremiumRemainSeconds(5) > 0 || partner->GetPremiumRemainSeconds(5) > 0)
             points *= 3;
@@ -718,7 +778,12 @@ struct FPartyTotaler {
 
     void operator()(LPCHARACTER member)
     {
-        if (DISTANCE_APPROX(member->GetX() - x, member->GetY() - y) <= 5000) {
+        const auto memberY = static_cast<std::uint32_t>(member->GetY());
+        const auto targetY = static_cast<std::uint32_t>(y);
+        const auto targetX = static_cast<std::uint32_t>(x);
+        const int dy = SPBits(memberY - targetY);
+        const int dx = SPBits(static_cast<std::uint32_t>(member->GetX()) - targetX);
+        if (DISTANCE_APPROX(dx, dy) <= 5000) {
             totalWeight += LC_IsYMIR() ? member->GetLevel() : party_exp_distribute_table[member->GetLevel()];
             ++members;
         }
@@ -736,7 +801,11 @@ struct FPartyDistributor {
 
     void operator()(LPCHARACTER member)
     {
-        if (DISTANCE_APPROX(member->GetX() - distributeX, member->GetY() - distributeY) > 5000)
+        const auto centerY = static_cast<std::uint32_t>(distributeY);
+        const auto centerX = static_cast<std::uint32_t>(distributeX);
+        const int dy = SPBits(static_cast<std::uint32_t>(member->GetY()) - centerY);
+        const int dx = SPBits(static_cast<std::uint32_t>(member->GetX()) - centerX);
+        if (DISTANCE_APPROX(dx, dy) > 5000)
             return;
 
         unsigned int share;
@@ -748,7 +817,8 @@ struct FPartyDistributor {
                     share = static_cast<unsigned int>(member->GetLevel()) * exp / totalWeight;
                 } else {
                     const DWORD weight = party_exp_distribute_table[member->GetLevel()];
-                    share = static_cast<unsigned int>(static_cast<long double>(weight) * exp / totalWeight);
+                    const auto quotient = static_cast<long double>(weight) * exp / SPBits(totalWeight);
+                    share = static_cast<unsigned int>(static_cast<std::int64_t>(quotient));
                 }
                 break;
             case PARTY_EXP_DISTRIBUTION_PARITY:
@@ -816,11 +886,16 @@ struct SDamageInfo {
             party->GetExpBonusPercent())
             party->ChatPacketToAllMember(1, "exp party bonus %d%%", party->GetExpBonusPercent());
 
-        if (LPCHARACTER center = party->GetExpCentralizeCharacter()) {
-            if (DISTANCE_APPROX(victim->GetX() - center->GetX(), victim->GetY() - center->GetY()) <= 5000) {
+        if (party->GetExpCentralizeCharacter()) {
+            CHARACTER* center = party->GetExpCentralizeCharacter();
+            const auto centerY = static_cast<unsigned>(center->GetY());
+            const auto victimY = static_cast<unsigned>(victim->GetY());
+            const auto victimX = static_cast<unsigned>(victim->GetX());
+            const auto centerX = static_cast<unsigned>(center->GetX());
+            if (DISTANCE_APPROX(SPBits(victimX - centerX), SPBits(victimY - centerY)) <= 5000) {
                 const int share = static_cast<int>(static_cast<long double>(experience) * 0.05f);
                 experience -= share;
-                GiveExp(victim, center, share);
+                GiveExp(victim, party->GetExpCentralizeCharacter(), share);
             }
         }
 
@@ -852,15 +927,21 @@ LPCHARACTER CHARACTER::DistributeExp()
     std::vector<SDamageInfo> shares;
     std::map<CParty*, SDamageInfo> partyDamage;
 
-    for (const auto& entry : m_map_kDamage) {
+    for (auto it = m_map_kDamage.begin(); it != m_map_kDamage.end();) {
+        const auto& entry = *it;
+        const int damage = entry.second.iTotalDamage;
+        ++it;
         LPCHARACTER attacker = CHARACTER_MANAGER::instance().Find(entry.first);
-        if (!attacker || attacker->GetCharType() != CHAR_TYPE_PC ||
-            DISTANCE_APPROX(
-                SPBits(static_cast<unsigned>(GetX()) - static_cast<unsigned>(attacker->GetX())),
-                SPBits(static_cast<unsigned>(GetY()) - static_cast<unsigned>(attacker->GetY()))) > 5000)
+        if (!attacker || attacker->GetCharType() != CHAR_TYPE_PC)
+            continue;
+        const auto attackerY = static_cast<std::uint32_t>(attacker->GetY());
+        const auto victimY = static_cast<std::uint32_t>(GetY());
+        const auto attackerX = static_cast<std::uint32_t>(attacker->GetX());
+        const int dy = SPBits(victimY - attackerY);
+        const int dx = SPBits(static_cast<std::uint32_t>(GetX()) - attackerX);
+        if (DISTANCE_APPROX(dx, dy) > 5000)
             continue;
 
-        const int damage = entry.second.iTotalDamage;
         totalDamage = SPBits(static_cast<unsigned>(totalDamage) + static_cast<unsigned>(damage));
         if (!highestAttacker || highestDamage < damage) {
             highestAttacker = attacker;
@@ -881,13 +962,14 @@ LPCHARACTER CHARACTER::DistributeExp()
 
     for (const auto& entry : partyDamage)
         shares.push_back(entry.second);
-    m_points.exp = 0;
+    SetExp(0);
     if (!totalDamage)
         return 0;
 
     if (m_pkChrStone) {
         const int transfer = experience >> 1;
-        m_pkChrStone->m_points.exp += transfer;
+        auto& stoneExperience = m_pkChrStone->m_points.exp;
+        stoneExperience = static_cast<std::uint32_t>(stoneExperience) + static_cast<std::uint32_t>(transfer);
         experience -= transfer;
     }
     sys_log(1, "%s total exp: %d, damage_info_table.size() == %d, TotalDam %d", GetName(),
@@ -912,12 +994,18 @@ LPCHARACTER CHARACTER::DistributeExp()
         return ratio;
     };
 
+    const auto truncateShare = [](long double share) {
+        // x87 FISTP stores the signed integer indefinite value on overflow.
+        if (!(share > -2147483649.0L && share < 2147483648.0L))
+            return SPBits(0x80000000u);
+        return static_cast<int>(share);
+    };
     const int bonus = experience / 5;
     const int remainder = experience - bonus;
     // The original rounds the best ratio before multiplication and truncates the wide product.
     const float bestRatio = static_cast<float>(
         clampRatio(*best, static_cast<long double>(best->damage) / totalDamage, 0xdbb));
-    best->Distribute(this, bonus + static_cast<int>(static_cast<long double>(remainder) * bestRatio));
+    best->Distribute(this, SPBits(static_cast<unsigned>(bonus) + static_cast<unsigned>(truncateShare(static_cast<long double>(remainder) * bestRatio))));
     if (bestRatio == 1.0f)
         return highestAttacker;
 
@@ -928,7 +1016,7 @@ LPCHARACTER CHARACTER::DistributeExp()
     const float damageTotal = static_cast<float>(totalDamage);
     for (auto& share : shares) {
         const long double ratio = clampRatio(share, static_cast<long double>(share.damage) / damageTotal, 0xdd8);
-        share.Distribute(this, static_cast<int>(remainingExp * ratio));
+        share.Distribute(this, truncateShare(remainingExp * ratio));
     }
     return highestAttacker;
 }
@@ -1092,8 +1180,11 @@ bool CHARACTER::Damage(CHARACTER* attacker, int damage, EDamageType type)
                     }
                 }
             }
-            if (rollPercent(attacker->GetPoint(POINT_MANA_BURN_PCT), 0x8e6))
-                PointChange(POINT_SP, -50, false, false);
+            if (attacker->GetPoint(POINT_MANA_BURN_PCT)) {
+                const int roll = number_ex(1, 100, source, 0x8e6);
+                if (roll <= attacker->GetPoint(POINT_MANA_BURN_PCT))
+                    PointChange(POINT_SP, -50, false, false);
+            }
         }
     } else if (IsAffectFlag(21)) {
         const int chance = GetSkillPower(64) / 400;
@@ -1103,27 +1194,32 @@ bool CHARACTER::Damage(CHARACTER* attacker, int damage, EDamageType type)
 
     if (type >= DAMAGE_TYPE_NORMAL && type <= DAMAGE_TYPE_MAGIC) {
         if (attacker) {
-            if (const long bonus = attacker->GetPoint(normal ? POINT_NORMAL_HIT_DAMAGE_BONUS : POINT_SKILL_DAMAGE_BONUS))
-                damage = percent(damage, 100 + bonus);
+            const BYTE bonusPoint = normal ? POINT_NORMAL_HIT_DAMAGE_BONUS : POINT_SKILL_DAMAGE_BONUS;
+            if (attacker->GetPoint(bonusPoint))
+                damage = percent(damage, add(100, attacker->GetPoint(bonusPoint)));
         }
-        const long defense = GetPoint(normal ? POINT_NORMAL_HIT_DEFEND_BONUS : POINT_SKILL_DEFEND_BONUS);
-        damage = percent(damage, 100 - std::min(99L, defense));
+        const int defense = GetPoint(normal ? POINT_NORMAL_HIT_DEFEND_BONUS : POINT_SKILL_DEFEND_BONUS);
+        damage = percent(damage, subtract(100, std::min(99, defense)));
     }
 
     if (IsAffectFlag(26)) {
+        const int absorbed = damage / 3;
         const int shield = GetPoint(POINT_MANASHIELD);
-        const int cost = percent(damage / 3, shield);
+        const int cost = percent(absorbed, shield);
         const int sp = GetSP();
         if (sp < cost && shield) {
             PointChange(POINT_SP, subtract(0, sp), false, false);
-            damage = subtract(damage, SPProduct(sp, 100) / shield);
+            const int currentShield = GetPoint(POINT_MANASHIELD);
+            const int scaledSP = SPProduct(sp, 100);
+            if (currentShield && !(currentShield == -1 && scaledSP == SPBits(0x80000000u)))
+                damage = subtract(damage, scaledSP / currentShield);
         } else {
             PointChange(POINT_SP, subtract(0, cost), false, false);
-            damage = subtract(damage, damage / 3);
+            damage = subtract(damage, absorbed);
         }
     }
-    const long mallDefense = GetPoint(POINT_MALL_DEFBONUS);
-    if (mallDefense > 0) {
+    if (GetPoint(POINT_MALL_DEFBONUS) > 0) {
+        const long mallDefense = GetPoint(POINT_MALL_DEFBONUS);
         const int reduction = std::min(200, percent(damage, mallDefense));
         if (test_server)
             ChatPacket(3, "\270\364\276\306\300\314\305\333 \305\270\260\335\304\241\260\250\274\322: %d", reduction);
@@ -1178,12 +1274,12 @@ bool CHARACTER::Damage(CHARACTER* attacker, int damage, EDamageType type)
     if (LC_IsGermany() && attacker && attacker->GetDesc())
         damage = percent(damage, CHARACTER_MANAGER::instance().GetUserDamageRate(attacker));
 
-    if (GetCharType() == CHAR_TYPE_MONSTER && IsStoneSkinner() && GetMaxHP() &&
+    if (IsMonster() && IsStoneSkinner() && GetMaxHP() &&
         GetHPPct() < GetMobTable().bStoneSkinPoint)
         damage = subtract(damage, damage / 2);
 
     if (attacker) {
-        if (attacker->GetCharType() == CHAR_TYPE_MONSTER && attacker->IsDeathBlower() &&
+        if (attacker->IsMonster() && attacker->IsDeathBlower() &&
             attacker->IsDeathBlow() && number_ex(1, 4, source, 0x9cd) == GetJob())
             damage = SPProduct(damage, 4);
         BYTE flags = type == DAMAGE_TYPE_POISON ? 2 : 1;
@@ -1206,10 +1302,18 @@ bool CHARACTER::Damage(CHARACTER* attacker, int damage, EDamageType type)
 
     PointChange(POINT_HP, subtract(0, damage), false, false);
     if (attacker && damage > 0 && GetCharType() != CHAR_TYPE_PC) {
-        TBattleInfo& info = m_map_kDamage[attacker->GetVID()];
-        info.iTotalDamage = add(info.iTotalDamage, damage);
-        StartRecoveryEvent();
-        UpdateAggrPointEx(attacker, type, damage, &info);
+        const VID vid = attacker->GetVID();
+        auto entry = m_map_kDamage.find(vid);
+        if (entry == m_map_kDamage.end()) {
+            TBattleInfo initial;
+            initial.iTotalDamage = damage;
+            initial.iAggro = 0;
+            entry = m_map_kDamage.insert(std::make_pair(vid, initial)).first;
+        } else {
+            entry->second.iTotalDamage = add(entry->second.iTotalDamage, damage);
+            StartRecoveryEvent();
+        }
+        UpdateAggrPointEx(attacker, type, damage, entry->second);
     }
     if (GetHP() < 1) {
         Stun();
@@ -1374,13 +1478,16 @@ bool CHARACTER::__Profile__Damage(LPCHARACTER attacker, int damage, EDamageType 
             const int sp = GetSP();
             if (sp < cost && shield) {
                 PointChange(POINT_SP, subtract(0, sp), false, false);
-                damage = subtract(damage, SPProduct(sp, 100) / shield);
+                const int currentShield = GetPoint(POINT_MANASHIELD);
+                if (currentShield)
+                    damage = subtract(damage, SPProduct(sp, 100) / currentShield);
             } else {
                 PointChange(POINT_SP, subtract(0, cost), false, false);
                 damage = subtract(damage, damage / 2);
             }
         }
-        if (const long mallDefense = GetPoint(POINT_MALL_DEFBONUS); mallDefense > 0) {
+        if (GetPoint(POINT_MALL_DEFBONUS) > 0) {
+            const long mallDefense = GetPoint(POINT_MALL_DEFBONUS);
             const int reduction = std::min(200, percent(damage, mallDefense));
             if (test_server)
                 ChatPacket(3, "\270\364\276\306\300\314\305\333 \305\270\260\335\304\241\260\250\274\322: %d", reduction);
@@ -1449,7 +1556,7 @@ bool CHARACTER::__Profile__Damage(LPCHARACTER attacker, int damage, EDamageType 
         TBattleInfo& info = m_map_kDamage[attacker->GetVID()];
         info.iTotalDamage = add(info.iTotalDamage, damage);
         StartRecoveryEvent();
-        UpdateAggrPointEx(attacker, type, damage, &info);
+        UpdateAggrPointEx(attacker, type, damage, info);
     }
     if (GetHP() < 1) {
         Stun();
@@ -1466,15 +1573,23 @@ void CHARACTER::Reward(bool itemDrop)
     SECTREE_MANAGER& sectors = SECTREE_MANAGER::instance();
     PIXEL_POSITION position = GetXYZ();
     const auto scatter = [&](int xLine, int yLine) {
-        position.x = GetX() + number_ex(-7, 7, source, xLine) * 20;
-        position.y = GetY() + number_ex(-7, 7, source, yLine) * 20;
+        position.x = number_ex(-7, 7, source, xLine) * 20;
+        const int dy = number_ex(-7, 7, source, yLine) * 20;
+        position.x = SPBits(static_cast<unsigned>(GetX()) + static_cast<unsigned>(position.x));
+        position.y = SPBits(static_cast<unsigned>(GetY()) + static_cast<unsigned>(dy));
     };
 
     if (GetRaceNum() == 5001) {
-        if (!sectors.GetMovablePosition(GetMapIndex(), GetX(), GetY(), position))
+        const long y = GetY();
+        const long x = GetX();
+        const long mapIndex = GetMapIndex();
+        if (!sectors.GetMovablePosition(mapIndex, x, y, position))
             return;
-        const TMobTable& proto = GetMobTable();
-        int gold = number_ex(proto.dwGoldMin, proto.dwGoldMax, source, 0x2be);
+        const TMobTable& maxTable = GetMobTable();
+        const TMobTable& minTable = GetMobTable();
+        const auto maximum = maxTable.dwGoldMax;
+        const auto minimum = minTable.dwGoldMin;
+        int gold = number_ex(minimum, maximum, source, 0x2be);
         gold = SPProduct(gold, characters.GetMobGoldAmountRate(0)) / 100;
         if (distribution_test_server)
             gold = SPProduct(gold, 3);
@@ -1517,8 +1632,11 @@ void CHARACTER::Reward(bool itemDrop)
             }
         }
     }
+    if (!itemDrop)
+        return;
     position = GetXYZ();
-    if (!itemDrop || !sectors.GetMovablePosition(GetMapIndex(), position.x, position.y, position))
+    const long mapIndex = GetMapIndex();
+    if (!sectors.GetMovablePosition(mapIndex, position.x, position.y, position))
         return;
 
     if (test_server)
@@ -1557,7 +1675,7 @@ void CHARACTER::Reward(bool itemDrop)
             for (std::size_t i = drops.size(); i > 0;) {
                 LPITEM item = drops[--i];
                 if (!item) {
-                    _sys_err("Reward", owners.empty() ? 0x357 : 0x373, "item null in vector idx %d", static_cast<int>(i));
+                    _sys_err("Reward", owners.empty() ? 0x357 : 0x373, "item null in vector idx %d", static_cast<int>(i + 1));
                     continue;
                 }
                 item->AddToGround(GetMapIndex(), position);
@@ -1618,7 +1736,7 @@ EVENTFUNC(dead_event)
     }
 
     CHARACTER_MANAGER& manager = CHARACTER_MANAGER::instance();
-    if (character->GetCharType() == 0 && !character->IsRevive() &&
+    if (character->IsMonster() && !character->IsRevive() &&
         character->HasReviverInParty()) {
         LPCHARACTER revived = manager.SpawnMob(character->GetMobTable().dwVnum,
             character->GetMapIndex(), character->GetX(), character->GetY(), character->GetZ(),
@@ -1873,11 +1991,6 @@ const char debugRegen[] = "\273\357\260\305\270\256 \270\367 \270\256\301\250";
 const char victoryScriptText[] = ". \263\312\310\361\260\241 \274\272\301\366\300\307 \274\366\310\243\300\332\270\246 \300\342\260\324 \265\310\264\331\270\351 \263\312\310\361\264\302 \274\272\301\366\300\307 \301\326\300\316\300\314 \265\310\264\331.[ENTER][ENTER] ";
 const char debugSpawn[] = "Spawn \301\370\261\270\271\314\310\243";
 
-const char nationNames[4][32] = {
-    "", "\275\305\274\366\261\271", "\303\265\301\266\261\271", "\301\370\263\353\261\271",
-};
-const int startMaps[4] = {0, 1, 21, 41};
-
 struct WarpEmpireEventInfo
 {
     int empire;
@@ -1948,7 +2061,7 @@ void ScheduleEmpireWarp(int fromMap, int empire, int delay, int line)
     void* raw = 0;
     const DWORD id = __AllocEventInfo(sizeof(WarpEmpireEventInfo), &raw);
     *static_cast<WarpEmpireEventInfo*>(raw) = {
-        empire, fromMap, startMaps[empire], static_cast<int>(g_start_position[empire][0]),
+        empire, fromMap, static_cast<int>(g_start_map[empire]), static_cast<int>(g_start_position[empire][0]),
         static_cast<int>(g_start_position[empire][1]),
     };
     event_create_ex(warp_all_to_map_my_empire_event, id, passes_per_sec * delay,
@@ -1973,7 +2086,7 @@ int ThreeWayKillWeight(int level)
 // Called from Dead after the forked-map, killer-presence and GM gates.
 void CHARACTER::ProcessThreeWayDeath(LPCHARACTER killer)
 {
-    m_iKillCount = SPBits(static_cast<unsigned>(m_iKillCount) - 1u);
+    DecKillCount();
     const int mapIndex = GetMapIndex();
     if (!killer->GetDesc() || !IsSungziMapIndex(mapIndex) || g_bRegenFlag == -1)
         return;
@@ -1985,11 +2098,11 @@ void CHARACTER::ProcessThreeWayDeath(LPCHARACTER killer)
     if (score != 0 && score % 5 == 0)
         SendThreeWayScore();
 
-    killer->m_iKillingCount = SPBits(static_cast<unsigned>(killer->m_iKillingCount) + 1u);
+    killer->IncKillingCount();
     auto& quests = quest::CQuestManager::instance();
     const int target = quests.GetEventFlag("threeway_war_kill_count");
     if (test_server) {
-        ChatPacket(1, locale_find(debugDeath, g_iUseLocale), GetName(), m_iKillCount, GetEmpire(),
+        ChatPacket(1, locale_find(debugDeath, g_iUseLocale), GetName(), GetKillCount(), GetEmpire(),
                    get_kill_count_per_empire(GetEmpire()), target,
                    get_mob_kill_count_per_empire(GetEmpire()), g_bRegenFlag);
     }
@@ -2027,7 +2140,7 @@ void CHARACTER::ProcessThreeWayDeath(LPCHARACTER killer)
         sys_log(0, "[FORKED_LOAD] Exit %d", losingEmpire);
         ScheduleEmpireWarp(mapIndex, losingEmpire, 10, 0x5a3);
         ScheduleEmpireWarp(GetPassMapIndex(static_cast<BYTE>(losingEmpire)), losingEmpire, 10, 0x5b2);
-        const char* nation = locale_find(nationNames[losingEmpire], g_iUseLocale);
+        const char* nation = locale_find(g_nation_name[losingEmpire], g_iUseLocale);
         const std::string script = std::string(locale_find(exitScriptPrefix, g_iUseLocale)) + nation +
             locale_find(exitScriptText, g_iUseLocale) + "[ENTER][DONE]";
         CHARACTER_MANAGER::instance().SayInMap(mapIndex, script);
@@ -2049,7 +2162,7 @@ void CHARACTER::ProcessThreeWayDeath(LPCHARACTER killer)
     g_bRegenFlag = -1;
     SendThreeWayScore();
     ScheduleEmpireWarp(mapIndex, losingEmpire, 5, 0x61e);
-    const std::string script = std::string(locale_find(nationNames[winningEmpire], g_iUseLocale)) +
+    const std::string script = std::string(locale_find(g_nation_name[winningEmpire], g_iUseLocale)) +
         locale_find(victoryScriptText, g_iUseLocale) + "[ENTER][DONE]";
     CHARACTER_MANAGER::instance().SayInMapinMyEmpire(mapIndex, static_cast<BYTE>(winningEmpire), script);
 
@@ -2069,27 +2182,38 @@ namespace {
 const char alignmentProtection[] = "\277\353\275\305\300\307 \272\270\310\243\267\316 \276\306\300\314\305\333\300\314 \266\263\276\356\301\366\301\366 \276\312\276\322\275\300\264\317\264\331.";
 const char warDropNotice[] = "<\261\346\265\345> \261\346\265\345\300\374\301\337\277\241\264\302 \273\347\263\311\277\241 \265\373\270\245 \300\314\300\315\300\314 \276\370\275\300\264\317\264\331.";
 
+struct FPartyAlignmentCompute
+{
+    int m_iAmount;
+    int m_iCount;
+    int m_iStep;
+    int m_iKillerX;
+    int m_iKillerY;
+
+    void operator()(LPCHARACTER member)
+    {
+        if (DISTANCE_APPROX(member->GetX() - m_iKillerX, member->GetY() - m_iKillerY) >= 5000)
+            return;
+
+        if (m_iStep == 0)
+            ++m_iCount;
+        else
+            member->UpdateAlignment(m_iAmount / m_iCount);
+    }
+};
+
 void ApplyDeathAlignmentLoss(LPCHARACTER killer)
 {
     constexpr int amount = -20000;
     if (g_iUseLocale && killer->GetParty()) {
-        const long x = killer->GetX();
-        const long y = killer->GetY();
-        const auto nearby = [&](LPCHARACTER member) {
-            return DISTANCE_APPROX(member->GetX() - x, member->GetY() - y) < 5000;
-        };
-        int count = 0;
+        const int x = static_cast<int>(killer->GetX());
+        const int y = static_cast<int>(killer->GetY());
         CParty* party = killer->GetParty();
-        party->ForEachOnlineMember([&](LPCHARACTER member) {
-            if (nearby(member))
-                ++count;
-        });
-        if (count != 0) {
-            sys_log(0, "ALIGNMENT PARTY count %d amount %d", count, amount);
-            party->ForEachOnlineMember([&](LPCHARACTER member) {
-                if (nearby(member))
-                    member->UpdateAlignment(amount / count);
-            });
+        FPartyAlignmentCompute compute = party->ForEachOnlineMember(FPartyAlignmentCompute{amount, 0, 0, x, y});
+        if (compute.m_iCount != 0) {
+            sys_log(0, "ALIGNMENT PARTY count %d amount %d", compute.m_iCount, amount);
+            compute.m_iStep = 1;
+            party->ForEachOnlineMember(compute);
             return;
         }
     }
@@ -2120,7 +2244,7 @@ void CHARACTER::Dead(LPCHARACTER killer, bool immediate)
     bool guildWar = false;
     bool duel = false;
     if (killer && killer->GetDesc()) {
-        if (killer->m_pkChrTarget == this)
+        if (killer->GetTarget() == this)
             killer->SetTarget(nullptr);
         if (!GetDesc() && killer->m_pkDungeon)
             killer->m_pkDungeon->IncKillCount(killer, this);
@@ -2235,14 +2359,14 @@ void CHARACTER::Dead(LPCHARACTER killer, bool immediate)
         char detail[50];
         std::snprintf(detail, sizeof(detail), "%d %ld", g_bChannel, killer->GetMapIndex());
         LogManager::instance().CharLog(killer->GetPlayerID(), GetX(), GetY(), GetRaceNum(),
-                                       GetCharType() == CHAR_TYPE_STONE ? "STONE_KILL" : "BOSS_KILL", detail);
+                                       IsStone() ? "STONE_KILL" : "BOSS_KILL", detail);
     }
 
     const TPacketGCDead packet = {14, static_cast<std::uint32_t>(static_cast<DWORD>(GetVID()))};
     PacketAround(&packet, sizeof(packet));
     m_pointsInstant.instant_flag &= ~8L;
     if (LPDESC descriptor = GetDesc()) {
-        for (CAffect* affect : m_list_pkAffect)
+        for (CAffect* affect : GetAffectContainer())
             SendAffectAddPacket(descriptor, affect);
     }
 
@@ -2256,7 +2380,7 @@ void CHARACTER::Dead(LPCHARACTER killer, bool immediate)
         void* raw = nullptr;
         const DWORD eventId = __AllocEventInfo(sizeof(CharacterDeathEventInfo), &raw);
         static_cast<CharacterDeathEventInfo*>(raw)->character = this;
-        if (GetCharType() == CHAR_TYPE_STONE)
+        if (IsStone())
             ClearStone();
         assert(!m_pkDeadEvent);
         if (m_pkDungeon)
@@ -2429,4 +2553,14 @@ bool CHARACTER::Shoot(BYTE type)
         shootAt(target);
     m_vec_dwFlyTargets.clear();
     return success;
+}
+
+void CHARACTER::DecKillCount()
+{
+    SetKillCount(SPBits(static_cast<unsigned>(GetKillCount()) - 1u));
+}
+
+void CHARACTER::IncKillingCount()
+{
+    m_iKillingCount = SPBits(static_cast<unsigned>(m_iKillingCount) + 1u);
 }

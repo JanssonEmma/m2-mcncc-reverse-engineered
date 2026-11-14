@@ -26,6 +26,7 @@ void CClientManager::LoadEventFlag()
         packet.szFlagName[32] = '\0';
         packet.lValue = atoi(row[1]);
 
+        sys_log(0, "EventFlag Load %s %d", packet.szFlagName, packet.lValue);
         m_map_lEventFlag.insert(std::make_pair(std::string(packet.szFlagName), packet.lValue));
         ForwardPacket(HEADER_DG_SET_EVENT_FLAG, &packet, sizeof(packet), 0, NULL);
     }
@@ -56,6 +57,8 @@ void CClientManager::SetEventFlag(TPacketSetEventFlag* packet)
              GetTablePostfix(), *name, packet->lValue);
     query[1024] = '\0';
     CDBManager::instance().AsyncQuery(query);
+    sys_log(0, "HEADER_GD_SET_EVENT_FLAG : Changed CClientmanager::SetEventFlag( %s %d ) ",
+            packet->szFlagName, packet->lValue);
 }
 
 void CClientManager::SendEventFlagsOnSetup(CPeer* peer)

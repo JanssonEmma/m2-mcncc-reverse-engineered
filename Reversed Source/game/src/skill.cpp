@@ -5,13 +5,13 @@
 #include <cstdio>
 #include <cstring>
 #include <strings.h>
-extern void SendLog(const char*);
+#include "cmd.h"
 // 080e4360: actual singleton and map default construction, no custom work.
 CSkillManager::CSkillManager() {}
 // 080e5990: actual map lookup; no insertion, null values preserved.
 CSkillProto* CSkillManager::Get(DWORD vnum)
 {
-    std::map<DWORD,CSkillProto*>::iterator it=m_map_pkSkillProto.find(vnum);
+    std::map<DWORD,CSkillProto*>::iterator it=m_map_pkSkillProto.find(static_cast<unsigned int>(vnum));
     return it==m_map_pkSkillProto.end()?0:it->second;
 }
 

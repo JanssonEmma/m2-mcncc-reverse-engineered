@@ -1,3 +1,4 @@
+#include <cstdint>
 #include "char_manager.h"
 #include "packet.h"
 #include "vector.h"
@@ -23,8 +24,12 @@ bool CHARACTER::ReviveHorse()
 }
 
 DWORD CHARACTER::GetMyHorseVnum() {
-    int delta=0;
-    if(m_pGuild) delta=m_pGuild->GetMasterPID()==m_dwPlayerID?2:1;
+    int delta = 0;
+    if (m_pGuild) {
+        const auto playerId = static_cast<std::uint32_t>(m_dwPlayerID);
+        const auto masterId = static_cast<std::uint32_t>(m_pGuild->GetMasterPID());
+        delta = masterId == playerId ? 2 : 1;
+    }
     return static_cast<DWORD>(static_cast<unsigned int>(c_aHorseStat[GetHorseLevel()].iNPCRace)+
                               static_cast<unsigned int>(delta));
 }
@@ -89,7 +94,7 @@ bool CHARACTER::StartRiding()
         notice = "\272\257\275\305\040\273\363\305\302\277\241\274\255\264\302\040\270\273\277\241\040\305\273\040\274\366\040\276\370\275\300\264\317\264\331\056";
     } else {
         CItem* armor = GetWear(0);
-        const DWORD vnum = armor ? armor->GetVnum() : 0;
+        const auto vnum = armor ? static_cast<std::uint32_t>(armor->GetVnum()) : 0u;
         if (vnum >= 11901 && vnum <= 11904) {
             notice = "\277\271\272\271\300\273\040\300\324\300\272\040\273\363\305\302\277\241\274\255\040\270\273\300\273\040\305\273\040\274\366\040\276\370\275\300\264\317\264\331\056";
         } else if (CHorseRider::StartRiding()) {
@@ -156,7 +161,7 @@ void CHARACTER::HorseSummon(bool summon,bool fromFar) {
         long x=Add(startX,dx),y=Add(startY,dy);
         int rotation=Trunc32(180.0L+static_cast<long double>(m_pointsInstant.fRot));
         long z=GetZ(),map=GetMapIndex(); // Captured before virtual race getter.
-        DWORD race=GetMyHorseVnum(); // Primary vptr slot14,0816df10.
+        const auto race = static_cast<std::uint32_t>(GetMyHorseVnum()); // Primary vptr slot14,0816df10.
         m_chHorse=CHARACTER_MANAGER::instance().SpawnMob(race,map,x,y,z,false,rotation,false);
         if(!m_chHorse) {
             ChatPacket(1,LC_TEXT("\270\273\040\274\322\310\257\277\241\040\275\307\306\320\307\317\277\264\275\300\264\317\264\331\056"));
@@ -178,7 +183,9 @@ void CHARACTER::HorseSummon(bool summon,bool fromFar) {
         named=m_chHorse;
         const char* suffix=LC_TEXT("\264\324\300\307\040\270\273");
         named->m_stName.append(suffix);
-        if(m_chHorse->Show(GetMapIndex(),x,y,GetZ(),false)) {
+        const long showZ = GetZ();
+        const long showMap = GetMapIndex();
+        if (m_chHorse->Show(showMap, x, y, showZ, false)) {
             if(GetHorseHealth()<1) {
                 TPacketGCDead packet;
                 packet.header=14;
@@ -198,12 +205,18 @@ void CHARACTER::HorseSummon(bool summon,bool fromFar) {
         horse->SetRider(0); // Real ClearHorseInfo normally clears owner's m_chHorse.
         if(fromFar) {
             horse->SetNowWalking(false);
-            float degree=GetDegreeFromPositionXY(horse->GetX(),horse->GetY(),GetX(),GetY());
-            horse->SetRotation(degree+180.0f);
+            const long horseY = horse->GetY();
+            const long riderY = GetY();
+            const long riderX = GetX();
+            const long horseX = horse->GetX();
+            const long double degree = GetDegreeFromPositionXY(horseX, horseY, riderX, riderY);
+            horse->SetRotation(static_cast<float>(degree + 180.0L));
             float dx,dy;
             GetDeltaByDegree(horse->m_pointsInstant.fRot,3500.0f,&dx,&dy);
-            int x=Trunc32(static_cast<long double>(horse->GetX())+dx);
-            int y=Trunc32(static_cast<long double>(horse->GetY())+dy);
+            const auto departureY = static_cast<std::int32_t>(horse->GetY());
+            const auto departureX = static_cast<std::int32_t>(horse->GetX());
+            const int y = Trunc32(static_cast<long double>(departureY) + dy);
+            const int x = Trunc32(static_cast<long double>(departureX) + dx);
             horse->Goto(x,y);
             horse->SendMovePacket(0,0,0,0,0,0,-1); // Sent regardless of Goto result.
         } else CHARACTER_MANAGER::instance().DestroyCharacter(horse);

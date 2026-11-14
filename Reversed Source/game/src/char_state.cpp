@@ -27,39 +27,47 @@
 #include <cmath>
 
 // 0807d7c0
-bool CHARACTER::IsStoneSkinner() { return (m_pointsInstant.dwAIFlag & (1u << 8)) != 0; }
+bool CHARACTER::IsStoneSkinner() { return (GetAIFlag() & (1u << 8)) != 0; }
 
 // 0807d800
-bool CHARACTER::IsDeathBlower() { return (m_pointsInstant.dwAIFlag & (1u << 10)) != 0; }
+bool CHARACTER::IsDeathBlower() { return (GetAIFlag() & (1u << 10)) != 0; }
 
 void CHARACTER::SetAggressive()
 {
     m_pointsInstant.dwAIFlag|=1;
 }
 
-bool CHARACTER::IsAggressive() { return (m_pointsInstant.dwAIFlag & (1u << 0)) != 0; }
+bool CHARACTER::IsAggressive() { return (GetAIFlag() & (1u << 0)) != 0; }
 void CHARACTER::SetCoward()
 {
     m_pointsInstant.dwAIFlag |= 4;
 }
 
-bool CHARACTER::IsCoward() { return (m_pointsInstant.dwAIFlag & (1u << 2)) != 0; }
-bool CHARACTER::IsBerserker() { return (m_pointsInstant.dwAIFlag & (1u << 7)) != 0; }
-bool CHARACTER::IsGodSpeeder() { return (m_pointsInstant.dwAIFlag & (1u << 9)) != 0; }
-bool CHARACTER::IsNoAttackShinsu() { return (m_pointsInstant.dwAIFlag & (1u << 3)) != 0; }
-bool CHARACTER::IsNoAttackChunjo() { return (m_pointsInstant.dwAIFlag & (1u << 5)) != 0; }
-bool CHARACTER::IsNoAttackJinno() { return (m_pointsInstant.dwAIFlag & (1u << 4)) != 0; }
-bool CHARACTER::IsAttackMob() { return (m_pointsInstant.dwAIFlag & (1u << 6)) != 0; }
+bool CHARACTER::IsCoward() { return (GetAIFlag() & (1u << 2)) != 0; }
+bool CHARACTER::IsBerserker() { return (GetAIFlag() & (1u << 7)) != 0; }
+bool CHARACTER::IsGodSpeeder() { return (GetAIFlag() & (1u << 9)) != 0; }
+bool CHARACTER::IsNoAttackShinsu() { return (GetAIFlag() & (1u << 3)) != 0; }
+bool CHARACTER::IsNoAttackChunjo() { return (GetAIFlag() & (1u << 5)) != 0; }
+bool CHARACTER::IsNoAttackJinno() { return (GetAIFlag() & (1u << 4)) != 0; }
+bool CHARACTER::IsAttackMob() { return (GetAIFlag() & (1u << 6)) != 0; }
 
 bool CHARACTER::IsReviver()
 {
-    return (m_pointsInstant.dwAIFlag & (1UL << 11)) != 0;
+    return (GetAIFlag() & (1UL << 11)) != 0;
 }
 
 void CHARACTER::SetNoAttackShinsu() { m_pointsInstant.dwAIFlag |= 1u << 3; }
 void CHARACTER::SetNoAttackChunjo() { m_pointsInstant.dwAIFlag |= 1u << 5; }
 void CHARACTER::SetNoAttackJinno() { m_pointsInstant.dwAIFlag |= 1u << 4; }
 void CHARACTER::SetAttackMob() { m_pointsInstant.dwAIFlag |= 1u << 6; }
+
+namespace {
+std::int32_t WanderCoordinate(long base, int offset)
+{
+    return static_cast<std::int32_t>(static_cast<std::uint32_t>(base) +
+                                     static_cast<std::uint32_t>(offset));
+}
+}
 
 void CHARACTER::CowardEscape()
 {
@@ -76,15 +84,15 @@ void CHARACTER::CowardEscape()
             int step = 1;
             for (; step <= 100; ++step) {
                 if (!SECTREE_MANAGER::instance().IsMovablePosition(
-                        GetMapIndex(), GetX() + dx * step / 100, GetY() + dy * step / 100))
+                        GetMapIndex(), WanderCoordinate(GetX(), dx * step / 100), WanderCoordinate(GetY(), dy * step / 100)))
                     break;
             }
             if (step <= 100)
                 continue;
 
             m_dwStateDuration = passes_per_sec;
-            const long x = GetX() + dx;
-            const long y = GetY() + dy;
+            const long x = WanderCoordinate(GetX(), dx);
+            const long y = WanderCoordinate(GetY(), dy);
             if (Goto(x, y))
                 SendMovePacket(0, 0, 0, 0, 0, 0, -1);
             sys_log(0, "WAEGU move to %d %d (far)", static_cast<int>(x), static_cast<int>(y));
@@ -118,30 +126,35 @@ void CHARACTER::StateHorse()
         m_dwStateDuration = 4;
         return;
     }
-    if (get_dword_time() <= m_dwLastAttackTime)
+    if (get_dword_time() <= GetLastAttackTime())
         return;
 
     const DWORD now = get_dword_time();
     m_dwLastAttackTime = static_cast<std::uint32_t>(now + number_ex(5000, 12000, const_cast<char*>("char_state.cpp"), 0x513));
     SetRotation(number_ex(0, 359, const_cast<char*>("char_state.cpp"), 0x515));
     float dx, dy;
-    GetDeltaByDegree(GetRotation(), number_ex(200, 400, const_cast<char*>("char_state.cpp"), 0x518),
-                     &dx, &dy);
-    const auto x = static_cast<std::uint32_t>(GetX());
+    const int wanderDistance = number_ex(200, 400, const_cast<char*>("char_state.cpp"), 0x518);
+    GetDeltaByDegree(GetRotation(), wanderDistance, &dx, &dy);
     const auto y = static_cast<std::uint32_t>(GetY());
+    const auto x = static_cast<std::uint32_t>(GetX());
     const auto offsetX = static_cast<std::int32_t>(dx);
     const auto offsetY = static_cast<std::int32_t>(dy);
     const auto targetX = static_cast<std::int32_t>(x + offsetX);
     const auto targetY = static_cast<std::int32_t>(y + offsetY);
-    const auto midpointX = static_cast<std::int32_t>(x + offsetX / 2);
-    const auto midpointY = static_cast<std::int32_t>(y + offsetY / 2);
     auto& sectors = SECTREE_MANAGER::instance();
-    if (sectors.IsMovablePosition(GetMapIndex(), targetX, targetY) &&
-        sectors.IsMovablePosition(GetMapIndex(), midpointX, midpointY)) {
-        SetNowWalking(true);
-        if (Goto(targetX, targetY))
-            SendMovePacket(0, 0, 0, 0, 0, 0, -1);
-    }
+    if (!sectors.IsMovablePosition(GetMapIndex(), targetX, targetY))
+        return;
+
+    const auto midpointY = WanderCoordinate(GetY(), offsetY / 2);
+    const auto midpointX = WanderCoordinate(GetX(), offsetX / 2);
+    if (!sectors.IsMovablePosition(GetMapIndex(), midpointX, midpointY))
+        return;
+
+    SetNowWalking(true);
+    const auto destinationY = WanderCoordinate(GetY(), offsetY);
+    const auto destinationX = WanderCoordinate(GetX(), offsetX);
+    if (Goto(destinationX, destinationY))
+        SendMovePacket(0, 0, 0, 0, 0, 0, -1);
 }
 
 bool __CHARACTER_GotoNearTarget(LPCHARACTER character, LPCHARACTER victim)
@@ -162,8 +175,9 @@ bool __CHARACTER_GotoNearTarget(LPCHARACTER character, LPCHARACTER victim)
 
 void CHARACTER::StateMove()
 {
-    const auto elapsed = static_cast<std::uint32_t>(get_dword_time() - m_dwMoveStartTime);
-    const auto duration = static_cast<std::uint32_t>(m_dwMoveDuration);
+    const auto now = get_dword_time();
+    const auto elapsed = static_cast<std::uint32_t>(now - m_dwMoveStartTime);
+    const auto duration = static_cast<std::uint32_t>(GetCurrentMoveDuration());
     const float progress = duration ? std::min(1.0f, static_cast<float>(
         static_cast<long double>(static_cast<float>(elapsed)) / duration)) : 1.0f;
 
@@ -180,8 +194,10 @@ void CHARACTER::StateMove()
                                      static_cast<long double>(delta) * progress;
         return truncatePosition(position);
     };
-    const int x = interpolate(m_posStart.x, m_posDest.x);
-    const int y = interpolate(m_posStart.y, m_posDest.y);
+    const long startX = m_posStart.x;
+    const int x = interpolate(startX, m_posDest.x);
+    const long destinationY = m_posDest.y;
+    const int y = interpolate(m_posStart.y, destinationY);
     Move(x, y);
 
     if (GetDesc() && (thecore_pulse() & 15) == 0) {
@@ -198,11 +214,11 @@ void CHARACTER::StateMove()
     }
 
     if (!GetDesc()) {
-        if (GetCharType() == CHAR_TYPE_MONSTER) {
+        if (IsMonster()) {
             if (LPCHARACTER victim = GetVictim())
                 UpdateAggrPoint(victim, DAMAGE_TYPE_NORMAL, -1 - victim->GetLevel() / 3);
         }
-        if (GetCharType() == CHAR_TYPE_MONSTER && GetMobRank() >= 4) {
+        if (IsMonster() && GetMobRank() >= 4) {
             if (LPCHARACTER victim = GetVictim()) {
                 if (GetRaceNum() == 2191 &&
                     number_ex(1, 20, const_cast<char*>("char_state.cpp"), 0x35a) == 1 &&
@@ -227,18 +243,18 @@ void CHARACTER::StateMove()
             }
         }
     } else {
-        if ((m_bNowWalking || m_points.stamina < 1) && m_points.stamina < m_pointsInstant.iMaxStamina &&
-            static_cast<std::uint32_t>(get_dword_time() - m_dwWalkStartTime) >= 5000) {
-            PointChange(POINT_STAMINA, m_pointsInstant.iMaxStamina, false, false);
+        if (IsWalking() && GetStamina() < GetMaxStamina() &&
+            static_cast<std::uint32_t>(get_dword_time() - GetWalkStartTime()) >= 5000) {
+            PointChange(POINT_STAMINA, GetMaxStamina(), false, false);
         }
-        if (!m_bNowWalking && m_points.stamina > 0 && !IsHorseRiding()) {
-            if (static_cast<std::uint32_t>(get_dword_time() - m_dwLastAttackTime) < 20000) {
+        if (!IsWalking() && !IsHorseRiding()) {
+            if (static_cast<std::uint32_t>(get_dword_time() - GetLastAttackTime()) < 20000) {
                 StartAffectEvent();
                 if (!IsStaminaHalfConsume() || (thecore_pulse() & 1))
                     PointChange(POINT_STAMINA, -1, false, false);
                 StartStaminaConsume();
-                if (m_points.stamina <= 0) {
-                    m_points.stamina = 0;
+                if (GetStamina() <= 0) {
+                    SetStamina(0);
                     SetNowWalking(true);
                     StopStaminaConsume();
                 }
@@ -273,7 +289,7 @@ LPCHARACTER FindVictim(LPCHARACTER mob, int maxDistance);
 
 void CHARACTER::StateBattle()
 {
-    if (GetCharType() == CHAR_TYPE_STONE) {
+    if (IsStone()) {
         _sys_err("StateBattle", 0x3b5, "Stone must not use battle state (name %s)", GetName());
         return;
     }
@@ -370,16 +386,16 @@ void CHARACTER::StateBattle()
             Follow(protege, number_ex(150, 400, const_cast<char*>("char_state.cpp"), 0x43d));
         return;
     }
-    if (distance >= GetMobAttackRange() * 1.15) {
-        if (!(m_pointsInstant.dwAIFlag & 2u))
+    if (distance >= GetMobAttackRange() * static_cast<long double>(1.15)) {
+        if (!(GetAIFlag() & 2u))
             __CHARACTER_GotoNearTarget(this, victim);
         return;
     }
 
     const DWORD now = get_dword_time();
-    const auto elapsed = static_cast<std::uint32_t>(now - m_dwLastAttackTime);
     const auto attackInterval = static_cast<std::uint32_t>(
         CalculateDuration(GetLimitPoint(POINT_ATT_SPEED), 2000));
+    const auto elapsed = static_cast<std::uint32_t>(now - GetLastAttackTime());
     if (elapsed < attackInterval) {
         m_dwStateDuration = std::max<DWORD>(1, passes_per_sec * (attackInterval - elapsed) / 1000);
         return;
@@ -497,7 +513,7 @@ void CHARACTER::__StateIdle_Monster()
         SetVictim(nullptr);
         m_dwStateDuration = passes_per_sec;
     }
-    if (!victim || victim->GetCharType() == CHAR_TYPE_BUILDING) {
+    if (!victim || victim->IsBuilding()) {
         if (m_pkChrStone) {
             victim = m_pkChrStone->GetNearestVictim(m_pkChrStone);
         } else if (!no_wander && IsAggressive() &&
@@ -516,12 +532,14 @@ void CHARACTER::__StateIdle_Monster()
                                   const_cast<char*>("char_state.cpp"), aggressiveIdle ? 0x2b7 : 0x2b9)
         * passes_per_sec;
     LPCHARACTER protege = GetProtege();
-    if (protege && DISTANCE_APPROX(GetX() - protege->GetX(), GetY() - protege->GetY()) > 1000 &&
+    if (protege && DISTANCE_APPROX(
+            static_cast<std::int32_t>(static_cast<std::uint32_t>(GetX()) - static_cast<std::uint32_t>(protege->GetX())),
+            static_cast<std::int32_t>(static_cast<std::uint32_t>(GetY()) - static_cast<std::uint32_t>(protege->GetY()))) > 1000 &&
         Follow(protege, number_ex(150, 400, const_cast<char*>("char_state.cpp"), 0x2c2))) {
         MonsterLog("[IDLE] \xb8\xae\xb4\xf5\xb7\xce\xba\xce\xc5\xcd \xb3\xca\xb9\xab \xb8\xd6\xb8\xae \xb6\xb3\xbe\xee\xc1\xb3\xb4\xd9! \xba\xb9\xb1\xcd\xc7\xd1\xb4\xd9.");
         return;
     }
-    if (no_wander || (m_pointsInstant.dwAIFlag & 2u) ||
+    if (no_wander || (GetAIFlag() & 2u) ||
         number_ex(0, 6, const_cast<char*>("char_state.cpp"), 0x2cf) != 0) {
         MonsterChat(0);
         return;
@@ -529,14 +547,14 @@ void CHARACTER::__StateIdle_Monster()
 
     SetRotation(number_ex(0, 359, const_cast<char*>("char_state.cpp"), 0x2d1));
     float dx, dy;
-    GetDeltaByDegree(GetRotation(), number_ex(300, 700, const_cast<char*>("char_state.cpp"), 0x2d4),
-                     &dx, &dy);
+    const int wanderDistance = number_ex(300, 700, const_cast<char*>("char_state.cpp"), 0x2d4);
+    GetDeltaByDegree(GetRotation(), wanderDistance, &dx, &dy);
     const int offsetX = static_cast<int>(dx);
     const int offsetY = static_cast<int>(dy);
     auto& sectors = SECTREE_MANAGER::instance();
-    if (sectors.IsMovablePosition(GetMapIndex(), GetX() + offsetX, GetY() + offsetY) &&
-        sectors.IsMovablePosition(GetMapIndex(), GetX() + offsetX / 2, GetY() + offsetY / 2) &&
-        Goto(GetX() + offsetX, GetY() + offsetY)) {
+    if (sectors.IsMovablePosition(GetMapIndex(), WanderCoordinate(GetX(), offsetX), WanderCoordinate(GetY(), offsetY)) &&
+        sectors.IsMovablePosition(GetMapIndex(), WanderCoordinate(GetX(), offsetX / 2), WanderCoordinate(GetY(), offsetY / 2)) &&
+        Goto(WanderCoordinate(GetX(), offsetX), WanderCoordinate(GetY(), offsetY))) {
         SendMovePacket(0, 0, 0, 0, 0, 0, -1);
     }
 }
@@ -553,7 +571,7 @@ void CHARACTER::StateIdle()
             return;
         default:
             if (!GetDesc()) {
-                if (GetCharType() == CHAR_TYPE_MONSTER)
+                if (IsMonster())
                     __StateIdle_Monster();
                 else
                     __StateIdle_NPC();
@@ -630,11 +648,13 @@ void CHARACTER::__StateIdle_NPC()
         }
         return;
     }
-    if (m_pointsInstant.dwAIFlag & 2u)
+    if (GetAIFlag() & 2u)
         return;
 
     LPCHARACTER protege = GetProtege();
-    if (protege && DISTANCE_APPROX(GetX() - protege->GetX(), GetY() - protege->GetY()) > 500 &&
+    if (protege && DISTANCE_APPROX(
+            static_cast<std::int32_t>(static_cast<std::uint32_t>(GetX()) - static_cast<std::uint32_t>(protege->GetX())),
+            static_cast<std::int32_t>(static_cast<std::uint32_t>(GetY()) - static_cast<std::uint32_t>(protege->GetY()))) > 500 &&
         Follow(protege, number_ex(100, 300, const_cast<char*>("char_state.cpp"), 0x251)))
         return;
     if (number_ex(0, 6, const_cast<char*>("char_state.cpp"), 0x256) != 0)
@@ -643,15 +663,15 @@ void CHARACTER::__StateIdle_NPC()
     MonsterLog("\xb3\xaa\xb4\xc2 \xbf\xf2\xc1\xf7\xc0\xcc\xb4\xc2 NPC\xb4\xcf \xbf\xf2\xc1\xf7\xbf\xa9 \xba\xbc\xb1\xee\xb3\xaa?");
     SetRotation(number_ex(0, 359, const_cast<char*>("char_state.cpp"), 0x25a));
     float dx, dy;
-    GetDeltaByDegree(GetRotation(), number_ex(200, 400, const_cast<char*>("char_state.cpp"), 0x25d),
-                     &dx, &dy);
+    const int wanderDistance = number_ex(200, 400, const_cast<char*>("char_state.cpp"), 0x25d);
+    GetDeltaByDegree(GetRotation(), wanderDistance, &dx, &dy);
     const int offsetX = static_cast<int>(dx);
     const int offsetY = static_cast<int>(dy);
     auto& sectors = SECTREE_MANAGER::instance();
-    if (sectors.IsMovablePosition(GetMapIndex(), GetX() + offsetX, GetY() + offsetY) &&
-        sectors.IsMovablePosition(GetMapIndex(), GetX() + offsetX / 2, GetY() + offsetY / 2)) {
+    if (sectors.IsMovablePosition(GetMapIndex(), WanderCoordinate(GetX(), offsetX), WanderCoordinate(GetY(), offsetY)) &&
+        sectors.IsMovablePosition(GetMapIndex(), WanderCoordinate(GetX(), offsetX / 2), WanderCoordinate(GetY(), offsetY / 2))) {
         SetNowWalking(true);
-        if (Goto(GetX() + offsetX, GetY() + offsetY))
+        if (Goto(WanderCoordinate(GetX(), offsetX), WanderCoordinate(GetY(), offsetY)))
             SendMovePacket(0, 0, 0, 0, 0, 0, -1);
     }
 }
@@ -674,6 +694,68 @@ LPCHARACTER GetFlagCandidate(LPENTITY entity)
     LPCHARACTER character = static_cast<LPCHARACTER>(entity);
     return character->GetGuild() ? character : nullptr;
 }
+
+struct FuncFindChrForFlag
+{
+    LPCHARACTER m_pkChr;
+    LPCHARACTER m_pkChrFind = nullptr;
+    int m_iMinDistance = 501;
+
+    void operator()(LPENTITY entity)
+    {
+        LPCHARACTER character = GetFlagCandidate(entity);
+        if (!character || character->IsDead())
+            return;
+        const int distance = DISTANCE_APPROX(character->GetX() - m_pkChr->GetX(), character->GetY() - m_pkChr->GetY());
+        if (distance >= 501 || distance >= m_iMinDistance || HasWarFlag(character))
+            return;
+        const DWORD owner = m_pkChr->GetPoint(POINT_STAT);
+        if (owner == character->GetGuild()->GetID()) {
+            CWarMap* characterMap = character->GetWarMap();
+            BYTE team;
+            if (!characterMap || !characterMap->GetTeamIndex(owner, team) ||
+                characterMap->IsFlagOnBase(team))
+                return;
+        }
+        m_iMinDistance = distance;
+        m_pkChrFind = character;
+    }
+};
+
+struct FuncFindChrForFlagBase
+{
+    LPCHARACTER m_pkChr;
+
+    void operator()(LPENTITY entity)
+    {
+        LPCHARACTER character = GetFlagCandidate(entity);
+        if (!character)
+            return;
+        const int distance = DISTANCE_APPROX(character->GetX() - m_pkChr->GetX(), character->GetY() - m_pkChr->GetY());
+        if (distance > 500 || !HasWarFlag(character))
+            return;
+
+        CAffect* flag = character->FindAffect(warFlagAffect, POINT_NONE);
+        const DWORD loggedOwner = m_pkChr->GetPoint(POINT_STAT);
+        const DWORD guild = character->GetGuild()->GetID();
+        sys_log(0, "FlagBase %s dist %d aff %p flag gid %ld chr gid %lu",
+                character->GetName(), distance, static_cast<void*>(flag), static_cast<long>(loggedOwner), guild);
+        if (!flag || static_cast<DWORD>(m_pkChr->GetPoint(POINT_STAT)) != guild || static_cast<long>(static_cast<DWORD>(m_pkChr->GetPoint(POINT_STAT))) == flag->lApplyValue)
+            return;
+        CWarMap* map = character->GetWarMap();
+        BYTE team;
+        if (!map || !map->GetTeamIndex(guild, team))
+            return;
+
+        SendGuildWarScore(m_pkChr->GetPoint(POINT_STAT), flag->lApplyValue, 1, 0);
+        map->ResetFlag();
+        char notice[256];
+        std::snprintf(notice, sizeof(notice), locale_find(flagCaptured, g_iUseLocale),
+                      map->GetGuild(team)->GetName(), map->GetGuild(1 - team)->GetName());
+        map->Notice(notice);
+    }
+};
+
 }
 
 void CHARACTER::StateFlag()
@@ -684,26 +766,9 @@ void CHARACTER::StateFlag()
         return;
 
     const DWORD owner = GetPoint(POINT_STAT);
-    LPCHARACTER closest = nullptr;
-    int minDistance = 501;
-    auto findCarrier = [&](LPENTITY entity) {
-        LPCHARACTER character = GetFlagCandidate(entity);
-        if (!character || character->IsDead())
-            return;
-        const int distance = DISTANCE_APPROX(character->GetX() - GetX(), character->GetY() - GetY());
-        if (distance >= minDistance || HasWarFlag(character))
-            return;
-        if (owner == character->GetGuild()->GetID()) {
-            CWarMap* characterMap = character->GetWarMap();
-            BYTE team;
-            if (!characterMap || !characterMap->GetTeamIndex(owner, team) ||
-                characterMap->IsFlagOnBase(team))
-                return;
-        }
-        minDistance = distance;
-        closest = character;
-    };
+    FuncFindChrForFlag findCarrier{this};
     GetSectree()->ForEachAround(findCarrier);
+    LPCHARACTER closest = findCarrier.m_pkChrFind;
     BYTE team;
     if (!closest || !closest->GetGuild() || !map->GetTeamIndex(owner, team))
         return;
@@ -724,32 +789,6 @@ void CHARACTER::StateFlagBase()
     if (!GetSectree())
         return;
 
-    auto capture = [&](LPENTITY entity) {
-        LPCHARACTER character = GetFlagCandidate(entity);
-        if (!character)
-            return;
-        const int distance = DISTANCE_APPROX(character->GetX() - GetX(), character->GetY() - GetY());
-        if (distance > 500 || !HasWarFlag(character))
-            return;
-
-        CAffect* flag = character->FindAffect(warFlagAffect, POINT_NONE);
-        const DWORD owner = GetPoint(POINT_STAT);
-        const DWORD guild = character->GetGuild()->GetID();
-        sys_log(0, "FlagBase %s dist %d aff %p flag gid %ld chr gid %lu",
-                character->GetName(), distance, static_cast<void*>(flag), static_cast<long>(owner), guild);
-        if (!flag || owner != guild || static_cast<long>(owner) == flag->lApplyValue)
-            return;
-        CWarMap* map = character->GetWarMap();
-        BYTE team;
-        if (!map || !map->GetTeamIndex(guild, team))
-            return;
-
-        SendGuildWarScore(owner, flag->lApplyValue, 1, 0);
-        map->ResetFlag();
-        char notice[256];
-        std::snprintf(notice, sizeof(notice), locale_find(flagCaptured, g_iUseLocale),
-                      map->GetGuild(team)->GetName(), map->GetGuild(1 - team)->GetName());
-        map->Notice(notice);
-    };
+    FuncFindChrForFlagBase capture{this};
     GetSectree()->ForEachAround(capture);
 }

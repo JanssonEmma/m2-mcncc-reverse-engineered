@@ -213,8 +213,15 @@ void CGuild::ReserveWar(DWORD opponent, BYTE type)
 {
     if (opponent == GetID())
         return;
-    const auto war = m_EnemyGuild.emplace(opponent, TGuildWar(type)).first;
-    war->second.state = 9;
+    const auto war = m_EnemyGuild.find(opponent);
+    if (war == m_EnemyGuild.end()) {
+        TGuildWar reservation(type);
+        reservation.state = 9;
+        m_EnemyGuild.emplace(opponent, reservation);
+    } else {
+        war->second.state = 9;
+    }
+    sys_log(0, "Guild::ReserveWar %lu", static_cast<unsigned long>(static_cast<std::uint32_t>(opponent)));
 }
 
 bool CGuild::CheckStartWar(DWORD opponent)
@@ -295,7 +302,7 @@ void CGuild::StartWar(DWORD opponent)
     if (war == m_EnemyGuild.end() || war->second.state == 6)
         return;
     war->second.state = 6;
-    war->second.war_start_time = get_global_time();
+    war->second.war_start_time = static_cast<std::uint32_t>(get_global_time());
     GuildWarPacket(opponent, war->second.type, 6);
     if (war->second.type)
         GuildWarEntryAsk(opponent);
@@ -319,7 +326,7 @@ void CGuild::GuildWarEntryAccept(DWORD opponent, CHARACTER* ch)
     {
         ch->SetQuestFlag("war.is_war_member", 1);
         ch->SaveExitLocation();
-        ch->WarpSet(start.x, start.y, mapIndex);
+        ch->WarpSet(start.x, start.y, war->second.map_index);
     }
 }
 
@@ -335,13 +342,13 @@ void CGuild::GuildWarEntryAsk(DWORD opponent)
     }
     const long map = war->second.map_index;
     sys_log(0, "GuildWar.GuildWarEntryAsk id(%d vs %d), map(%ld)", self, enemy, map);
-    if (!map)
+    if (!war->second.map_index)
     {
         _sys_err("GuildWarEntryAsk", 0x2ac, "GuildWar.GuildWarEntryAsk.NOT_EXIST_MAP id(%d vs %d)", self, enemy);
         return;
     }
     PIXEL_POSITION position = {};
-    if (!CWarMapManager::instance().GetStartPosition(map, opponent <= GetID(), position))
+    if (!CWarMapManager::instance().GetStartPosition(war->second.map_index, opponent <= GetID(), position))
     {
         _sys_err("GuildWarEntryAsk", 0x2b3, "GuildWar.GuildWarEntryAsk.START_POSITION_ERROR id(%d vs %d), pos(%d, %d)",
             self, enemy, static_cast<int>(position.x), static_cast<int>(position.y));
@@ -368,12 +375,15 @@ void CGuild::GuildWarEntryAsk(DWORD opponent)
 
 void CGuild::EndWar(DWORD opponent)
 {
+    if (opponent == GetID())
+        return;
     const auto war = m_EnemyGuild.find(opponent);
-    if (opponent == GetID() || war == m_EnemyGuild.end())
+    if (war == m_EnemyGuild.end())
         return;
 
     if (CWarMap* map = CWarMapManager::instance().Find(war->second.map_index))
         map->SetEnded();
+    GuildWarPacket(opponent, war->second.type, 7);
     m_EnemyGuild.erase(war);
     if (!UnderAnyWar(3))
     {
@@ -397,9 +407,10 @@ void CGuild::SetGuildWarMapIndex(DWORD opponent, long mapIndex)
 {
     std::map<DWORD, TGuildWar>::iterator war = m_EnemyGuild.find(opponent);
     if (war != m_EnemyGuild.end()) {
-        war->second.map_index = mapIndex;
+        war->second.map_index = static_cast<std::uint32_t>(mapIndex);
+        const int opponentId = static_cast<std::int32_t>(opponent);
         sys_log(0, "GuildWar.SetGuildWarMapIndex id(%d -> %d), map(%d)",
-                static_cast<int>(m_data.guild_id), static_cast<int>(opponent), static_cast<int>(mapIndex));
+                static_cast<std::int32_t>(m_data.guild_id), opponentId, static_cast<std::int32_t>(mapIndex));
     }
 }
 
@@ -461,7 +472,7 @@ void CGuild::SetWarScoreAgainstTo(DWORD opponent, int score)
     if (war == m_EnemyGuild.end())
         return;
 
-    war->second.score = static_cast<DWORD>(score);
+    war->second.score = static_cast<std::uint32_t>(score);
     CGuildManager& manager = CGuildManager::instance();
     if (war->second.type == 0)
     {
@@ -474,9 +485,14 @@ void CGuild::SetWarScoreAgainstTo(DWORD opponent, int score)
         buffer.write(&guild, sizeof(guild));
         buffer.write(&other, sizeof(other));
         buffer.write(&points, sizeof(points));
-        Packet(buffer.read_peek(), buffer.size());
-        if (CGuild* enemy = manager.TouchGuild(opponent))
-            enemy->Packet(buffer.read_peek(), buffer.size());
+        const int size = buffer.size();
+        const void* data = buffer.read_peek();
+        Packet(data, size);
+        if (CGuild* enemy = manager.TouchGuild(opponent)) {
+            const int enemySize = buffer.size();
+            const void* enemyData = buffer.read_peek();
+            enemy->Packet(enemyData, enemySize);
+        }
     }
     else
     {
@@ -495,9 +511,9 @@ int CGuild::GetWarScoreAgainstTo(DWORD opponent)
         return 0;
     }
 
-    const int score = static_cast<int>(war->second.score);
+    const int score = static_cast<std::int32_t>(war->second.score);
     sys_log(0, "GuildWarScore Get %lu from %lu %d", m_data.guild_id, opponent, score);
-    return score;
+    return static_cast<std::int32_t>(war->second.score);
 }
 
 void CGuild::SendEnemyGuild(CHARACTER* ch)

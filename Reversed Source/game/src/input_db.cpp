@@ -43,6 +43,7 @@
 #include "../../libthecore/include/utils.h"
 #include <cstdint>
 #include <cstdio>
+#include <cstddef>
 #include <cstring>
 #include <vector>
 #include <cerrno>
@@ -111,35 +112,43 @@ void CInputDB::FinishBoot(DWORD maxItemId)
         return;
     }
 
+    char commonDropPath[256];
+    char etcDropPath[256];
+    char mobDropPath[256];
+    char specialGroupPath[256];
+    char dropGroupPath[256];
+    char index[256];
+    ::snprintf(commonDropPath, sizeof(commonDropPath) - 1, "%s/common_drop_item.txt", LocaleService_GetBasePath().c_str());
+    ::snprintf(etcDropPath, sizeof(etcDropPath) - 1, "%s/etc_drop_item.txt", LocaleService_GetBasePath().c_str());
+    ::snprintf(mobDropPath, sizeof(mobDropPath) - 1, "%s/mob_drop_item.txt", LocaleService_GetBasePath().c_str());
+    ::snprintf(specialGroupPath, sizeof(specialGroupPath) - 1, "%s/special_item_group.txt", LocaleService_GetBasePath().c_str());
+    ::snprintf(dropGroupPath, sizeof(dropGroupPath) - 1, "%s/drop_item_group.txt", LocaleService_GetBasePath().c_str());
+    ::snprintf(index, sizeof(index) - 1, "%s/index", LocaleService_GetMapPath().c_str());
+
     typedef bool (ITEM_MANAGER::*DropLoader)(const char*);
     const struct {
-        const char* filename;
+        const char* path;
         const char* label;
         int errorLine;
         DropLoader load;
     } drops[] = {
-        { "common_drop_item.txt", "CommonDropItem", 0x400, &ITEM_MANAGER::ReadCommonDropItemFile },
-        { "etc_drop_item.txt", "ETCDropItem", 0x408, &ITEM_MANAGER::ReadEtcDropItemFile },
-        { "drop_item_group.txt", "DropItemGroup", 0x410, &ITEM_MANAGER::ReadDropItemGroup },
-        { "special_item_group.txt", "SpecialItemGroup", 0x418, &ITEM_MANAGER::ReadSpecialDropItemFile },
-        { "mob_drop_item.txt", "MOBDropItemFile", 0x420, &ITEM_MANAGER::ReadMonsterDropItemGroup },
+        { commonDropPath, "CommonDropItem", 0x400, &ITEM_MANAGER::ReadCommonDropItemFile },
+        { etcDropPath, "ETCDropItem", 0x408, &ITEM_MANAGER::ReadEtcDropItemFile },
+        { dropGroupPath, "DropItemGroup", 0x410, &ITEM_MANAGER::ReadDropItemGroup },
+        { specialGroupPath, "SpecialItemGroup", 0x418, &ITEM_MANAGER::ReadSpecialDropItemFile },
+        { mobDropPath, "MOBDropItemFile", 0x420, &ITEM_MANAGER::ReadMonsterDropItemGroup },
     };
     for (const auto& drop : drops) {
-        char path[256];
-        ::snprintf(path, sizeof(path) - 1, "%s/%s", LocaleService_GetBasePath().c_str(), drop.filename);
-        sys_log(0, "LoadLocaleFile: %s: %s", drop.label, path);
-        if (!(items.*drop.load)(path)) {
-            _sys_err("Boot", drop.errorLine, "cannot load %s: %s", drop.label, path);
+        sys_log(0, "LoadLocaleFile: %s: %s", drop.label, drop.path);
+        if (!(items.*drop.load)(drop.path)) {
+            _sys_err("Boot", drop.errorLine, "cannot load %s: %s", drop.label, drop.path);
             thecore_shutdown();
             return;
         }
     }
 
-    const std::string& mapPath = LocaleService_GetMapPath();
-    char index[256];
-    ::snprintf(index, sizeof(index) - 1, "%s/index", mapPath.c_str());
     sys_log(0, "LoadLocaleFile: MapIndex: %s", index);
-    if (!SECTREE_MANAGER::instance().Build(index, mapPath.c_str())) {
+    if (!SECTREE_MANAGER::instance().Build(index, LocaleService_GetMapPath().c_str())) {
         _sys_err("Boot", 0x428, "cannot load MapIndex: %s", index);
         thecore_shutdown();
         return;
@@ -1010,18 +1019,19 @@ bool CInputDB::BillingCheck(const char* data)
 
 bool CInputDB::MyshopPricelistRes(const char* data)
 {
-    constexpr std::size_t headerSize = 5;
+    constexpr std::size_t headerSize = sizeof(TPacketMyshopPricelistHeader);
     constexpr std::size_t entrySize = 8;
     if (m_payloadSize < headerSize)
         return false;
-    const BYTE count = static_cast<BYTE>(data[4]);
+    const auto* packet = reinterpret_cast<const TPacketMyshopPricelistHeader*>(data);
+    const BYTE count = packet->byCount;
     if (count > SHOP_PRICELIST_MAX_NUM ||
         m_payloadSize < headerSize + static_cast<std::size_t>(count) * entrySize)
         return false;
     if (DESC* desc = DESC_MANAGER::instance().FindByHandle(m_dwHandle)) {
         if (CHARACTER* character = desc->GetCharacter()) {
             sys_log(0, "RecvMyshopPricelistRes name[%s]", character->GetName());
-            character->UseSilkBotaryReal(data + headerSize, count);
+            character->UseSilkBotaryReal(packet);
         }
     }
     return true;
@@ -1290,13 +1300,13 @@ void CInputDB::PlayerLoad(DESC* desc, const char* data)
     TPlayerTable player;
     std::memcpy(&player, data, sizeof(player));
     player.name[sizeof(player.name) - 1] = 0;
-    const unsigned empire = desc->GetEmpire() < 4 ? desc->GetEmpire() : 0;
-    static const long startMap[] = {0, 1, 21, 41};
+    const BYTE accountEmpire = desc->GetAccountTable().bEmpire;
+    const unsigned empire = accountEmpire < 4 ? accountEmpire : 0;
     SECTREE_MANAGER& maps = SECTREE_MANAGER::instance();
     if (!player.lMapIndex) {
         player.lMapIndex = maps.GetMapIndex(player.x, player.y);
         if (!player.lMapIndex)
-            player.lMapIndex = startMap[empire];
+            player.lMapIndex = g_start_map[empire];
     }
 
     long map;
@@ -1356,7 +1366,10 @@ void CInputDB::PlayerLoad(DESC* desc, const char* data)
     if (!map_allow_find(map > 9999 ? map / 10000 : map)) {
         _sys_err("PlayerLoad", 0x23a, "InputDB::PlayerLoad : entering %d map is not allowed here (name: %s, empire %u)",
                  static_cast<int>(map), player.name, static_cast<unsigned>(desc->GetEmpire()));
-        character->SetWarpLocation(startMap[empire], g_start_position[empire][0] / 100, g_start_position[empire][1] / 100);
+        const BYTE currentEmpire = desc->GetEmpire();
+        const unsigned returnEmpire = currentEmpire < 4 ? currentEmpire : 0;
+        character->SetWarpLocation(g_start_map[returnEmpire], g_start_position[returnEmpire][0] / 100,
+                                   g_start_position[returnEmpire][1] / 100);
         desc->SetPhase(0);
         return;
     }
@@ -1608,11 +1621,11 @@ EVENTFUNC(quest_login_event)
         return passes_per_sec;
 
     if (desc->IsPhase(5)) {
-        sys_log(0, "QUEST_LOAD: Login pc %d by event", static_cast<int>(pid));
-        quest::CQuestManager::instance().Login(pid);
+        sys_log(0, "QUEST_LOAD: Login pc %d by event", static_cast<int>(character->GetPlayerID()));
+        quest::CQuestManager::instance().Login(character->GetPlayerID());
     } else {
         _sys_err("quest_login_event", 0x46a, "input_db.cpp:quest_login_event INVALID PHASE pid %d",
-                 static_cast<int>(pid));
+                 static_cast<int>(character->GetPlayerID()));
     }
     return 0;
 }
@@ -1621,7 +1634,7 @@ bool CInputDB::ItemLoad(DESC* desc, const char* data)
 {
     static_assert(sizeof(TPlayerItem) == 52, "2009 DB player item record");
     CHARACTER* character = desc ? desc->GetCharacter() : nullptr;
-    if (!character || character->m_bItemLoaded)
+    if (!character || character->IsItemLoaded())
         return true;
 
     std::uint32_t count;
@@ -1652,8 +1665,9 @@ bool CInputDB::ItemLoad(DESC* desc, const char* data)
         sys_log(0, "ITEM_LOAD: %s %s:%lu %d", character->GetName(), item->GetName(), item->GetID(),
                 static_cast<int>(item->GetCount()));
         item->SetSkipSave(true);
-        long sockets[] = {row.alSockets[0], row.alSockets[1], row.alSockets[2]};
-        item->SetSockets(sockets);
+        static_assert(offsetof(TPlayerItem, alSockets) == 15, "Original item socket offset");
+        static_assert(sizeof(row.alSockets) == 12, "Original item socket width");
+        item->SetPackedSockets(data + offsetof(TPlayerItem, alSockets));
         item->SetAttributes(row.aAttr);
 
         const bool occupied = inventory
@@ -1682,7 +1696,7 @@ bool CInputDB::ItemLoad(DESC* desc, const char* data)
 
     character->CheckMaximumPoints();
     character->PointsPacket();
-    character->m_bItemLoaded = true;
+    character->SetItemLoaded();
     return true;
 }
 
@@ -1731,13 +1745,14 @@ bool CInputDB::QuestLoad(DESC* desc, const char* data)
     pc->SetLoaded();
     pc->Build();
 
-    if (desc->IsPhase(5)) {
+    DESC* currentDesc = character->GetDesc();
+    if (currentDesc && currentDesc->IsPhase(5)) {
         sys_log(0, "QUEST_LOAD: Login pc %d", static_cast<int>(pid));
         manager.Login(pid);
     } else {
         void* eventData;
         const DWORD info = __AllocEventInfo(sizeof(std::uint32_t), &eventData);
-        *static_cast<std::uint32_t*>(eventData) = pid;
+        *static_cast<std::uint32_t*>(eventData) = character->GetPlayerID();
         event_create_ex(quest_login_event, info, passes_per_sec, const_cast<char*>("input_db.cpp"), 0x4ae);
     }
     return true;
